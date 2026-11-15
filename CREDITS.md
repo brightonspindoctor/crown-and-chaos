@@ -34,10 +34,10 @@ Generated from `art/manifest.json` by `scripts/build-credits.mjs`. Do not edit b
 - **the-snow-queen** (card): Edmund Dulac, *The Snow Queen* (1911). [Metropolitan Museum of Art](https://www.metmuseum.org/art/collection/search/344941). Public domain (Met open access).
 - **the-tin-soldier** (card): Vilhelm Pedersen, *Tin soldiers!* (1849). Old Book Illustrations. Public domain.
 - **dracula** (stand-in): Unknown German painter, *Vlad III, Prince of Wallachia (the Ambras portrait)* (second half of the 16th century). [Kunsthistorisches Museum, Schloss Ambras](https://khm.at/en/object/5508). Public domain painting; faithful photographs carry no new copyright in the UK or US.
-- **victor-frankenstein, the-creature** (card): Theodor von Holst (engraved by W. Chevalier), *Frontispiece to Frankenstein* (1831). [Wellcome Collection](https://wellcomecollection.org/works/p67zzz4d). Public Domain Mark.
+- **victor-frankenstein, the-creature** (card): Theodor von Holst (engraved by W. Chevalier), *Frontispiece to Frankenstein* (1831). [Wellcome Collection](https://iiif.wellcomecollection.org/pdf/b11980072). Public Domain Mark.
 - **the-bride** (stand-in): Edward Burne-Jones, *Pygmalion and the Image: The Godhead Fires* (1878). [Birmingham Museums Trust](https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122). CC0.
 - **the-bride** (variant): Jean-Léon Gérôme, *Pygmalion and Galatea* (c. 1890). [Metropolitan Museum of Art](https://metmuseum.org/art/collection/search/436483). Public domain (Met open access).
 - **Heorot, the Mead-Hall** (board): J. R. Skelton, *Wealhtheow* (1908). Wikimedia Commons. Public domain.
 - **Camelot, the Round Table** (board): Edward Burne-Jones, William Morris and J. H. Dearle, *The Attainment: The Vision of the Holy Grail to Sir Galahad, Sir Bors and Sir Percival* (1895-96). [Birmingham Museums Trust](https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076). CC0.
 - **The Forest Path** (board): Gustave Doré, *En passant dans un bois, elle rencontra compère le Loup* (1867). [Hammer Museum, UCLA](https://collections.hammer.ucla.edu/artwork/1962.35.330). CC0.
-- **Victor's Laboratory** (board): Theodor von Holst, *Frontispiece to Frankenstein* (1831). [Wellcome Collection](https://wellcomecollection.org/works/p67zzz4d). Public Domain Mark.
+- **Victor's Laboratory** (board): Theodor von Holst, *Frontispiece to Frankenstein* (1831). [Wellcome Collection](https://iiif.wellcomecollection.org/pdf/b11980072). Public Domain Mark.
