@@ -35,5 +35,9 @@
     }
   ],
   "art": "grendel",
-  "status": "reviewed"
+  "status": "reviewed",
+  "rules": [
+    "Grendel and Grendel's Mother are a pair: they are drawn together and must be fielded together."
+  ],
+  "pairedWith": "grendels-mother"
 }

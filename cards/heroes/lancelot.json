@@ -20,7 +20,7 @@
     "text": "When he attacks, the enemy Crown also takes 1 damage, at most once a round. No effect against a side with no Crown."
   },
   "bond": {
-    "text": "Your Albion heroes have +1 health. While your Arthur lives and you field no Healer, Lancelot has +2 Attack."
+    "text": "Your Albion heroes have +1 Health. While you field a Sovereign and no Healer, Lancelot has +2 Attack."
   },
   "actions": [
     {

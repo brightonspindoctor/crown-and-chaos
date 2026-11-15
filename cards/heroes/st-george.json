@@ -19,7 +19,7 @@
     "text": "Blocks the first 5 damage of the first attack on any of your heroes each round."
   },
   "bond": {
-    "text": "When any Dragon dies, his Guard becomes Attack. If your Princess dies, his Attack doubles."
+    "text": "When one of your Beast heroes dies, his Guard is added to his Attack. If one of your Healers dies, his Attack doubles."
   },
   "actions": [
     {

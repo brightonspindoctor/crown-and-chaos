@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Abandoned",
-    "text": "When your Victor dies he gains +2 Attack; when your Bride dies he gains +2 Attack and +1 Speed."
+    "text": "The first time another of your Gothic heroes dies, he gains +2 Attack. The second time, he gains +2 Attack and +1 Speed."
   },
   "actions": [
     {

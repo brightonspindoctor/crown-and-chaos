@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Spark of life",
-    "text": "At upkeep, he heals 2 and so does each of your tale-mates."
+    "text": "At upkeep, he and each of your other Gothic heroes heal 2."
   },
   "actions": [
     {

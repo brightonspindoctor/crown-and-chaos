@@ -19,7 +19,7 @@
     "text": "Heals 1 to all your cards at upkeep."
   },
   "bond": {
-    "text": "+1 starting health for each tale-mate fielded."
+    "text": "Her heals restore +1 for each other Albion hero you field."
   },
   "actions": [
     {

@@ -20,7 +20,7 @@
     "text": "No enemy attack can deal more than 5 damage."
   },
   "bond": {
-    "text": "If your Robin Hood dies, she gains +2 Attack for the rest of the fight."
+    "text": "The first time another of your Albion heroes dies, she gains +2 Attack and +1 Speed for the rest of the fight."
   },
   "actions": [
     {

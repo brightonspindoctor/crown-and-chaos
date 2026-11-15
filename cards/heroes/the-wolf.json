@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Disguise",
-    "text": "While your Red Riding Hood lives, Ranged attacks can't target him."
+    "text": "While another of your Märchen heroes lives, Ranged attacks can't target him."
   },
   "actions": [
     {

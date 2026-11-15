@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Master",
-    "text": "When one of your tale-mates dies, he heals 4."
+    "text": "When another of your Gothic heroes dies, he heals 4."
   },
   "actions": [
     {

@@ -20,7 +20,9 @@
   "crownPassive": {
     "text": "When another of your heroes is about to die, he automatically swaps slots with it and takes the hit, even if it kills him. The saved hero becomes the Crown."
   },
-  "bond": null,
+  "bond": {
+    "text": "Your heroes deal +1 damage to Slayers."
+  },
   "actions": [
     {
       "name": "Attack",
