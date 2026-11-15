@@ -2,56 +2,768 @@
   "about": "Every image used in Crown & Fable. Each entry must be public domain in the UK (artist died more than 70 years ago) and the US (published before 1931), and is credited in-game by artist, title, date and source. status: cleared = the specific image's rights page was checked; cleared-book = artist and book checked, specific file still to pick; to-confirm = not yet cleared, do not ship; open = no image chosen yet.",
   "checked": "2026-11-15",
   "images": [
-    {"id": "st-george", "use": "card", "cards": ["st-george"], "artist": "Raphael", "artistDied": 1520, "title": "Saint George and the Dragon", "date": "c. 1506", "source": {"name": "National Gallery of Art, Washington", "url": null}, "licence": "Public domain (NGA open access)", "status": "cleared"},
-    {"id": "the-dragon", "use": "card", "cards": ["the-dragon"], "artist": "Il Sodoma", "artistDied": 1549, "title": "Saint George and the Dragon", "date": "c. 1518", "source": {"name": "National Gallery of Art, Washington", "url": null}, "licence": "Public domain (NGA open access)", "status": "cleared"},
-    {"id": "the-princess", "use": "card", "cards": ["the-princess"], "artist": "Rogier van der Weyden", "artistDied": 1464, "title": "Saint George and the Dragon", "date": "c. 1432-35", "source": {"name": "National Gallery of Art, Washington", "url": null}, "licence": "Public domain (NGA open access)", "status": "cleared"},
-
-    {"id": "robin-hood", "use": "card", "cards": ["robin-hood"], "artist": "Louis Rhead", "artistDied": 1926, "title": "Robin Hood", "date": "1912", "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)", "source": {"name": "Old Book Illustrations", "url": "https://www.oldbookillustrations.com/illustrations/robin-hood/"}, "licence": "Public domain in the US and life+70 countries", "status": "cleared"},
-    {"id": "little-john", "use": "card", "cards": ["little-john"], "artist": "Louis Rhead", "artistDied": 1926, "title": "Little John", "date": "1912", "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)", "source": {"name": "Old Book Illustrations", "url": "https://www.oldbookillustrations.com/illustrations/little-john"}, "licence": "Public domain in the US and life+70 countries", "status": "cleared"},
-    {"id": "friar-tuck", "use": "card", "cards": ["friar-tuck"], "artist": "Louis Rhead", "artistDied": 1926, "title": "Friar Tuck", "date": "1912", "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)", "source": {"name": "Old Book Illustrations", "url": "https://www.oldbookillustrations.com/illustrations/friar-tuck/"}, "licence": "Public domain in the US and life+70 countries", "status": "cleared"},
-    {"id": "maid-marian", "use": "card", "cards": ["maid-marian"], "artist": "Louis Rhead", "artistDied": 1926, "title": "Maid Marian", "date": "1912", "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)", "source": {"name": "Old Book Illustrations", "url": "https://www.oldbookillustrations.com/illustrations/maid-marian/"}, "licence": "Public domain in the US and life+70 countries", "status": "cleared"},
-    {"id": "maid-marian-variant", "use": "variant", "cards": ["maid-marian"], "artist": "N. C. Wyeth", "artistDied": 1945, "title": "Robin Meets Maid Marian", "date": "1917", "publication": "Robin Hood, Paul Creswick (McKay, 1917)", "source": {"name": "Standard Ebooks", "url": "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian"}, "licence": "Public domain in the US and UK", "status": "cleared", "notes": "Still in copyright in life+100 countries such as Mexico until 2045."},
-
-    {"id": "king-arthur", "use": "card", "cards": ["king-arthur"], "artist": "N. C. Wyeth", "artistDied": 1945, "title": "And When They Came to the Sword That the Hand Held, King Arthur Took It Up", "date": "1917", "publication": "The Boy's King Arthur (Scribner, 1917)", "source": {"name": "Standard Ebooks", "url": "https://standardebooks.org/artworks/n-c-wyeth/and-when-they-came-to-the-sword-that-the-hand-held-king-arthur-took-it-up"}, "licence": "Public domain in the US and UK", "status": "cleared"},
-    {"id": "merlin", "use": "card", "cards": ["merlin"], "artist": "Howard Pyle", "artistDied": 1911, "title": "The Enchanter Merlin", "date": "1903", "publication": "The Story of King Arthur and His Knights (Scribner, 1903)", "source": {"name": "Wikisource", "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"}, "licence": "Public domain worldwide", "status": "cleared"},
-    {"id": "morgan-le-fay", "use": "card", "cards": ["morgan-le-fay"], "artist": "Frederick Sandys", "artistDied": 1904, "title": "Morgan-le-Fay", "date": "1864", "source": {"name": "Birmingham Museums Trust", "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478"}, "licence": "CC0", "status": "cleared"},
-    {"id": "lancelot", "use": "card", "cards": ["lancelot"], "artist": "N. C. Wyeth", "artistDied": 1945, "title": "I am Sir Launcelot du Lake, King Ban's son of Benwick, and knight of the Round Table", "date": "1917", "publication": "The Boy's King Arthur (Scribner, 1917), p. 38", "source": {"name": "University of Rochester, Robin Hood and Camelot Projects", "url": "https://d.lib.rochester.edu/node/38085"}, "licence": "Public domain in the US and UK", "status": "cleared", "notes": "Crop to Lancelot."},
-    {"id": "guinevere", "use": "card", "cards": ["guinevere"], "artist": "Howard Pyle", "artistDied": 1911, "title": "The Lady Guinevere", "date": "1903", "publication": "The Story of King Arthur and His Knights (Scribner, 1903), p. 78", "source": {"name": "Wikisource", "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"}, "licence": "Public domain worldwide", "status": "cleared"},
-    {"id": "guinevere-variant", "use": "variant", "cards": ["guinevere"], "artist": "Howard Pyle", "artistDied": 1911, "title": "King Arthur meets the Lady Guinevere", "date": "1903", "publication": "The Story of King Arthur and His Knights (Scribner, 1903), p. 138", "source": {"name": "Wikisource", "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"}, "licence": "Public domain worldwide", "status": "cleared"},
-
-    {"id": "beowulf", "use": "card", "cards": ["beowulf"], "artist": "J. R. Skelton", "artistDied": 1927, "title": "Now he belched forth flaming fire", "date": "1908", "publication": "Stories of Beowulf, H. E. Marshall (1908)", "source": {"name": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_fighting_the_dragon.jpg"}, "commonsFile": "Stories_of_beowulf_fighting_the_dragon.jpg", "licence": "Public domain", "status": "cleared", "notes": "Online scans are small; use a full book scan for card size."},
-    {"id": "grendel", "use": "card", "cards": ["grendel"], "artist": "J. R. Skelton", "artistDied": 1927, "title": "Grendel", "date": "1908", "publication": "Stories of Beowulf, H. E. Marshall (1908)", "source": {"name": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_grendel.jpg"}, "commonsFile": "Stories_of_beowulf_grendel.jpg", "licence": "Public domain", "status": "cleared"},
-    {"id": "grendels-mother", "use": "card", "cards": ["grendels-mother"], "artist": "J. R. Skelton", "artistDied": 1927, "title": "Grendel's mother, the water witch, tries to stab Beowulf", "date": "1908", "publication": "Stories of Beowulf, H. E. Marshall (1908)", "source": {"name": "Wikimedia Commons", "url": null}, "licence": "Public domain", "status": "cleared", "notes": "Commons file name still to record."},
-
-    {"id": "red-riding-hood", "use": "card", "cards": ["red-riding-hood", "the-wolf"], "artist": "Gustave Doré", "artistDied": 1883, "title": "En passant dans un bois, elle rencontra compère le Loup", "date": "1867", "publication": "Les Contes de Perrault (engraved by Pannemaker)", "source": {"name": "Hammer Museum, UCLA", "url": "https://collections.hammer.ucla.edu/artwork/1962.35.330"}, "licence": "CC0", "status": "cleared", "notes": "Red Riding Hood and the Wolf cards each crop to their own figure."},
-    {"id": "red-riding-hood-painting", "use": "alternative", "cards": ["red-riding-hood", "the-wolf"], "artist": "Gustave Doré", "artistDied": 1883, "title": "Little Red Riding Hood", "date": "c. 1862", "source": {"name": "National Gallery of Victoria, Melbourne", "url": "https://ngv.vic.gov.au/explore/collection/work/3918"}, "licence": "Public domain (NGV)", "status": "cleared", "notes": "NGV asks for a full reproduction somewhere if a detail is used. Darker bedroom scene."},
-    {"id": "the-huntsman", "use": "card", "cards": ["the-huntsman"], "artist": "Árpád Schmidhammer", "artistDied": 1921, "title": "Little Red Riding Hood saved by the huntsman", "source": {"name": "New York Public Library", "url": "https://rp-digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e"}, "licence": "Public domain in the US; artist died over 70 years ago", "status": "cleared"},
-    {"id": "rumpelstiltskin", "use": "card", "cards": ["rumpelstiltskin"], "artist": "Arthur Rackham", "artistDied": 1939, "title": "Round the fire an indescribably ridiculous little man was leaping", "date": "1909", "publication": "The Fairy Tales of the Brothers Grimm (Constable, 1909)", "source": {"name": "SurLaLune Fairy Tales", "url": "https://surlalunefairytales.com/oldsite/illustrations/rumpelstiltskin/rackhamrumple.html"}, "licence": "Public domain in the US and UK", "status": "cleared"},
-    {"id": "gretel", "use": "card", "cards": ["gretel"], "artist": "Arthur Rackham", "artistDied": 1939, "title": "'Stupid goose!' cried the Witch", "date": "1909", "publication": "The Fairy Tales of the Brothers Grimm (Constable, 1909)", "source": {"name": "SurLaLune Fairy Tales", "url": "https://surlalunefairytales.com/oldsite/illustrations/hanselgretel/rackhamhansel4.html"}, "licence": "Public domain in the US and UK", "status": "cleared"},
-
-    {"id": "baba-yaga", "use": "card", "cards": ["baba-yaga"], "artist": "Ivan Bilibin", "artistDied": 1942, "title": "Baba Yaga", "date": "1900", "publication": "Vasilisa the Beautiful (1899-1902)", "source": {"name": "Wikimedia Commons", "url": null}, "licence": "Public domain", "status": "cleared-book"},
-    {"id": "koschei", "use": "card", "cards": ["koschei"], "artist": "Ivan Bilibin", "artistDied": 1942, "title": "Koschei the Deathless", "date": "1901", "publication": "Marya Morevna (1901)", "source": {"name": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_Koshchey.jpg"}, "commonsFile": "Ivan_Bilibin_Koshchey.jpg", "licence": "Public domain", "status": "cleared"},
-    {"id": "vasilisa-the-wise", "use": "card", "cards": ["vasilisa-the-wise"], "artist": "Ivan Bilibin", "artistDied": 1942, "title": "Ivan Tsarevich and the Frog Princess", "date": "1901", "publication": "The Frog Princess (1901)", "source": {"name": "Wikimedia Commons", "url": null}, "licence": "Public domain", "status": "cleared-book"},
-    {"id": "zmey-gorynych", "use": "card", "cards": ["zmey-gorynych"], "artist": "Ivan Bilibin", "artistDied": 1942, "title": "Zmey Gorynych", "date": "1912", "publication": "Postcard, c. 1912", "source": {"name": "Mary Evans Picture Library (Grenville Collins Postcard Collection)", "url": "https://prints.aap.com.au/mary-evans-prints-online/zmey-goynych-slavic-three-headed-dragon-14409971.html"}, "licence": "Public domain; a free scan is still needed", "status": "cleared-book", "notes": "Don't use the Mary Evans copy; find a free scan of the postcard."},
-
-    {"id": "bran-the-blessed", "use": "card", "cards": ["bran-the-blessed"], "artist": "J. H. F. Bacon", "artistDied": 1914, "title": "Listening to the Pleasant Conversation of Bran's Head", "date": "1910s", "publication": "Celtic Myth & Legend, Poetry & Romance, Charles Squire (Gresham)", "source": {"name": "Internet Archive", "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"}, "licence": "Public domain", "status": "cleared"},
-    {"id": "gwydion", "use": "card", "cards": ["gwydion"], "artist": "J. H. F. Bacon", "artistDied": 1914, "title": "The Making of Blodeuwedd", "date": "1910s", "publication": "Celtic Myth & Legend, Poetry & Romance, Charles Squire (Gresham)", "source": {"name": "Internet Archive", "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"}, "licence": "Public domain", "status": "cleared"},
-    {"id": "rhiannon", "use": "card", "cards": ["rhiannon"], "artist": "Unknown engraver", "artistDied": null, "title": "The Fair Rhiannon, riding her brilliant white mare, is pursued by Pwyll", "date": "1877", "publication": "The Mabinogion, trans. Lady Charlotte Guest (1877 edition)", "source": {"name": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Charlotte_Guest_Rhiannon.jpg"}, "commonsFile": "Charlotte_Guest_Rhiannon.jpg", "licence": "Public domain", "status": "cleared"},
-
-    {"id": "the-snow-queen", "use": "card", "cards": ["the-snow-queen"], "artist": "Edmund Dulac", "artistDied": 1953, "title": "The Snow Queen", "date": "1911", "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)", "source": {"name": "Metropolitan Museum of Art", "url": "https://www.metmuseum.org/art/collection/search/344941"}, "licence": "Public domain (Met open access)", "status": "cleared"},
-    {"id": "the-tin-soldier", "use": "card", "cards": ["the-tin-soldier"], "artist": "Vilhelm Pedersen", "artistDied": 1859, "title": "Tin soldiers!", "date": "1849", "publication": "Hans Christian Andersen, Eventyr", "source": {"name": "Old Book Illustrations", "url": null}, "licence": "Public domain", "status": "cleared-book"},
-
-    {"id": "dracula", "use": "stand-in", "cards": ["dracula"], "artist": "Unknown German painter", "artistDied": null, "title": "Vlad III, Prince of Wallachia (the Ambras portrait)", "date": "second half of the 16th century", "source": {"name": "Kunsthistorisches Museum, Schloss Ambras", "url": "https://khm.at/en/object/5508"}, "commonsFile": "Vlad_Tepes_002.jpg", "licence": "Public domain painting; faithful photographs carry no new copyright in the UK or US", "status": "cleared", "notes": "Stand-in: the real prince whose name Stoker borrowed. Credit by its own title, never as 'Dracula'."},
-    {"id": "victor-frankenstein", "use": "card", "cards": ["victor-frankenstein", "the-creature"], "artist": "Theodor von Holst (engraved by W. Chevalier)", "artistDied": 1844, "title": "Frontispiece to Frankenstein", "date": "1831", "source": {"name": "Wellcome Collection", "url": "https://wellcomecollection.org/works/p67zzz4d"}, "licence": "Public Domain Mark", "status": "cleared"},
-    {"id": "the-bride", "use": "stand-in", "cards": ["the-bride"], "artist": "Edward Burne-Jones", "artistDied": 1898, "title": "Pygmalion and the Image: The Godhead Fires", "date": "1878", "source": {"name": "Birmingham Museums Trust", "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122"}, "licence": "CC0", "status": "cleared", "notes": "Stand-in; head-and-shoulders crop. Credit by its own title."},
-    {"id": "the-bride-variant", "use": "variant", "cards": ["the-bride"], "artist": "Jean-Léon Gérôme", "artistDied": 1904, "title": "Pygmalion and Galatea", "date": "c. 1890", "source": {"name": "Metropolitan Museum of Art", "url": "https://metmuseum.org/art/collection/search/436483"}, "licence": "Public domain (Met open access)", "status": "cleared", "notes": "Stand-in; head-and-shoulders crop."},
-
-    {"id": "board-heorot", "use": "board", "board": "Heorot, the Mead-Hall", "artist": "J. R. Skelton", "artistDied": 1927, "title": "Wealhtheow", "date": "1908", "publication": "Stories of Beowulf (1908)", "source": {"name": "Wikimedia Commons", "url": null}, "commonsFile": "Wealhtheow.PNG", "licence": "Public domain", "status": "cleared", "notes": "Candidate backdrop; small scan."},
-    {"id": "board-camelot", "use": "board", "board": "Camelot, the Round Table", "artist": "Edward Burne-Jones, William Morris and J. H. Dearle", "artistDied": 1898, "title": "The Knights of the Round Table Summoned to the Quest by the Strange Damsel", "date": "1898-99", "source": {"name": "Birmingham Museums Trust", "url": null}, "licence": "Expected CC0; this panel's record not yet found", "status": "to-confirm"},
-    {"id": "board-camelot-fallback", "use": "board", "board": "Camelot, the Round Table", "artist": "Edward Burne-Jones, William Morris and J. H. Dearle", "artistDied": 1898, "title": "The Attainment: The Vision of the Holy Grail to Sir Galahad, Sir Bors and Sir Percival", "date": "1895-96", "source": {"name": "Birmingham Museums Trust", "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076"}, "licence": "CC0", "status": "cleared"},
-    {"id": "board-forest-path", "use": "board", "board": "The Forest Path", "artist": "Gustave Doré", "artistDied": 1883, "title": "En passant dans un bois, elle rencontra compère le Loup", "date": "1867", "source": {"name": "Hammer Museum, UCLA", "url": "https://collections.hammer.ucla.edu/artwork/1962.35.330"}, "licence": "CC0", "status": "cleared"},
-    {"id": "board-victors-laboratory", "use": "board", "board": "Victor's Laboratory", "artist": "Theodor von Holst", "artistDied": 1844, "title": "Frontispiece to Frankenstein", "date": "1831", "source": {"name": "Wellcome Collection", "url": "https://wellcomecollection.org/works/p67zzz4d"}, "licence": "Public Domain Mark", "status": "cleared"},
-    {"id": "board-castle-dracula", "use": "board", "board": "Castle Dracula", "artist": null, "title": null, "date": null, "source": {"name": null, "url": null}, "licence": null, "status": "open"},
-    {"id": "board-sherwood", "use": "board", "board": "Sherwood Forest", "artist": null, "title": null, "date": null, "source": {"name": null, "url": null}, "licence": null, "status": "open"}
+    {
+      "id": "st-george",
+      "use": "card",
+      "cards": [
+        "st-george"
+      ],
+      "artist": "Raphael",
+      "artistDied": 1520,
+      "title": "Saint George and the Dragon",
+      "date": "c. 1506",
+      "source": {
+        "name": "National Gallery of Art, Washington",
+        "url": null
+      },
+      "licence": "Public domain (NGA open access)",
+      "status": "cleared"
+    },
+    {
+      "id": "the-dragon",
+      "use": "card",
+      "cards": [
+        "the-dragon"
+      ],
+      "artist": "Il Sodoma",
+      "artistDied": 1549,
+      "title": "Saint George and the Dragon",
+      "date": "c. 1518",
+      "source": {
+        "name": "National Gallery of Art, Washington",
+        "url": null
+      },
+      "licence": "Public domain (NGA open access)",
+      "status": "cleared"
+    },
+    {
+      "id": "the-princess",
+      "use": "card",
+      "cards": [
+        "the-princess"
+      ],
+      "artist": "Rogier van der Weyden",
+      "artistDied": 1464,
+      "title": "Saint George and the Dragon",
+      "date": "c. 1432-35",
+      "source": {
+        "name": "National Gallery of Art, Washington",
+        "url": null
+      },
+      "licence": "Public domain (NGA open access)",
+      "status": "cleared"
+    },
+    {
+      "id": "robin-hood",
+      "use": "card",
+      "cards": [
+        "robin-hood"
+      ],
+      "artist": "Louis Rhead",
+      "artistDied": 1926,
+      "title": "Robin Hood",
+      "date": "1912",
+      "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
+      "source": {
+        "name": "Old Book Illustrations",
+        "url": "https://www.oldbookillustrations.com/illustrations/robin-hood/"
+      },
+      "licence": "Public domain in the US and life+70 countries",
+      "status": "cleared",
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/robin-hood/"
+    },
+    {
+      "id": "little-john",
+      "use": "card",
+      "cards": [
+        "little-john"
+      ],
+      "artist": "Louis Rhead",
+      "artistDied": 1926,
+      "title": "Little John",
+      "date": "1912",
+      "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
+      "source": {
+        "name": "Old Book Illustrations",
+        "url": "https://www.oldbookillustrations.com/illustrations/little-john"
+      },
+      "licence": "Public domain in the US and life+70 countries",
+      "status": "cleared",
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/little-john/"
+    },
+    {
+      "id": "friar-tuck",
+      "use": "card",
+      "cards": [
+        "friar-tuck"
+      ],
+      "artist": "Louis Rhead",
+      "artistDied": 1926,
+      "title": "Friar Tuck",
+      "date": "1912",
+      "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
+      "source": {
+        "name": "Old Book Illustrations",
+        "url": "https://www.oldbookillustrations.com/illustrations/friar-tuck/"
+      },
+      "licence": "Public domain in the US and life+70 countries",
+      "status": "cleared",
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/friar-tuck/"
+    },
+    {
+      "id": "maid-marian",
+      "use": "card",
+      "cards": [
+        "maid-marian"
+      ],
+      "artist": "Louis Rhead",
+      "artistDied": 1926,
+      "title": "Maid Marian",
+      "date": "1912",
+      "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
+      "source": {
+        "name": "Old Book Illustrations",
+        "url": "https://www.oldbookillustrations.com/illustrations/maid-marian/"
+      },
+      "licence": "Public domain in the US and life+70 countries",
+      "status": "cleared",
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/maid-marian/"
+    },
+    {
+      "id": "maid-marian-variant",
+      "use": "variant",
+      "cards": [
+        "maid-marian"
+      ],
+      "artist": "N. C. Wyeth",
+      "artistDied": 1945,
+      "title": "Robin Meets Maid Marian",
+      "date": "1917",
+      "publication": "Robin Hood, Paul Creswick (McKay, 1917)",
+      "source": {
+        "name": "Standard Ebooks",
+        "url": "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "notes": "Still in copyright in life+100 countries such as Mexico until 2045.",
+      "imagePage": "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian"
+    },
+    {
+      "id": "king-arthur",
+      "use": "card",
+      "cards": [
+        "king-arthur"
+      ],
+      "artist": "N. C. Wyeth",
+      "artistDied": 1945,
+      "title": "And When They Came to the Sword That the Hand Held, King Arthur Took It Up",
+      "date": "1917",
+      "publication": "The Boy's King Arthur (Scribner, 1917)",
+      "source": {
+        "name": "Standard Ebooks",
+        "url": "https://standardebooks.org/artworks/n-c-wyeth/and-when-they-came-to-the-sword-that-the-hand-held-king-arthur-took-it-up"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "imagePage": "https://standardebooks.org/artworks/n-c-wyeth/and-when-they-came-to-the-sword-that-the-hand-held-king-arthur-took-it-up"
+    },
+    {
+      "id": "merlin",
+      "use": "card",
+      "cards": [
+        "merlin"
+      ],
+      "artist": "Howard Pyle",
+      "artistDied": 1911,
+      "title": "The Enchanter Merlin",
+      "date": "1903",
+      "publication": "The Story of King Arthur and His Knights (Scribner, 1903)",
+      "source": {
+        "name": "Wikisource",
+        "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
+      },
+      "licence": "Public domain worldwide",
+      "status": "cleared"
+    },
+    {
+      "id": "morgan-le-fay",
+      "use": "card",
+      "cards": [
+        "morgan-le-fay"
+      ],
+      "artist": "Frederick Sandys",
+      "artistDied": 1904,
+      "title": "Morgan-le-Fay",
+      "date": "1864",
+      "source": {
+        "name": "Birmingham Museums Trust",
+        "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478"
+    },
+    {
+      "id": "lancelot",
+      "use": "card",
+      "cards": [
+        "lancelot"
+      ],
+      "artist": "N. C. Wyeth",
+      "artistDied": 1945,
+      "title": "I am Sir Launcelot du Lake, King Ban's son of Benwick, and knight of the Round Table",
+      "date": "1917",
+      "publication": "The Boy's King Arthur (Scribner, 1917), p. 38",
+      "source": {
+        "name": "University of Rochester, Robin Hood and Camelot Projects",
+        "url": "https://d.lib.rochester.edu/node/38085"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "notes": "Crop to Lancelot.",
+      "imagePage": "https://d.lib.rochester.edu/node/38085"
+    },
+    {
+      "id": "guinevere",
+      "use": "card",
+      "cards": [
+        "guinevere"
+      ],
+      "artist": "Howard Pyle",
+      "artistDied": 1911,
+      "title": "The Lady Guinevere",
+      "date": "1903",
+      "publication": "The Story of King Arthur and His Knights (Scribner, 1903), p. 78",
+      "source": {
+        "name": "Wikisource",
+        "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
+      },
+      "licence": "Public domain worldwide",
+      "status": "cleared"
+    },
+    {
+      "id": "guinevere-variant",
+      "use": "variant",
+      "cards": [
+        "guinevere"
+      ],
+      "artist": "Howard Pyle",
+      "artistDied": 1911,
+      "title": "King Arthur meets the Lady Guinevere",
+      "date": "1903",
+      "publication": "The Story of King Arthur and His Knights (Scribner, 1903), p. 138",
+      "source": {
+        "name": "Wikisource",
+        "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
+      },
+      "licence": "Public domain worldwide",
+      "status": "cleared"
+    },
+    {
+      "id": "beowulf",
+      "use": "card",
+      "cards": [
+        "beowulf"
+      ],
+      "artist": "J. R. Skelton",
+      "artistDied": 1927,
+      "title": "Now he belched forth flaming fire",
+      "date": "1908",
+      "publication": "Stories of Beowulf, H. E. Marshall (1908)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_fighting_the_dragon.jpg"
+      },
+      "commonsFile": "Stories_of_beowulf_fighting_the_dragon.jpg",
+      "licence": "Public domain",
+      "status": "cleared",
+      "notes": "Online scans are small; use a full book scan for card size."
+    },
+    {
+      "id": "grendel",
+      "use": "card",
+      "cards": [
+        "grendel"
+      ],
+      "artist": "J. R. Skelton",
+      "artistDied": 1927,
+      "title": "Grendel",
+      "date": "1908",
+      "publication": "Stories of Beowulf, H. E. Marshall (1908)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_grendel.jpg"
+      },
+      "commonsFile": "Stories_of_beowulf_grendel.jpg",
+      "licence": "Public domain",
+      "status": "cleared"
+    },
+    {
+      "id": "grendels-mother",
+      "use": "card",
+      "cards": [
+        "grendels-mother"
+      ],
+      "artist": "J. R. Skelton",
+      "artistDied": 1927,
+      "title": "Grendel's mother, the water witch, tries to stab Beowulf",
+      "date": "1908",
+      "publication": "Stories of Beowulf, H. E. Marshall (1908)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": null
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "notes": "Commons file name still to record."
+    },
+    {
+      "id": "red-riding-hood",
+      "use": "card",
+      "cards": [
+        "red-riding-hood",
+        "the-wolf"
+      ],
+      "artist": "Gustave Doré",
+      "artistDied": 1883,
+      "title": "En passant dans un bois, elle rencontra compère le Loup",
+      "date": "1867",
+      "publication": "Les Contes de Perrault (engraved by Pannemaker)",
+      "source": {
+        "name": "Hammer Museum, UCLA",
+        "url": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "notes": "Red Riding Hood and the Wolf cards each crop to their own figure.",
+      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+    },
+    {
+      "id": "red-riding-hood-painting",
+      "use": "alternative",
+      "cards": [
+        "red-riding-hood",
+        "the-wolf"
+      ],
+      "artist": "Gustave Doré",
+      "artistDied": 1883,
+      "title": "Little Red Riding Hood",
+      "date": "c. 1862",
+      "source": {
+        "name": "National Gallery of Victoria, Melbourne",
+        "url": "https://ngv.vic.gov.au/explore/collection/work/3918"
+      },
+      "licence": "Public domain (NGV)",
+      "status": "cleared",
+      "notes": "NGV asks for a full reproduction somewhere if a detail is used. Darker bedroom scene.",
+      "imagePage": "https://ngv.vic.gov.au/explore/collection/work/3918"
+    },
+    {
+      "id": "the-huntsman",
+      "use": "card",
+      "cards": [
+        "the-huntsman"
+      ],
+      "artist": "Árpád Schmidhammer",
+      "artistDied": 1921,
+      "title": "Little Red Riding Hood saved by the huntsman",
+      "source": {
+        "name": "New York Public Library",
+        "url": "https://rp-digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e"
+      },
+      "licence": "Public domain in the US; artist died over 70 years ago",
+      "status": "cleared",
+      "imagePage": "https://digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e"
+    },
+    {
+      "id": "rumpelstiltskin",
+      "use": "card",
+      "cards": [
+        "rumpelstiltskin"
+      ],
+      "artist": "Arthur Rackham",
+      "artistDied": 1939,
+      "title": "Round the fire an indescribably ridiculous little man was leaping",
+      "date": "1909",
+      "publication": "The Fairy Tales of the Brothers Grimm (Constable, 1909)",
+      "source": {
+        "name": "SurLaLune Fairy Tales",
+        "url": "https://surlalunefairytales.com/oldsite/illustrations/rumpelstiltskin/rackhamrumple.html"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "imagePage": "https://surlalunefairytales.com/oldsite/illustrations/rumpelstiltskin/rackhamrumple1.html"
+    },
+    {
+      "id": "gretel",
+      "use": "card",
+      "cards": [
+        "gretel"
+      ],
+      "artist": "Arthur Rackham",
+      "artistDied": 1939,
+      "title": "'Stupid goose!' cried the Witch",
+      "date": "1909",
+      "publication": "The Fairy Tales of the Brothers Grimm (Constable, 1909)",
+      "source": {
+        "name": "SurLaLune Fairy Tales",
+        "url": "https://surlalunefairytales.com/oldsite/illustrations/hanselgretel/rackhamhansel4.html"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "imagePage": "https://surlalunefairytales.com/oldsite/illustrations/hanselgretel/rackhamhansel4.html"
+    },
+    {
+      "id": "baba-yaga",
+      "use": "card",
+      "cards": [
+        "baba-yaga"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Baba Yaga",
+      "date": "1900",
+      "publication": "Vasilisa the Beautiful (1899-1902)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": null
+      },
+      "licence": "Public domain",
+      "status": "cleared-book"
+    },
+    {
+      "id": "koschei",
+      "use": "card",
+      "cards": [
+        "koschei"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Koschei the Deathless",
+      "date": "1901",
+      "publication": "Marya Morevna (1901)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_Koshchey.jpg"
+      },
+      "commonsFile": "Ivan_Bilibin_Koshchey.jpg",
+      "licence": "Public domain",
+      "status": "cleared"
+    },
+    {
+      "id": "vasilisa-the-wise",
+      "use": "card",
+      "cards": [
+        "vasilisa-the-wise"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Ivan Tsarevich and the Frog Princess",
+      "date": "1901",
+      "publication": "The Frog Princess (1901)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": null
+      },
+      "licence": "Public domain",
+      "status": "cleared-book"
+    },
+    {
+      "id": "zmey-gorynych",
+      "use": "card",
+      "cards": [
+        "zmey-gorynych"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Zmey Gorynych",
+      "date": "1912",
+      "publication": "Postcard, c. 1912",
+      "source": {
+        "name": "Mary Evans Picture Library (Grenville Collins Postcard Collection)",
+        "url": "https://prints.aap.com.au/mary-evans-prints-online/zmey-goynych-slavic-three-headed-dragon-14409971.html"
+      },
+      "licence": "Public domain; a free scan is still needed",
+      "status": "cleared-book",
+      "notes": "Don't use the Mary Evans copy; find a free scan of the postcard."
+    },
+    {
+      "id": "bran-the-blessed",
+      "use": "card",
+      "cards": [
+        "bran-the-blessed"
+      ],
+      "artist": "J. H. F. Bacon",
+      "artistDied": 1914,
+      "title": "Listening to the Pleasant Conversation of Bran's Head",
+      "date": "1910s",
+      "publication": "Celtic Myth & Legend, Poetry & Romance, Charles Squire (Gresham)",
+      "source": {
+        "name": "Internet Archive",
+        "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"
+      },
+      "licence": "Public domain",
+      "status": "cleared"
+    },
+    {
+      "id": "gwydion",
+      "use": "card",
+      "cards": [
+        "gwydion"
+      ],
+      "artist": "J. H. F. Bacon",
+      "artistDied": 1914,
+      "title": "The Making of Blodeuwedd",
+      "date": "1910s",
+      "publication": "Celtic Myth & Legend, Poetry & Romance, Charles Squire (Gresham)",
+      "source": {
+        "name": "Internet Archive",
+        "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"
+      },
+      "licence": "Public domain",
+      "status": "cleared"
+    },
+    {
+      "id": "rhiannon",
+      "use": "card",
+      "cards": [
+        "rhiannon"
+      ],
+      "artist": "Unknown engraver",
+      "artistDied": null,
+      "title": "The Fair Rhiannon, riding her brilliant white mare, is pursued by Pwyll",
+      "date": "1877",
+      "publication": "The Mabinogion, trans. Lady Charlotte Guest (1877 edition)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Charlotte_Guest_Rhiannon.jpg"
+      },
+      "commonsFile": "Charlotte_Guest_Rhiannon.jpg",
+      "licence": "Public domain",
+      "status": "cleared"
+    },
+    {
+      "id": "the-snow-queen",
+      "use": "card",
+      "cards": [
+        "the-snow-queen"
+      ],
+      "artist": "Edmund Dulac",
+      "artistDied": 1953,
+      "title": "The Snow Queen",
+      "date": "1911",
+      "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)",
+      "source": {
+        "name": "Metropolitan Museum of Art",
+        "url": "https://www.metmuseum.org/art/collection/search/344941"
+      },
+      "licence": "Public domain (Met open access)",
+      "status": "cleared",
+      "imagePage": "https://surlalunefairytales.com/oldsite/illustrations/snowqueen/dulacsnowqueen1.html"
+    },
+    {
+      "id": "the-tin-soldier",
+      "use": "card",
+      "cards": [
+        "the-tin-soldier"
+      ],
+      "artist": "Vilhelm Pedersen",
+      "artistDied": 1859,
+      "title": "Tin soldiers!",
+      "date": "1849",
+      "publication": "Hans Christian Andersen, Eventyr",
+      "source": {
+        "name": "Old Book Illustrations",
+        "url": null
+      },
+      "licence": "Public domain",
+      "status": "cleared-book"
+    },
+    {
+      "id": "dracula",
+      "use": "stand-in",
+      "cards": [
+        "dracula"
+      ],
+      "artist": "Unknown German painter",
+      "artistDied": null,
+      "title": "Vlad III, Prince of Wallachia (the Ambras portrait)",
+      "date": "second half of the 16th century",
+      "source": {
+        "name": "Kunsthistorisches Museum, Schloss Ambras",
+        "url": "https://khm.at/en/object/5508"
+      },
+      "commonsFile": "Vlad_Tepes_002.jpg",
+      "licence": "Public domain painting; faithful photographs carry no new copyright in the UK or US",
+      "status": "cleared",
+      "notes": "Stand-in: the real prince whose name Stoker borrowed. Credit by its own title, never as 'Dracula'."
+    },
+    {
+      "id": "victor-frankenstein",
+      "use": "card",
+      "cards": [
+        "victor-frankenstein",
+        "the-creature"
+      ],
+      "artist": "Theodor von Holst (engraved by W. Chevalier)",
+      "artistDied": 1844,
+      "title": "Frontispiece to Frankenstein",
+      "date": "1831",
+      "source": {
+        "name": "Wellcome Collection",
+        "url": "https://iiif.wellcomecollection.org/pdf/b11980072"
+      },
+      "licence": "Public Domain Mark",
+      "status": "cleared",
+      "wellcomeQuery": "b11980072"
+    },
+    {
+      "id": "the-bride",
+      "use": "stand-in",
+      "cards": [
+        "the-bride"
+      ],
+      "artist": "Edward Burne-Jones",
+      "artistDied": 1898,
+      "title": "Pygmalion and the Image: The Godhead Fires",
+      "date": "1878",
+      "source": {
+        "name": "Birmingham Museums Trust",
+        "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "notes": "Stand-in; head-and-shoulders crop. Credit by its own title.",
+      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122"
+    },
+    {
+      "id": "the-bride-variant",
+      "use": "variant",
+      "cards": [
+        "the-bride"
+      ],
+      "artist": "Jean-Léon Gérôme",
+      "artistDied": 1904,
+      "title": "Pygmalion and Galatea",
+      "date": "c. 1890",
+      "source": {
+        "name": "Metropolitan Museum of Art",
+        "url": "https://metmuseum.org/art/collection/search/436483"
+      },
+      "licence": "Public domain (Met open access)",
+      "status": "cleared",
+      "notes": "Stand-in; head-and-shoulders crop.",
+      "metObjectId": 436483
+    },
+    {
+      "id": "board-heorot",
+      "use": "board",
+      "board": "Heorot, the Mead-Hall",
+      "artist": "J. R. Skelton",
+      "artistDied": 1927,
+      "title": "Wealhtheow",
+      "date": "1908",
+      "publication": "Stories of Beowulf (1908)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": null
+      },
+      "commonsFile": "Wealhtheow.PNG",
+      "licence": "Public domain",
+      "status": "cleared",
+      "notes": "Candidate backdrop; small scan."
+    },
+    {
+      "id": "board-camelot",
+      "use": "board",
+      "board": "Camelot, the Round Table",
+      "artist": "Edward Burne-Jones, William Morris and J. H. Dearle",
+      "artistDied": 1898,
+      "title": "The Knights of the Round Table Summoned to the Quest by the Strange Damsel",
+      "date": "1898-99",
+      "source": {
+        "name": "Birmingham Museums Trust",
+        "url": null
+      },
+      "licence": "Expected CC0; this panel's record not yet found",
+      "status": "to-confirm"
+    },
+    {
+      "id": "board-camelot-fallback",
+      "use": "board",
+      "board": "Camelot, the Round Table",
+      "artist": "Edward Burne-Jones, William Morris and J. H. Dearle",
+      "artistDied": 1898,
+      "title": "The Attainment: The Vision of the Holy Grail to Sir Galahad, Sir Bors and Sir Percival",
+      "date": "1895-96",
+      "source": {
+        "name": "Birmingham Museums Trust",
+        "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076"
+    },
+    {
+      "id": "board-forest-path",
+      "use": "board",
+      "board": "The Forest Path",
+      "artist": "Gustave Doré",
+      "artistDied": 1883,
+      "title": "En passant dans un bois, elle rencontra compère le Loup",
+      "date": "1867",
+      "source": {
+        "name": "Hammer Museum, UCLA",
+        "url": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+    },
+    {
+      "id": "board-victors-laboratory",
+      "use": "board",
+      "board": "Victor's Laboratory",
+      "artist": "Theodor von Holst",
+      "artistDied": 1844,
+      "title": "Frontispiece to Frankenstein",
+      "date": "1831",
+      "source": {
+        "name": "Wellcome Collection",
+        "url": "https://iiif.wellcomecollection.org/pdf/b11980072"
+      },
+      "licence": "Public Domain Mark",
+      "status": "cleared",
+      "wellcomeQuery": "b11980072"
+    },
+    {
+      "id": "board-castle-dracula",
+      "use": "board",
+      "board": "Castle Dracula",
+      "artist": null,
+      "title": null,
+      "date": null,
+      "source": {
+        "name": null,
+        "url": null
+      },
+      "licence": null,
+      "status": "open"
+    },
+    {
+      "id": "board-sherwood",
+      "use": "board",
+      "board": "Sherwood Forest",
+      "artist": null,
+      "title": null,
+      "date": null,
+      "source": {
+        "name": null,
+        "url": null
+      },
+      "licence": null,
+      "status": "open"
+    }
   ]
 }
