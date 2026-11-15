@@ -1,0 +1,39 @@
+{
+  "id": "king-arthur",
+  "name": "King Arthur",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "King Arthur",
+  "aspect": "Sovereign",
+  "tags": [],
+  "stats": {
+    "health": 13,
+    "attack": 3,
+    "ranged": false,
+    "guard": 2,
+    "speed": 2
+  },
+  "vulnerableTo": "Witch",
+  "renown": 16,
+  "crownPassive": {
+    "name": "The Round Table",
+    "text": "All your heroes count as tale-mates of each other for Bonds, whatever tale or realm they come from."
+  },
+  "bond": {
+    "text": "Each of your heroes has +1 Guard."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Excalibur",
+      "ap": 2,
+      "text": "Attack for 5, ignoring Guard."
+    }
+  ],
+  "art": "king-arthur",
+  "status": "reviewed"
+}

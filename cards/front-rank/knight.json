@@ -1,0 +1,10 @@
+{
+  "type": "front-rank",
+  "id": "knight",
+  "name": "Knight",
+  "health": 2,
+  "attack": 2,
+  "guard": 1,
+  "renown": 3,
+  "auto": "Attacks the card opposite."
+}

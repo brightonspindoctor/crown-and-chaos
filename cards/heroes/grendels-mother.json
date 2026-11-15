@@ -1,0 +1,39 @@
+{
+  "id": "grendels-mother",
+  "name": "Grendel's Mother",
+  "type": "hero",
+  "realm": "Geatland",
+  "tale": "Beowulf",
+  "aspect": "Beast",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 3,
+    "ranged": false,
+    "guard": 1,
+    "speed": 1
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 11,
+  "crownPassive": {
+    "name": "The mere",
+    "text": "Your heroes take 2 less damage from Ranged attacks."
+  },
+  "bond": {
+    "text": "When a Grendel on your side dies, she gains +3 Attack and Speed 3 for the rest of the fight."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Drag under",
+      "ap": 2,
+      "text": "Attack an enemy hero in slot 2 or 3, ignoring cover."
+    }
+  ],
+  "art": "grendels-mother",
+  "status": "reviewed"
+}

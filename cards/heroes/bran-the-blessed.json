@@ -1,0 +1,41 @@
+{
+  "id": "bran-the-blessed",
+  "name": "Bran the Blessed",
+  "type": "hero",
+  "realm": "Cymru",
+  "tale": "Branwen, Daughter of Llŷr",
+  "aspect": "Guardian",
+  "tags": [],
+  "stats": {
+    "health": 16,
+    "attack": 3,
+    "ranged": false,
+    "guard": 0,
+    "speed": 1
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 12,
+  "crownPassive": {
+    "name": "Let him who is chief be a bridge",
+    "text": "Your heroes' melee attacks can also target the row behind the one they would normally hit."
+  },
+  "bond": {
+    "name": "Cymru kin",
+    "text": "+1 Guard for each other Cymru hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Cauldron of rebirth",
+      "ap": 2,
+      "text": "A dead front-rank card of yours comes back on full health.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "bran-the-blessed",
+  "status": "reviewed"
+}

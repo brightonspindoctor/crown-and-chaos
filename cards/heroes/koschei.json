@@ -1,0 +1,45 @@
+{
+  "id": "koschei",
+  "name": "Koschei the Deathless",
+  "type": "hero",
+  "realm": "Rus'",
+  "tale": "Koschei the Deathless",
+  "aspect": "Sovereign",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 3,
+    "ranged": false,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Thief of treasures",
+    "text": "Your opponent's items cost 2 action points instead of 1."
+  },
+  "bond": {
+    "name": "Rus' kin",
+    "text": "+1 health for each other Rus' hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Whirlwind",
+      "ap": 2,
+      "text": "Deal 3 to an enemy hero and swap it with a card next to it."
+    }
+  ],
+  "art": "koschei",
+  "status": "reviewed",
+  "rules": [
+    "Always on, in any slot: while your Needle lives, Koschei can't drop below 1 health.",
+    "Whenever you field Koschei, the Needle is placed in slot 6 automatically and costs no Renown.",
+    "Nightfall damage ignores the hidden death."
+  ]
+}

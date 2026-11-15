@@ -1,0 +1,44 @@
+{
+  "id": "the-princess",
+  "name": "The Princess",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "St George and the Dragon",
+  "aspect": "Healer",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 2,
+    "ranged": true,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Beast",
+  "renown": 10,
+  "crownPassive": {
+    "text": "Heals 1 to all your cards at upkeep."
+  },
+  "bond": {
+    "text": "+1 starting health for each tale-mate fielded."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Mend",
+      "ap": 1,
+      "text": "Heal 1 to each of your adjacent cards."
+    },
+    {
+      "name": "Girdle Leash",
+      "ap": 1,
+      "text": "An enemy Beast can't act this round."
+    }
+  ],
+  "art": "the-princess",
+  "status": "reviewed",
+  "notes": "Girdle Leash comes from the design-system mock-up and the lore cards."
+}

@@ -1,0 +1,39 @@
+{
+  "id": "little-john",
+  "name": "Little John",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "Robin Hood",
+  "aspect": "Guardian",
+  "tags": [],
+  "stats": {
+    "health": 16,
+    "attack": 4,
+    "ranged": false,
+    "guard": 1,
+    "speed": 1
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 15,
+  "crownPassive": {
+    "text": "Your Albion heroes have +1 Guard."
+  },
+  "bond": {
+    "name": "Big man of Sherwood",
+    "text": "The first attack each round on any of your other Albion heroes hits Little John instead."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Quarterstaff",
+      "ap": 2,
+      "text": "Attack the closest enemy for 4 and a card next to it for 1."
+    }
+  ],
+  "art": "little-john",
+  "status": "reviewed"
+}

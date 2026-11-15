@@ -1,0 +1,43 @@
+{
+  "id": "maid-marian",
+  "name": "Maid Marian",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "Robin Hood",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 4,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Witch",
+  "renown": 12,
+  "crownPassive": {
+    "name": "Lady of the greenwood",
+    "text": "No enemy attack can deal more than 5 damage."
+  },
+  "bond": {
+    "text": "If your Robin Hood dies, she gains +2 Attack for the rest of the fight."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Fair fight",
+      "ap": 2,
+      "text": "Attack an enemy hero for 4. If she acts before it this round, it also loses its action.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "maid-marian",
+  "status": "reviewed",
+  "rules": [
+    "The 5-damage cap applies after every bonus. Removal effects are not damage, so it doesn't stop them."
+  ]
+}

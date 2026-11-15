@@ -1,0 +1,40 @@
+{
+  "id": "friar-tuck",
+  "name": "Friar Tuck",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "Robin Hood",
+  "aspect": "Healer",
+  "tags": [],
+  "stats": {
+    "health": 10,
+    "attack": 2,
+    "ranged": false,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Beast",
+  "renown": 12,
+  "crownPassive": {
+    "name": "Sanctuary",
+    "text": "At upkeep, return one of your dead front-rank cards to its slot on 1 health. 3 returns per fight."
+  },
+  "bond": {
+    "text": "While your Robin Hood lives, Friar Tuck has +1 Guard."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Ale and bread",
+      "ap": 2,
+      "text": "Heal 2 to each of your heroes.",
+      "usesPerFight": 2
+    }
+  ],
+  "art": "friar-tuck",
+  "status": "reviewed"
+}

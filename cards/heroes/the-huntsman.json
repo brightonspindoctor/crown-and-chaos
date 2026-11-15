@@ -1,0 +1,40 @@
+{
+  "id": "the-huntsman",
+  "name": "The Huntsman",
+  "type": "hero",
+  "realm": "Märchen",
+  "tale": "Red Riding Hood",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 3,
+    "ranged": true,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Witch",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Hunter's mark",
+    "text": "Each round, while planning, choose one enemy hero. All your attacks on it deal +2 damage, and if it is a Beast it can't heal that round."
+  },
+  "bond": {
+    "text": "While your Red Riding Hood lives, he has +1 Attack."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Stones in the belly",
+      "ap": 2,
+      "text": "A Ranged attack that also drops the target's Speed to 1 for the rest of the fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "the-huntsman",
+  "status": "reviewed"
+}

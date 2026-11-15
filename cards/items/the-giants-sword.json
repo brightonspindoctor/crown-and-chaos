@@ -1,0 +1,10 @@
+{
+  "id": "the-giants-sword",
+  "name": "The Giant's Sword",
+  "type": "item",
+  "realm": "Geatland",
+  "rarity": "Rare",
+  "effect": "A hero's next attack this round deals +3 damage and ignores Guard.",
+  "renown": 3,
+  "ap": 1
+}

@@ -1,0 +1,49 @@
+{
+  "id": "the-creature",
+  "name": "The Creature",
+  "type": "hero",
+  "realm": "Gothic",
+  "tale": "Frankenstein",
+  "aspect": "Beast",
+  "tags": [],
+  "stats": {
+    "health": 16,
+    "attack": 4,
+    "ranged": false,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 16,
+  "crownPassive": {
+    "name": "Dread",
+    "text": "Enemy heroes have -1 Speed, never below 1."
+  },
+  "bond": {
+    "name": "Abandoned",
+    "text": "When your Victor dies he gains +2 Attack; when your Bride dies he gains +2 Attack and +1 Speed."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Rampage",
+      "ap": 2,
+      "text": "Deal 3 to the closest enemy and every enemy card next to it."
+    },
+    {
+      "name": "The Pyre",
+      "ap": 4,
+      "text": "Deal 6 to every enemy card; he takes 8.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "victor-frankenstein",
+  "status": "reviewed",
+  "rules": [
+    "4 AP actions need Victor's Galvanism or a Mead of Poetry."
+  ]
+}

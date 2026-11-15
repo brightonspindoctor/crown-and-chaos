@@ -1,0 +1,10 @@
+{
+  "id": "water-of-life",
+  "name": "Water of Life",
+  "type": "item",
+  "realm": "Rus'",
+  "rarity": "Legendary",
+  "effect": "Heal a hero to full health, up to a maximum of 20.",
+  "renown": 4,
+  "ap": 1
+}

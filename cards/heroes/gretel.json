@@ -1,0 +1,41 @@
+{
+  "id": "gretel",
+  "name": "Gretel",
+  "type": "hero",
+  "realm": "Märchen",
+  "tale": "Hansel and Gretel",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 3,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Beast",
+  "renown": 11,
+  "crownPassive": {
+    "name": "Witch-hunter",
+    "text": "All your heroes deal +2 damage to Witches."
+  },
+  "bond": {
+    "name": "Märchen kin",
+    "text": "+1 health for each other Märchen hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Into the oven",
+      "ap": 2,
+      "text": "Attack for 4. If the target is a Witch on 6 health or less after the hit, it is destroyed.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "gretel",
+  "status": "reviewed"
+}

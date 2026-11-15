@@ -1,0 +1,10 @@
+{
+  "id": "gingerbread",
+  "name": "Gingerbread",
+  "type": "item",
+  "realm": "Märchen",
+  "rarity": "Common",
+  "effect": "Heal a hero 2.",
+  "renown": 1,
+  "ap": 1
+}

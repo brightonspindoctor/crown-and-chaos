@@ -1,0 +1,44 @@
+{
+  "id": "st-george",
+  "name": "St George",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "St George and the Dragon",
+  "aspect": "Guardian",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 3,
+    "ranged": false,
+    "guard": 3,
+    "speed": 2
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 14,
+  "crownPassive": {
+    "text": "Blocks the first 5 damage of the first attack on any of your heroes each round."
+  },
+  "bond": {
+    "text": "When any Dragon dies, his Guard becomes Attack. If your Princess dies, his Attack doubles."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Lance Charge",
+      "ap": 2,
+      "text": "Deal 5 to the closest enemy."
+    },
+    {
+      "name": "Shield Brother",
+      "ap": 1,
+      "text": "An adjacent hero takes no damage this round."
+    }
+  ],
+  "art": "st-george",
+  "status": "reviewed",
+  "notes": "Actions come from the design-system card mock-up, not yet confirmed in the design doc."
+}

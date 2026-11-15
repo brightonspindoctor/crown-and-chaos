@@ -1,0 +1,45 @@
+{
+  "id": "merlin",
+  "name": "Merlin",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "King Arthur",
+  "aspect": "Witch",
+  "tags": [],
+  "stats": {
+    "health": 7,
+    "attack": 1,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 12,
+  "crownPassive": {
+    "name": "Raiser of stones",
+    "text": "Your front-rank cards have +1 Guard."
+  },
+  "bond": {
+    "text": "While any other Albion hero of yours lives, Merlin's Spells deal +1."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Hex",
+      "ap": 2,
+      "text": "A Spell for 3 on any enemy card, ignoring Guard."
+    },
+    {
+      "name": "Enchanted sleep",
+      "ap": 2,
+      "text": "An enemy hero takes no actions this round or next. The only effect allowed to stop a hero two rounds in a row.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "merlin",
+  "status": "reviewed"
+}

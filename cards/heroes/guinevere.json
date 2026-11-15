@@ -1,0 +1,40 @@
+{
+  "id": "guinevere",
+  "name": "Guinevere",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "King Arthur",
+  "aspect": "Healer",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 2,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Beast",
+  "renown": 12,
+  "crownPassive": {
+    "name": "The Queen's peace",
+    "text": "Enemy attacks that hit several cards hit only their first target."
+  },
+  "bond": {
+    "text": "Your healing effects restore +1 for each Albion hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Queen's mercy",
+      "ap": 2,
+      "text": "Heal 3 to one of your heroes.",
+      "usesPerFight": 2
+    }
+  ],
+  "art": "guinevere",
+  "status": "reviewed"
+}

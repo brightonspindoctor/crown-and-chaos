@@ -1,0 +1,40 @@
+{
+  "id": "beowulf",
+  "name": "Beowulf",
+  "type": "hero",
+  "realm": "Geatland",
+  "tale": "Beowulf",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 10,
+    "attack": 3,
+    "ranged": false,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Beast",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Bare hands",
+    "text": "All your heroes' attacks ignore Guard."
+  },
+  "bond": {
+    "text": "When any Beast dies, on either side, he gains +1 Attack for the rest of the fight."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Arm-wrench",
+      "ap": 2,
+      "text": "Attack, and the target permanently loses 2 Attack.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "beowulf",
+  "status": "reviewed"
+}

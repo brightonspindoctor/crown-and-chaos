@@ -1,0 +1,47 @@
+{
+  "id": "baba-yaga",
+  "name": "Baba Yaga",
+  "type": "hero",
+  "realm": "Rus'",
+  "tale": "Baba Yaga",
+  "aspect": "Witch",
+  "tags": [
+    "Solitary"
+  ],
+  "stats": {
+    "health": 25,
+    "attack": 5,
+    "ranged": false,
+    "guard": 0,
+    "speed": 1
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 35,
+  "crownPassive": {
+    "text": "Must start in slot 1 and always holds the Crown, which travels with her. If the Crown ever passes to another of your heroes, you lose."
+  },
+  "bond": null,
+  "actions": [
+    {
+      "name": "Pestle",
+      "ap": 1,
+      "text": "Standard attack for 5."
+    },
+    {
+      "name": "Skull fire",
+      "ap": 2,
+      "text": "Ranged attack for 3 on any card."
+    },
+    {
+      "name": "Mortar ride",
+      "ap": 3,
+      "text": "Move to any adjacent space, on either side of the board, killing whatever is there. Gains 2 health if she kills something. Can't move onto the enemy Crown's space."
+    }
+  ],
+  "art": "baba-yaga",
+  "status": "reviewed",
+  "rules": [
+    "Starts on 25 health with no maximum; only kills raise it past 25.",
+    "Against Robin's No Crown she still can't move onto slot 1."
+  ]
+}

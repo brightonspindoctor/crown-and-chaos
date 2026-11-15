@@ -1,0 +1,10 @@
+{
+  "type": "front-rank",
+  "id": "leshy",
+  "name": "Leshy",
+  "health": 6,
+  "attack": 0,
+  "guard": 0,
+  "renown": 4,
+  "auto": "No attack. The first attack each round aimed at any other card of yours hits the Leshy instead."
+}

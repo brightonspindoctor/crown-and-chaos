@@ -1,0 +1,46 @@
+{
+  "id": "robin-hood",
+  "name": "Robin Hood",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "Robin Hood",
+  "aspect": "Trickster",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 3,
+    "ranged": true,
+    "guard": 0,
+    "speed": 5
+  },
+  "vulnerableTo": "Guardian",
+  "renown": 16,
+  "crownPassive": {
+    "name": "No Crown",
+    "text": "You have no Crown this fight, and the enemy wins only by killing all your heroes."
+  },
+  "bond": {
+    "name": "Outlaw's Call",
+    "text": "Your other Albion heroes have +1 Speed."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Split the Arrow",
+      "ap": 2,
+      "text": "A Ranged attack for 5 on any enemy card."
+    }
+  ],
+  "art": "robin-hood",
+  "status": "reviewed",
+  "rules": [
+    "No Crown lasts the whole fight if Robin starts in slot 1, even if he dies or is moved.",
+    "With No Crown, no other hero's Crown passive is active.",
+    "Longbowmen hit the hero in slot 1 instead, or the closest hero if slot 1 is empty.",
+    "An enemy Baba Yaga can't move onto your slot 1, as if it held a Crown."
+  ]
+}

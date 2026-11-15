@@ -1,0 +1,11 @@
+{
+  "type": "front-rank",
+  "id": "the-needle",
+  "name": "The Needle",
+  "health": 8,
+  "attack": 0,
+  "guard": 0,
+  "renown": 0,
+  "tale": "Koschei the Deathless",
+  "auto": "No action. Placed in slot 6 automatically whenever Koschei is fielded; not a collection card."
+}

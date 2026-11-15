@@ -1,0 +1,10 @@
+{
+  "id": "skull-lantern",
+  "name": "Skull Lantern",
+  "type": "item",
+  "realm": "Rus'",
+  "rarity": "Rare",
+  "effect": "3 Spell damage to an enemy hero; double against Witches.",
+  "renown": 2,
+  "ap": 1
+}

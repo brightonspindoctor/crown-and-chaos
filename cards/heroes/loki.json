@@ -1,0 +1,19 @@
+{
+  "id": "loki",
+  "name": "Loki",
+  "type": "hero",
+  "realm": "Norse",
+  "tale": "Norse myth",
+  "aspect": "Trickster",
+  "tags": [],
+  "stats": null,
+  "vulnerableTo": "Guardian",
+  "renown": null,
+  "crownPassive": {
+    "text": "Swap two adjacent enemy cards at upkeep."
+  },
+  "bond": null,
+  "actions": [],
+  "art": null,
+  "status": "sketch"
+}

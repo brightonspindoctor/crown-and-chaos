@@ -1,0 +1,47 @@
+{
+  "id": "zmey-gorynych",
+  "name": "Zmey Gorynych",
+  "type": "hero",
+  "realm": "Rus'",
+  "tale": "Dobrynya and the Zmey",
+  "aspect": "Beast",
+  "tags": [
+    "Dragon"
+  ],
+  "stats": {
+    "health": 14,
+    "attack": 3,
+    "ranged": false,
+    "guard": 1,
+    "speed": 1
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 15,
+  "crownPassive": {
+    "name": "Three heads",
+    "text": "His attack becomes three separate attacks of 1 damage each, at three random enemy cards in range. If fewer than three are in range, a card can be hit more than once."
+  },
+  "bond": {
+    "name": "Rus' kin",
+    "text": "Each head deals +1 damage for each other Rus' hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Heads grow back",
+      "ap": 2,
+      "text": "Heal 6.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "zmey-gorynych",
+  "status": "reviewed",
+  "rules": [
+    "Each head is its own attack: Guard and Vulnerable apply to each hit.",
+    "Guinevere's Queen's peace doesn't stop him."
+  ]
+}

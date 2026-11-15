@@ -1,0 +1,10 @@
+{
+  "id": "spindle",
+  "name": "Spindle",
+  "type": "item",
+  "realm": "Märchen",
+  "rarity": "Rare",
+  "effect": "An enemy hero skips its next action.",
+  "renown": 3,
+  "ap": 1
+}

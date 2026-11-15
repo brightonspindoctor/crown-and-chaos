@@ -1,0 +1,21 @@
+{
+  "id": "sigurd",
+  "name": "Sigurd",
+  "type": "hero",
+  "realm": "Norse",
+  "tale": "Völsunga saga",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": null,
+  "vulnerableTo": "Sovereign",
+  "renown": null,
+  "crownPassive": {
+    "text": "His attacks ignore Guard."
+  },
+  "bond": {
+    "text": "After any Dragon dies he sees the enemy plan before he makes his own."
+  },
+  "actions": [],
+  "art": null,
+  "status": "sketch"
+}

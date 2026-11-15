@@ -1,0 +1,10 @@
+{
+  "id": "mead-of-poetry",
+  "name": "Mead of Poetry",
+  "type": "item",
+  "realm": "Norse",
+  "rarity": "Rare",
+  "effect": "Gain 2 action points this round.",
+  "renown": 2,
+  "ap": 1
+}

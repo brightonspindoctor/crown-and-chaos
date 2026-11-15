@@ -1,0 +1,41 @@
+{
+  "id": "the-snow-queen",
+  "name": "The Snow Queen",
+  "type": "hero",
+  "realm": "Eventyr",
+  "tale": "The Snow Queen",
+  "aspect": "Witch",
+  "tags": [],
+  "stats": {
+    "health": 10,
+    "attack": 2,
+    "ranged": false,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Healer",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Hard frost",
+    "text": "At the start of each round, freeze one enemy front-rank card of your choice; it skips its automatic action. The same card can't be frozen two rounds running."
+  },
+  "bond": {
+    "name": "Eventyr kin",
+    "text": "+1 Guard for each other Eventyr hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Shard of the mirror",
+      "ap": 2,
+      "text": "This round, an enemy hero's attack hits one of its own adjacent cards instead.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "the-snow-queen",
+  "status": "reviewed"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "draught-of-the-cauldron",
+  "name": "Draught of the Cauldron",
+  "type": "item",
+  "realm": "Cymru",
+  "rarity": "Legendary",
+  "effect": "Return a dead hero to slot 2 or 3 on 3 health.",
+  "renown": 4,
+  "ap": 1
+}

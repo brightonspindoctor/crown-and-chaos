@@ -1,0 +1,10 @@
+{
+  "type": "front-rank",
+  "id": "longbowman",
+  "name": "Longbowman",
+  "health": 1,
+  "attack": 1,
+  "guard": 0,
+  "renown": 3,
+  "auto": "Shoots the enemy Crown."
+}

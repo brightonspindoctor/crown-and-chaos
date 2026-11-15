@@ -1,0 +1,46 @@
+{
+  "id": "dracula",
+  "name": "Dracula",
+  "type": "hero",
+  "realm": "Gothic",
+  "tale": "Dracula",
+  "aspect": "Sovereign",
+  "tags": [],
+  "stats": {
+    "health": 12,
+    "attack": 3,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 14,
+  "crownPassive": {
+    "name": "Vampire court",
+    "text": "All your heroes heal 1 whenever their attacks damage a card."
+  },
+  "bond": {
+    "name": "Master",
+    "text": "When one of your tale-mates dies, he heals 4."
+  },
+  "actions": [
+    {
+      "name": "Claw",
+      "ap": 1,
+      "text": "Standard attack on the closest enemy."
+    },
+    {
+      "name": "Bite",
+      "ap": 2,
+      "text": "Attack, then heal equal to the damage dealt."
+    },
+    {
+      "name": "Turn",
+      "ap": 3,
+      "text": "Destroy an enemy front-rank card, or an enemy hero that is not the Crown, on 3 health or less. A Thrall copy of it fills one of your empty front-rank slots until the fight ends.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "dracula",
+  "status": "reviewed"
+}

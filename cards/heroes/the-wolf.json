@@ -1,0 +1,41 @@
+{
+  "id": "the-wolf",
+  "name": "The Wolf",
+  "type": "hero",
+  "realm": "Märchen",
+  "tale": "Red Riding Hood",
+  "aspect": "Beast",
+  "tags": [],
+  "stats": {
+    "health": 11,
+    "attack": 4,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Big teeth",
+    "text": "Your heroes' attacks deal +1 damage to injured cards."
+  },
+  "bond": {
+    "name": "Disguise",
+    "text": "While your Red Riding Hood lives, Ranged attacks can't target him."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Swallow whole",
+      "ap": 2,
+      "text": "Remove the closest enemy front-rank card, or an enemy hero on 3 health or less. It returns on 1 health if he dies. He can't swallow a Crown.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "red-riding-hood",
+  "status": "reviewed"
+}

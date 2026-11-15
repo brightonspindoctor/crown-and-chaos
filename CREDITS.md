@@ -1,0 +1,43 @@
+# Art credits
+
+Generated from `art/manifest.json` by `scripts/build-credits.mjs`. Do not edit by hand.
+
+- **st-george** (card): Raphael, *Saint George and the Dragon* (c. 1506). National Gallery of Art, Washington. Public domain (NGA open access).
+- **the-dragon** (card): Il Sodoma, *Saint George and the Dragon* (c. 1518). National Gallery of Art, Washington. Public domain (NGA open access).
+- **the-princess** (card): Rogier van der Weyden, *Saint George and the Dragon* (c. 1432-35). National Gallery of Art, Washington. Public domain (NGA open access).
+- **robin-hood** (card): Louis Rhead, *Robin Hood* (1912). [Old Book Illustrations](https://www.oldbookillustrations.com/illustrations/robin-hood/). Public domain in the US and life+70 countries.
+- **little-john** (card): Louis Rhead, *Little John* (1912). [Old Book Illustrations](https://www.oldbookillustrations.com/illustrations/little-john). Public domain in the US and life+70 countries.
+- **friar-tuck** (card): Louis Rhead, *Friar Tuck* (1912). [Old Book Illustrations](https://www.oldbookillustrations.com/illustrations/friar-tuck/). Public domain in the US and life+70 countries.
+- **maid-marian** (card): Louis Rhead, *Maid Marian* (1912). [Old Book Illustrations](https://www.oldbookillustrations.com/illustrations/maid-marian/). Public domain in the US and life+70 countries.
+- **maid-marian** (variant): N. C. Wyeth, *Robin Meets Maid Marian* (1917). [Standard Ebooks](https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian). Public domain in the US and UK.
+- **king-arthur** (card): N. C. Wyeth, *And When They Came to the Sword That the Hand Held, King Arthur Took It Up* (1917). [Standard Ebooks](https://standardebooks.org/artworks/n-c-wyeth/and-when-they-came-to-the-sword-that-the-hand-held-king-arthur-took-it-up). Public domain in the US and UK.
+- **merlin** (card): Howard Pyle, *The Enchanter Merlin* (1903). [Wikisource](https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights). Public domain worldwide.
+- **morgan-le-fay** (card): Frederick Sandys, *Morgan-le-Fay* (1864). [Birmingham Museums Trust](https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478). CC0.
+- **lancelot** (card): N. C. Wyeth, *I am Sir Launcelot du Lake, King Ban's son of Benwick, and knight of the Round Table* (1917). [University of Rochester, Robin Hood and Camelot Projects](https://d.lib.rochester.edu/node/38085). Public domain in the US and UK.
+- **guinevere** (card): Howard Pyle, *The Lady Guinevere* (1903). [Wikisource](https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights). Public domain worldwide.
+- **guinevere** (variant): Howard Pyle, *King Arthur meets the Lady Guinevere* (1903). [Wikisource](https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights). Public domain worldwide.
+- **beowulf** (card): J. R. Skelton, *Now he belched forth flaming fire* (1908). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_fighting_the_dragon.jpg). Public domain.
+- **grendel** (card): J. R. Skelton, *Grendel* (1908). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_grendel.jpg). Public domain.
+- **grendels-mother** (card): J. R. Skelton, *Grendel's mother, the water witch, tries to stab Beowulf* (1908). Wikimedia Commons. Public domain.
+- **red-riding-hood, the-wolf** (card): Gustave Doré, *En passant dans un bois, elle rencontra compère le Loup* (1867). [Hammer Museum, UCLA](https://collections.hammer.ucla.edu/artwork/1962.35.330). CC0.
+- **red-riding-hood, the-wolf** (alternative): Gustave Doré, *Little Red Riding Hood* (c. 1862). [National Gallery of Victoria, Melbourne](https://ngv.vic.gov.au/explore/collection/work/3918). Public domain (NGV).
+- **the-huntsman** (card): Árpád Schmidhammer, *Little Red Riding Hood saved by the huntsman*. [New York Public Library](https://rp-digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e). Public domain in the US; artist died over 70 years ago.
+- **rumpelstiltskin** (card): Arthur Rackham, *Round the fire an indescribably ridiculous little man was leaping* (1909). [SurLaLune Fairy Tales](https://surlalunefairytales.com/oldsite/illustrations/rumpelstiltskin/rackhamrumple.html). Public domain in the US and UK.
+- **gretel** (card): Arthur Rackham, *'Stupid goose!' cried the Witch* (1909). [SurLaLune Fairy Tales](https://surlalunefairytales.com/oldsite/illustrations/hanselgretel/rackhamhansel4.html). Public domain in the US and UK.
+- **baba-yaga** (card): Ivan Bilibin, *Baba Yaga* (1900). Wikimedia Commons. Public domain.
+- **koschei** (card): Ivan Bilibin, *Koschei the Deathless* (1901). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_Koshchey.jpg). Public domain.
+- **vasilisa-the-wise** (card): Ivan Bilibin, *Ivan Tsarevich and the Frog Princess* (1901). Wikimedia Commons. Public domain.
+- **zmey-gorynych** (card): Ivan Bilibin, *Zmey Gorynych* (1912). [Mary Evans Picture Library (Grenville Collins Postcard Collection)](https://prints.aap.com.au/mary-evans-prints-online/zmey-goynych-slavic-three-headed-dragon-14409971.html). Public domain; a free scan is still needed.
+- **bran-the-blessed** (card): J. H. F. Bacon, *Listening to the Pleasant Conversation of Bran's Head* (1910s). [Internet Archive](https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf). Public domain.
+- **gwydion** (card): J. H. F. Bacon, *The Making of Blodeuwedd* (1910s). [Internet Archive](https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf). Public domain.
+- **rhiannon** (card): Unknown engraver, *The Fair Rhiannon, riding her brilliant white mare, is pursued by Pwyll* (1877). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Charlotte_Guest_Rhiannon.jpg). Public domain.
+- **the-snow-queen** (card): Edmund Dulac, *The Snow Queen* (1911). [Metropolitan Museum of Art](https://www.metmuseum.org/art/collection/search/344941). Public domain (Met open access).
+- **the-tin-soldier** (card): Vilhelm Pedersen, *Tin soldiers!* (1849). Old Book Illustrations. Public domain.
+- **dracula** (stand-in): Unknown German painter, *Vlad III, Prince of Wallachia (the Ambras portrait)* (second half of the 16th century). [Kunsthistorisches Museum, Schloss Ambras](https://khm.at/en/object/5508). Public domain painting; faithful photographs carry no new copyright in the UK or US.
+- **victor-frankenstein, the-creature** (card): Theodor von Holst (engraved by W. Chevalier), *Frontispiece to Frankenstein* (1831). [Wellcome Collection](https://wellcomecollection.org/works/p67zzz4d). Public Domain Mark.
+- **the-bride** (stand-in): Edward Burne-Jones, *Pygmalion and the Image: The Godhead Fires* (1878). [Birmingham Museums Trust](https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122). CC0.
+- **the-bride** (variant): Jean-Léon Gérôme, *Pygmalion and Galatea* (c. 1890). [Metropolitan Museum of Art](https://metmuseum.org/art/collection/search/436483). Public domain (Met open access).
+- **Heorot, the Mead-Hall** (board): J. R. Skelton, *Wealhtheow* (1908). Wikimedia Commons. Public domain.
+- **Camelot, the Round Table** (board): Edward Burne-Jones, William Morris and J. H. Dearle, *The Attainment: The Vision of the Holy Grail to Sir Galahad, Sir Bors and Sir Percival* (1895-96). [Birmingham Museums Trust](https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076). CC0.
+- **The Forest Path** (board): Gustave Doré, *En passant dans un bois, elle rencontra compère le Loup* (1867). [Hammer Museum, UCLA](https://collections.hammer.ucla.edu/artwork/1962.35.330). CC0.
+- **Victor's Laboratory** (board): Theodor von Holst, *Frontispiece to Frankenstein* (1831). [Wellcome Collection](https://wellcomecollection.org/works/p67zzz4d). Public Domain Mark.

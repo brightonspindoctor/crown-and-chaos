@@ -1,0 +1,11 @@
+{
+  "type": "front-rank",
+  "id": "geat-thane",
+  "name": "Geat Thane",
+  "health": 3,
+  "attack": 1,
+  "guard": 0,
+  "renown": 2,
+  "tale": "Beowulf",
+  "auto": "Attacks the card opposite."
+}

@@ -1,0 +1,41 @@
+{
+  "id": "victor-frankenstein",
+  "name": "Victor Frankenstein",
+  "type": "hero",
+  "realm": "Gothic",
+  "tale": "Frankenstein",
+  "aspect": "Healer",
+  "tags": [],
+  "stats": {
+    "health": 6,
+    "attack": 1,
+    "ranged": false,
+    "guard": 0,
+    "speed": 2
+  },
+  "vulnerableTo": "Beast",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Galvanism",
+    "text": "You have 4 action points each round instead of 3."
+  },
+  "bond": {
+    "name": "Spark of life",
+    "text": "At upkeep, he heals 2 and so does each of your tale-mates."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Reanimate",
+      "ap": 2,
+      "text": "Return a dead tale-mate to an empty hero slot on 3 health.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "victor-frankenstein",
+  "status": "reviewed"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "gwydion",
+  "name": "Gwydion",
+  "type": "hero",
+  "realm": "Cymru",
+  "tale": "Math, Son of Mathonwy",
+  "aspect": "Witch",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 2,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Sovereign",
+  "renown": 12,
+  "crownPassive": {
+    "name": "Shaper of flesh",
+    "text": "Your summoned cards arrive with +2 health and +1 Attack."
+  },
+  "bond": {
+    "name": "Cymru kin",
+    "text": "His Spells deal +1 for each other Cymru hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Shape-shift",
+      "ap": 2,
+      "text": "An enemy front-rank card becomes a harmless animal; its Attack is 0 for the rest of the fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "gwydion",
+  "status": "reviewed"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "the-dragon",
+  "name": "The Dragon",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "St George and the Dragon",
+  "aspect": "Beast",
+  "tags": [
+    "Dragon"
+  ],
+  "stats": {
+    "health": 12,
+    "attack": 4,
+    "ranged": false,
+    "guard": 0,
+    "speed": 1
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 12,
+  "crownPassive": {
+    "text": "When another of your heroes is about to die, he automatically swaps slots with it and takes the hit, even if it kills him. The saved hero becomes the Crown."
+  },
+  "bond": null,
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Fire Breath",
+      "ap": 2,
+      "text": "Deal 3 to any two enemies."
+    },
+    {
+      "name": "Tail Sweep",
+      "ap": 1,
+      "text": "Deal 2 to the closest enemy and a card next to it."
+    }
+  ],
+  "art": "the-dragon",
+  "status": "reviewed",
+  "notes": "Actions come from the design-system card mock-up."
+}

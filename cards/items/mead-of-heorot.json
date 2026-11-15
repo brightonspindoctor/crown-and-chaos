@@ -1,0 +1,10 @@
+{
+  "id": "mead-of-heorot",
+  "name": "Mead of Heorot",
+  "type": "item",
+  "realm": "Geatland",
+  "rarity": "Rare",
+  "effect": "Heal 2 to each of your heroes.",
+  "renown": 2,
+  "ap": 1
+}

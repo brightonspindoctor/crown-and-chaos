@@ -1,0 +1,39 @@
+{
+  "id": "lancelot",
+  "name": "Lancelot",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "King Arthur",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 11,
+    "attack": 4,
+    "ranged": false,
+    "guard": 1,
+    "speed": 3
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 14,
+  "crownPassive": {
+    "name": "First knight",
+    "text": "When he attacks, the enemy Crown also takes 1 damage, at most once a round. No effect against a side with no Crown."
+  },
+  "bond": {
+    "text": "Your Albion heroes have +1 health. While your Arthur lives and you field no Healer, Lancelot has +2 Attack."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Champion's charge",
+      "ap": 2,
+      "text": "Attack for 5."
+    }
+  ],
+  "art": "lancelot",
+  "status": "reviewed"
+}

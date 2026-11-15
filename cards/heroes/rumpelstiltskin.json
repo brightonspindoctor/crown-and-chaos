@@ -1,0 +1,41 @@
+{
+  "id": "rumpelstiltskin",
+  "name": "Rumpelstiltskin",
+  "type": "hero",
+  "realm": "Märchen",
+  "tale": "Rumpelstiltskin",
+  "aspect": "Trickster",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 2,
+    "ranged": false,
+    "guard": 0,
+    "speed": 4
+  },
+  "vulnerableTo": "Sovereign",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Guess my name",
+    "text": "Each round, while planning, you may secretly pick one enemy hero. If it planned an action, the action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 4 damage. Each enemy hero can be picked only once per fight."
+  },
+  "bond": {
+    "name": "Märchen kin",
+    "text": "+1 Attack for each other Märchen hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Straw into gold",
+      "ap": 2,
+      "text": "Get back one item you have already used this fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "rumpelstiltskin",
+  "status": "reviewed"
+}

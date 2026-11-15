@@ -1,0 +1,10 @@
+{
+  "type": "front-rank",
+  "id": "monk",
+  "name": "Monk",
+  "health": 2,
+  "attack": 0,
+  "guard": 0,
+  "renown": 3,
+  "auto": "Heals 2 to a random injured card of yours, never above its maximum."
+}

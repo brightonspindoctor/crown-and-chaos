@@ -1,0 +1,10 @@
+{
+  "id": "golden-apple",
+  "name": "Golden Apple",
+  "type": "item",
+  "realm": "Norse",
+  "rarity": "Common",
+  "effect": "Heal a hero 3 and remove Poison.",
+  "renown": 2,
+  "ap": 1
+}

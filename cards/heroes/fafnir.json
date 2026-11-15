@@ -1,0 +1,21 @@
+{
+  "id": "fafnir",
+  "name": "Fafnir",
+  "type": "hero",
+  "realm": "Norse",
+  "tale": "Völsunga saga",
+  "aspect": "Beast",
+  "tags": [
+    "Dragon"
+  ],
+  "stats": null,
+  "vulnerableTo": "Slayer",
+  "renown": null,
+  "crownPassive": {
+    "text": "Venom: his attacks apply Poison 1."
+  },
+  "bond": null,
+  "actions": [],
+  "art": null,
+  "status": "sketch"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "the-bride",
+  "name": "The Bride",
+  "type": "hero",
+  "realm": "Gothic",
+  "tale": "Frankenstein",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 7,
+    "attack": 3,
+    "ranged": true,
+    "guard": 0,
+    "speed": 4
+  },
+  "vulnerableTo": "Witch",
+  "renown": 12,
+  "crownPassive": {
+    "name": "Unfinished",
+    "text": "Your heroes win every Speed tie, as if you held the Fate token."
+  },
+  "bond": {
+    "text": "While your Creature lives, she has +1 Speed."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Strike",
+      "ap": 1,
+      "text": "A Ranged attack on any single enemy."
+    },
+    {
+      "name": "Completion",
+      "ap": 4,
+      "text": "Heal every one of your heroes to full.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "the-bride",
+  "status": "reviewed"
+}

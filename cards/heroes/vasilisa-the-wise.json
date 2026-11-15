@@ -1,0 +1,40 @@
+{
+  "id": "vasilisa-the-wise",
+  "name": "Vasilisa the Wise",
+  "type": "hero",
+  "realm": "Rus'",
+  "tale": "The Frog Princess",
+  "aspect": "Healer",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 2,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Witch",
+  "renown": 11,
+  "crownPassive": {
+    "name": "Her mother's doll",
+    "text": "The first of your heroes to die each fight survives on 1 health instead."
+  },
+  "bond": {
+    "text": "While another Rus' hero of yours lives, her heals restore +1."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "The doll's advice",
+      "ap": 2,
+      "text": "Heal 3 to one of your heroes, who also gets +1 Guard this round.",
+      "usesPerFight": 2
+    }
+  ],
+  "art": "vasilisa-the-wise",
+  "status": "reviewed"
+}

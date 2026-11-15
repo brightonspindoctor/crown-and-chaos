@@ -1,0 +1,39 @@
+{
+  "id": "grendel",
+  "name": "Grendel",
+  "type": "hero",
+  "realm": "Geatland",
+  "tale": "Beowulf",
+  "aspect": "Beast",
+  "tags": [],
+  "stats": {
+    "health": 11,
+    "attack": 4,
+    "ranged": false,
+    "guard": 2,
+    "speed": 3
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 12,
+  "crownPassive": {
+    "name": "Night raid",
+    "text": "At upkeep, deal 2 damage to the enemy front-rank card with the lowest health."
+  },
+  "bond": {
+    "text": "While a Grendel's Mother on your side lives, he heals 1 at upkeep."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Devour",
+      "ap": 2,
+      "text": "Destroy an enemy front-rank card on 2 health or less and heal 2."
+    }
+  ],
+  "art": "grendel",
+  "status": "reviewed"
+}
