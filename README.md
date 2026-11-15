@@ -8,7 +8,7 @@ The design reasoning lives in the design doc; this repository holds the data the
 
 | Path | What it holds |
 | --- | --- |
-| `cards/heroes/` | One JSON file per hero: realm, tale, Aspect, stats, Vulnerability, Renown, Crown passive, Bond, actions and art |
+| `cards/heroes/` | One JSON file per hero: realm, tale, Aspect, stats, Vulnerability (switched off for now; kept in the data), Renown, Crown passive, Bond, actions and art |
 | `cards/front-rank/` | Front-rank cards, including set cards such as the Grandmother and Koschei's Needle |
 | `cards/items/` | Single-use items |
 | `art/manifest.json` | Every image: artist, title, date, source and why it's public domain |
