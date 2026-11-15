@@ -37,7 +37,8 @@
     }
   ],
   "rules": [
-    "Floors under Turning tide: an attack's final damage is never below 0, Speed never below 1, Guard never below 0, and a heal never below 0. A reversed Health bond lowers maximum Health but can't drop a card below 1, so it never deals damage."
+    "Floors under Turning tide: an attack's final damage is never below 0, Speed never below 1, Guard never below 0, and a heal never below 0. A reversed Health bond lowers maximum Health but can't drop a card below 1, so it never deals damage.",
+    "Turning tide reverses penalties too: an enemy bond of -1 becomes +1. Against Baba Yaga it turns her -1 Speed and -2 Health into +1 Speed and +2 Health for her side."
   ],
   "art": "the-little-mermaid",
   "status": "reviewed",

@@ -17,7 +17,7 @@
   "renown": 16,
   "crownPassive": {
     "name": "The Round Table",
-    "text": "Every one of your bonds works whatever tale or realm your heroes come from: for your bonds, each of your heroes counts as being from every tale and realm. Conditions on an Aspect, such as a Slayer or a Beast, still apply."
+    "text": "For your bonds, tale and realm no longer matter: each of your heroes counts as being from every tale and realm. Aspects still count, so a bond needing a Gothic Beast is met by any Beast. This works for penalties as well as bonuses."
   },
   "bond": {
     "text": "Your Albion heroes have +1 Guard."
