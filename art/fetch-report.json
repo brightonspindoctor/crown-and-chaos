@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-15T21:56:15.736Z",
+  "ranAt": "2026-11-15T22:17:25.602Z",
   "fetched": [],
   "alreadyHad": [
     "st-george",
@@ -27,14 +27,12 @@
     "zmey-gorynych",
     "rhiannon",
     "the-snow-queen",
-    "the-tin-soldier",
     "dracula",
     "victor-frankenstein",
     "the-bride",
     "the-bride-variant",
     "board-heorot",
     "board-camelot-fallback",
-    "board-forest-path",
     "board-victors-laboratory"
   ],
   "unresolved": [
@@ -57,11 +55,19 @@
     {
       "id": "gwydion",
       "via": "none"
+    },
+    {
+      "id": "the-tin-soldier",
+      "via": "none"
     }
   ],
   "failed": [
     {
       "id": "red-riding-hood",
+      "error": "imagePage: page HTTP 429"
+    },
+    {
+      "id": "board-forest-path",
       "error": "imagePage: page HTTP 429"
     }
   ],
