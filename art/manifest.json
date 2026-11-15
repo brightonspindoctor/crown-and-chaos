@@ -556,7 +556,8 @@
       "id": "gwydion",
       "use": "card",
       "cards": [
-        "gwydion"
+        "gwydion",
+        "blodeuwedd"
       ],
       "artist": "J. H. F. Bacon",
       "artistDied": 1914,

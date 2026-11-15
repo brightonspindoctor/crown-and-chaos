@@ -1,0 +1,46 @@
+{
+  "id": "blodeuwedd",
+  "name": "Blodeuwedd",
+  "type": "hero",
+  "realm": "Cymru",
+  "tale": "Math, son of Mathonwy",
+  "aspect": "Beast",
+  "tags": [
+    "nightfall"
+  ],
+  "stats": {
+    "health": 7,
+    "attack": 2,
+    "ranged": false,
+    "guard": 1,
+    "speed": 4
+  },
+  "vulnerableTo": "Witch",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Shelter of flowers",
+    "text": "At upkeep, your other Cymru heroes lose their Guard and she gains it, until the next upkeep."
+  },
+  "bond": {
+    "name": "Cymru kin",
+    "text": "Your Cymru heroes have +1 Guard."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Oak, broom and meadowsweet",
+      "ap": 2,
+      "text": "Each of your other heroes gets +2 Guard this round."
+    }
+  ],
+  "rules": [
+    "Owl at dusk: at the start of round 8's upkeep, before healing stops and before the first Nightfall damage, she heals to full and her printed Health, Attack and Guard double (14 / 4 / 2). Speed stays 4. Bonus Guard from bonds, passives and actions is not doubled."
+  ],
+  "art": "gwydion",
+  "status": "reviewed",
+  "notes": "Designed to hold on and hope to reach nightfall. Guard taken by the crown passive is applied at upkeep, so Guard from her move stays with the other heroes that round."
+}

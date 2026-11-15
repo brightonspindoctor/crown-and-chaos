@@ -30,7 +30,7 @@ Generated from `art/manifest.json` by `scripts/build-credits.mjs`. Do not edit b
 - **vasilisa-the-wise** (card): Ivan Bilibin, *Ivan Tsarevich and the Frog Princess* (1901). Wikimedia Commons. Public domain.
 - **zmey-gorynych** (card): Ivan Bilibin, *Zmey Gorynych* (1912). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_-_zmey-gorynych-1912.jpg). Public domain; a free scan is still needed.
 - **bran-the-blessed** (card): J. H. F. Bacon, *Listening to the Pleasant Conversation of Bran's Head* (1910s). [Internet Archive](https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf). Public domain.
-- **gwydion** (card): J. H. F. Bacon, *The Making of Blodeuwedd* (1910s). [Internet Archive](https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf). Public domain.
+- **gwydion, blodeuwedd** (card): J. H. F. Bacon, *The Making of Blodeuwedd* (1910s). [Internet Archive](https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf). Public domain.
 - **rhiannon** (card): Unknown engraver, *The Fair Rhiannon, riding her brilliant white mare, is pursued by Pwyll* (1877). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Charlotte_Guest_Rhiannon.jpg). Public domain.
 - **the-snow-queen** (card): Edmund Dulac, *The Snow Queen* (1911). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Edmund_Dulac_-_Snow_Queen.jpg). Public domain (Met open access).
 - **the-tin-soldier** (card): Vilhelm Pedersen, *Tin soldiers!* (1849). Old Book Illustrations. Public domain.
