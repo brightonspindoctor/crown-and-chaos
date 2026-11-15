@@ -13,12 +13,13 @@
       "title": "Saint George and the Dragon",
       "date": "c. 1506",
       "source": {
-        "name": "National Gallery of Art, Washington",
-        "url": null
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg",
+        "original": "National Gallery of Art, Washington"
       },
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
-      "commonsSearch": "Raphael Saint George and the Dragon 1506 National Gallery of Art"
+      "commonsFile": "Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg"
     },
     {
       "id": "the-dragon",
@@ -31,12 +32,13 @@
       "title": "Saint George and the Dragon",
       "date": "c. 1518",
       "source": {
-        "name": "National Gallery of Art, Washington",
-        "url": null
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Sodoma_-_St_George_and_the_Dragon_-_WGA21547.jpg",
+        "original": "National Gallery of Art, Washington"
       },
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
-      "commonsSearch": "Sodoma Saint George and the Dragon National Gallery of Art"
+      "commonsFile": "Sodoma_-_St_George_and_the_Dragon_-_WGA21547.jpg"
     },
     {
       "id": "the-princess",
@@ -49,12 +51,13 @@
       "title": "Saint George and the Dragon",
       "date": "c. 1432-35",
       "source": {
-        "name": "National Gallery of Art, Washington",
-        "url": null
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Saint_George_and_the_Dragon_Rogier.jpg",
+        "original": "National Gallery of Art, Washington"
       },
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
-      "commonsSearch": "Rogier van der Weyden Saint George and the Dragon"
+      "commonsFile": "Saint_George_and_the_Dragon_Rogier.jpg"
     },
     {
       "id": "robin-hood",
@@ -150,7 +153,7 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "notes": "Still in copyright in life+100 countries such as Mexico until 2045.",
-      "commonsSearch": "Wyeth Robin meets Maid Marian"
+      "commonsSearch": "N. C. Wyeth Robin Meets Maid Marian"
     },
     {
       "id": "king-arthur",
@@ -164,12 +167,13 @@
       "date": "1917",
       "publication": "The Boy's King Arthur (Scribner, 1917)",
       "source": {
-        "name": "Standard Ebooks",
-        "url": "https://standardebooks.org/artworks/n-c-wyeth/and-when-they-came-to-the-sword-that-the-hand-held-king-arthur-took-it-up"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Boys_King_Arthur_-_N._C._Wyeth_-_p16.jpg",
+        "original": "Standard Ebooks"
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "commonsSearch": "Wyeth Boy's King Arthur sword that the hand held"
+      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p16.jpg"
     },
     {
       "id": "merlin",
@@ -183,12 +187,13 @@
       "date": "1903",
       "publication": "The Story of King Arthur and His Knights (Scribner, 1903)",
       "source": {
-        "name": "Wikisource",
-        "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arthur-Pyle_The_Enchanter_Merlin.JPG",
+        "original": "Wikisource"
       },
       "licence": "Public domain worldwide",
       "status": "cleared",
-      "commonsSearch": "Howard Pyle The Enchanter Merlin"
+      "commonsFile": "Arthur-Pyle_The_Enchanter_Merlin.JPG"
     },
     {
       "id": "morgan-le-fay",
@@ -201,13 +206,14 @@
       "title": "Morgan-le-Fay",
       "date": "1864",
       "source": {
-        "name": "Birmingham Museums Trust",
-        "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Sandys,_Frederick_-_Morgan_le_Fay.JPG",
+        "original": "Birmingham Museums Trust"
       },
       "licence": "CC0",
       "status": "cleared",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478",
-      "commonsSearch": "Frederick Sandys Morgan le Fay"
+      "commonsFile": "Sandys,_Frederick_-_Morgan_le_Fay.JPG"
     },
     {
       "id": "lancelot",
@@ -221,13 +227,14 @@
       "date": "1917",
       "publication": "The Boy's King Arthur (Scribner, 1917), p. 38",
       "source": {
-        "name": "University of Rochester, Robin Hood and Camelot Projects",
-        "url": "https://d.lib.rochester.edu/node/38085"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Boys_King_Arthur_-_N._C._Wyeth_-_p38.jpg",
+        "original": "University of Rochester, Robin Hood and Camelot Projects"
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "notes": "Crop to Lancelot.",
-      "commonsSearch": "Wyeth Launcelot du Lake King Ban Benwick"
+      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p38.jpg"
     },
     {
       "id": "guinevere",
@@ -241,12 +248,13 @@
       "date": "1903",
       "publication": "The Story of King Arthur and His Knights (Scribner, 1903), p. 78",
       "source": {
-        "name": "Wikisource",
-        "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arthur-Pyle_The_Lady_Guinevere.JPG",
+        "original": "Wikisource"
       },
       "licence": "Public domain worldwide",
       "status": "cleared",
-      "commonsSearch": "Howard Pyle The Lady Guinevere"
+      "commonsFile": "Arthur-Pyle_The_Lady_Guinevere.JPG"
     },
     {
       "id": "guinevere-variant",
@@ -260,12 +268,13 @@
       "date": "1903",
       "publication": "The Story of King Arthur and His Knights (Scribner, 1903), p. 138",
       "source": {
-        "name": "Wikisource",
-        "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arthur-Pyle_King_Arthur_meets_Lady_Guinevere.JPG",
+        "original": "Wikisource"
       },
       "licence": "Public domain worldwide",
       "status": "cleared",
-      "commonsSearch": "Howard Pyle King Arthur meets the Lady Guinevere"
+      "commonsFile": "Arthur-Pyle_King_Arthur_meets_Lady_Guinevere.JPG"
     },
     {
       "id": "beowulf",
@@ -319,12 +328,13 @@
       "publication": "Stories of Beowulf, H. E. Marshall (1908)",
       "source": {
         "name": "Wikimedia Commons",
-        "url": null
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_of_Beowulf_water_witch_trying_to_stab_beowulf.jpg",
+        "original": "Wikimedia Commons"
       },
       "licence": "Public domain",
       "status": "cleared",
       "notes": "Commons file name still to record.",
-      "commonsSearch": "Stories of Beowulf Grendel's mother"
+      "commonsFile": "Stories_of_Beowulf_water_witch_trying_to_stab_beowulf.jpg"
     },
     {
       "id": "red-riding-hood",
@@ -346,7 +356,7 @@
       "status": "cleared",
       "notes": "Red Riding Hood and the Wolf cards each crop to their own figure.",
       "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
-      "commonsSearch": "Doré Petit Chaperon Rouge loup bois"
+      "commonsSearch": "Gustave Doré Little Red Riding Hood wolf wood engraving"
     },
     {
       "id": "red-riding-hood-painting",
@@ -393,16 +403,18 @@
       ],
       "artist": "Arthur Rackham",
       "artistDied": 1939,
-      "title": "Round the fire an indescribably ridiculous little man was leaping",
+      "title": "Rumpelstiltskin",
       "date": "1909",
       "publication": "The Fairy Tales of the Brothers Grimm (Constable, 1909)",
       "source": {
-        "name": "SurLaLune Fairy Tales",
-        "url": "https://surlalunefairytales.com/oldsite/illustrations/rumpelstiltskin/rackhamrumple.html"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Grimm-Rackham-202.jpg",
+        "original": "SurLaLune Fairy Tales"
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "commonsSearch": "Rackham Rumpelstiltskin"
+      "commonsFile": "Grimm-Rackham-202.jpg",
+      "notes": "Downloaded image is a Rackham line drawing, not the colour fire plate. Review before use."
     },
     {
       "id": "gretel",
@@ -421,7 +433,7 @@
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "commonsSearch": "Rackham Hansel and Gretel witch oven"
+      "commonsSearch": "Rackham Hansel Gretel witch"
     },
     {
       "id": "baba-yaga",
@@ -436,11 +448,12 @@
       "publication": "Vasilisa the Beautiful (1899-1902)",
       "source": {
         "name": "Wikimedia Commons",
-        "url": null
+        "url": "https://commons.wikimedia.org/wiki/File:Bilibin._Baba_Yaga.jpg",
+        "original": "Wikimedia Commons"
       },
       "licence": "Public domain",
       "status": "cleared-book",
-      "commonsSearch": "Bilibin Baba Yaga"
+      "commonsFile": "Bilibin._Baba_Yaga.jpg"
     },
     {
       "id": "koschei",
@@ -478,7 +491,7 @@
       },
       "licence": "Public domain",
       "status": "cleared-book",
-      "commonsSearch": "Bilibin Frog Princess"
+      "commonsSearch": "Bilibin Ivan Tsarevich Frog Princess Vasilisa"
     },
     {
       "id": "zmey-gorynych",
@@ -492,13 +505,14 @@
       "date": "1912",
       "publication": "Postcard, c. 1912",
       "source": {
-        "name": "Mary Evans Picture Library (Grenville Collins Postcard Collection)",
-        "url": "https://prints.aap.com.au/mary-evans-prints-online/zmey-goynych-slavic-three-headed-dragon-14409971.html"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_-_zmey-gorynych-1912.jpg",
+        "original": "Mary Evans Picture Library (Grenville Collins Postcard Collection)"
       },
       "licence": "Public domain; a free scan is still needed",
       "status": "cleared-book",
-      "notes": "Don't use the Mary Evans copy; find a free scan of the postcard.",
-      "commonsSearch": "Bilibin Zmey Gorynych"
+      "notes": "Commons copy is small (about 60 KB); look for a larger scan.",
+      "commonsFile": "Ivan_Bilibin_-_zmey-gorynych-1912.jpg"
     },
     {
       "id": "bran-the-blessed",
@@ -517,7 +531,7 @@
       },
       "licence": "Public domain",
       "status": "cleared",
-      "commonsSearch": "Bran's head Bacon Squire"
+      "commonsSearch": "Bacon Bran head Celtic myth legend"
     },
     {
       "id": "gwydion",
@@ -536,7 +550,7 @@
       },
       "licence": "Public domain",
       "status": "cleared",
-      "commonsSearch": "Making of Blodeuwedd Bacon"
+      "commonsSearch": "Bacon Blodeuwedd"
     },
     {
       "id": "rhiannon",
@@ -569,12 +583,13 @@
       "date": "1911",
       "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)",
       "source": {
-        "name": "Metropolitan Museum of Art",
-        "url": "https://www.metmuseum.org/art/collection/search/344941"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Edmund_Dulac_-_Snow_Queen.jpg",
+        "original": "Metropolitan Museum of Art"
       },
       "licence": "Public domain (Met open access)",
       "status": "cleared",
-      "commonsSearch": "Dulac Snow Queen"
+      "commonsFile": "Edmund_Dulac_-_Snow_Queen.jpg"
     },
     {
       "id": "the-tin-soldier",
@@ -593,7 +608,7 @@
       },
       "licence": "Public domain",
       "status": "cleared-book",
-      "commonsSearch": "Vilhelm Pedersen tin soldier"
+      "commonsSearch": "Pedersen Steadfast Tin Soldier"
     },
     {
       "id": "dracula",
@@ -644,14 +659,15 @@
       "title": "Pygmalion and the Image: The Godhead Fires",
       "date": "1878",
       "source": {
-        "name": "Birmingham Museums Trust",
-        "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Edward_Burne-Jones_-_Pygmalion_and_the_Image_-_The_Godhead_Fires_-_Google_Art_Project.jpg",
+        "original": "Birmingham Museums Trust"
       },
       "licence": "CC0",
       "status": "cleared",
       "notes": "Stand-in; head-and-shoulders crop. Credit by its own title.",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122",
-      "commonsSearch": "Burne-Jones Pygmalion Godhead Fires"
+      "commonsFile": "Edward_Burne-Jones_-_Pygmalion_and_the_Image_-_The_Godhead_Fires_-_Google_Art_Project.jpg"
     },
     {
       "id": "the-bride-variant",
@@ -714,13 +730,14 @@
       "title": "The Attainment: The Vision of the Holy Grail to Sir Galahad, Sir Bors and Sir Percival",
       "date": "1895-96",
       "source": {
-        "name": "Birmingham Museums Trust",
-        "url": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Edward_Burne-Jones_-_The_Attainment;_The_Vision_of_the_Holy_Grail_to_Sir_Galahad,_Sir_Bors_and_Sir_Percival_(from_the_series_'The_Quest_for_the_Holy_Grail').jpg",
+        "original": "Birmingham Museums Trust"
       },
       "licence": "CC0",
       "status": "cleared",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076",
-      "commonsSearch": "Holy Grail tapestry Attainment Galahad"
+      "commonsFile": "Edward_Burne-Jones_-_The_Attainment;_The_Vision_of_the_Holy_Grail_to_Sir_Galahad,_Sir_Bors_and_Sir_Percival_(from_the_series_'The_Quest_for_the_Holy_Grail').jpg"
     },
     {
       "id": "board-forest-path",
@@ -737,7 +754,7 @@
       "licence": "CC0",
       "status": "cleared",
       "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
-      "commonsSearch": "Doré Petit Chaperon Rouge loup bois"
+      "commonsSearch": "Gustave Doré Little Red Riding Hood wolf wood engraving"
     },
     {
       "id": "board-victors-laboratory",

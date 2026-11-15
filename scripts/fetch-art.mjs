@@ -43,7 +43,7 @@ async function fromWellcome(q) {
 }
 
 async function fromCommonsSearch(q) {
-  const api = `https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6&srlimit=1&format=json&srsearch=${encodeURIComponent(q)}`;
+  const api = `https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6&srlimit=1&format=json&srsearch=${encodeURIComponent(q + " filetype:bitmap")}`;
   const j = await (await get(api)).json();
   const title = j.query?.search?.[0]?.title;
   if (!title) return null;
