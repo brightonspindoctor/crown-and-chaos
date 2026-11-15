@@ -1,0 +1,45 @@
+{
+  "id": "the-little-mermaid",
+  "name": "The Little Mermaid",
+  "type": "hero",
+  "realm": "Eventyr",
+  "tale": "The Little Mermaid (Andersen, 1837)",
+  "aspect": "Healer",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 3,
+    "ranged": true,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Beast",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Turning tide",
+    "text": "Every enemy bond that gives a number is reversed: +1 Attack becomes -1 Attack, +1 Guard becomes -1 Guard, +1 Speed becomes -1 Speed, +1 to healing becomes -1 to healing, and so on. Bonds without a number work as normal."
+  },
+  "bond": {
+    "name": "Sea foam",
+    "text": "When she dies, your other Eventyr heroes heal 3."
+  },
+  "actions": [
+    {
+      "name": "Sea magic",
+      "ap": 1,
+      "text": "A Spell for her Attack on any enemy card. She takes 1 damage, ignoring Guard."
+    },
+    {
+      "name": "Saved from the wreck",
+      "ap": 3,
+      "usesPerFight": 1,
+      "text": "Heal 4 to each of your heroes."
+    }
+  ],
+  "rules": [
+    "Floors under Turning tide: an attack's final damage is never below 0, Speed never below 1, Guard never below 0, and a heal never below 0. A reversed Health bond lowers maximum Health but can't drop a card below 1, so it never deals damage."
+  ],
+  "art": "the-little-mermaid",
+  "status": "reviewed",
+  "notes": "Her attack cost is the knives in her feet. After Nightfall she can't heal, so each attack really costs her."
+}

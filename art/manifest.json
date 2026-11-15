@@ -839,6 +839,26 @@
       "status": "to-confirm",
       "commonsSearch": "Howard Pyle Merry Adventures Robin Hood Sheriff",
       "notes": "Check the image shows the Sheriff before use."
+    },
+    {
+      "id": "the-little-mermaid",
+      "use": "card",
+      "cards": [
+        "the-little-mermaid"
+      ],
+      "artist": "Edmund Dulac",
+      "artistDied": 1953,
+      "title": "To be confirmed: a Little Mermaid plate",
+      "date": "1911",
+      "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/"
+      },
+      "licence": "Public domain",
+      "status": "to-confirm",
+      "commonsSearch": "Edmund Dulac Little Mermaid",
+      "notes": "Check the plate shows the Little Mermaid. Fallback: Vilhelm Pedersen (died 1859)."
     }
   ]
 }
