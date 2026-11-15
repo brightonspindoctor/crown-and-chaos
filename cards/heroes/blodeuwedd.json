@@ -15,7 +15,7 @@
     "guard": 1,
     "speed": 4
   },
-  "vulnerableTo": "Witch",
+  "vulnerableTo": "Slayer",
   "renown": 13,
   "crownPassive": {
     "name": "Shelter of flowers",
