@@ -17,7 +17,7 @@
   "renown": 12,
   "crownPassive": {
     "name": "Unfinished",
-    "text": "You keep the Fate token all fight. Fate-keeping crown passives cancel out: if both sides have one (Renfield or the Bride), whoever has more keeps the token, and if it's equal the token changes hands each round as normal."
+    "text": "While you field a Gothic Beast, she has +1 Guard and +1 Attack."
   },
   "bond": {
     "text": "While you field a Gothic Beast, she has +1 Speed."

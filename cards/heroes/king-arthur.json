@@ -17,7 +17,7 @@
   "renown": 16,
   "crownPassive": {
     "name": "The Round Table",
-    "text": "All your heroes count as tale-mates of each other for Bonds, whatever tale or realm they come from."
+    "text": "Every one of your bonds works whatever tale or realm your heroes come from: for your bonds, each of your heroes counts as being from every tale and realm. Conditions on an Aspect, such as a Slayer or a Beast, still apply."
   },
   "bond": {
     "text": "Your Albion heroes have +1 Guard."

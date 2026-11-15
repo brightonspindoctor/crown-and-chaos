@@ -20,7 +20,10 @@
   "crownPassive": {
     "text": "Must start in slot 1 and always holds the Crown, which travels with her. If the Crown ever passes to another of your heroes, you lose."
   },
-  "bond": null,
+  "bond": {
+    "name": "Hut on hen's legs",
+    "text": "Your other heroes have -1 Speed (never below 1) and -2 Health. This bond doesn't affect the enemy."
+  },
   "actions": [
     {
       "name": "Pestle",
@@ -42,6 +45,7 @@
   "status": "reviewed",
   "rules": [
     "Starts on 25 health with no maximum; only kills raise it past 25.",
-    "Against Robin's No Crown she still can't move onto slot 1."
+    "Against Robin's No Crown she still can't move onto slot 1.",
+    "Her Mortar ride kills whatever is in the space she moves into, on either side, so it can kill your own heroes in her path."
   ]
 }

@@ -17,7 +17,7 @@
   "renown": 12,
   "crownPassive": {
     "name": "The master's servant",
-    "text": "You keep the Fate token all fight. Fate-keeping crown passives cancel out: if both sides have one (Renfield or the Bride), whoever has more keeps the token, and if it's equal the token changes hands each round as normal."
+    "text": "You keep the Fate token all fight. If both crowns are Renfield, this cancels out and the token changes hands each round as normal."
   },
   "bond": {
     "name": "Gothic kin",
