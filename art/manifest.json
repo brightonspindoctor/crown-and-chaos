@@ -340,8 +340,7 @@
       "id": "red-riding-hood",
       "use": "card",
       "cards": [
-        "red-riding-hood",
-        "the-wolf"
+        "red-riding-hood"
       ],
       "artist": "Gustave Doré",
       "artistDied": 1883,
@@ -354,9 +353,29 @@
       },
       "licence": "CC0",
       "status": "cleared",
-      "notes": "Red Riding Hood and the Wolf cards each crop to their own figure.",
-      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
-      "commonsSearch": "Gustave Doré Little Red Riding Hood wolf wood engraving"
+      "notes": "Hammer Museum rate-limits automated downloads; save this one by hand.",
+      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+    },
+    {
+      "id": "the-wolf",
+      "use": "card",
+      "cards": [
+        "the-wolf"
+      ],
+      "artist": "Gustave Doré (engraved by Pannemaker)",
+      "artistDied": 1883,
+      "title": "Le Petit Chaperon Rouge",
+      "date": "1862",
+      "publication": "Les Contes de Perrault (Hetzel, 1862)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Le_Petit_Chaperon_Rouge,_RP-P-OB-33.985.jpg",
+        "original": "Rijksmuseum, Amsterdam"
+      },
+      "commonsFile": "Le_Petit_Chaperon_Rouge,_RP-P-OB-33.985.jpg",
+      "licence": "Public domain (Rijksmuseum)",
+      "status": "cleared",
+      "notes": "The wolf at the grandmother's bed. Some text shows through from the reverse of the print."
     },
     {
       "id": "red-riding-hood-painting",
@@ -608,7 +627,7 @@
       },
       "licence": "Public domain",
       "status": "cleared-book",
-      "commonsSearch": "Pedersen Steadfast Tin Soldier"
+      "notes": "Automatic search found the wrong Pedersen engraving; pick the file by hand."
     },
     {
       "id": "dracula",
@@ -754,7 +773,7 @@
       "licence": "CC0",
       "status": "cleared",
       "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
-      "commonsSearch": "Gustave Doré Little Red Riding Hood wolf wood engraving"
+      "notes": "Uses the Hammer engraving; save it by hand."
     },
     {
       "id": "board-victors-laboratory",
