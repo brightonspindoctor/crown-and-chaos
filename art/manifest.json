@@ -17,7 +17,8 @@
         "url": null
       },
       "licence": "Public domain (NGA open access)",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Raphael Saint George and the Dragon 1506 National Gallery of Art"
     },
     {
       "id": "the-dragon",
@@ -34,7 +35,8 @@
         "url": null
       },
       "licence": "Public domain (NGA open access)",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Sodoma Saint George and the Dragon National Gallery of Art"
     },
     {
       "id": "the-princess",
@@ -51,7 +53,8 @@
         "url": null
       },
       "licence": "Public domain (NGA open access)",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Rogier van der Weyden Saint George and the Dragon"
     },
     {
       "id": "robin-hood",
@@ -147,7 +150,7 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "notes": "Still in copyright in life+100 countries such as Mexico until 2045.",
-      "imagePage": "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian"
+      "commonsSearch": "Wyeth Robin meets Maid Marian"
     },
     {
       "id": "king-arthur",
@@ -166,7 +169,7 @@
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "imagePage": "https://standardebooks.org/artworks/n-c-wyeth/and-when-they-came-to-the-sword-that-the-hand-held-king-arthur-took-it-up"
+      "commonsSearch": "Wyeth Boy's King Arthur sword that the hand held"
     },
     {
       "id": "merlin",
@@ -184,7 +187,8 @@
         "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
       },
       "licence": "Public domain worldwide",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Howard Pyle The Enchanter Merlin"
     },
     {
       "id": "morgan-le-fay",
@@ -202,7 +206,8 @@
       },
       "licence": "CC0",
       "status": "cleared",
-      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478"
+      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478",
+      "commonsSearch": "Frederick Sandys Morgan le Fay"
     },
     {
       "id": "lancelot",
@@ -222,7 +227,7 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "notes": "Crop to Lancelot.",
-      "imagePage": "https://d.lib.rochester.edu/node/38085"
+      "commonsSearch": "Wyeth Launcelot du Lake King Ban Benwick"
     },
     {
       "id": "guinevere",
@@ -240,7 +245,8 @@
         "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
       },
       "licence": "Public domain worldwide",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Howard Pyle The Lady Guinevere"
     },
     {
       "id": "guinevere-variant",
@@ -258,7 +264,8 @@
         "url": "https://en.wikisource.org/wiki/The_Story_of_King_Arthur_and_his_Knights"
       },
       "licence": "Public domain worldwide",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Howard Pyle King Arthur meets the Lady Guinevere"
     },
     {
       "id": "beowulf",
@@ -316,7 +323,8 @@
       },
       "licence": "Public domain",
       "status": "cleared",
-      "notes": "Commons file name still to record."
+      "notes": "Commons file name still to record.",
+      "commonsSearch": "Stories of Beowulf Grendel's mother"
     },
     {
       "id": "red-riding-hood",
@@ -337,7 +345,8 @@
       "licence": "CC0",
       "status": "cleared",
       "notes": "Red Riding Hood and the Wolf cards each crop to their own figure.",
-      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
+      "commonsSearch": "Doré Petit Chaperon Rouge loup bois"
     },
     {
       "id": "red-riding-hood-painting",
@@ -393,7 +402,7 @@
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "imagePage": "https://surlalunefairytales.com/oldsite/illustrations/rumpelstiltskin/rackhamrumple1.html"
+      "commonsSearch": "Rackham Rumpelstiltskin"
     },
     {
       "id": "gretel",
@@ -412,7 +421,7 @@
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "imagePage": "https://surlalunefairytales.com/oldsite/illustrations/hanselgretel/rackhamhansel4.html"
+      "commonsSearch": "Rackham Hansel and Gretel witch oven"
     },
     {
       "id": "baba-yaga",
@@ -430,7 +439,8 @@
         "url": null
       },
       "licence": "Public domain",
-      "status": "cleared-book"
+      "status": "cleared-book",
+      "commonsSearch": "Bilibin Baba Yaga"
     },
     {
       "id": "koschei",
@@ -467,7 +477,8 @@
         "url": null
       },
       "licence": "Public domain",
-      "status": "cleared-book"
+      "status": "cleared-book",
+      "commonsSearch": "Bilibin Frog Princess"
     },
     {
       "id": "zmey-gorynych",
@@ -486,7 +497,8 @@
       },
       "licence": "Public domain; a free scan is still needed",
       "status": "cleared-book",
-      "notes": "Don't use the Mary Evans copy; find a free scan of the postcard."
+      "notes": "Don't use the Mary Evans copy; find a free scan of the postcard.",
+      "commonsSearch": "Bilibin Zmey Gorynych"
     },
     {
       "id": "bran-the-blessed",
@@ -504,7 +516,8 @@
         "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"
       },
       "licence": "Public domain",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Bran's head Bacon Squire"
     },
     {
       "id": "gwydion",
@@ -522,7 +535,8 @@
         "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"
       },
       "licence": "Public domain",
-      "status": "cleared"
+      "status": "cleared",
+      "commonsSearch": "Making of Blodeuwedd Bacon"
     },
     {
       "id": "rhiannon",
@@ -560,7 +574,7 @@
       },
       "licence": "Public domain (Met open access)",
       "status": "cleared",
-      "imagePage": "https://surlalunefairytales.com/oldsite/illustrations/snowqueen/dulacsnowqueen1.html"
+      "commonsSearch": "Dulac Snow Queen"
     },
     {
       "id": "the-tin-soldier",
@@ -578,7 +592,8 @@
         "url": null
       },
       "licence": "Public domain",
-      "status": "cleared-book"
+      "status": "cleared-book",
+      "commonsSearch": "Vilhelm Pedersen tin soldier"
     },
     {
       "id": "dracula",
@@ -635,7 +650,8 @@
       "licence": "CC0",
       "status": "cleared",
       "notes": "Stand-in; head-and-shoulders crop. Credit by its own title.",
-      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122"
+      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122",
+      "commonsSearch": "Burne-Jones Pygmalion Godhead Fires"
     },
     {
       "id": "the-bride-variant",
@@ -703,7 +719,8 @@
       },
       "licence": "CC0",
       "status": "cleared",
-      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076"
+      "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076",
+      "commonsSearch": "Holy Grail tapestry Attainment Galahad"
     },
     {
       "id": "board-forest-path",
@@ -719,7 +736,8 @@
       },
       "licence": "CC0",
       "status": "cleared",
-      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
+      "commonsSearch": "Doré Petit Chaperon Rouge loup bois"
     },
     {
       "id": "board-victors-laboratory",

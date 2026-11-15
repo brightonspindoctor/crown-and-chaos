@@ -33,17 +33,29 @@ async function fromWellcome(q) {
     for (const item of work.items ?? []) {
       for (const loc of item.locations ?? []) {
         if (loc.locationType?.id === "iiif-image" && loc.url) {
-          return loc.url.replace(/\/info\.json$/, "/full/2000,/0/default.jpg");
+          return loc.url.replace(/\/info\.json$/, "/full/2000,/0/default.jpg").replace("/thumbs/", "/image/");
         }
       }
     }
-    if (work.thumbnail?.url) return work.thumbnail.url.replace(/\/full\/[^/]+\//, "/full/2000,/");
+    if (work.thumbnail?.url) return work.thumbnail.url.replace("/thumbs/", "/image/").replace(/\/full\/[^/]+\//, "/full/2000,/");
   }
   return null;
 }
 
+async function fromCommonsSearch(q) {
+  const api = `https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6&srlimit=1&format=json&srsearch=${encodeURIComponent(q)}`;
+  const j = await (await get(api)).json();
+  const title = j.query?.search?.[0]?.title;
+  if (!title) return null;
+  const file = title.replace(/^File:/, "").replace(/ /g, "_");
+  return { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}`, file };
+}
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 async function fromPage(page) {
-  const r = await get(page, "text/html");
+  let r = await get(page, "text/html");
+  for (let i = 0; r.status === 429 && i < 3; i++) { await sleep(5000 * (i + 1)); r = await get(page, "text/html"); }
   if (!r.ok) throw new Error(`page HTTP ${r.status}`);
   const html = await r.text();
   const pick = (re) => html.match(re)?.[1];
@@ -55,12 +67,27 @@ async function fromPage(page) {
   return found ? new URL(found.replace(/&amp;/g, "&"), page).href : null;
 }
 
+// Tries each known route in turn and returns the first that yields a URL.
 async function resolve(img) {
-  if (img.downloadUrl) return { url: img.downloadUrl, via: "downloadUrl" };
-  if (img.commonsFile) return { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(img.commonsFile)}`, via: "commonsFile" };
-  if (img.metObjectId) return { url: await fromMet(img.metObjectId), via: "met" };
-  if (img.wellcomeQuery) return { url: await fromWellcome(img.wellcomeQuery), via: "wellcome" };
-  if (img.imagePage) return { url: await fromPage(img.imagePage), via: "imagePage" };
+  const routes = [];
+  if (img.downloadUrl) routes.push(["downloadUrl", async () => img.downloadUrl]);
+  if (img.commonsFile) routes.push(["commonsFile", async () => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(img.commonsFile)}`]);
+  if (img.metObjectId) routes.push(["met", () => fromMet(img.metObjectId)]);
+  if (img.wellcomeQuery) routes.push(["wellcome", () => fromWellcome(img.wellcomeQuery)]);
+  if (img.imagePage) routes.push(["imagePage", () => fromPage(img.imagePage)]);
+  if (img.commonsSearch) routes.push(["commonsSearch", async () => {
+    const hit = await fromCommonsSearch(img.commonsSearch);
+    if (hit) img._commonsHit = hit.file;
+    return hit?.url ?? null;
+  }]);
+  const errors = [];
+  for (const [via, fn] of routes) {
+    try {
+      const url = await fn();
+      if (url) return { url, via, errors };
+    } catch (e) { errors.push(`${via}: ${e.message}`); }
+  }
+  if (errors.length) throw new Error(errors.join("; "));
   return { url: null, via: "none" };
 }
 
@@ -88,7 +115,7 @@ for (const img of images) {
     const buf = Buffer.from(await res.arrayBuffer());
     const dest = join(outDir, `${img.id}${extFor(type, url)}`);
     writeFileSync(dest, buf);
-    report.fetched.push({ id: img.id, via, url, bytes: buf.length });
+    report.fetched.push({ id: img.id, via, url, bytes: buf.length, ...(img._commonsHit ? { commonsFile: img._commonsHit } : {}) });
     console.log(`fetched ${img.id} via ${via} (${buf.length} bytes)`);
   } catch (e) {
     report.failed.push({ id: img.id, error: e.message });
