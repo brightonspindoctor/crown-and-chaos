@@ -1,28 +1,6 @@
 {
-  "ranAt": "2026-11-15T21:54:19.625Z",
-  "fetched": [
-    {
-      "id": "red-riding-hood",
-      "via": "commonsSearch",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Petit_Chaperon_Rouge%2C_RP-P-OB-33.985.jpg",
-      "bytes": 2004663,
-      "commonsFile": "Le_Petit_Chaperon_Rouge,_RP-P-OB-33.985.jpg"
-    },
-    {
-      "id": "the-tin-soldier",
-      "via": "commonsSearch",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vilhelm_Pedersen%2C_DK2-0006%2C_ubt.jpeg",
-      "bytes": 690900,
-      "commonsFile": "Vilhelm_Pedersen,_DK2-0006,_ubt.jpeg"
-    },
-    {
-      "id": "board-forest-path",
-      "via": "commonsSearch",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Petit_Chaperon_Rouge%2C_RP-P-OB-33.985.jpg",
-      "bytes": 2004663,
-      "commonsFile": "Le_Petit_Chaperon_Rouge,_RP-P-OB-33.985.jpg"
-    }
-  ],
+  "ranAt": "2026-11-15T21:56:15.736Z",
+  "fetched": [],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -40,6 +18,7 @@
     "beowulf",
     "grendel",
     "grendels-mother",
+    "the-wolf",
     "red-riding-hood-painting",
     "the-huntsman",
     "rumpelstiltskin",
@@ -48,12 +27,14 @@
     "zmey-gorynych",
     "rhiannon",
     "the-snow-queen",
+    "the-tin-soldier",
     "dracula",
     "victor-frankenstein",
     "the-bride",
     "the-bride-variant",
     "board-heorot",
     "board-camelot-fallback",
+    "board-forest-path",
     "board-victors-laboratory"
   ],
   "unresolved": [
@@ -78,7 +59,12 @@
       "via": "none"
     }
   ],
-  "failed": [],
+  "failed": [
+    {
+      "id": "red-riding-hood",
+      "error": "imagePage: page HTTP 429"
+    }
+  ],
   "notCleared": [
     "board-camelot",
     "board-castle-dracula",
