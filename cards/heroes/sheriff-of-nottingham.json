@@ -1,0 +1,47 @@
+{
+  "id": "sheriff-of-nottingham",
+  "name": "The Sheriff of Nottingham",
+  "type": "hero",
+  "realm": "Albion",
+  "tale": "The Robin Hood ballads",
+  "aspect": "Sovereign",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 3,
+    "ranged": false,
+    "guard": 1,
+    "speed": 4
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 15,
+  "crownPassive": {
+    "name": "Taxed",
+    "text": "At the start of the fight, take one item at random from your opponent's belt into a fourth item slot of yours. If they brought no items, nothing happens."
+  },
+  "bond": {
+    "name": "Men of the shire",
+    "text": "Your Albion cards have +1 Guard."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Wanted",
+      "ap": 2,
+      "text": "Mark an enemy card. Every attack on it this round deals +1 damage."
+    },
+    {
+      "name": "Break their spirit",
+      "ap": 3,
+      "usesPerFight": 1,
+      "text": "Attack an enemy hero. It loses all Guard, printed and bonus, and can't gain Guard for the rest of the fight."
+    }
+  ],
+  "art": "sheriff-of-nottingham",
+  "status": "reviewed",
+  "notes": "Speed 4 so his mark lands before most of your other attacks. Taxed: the opponent is told they have been taxed by the Sheriff of Nottingham and sees the item float across the board into the Sheriff's belt."
+}

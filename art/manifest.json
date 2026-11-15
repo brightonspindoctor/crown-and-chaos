@@ -819,6 +819,26 @@
       },
       "licence": null,
       "status": "open"
+    },
+    {
+      "id": "sheriff-of-nottingham",
+      "use": "card",
+      "cards": [
+        "sheriff-of-nottingham"
+      ],
+      "artist": "Howard Pyle",
+      "artistDied": 1911,
+      "title": "To be confirmed: a Sheriff of Nottingham plate",
+      "date": "1883",
+      "publication": "The Merry Adventures of Robin Hood (Scribner, 1883)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/"
+      },
+      "licence": "Public domain",
+      "status": "to-confirm",
+      "commonsSearch": "Howard Pyle Merry Adventures Robin Hood Sheriff",
+      "notes": "Check the image shows the Sheriff before use."
     }
   ]
 }
