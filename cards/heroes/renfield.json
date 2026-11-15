@@ -1,0 +1,50 @@
+{
+  "id": "renfield",
+  "name": "Renfield",
+  "type": "hero",
+  "realm": "Gothic",
+  "tale": "Dracula (Stoker, 1897)",
+  "aspect": "Trickster",
+  "tags": [],
+  "stats": {
+    "health": 7,
+    "attack": 2,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Sovereign",
+  "renown": 12,
+  "crownPassive": {
+    "name": "The master's servant",
+    "text": "You keep the Fate token all fight. Fate-keeping crown passives cancel out: if both sides have one (Renfield or the Bride), whoever has more keeps the token, and if it's equal the token changes hands each round as normal."
+  },
+  "bond": {
+    "name": "Gothic kin",
+    "text": "+1 Attack for each other Gothic hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "The master is at hand",
+      "ap": 2,
+      "text": "He gains +2 Guard this round and takes the next hit aimed at your crown."
+    },
+    {
+      "name": "Betrayal",
+      "ap": 3,
+      "usesPerFight": 1,
+      "text": "Deal 6 damage to the enemy crown, ignoring Guard and the pyramid. Then his Guard drops to 0 and his Health to 1."
+    }
+  ],
+  "rules": [
+    "If Betrayal kills the enemy crown and an enemy card then kills Renfield in the same round while he is your crown, both crowns are down and the fight is a draw. Otherwise you win."
+  ],
+  "art": "renfield",
+  "status": "reviewed",
+  "notes": "A glass cannon. Betrayal is almost never used from the crown."
+}

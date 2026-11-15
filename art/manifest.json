@@ -859,6 +859,25 @@
       "status": "to-confirm",
       "commonsSearch": "Edmund Dulac Little Mermaid",
       "notes": "Check the plate shows the Little Mermaid. Fallback: Vilhelm Pedersen (died 1859)."
+    },
+    {
+      "id": "renfield",
+      "use": "card",
+      "cards": [
+        "renfield"
+      ],
+      "artist": "To be found",
+      "artistDied": null,
+      "title": "To be found: Renfield",
+      "date": "",
+      "publication": "",
+      "source": {
+        "name": "To be found",
+        "url": ""
+      },
+      "licence": "",
+      "status": "open",
+      "notes": "Few pre-1931 illustrations of Renfield exist; may need a stand-in credited by its own title."
     }
   ]
 }
