@@ -878,6 +878,25 @@
       "licence": "",
       "status": "open",
       "notes": "Few pre-1931 illustrations of Renfield exist; may need a stand-in credited by its own title."
+    },
+    {
+      "id": "van-helsing",
+      "use": "card",
+      "cards": [
+        "van-helsing"
+      ],
+      "artist": "To be found",
+      "artistDied": null,
+      "title": "To be found: Van Helsing",
+      "date": "",
+      "publication": "",
+      "source": {
+        "name": "To be found",
+        "url": ""
+      },
+      "licence": "",
+      "status": "open",
+      "notes": "Few pre-1931 illustrations of the novel exist; may need a stand-in credited by its own title."
     }
   ]
 }

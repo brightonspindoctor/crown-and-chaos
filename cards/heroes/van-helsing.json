@@ -1,0 +1,45 @@
+{
+  "id": "van-helsing",
+  "name": "Van Helsing",
+  "type": "hero",
+  "realm": "Gothic",
+  "tale": "Dracula (Stoker, 1897)",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 3,
+    "ranged": true,
+    "guard": 0,
+    "speed": 2
+  },
+  "vulnerableTo": "Witch",
+  "renown": 13,
+  "crownPassive": {
+    "name": "Garlic and the Host",
+    "text": "All healing, on both sides, is reduced by 1. No card can come back from death or cheat it: returns, revivals and 'survives on X health' effects don't work."
+  },
+  "bond": {
+    "name": "Crew of Light",
+    "text": "+1 Attack for each other Gothic hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: a Ranged attack for his Attack."
+    },
+    {
+      "name": "Blood transfusion",
+      "ap": 2,
+      "text": "He loses 2 Health, and one of your other heroes, chosen at random, heals 3. The heal stops working at Nightfall, but he still loses the Health."
+    }
+  ],
+  "rules": [
+    "Blocked by his crown passive: Victor returning a tale-mate, Friar Tuck returning front-rank cards, the Draught of the Cauldron, Vasilisa's crown passive, Red Riding Hood's bond, and a card swallowed by the Wolf coming back out.",
+    "From the crown his own Blood transfusion heals 2, not 3."
+  ],
+  "art": "van-helsing",
+  "status": "reviewed",
+  "notes": "High damage, low healing: the Gothic opposite of Albion."
+}
