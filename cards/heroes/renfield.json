@@ -38,11 +38,12 @@
       "name": "Betrayal",
       "ap": 3,
       "usesPerFight": 1,
-      "text": "Deal 6 damage to the enemy crown, ignoring Guard and the pyramid. Then his Guard drops to 0 and his Health to 1."
+      "text": "A melee attack for 6 on the closest enemy, ignoring Guard. It reaches the crown only once every card in front of it is gone. Then his Guard drops to 0 and his Health to 1."
     }
   ],
   "rules": [
-    "If Betrayal kills the enemy crown and an enemy card then kills Renfield in the same round while he is your crown, both crowns are down and the fight is a draw. Otherwise you win."
+    "Betrayal is melee, so it can't hit the enemy crown until their front rank and other heroes are gone.",
+    "If Betrayal kills the enemy crown while Renfield is your crown, and an enemy card kills him that same round, both crowns are down and the fight is a draw. Otherwise you win."
   ],
   "art": "renfield",
   "status": "reviewed",

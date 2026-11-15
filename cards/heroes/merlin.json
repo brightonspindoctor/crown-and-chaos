@@ -36,7 +36,7 @@
     {
       "name": "Enchanted sleep",
       "ap": 2,
-      "text": "An enemy hero takes no actions this round or next. The only effect allowed to stop a hero two rounds in a row.",
+      "text": "An enemy hero takes no actions this round or next. Like every stopping effect, it can't stop the same hero two rounds running.",
       "usesPerFight": 1
     }
   ],

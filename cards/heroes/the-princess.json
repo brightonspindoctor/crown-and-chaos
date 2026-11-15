@@ -16,7 +16,7 @@
   "vulnerableTo": "Beast",
   "renown": 10,
   "crownPassive": {
-    "text": "Heals 1 to all your cards at upkeep."
+    "text": "At upkeep, heal 1 to one of your cards, chosen at random."
   },
   "bond": {
     "text": "Her heals restore +1 for each other Albion hero you field."
