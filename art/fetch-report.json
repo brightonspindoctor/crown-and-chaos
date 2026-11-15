@@ -1,167 +1,186 @@
 {
-  "ranAt": "2026-11-15T21:49:51.401Z",
+  "ranAt": "2026-11-15T21:51:57.025Z",
   "fetched": [
     {
-      "id": "robin-hood",
-      "via": "imagePage",
-      "url": "https://www.oldbookillustrations.com/site/assets/high-res/1912/robin-hood-768.jpg",
-      "bytes": 58639
+      "id": "st-george",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg",
+      "bytes": 6553147,
+      "commonsFile": "Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg"
     },
     {
-      "id": "little-john",
-      "via": "imagePage",
-      "url": "https://www.oldbookillustrations.com/site/assets/high-res/1912/little-john-768.jpg",
-      "bytes": 60741
+      "id": "the-dragon",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sodoma_-_St_George_and_the_Dragon_-_WGA21547.jpg",
+      "bytes": 2194617,
+      "commonsFile": "Sodoma_-_St_George_and_the_Dragon_-_WGA21547.jpg"
     },
     {
-      "id": "friar-tuck",
-      "via": "imagePage",
-      "url": "https://www.oldbookillustrations.com/site/assets/high-res/1912/friar-tuck-768.jpg",
-      "bytes": 67494
-    },
-    {
-      "id": "maid-marian",
-      "via": "imagePage",
-      "url": "https://www.oldbookillustrations.com/site/assets/high-res/1912/maid-marian-768.jpg",
-      "bytes": 56037
-    },
-    {
-      "id": "maid-marian-variant",
-      "via": "imagePage",
-      "url": "https://standardebooks.org/images/logo.png",
-      "bytes": 27114
+      "id": "the-princess",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_George_and_the_Dragon_Rogier.jpg",
+      "bytes": 2749096,
+      "commonsFile": "Saint_George_and_the_Dragon_Rogier.jpg"
     },
     {
       "id": "king-arthur",
-      "via": "imagePage",
-      "url": "https://standardebooks.org/images/logo.png",
-      "bytes": 27114
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boys_King_Arthur_-_N._C._Wyeth_-_p16.jpg",
+      "bytes": 844397,
+      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p16.jpg"
     },
     {
-      "id": "red-riding-hood-painting",
-      "via": "imagePage",
-      "url": "https://content.ngv.vic.gov.au/retrieve.php?type=image&size=xl&vernonID=3918",
-      "bytes": 44903
+      "id": "merlin",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arthur-Pyle_The_Enchanter_Merlin.JPG",
+      "bytes": 1300126,
+      "commonsFile": "Arthur-Pyle_The_Enchanter_Merlin.JPG"
     },
     {
-      "id": "the-huntsman",
-      "via": "imagePage",
-      "url": "https://iiif.nypl.org/iiif/3/1704116/full/!288,288/0/default.jpg",
-      "bytes": 20000
+      "id": "morgan-le-fay",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandys%2C_Frederick_-_Morgan_le_Fay.JPG",
+      "bytes": 1760088,
+      "commonsFile": "Sandys,_Frederick_-_Morgan_le_Fay.JPG"
     },
     {
-      "id": "the-bride-variant",
-      "via": "met",
-      "url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14201-005.jpg",
-      "bytes": 2461624
+      "id": "lancelot",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boys_King_Arthur_-_N._C._Wyeth_-_p38.jpg",
+      "bytes": 715484,
+      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p38.jpg"
+    },
+    {
+      "id": "guinevere",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arthur-Pyle_The_Lady_Guinevere.JPG",
+      "bytes": 1188889,
+      "commonsFile": "Arthur-Pyle_The_Lady_Guinevere.JPG"
+    },
+    {
+      "id": "guinevere-variant",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arthur-Pyle_King_Arthur_meets_Lady_Guinevere.JPG",
+      "bytes": 1238682,
+      "commonsFile": "Arthur-Pyle_King_Arthur_meets_Lady_Guinevere.JPG"
+    },
+    {
+      "id": "grendels-mother",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_Beowulf_water_witch_trying_to_stab_beowulf.jpg",
+      "bytes": 2219630,
+      "commonsFile": "Stories_of_Beowulf_water_witch_trying_to_stab_beowulf.jpg"
+    },
+    {
+      "id": "rumpelstiltskin",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grimm-Rackham-202.jpg",
+      "bytes": 158051,
+      "commonsFile": "Grimm-Rackham-202.jpg"
+    },
+    {
+      "id": "baba-yaga",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bilibin._Baba_Yaga.jpg",
+      "bytes": 1450398,
+      "commonsFile": "Bilibin._Baba_Yaga.jpg"
+    },
+    {
+      "id": "vasilisa-the-wise",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Frog_Princess_(Bilibin)_-_cover_original.jpg",
+      "bytes": 101847,
+      "commonsFile": "The_Frog_Princess_(Bilibin)_-_cover_original.jpg"
+    },
+    {
+      "id": "zmey-gorynych",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ivan_Bilibin_-_zmey-gorynych-1912.jpg",
+      "bytes": 60313,
+      "commonsFile": "Ivan_Bilibin_-_zmey-gorynych-1912.jpg"
+    },
+    {
+      "id": "the-snow-queen",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edmund_Dulac_-_Snow_Queen.jpg",
+      "bytes": 73098,
+      "commonsFile": "Edmund_Dulac_-_Snow_Queen.jpg"
+    },
+    {
+      "id": "the-tin-soldier",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vilhelm_Pedersen%2C_DK2-0006%2C_ubt.jpeg",
+      "bytes": 690900,
+      "commonsFile": "Vilhelm_Pedersen,_DK2-0006,_ubt.jpeg"
+    },
+    {
+      "id": "victor-frankenstein",
+      "via": "wellcome",
+      "url": "https://iiif.wellcomecollection.org/image/b11980072_L0027125-LH-CS.jp2/full/2000,/0/default.jpg",
+      "bytes": 1564797
+    },
+    {
+      "id": "the-bride",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward_Burne-Jones_-_Pygmalion_and_the_Image_-_The_Godhead_Fires_-_Google_Art_Project.jpg",
+      "bytes": 5723229,
+      "commonsFile": "Edward_Burne-Jones_-_Pygmalion_and_the_Image_-_The_Godhead_Fires_-_Google_Art_Project.jpg"
+    },
+    {
+      "id": "board-camelot-fallback",
+      "via": "commonsSearch",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward_Burne-Jones_-_The_Attainment%3B_The_Vision_of_the_Holy_Grail_to_Sir_Galahad%2C_Sir_Bors_and_Sir_Percival_(from_the_series_'The_Quest_for_the_Holy_Grail').jpg",
+      "bytes": 189322,
+      "commonsFile": "Edward_Burne-Jones_-_The_Attainment;_The_Vision_of_the_Holy_Grail_to_Sir_Galahad,_Sir_Bors_and_Sir_Percival_(from_the_series_'The_Quest_for_the_Holy_Grail').jpg"
+    },
+    {
+      "id": "board-victors-laboratory",
+      "via": "wellcome",
+      "url": "https://iiif.wellcomecollection.org/image/b11980072_L0027125-LH-CS.jp2/full/2000,/0/default.jpg",
+      "bytes": 1564797
     }
   ],
   "alreadyHad": [
+    "robin-hood",
+    "little-john",
+    "friar-tuck",
+    "maid-marian",
     "beowulf",
     "grendel",
+    "red-riding-hood-painting",
+    "the-huntsman",
     "koschei",
     "rhiannon",
     "dracula",
+    "the-bride-variant",
     "board-heorot"
   ],
   "unresolved": [
     {
-      "id": "st-george",
-      "via": "none"
-    },
-    {
-      "id": "the-dragon",
-      "via": "none"
-    },
-    {
-      "id": "the-princess",
-      "via": "none"
-    },
-    {
-      "id": "merlin",
-      "via": "none"
-    },
-    {
-      "id": "morgan-le-fay",
-      "via": "imagePage"
-    },
-    {
-      "id": "guinevere",
-      "via": "none"
-    },
-    {
-      "id": "guinevere-variant",
-      "via": "none"
-    },
-    {
-      "id": "grendels-mother",
-      "via": "none"
-    },
-    {
-      "id": "baba-yaga",
-      "via": "none"
-    },
-    {
-      "id": "vasilisa-the-wise",
-      "via": "none"
-    },
-    {
-      "id": "zmey-gorynych",
-      "via": "none"
-    },
-    {
-      "id": "bran-the-blessed",
+      "id": "gretel",
       "via": "none"
     },
     {
       "id": "gwydion",
       "via": "none"
-    },
-    {
-      "id": "the-tin-soldier",
-      "via": "none"
-    },
-    {
-      "id": "the-bride",
-      "via": "imagePage"
-    },
-    {
-      "id": "board-camelot-fallback",
-      "via": "imagePage"
     }
   ],
   "failed": [
     {
-      "id": "lancelot",
-      "error": "page HTTP 404"
+      "id": "maid-marian-variant",
+      "error": "not an image (application/pdf) from https://commons.wikimedia.org/wiki/Special:FilePath/Robin_Hood_(IA_robinhood00cresrich).pdf"
     },
     {
       "id": "red-riding-hood",
-      "error": "page HTTP 429"
+      "error": "not an image (application/pdf) from https://commons.wikimedia.org/wiki/Special:FilePath/Petits_portraits_et_notes_d'art_(IA_petitsportraitse00larr_1).pdf"
     },
     {
-      "id": "rumpelstiltskin",
-      "error": "page HTTP 404"
-    },
-    {
-      "id": "gretel",
-      "error": "page HTTP 404"
-    },
-    {
-      "id": "the-snow-queen",
-      "error": "page HTTP 404"
-    },
-    {
-      "id": "victor-frankenstein",
-      "error": "HTTP 404 from https://iiif.wellcomecollection.org/thumbs/b11980072_L0027125-LH-CS.jp2/full/2000,/0/default.jpg"
+      "id": "bran-the-blessed",
+      "error": "not an image (application/pdf) from https://commons.wikimedia.org/wiki/Special:FilePath/London_lyrics_(IA_londonlyrics186800lock).pdf"
     },
     {
       "id": "board-forest-path",
-      "error": "page HTTP 429"
-    },
-    {
-      "id": "board-victors-laboratory",
-      "error": "HTTP 404 from https://iiif.wellcomecollection.org/thumbs/b11980072_L0027125-LH-CS.jp2/full/2000,/0/default.jpg"
+      "error": "not an image (application/pdf) from https://commons.wikimedia.org/wiki/Special:FilePath/Petits_portraits_et_notes_d'art_(IA_petitsportraitse00larr_1).pdf"
     }
   ],
   "notCleared": [
