@@ -87,15 +87,25 @@ if (asks.iaSearch?.length) {
   }
 }
 const iaPage = async (id, n, width) => {
-  const r = await fetch(`https://iiif.archive.org/iiif/3/${id}$${n}/full/${width ? width + "," : "max"}/0/default.jpg`, IA_UA);
-  if (!r.ok) throw new Error(`IA ${id} page ${n}: HTTP ${r.status}`);
-  return Buffer.from(await r.arrayBuffer());
+  const urls = [
+    `https://iiif.archive.org/iiif/3/${id}$${n}/full/${width ? width + "," : "max"}/0/default.jpg`,
+    `https://archive.org/download/${id}/page/n${n}${width ? "_w" + width : ""}.jpg`,
+  ];
+  for (const u of urls) {
+    const r = await fetch(u, { ...IA_UA, redirect: "follow" });
+    if (r.ok && (r.headers.get("content-type") ?? "").startsWith("image/")) return Buffer.from(await r.arrayBuffer());
+  }
+  throw new Error(`IA ${id} page ${n}: no image`);
 };
 if (asks.iaPages?.length || asks.iaFull?.length) mkdirSync(join(root, "art/peek"), { recursive: true });
 for (const { id, from, to, step = 1 } of asks.iaPages ?? []) {
-  for (let n = from; n <= to; n += step) {
-    try { writeFileSync(join(root, "art/peek", `ia-${id}-${String(n).padStart(4, "0")}.jpg`), await iaPage(id, n, 160)); }
-    catch (e) { (report.errors ??= []).push(e.message); }
+  const pages = [];
+  for (let n = from; n <= to; n += step) pages.push(n);
+  for (let i = 0; i < pages.length; i += 6) {
+    await Promise.all(pages.slice(i, i + 6).map(async (n) => {
+      try { writeFileSync(join(root, "art/peek", `ia-${id}-${String(n).padStart(4, "0")}.jpg`), await iaPage(id, n, 160)); }
+      catch (e) { (report.errors ??= []).push(e.message); }
+    }));
   }
 }
 for (const { id, page, name } of asks.iaFull ?? []) {

@@ -1,49 +1,47 @@
 {
- "files": [
-  "Vasnetsov Frog Princess.jpg",
+ "peek": [
+  "Le Petit Chaperon Rouge, RP-P-OB-33.985.jpg",
+  "Little Red Riding Hood Gustav Doré illustration for Charles Perrault - Project Gutenberg eText 17208.jpg",
   "Lleu.jpg",
-  "Gwydion Conquers Pryderi.jpeg"
+  "Thomas Jones The Bard 1774.jpg",
+  "John Martin - The Bard - Google Art Project.jpg",
+  "Apparition Château des Carpathes.jpg",
+  "'The Carpathian Castle' by Léon Benett 03.jpg",
+  "'The Carpathian Castle' by Léon Benett 08.jpg",
+  "'The Carpathian Castle' by Léon Benett 11.jpg",
+  "'The Carpathian Castle' by Léon Benett 12.jpg",
+  "Verne - Le Château des Carpathes 8.jpg",
+  "Branwen.jpg",
+  "The salmon of Llyn Llyw (Culhwch ac Olwen Guest).jpg"
  ],
  "searches": [
-  "Château des Carpathes Benett",
-  "Chateau des Carpathes",
-  "Carpathian castle engraving",
-  "Rohbock castle Transylvania",
-  "Thomas Jones The Bard 1774",
-  "John Martin The Bard",
-  "Arcimboldo Flora",
-  "Christopher Williams Branwen",
-  "Lady Charlotte Guest Mabinogion illustration",
-  "Doré Le Petit Chaperon rouge",
-  "Gustave Doré Little Red Riding Hood wolf",
-  "Doré Contes de Perrault Chaperon",
-  "Wyeth Robin Meets Maid Marian",
-  "Wyeth Robin Hood Creswick 1917 plate",
-  "Rhead Friar Tuck Bold Robin Hood",
-  "Rhead Maid Marian 1912"
- ],
- "categories": [
-  "Le Château des Carpathes",
-  "Illustrations by Léon Benett",
-  "Le Petit Chaperon rouge by Gustave Doré",
-  "Robin Hood (1917) illustrated by N. C. Wyeth",
-  "Christopher Williams (painter)"
- ],
- "iaSearch": [
-  "title:(bold robin hood) AND creator:(rhead)",
-  "title:(robin hood) AND creator:(creswick) AND date:[1917 TO 1925]",
-  "title:(chateau des carpathes) AND date:[1890 TO 1925]",
-  "title:(mabinogion) AND date:[1840 TO 1925]"
+  "Little Red Riding Hood Gustav Doré illustration Perrault Gutenberg",
+  "Fonds Jules Verne Château des Carpathes",
+  "Carpathian Castle Benett"
  ],
  "iaPages": [
   {
-   "id": "boldrobinhoodhis00rheaiala",
+   "id": "boldrobinhoodhis00rheauoft",
    "from": 0,
-   "to": 80
+   "to": 340
+  },
+  {
+   "id": "robinhood00cresrich",
+   "from": 0,
+   "to": 406,
+   "step": 2
+  },
+  {
+   "id": "bnf-bpt6k6105866h",
+   "from": 0,
+   "to": 340,
+   "step": 2
+  },
+  {
+   "id": "mabinogionfromll00unse_0",
+   "from": 0,
+   "to": 200,
+   "step": 2
   }
- ],
- "pageImages": [
-  "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian",
-  "https://collections.hammer.ucla.edu/artwork/1962.35.330"
  ]
 }
