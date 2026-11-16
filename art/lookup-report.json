@@ -1,297 +1,175 @@
 {
- "ranAt": "2026-11-16T06:58:40.518Z",
- "files": [
-  {
-   "file": "Lleu.jpg",
-   "width": 513,
-   "height": 555,
-   "mime": "image/jpeg",
-   "licence": "Public domain",
-   "usage": "Public domain",
-   "copyrighted": "False",
-   "artist": "",
-   "date": "",
-   "credit": "",
-   "description": "",
-   "restrictions": "",
-   "licenceTags": [
-    "Cc-pd-mark-footer",
-    "License template tag",
-    "PD-Art",
-    "PD-Art/en",
-    "PD-Art/layout",
-    "PD-Layout",
-    "PD-art",
-    "PD-art-category",
-    "PD-art-category/core",
-    "PD-old",
-    "PD-old-text",
-    "PD-old-warning-text"
-   ]
-  }
- ],
+ "ranAt": "2026-11-16T07:03:47.768Z",
+ "files": [],
  "searches": {
-  "Doré Little Red Riding Hood second illustration Perrault": [
+  "Gustave Doré compère le Loup Chaperon": [],
+  "Doré Perrault 1862 Petit Chaperon rouge bois loup": [],
+  "Fonds Jules Verne Château des Carpathes": [
    {
-    "file": "Chaperon rouge2.jpg",
-    "width": 800,
-    "height": 1000,
+    "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (005 of 173).jpg",
+    "width": 2524,
+    "height": 3252,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Gustave Doré",
-    "date": "1897",
-    "credit": "http://www.ac-amiens.fr/pedagogie/lettres/lycee/perrault/gravures.htm",
-    "description": "Illustration for Charles Perrault's Petit Chaperon Rouge from Histoires ou Contes du Temps passé: Les Contes de ma Mère l'Oye (1697). Gustave Doré's illustrations appear in an 1867 edition entitled Les Contes de Perrault . Second of three e",
+    "artist": "Verne, Jules (1828-1905). Auteur du texte",
+    "date": "1884 date QS:P571,+1884-00-00T00:00:00Z/9",
+    "credit": "Centre d'études verniennes. MJV B120 {{ARK-BNF{{|}}ark:/12148/btv1b105586425}}",
+    "description": "Numérisation effectuée à partir d'un document original : MJV B120. Mise au net ayant servi pour l'impression.Manuscrit autographe.Le texte est écrit seulement au recto des feuillets gauche avec une large marge à droite. Nombreuses ratures e",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
+     "PD-France",
+     "PD-France/en",
+     "PD-France/lang",
+     "PD-France/layout",
      "PD-Layout",
+     "PD-US-expired",
      "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
+     "PD-US-expired/en",
+     "PD-US-expired/layout",
      "PD-old-X-expired",
      "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "Little Red Riding Hood Gustav Doré second illustration for Charles Perrault - Il libro delle fate, Longanesi, Milano, 1891.jpg",
-    "width": 2906,
-    "height": 2414,
+    "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (015 of 173).jpg",
+    "width": 2528,
+    "height": 3248,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "",
-    "date": "",
-    "credit": "",
-    "description": "",
+    "artist": "Verne, Jules (1828-1905). Auteur du texte",
+    "date": "1884 date QS:P571,+1884-00-00T00:00:00Z/9",
+    "credit": "Centre d'études verniennes. MJV B120 {{ARK-BNF{{|}}ark:/12148/btv1b105586425}}",
+    "description": "Numérisation effectuée à partir d'un document original : MJV B120. Mise au net ayant servi pour l'impression.Manuscrit autographe.Le texte est écrit seulement au recto des feuillets gauche avec une large marge à droite. Nombreuses ratures e",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
+     "PD-France",
+     "PD-France/en",
+     "PD-France/lang",
+     "PD-France/layout",
      "PD-Layout",
-     "PD-old-70",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   }
-  ],
-  "Fonds Jules Verne Château des Carpathes btv1b10558642": [],
-  "Uccello Saint George Dragon National Gallery": [
-   {
-    "file": "Paolo Uccello Heiliger Georg und der Drachen 1 470.jpg",
-    "width": 1700,
-    "height": 1301,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Paolo Uccello",
-    "date": "circa 1470 date QS:P571,+1470-00-00T00:00:00Z/9,P1480,Q5727902",
-    "credit": "[1]",
-    "description": "Saint George and the Dragon",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
+     "PD-US-expired",
      "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
+     "PD-US-expired/en",
+     "PD-US-expired/layout",
      "PD-old-X-expired",
      "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "Saint George and the Dragon by Paolo Uccello (London) 01.jpg",
-    "width": 1171,
-    "height": 900,
+    "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (057 of 173).jpg",
+    "width": 2528,
+    "height": 3240,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Paolo Uccello",
-    "date": "circa 1456 date QS:P571,+1456-00-00T00:00:00Z/9,P1480,Q5727902",
-    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"u/uccello/6various/5dragon1\"",
-    "description": "UCCELLO, Paolo St. George and the Dragon Oil on canvas, 57 x 73 cm National Gallery, London",
+    "artist": "Verne, Jules (1828-1905). Auteur du texte",
+    "date": "1884 date QS:P571,+1884-00-00T00:00:00Z/9",
+    "credit": "Centre d'études verniennes. MJV B120 {{ARK-BNF{{|}}ark:/12148/btv1b105586425}}",
+    "description": "Numérisation effectuée à partir d'un document original : MJV B120. Mise au net ayant servi pour l'impression.Manuscrit autographe.Le texte est écrit seulement au recto des feuillets gauche avec une large marge à droite. Nombreuses ratures e",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
+     "PD-France",
+     "PD-France/en",
+     "PD-France/lang",
+     "PD-France/layout",
      "PD-Layout",
+     "PD-US-expired",
      "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
+     "PD-US-expired/en",
+     "PD-US-expired/layout",
      "PD-old-X-expired",
      "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "Saint George and the Dragon by Paolo Uccello (Paris) 01.jpg",
-    "width": 1250,
-    "height": 705,
+    "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (090 of 173).jpg",
+    "width": 2536,
+    "height": 3248,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Paolo Uccello",
-    "date": "between 1458 and 1460 date QS:P571,+1450-00-00T00:00:00Z/7,P1319,+1458-00-00T00:00:00Z/9,P1326,+1460-00-00T00:00:00Z/9",
-    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"u/uccello/6various/5dragon2\"",
-    "description": "Saint George and the Dragon",
+    "artist": "Verne, Jules (1828-1905). Auteur du texte",
+    "date": "1884 date QS:P571,+1884-00-00T00:00:00Z/9",
+    "credit": "Centre d'études verniennes. MJV B120 {{ARK-BNF{{|}}ark:/12148/btv1b105586425}}",
+    "description": "Numérisation effectuée à partir d'un document original : MJV B120. Mise au net ayant servi pour l'impression.Manuscrit autographe.Le texte est écrit seulement au recto des feuillets gauche avec une large marge à droite. Nombreuses ratures e",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
+     "PD-France",
+     "PD-France/en",
+     "PD-France/lang",
+     "PD-France/layout",
      "PD-Layout",
+     "PD-US-expired",
      "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
+     "PD-US-expired/en",
+     "PD-US-expired/layout",
      "PD-old-X-expired",
      "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "Paolo Uccello drago.jpg",
-    "width": 898,
-    "height": 736,
+    "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (124 of 173).jpg",
+    "width": 2532,
+    "height": 3240,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Paolo Uccello",
-    "date": "circa 1470 date QS:P571,+1470-00-00T00:00:00Z/9,P1480,Q5727902",
-    "credit": "[1]",
-    "description": "Saint George and the Dragon",
+    "artist": "Verne, Jules (1828-1905). Auteur du texte",
+    "date": "1884 date QS:P571,+1884-00-00T00:00:00Z/9",
+    "credit": "Centre d'études verniennes. MJV B120 {{ARK-BNF{{|}}ark:/12148/btv1b105586425}}",
+    "description": "Numérisation effectuée à partir d'un document original : MJV B120. Mise au net ayant servi pour l'impression.Manuscrit autographe.Le texte est écrit seulement au recto des feuillets gauche avec une large marge à droite. Nombreuses ratures e",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
+     "PD-France",
+     "PD-France/en",
+     "PD-France/lang",
+     "PD-France/layout",
      "PD-Layout",
+     "PD-US-expired",
      "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Paolo Uccello - Saint George and the Dragon (National Gallery).jpg",
-    "width": 3923,
-    "height": 2958,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Paolo Uccello",
-    "date": "circa 1470 date QS:P571,+1470-00-00T00:00:00Z/9,P1480,Q5727902",
-    "credit": "High-resolution photograph from the WahooArt archive (3,923 × 2,958 px, the photograph's original pixel dimensions). Embedded metadata includes a National Gallery Images terms URL ( [1] ).",
-    "description": "Saint George and the Dragon",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
+     "PD-US-expired/en",
+     "PD-US-expired/layout",
      "PD-old-X-expired",
      "PD-old-auto-expired",
      "PD-old-text"
     ]
    }
   ],
-  "Bilibin Baba Yaga hut Vasilisa": [
+  "Pedersen tin soldier nursery Andersen": [],
+  "Christopher Williams Branwen painting": [
    {
-    "file": "Russian Wonder Tales 081.jpg",
-    "width": 1704,
-    "height": 2156,
+    "file": "Branwen drudwy.JPG",
+    "width": 1100,
+    "height": 825,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "1899",
-    "credit": "IA russianwondertal00whee",
-    "description": "Vasilisa the Beautiful at the Hut of Baba Yaga, by Ivan Bilibin.",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text"
-    ]
-   }
-  ],
-  "Vasnetsov Bogatyrs 1898": [
-   {
-    "file": "Die drei Bogatyr.jpg",
-    "width": 2114,
-    "height": 1400,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Viktor Vasnetsov",
-    "date": "1898 date QS:P571,+1898-00-00T00:00:00Z/9",
-    "credit": "http://lj.rossia.org/users/john_petrov/6524.html",
-    "description": "Bogatyrs (1898) by Viktor Vasnetsov. Bogatyrs (left to right): Dobrynya Nikitich, Ilya Muromets, Alyosha Popovich. Oil on canvas 321*222 Tretyakov Gallery",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Vasnetsov photo 1898.jpg",
-    "width": 693,
-    "height": 890,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Unknown author Unknown author",
-    "date": "1898",
-    "credit": "http://lib.1september.ru/articlef.php?ID=200601507 https://www.tg-m.ru/catalog/photos/668",
-    "description": "en:Viktor Vasnetsov , 1898.",
+    "artist": "Photograph created by myself, Anatiomaros. Artist W. Williams.",
+    "date": "First published in Charlotte Guest's translation of The Mabinogion (1877).",
+    "credit": "Originally uploaded by myself, Anatiomaros, to Welsh Wikipedia (see here .",
+    "description": "Branwen with her starling ( drudwy ) in the court of Matholwch in Ireland. A scene from the second of the Four Branches of the Mabinogi.",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
@@ -302,989 +180,6 @@
      "PD-old-warning-text"
     ]
    },
-   {
-    "file": "Viktor Vasnetsov - Богатыри - Google Art Project.jpg",
-    "width": 4000,
-    "height": 2600,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Viktor Vasnetsov",
-    "date": "from 1881 until 1898 date QS:P571,+1850-00-00T00:00:00Z/7,P580,+1881-00-00T00:00:00Z/9,P582,+1898-00-00T00:00:00Z/9",
-    "credit": "Google Arts &amp; Culture — GgFy94lN-r6DXw",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art-two-auto",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "1898 Vasnetsov Bogatyrs anagoria.JPG",
-    "width": 3316,
-    "height": 2132,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Viktor Vasnetsov",
-    "date": "1898 date QS:P571,+1898-00-00T00:00:00Z/9",
-    "credit": "anagoria",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Viktor-vasnetsov-three-bogatyrs-18981-e1275175670246.jpg",
-    "width": 1600,
-    "height": 1059,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Viktor Vasnetsov",
-    "date": "1898",
-    "credit": "http://viticodevagamundo.blogspot.nl/2010/12/victor-mikhailovich-vasnetsov-1843-1926.html",
-    "description": "Three Bogatyrs, Tratjekov Gallry, 22 x 321 cm",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   }
-  ],
-  "Vasnetsov Knight at the Crossroads": [
-   {
-    "file": "Knight at the crossroads by Vasnetsov, sketch (1878?).jpg",
-    "width": 697,
-    "height": 417,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Viktor Vasnetsov",
-    "date": "1878",
-    "credit": "scan from Николай Моргунов, Наталия Моргунова-Рудницкая. Васнецов. «Искусство», М., 1961.",
-    "description": "Витязь на распутье (1878?)",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Victor Vasnetsov - Knight at the Crossroads - Google Art Project.jpg",
-    "width": 5527,
-    "height": 3065,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Viktor Vasnetsov",
-    "date": "1882 date QS:P571,+1882-00-00T00:00:00Z/9",
-    "credit": "wAFehP4o2JFtMA at Google Cultural Institute , maximum zoom level",
-    "description": "Stone inscription: \"if you go straight, you won't be alive — there is no way for a drive-by or a passer-by or a fly-by\"",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-1923",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Knight at the crossroads, study by Vasnetsov.jpg",
-    "width": 896,
-    "height": 595,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Vasnetsov",
-    "date": "1895",
-    "credit": "http://goskatalog.ru/portal/#/collections?id=5757798",
-    "description": "Васнецов Виктор Михайлович (1848 - 1926) \"Витязь на распутье\" (I вариант) Период создания: 1895 г. Материал, техника: масло, холст Размер: 29,5х54 см Место создания: — Номер в Госкаталоге: 5607088 Номер по ГИК (КП): 169 Инвентарный номер: Ж",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Knight at the crossroads by Vasnetsov, study (1882, dom-muzei).jpg",
-    "width": 1044,
-    "height": 691,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "V.Vasnetsov",
-    "date": "1882",
-    "credit": "http://anothercity.livejournal.com/1584072.html",
-    "description": "see filename",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Knight at the crossroads by Vasnetsov (1920, Tbilisi).jpg",
-    "width": 460,
-    "height": 242,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Victor Vasnetsov (1848-1926)",
-    "date": "1920",
-    "credit": "http://museum.ge/index.php?lang_id=ENG&amp;sec_id=208&amp;info_id=12240",
-    "description": "see filename",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   }
-  ],
-  "Царевна лягушка Bilibin": [
-   {
-    "file": "Царевна лягушка 3.jpg",
-    "width": 1334,
-    "height": 2000,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "2011-11-17",
-    "credit": "http://slavput.ru/archive/gallery",
-    "description": "The Frog Princess - Ivan Bilibin",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text"
-    ]
-   },
-   {
-    "file": "Царевна лягушка 0.jpg",
-    "width": 1561,
-    "height": 2000,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "2011-11-17",
-    "credit": "http://slavput.ru/archive/gallery",
-    "description": "The Frog Princess - Ivan Bilibin",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core"
-    ]
-   },
-   {
-    "file": "Царевна лягушка 5.jpg",
-    "width": 1315,
-    "height": 2000,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "2011-11-17",
-    "credit": "http://slavput.ru/archive/gallery",
-    "description": "The Frog Princess - Ivan Bilibin",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text"
-    ]
-   },
-   {
-    "file": "Царевна лягушка 6.jpg",
-    "width": 2000,
-    "height": 1317,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "2011-11-17",
-    "credit": "http://slavput.ru/archive/gallery",
-    "description": "The Frog Princess - Ivan Bilibin",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text"
-    ]
-   },
-   {
-    "file": "Царевна лягушка 2.jpg",
-    "width": 1544,
-    "height": 2000,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "2011-11-17",
-    "credit": "http://slavput.ru/archive/gallery",
-    "description": "The Frog Princess - Ivan Bilibin",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text"
-    ]
-   }
-  ],
-  "Dulac Snow Queen sledge": [],
-  "Dulac Stories from Hans Andersen color plate": [
-   {
-    "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 209.jpg",
-    "width": 1761,
-    "height": 2213,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Edmund Dulac",
-    "date": "1910",
-    "credit": "Stories from Hans Andersen with illustrations by Edmund Dulac. New York: Hodder &amp; Stoughton. 1910 Internet Archive identifier: storiesfromhansa00anderich",
-    "description": "illustration to a story from a gift book",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
-    ]
-   },
-   {
-    "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 005.jpg",
-    "width": 1750,
-    "height": 2203,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Edmund Dulac",
-    "date": "1910",
-    "credit": "Stories from Hans Andersen with illustrations by Edmund Dulac. New York: Hodder &amp; Stoughton. 1910 Internet Archive identifier: storiesfromhansa00anderich",
-    "description": "illustration to a story from a gift book",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
-    ]
-   },
-   {
-    "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 023.jpg",
-    "width": 1755,
-    "height": 2207,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Edmund Dulac",
-    "date": "1910",
-    "credit": "Stories from Hans Andersen with illustrations by Edmund Dulac. New York: Hodder &amp; Stoughton. 1910 Internet Archive identifier: storiesfromhansa00anderich",
-    "description": "illustration to a story from a gift book",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
-    ]
-   },
-   {
-    "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 051.jpg",
-    "width": 1758,
-    "height": 2208,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Edmund Dulac",
-    "date": "1910",
-    "credit": "Stories from Hans Andersen with illustrations by Edmund Dulac. New York: Hodder &amp; Stoughton. 1910 Internet Archive identifier: storiesfromhansa00anderich",
-    "description": "illustration to a story from a gift book",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
-    ]
-   },
-   {
-    "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 131.jpg",
-    "width": 1754,
-    "height": 2207,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Edmund Dulac",
-    "date": "1910",
-    "credit": "Stories from Hans Andersen with illustrations by Edmund Dulac. New York: Hodder &amp; Stoughton. 1910 Internet Archive identifier: storiesfromhansa00anderich",
-    "description": "illustration to a story from a gift book",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
-    ]
-   }
-  ],
-  "Velázquez Las Hilanderas Spinners": [
-   {
-    "file": "Velazquez-las hilanderas.jpg",
-    "width": 2911,
-    "height": 2008,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Diego Velázquez",
-    "date": "circa 1656 date QS:P571,+1656-00-00T00:00:00Z/9,P1480,Q5727902",
-    "credit": "[2]",
-    "description": "La obra representa el momento en que la tejedora Aracne fue convertida en araña por la diosa Atenea , y es una de las obras mitológicas más conocidas del pintor sevillano Diego Velázquez .",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Sargent - Las Hilanderas (The Spinner), 1879, ABF.0558.jpg",
-    "width": 1200,
-    "height": 998,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "John Singer Sargent",
-    "date": "1879 date QS:P571,+1879-00-00T00:00:00Z/9",
-    "credit": "https://collection.russborough.ie/objects?query=maker%3A%22John+Sargent+%28American%2C+b.1856%2C+d.1925%29%22&amp;view=label",
-    "description": "Las Hilanderas (The Spinner), 1879",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "John Phillip (1817-1867) - Las hilanderas (The spinners), or The Fable of Arachne (detail) (copy after Diego Velázquez) - ABDRG634 - The Robert Gordon University.jpg",
-    "width": 1200,
-    "height": 1049,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "John Phillip",
-    "date": "",
-    "credit": "Art UK",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   }
-  ],
-  "Caspar David Friedrich Chasseur im Walde": [
-   {
-    "file": "The Chasseur in the Forest by Caspar David Friedrich.jpg",
-    "width": 691,
-    "height": 1000,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Caspar David Friedrich",
-    "date": "1814 date QS:P571,+1814-00-00T00:00:00Z/9",
-    "credit": "Art Renewal Center",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art-two-auto",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-art-two-auto",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Caspar David Friedrich 068.jpg",
-    "width": 1626,
-    "height": 2409,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Caspar David Friedrich",
-    "date": "1814 date QS:P571,+1814-00-00T00:00:00Z/9",
-    "credit": "Transferred from de.wikipedia to Commons by Bargain . ( Original text: http://www.philipphauer.de/galerie/caspar-david-friedrich/werke-gr/der-chasseur-im-walde.jpg )",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art-two-auto",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-art-two-auto",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Caspar David Friedrich - The Chasseur in the Forest - WGA8247.jpg",
-    "width": 700,
-    "height": 1013,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Caspar David Friedrich",
-    "date": "1814 date QS:P571,+1814-00-00T00:00:00Z/9",
-    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"f/friedric/2/206fried\"",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art-two-auto",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-art-two-auto",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Der Chasseur im Walde - Caspar David Friedrich.jpg",
-    "width": 1594,
-    "height": 2389,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Caspar David Friedrich",
-    "date": "1814 date QS:P571,+1814-00-00T00:00:00Z/9",
-    "credit": "Transferred from de.wikipedia to Commons by Bargain . ( Original text: http://www.philipphauer.de/galerie/caspar-david-friedrich/werke-gr/der-chasseur-im-walde.jpg )",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art-two-auto",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-art-two-auto",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Hamburg, Kunsthalle (temporär), Caspar David Friedrich, der Chasseur im Walde.jpg",
-    "width": 1867,
-    "height": 2611,
-    "mime": "image/jpeg",
-    "licence": "CC BY 4.0",
-    "usage": "Creative Commons Attribution 4.0",
-    "copyrighted": "True",
-    "artist": "Dguendel",
-    "date": "2024-02-17 10:35:14",
-    "credit": "Own work",
-    "description": "Hamburg, Kunsthalle (temporarely), Caspar David Friedrich, the chasseur in the woods, 1813, owner: private",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-4.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Rackham Siegfried Fafner": [
-   {
-    "file": "Ring15.jpg",
-    "width": 600,
-    "height": 852,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Arthur Rackham",
-    "date": "1910 date QS:P571,+1910-00-00T00:00:00Z/9",
-    "credit": "The immediate source of this image as uploaded to the Wikimedia Commons is: [1] Originally the image was published in the following book: Wagner, Richard (translated by Margaret Amour) (1910). The Rhinegold and the Valkyrie . London:William",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Ring46.jpg",
-    "width": 600,
-    "height": 868,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Arthur Rackham",
-    "date": "1911",
-    "credit": "http://www.sacred-texts.com/neu/ron/ron04.htm Originally the image was published in the following book: Wagner, Richard (translated by Margaret Amour) (1911). Siegfried and the Twilight of the Gods . London:William Heinemann, New York: Doub",
-    "description": "Alberich and Mime argue by Fafner's dead body.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-old-70-1923",
-     "PD-old-70-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Siegfried and the Twilight of the Gods p 022.jpg",
-    "width": 1952,
-    "height": 2782,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Arthur Rackham",
-    "date": "1911; New Impression's plates are the same as those of the first edition. [1]",
-    "credit": "; Rackham, Arthur (illus) (1924-August) [1911] Siegfried &amp; The Twilight of the Gods (New Impression ed.), London : William Heinemann, p. p. 22 Retrieved on 22 June 2011.",
-    "description": "\"In dragon's form Fafner now watches the hoard.\"",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-old-70-1923",
-     "PD-old-70-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Siegfried and the Twilight of the Gods p 056.jpg",
-    "width": 1986,
-    "height": 2690,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Arthur Rackham",
-    "date": "1911; New Impression's plates are the same as those of the first edition. [1]",
-    "credit": "; Rackham, Arthur (illus) (1924-August) [1911] Siegfried &amp; The Twilight of the Gods (New Impression ed.), London : William Heinemann, p. p. 56 Retrieved on 22 June 2011.",
-    "description": "Siegfried kills Fafner.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-old-70-1923",
-     "PD-old-70-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Siegfried and the Twilight of the Gods p 062.jpg",
-    "width": 1962,
-    "height": 2840,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Arthur Rackham",
-    "date": "1911; New Impression's plates are the same as those of the first edition. [1]",
-    "credit": "; Rackham, Arthur (illus) (1924-August) [1911] Siegfried &amp; The Twilight of the Gods (New Impression ed.), London : William Heinemann, p. p. 62 Retrieved on 22 June 2011.",
-    "description": "The dwarves quarreling over the body of Fafner",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-old-70-1923",
-     "PD-old-70-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   }
-  ],
-  "Rackham Rhinegold Valkyrie Twilight of the Gods plate": [
-   {
-    "file": "Siegfried and the Twilight of the Gods p 110.jpg",
-    "width": 1952,
-    "height": 2710,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Arthur Rackham",
-    "date": "1911; New Impression's plates are the same as those of the first edition. [1]",
-    "credit": "; Rackham, Arthur (illus) (August 1924) [1911] Siegfried &amp; The Twilight of the Gods (New Impression ed.), London : William Heinemann, p. p. 108 Retrieved on 22 June 2011.",
-    "description": "Siegfried leaves Brünnhilde in search of adventure.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-old-70-1923",
-     "PD-old-70-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   }
-  ],
-  "Johan Christian Dahl Stalheim": [
-   {
-    "file": "Dahl-Stalheim.jpg",
-    "width": 12169,
-    "height": 9411,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Johan Christian Dahl",
-    "date": "1842",
-    "credit": "Unknown source Unknown source",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Johan Christian Claussen Dahl – View from Stalheim – Google Art Project.jpg",
-    "width": 12169,
-    "height": 9411,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Johan Christian Dahl",
-    "date": "1842",
-    "credit": "Google Art Project",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Johan Christian Dahl - From Stalheim - Fra Stalheim - KODE Art Museums and Composer Homes - BB.B.00957.jpg",
-    "width": 1080,
-    "height": 781,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Johan Christian Dahl",
-    "date": "29 July 1826",
-    "credit": "https://digitaltmuseum.no/021047904185/fra-stalheim-tegning",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-auto",
-     "PD-old-auto/core",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Johan Christian Dahl - View from Stalheim - NG.M.01060 - National Museum of Art, Architecture and Design.jpg",
-    "width": 4000,
-    "height": 3081,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Johan Christian Dahl",
-    "date": "1842",
-    "credit": "National Museum of Art, Architecture and Design",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-4.0",
-     "Cc-by-layout",
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "Licensed-PD-Art",
-     "Licensed-PD-Art/en",
-     "Licensed-PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-100-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Johan christian dahl, veduta da stalheim, 1842.jpg",
-    "width": 4788,
-    "height": 3948,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 4.0",
-    "usage": "Creative Commons Attribution-Share Alike 4.0",
-    "copyrighted": "True",
-    "artist": "Francesco Bini",
-    "date": "2024-06-16 14:04:05",
-    "credit": "Own work",
-    "description": "19th-century paintings in the Nasjonalmuseet for kunst, arkitektur og design",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-4.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Christopher Williams Branwen 1915": [
    {
     "file": "Branwen.jpg",
     "width": 316,
@@ -1332,940 +227,96 @@
      "PD-old-auto-expired",
      "PD-old-text"
     ]
-   }
-  ],
-  "Christopher Williams Ceridwen": [
+   },
    {
-    "file": "Ceridwen.jpg",
-    "width": 1200,
-    "height": 1757,
+    "file": "Branwen Ferch Llyr (Tegla) (page 23 crop).jpg",
+    "width": 1693,
+    "height": 2059,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Christopher Williams",
-    "date": "",
-    "credit": "1. Transferred from en.wikipedia to Commons by Pymouss using CommonsHelper . , ( Original text: Glynn Vivian Art Gallery ), (16 January 2010 (original upload date)), Original uploader was Skier Dude at en.wikipedia 2. Art UK",
-    "description": "",
+    "artist": "Edward Tegla Davies",
+    "date": "1923",
+    "credit": "Sgan o'r llyfr",
+    "description": "Addasiad Tegla o fabinogi Branwen Ferch Llŷr",
     "restrictions": "",
     "licenceTags": [
-     "Cc-pd-mark-footer",
      "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
      "PD-Layout",
+     "PD-US-expired",
      "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-1923",
-     "PD-old-auto-expired",
-     "PD-old-text"
+     "PD-US-expired/en",
+     "PD-US-expired/layout"
     ]
    },
    {
-    "file": "Pair Ceridwen 00.JPG",
-    "width": 1273,
-    "height": 684,
+    "file": "Branwen Ferch Llyr (Tegla) (Myfi a fyddaf bont).jpg",
+    "width": 1691,
+    "height": 2073,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "photo by myself of original print in 1901 book; no copyright",
-    "date": "1901",
-    "credit": "J.M. Edwards 'Y Mabinogion', Wrexham., 1901",
-    "description": "Print by J.E.C. Williams in the book 'Y Mabinogion', trans. J.M. Edwards (Wrexham, 1901).",
+    "artist": "Edward Tegla Davies",
+    "date": "1923",
+    "credit": "Sgan o'r llyfr",
+    "description": "Addasiad Tegla o fabinogi Branwen Ferch Llŷr",
     "restrictions": "",
     "licenceTags": [
-     "Cc-pd-mark-footer",
      "License template tag",
      "PD-Layout",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Dr Ceridwen Fraser.jpg",
-    "width": 391,
-    "height": 379,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 4.0",
-    "usage": "Creative Commons Attribution-Share Alike 4.0",
-    "copyrighted": "True",
-    "artist": "CridF",
-    "date": "2016-02-06",
-    "credit": "Own work",
-    "description": "Dr Ceridwen (Crid) Fraser in Antarctica, 2016",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-4.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham.jpg",
-    "width": 3442,
-    "height": 3386,
-    "mime": "image/jpeg",
-    "licence": "CC BY 4.0",
-    "usage": "Creative Commons Attribution 4.0",
-    "copyrighted": "True",
-    "artist": "Llywelyn2000",
-    "date": "2017-09-23 01:51:42",
-    "credit": "Own work",
-    "description": "A sculpture by Sam Holland (from Kent) of Ceridwen (from the Mabinonion) at the 2025 National Eisteddfod Wrexham. Sam Holland funded, created and transported the statue to the Maes out of her own pocket.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-4.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham c.jpg",
-    "width": 4984,
-    "height": 3770,
-    "mime": "image/jpeg",
-    "licence": "CC BY 4.0",
-    "usage": "Creative Commons Attribution 4.0",
-    "copyrighted": "True",
-    "artist": "Llywelyn2000",
-    "date": "2017-09-23 01:52:02",
-    "credit": "Own work",
-    "description": "A sculpture by Sam Holland (from Kent) of Ceridwen (from the Mabinonion) at the 2025 National Eisteddfod Wrexham. Sam Holland funded, created and transported the statue to the Maes out of her own pocket.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-4.0",
-     "Cc-by-layout",
-     "License template tag"
+     "PD-US-expired",
+     "PD-US-expired-text",
+     "PD-US-expired/en",
+     "PD-US-expired/layout"
     ]
    }
   ],
-  "Aivazovsky Ninth Wave": [
-   {
-    "file": "Ivan Constantinovich Aivazovsky - The Ninth Wave (detail).JPG",
-    "width": 1720,
-    "height": 1333,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Aivazovsky",
-    "date": "1850 date QS:P571,+1850-00-00T00:00:00Z/9",
-    "credit": "scan of painting",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Aivazovsky, Ivan - The Ninth Wave.jpg",
-    "width": 5815,
-    "height": 3840,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Aivazovsky",
-    "date": "1850 date QS:P571,+1850-00-00T00:00:00Z/9",
-    "credit": "Hermitage Torrent ( .torrent with info-hash )",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Ivan Aivazovsky - The Ninth Wave - WGA00095.jpg",
-    "width": 5000,
-    "height": 3350,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Aivazovsky",
-    "date": "1850 date QS:P571,+1850-00-00T00:00:00Z/9",
-    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"/a/aivazovs/9th_wave\"",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Hovhannes Aivazovsky - The Ninth Wave - Google Art Project.jpg",
-    "width": 5090,
-    "height": 3420,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Hovhannes Aivazovsky (1817 - 1900) – painter (Russian) Born in Rossiiskaya imperiya, Feodosia. Died in Rossiiskaya imperiya, Feodosia. Details on Google Art Project",
-    "date": "1850 date QS:P571,+1850-00-00T00:00:00Z/9",
-    "credit": "jgHuL-7yxgrOSw at Google Cultural Institute maximum zoom level",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-100-1923",
-     "PD-old-100-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "The Ninth Wave, Ivan Aivazovsky, 1850.jpg",
-    "width": 5815,
-    "height": 3840,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Aivazovsky",
-    "date": "1850 date QS:P571,+1850-00-00T00:00:00Z/9",
-    "credit": "Derived from File:Aivazovsky, Ivan - The Ninth Wave.jpg",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": []
-   }
-  ],
-  "Thomas Jones The Bard 1774": [
-   {
-    "file": "Thomas Jones - The Bard (1774).jpg",
-    "width": 1000,
-    "height": 665,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Thomas Jones",
-    "date": "1774 date QS:P571,+1774-00-00T00:00:00Z/9",
-    "credit": "https://museum.wales/collections/online/object/92a7d980-aa81-3800-9206-8200a4e8ab1d/The-Bard/",
-    "description": "The Bard, 1774, by Welsh artist Thomas Jones. Oil on Canvas, now belonging to the National Museum of Wales in Cardiff",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Thomas Jones The Bard 1774.jpg",
-    "width": 5040,
-    "height": 3350,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Thomas Jones",
-    "date": "1774 date QS:P571,+1774-00-00T00:00:00Z/9",
-    "credit": "Digital",
-    "description": "The Bard, 1774, by Welsh artist Thomas Jones. Oil on Canvas, now belonging to the National Museum of Wales in Cardiff",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "The execution of Mrs. Surratt and the Lincoln assassination conspirators - DPLA - 0204e1fa5124d2f45bb0b5c7a8512be5.jpg",
-    "width": 1854,
-    "height": 1607,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Gardner, Alexander, 1821-1882",
-    "date": "",
-    "credit": "This file was contributed to Wikimedia Commons by Boston Public Library as part of a cooperation project. The donation was facilitated by the Digital Public Library of America , via its partner Digital Commonwealth . Record in source catalo",
-    "description": "Title from \"War Memories\" catalog.; \"War Memories\" catalog number: 800; \"War memories, the war for the Union 1861-1865 : catalogue of original photographic war views : photographic history of the war for the Union.\" Taylor &amp; Huntington,",
-    "restrictions": "",
-    "licenceTags": [
-     "License-Layout",
-     "License template tag",
-     "PD-Layout",
-     "PD-US",
-     "PD-US/en",
-     "PD-US/layout"
-    ]
-   },
-   {
-    "file": "The execution of Mrs. Surratt and the Lincoln assassination conspirators - DPLA - 0cc2aabe1d5aec6c43f26e003c7dc35e.jpg",
-    "width": 1787,
-    "height": 1676,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Gardner, Alexander, 1821-1882",
-    "date": "",
-    "credit": "This file was contributed to Wikimedia Commons by Boston Public Library as part of a cooperation project. The donation was facilitated by the Digital Public Library of America , via its partner Digital Commonwealth . Record in source catalo",
-    "description": "Title from \"War Memories\" catalog.; \"War Memories\" catalog number: 799; \"War memories, the war for the Union 1861-1865 : catalogue of original photographic war views : photographic history of the war for the Union.\" Taylor &amp; Huntington,",
-    "restrictions": "",
-    "licenceTags": [
-     "License-Layout",
-     "License template tag",
-     "PD-Layout",
-     "PD-US",
-     "PD-US/en",
-     "PD-US/layout"
-    ]
-   },
-   {
-    "file": "Amgueddfa Cymru - Y Bardd - The Bard - 2568.jpeg",
-    "width": 4000,
-    "height": 2659,
-    "mime": "image/jpeg",
-    "licence": "CC0",
-    "usage": "Creative Commons Zero, Public Domain Dedication",
-    "copyrighted": "True",
-    "artist": "Thomas Jones",
-    "date": "1774 date QS:P571,+1774-00-00T00:00:00Z/9",
-    "credit": "This image is uploaded as image number 2568 at Amgueddfa Cymru Images . This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing .",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "CC-Layout",
-     "Cc-zero",
-     "Copyright-tag-still-required",
-     "Copyright-tag-still-required/i18n/en",
-     "Fallback",
-     "License template tag"
-    ]
-   }
-  ],
-  "Vasnetsov Koschei Deathless": [],
-  "Bilibin Maria Morevna Koschei": [
-   {
-    "file": "Ivan Bilibin Koshchey.jpg",
-    "width": 1174,
-    "height": 814,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "1901",
-    "credit": "bibliotekar.ru",
-    "description": "Koshchei the Deathless . An illustration to the fairy tale Mariya Morevna . Published in Bilibin’s Skazki: Marʹya Morevna. St. Petersburg: Expeditsii Zagotovleniia Gosudarstvennykh Bumag, 1903.",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core"
-    ]
-   },
-   {
-    "file": "Ivan Bilibin Koshchey big.jpeg",
-    "width": 3724,
-    "height": 2308,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "1901",
-    "credit": "http://fotki.yandex.ru/users/sunday1989/view/56133/?page=16",
-    "description": "Koshchei the Deathless . An illustration to the fairy tale Mariya Morevna .",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core"
-    ]
-   },
-   {
-    "file": "Марья Моревна 5.jpg",
-    "width": 2000,
-    "height": 1337,
-    "mime": "image/jpeg",
-    "licence": "CC0",
-    "usage": "Creative Commons Zero, Public Domain Dedication",
-    "copyrighted": "True",
-    "artist": "Ivan Bilibin",
-    "date": "1901",
-    "credit": "http://slavput.ru/archive/gallery/",
-    "description": "Koschei the Deathless (from Marya Morevna)",
-    "restrictions": "",
-    "licenceTags": [
-     "CC-Layout",
-     "Cc-zero",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Билибин img584.jpg",
-    "width": 2717,
-    "height": 3509,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Ivan Bilibin",
-    "date": "2008-10-29",
-    "credit": "http://www.ex.ua/5970362?r=1439847",
-    "description": "Произведение Ивана Билибина",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-Russia-expired",
-     "PD-Russia-expired/en",
-     "PD-Russia-expired/lang",
-     "PD-Russia-expired/layout",
-     "PD-US-expired-text"
-    ]
-   }
-  ],
-  "Peder Balke North Cape": [
-   {
-    "file": "Balke fra nordkapp.jpg",
-    "width": 1007,
-    "height": 1400,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Peder Balke",
-    "date": "circa 1860s date QS:P,+1860-00-00T00:00:00Z/8,P1480,Q5727902",
-    "credit": "Northern Norway Art Museum",
-    "description": "Peder Balke's painting «From North Cape», painted in the 1860s.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Nordkapp (North Cape) by Peder Balke, 1845, oil on canvas.JPG",
-    "width": 2778,
-    "height": 2036,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Wmpearl",
-    "date": "",
-    "credit": "Own work",
-    "description": "Nordkapp (North Cape) by Peder Balke, 1845, oil on canvas, photographed while on loan to the Metropolitan Museum of Art. The painting belongs to Sparebankstiftelsen DNB - The Savings Bank Foundation DNB, on long-term loan to Nordnorsk Kunst",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old-100",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Nordkapp (North Cape) by Peder Balke, 1840s or 1850s.JPG",
-    "width": 3316,
-    "height": 2376,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Peder Balke",
-    "date": "1840s date QS:P571,+1840-00-00T00:00:00Z/8 or 1850s date QS:P571,+1850-00-00T00:00:00Z/8",
-    "credit": "Self-photographed",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old-100",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Peder Balke - The North Cape by Moonlight - 2019.167.4 - Metropolitan Museum of Art.jpg",
-    "width": 3928,
-    "height": 2836,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Peder Balke",
-    "date": "1848",
-    "credit": "Metropolitan Museum of Art",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "CC-Layout",
-     "Cc-pd-mark-footer",
-     "Cc-zero",
-     "License template tag",
-     "Licensed-PD-Art",
-     "Licensed-PD-Art/en",
-     "Licensed-PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Peder Balke - From North Cape - NG.M.04152 - National Museum of Art, Architecture and Design.jpg",
-    "width": 8350,
-    "height": 6762,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Peder Balke",
-    "date": "presumably 1840s date QS:P,+1840-00-00T00:00:00Z/8,P1480,Q18122778",
-    "credit": "National Museum of Art, Architecture and Design",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-4.0",
-     "Cc-by-layout",
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "Licensed-PD-Art",
-     "Licensed-PD-Art/en",
-     "Licensed-PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-expired",
-     "PD-old-text"
-    ]
-   }
-  ],
-  "Grimm Hansel Gretel forest painting witch house": [
-   {
-    "file": "Hansel and Gretel - 53066318005 - Jack Zipes Historic Fairy Tale Postcard Collection - Kubel, Otto (German, 1868-1951).jpg",
-    "width": 674,
-    "height": 1024,
-    "mime": "image/jpeg",
-    "licence": "CC BY 2.0",
-    "usage": "Creative Commons Attribution 2.0",
-    "copyrighted": "True",
-    "artist": "MCAD Library",
-    "date": "2023-03-20 13:50:40",
-    "credit": "https://www.flickr.com/photos/69184488@N06/53066318005/",
-    "description": "Hansel and Gretel Record number: 23032003 Artist: Kubel, Otto (German, 1868-1951) Item caption, front: Brüder Grimm / Hänsel und Gretel / O. Kubel, pinx. Item caption/descriptive text, back: 6. Bald darauf verliessen Hänsel und Gretel mit i",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-2.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ]
+  "Guest Mabinogion 1849 woodcut": [],
+  "Rhiannon Pwyll illustration 19th century": []
  },
  "categories": {},
  "peek": [
   {
-   "file": "Chaperon rouge2.jpg",
+   "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (005 of 173).jpg",
    "saved": "00.jpg"
   },
   {
-   "file": "Little Red Riding Hood Gustav Doré second illustration for Charles Perrault - Il libro delle fate, Longanesi, Milano, 1891.jpg",
+   "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (015 of 173).jpg",
    "saved": "01.jpg"
   },
   {
-   "file": "Paolo Uccello Heiliger Georg und der Drachen 1 470.jpg",
+   "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (057 of 173).jpg",
    "saved": "02.jpg"
   },
   {
-   "file": "Saint George and the Dragon by Paolo Uccello (London) 01.jpg",
+   "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (090 of 173).jpg",
    "saved": "03.jpg"
   },
   {
-   "file": "Saint George and the Dragon by Paolo Uccello (Paris) 01.jpg",
+   "file": "Fonds Jules Verne. Œuvres de Jules Verne. Romans. Le Château des Carpathes - btv1b105586425 (124 of 173).jpg",
    "saved": "04.jpg"
   },
   {
-   "file": "Paolo Uccello drago.jpg",
+   "file": "Branwen drudwy.JPG",
    "saved": "05.jpg"
   },
   {
-   "file": "Paolo Uccello - Saint George and the Dragon (National Gallery).jpg",
+   "file": "Branwen.jpg",
    "saved": "06.jpg"
   },
   {
-   "file": "Russian Wonder Tales 081.jpg",
+   "file": "Branwen (cropped).jpg",
    "saved": "07.jpg"
   },
   {
-   "file": "Die drei Bogatyr.jpg",
+   "file": "Branwen Ferch Llyr (Tegla) (page 23 crop).jpg",
    "saved": "08.jpg"
   },
   {
-   "file": "Vasnetsov photo 1898.jpg",
+   "file": "Branwen Ferch Llyr (Tegla) (Myfi a fyddaf bont).jpg",
    "saved": "09.jpg"
-  },
-  {
-   "file": "Viktor Vasnetsov - Богатыри - Google Art Project.jpg",
-   "saved": "10.jpg"
-  },
-  {
-   "file": "1898 Vasnetsov Bogatyrs anagoria.JPG",
-   "saved": "11.jpg"
-  },
-  {
-   "file": "Viktor-vasnetsov-three-bogatyrs-18981-e1275175670246.jpg",
-   "saved": "12.jpg"
-  },
-  {
-   "file": "Knight at the crossroads by Vasnetsov, sketch (1878?).jpg",
-   "saved": "13.jpg"
-  },
-  {
-   "file": "Victor Vasnetsov - Knight at the Crossroads - Google Art Project.jpg",
-   "saved": "14.jpg"
-  },
-  {
-   "file": "Knight at the crossroads, study by Vasnetsov.jpg",
-   "saved": "15.jpg"
-  },
-  {
-   "file": "Knight at the crossroads by Vasnetsov, study (1882, dom-muzei).jpg",
-   "saved": "16.jpg"
-  },
-  {
-   "file": "Knight at the crossroads by Vasnetsov (1920, Tbilisi).jpg",
-   "saved": "17.jpg"
-  },
-  {
-   "file": "Царевна лягушка 3.jpg",
-   "saved": "18.jpg"
-  },
-  {
-   "file": "Царевна лягушка 0.jpg",
-   "saved": "19.jpg"
-  },
-  {
-   "file": "Царевна лягушка 5.jpg",
-   "saved": "20.jpg"
-  },
-  {
-   "file": "Царевна лягушка 6.jpg",
-   "saved": "21.jpg"
-  },
-  {
-   "file": "Царевна лягушка 2.jpg",
-   "saved": "22.jpg"
-  },
-  {
-   "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 209.jpg",
-   "saved": "23.jpg"
-  },
-  {
-   "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 005.jpg",
-   "saved": "24.jpg"
-  },
-  {
-   "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 023.jpg",
-   "saved": "25.jpg"
-  },
-  {
-   "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 051.jpg",
-   "saved": "26.jpg"
-  },
-  {
-   "file": "Stories from Hans Andersen - Edmund Dulac color plate at page 131.jpg",
-   "saved": "27.jpg"
-  },
-  {
-   "file": "Velazquez-las hilanderas.jpg",
-   "saved": "28.jpg"
-  },
-  {
-   "file": "Sargent - Las Hilanderas (The Spinner), 1879, ABF.0558.jpg",
-   "saved": "29.jpg"
-  },
-  {
-   "file": "John Phillip (1817-1867) - Las hilanderas (The spinners), or The Fable of Arachne (detail) (copy after Diego Velázquez) - ABDRG634 - The Robert Gordon University.jpg",
-   "saved": "30.jpg"
-  },
-  {
-   "file": "The Chasseur in the Forest by Caspar David Friedrich.jpg",
-   "saved": "31.jpg"
-  },
-  {
-   "file": "Caspar David Friedrich 068.jpg",
-   "saved": "32.jpg"
-  },
-  {
-   "file": "Caspar David Friedrich - The Chasseur in the Forest - WGA8247.jpg",
-   "saved": "33.jpg"
-  },
-  {
-   "file": "Der Chasseur im Walde - Caspar David Friedrich.jpg",
-   "saved": "34.jpg"
-  },
-  {
-   "file": "Hamburg, Kunsthalle (temporär), Caspar David Friedrich, der Chasseur im Walde.jpg",
-   "saved": "35.jpg"
-  },
-  {
-   "file": "Ring15.jpg",
-   "saved": "36.jpg"
-  },
-  {
-   "file": "Ring46.jpg",
-   "saved": "37.jpg"
-  },
-  {
-   "file": "Siegfried and the Twilight of the Gods p 022.jpg",
-   "saved": "38.jpg"
-  },
-  {
-   "file": "Siegfried and the Twilight of the Gods p 056.jpg",
-   "saved": "39.jpg"
-  },
-  {
-   "file": "Siegfried and the Twilight of the Gods p 062.jpg",
-   "saved": "40.jpg"
-  },
-  {
-   "file": "Siegfried and the Twilight of the Gods p 110.jpg",
-   "saved": "41.jpg"
-  },
-  {
-   "file": "Dahl-Stalheim.jpg",
-   "saved": "42.jpg"
-  },
-  {
-   "file": "Johan Christian Claussen Dahl – View from Stalheim – Google Art Project.jpg",
-   "saved": "43.jpg"
-  },
-  {
-   "file": "Johan Christian Dahl - From Stalheim - Fra Stalheim - KODE Art Museums and Composer Homes - BB.B.00957.jpg",
-   "saved": "44.jpg"
-  },
-  {
-   "file": "Johan Christian Dahl - View from Stalheim - NG.M.01060 - National Museum of Art, Architecture and Design.jpg",
-   "saved": "45.jpg"
-  },
-  {
-   "file": "Johan christian dahl, veduta da stalheim, 1842.jpg",
-   "saved": "46.jpg"
-  },
-  {
-   "file": "Branwen.jpg",
-   "saved": "47.jpg"
-  },
-  {
-   "file": "Branwen (cropped).jpg",
-   "saved": "48.jpg"
-  },
-  {
-   "file": "Ceridwen.jpg",
-   "saved": "49.jpg"
-  },
-  {
-   "file": "Pair Ceridwen 00.JPG",
-   "saved": "50.jpg"
-  },
-  {
-   "file": "Dr Ceridwen Fraser.jpg",
-   "saved": "51.jpg"
-  },
-  {
-   "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham.jpg",
-   "saved": "52.jpg"
-  },
-  {
-   "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham c.jpg",
-   "saved": "53.jpg"
-  },
-  {
-   "file": "Ivan Constantinovich Aivazovsky - The Ninth Wave (detail).JPG",
-   "saved": "54.jpg"
-  },
-  {
-   "file": "Aivazovsky, Ivan - The Ninth Wave.jpg",
-   "saved": "55.jpg"
-  },
-  {
-   "file": "Ivan Aivazovsky - The Ninth Wave - WGA00095.jpg",
-   "saved": "56.jpg"
-  },
-  {
-   "file": "Hovhannes Aivazovsky - The Ninth Wave - Google Art Project.jpg",
-   "saved": "57.jpg"
-  },
-  {
-   "file": "The Ninth Wave, Ivan Aivazovsky, 1850.jpg",
-   "saved": "58.jpg"
-  },
-  {
-   "file": "Thomas Jones - The Bard (1774).jpg",
-   "saved": "59.jpg"
-  },
-  {
-   "file": "Thomas Jones The Bard 1774.jpg",
-   "saved": "60.jpg"
-  },
-  {
-   "file": "The execution of Mrs. Surratt and the Lincoln assassination conspirators - DPLA - 0204e1fa5124d2f45bb0b5c7a8512be5.jpg",
-   "saved": "61.jpg"
-  },
-  {
-   "file": "The execution of Mrs. Surratt and the Lincoln assassination conspirators - DPLA - 0cc2aabe1d5aec6c43f26e003c7dc35e.jpg",
-   "saved": "62.jpg"
-  },
-  {
-   "file": "Amgueddfa Cymru - Y Bardd - The Bard - 2568.jpeg",
-   "saved": "63.jpg"
-  },
-  {
-   "file": "Ivan Bilibin Koshchey.jpg",
-   "saved": "64.jpg"
-  },
-  {
-   "file": "Ivan Bilibin Koshchey big.jpeg",
-   "saved": "65.jpg"
-  },
-  {
-   "file": "Марья Моревна 5.jpg",
-   "saved": "66.jpg"
-  },
-  {
-   "file": "Билибин img584.jpg",
-   "saved": "67.jpg"
-  },
-  {
-   "file": "Balke fra nordkapp.jpg",
-   "saved": "68.jpg"
-  },
-  {
-   "file": "Nordkapp (North Cape) by Peder Balke, 1845, oil on canvas.JPG",
-   "saved": "69.jpg"
-  },
-  {
-   "file": "Nordkapp (North Cape) by Peder Balke, 1840s or 1850s.JPG",
-   "saved": "70.jpg"
-  },
-  {
-   "file": "Peder Balke - The North Cape by Moonlight - 2019.167.4 - Metropolitan Museum of Art.jpg",
-   "saved": "71.jpg"
-  },
-  {
-   "file": "Peder Balke - From North Cape - NG.M.04152 - National Museum of Art, Architecture and Design.jpg",
-   "saved": "72.jpg"
-  },
-  {
-   "file": "Hansel and Gretel - 53066318005 - Jack Zipes Historic Fairy Tale Postcard Collection - Kubel, Otto (German, 1868-1951).jpg",
-   "saved": "73.jpg"
   }
- ],
- "errors": [
-  "IA robinhood00cresrich page 395: no image",
-  "IA robinhood00cresrich page 391: no image",
-  "IA robinhood00cresrich page 393: no image",
-  "IA robinhood00cresrich page 389: no image",
-  "IA robinhood00cresrich page 387: no image",
-  "IA robinhood00cresrich page 401: no image",
-  "IA robinhood00cresrich page 405: no image",
-  "IA robinhood00cresrich page 403: no image",
-  "IA robinhood00cresrich page 397: no image",
-  "IA robinhood00cresrich page 399: no image"
  ]
 }
