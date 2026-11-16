@@ -121,6 +121,7 @@ for (const img of images) {
     report.failed.push({ id: img.id, error: e.message });
     console.log(`failed ${img.id}: ${e.message}`);
   }
+  await sleep(2500); // Commons rate-limits quick runs of downloads
 }
 
 writeFileSync(join(root, "art/fetch-report.json"), JSON.stringify(report, null, 2) + "\n");
