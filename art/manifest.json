@@ -1,5 +1,5 @@
 {
-  "about": "Every image used in Crown & Fable. Each entry must be public domain in the UK (artist died more than 70 years ago) and the US (published before 1931), and is credited in-game by artist, title, date and source. status: cleared = the specific image's rights page was checked; cleared-book = artist and book checked, specific file still to pick; to-confirm = not yet cleared, do not ship; open = no image chosen yet. size = pixel size of the downloaded file. crops = where to cut the image, keyed by card id (or 'board'); each rectangle is [x, y, width, height] as fractions of the image. window is the 17:10 art window, full is the 5:7 full-bleed card, board is the 16:10 battle backdrop.",
+  "about": "Every image used in Crown & Fable. Each entry must be public domain in the UK (artist died more than 70 years ago) and the US (published before 1931), and is credited in-game by artist, title, date and source. status: cleared = the specific image's rights page was checked; cleared-book = artist and book checked, specific file still to pick; to-confirm = not yet cleared, do not ship; open = no image chosen yet. size = pixel size of the downloaded file. crops = where to cut the image, keyed by card id (or 'board'); each rectangle is [x, y, width, height] as fractions of the image. window is the 17:10 art window, full is the 5:7 full-bleed card, board is the 16:10 battle backdrop. variant = the artwork's number for that card; the card's main artwork is number 1.",
   "checked": "2026-11-16",
   "images": [
     {
@@ -92,19 +92,13 @@
       "date": "1912",
       "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
       "source": {
-        "name": "Old Book Illustrations",
-        "url": "https://www.oldbookillustrations.com/illustrations/robin-hood/"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Louis_Rhead_Robin_Hood.jpg"
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "imagePage": "https://www.oldbookillustrations.com/illustrations/robin-hood/",
-      "size": [307, 768],
-      "crops": {
-        "robin-hood": {
-          "window": [0.04, 0.1218, 0.92, 0.2163],
-          "full": [0.02, 0.1114, 0.96, 0.5372]
-        }
-      }
+      "commonsFile": "Louis_Rhead_Robin_Hood.jpg",
+      "notes": "Larger scan of the same portrait."
     },
     {
       "id": "little-john",
@@ -118,19 +112,13 @@
       "date": "1912",
       "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
       "source": {
-        "name": "Old Book Illustrations",
-        "url": "https://www.oldbookillustrations.com/illustrations/little-john"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Louis_Rhead_-_Little_John.jpg"
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "imagePage": "https://www.oldbookillustrations.com/illustrations/little-john/",
-      "size": [305, 768],
-      "crops": {
-        "little-john": {
-          "window": [0.04, 0.0725, 0.92, 0.2149],
-          "full": [0.02, 0.0831, 0.96, 0.5338]
-        }
-      }
+      "commonsFile": "Louis_Rhead_-_Little_John.jpg",
+      "notes": "Slightly larger scan of the same portrait."
     },
     {
       "id": "friar-tuck",
@@ -202,7 +190,9 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "notes": "Still in copyright in life+100 countries such as Mexico until 2045.",
-      "commonsSearch": "N. C. Wyeth Robin Meets Maid Marian"
+      "commonsSearch": "N. C. Wyeth Robin Meets Maid Marian",
+      "imagePage": "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian",
+      "variant": 2
     },
     {
       "id": "king-arthur",
@@ -365,7 +355,8 @@
           "window": [0.2, 0.0288, 0.7, 0.3423],
           "full": [0.12, 0.0345, 0.8, 0.9311]
         }
-      }
+      },
+      "variant": 2
     },
     {
       "id": "beowulf",
@@ -466,7 +457,8 @@
       "licence": "CC0",
       "status": "cleared",
       "notes": "Hammer Museum rate-limits automated downloads; save this one by hand.",
-      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330"
+      "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
+      "variant": 2
     },
     {
       "id": "the-wolf",
@@ -530,21 +522,17 @@
       ],
       "artist": "Árpád Schmidhammer",
       "artistDied": 1921,
-      "title": "Little Red Riding Hood saved by the huntsman",
+      "title": "Rotkäppchen (book cover, showing the huntsman scene)",
       "source": {
-        "name": "New York Public Library",
-        "url": "https://rp-digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arpad_Schmidhammer_-_Rotkäppchen-Verlag_Josef_Scholz,_Mainz_ca_1910.jpg"
       },
       "licence": "Public domain in the US; artist died over 70 years ago",
       "status": "cleared",
-      "imagePage": "https://digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e",
-      "size": [288, 229],
-      "crops": {
-        "the-huntsman": {
-          "window": [0.0, 0.0801, 1.0, 0.7398],
-          "full": [0.005, 0.051, 0.51, 0.898]
-        }
-      }
+      "commonsFile": "Arpad_Schmidhammer_-_Rotkäppchen-Verlag_Josef_Scholz,_Mainz_ca_1910.jpg",
+      "date": "c. 1910",
+      "publication": "Rotkäppchen (Verlag Josef Scholz, Mainz, c. 1910)",
+      "notes": "Crop to the picture inside the cover."
     },
     {
       "id": "rumpelstiltskin",
@@ -611,7 +599,7 @@
         "original": "Wikimedia Commons"
       },
       "licence": "Public domain",
-      "status": "cleared-book",
+      "status": "cleared",
       "commonsFile": "Bilibin._Baba_Yaga.jpg",
       "size": [1561, 2000],
       "crops": {
@@ -634,18 +622,12 @@
       "publication": "Marya Morevna (1901)",
       "source": {
         "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_Koshchey.jpg"
+        "url": "https://commons.wikimedia.org/wiki/File:Марья_Моревна_5.jpg"
       },
-      "commonsFile": "Ivan_Bilibin_Koshchey.jpg",
-      "licence": "Public domain",
+      "commonsFile": "Марья_Моревна_5.jpg",
+      "licence": "CC0",
       "status": "cleared",
-      "size": [1174, 814],
-      "crops": {
-        "koschei": {
-          "window": [0.07, 0.1052, 0.86, 0.7296],
-          "full": [0.242, 0.08, 0.416, 0.84]
-        }
-      }
+      "notes": "Larger scan of the same plate."
     },
     {
       "id": "vasilisa-the-wise",
@@ -663,7 +645,7 @@
         "url": "https://commons.wikimedia.org/wiki/File:Vasilisa.jpg"
       },
       "licence": "Public domain",
-      "status": "cleared-book",
+      "status": "cleared",
       "commonsFile": "Vasilisa.jpg",
       "notes": "Stand-in: this is Vasilisa the Beautiful, a different Vasilisa by the same artist. No file was found for Bilibin's 1899 Frog Princess plate showing Vasilisa the Wise. His 1930-31 Frog Princess set is too late for the US rule; don't use it."
     },
@@ -680,20 +662,13 @@
       "publication": "Postcard, c. 1912",
       "source": {
         "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_-_zmey-gorynych-1912.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_065.jpg",
         "original": "Mary Evans Picture Library (Grenville Collins Postcard Collection)"
       },
-      "licence": "Public domain; a free scan is still needed",
-      "status": "cleared-book",
-      "notes": "Commons copy is small (about 60 KB); look for a larger scan.",
-      "commonsFile": "Ivan_Bilibin_-_zmey-gorynych-1912.jpg",
-      "size": [360, 552],
-      "crops": {
-        "zmey-gorynych": {
-          "window": [0.07, 0.215, 0.86, 0.3299],
-          "full": [0.08, 0.1765, 0.84, 0.767]
-        }
-      }
+      "licence": "Public domain",
+      "status": "cleared",
+      "notes": "Larger scan than before, still small for a full-bleed card.",
+      "commonsFile": "Ivan_Bilibin_065.jpg"
     },
     {
       "id": "bran-the-blessed",
@@ -734,7 +709,7 @@
       "licence": "Public domain",
       "status": "to-confirm",
       "commonsSearch": "Bacon Blodeuwedd",
-      "notes": "Artist not confirmed. Some plates in Squire's Celtic Myth & Legend are by Ernest Wallcousins (believed to have died in 1976), which would still be in UK copyright. Confirm who drew 'The Making of Blodeuwedd' before use, or choose another image."
+      "notes": "Still not cleared. Wikimedia Commons credits another plate from the same book, 'Gwydion Conquers Pryderi', to Ernest Wallcousins (died 1976), so this plate may be his too and in UK copyright until 2047. No confirmed public-domain picture of Gwydion or Blodeuwedd has been found yet."
     },
     {
       "id": "rhiannon",
@@ -775,19 +750,13 @@
       "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)",
       "source": {
         "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Edmund_Dulac_-_Snow_Queen.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Edmund_Dulac_-_The_Snow_Queen.jpg",
         "original": "Metropolitan Museum of Art"
       },
       "licence": "Public domain (Met open access)",
       "status": "cleared",
-      "commonsFile": "Edmund_Dulac_-_Snow_Queen.jpg",
-      "size": [600, 749],
-      "crops": {
-        "the-snow-queen": {
-          "window": [0.075, 0.0997, 0.85, 0.4005],
-          "full": [0.08, 0.019, 0.84, 0.9421]
-        }
-      }
+      "commonsFile": "Edmund_Dulac_-_The_Snow_Queen.jpg",
+      "notes": "Larger scan of the same plate."
     },
     {
       "id": "the-tin-soldier",
@@ -797,16 +766,16 @@
       ],
       "artist": "Vilhelm Pedersen",
       "artistDied": 1859,
-      "title": "Tin soldiers!",
+      "title": "The Steadfast Tin Soldier (the toys at play)",
       "date": "1849",
       "publication": "Hans Christian Andersen, Eventyr",
       "source": {
-        "name": "Old Book Illustrations",
-        "url": null
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Vilhelm_Pedersen,_DK2-0006,_ubt.jpeg"
       },
       "licence": "Public domain",
-      "status": "cleared-book",
-      "notes": "Automatic search found the wrong Pedersen engraving; pick the file by hand."
+      "status": "cleared",
+      "commonsFile": "Vilhelm_Pedersen,_DK2-0006,_ubt.jpeg"
     },
     {
       "id": "dracula",
@@ -916,7 +885,8 @@
           "window": [0.17, 0.2295, 0.6, 0.281],
           "full": [0.17, 0.1856, 0.6, 0.6689]
         }
-      }
+      },
+      "variant": 2
     },
     {
       "id": "board-heorot",
@@ -929,33 +899,29 @@
       "publication": "Stories of Beowulf (1908)",
       "source": {
         "name": "Wikimedia Commons",
-        "url": null
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_queen_poring_wine.jpg"
       },
-      "commonsFile": "Wealhtheow.PNG",
+      "commonsFile": "Stories_of_beowulf_queen_poring_wine.jpg",
       "licence": "Public domain",
       "status": "cleared",
-      "notes": "Candidate backdrop; small scan.",
-      "size": [351, 450],
-      "crops": {
-        "board": {
-          "board": [0.0, 0.1062, 1.0, 0.4875]
-        }
-      }
+      "notes": "Larger scan of the same plate."
     },
     {
       "id": "board-camelot",
       "use": "board",
       "board": "Camelot, the Round Table",
       "artist": "Edward Burne-Jones, William Morris and J. H. Dearle",
-      "artistDied": 1898,
+      "artistDied": 1932,
       "title": "The Knights of the Round Table Summoned to the Quest by the Strange Damsel",
       "date": "1898-99",
       "source": {
-        "name": "Birmingham Museums Trust",
-        "url": null
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Holy_Grail_tapestry_The_Summons.jpg"
       },
-      "licence": "Expected CC0; this panel's record not yet found",
-      "status": "to-confirm"
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Holy_Grail_tapestry_The_Summons.jpg",
+      "notes": "Designed by Burne-Jones (died 1898) with Morris (died 1896) and Dearle (died 1932); all out of UK copyright."
     },
     {
       "id": "board-camelot-fallback",
@@ -1035,20 +1001,6 @@
       "status": "open"
     },
     {
-      "id": "board-sherwood",
-      "use": "board",
-      "board": "Sherwood Forest",
-      "artist": null,
-      "title": null,
-      "date": null,
-      "source": {
-        "name": null,
-        "url": null
-      },
-      "licence": null,
-      "status": "open"
-    },
-    {
       "id": "sheriff-of-nottingham",
       "use": "card",
       "cards": [
@@ -1060,12 +1012,13 @@
       "date": "1912",
       "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912), p. 129",
       "source": {
-        "name": "Internet Archive",
-        "url": "https://archive.org/details/boldrobinhoodhis00rheaiala"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Louis_John_Rhead_-_The_Sheriff_Of_Nottingham.jpg"
       },
       "licence": "Public domain in the US and life+70 countries",
-      "status": "cleared-book",
-      "notes": "Matches the other Merry Men portraits. Take the scan of page 129 from the Internet Archive copy. ClipArt ETC also hosts it (etc.usf.edu/clipart/8100/8198/sheriff_nott_8198.htm) but under its own site terms, so don't use that copy."
+      "status": "cleared",
+      "notes": "Small scan (305px wide); a larger one is still wanted.",
+      "commonsFile": "Louis_John_Rhead_-_The_Sheriff_Of_Nottingham.jpg"
     },
     {
       "id": "the-little-mermaid",
@@ -1075,17 +1028,16 @@
       ],
       "artist": "Edmund Dulac",
       "artistDied": 1953,
-      "title": "The Little Mermaid (plate from Stories from Hans Andersen)",
+      "title": "The Mermaid (plate facing page 189: the mermaid on the palace steps)",
       "date": "1911",
       "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)",
       "source": {
-        "name": "New York Public Library Digital Collections",
-        "url": "https://digitalcollections.nypl.org/items/6b27a1d9-1d61-b8da-e040-e00a18062c91"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_189.jpg"
       },
-      "licence": "Public domain in the US (1911) and UK (Dulac died 1953)",
-      "status": "cleared-book",
-      "notes": "The NYPL page could not be opened from the workspace, so its rights line still needs reading. Fallback: Vilhelm Pedersen (died 1859).",
-      "imagePage": "https://digitalcollections.nypl.org/items/6b27a1d9-1d61-b8da-e040-e00a18062c91"
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_189.jpg"
     },
     {
       "id": "renfield",
@@ -1126,6 +1078,305 @@
       "status": "cleared",
       "notes": "Stand-in: a Dutch doctor for the Dutch doctor. Crop to Dr Tulp. Commons file name not yet confirmed; if the fetch fails, pick the file from the Commons page for this painting.",
       "commonsFile": "Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg"
+    },
+    {
+      "id": "board-sherwood",
+      "use": "board",
+      "board": "Sherwood Forest",
+      "artist": "Andrew MacCallum",
+      "artistDied": 1902,
+      "title": "Major Oak, Sherwood Forest, Nottinghamshire",
+      "date": "1882",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Major_Oak,_Sherwood_Forest,_Nottinghamshire_Andrew_MacCallum.jpg",
+        "original": "Nottingham City Museums"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Major_Oak,_Sherwood_Forest,_Nottinghamshire_Andrew_MacCallum.jpg"
+    },
+    {
+      "id": "robin-hood-variant",
+      "use": "variant",
+      "cards": [
+        "robin-hood"
+      ],
+      "artist": "N. C. Wyeth",
+      "artistDied": 1945,
+      "title": "Robin Hood (cover painting)",
+      "date": "1917",
+      "publication": "Robin Hood, Paul Creswick (McKay, 1917)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:N._C._Wyeth_Robin_Hood.jpg"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "commonsFile": "N._C._Wyeth_Robin_Hood.jpg",
+      "notes": "Crop to the painting, below the title lettering. Still in copyright in life+100 countries such as Mexico until 2045.",
+      "variant": 2
+    },
+    {
+      "id": "robin-hood-variant-2",
+      "use": "variant",
+      "cards": [
+        "robin-hood"
+      ],
+      "artist": "Walter Crane",
+      "artistDied": 1915,
+      "title": "Robin Hood and Guy of Gisborne",
+      "date": "1912",
+      "publication": "Robin Hood and the Men of the Greenwood, Henry Gilbert (Jack, 1912)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Robin_Hood_and_Guy_of_Gisborne.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Robin_Hood_and_Guy_of_Gisborne.jpg",
+      "variant": 3
+    },
+    {
+      "id": "robin-hood-variant-3",
+      "use": "variant",
+      "cards": [
+        "robin-hood"
+      ],
+      "artist": "N. C. Wyeth",
+      "artistDied": 1945,
+      "title": "The Passing of Robin Hood",
+      "date": "1917",
+      "publication": "Robin Hood, Paul Creswick (McKay, 1917)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:N.C._Wyeth_-_The_Passing_of_Robin_Hood.jpg"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "commonsFile": "N.C._Wyeth_-_The_Passing_of_Robin_Hood.jpg",
+      "notes": "Still in copyright in life+100 countries such as Mexico until 2045.",
+      "variant": 4
+    },
+    {
+      "id": "maid-marian-variant-2",
+      "use": "variant",
+      "cards": [
+        "maid-marian"
+      ],
+      "artist": "Walter Crane",
+      "artistDied": 1915,
+      "title": "The King joins the hands of Robin Hood and Maid Marian",
+      "date": "1912",
+      "publication": "Robin Hood and the Men of the Greenwood, Henry Gilbert (Jack, 1912)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:The_King_joins_the_hands_of_Robin_Hood_and_Maid_Marian.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "The_King_joins_the_hands_of_Robin_Hood_and_Maid_Marian.jpg",
+      "variant": 3
+    },
+    {
+      "id": "maid-marian-variant-3",
+      "use": "variant",
+      "cards": [
+        "maid-marian"
+      ],
+      "artist": "Louis Rhead",
+      "artistDied": 1926,
+      "title": "Robin Hood and Marian in their Bower",
+      "date": "1912",
+      "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:RobinandMaidMarion.JPG"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "RobinandMaidMarion.JPG",
+      "variant": 4
+    },
+    {
+      "id": "the-little-mermaid-variant",
+      "use": "variant",
+      "cards": [
+        "the-little-mermaid"
+      ],
+      "artist": "Edmund Dulac",
+      "artistDied": 1953,
+      "title": "The Mermaid (plate facing page 169: the mermaid in the storm)",
+      "date": "1911",
+      "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_169.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_169.jpg",
+      "variant": 2
+    },
+    {
+      "id": "the-tin-soldier-variant",
+      "use": "variant",
+      "cards": [
+        "the-tin-soldier"
+      ],
+      "artist": "Vilhelm Pedersen",
+      "artistDied": 1859,
+      "title": "The Steadfast Tin Soldier (the paper boat and the rat)",
+      "date": "1849",
+      "publication": "Hans Christian Andersen, Eventyr",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Vilhelm_Pedersen,_VD9,_ubt.jpeg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Vilhelm_Pedersen,_VD9,_ubt.jpeg",
+      "variant": 2
+    },
+    {
+      "id": "vasilisa-the-wise-variant",
+      "use": "variant",
+      "cards": [
+        "vasilisa-the-wise"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Ivan Tsarevich and the Frog Princess",
+      "date": "1899",
+      "publication": "The Frog Princess (1901)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Ivan_Bilibin_018.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Ivan_Bilibin_018.jpg",
+      "notes": "The true tale: Vasilisa the Wise in her frog form, at the foot of the picture.",
+      "variant": 2
+    },
+    {
+      "id": "vasilisa-the-wise-variant-2",
+      "use": "variant",
+      "cards": [
+        "vasilisa-the-wise"
+      ],
+      "artist": "Viktor Vasnetsov",
+      "artistDied": 1926,
+      "title": "The Frog Princess",
+      "date": "1918",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Vasnetsov_Frog_Princess.jpg"
+      },
+      "licence": "Public domain",
+      "status": "to-confirm",
+      "commonsFile": "Vasnetsov_Frog_Princess.jpg",
+      "notes": "Shows Vasilisa the Wise dancing at the feast, so it would be the best main image. Out of UK copyright, but the painting was made in 1918 and its first publication date isn't known, so the US rule (published before 1931) isn't proven. Do not ship until that is settled.",
+      "variant": 3
+    },
+    {
+      "id": "merlin-variant",
+      "use": "variant",
+      "cards": [
+        "merlin"
+      ],
+      "artist": "Edward Burne-Jones",
+      "artistDied": 1898,
+      "title": "The Beguiling of Merlin",
+      "date": "1872-77",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Edward_Burne-Jones_-_The_Beguiling_of_Merlin,_1873-1874.jpg",
+        "original": "Lady Lever Art Gallery"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Edward_Burne-Jones_-_The_Beguiling_of_Merlin,_1873-1874.jpg",
+      "variant": 2
+    },
+    {
+      "id": "lancelot-variant",
+      "use": "variant",
+      "cards": [
+        "lancelot"
+      ],
+      "artist": "Herbert James Draper",
+      "artistDied": 1920,
+      "title": "Lancelot and Guinevere",
+      "date": "1890s",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Lancelot_and_Guinevere_by_Herbert_James_Draper.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Lancelot_and_Guinevere_by_Herbert_James_Draper.jpg",
+      "variant": 2
+    },
+    {
+      "id": "red-riding-hood-variant",
+      "use": "variant",
+      "cards": [
+        "red-riding-hood"
+      ],
+      "artist": "Arthur Rackham",
+      "artistDied": 1939,
+      "title": "When she got to the wood, she met a Wolf",
+      "date": "1909",
+      "publication": "The Fairy Tales of the Brothers Grimm (Constable, 1909)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arthur_Rackham_Little_Red_Riding_Hood+.jpg"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "commonsFile": "Arthur_Rackham_Little_Red_Riding_Hood+.jpg",
+      "variant": 3
+    },
+    {
+      "id": "beowulf-variant",
+      "use": "variant",
+      "cards": [
+        "beowulf"
+      ],
+      "artist": "J. R. Skelton",
+      "artistDied": 1927,
+      "title": "He knew his days upon this earth were past",
+      "date": "1908",
+      "publication": "Stories of Beowulf, H. E. Marshall (Jack, 1908)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_wiglaf_and_beowulf.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Stories_of_beowulf_wiglaf_and_beowulf.jpg",
+      "variant": 2
+    },
+    {
+      "id": "grendel-variant",
+      "use": "variant",
+      "cards": [
+        "grendel"
+      ],
+      "artist": "J. R. Skelton",
+      "artistDied": 1927,
+      "title": "They carried with them the hideous head of Grendel",
+      "date": "1908",
+      "publication": "Stories of Beowulf, H. E. Marshall (Jack, 1908)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Stories_of_beowulf_head_of_grendel.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Stories_of_beowulf_head_of_grendel.jpg",
+      "variant": 2
     }
   ]
 }

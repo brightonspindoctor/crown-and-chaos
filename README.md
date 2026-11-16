@@ -23,6 +23,14 @@ The design reasoning lives in the design doc; this repository holds the data the
 - Stand-in paintings, such as the Bride's, are credited by their own title, never as the character.
 - An image marked `to-confirm` or `open` must not ship.
 
+## Variants
+
+A card can have more than one artwork. The main artwork is number 1; each extra public-domain picture is a numbered variant (Robin Hood 1, Robin Hood 2 and so on), stored in the manifest with `use: "variant"` and its `variant` number.
+
+- A player who owns a variant can field it as a separate copy of the hero, or make it the main look of the card.
+- Every variant passes the same rights rule as a main artwork and carries its own credit.
+- When a better public-domain picture turns up, keep the old one as a variant; don't delete it.
+
 ## Cropping
 
 Each downloaded image has `size` and `crops` in the manifest. Crops are keyed by card id, because two cards can share one painting (Victor and the Creature) and need different cuts.
