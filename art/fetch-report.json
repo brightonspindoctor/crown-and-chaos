@@ -1,6 +1,73 @@
 {
-  "ranAt": "2026-11-16T08:38:11.083Z",
-  "fetched": [],
+  "ranAt": "2026-11-16T08:45:54.882Z",
+  "fetched": [
+    {
+      "id": "knight",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer%2C_Knight%2C_Death_and_Devil%2C_1513%2C_NGA_598.jpg?width=3000",
+      "bytes": 14512200
+    },
+    {
+      "id": "longbowman",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Battle_of_crecy_froissart.jpg",
+      "bytes": 2808048
+    },
+    {
+      "id": "crossbowman",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollaiolo%2C_Antonio_and_Piero_del_-_Martyrdom_of_Saint_Sebastian.jpg?width=3000",
+      "bytes": 5461889
+    },
+    {
+      "id": "berserker",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arbo-Olav_den_helliges_fall_i_slaget_p%C3%A5_Stiklestad.jpg",
+      "bytes": 4013470
+    },
+    {
+      "id": "geat-thane",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/A_Viking_Foray.jpg",
+      "bytes": 2064696
+    },
+    {
+      "id": "mere-beast",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_red_animal_story_book_-_plate_facing_page_038.png",
+      "bytes": 2733998
+    },
+    {
+      "id": "grandmother",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gerard_Dou_005.jpg?width=3000",
+      "bytes": 3587240
+    },
+    {
+      "id": "leshy",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lesovik_(Bakst).jpg",
+      "bytes": 98727
+    },
+    {
+      "id": "monk",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/A_Benedictine_Monk_(by_Hugo_van_der_Goes)_-_Metropolitan_Museum_of_Art%2C_New_York_City.jpg",
+      "bytes": 4536024
+    },
+    {
+      "id": "villager",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antoine_Le_Nain_-_A_Peasant_Family_-_2023.605_-_Metropolitan_Museum_of_Art.jpg",
+      "bytes": 3026416
+    },
+    {
+      "id": "the-needle",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%A6%D0%B0%D1%80%D0%B5%D0%B2%D0%BD%D0%B0_%D0%BB%D1%8F%D0%B3%D1%83%D1%88%D0%BA%D0%B0_6.jpg",
+      "bytes": 841192
+    }
+  ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -93,6 +160,7 @@
   "notCleared": [
     "gwydion-blodeuwedd-plate",
     "vasilisa-the-wise-variant-2",
-    "gwydion-variant"
+    "gwydion-variant",
+    "leshy-variant"
   ]
 }
