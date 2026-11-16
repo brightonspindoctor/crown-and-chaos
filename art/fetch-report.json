@@ -1,6 +1,43 @@
 {
-  "ranAt": "2026-11-15T23:43:11.238Z",
-  "fetched": [],
+  "ranAt": "2026-11-16T00:09:09.427Z",
+  "fetched": [
+    {
+      "id": "gretel",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hansel-and-gretel-rackham.jpg",
+      "bytes": 436161
+    },
+    {
+      "id": "vasilisa-the-wise",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vasilisa.jpg",
+      "bytes": 676079
+    },
+    {
+      "id": "bran-the-blessed",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Head_of_Bran_(Millais).png",
+      "bytes": 3417754
+    },
+    {
+      "id": "the-little-mermaid",
+      "via": "imagePage",
+      "url": "https://iiif.nypl.org/iiif/3/1701878/full/!288,288/0/default.jpg",
+      "bytes": 12317
+    },
+    {
+      "id": "renfield",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore_G%C3%A9ricault_-_Portrait_of_a_Kleptomaniac_-_WGA08636.jpg",
+      "bytes": 107780
+    },
+    {
+      "id": "van-helsing",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg",
+      "bytes": 7746672
+    }
+  ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -41,23 +78,11 @@
       "via": "none"
     },
     {
-      "id": "gretel",
-      "via": "none"
-    },
-    {
-      "id": "vasilisa-the-wise",
-      "via": "none"
-    },
-    {
-      "id": "bran-the-blessed",
-      "via": "none"
-    },
-    {
-      "id": "gwydion",
-      "via": "none"
-    },
-    {
       "id": "the-tin-soldier",
+      "via": "none"
+    },
+    {
+      "id": "sheriff-of-nottingham",
       "via": "none"
     }
   ],
@@ -72,12 +97,9 @@
     }
   ],
   "notCleared": [
+    "gwydion",
     "board-camelot",
     "board-castle-dracula",
-    "board-sherwood",
-    "sheriff-of-nottingham",
-    "the-little-mermaid",
-    "renfield",
-    "van-helsing"
+    "board-sherwood"
   ]
 }
