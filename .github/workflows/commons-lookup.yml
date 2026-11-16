@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A art/lookup-report.json art/peek
+          git add -A art
           git diff --cached --quiet || git commit -m "Commons lookup report"
           git pull --rebase -X theirs
           git push
