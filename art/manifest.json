@@ -1478,10 +1478,10 @@
       }
     },
     {
-      "id": "lancelot-variant",
+      "id": "guinevere-variant-2",
       "use": "variant",
       "cards": [
-        "lancelot"
+        "guinevere"
       ],
       "artist": "Herbert James Draper",
       "artistDied": 1920,
@@ -1494,7 +1494,15 @@
       "licence": "Public domain",
       "status": "cleared",
       "commonsFile": "Lancelot_and_Guinevere_by_Herbert_James_Draper.jpg",
-      "variant": 2
+      "variant": 3,
+      "notes": "Guinevere is the centre of this painting; Lancelot is small in the corner, so it is her variant.",
+      "size": [1700, 1073],
+      "crops": {
+        "guinevere": {
+          "window": [0.12, 0.0204, 0.6, 0.5592],
+          "full": [0.175, 0.0009, 0.45, 0.9981]
+        }
+      }
     },
     {
       "id": "red-riding-hood-variant",
@@ -1514,7 +1522,14 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "commonsFile": "Arthur_Rackham_Little_Red_Riding_Hood+.jpg",
-      "variant": 3
+      "variant": 3,
+      "size": [800, 1183],
+      "crops": {
+        "red-riding-hood": {
+          "window": [0.25, 0.6608, 0.7, 0.2785],
+          "full": [0.41, 0.6012, 0.42, 0.3976]
+        }
+      }
     },
     {
       "id": "beowulf-variant",
@@ -1534,7 +1549,14 @@
       "licence": "Public domain",
       "status": "cleared",
       "commonsFile": "Stories_of_beowulf_wiglaf_and_beowulf.jpg",
-      "variant": 2
+      "variant": 2,
+      "size": [1038, 1338],
+      "crops": {
+        "beowulf": {
+          "window": [0.02, 0.1546, 0.9, 0.4107],
+          "full": [0.01, 0.0004, 0.92, 0.9992]
+        }
+      }
     },
     {
       "id": "grendel-variant",
@@ -1554,7 +1576,14 @@
       "licence": "Public domain",
       "status": "cleared",
       "commonsFile": "Stories_of_beowulf_head_of_grendel.jpg",
-      "variant": 2
+      "variant": 2,
+      "size": [1059, 1371],
+      "crops": {
+        "grendel": {
+          "window": [0.0, 0.0728, 1.0, 0.4544],
+          "full": [0.0376, 0.0, 0.9247, 1.0]
+        }
+      }
     }
   ]
 }
