@@ -3105,6 +3105,239 @@
           ]
         }
       }
+    },
+    {
+      "id": "knight",
+      "use": "card",
+      "cards": [
+        "knight"
+      ],
+      "artist": "Albrecht Dürer",
+      "artistDied": 1528,
+      "title": "Knight, Death and the Devil",
+      "date": "1513",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Albrecht_Dürer,_Knight,_Death_and_Devil,_1513,_NGA_598.jpg",
+        "original": "National Gallery of Art, Washington"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "commonsFile": "Albrecht_Dürer,_Knight,_Death_and_Devil,_1513,_NGA_598.jpg",
+      "maxWidth": 3000
+    },
+    {
+      "id": "longbowman",
+      "use": "card",
+      "cards": [
+        "longbowman"
+      ],
+      "artist": "Loyset Liédet",
+      "artistDied": 1479,
+      "title": "The Battle of Crécy (Froissart's Chronicles)",
+      "date": "c. 1470",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Battle_of_crecy_froissart.jpg",
+        "original": "Bibliothèque nationale de France"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Battle_of_crecy_froissart.jpg",
+      "notes": "The English longbowmen, right of centre."
+    },
+    {
+      "id": "crossbowman",
+      "use": "card",
+      "cards": [
+        "crossbowman"
+      ],
+      "artist": "Antonio and Piero del Pollaiuolo",
+      "artistDied": 1498,
+      "title": "The Martyrdom of Saint Sebastian",
+      "date": "1475",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Pollaiolo,_Antonio_and_Piero_del_-_Martyrdom_of_Saint_Sebastian.jpg",
+        "original": "The National Gallery, London"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Pollaiolo,_Antonio_and_Piero_del_-_Martyrdom_of_Saint_Sebastian.jpg",
+      "maxWidth": 3000,
+      "notes": "Crop to the archer winding his crossbow in the foreground."
+    },
+    {
+      "id": "berserker",
+      "use": "card",
+      "cards": [
+        "berserker"
+      ],
+      "artist": "Peter Nicolai Arbo",
+      "artistDied": 1892,
+      "title": "The Fall of Saint Olav at the Battle of Stiklestad",
+      "date": "1859",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arbo-Olav_den_helliges_fall_i_slaget_på_Stiklestad.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Arbo-Olav_den_helliges_fall_i_slaget_på_Stiklestad.jpg",
+      "notes": "Crop to the axeman."
+    },
+    {
+      "id": "geat-thane",
+      "use": "card",
+      "cards": [
+        "geat-thane"
+      ],
+      "artist": "John Charles Dollman",
+      "artistDied": 1934,
+      "title": "A Viking Foray",
+      "date": "1909",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:A_Viking_Foray.jpg"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "commonsFile": "A_Viking_Foray.jpg"
+    },
+    {
+      "id": "mere-beast",
+      "use": "card",
+      "cards": [
+        "mere-beast"
+      ],
+      "artist": "Henry Justice Ford",
+      "artistDied": 1941,
+      "title": "Plate facing page 38, The Red Book of Animal Stories",
+      "date": "1899",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:The_red_animal_story_book_-_plate_facing_page_038.png"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "commonsFile": "The_red_animal_story_book_-_plate_facing_page_038.png"
+    },
+    {
+      "id": "grandmother",
+      "use": "card",
+      "cards": [
+        "grandmother"
+      ],
+      "artist": "Gerrit Dou",
+      "artistDied": 1675,
+      "title": "Old Woman Reading",
+      "date": "c. 1631-32",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Gerard_Dou_005.jpg",
+        "original": "Rijksmuseum, Amsterdam"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Gerard_Dou_005.jpg",
+      "maxWidth": 3000
+    },
+    {
+      "id": "leshy",
+      "use": "card",
+      "cards": [
+        "leshy"
+      ],
+      "artist": "Léon Bakst",
+      "artistDied": 1924,
+      "title": "Lesovik (the forest spirit)",
+      "date": "1906",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Lesovik_(Bakst).jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Lesovik_(Bakst).jpg",
+      "notes": "Small scan (530px); a larger one is wanted."
+    },
+    {
+      "id": "monk",
+      "use": "card",
+      "cards": [
+        "monk"
+      ],
+      "artist": "Hugo van der Goes",
+      "artistDied": 1482,
+      "title": "A Benedictine Monk",
+      "date": "c. 1478",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:A_Benedictine_Monk_(by_Hugo_van_der_Goes)_-_Metropolitan_Museum_of_Art,_New_York_City.jpg",
+        "original": "The Metropolitan Museum of Art"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "commonsFile": "A_Benedictine_Monk_(by_Hugo_van_der_Goes)_-_Metropolitan_Museum_of_Art,_New_York_City.jpg"
+    },
+    {
+      "id": "villager",
+      "use": "card",
+      "cards": [
+        "villager"
+      ],
+      "artist": "Antoine Le Nain",
+      "artistDied": 1648,
+      "title": "A Peasant Family",
+      "date": "c. 1640-45",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Antoine_Le_Nain_-_A_Peasant_Family_-_2023.605_-_Metropolitan_Museum_of_Art.jpg",
+        "original": "The Metropolitan Museum of Art"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "commonsFile": "Antoine_Le_Nain_-_A_Peasant_Family_-_2023.605_-_Metropolitan_Museum_of_Art.jpg"
+    },
+    {
+      "id": "the-needle",
+      "use": "card",
+      "cards": [
+        "the-needle"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Ivan Tsarevich on the shore (the pike brings Koschei's egg)",
+      "date": "1899",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Царевна_лягушка_6.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Царевна_лягушка_6.jpg",
+      "notes": "The same plate as the Frog Princess board, cropped to the pike. Koschei's death is a needle in that egg."
+    },
+    {
+      "id": "leshy-variant",
+      "use": "variant",
+      "cards": [
+        "leshy"
+      ],
+      "variant": 2,
+      "artist": "N. N. Brut",
+      "artistDied": null,
+      "title": "Leshy",
+      "date": "1906",
+      "publication": "Russian magazine illustration, 1906",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Leshy_(1906).jpg"
+      },
+      "licence": "Public domain (claimed)",
+      "status": "to-confirm",
+      "commonsFile": "Leshy_(1906).jpg",
+      "notes": "Commons tags it public domain because the artist died over 100 years ago, but no dates for N. N. Brut have been found. Don't ship until they are."
     }
   ]
 }

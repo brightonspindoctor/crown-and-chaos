@@ -6,5 +6,6 @@
   "attack": 2,
   "guard": 0,
   "renown": 4,
-  "auto": "Attacks the card opposite and one enemy card next to it."
+  "auto": "Attacks the card opposite and one enemy card next to it.",
+  "art": "berserker"
 }

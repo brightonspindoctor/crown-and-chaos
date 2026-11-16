@@ -7,5 +7,6 @@
   "guard": 0,
   "renown": 3,
   "tale": "Beowulf",
-  "auto": "Attacks the card opposite, applying Poison 1."
+  "auto": "Attacks the card opposite, applying Poison 1.",
+  "art": "mere-beast"
 }

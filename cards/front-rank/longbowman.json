@@ -6,5 +6,6 @@
   "attack": 1,
   "guard": 0,
   "renown": 3,
-  "auto": "Shoots the enemy Crown."
+  "auto": "Shoots the enemy Crown.",
+  "art": "longbowman"
 }
