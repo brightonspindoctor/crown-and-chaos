@@ -6,5 +6,6 @@
   "rarity": "Legendary",
   "effect": "Heal a hero to full health, up to a maximum of 20.",
   "renown": 4,
-  "ap": 1
+  "ap": 1,
+  "art": "water-of-life"
 }

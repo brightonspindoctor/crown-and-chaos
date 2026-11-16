@@ -6,5 +6,6 @@
   "rarity": "Rare",
   "effect": "2 Spell damage to an enemy hero; double against Witches.",
   "renown": 2,
-  "ap": 1
+  "ap": 1,
+  "art": "skull-lantern"
 }

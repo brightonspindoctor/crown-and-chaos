@@ -6,5 +6,6 @@
   "rarity": "Rare",
   "effect": "A hero's next attack this round deals +3 damage and ignores Guard.",
   "renown": 3,
-  "ap": 1
+  "ap": 1,
+  "art": "the-giants-sword"
 }

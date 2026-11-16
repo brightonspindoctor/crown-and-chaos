@@ -6,5 +6,6 @@
   "rarity": "Legendary",
   "effect": "Return a dead hero to slot 2 or 3 on 1 health.",
   "renown": 4,
-  "ap": 1
+  "ap": 1,
+  "art": "draught-of-the-cauldron"
 }

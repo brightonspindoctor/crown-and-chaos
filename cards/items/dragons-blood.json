@@ -6,5 +6,6 @@
   "rarity": "Common",
   "effect": "A hero gains +3 Guard this round.",
   "renown": 2,
-  "ap": 1
+  "ap": 1,
+  "art": "dragons-blood"
 }

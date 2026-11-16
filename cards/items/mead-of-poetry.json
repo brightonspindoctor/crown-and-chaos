@@ -6,5 +6,6 @@
   "rarity": "Rare",
   "effect": "Gain 2 action points this round.",
   "renown": 2,
-  "ap": 1
+  "ap": 1,
+  "art": "mead-of-poetry"
 }
