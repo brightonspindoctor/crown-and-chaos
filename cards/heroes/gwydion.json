@@ -34,6 +34,12 @@
       "ap": 2,
       "text": "An enemy front-rank card becomes a harmless animal; its Attack is 0 for the rest of the fight.",
       "usesPerFight": 1
+    },
+    {
+      "name": "Battle of the trees",
+      "ap": 2,
+      "usesPerFight": 3,
+      "text": "Summon a Tree Warrior (2 Health, 2 Attack) into an empty front-rank slot of yours. It attacks the card opposite."
     }
   ],
   "art": "gwydion",

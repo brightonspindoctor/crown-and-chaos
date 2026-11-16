@@ -632,7 +632,14 @@ export const ACTIONS = {
   "grendels-mother": { "Drag under": { t: "enemyHero23", go: (st, a, x) => hit(st, a, x, attackOf(st, a)) } },
   "gretel": { "Into the oven": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && x.aspect === "Witch" && x.health <= 6) { kill(st, x, a); log(st, `${x.name} goes into the oven.`); } } } },
   "guinevere": { "Queen's mercy": { t: "allyHero", go: (st, a, x) => heal(st, a, x, 3) } },
-  "gwydion": { "Shape-shift": { t: "enemyFront", go: (st, a, x) => { x.flags.harmless = true; log(st, `${x.name} becomes a harmless animal.`); } } },
+  "gwydion": { "Battle of the trees": { t: "emptyFront", go: (st, a) => {
+      const slot = [4, 5, 6].find((s) => !at(st, a.side, s)); if (!slot) return;
+      const tw = makeFront({ id: "tree-warrior", name: "Tree Warrior", health: 2, attack: 2, guard: 0, auto: "Attacks the card opposite." }, a.side, slot);
+      st.sides[a.side].slots[slot] = tw;
+      if (crownIs(st, a.side, "gwydion")) { tw.maxHealth += 2; tw.health += 2; tw.atkPerm += 1; }
+      log(st, `Gwydion calls a Tree Warrior out of the forest.`);
+    } },
+    "Shape-shift": { t: "enemyFront", go: (st, a, x) => { x.flags.harmless = true; log(st, `${x.name} becomes a harmless animal.`); } } },
   "king-arthur": { "Excalibur": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
   "koschei": { "Whirlwind": { t: "enemyHeroNotCrown", go: (st, a, x) => {
     damage(st, a, x, 3, { attack: true });
@@ -725,6 +732,7 @@ export function targetsFor(st, a, act) {
   const eh = heroes(st, foe);
   switch (type) {
     case "none": return [null];
+    case "emptyFront": return [4, 5, 6].some((x) => !at(st, a.side, x)) ? [null] : [];
     case "enemyMelee": return meleeTargets(st, a);
     case "enemyAny": case "enemyAny2": return rangedTargets(st, a);
     case "enemyHero": return eh;
@@ -894,7 +902,7 @@ export function playRound(st, plans) {
     a.uses[act.name] = (a.uses[act.name] || 0) + (act.usesPerFight ? 1 : 0);
     let x = o.target ? findCard(st, o.target) : null;
     const spec = ACTIONS[a.id]?.[act.name];
-    const needsTarget = spec ? !["none"].includes(spec.t) : true;
+    const needsTarget = spec ? !["none", "emptyFront"].includes(spec.t) : true;
     if (spec && ["deadFront", "deadTalemate"].includes(spec.t)) x = st.sides[a.side].grave.find((c) => c.uid === o.target);
     if (needsTarget && !x) {
       // Target gone: wasted (the doc's rule), unless it's a standard melee attack with another target in reach.
@@ -1027,6 +1035,7 @@ function valueOf(st, a, act, x) {
     case "Shard of the mirror": return x ? attackOf(st, x) * 1.5 : 0;
     case "Wanted": return x ? 3 + (ec && x.uid === ec.uid ? 3 : 0) : 0;
     case "Shield Brother": return x && x.health < x.maxHealth / 2 ? 4 : 0;
+    case "Battle of the trees": return crownIs(st, a.side, "gwydion") ? 7 : 4.5;
     case "Steadfast stand": return 2.5;
     case "The master is at hand": return 1.5;
     case "Oak, broom and meadowsweet": return heroes(st, a.side).length > 1 ? 3 : 0;

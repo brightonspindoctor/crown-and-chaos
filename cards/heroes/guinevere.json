@@ -10,7 +10,7 @@
     "health": 9,
     "attack": 2,
     "ranged": false,
-    "guard": 0,
+    "guard": 1,
     "speed": 3
   },
   "vulnerableTo": "Beast",

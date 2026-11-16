@@ -7,10 +7,10 @@
   "aspect": "Healer",
   "tags": [],
   "stats": {
-    "health": 6,
+    "health": 8,
     "attack": 1,
     "ranged": false,
-    "guard": 0,
+    "guard": 1,
     "speed": 2
   },
   "vulnerableTo": "Beast",
