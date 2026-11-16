@@ -1,150 +1,210 @@
 {
- "ranAt": "2026-11-16T08:59:07.658Z",
- "files": [],
+ "ranAt": "2026-11-16T09:00:52.953Z",
+ "files": [
+  {
+   "file": "Snow White Poisoned Apple.png",
+   "width": 737,
+   "height": 706,
+   "mime": "image/png",
+   "licence": "Public domain",
+   "usage": "Public domain",
+   "copyrighted": "False",
+   "artist": "",
+   "date": "",
+   "credit": "Image provided by Landsbókasafn Íslands",
+   "description": "An illustration from page 23 of Mjallhvít (Snow White) an 1852 icelandic translation of the Grimm-version fairytale.",
+   "restrictions": "",
+   "licenceTags": [
+    "License template tag",
+    "PD-Gutenberg",
+    "PD-Gutenberg/en",
+    "PD-Gutenberg/layout",
+    "PD-Layout"
+   ]
+  },
+  {
+   "file": "Ceridwen.jpg",
+   "width": 1200,
+   "height": 1757,
+   "mime": "image/jpeg",
+   "licence": "Public domain",
+   "usage": "Public domain",
+   "copyrighted": "False",
+   "artist": "Christopher Williams",
+   "date": "",
+   "credit": "1. Transferred from en.wikipedia to Commons by Pymouss using CommonsHelper . , ( Original text: Glynn Vivian Art Gallery ), (16 January 2010 (original upload date)), Original uploader was Skier Dude at en.wikipedia 2. Art UK",
+   "description": "",
+   "restrictions": "",
+   "licenceTags": [
+    "Cc-pd-mark-footer",
+    "License template tag",
+    "PD-Art",
+    "PD-Art/en",
+    "PD-Art/layout",
+    "PD-Layout",
+    "PD-US-expired-text",
+    "PD-art-category",
+    "PD-art-category/core",
+    "PD-old-X-expired",
+    "PD-old-auto-1923",
+    "PD-old-auto-expired",
+    "PD-old-text"
+   ]
+  },
+  {
+   "file": "Pair Ceridwen 00.JPG",
+   "width": 1273,
+   "height": 684,
+   "mime": "image/jpeg",
+   "licence": "Public domain",
+   "usage": "Public domain",
+   "copyrighted": "False",
+   "artist": "photo by myself of original print in 1901 book; no copyright",
+   "date": "1901",
+   "credit": "J.M. Edwards 'Y Mabinogion', Wrexham., 1901",
+   "description": "Print by J.E.C. Williams in the book 'Y Mabinogion', trans. J.M. Edwards (Wrexham, 1901).",
+   "restrictions": "",
+   "licenceTags": [
+    "Cc-pd-mark-footer",
+    "License template tag",
+    "PD-Layout",
+    "PD-old",
+    "PD-old-text",
+    "PD-old-warning-text"
+   ]
+  },
+  {
+   "file": "Hansel and Gretel.jpg",
+   "width": 1123,
+   "height": 1086,
+   "mime": "image/jpeg",
+   "licence": "Public domain",
+   "usage": "Public domain",
+   "copyrighted": "False",
+   "artist": "Sue Clark Malcom McGregor Jamieson",
+   "date": "2009-04-17 07:07:06",
+   "credit": "Flickr : Hansel and Gretel",
+   "description": "Public domain image from the book, Dramatic Reader For Lower Grades, by Florence Holbrook, Copyright 1911, page 118. This is Hansel and Gretel meeting the witch at the gingerbread house. Flickr data on 2011-08-16: Tags: image, illustration,",
+   "restrictions": "",
+   "licenceTags": [
+    "License template tag",
+    "PD-1923",
+    "PD-Layout",
+    "PD-US-expired",
+    "PD-US-expired-text",
+    "PD-US-expired/en",
+    "PD-US-expired/layout"
+   ]
+  },
+  {
+   "file": "Elise Goebeler - Dornröschen 1881.jpg",
+   "width": 632,
+   "height": 957,
+   "mime": "image/jpeg",
+   "licence": "Public domain",
+   "usage": "Public domain",
+   "copyrighted": "False",
+   "artist": "Elise Goebeler (1828-1913)",
+   "date": "1881",
+   "credit": "http://www.ebay.pl/itm/Dornroschen-Elise-Goebeler-Marchen-Spindel-Flachs-Garn-Stich-Holzstich-E-10906-/310838497975?hash=item485f6b12b7:g:kXAAAOSwR0JUOGN1",
+   "description": "Dornröschen bei der alten Spinnerin",
+   "restrictions": "",
+   "licenceTags": [
+    "Cc-pd-mark-footer",
+    "License template tag",
+    "PD-Layout",
+    "PD-US-expired-text",
+    "PD-old-100-1923",
+    "PD-old-100-expired",
+    "PD-old-X-expired",
+    "PD-old-text"
+   ]
+  },
+  {
+   "file": "Siegfried badet im Drachenblut (Schindler).jpg",
+   "width": 594,
+   "height": 853,
+   "mime": "image/jpeg",
+   "licence": "Public domain",
+   "usage": "Public domain",
+   "copyrighted": "False",
+   "artist": "Osmar Schindler",
+   "date": "circa 1900 date QS:P571,+1900-00-00T00:00:00Z/9,P1480,Q5727902",
+   "credit": "auction record online",
+   "description": "Siegfried bathes in dragon's blood",
+   "restrictions": "",
+   "licenceTags": [
+    "Cc-pd-mark-footer",
+    "License template tag",
+    "PD-Art",
+    "PD-Art/en",
+    "PD-Art/layout",
+    "PD-Layout",
+    "PD-US-expired-text",
+    "PD-art-category",
+    "PD-art-category/core",
+    "PD-old-70",
+    "PD-old-X-expired",
+    "PD-old-auto-1923",
+    "PD-old-auto-expired",
+    "PD-old-text",
+    "PD-old-warning-text"
+   ]
+  }
+ ],
  "searches": {
-  "Siegfried bathes in the dragon's blood": [
+  "Waterhouse The Magic Circle": [
    {
-    "file": "Siegfried badet im Drachenblut (Schindler).jpg",
-    "width": 594,
-    "height": 853,
+    "file": "John William Waterhouse - Magic Circle.JPG",
+    "width": 1255,
+    "height": 1880,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Osmar Schindler",
-    "date": "circa 1900 date QS:P571,+1900-00-00T00:00:00Z/9,P1480,Q5727902",
-    "credit": "auction record online",
-    "description": "Siegfried bathes in dragon's blood",
+    "artist": "John William Waterhouse",
+    "date": "1886 date QS:P571,+1886-00-00T00:00:00Z/9",
+    "credit": "one or more third parties have made copyright claims against Wikimedia Commons in relation to the work from which this is sourced or a purely mechanical reproduction thereof . This may be due to recognition of the \" sweat of the brow \" doct",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Copyright claims",
+     "Copyright claims/en",
+     "Copyright claims/layout",
+     "Fallback",
      "License template tag",
      "PD-Art",
+     "PD-Art-copyright-notice",
+     "PD-Art-copyright-notice-Tate-Britain",
+     "PD-Art-copyright-notice/en",
+     "PD-Art-copyright-notice/lang",
+     "PD-Art-copyright-notice/layout",
      "PD-Art/en",
      "PD-Art/layout",
      "PD-Layout",
      "PD-US-expired-text",
      "PD-art-category",
      "PD-art-category/core",
-     "PD-old-70",
      "PD-old-X-expired",
-     "PD-old-auto-1923",
      "PD-old-auto-expired",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   }
-  ],
-  "Siegfried Drachenblut": [
-   {
-    "file": "Das Bad im Drachenblut 02.jpg",
-    "width": 1728,
-    "height": 3072,
-    "mime": "image/jpeg",
-    "licence": "CC BY 3.0",
-    "usage": "Creative Commons Attribution 3.0",
-    "copyrighted": "True",
-    "artist": "Granpar",
-    "date": "24 July 2021 (according to Exif data)",
-    "credit": "Own work",
-    "description": "Skulptur Das Bad im Drachenblut in Bürstadt",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-3.0",
-     "Cc-by-layout",
-     "License template tag"
+     "PD-old-text"
     ]
    },
    {
-    "file": "Das Bad im Drachenblut 05.jpg",
-    "width": 3072,
-    "height": 1728,
-    "mime": "image/jpeg",
-    "licence": "CC BY 3.0",
-    "usage": "Creative Commons Attribution 3.0",
-    "copyrighted": "True",
-    "artist": "Granpar",
-    "date": "24 July 2021 (according to Exif data)",
-    "credit": "Own work",
-    "description": "Skulptur Das Bad im Drachenblut in Bürstadt",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-3.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Das Bad im Drachenblut 04.jpg",
-    "width": 3072,
-    "height": 1728,
-    "mime": "image/jpeg",
-    "licence": "CC BY 3.0",
-    "usage": "Creative Commons Attribution 3.0",
-    "copyrighted": "True",
-    "artist": "Granpar",
-    "date": "24 July 2021 (according to Exif data)",
-    "credit": "Own work",
-    "description": "Skulptur Das Bad im Drachenblut in Bürstadt, auf Siegfrieds Rücken das verhängnisvolle Lindenblatt",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-3.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Das Bad im Drachenblut 03 Infoboard.jpg",
-    "width": 3072,
-    "height": 1728,
-    "mime": "image/jpeg",
-    "licence": "CC BY 3.0",
-    "usage": "Creative Commons Attribution 3.0",
-    "copyrighted": "True",
-    "artist": "Granpar",
-    "date": "24 July 2021 (according to Exif data)",
-    "credit": "Own work",
-    "description": "Infotafel zur Skulptur Das Bad im Drachenblut in Bürstadt",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-3.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Das Bad im Drachenblut 01.jpg",
-    "width": 3072,
-    "height": 1728,
-    "mime": "image/jpeg",
-    "licence": "CC BY 3.0",
-    "usage": "Creative Commons Attribution 3.0",
-    "copyrighted": "True",
-    "artist": "Granpar",
-    "date": "24 July 2021 (according to Exif data)",
-    "credit": "Own work",
-    "description": "Skulptur Das Bad im Drachenblut in Bürstadt",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-3.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Idun apples Penrose": [
-   {
-    "file": "Idun and the Apples.jpg",
-    "width": 600,
-    "height": 366,
+    "file": "The magic circle, by John William Waterhouse.jpg",
+    "width": 1373,
+    "height": 2000,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "James Doyle Penrose",
-    "date": "1890 date QS:P571,+1890-00-00T00:00:00Z/9",
-    "credit": "http://www.timelessmyths.com/norse/thor.html (direct link: http://www.timelessmyths.com/norse/gallery/idun2.jpg )",
-    "description": "Idun and the Apples (1890) by J. Doyle Penrose .",
+    "artist": "John William Waterhouse",
+    "date": "1886 date QS:P571,+1886-00-00T00:00:00Z/9",
+    "credit": "Sotheby's",
+    "description": "«A later inscription on the reverse of the canvas suggests that this picture was a study for the painting at Tate Britain. However, the high level of finish and the existence of another , smaller and loosely painted picture of the same comp",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
@@ -162,133 +222,16 @@
     ]
    },
    {
-    "file": "Idun and the Apples by James Doyle Penrose, 1890.jpg",
-    "width": 4737,
-    "height": 2969,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "James Doyle Penrose",
-    "date": "1890 date QS:P571,+1890-00-00T00:00:00Z/9",
-    "credit": "https://www.magnoliabox.com/products/idun-and-the-apples-2378756",
-    "description": "found on page 58 of Teutonic Myths and Legends by Donald A. Makenzie",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-100-1923",
-     "PD-old-100-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   }
-  ],
-  "Iduna golden apples painting": [],
-  "Sleeping Beauty spindle prick finger illustration": [
-   {
-    "file": "Sleeping Beauty - Jack Zipes Historic Fairy Tale Postcard Collection - Dornröschen - Uncredited artist - 1899 or earlier.jpg",
-    "width": 1024,
-    "height": 659,
-    "mime": "image/jpeg",
-    "licence": "CC BY 2.0",
-    "usage": "Creative Commons Attribution 2.0",
-    "copyrighted": "True",
-    "artist": "MCAD Library",
-    "date": "2023-03-26 07:35:15",
-    "credit": "https://www.flickr.com/photos/69184488@N06/53076393639/",
-    "description": "Sleeping Beauty Record number: 23032602 Artist: Item caption, front: Dornröschen (“The Sleeping Beauty”) Item caption/descriptive text, back: Uniform title: Grimm: Dornröschen (“The Sleeping Beauty” or “Briar Rose”); Perrault: La Belle au b",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-2.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Sleeping Beauty - 53076704993 - Jack Zipes Historic Fairy Tale Postcard Collection - Dornröschen - Uncredited artist - 1905 or earlier.jpg",
-    "width": 680,
+    "file": "John William Waterhouse - The Magic Circle (study).jpg",
+    "width": 668,
     "height": 1024,
     "mime": "image/jpeg",
-    "licence": "CC BY 2.0",
-    "usage": "Creative Commons Attribution 2.0",
-    "copyrighted": "True",
-    "artist": "MCAD Library",
-    "date": "2023-03-26 07:26:57",
-    "credit": "https://www.flickr.com/photos/69184488@N06/53076704993/",
-    "description": "Sleeping Beauty Record number: 23032601 Artist: Item caption, front: Dornröschen (“The Sleeping Beauty”) Item caption/descriptive text, back: Uniform title: Grimm: Dornröschen (“The Sleeping Beauty” or “Briar Rose”); Perrault: La Belle au b",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-2.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Dornröschen Spindel": [
-   {
-    "file": "Elise Goebeler - Dornröschen 1881.jpg",
-    "width": 632,
-    "height": 957,
-    "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Elise Goebeler (1828-1913)",
-    "date": "1881",
-    "credit": "http://www.ebay.pl/itm/Dornroschen-Elise-Goebeler-Marchen-Spindel-Flachs-Garn-Stich-Holzstich-E-10906-/310838497975?hash=item485f6b12b7:g:kXAAAOSwR0JUOGN1",
-    "description": "Dornröschen bei der alten Spinnerin",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-old-100-1923",
-     "PD-old-100-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Sleeping Beauty - 53076406329 - Jack Zipes Historic Fairy Tale Postcard Collection - Dornröschen - Kubel, Otto (German, 1868-1951).jpg",
-    "width": 662,
-    "height": 1024,
-    "mime": "image/jpeg",
-    "licence": "CC BY 2.0",
-    "usage": "Creative Commons Attribution 2.0",
-    "copyrighted": "True",
-    "artist": "MCAD Library",
-    "date": "2023-05-14 09:13:23",
-    "credit": "https://www.flickr.com/photos/69184488@N06/53076406329/",
-    "description": "Sleeping Beauty Record number: 23051401 Artist: Kubel, Otto (German, 1868-1951) Item caption, front: Brüder Grimm / Dornröschen / O. Kubel, pinx. Item caption/descriptive text, back: 1. Vor Zeiten war ein König und eine Königin, denen nach ",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-2.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Vasnetsov Ivan Tsarevich Grey Wolf": [
-   {
-    "file": "Wiktor Michajlowitsch Wassnezow 004.jpg",
-    "width": 1300,
-    "height": 1755,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Viktor Vasnetsov",
-    "date": "1889 date QS:P571,+1889-00-00T00:00:00Z/9",
-    "credit": "http://www.staratel.com/pictures/ruspaint/113.htm http://www.artlib.ru/index.php?id=11&amp;idp=0&amp;fp=2&amp;uid=1671&amp;iid=16272&amp;idg=0&amp;user_serie=0 http://lj.rossia.org/users/john_petrov/282710.html?mode=reply",
+    "artist": "John William Waterhouse",
+    "date": "circa 1886 date QS:P571,+1886-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "Christie's , LotFinder: entry 5210397 (sale 7728, lot 23, London, 4 June 2009)",
     "description": "",
     "restrictions": "",
     "licenceTags": [
@@ -302,69 +245,151 @@
      "PD-art-category",
      "PD-art-category/core",
      "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "The Magic Circle - John William Waterhouse.jpg",
+    "width": 2000,
+    "height": 2942,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1886 date QS:P571,+1886-00-00T00:00:00Z/9",
+    "credit": "https://i.imgur.com/5cczvyQ.jpg",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "John William Waterhouse - Magic Circle (cropped).JPG",
+    "width": 1165,
+    "height": 1211,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1886 date QS:P571,+1886-00-00T00:00:00Z/9",
+    "credit": "one or more third parties have made copyright claims against Wikimedia Commons in relation to the work from which this is sourced or a purely mechanical reproduction thereof . This may be due to recognition of the \" sweat of the brow \" doct",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Copyright claims",
+     "Copyright claims/en",
+     "Copyright claims/layout",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-copyright-notice",
+     "PD-Art-copyright-notice-Tate-Britain",
+     "PD-Art-copyright-notice/en",
+     "PD-Art-copyright-notice/lang",
+     "PD-Art-copyright-notice/layout",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Waterhouse Circe Invidiosa": [
+   {
+    "file": "Circe Invidiosa - John William Waterhouse.jpg",
+    "width": 2179,
+    "height": 4612,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1892 date QS:P571,+1892-00-00T00:00:00Z/9",
+    "credit": "Website Webpage",
+    "description": "Image of Circe , a figure from Greek mythology , who appears in Homer 's Odyssey . This painting shows a scene not from the Odyssey, but from Ovid 's Metamorphoses . A jealous Circe throws a magic potion into the well, where her rival in lo",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
      "PD-old-auto-1923",
      "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "Ivan Tsarevich and the Grey Wolf (Zvorykin).jpg",
-    "width": 256,
-    "height": 322,
+    "file": "J. W. Waterhouse - Circe Invidiosa - Google Art Project.jpg",
+    "width": 2350,
+    "height": 5001,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Boris Vasilyevich Zvorykin (1872 — 1942)",
-    "date": "before 1917 date QS:P,+1917-00-00T00:00:00Z/7,P1326,+1917-00-00T00:00:00Z/9",
-    "credit": "https://www.postcard.phalara.ru/katalog_tsar/p17_sectionid/42",
-    "description": "Postcard. The character from a Russian fairy tale",
+    "artist": "J. W. WATERHOUSE (1849–1917) (Britain) Born in Rome. Died in London. Details on Google Art Project",
+    "date": "1892 date QS:P571,+1892-00-00T00:00:00Z/9",
+    "credit": "ZwGeGjQ7_fwYxQ at Google Cultural Institute maximum zoom level",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
+     "Fallback",
      "License template tag",
+     "PD-Art",
+     "PD-Art-two-auto",
+     "PD-Art/en",
+     "PD-Art/layout",
      "PD-Layout",
      "PD-US-expired-text",
-     "PD-old-80-expired",
+     "PD-art-category",
+     "PD-art-category/core",
      "PD-old-X-expired",
+     "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "Ivan Tsarevich and the Grey Wolf (Zvorykin) 2.jpg",
-    "width": 403,
-    "height": 635,
+    "file": "Waterhouse, Circe Invidiosa, detail.jpg",
+    "width": 860,
+    "height": 645,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Boris Zvorykin",
-    "date": "before 1917 date QS:P,+1917-00-00T00:00:00Z/7,P1326,+1917-00-00T00:00:00Z/9",
-    "credit": "http://amnesia.pavelbers.com/Zivopis%2058.htm",
-    "description": "Почтовая открытка",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-US-expired-text",
-     "PD-old-80-expired",
-     "PD-old-X-expired",
-     "PD-old-text"
-    ]
-   },
-   {
-    "file": "Moscou, galerie Tretiakov Ivan-Tsarevitch at the Grey Wolf (Vasnetsov).jpg",
-    "width": 2099,
-    "height": 2761,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Pierre André Leclercq",
-    "date": "Taken on 12 May 2018, 09:01:37",
-    "credit": "Own work",
-    "description": "Ivan-Tsarevitch on the Grey Wolf (Vasnetsov)",
+    "artist": "John William Waterhouse",
+    "date": "1892 date QS:P571,+1892-00-00T00:00:00Z/9",
+    "credit": "http://wsimag.com/culture/1629-the-feminine-approach-to-health",
+    "description": "Circe Invidiosa, detail",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
@@ -383,266 +408,185 @@
     ]
    },
    {
-    "file": "Ivan-Tsarevitch at the Grey Wolf 01 by shakko.jpg",
-    "width": 3101,
-    "height": 3054,
+    "file": "John William Waterhouse \"Circe Invidiosa\" 1892.jpg",
+    "width": 2350,
+    "height": 5001,
     "mime": "image/jpeg",
-    "licence": "CC BY-SA 4.0",
-    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "licence": "CC BY 2.0",
+    "usage": "Creative Commons Attribution 2.0",
     "copyrighted": "True",
-    "artist": "shakko",
-    "date": "2020s date QS:P,+2020-00-00T00:00:00Z/8",
+    "artist": "John William Waterhouse",
+    "date": "31 March 2015, 19:24:30",
+    "credit": "https://www.flickr.com/photos/eoskins/16808751799/",
+    "description": "John William Waterhouse [English Pre-Raphaelite painter, 1849-1917] Oil on canvas Art Gallery of South Australia: www.artgallery.sa.gov.au/agsa/home/Collection/detail.jsp?...",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-2.0",
+     "Cc-by-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "John william waterhouse, circe invidiosa, 1892 (adelaide, art gallery of south australia) 01.jpg",
+    "width": 2840,
+    "height": 4992,
+    "mime": "image/jpeg",
+    "licence": "CC BY 3.0",
+    "usage": "Creative Commons Attribution 3.0",
+    "copyrighted": "True",
+    "artist": "Sailko",
+    "date": "2020-08-13 11:54:41",
     "credit": "Own work",
-    "description": "see filename",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
-     "Cc-by-sa-4.0",
-     "Cc-by-sa-layout",
+     "Cc-by-3.0",
+     "Cc-by-layout",
      "License template tag"
     ]
    }
   ],
-  "water of life fairy tale illustration": [
+  "Sleeping Beauty Walter Crane": [
    {
-    "file": "Water Bewitched — The fairy tales of science.jpg",
-    "width": 733,
-    "height": 1247,
+    "file": "WalterCrane, The Sleeping Beauty-02.jpg",
+    "width": 491,
+    "height": 650,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Charles H. Bennett",
-    "date": "2011-05-03",
-    "credit": "https://archive.org/stream/fairytalesofscie00brouiala#page/n186/mode/1up",
-    "description": "Image \"Water Bewitched\" from Brough's The fairy tales of science",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old-100",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "The fairy tales of the Brothers Grimm (1916) (14596242367).jpg",
-    "width": 1490,
-    "height": 2062,
-    "mime": "image/jpeg",
-    "licence": "No restrictions",
-    "usage": "No known copyright restrictions",
-    "copyrighted": "True",
-    "artist": "Internet Archive Book Images",
-    "date": "1916",
-    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14596242367/ Source book page: https://archive.org/stream/fairytalesofbrot00grim/fairytalesofbrot00grim#page/n321/mode/1up",
-    "description": "Identifier : fairytalesofbrot00grim ( find matches ) Title : The fairy tales of the Brothers Grimm Year : 1916 ( 1910s ) Authors : Grimm, Jacob, 1785-1863 Grimm, Wilhelm, 1786-1859 Rackham, Arthur, 1867-1939, ill Subjects : Fairy tales Folk",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Illustration at page 266 in Grimm's Household Tales (Edwardes, Bell).png",
-    "width": 610,
-    "height": 748,
-    "mime": "image/png",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Robert Anning Bell",
-    "date": "1912",
-    "credit": "Title: Grimm's Household Tales , 1912. Brothers Grimm, Marian Edwardes (translator), R. Anning Bell (illustrations) Scan: copy at New York Public Library, obtained from IA.org grimmshouseholdt00grim Adjusttment: Conversion to PNG, greyscale",
-    "description": "Illustration from a book of fairy tales",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-US",
-     "PD-US/en",
-     "PD-US/layout"
-    ]
-   },
-   {
-    "file": "Page 233 of Fairy tales and stories (Andersen, Tegner).jpg",
-    "width": 1940,
-    "height": 1008,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Hans Tegner",
-    "date": "1900",
-    "credit": ".mw-parser-output table.commons-file-information-table,.mw-parser-output .fileinfotpl-type-information,.mw-parser-output .fileinfotpl-type-artwork{border:1px solid var(--border-color-base,#a2a9b1);background-color:var(--background-color-int",
-    "description": "This is a modified page scan of \"The Ugly Duckling\" a story from \"Fairy tales and stories\" by Hans Christian Anderson, translated by Hans Lien Brækstad, with illustrations by Hans Tegner. The book was originally published in 1900.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-1923",
-     "PD-Layout",
-     "PD-US-expired",
-     "PD-US-expired-text",
-     "PD-US-expired/en",
-     "PD-US-expired/layout",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Image from page 204 of \"The pink fairy book\" (1897).jpg",
-    "width": 1776,
-    "height": 1668,
-    "mime": "image/jpeg",
-    "licence": "CC0",
-    "usage": "Creative Commons Zero, Public Domain Dedication",
-    "copyrighted": "True",
-    "artist": "Internet Archive Book Images",
-    "date": "1897-01-01",
-    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14597448098/",
-    "description": "Identifier: pinkfairybooklan00lang Title: The pink fairy book Year: 1897 (1890s) Authors: Lang, Andrew, 1844-1912, ed Subjects: Tales Publisher: New York, London [etc.] Longmans, Green, and co. Contributing Library: New York Public Library ",
-    "restrictions": "",
-    "licenceTags": [
-     "CC-Layout",
-     "Cc-zero",
-     "License template tag"
-    ]
-   }
-  ],
-  "Heorot feast mead illustration": [],
-  "drinking horn painting viking feast": [],
-  "Odin Gunnlöd": [
-   {
-    "file": "Odin, Suttungr and Gunnlöd.jpg",
-    "width": 488,
-    "height": 240,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Harald Faith-Ell",
-    "date": "circa 1941 date QS:P,+1941-00-00T00:00:00Z/9,P1480,Q5727902",
-    "credit": "Lindquist, Sune (1941). Gotlands Bildsteine .",
-    "description": "The Gotlandic image stone Hammars (III). It is held to depict Odin in his eagle fetch (note the eagle's beard), Gunnlöð (holding the mead of poetry) and Suttungr.",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-Sweden-photo",
-     "PD-Sweden-photo/en",
-     "PD-Sweden-photo/layout",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Odin with Gunnlöd by Johannes Gehrts.jpg",
-    "width": 705,
-    "height": 594,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Johannes Gehrts",
-    "date": "Created in 1883, judging by the signature. Published in 1901.",
-    "credit": "Felix Dahn, Therese Dahn, Therese (von Droste-Hülshoff) Dahn, Frau, Therese von Droste-Hülshoff Dahn (1901). Walhall: Germanische Götter- und Heldensagen. Für Alt und Jung am deutschen Herd . Breitkopf und Härtel.",
-    "description": "\"Odin with Gunnlöd\" (1901) by Johannes Gehrts. The god Odin sits holding a drinking horn, his arm around Gunnlöð, who looks towards him.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-auto",
-     "PD-old-auto/core",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Odin and Gunnlöð by George Wright.jpg",
-    "width": 1373,
-    "height": 2165,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "George Wright (1872-1951)",
-    "date": "published 1908",
-    "credit": "Mabie, Hamilton Wright. 1908. Norse Stories Retold from the Eddas . Dodd, Mead and Company, New York. Page 52. Digitized version from the Internet Archive.",
-    "description": "Captioned as \"Rising upwards in broad, easy flight\". Odin in the shape of an eagle flies away from from Gunnlöð.",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-US",
-     "PD-US/en",
-     "PD-US/layout"
-    ]
-   },
-   {
-    "file": "Odin and Gunnlöð by Frølich.jpg",
-    "width": 964,
-    "height": 1095,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Lorenz Frølich",
-    "date": "published 1895",
-    "credit": "Published in Gjellerup, Karl (1895). Den ældre Eddas Gudesange . Scanned from a 2001 reprint by bloodofox ( talk · contribs ).",
-    "description": "Odin embraces Gunnlöð while she holds a container full of the Mead of Poetry, accompying description found in Hávamál .",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old-100",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Odin bei Gunnlöd.png",
-    "width": 2105,
-    "height": 1787,
-    "mime": "image/png",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Johannes Gehrts (1855–1921)",
-    "date": "1888-01-01",
-    "credit": "https://archive.org/details/walhallgermanisc1888dahn/",
-    "description": "Odin (Óðinn) with Gunnlöð",
+    "artist": "Walter Crane",
+    "date": "1875-05-05",
+    "credit": "http://www.gutenberg.org/files/23521/23521-h/23521-h.htm",
+    "description": "Walter Crane, The Sleeping Beauty, page 2",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
      "PD-Layout",
      "PD-US-expired-text",
+     "PD-old-70-1923",
      "PD-old-70-expired",
      "PD-old-X-expired",
      "PD-old-text"
     ]
-   }
-  ],
-  "Suttung mead Odin": [
+   },
    {
-    "file": "Processed SAM mjodr.jpg",
-    "width": 924,
-    "height": 1128,
+    "file": "WalterCrane, The Sleeping Beauty-07.jpg",
+    "width": 492,
+    "height": 650,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "https://www.sagnanet.is and turned, cropped and colour-corrected with The GIMP Version 1.2.3.",
-    "date": "",
-    "credit": "A Norse mythology image from the 18th century Icelandic manuscript \"SÁM 66\", now in the care of the Árni Magnússon Institute in Iceland.",
-    "description": "Odin steals the mead from poetry and escapes from Suttung, both made in the form of an eagle. Illustration of an Icelandic manuscript from the 18th century.",
+    "artist": "Walter Crane",
+    "date": "1875-05-05",
+    "credit": "http://www.gutenberg.org/files/23521/23521-h/23521-h.htm",
+    "description": "Walter Crane, The Sleeping Beauty, page 7",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-70-1923",
+     "PD-old-70-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "WalterCrane, The Sleeping Beauty-05.jpg",
+    "width": 491,
+    "height": 650,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Walter Crane",
+    "date": "1875-05-05",
+    "credit": "http://www.gutenberg.org/files/23521/23521-h/23521-h.htm",
+    "description": "Walter Crane, The Sleeping Beauty, page 5",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-70-1923",
+     "PD-old-70-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "WalterCrane, The Sleeping Beauty-06.jpg",
+    "width": 493,
+    "height": 650,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Walter Crane",
+    "date": "1875-05-05",
+    "credit": "http://www.gutenberg.org/files/23521/23521-h/23521-h.htm",
+    "description": "Walter Crane, The Sleeping Beauty, page 6",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-70-1923",
+     "PD-old-70-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Walter Crane - The sleeping Beauty.jpg",
+    "width": 1073,
+    "height": 1820,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Walter Crane",
+    "date": "1882",
+    "credit": "Sotheby's, New York, 31 January 2020, lot 485",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Dornröschen Spinnrad Märchen Illustration": [],
+  "spinning wheel old woman painting 17th century": [
+   {
+    "file": "Gerard Dou- Woman Eating Porridge-1637.jpg",
+    "width": 3182,
+    "height": 4000,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Gerrit Dou",
+    "date": "1633",
+    "credit": "Sotheby's New York",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
@@ -651,28 +595,25 @@
      "PD-Art/en",
      "PD-Art/layout",
      "PD-Layout",
+     "PD-US-expired-text",
      "PD-art-category",
      "PD-art-category/core",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
     ]
-   }
-  ],
-  "Beowulf giant sword Grendel's mother": [],
-  "Beowulf slays Grendel's mother": [],
-  "Christopher Williams Ceridwen": [
+   },
    {
-    "file": "Ceridwen.jpg",
-    "width": 1200,
-    "height": 1757,
+    "file": "Esaias Boursse - Interior with an Old Woman at a Spinning Wheel - WGA2957.jpg",
+    "width": 932,
+    "height": 850,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Christopher Williams",
-    "date": "",
-    "credit": "1. Transferred from en.wikipedia to Commons by Pymouss using CommonsHelper . , ( Original text: Glynn Vivian Art Gallery ), (16 January 2010 (original upload date)), Original uploader was Skier Dude at en.wikipedia 2. Art UK",
+    "artist": "Esaias Boursse",
+    "date": "1667 date QS:P571,+1667-00-00T00:00:00Z/9",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"b/boursse/oldwoman\"",
     "description": "",
     "restrictions": "",
     "licenceTags": [
@@ -686,23 +627,52 @@
      "PD-art-category",
      "PD-art-category/core",
      "PD-old-X-expired",
-     "PD-old-auto-1923",
      "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "Pair Ceridwen 00.JPG",
-    "width": 1273,
-    "height": 684,
+    "file": "Quiringh Gerritsz van Brekelenkam Interieur mit einer jungen Frau am Spinnrad und einer Magd.jpg",
+    "width": 4288,
+    "height": 3124,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "photo by myself of original print in 1901 book; no copyright",
-    "date": "1901",
-    "credit": "J.M. Edwards 'Y Mabinogion', Wrexham., 1901",
-    "description": "Print by J.E.C. Williams in the book 'Y Mabinogion', trans. J.M. Edwards (Wrexham, 1901).",
+    "artist": "Quirijn van Brekelenkam",
+    "date": "1661 date QS:P571,+1661-00-00T00:00:00Z/9",
+    "credit": "http://www.dorotheum.com",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Schneewittchen Jüttner": [
+   {
+    "file": "Franz Jüttner Schneewittchen 2.jpg",
+    "width": 986,
+    "height": 758,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Franz Jüttner",
+    "date": "1910",
+    "credit": "http://www.digibib.tu-bs.de/?docid=00000165",
+    "description": "Franz Jüttner (1865–1925): Illustration from Schneewittchen , Scholz' Künstler-Bilderbücher, Mainz 1910",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
@@ -714,76 +684,17 @@
     ]
    },
    {
-    "file": "Dr Ceridwen Fraser.jpg",
-    "width": 391,
-    "height": 379,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 4.0",
-    "usage": "Creative Commons Attribution-Share Alike 4.0",
-    "copyrighted": "True",
-    "artist": "CridF",
-    "date": "2016-02-06",
-    "credit": "Own work",
-    "description": "Dr Ceridwen (Crid) Fraser in Antarctica, 2016",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-4.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham.jpg",
-    "width": 3442,
-    "height": 3386,
-    "mime": "image/jpeg",
-    "licence": "CC BY 4.0",
-    "usage": "Creative Commons Attribution 4.0",
-    "copyrighted": "True",
-    "artist": "Llywelyn2000",
-    "date": "2017-09-23 01:51:42",
-    "credit": "Own work",
-    "description": "A sculpture by Sam Holland (from Kent) of Ceridwen (from the Mabinonion) at the 2025 National Eisteddfod Wrexham. Sam Holland funded, created and transported the statue to the Maes out of her own pocket.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-4.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham b.jpg",
-    "width": 2957,
-    "height": 3483,
-    "mime": "image/jpeg",
-    "licence": "CC BY 4.0",
-    "usage": "Creative Commons Attribution 4.0",
-    "copyrighted": "True",
-    "artist": "Llywelyn2000",
-    "date": "2017-09-23 01:51:53",
-    "credit": "Own work",
-    "description": "A sculpture by Sam Holland (from Kent) of Ceridwen (from the Mabinonion) at the 2025 National Eisteddfod Wrexham. Sam Holland funded, created and transported the statue to the Maes out of her own pocket.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-4.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Ceridwen cauldron": [
-   {
-    "file": "Pair Ceridwen 00.JPG",
-    "width": 1273,
-    "height": 684,
+    "file": "Franz Jüttner Schneewittchen 3.jpg",
+    "width": 985,
+    "height": 761,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "photo by myself of original print in 1901 book; no copyright",
-    "date": "1901",
-    "credit": "J.M. Edwards 'Y Mabinogion', Wrexham., 1901",
-    "description": "Print by J.E.C. Williams in the book 'Y Mabinogion', trans. J.M. Edwards (Wrexham, 1901).",
+    "artist": "Franz Jüttner",
+    "date": "between 1905 and 1910 date QS:P,+1950-00-00T00:00:00Z/7,P1319,+1905-00-00T00:00:00Z/9,P1326,+1910-00-00T00:00:00Z/9",
+    "credit": "http://www.digibib.tu-bs.de/?docid=00000165",
+    "description": "Franz Jüttner (1865–1925): Illustration from Sneewittchen , Scholz' Künstler-Bilderbücher, Mainz 1905",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
@@ -795,558 +706,398 @@
     ]
    },
    {
-    "file": "Mouth of the Witches' Cauldron - geograph.org.uk - 1397368.jpg",
-    "width": 640,
-    "height": 480,
+    "file": "Franz Jüttner Schneewittchen 4.jpg",
+    "width": 979,
+    "height": 757,
     "mime": "image/jpeg",
-    "licence": "CC BY-SA 2.0",
-    "usage": "Creative Commons Attribution-Share Alike 2.0",
-    "copyrighted": "True",
-    "artist": "ceridwen",
-    "date": "2009-07-09",
-    "credit": "From geograph.org.uk",
-    "description": "Mouth of the Witches' Cauldron The opening through which the sea enters the Cauldron, the collapsed cave system hollowed out by the sea. Usually this is a site of swirling waves and surging surf but on a calm afternoon at low tide the area ",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-2.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Traeth Bach at low tide - geograph.org.uk - 1397353.jpg",
-    "width": 640,
-    "height": 480,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 2.0",
-    "usage": "Creative Commons Attribution-Share Alike 2.0",
-    "copyrighted": "True",
-    "artist": "ceridwen",
-    "date": "2009-07-09",
-    "credit": "From geograph.org.uk",
-    "description": "Traeth Bach at low tide Looking inland towards the valley below Treriffeth. The sea-sculpted rocks are exposed at low water. The Witches' Cauldron is directly to the left of the image.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-2.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Winkles below the Witches' Cauldron - geograph.org.uk - 1397337.jpg",
-    "width": 640,
-    "height": 480,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 2.0",
-    "usage": "Creative Commons Attribution-Share Alike 2.0",
-    "copyrighted": "True",
-    "artist": "ceridwen",
-    "date": "2009-07-09",
-    "credit": "From geograph.org.uk",
-    "description": "Winkles below the Witches' Cauldron Large numbers of edible winkles or periwinkles (Littorina littorea) are to be found at low tide on the rocks of Traeth Bach below the Witches' Cauldron - and make indeed a good addition anyone's cauldron,",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-2.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Cerridwens Cauldron New Logo Bronze Plate - Flickr - Elicio Ember.png",
-    "width": 1024,
-    "height": 1024,
-    "mime": "image/png",
-    "licence": "CC BY-SA 2.0",
-    "usage": "Creative Commons Attribution-Share Alike 2.0",
-    "copyrighted": "True",
-    "artist": "Elicio Ember",
-    "date": "Taken on 9 July 2022, 06:42",
-    "credit": "Cerridwens Cauldron New Logo Bronze Plate",
-    "description": "New Logo, Bronze Plate Version",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-2.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Snow White poisoned apple illustration": [
-   {
-    "file": "Snow White Poisoned Apple.png",
-    "width": 737,
-    "height": 706,
-    "mime": "image/png",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "",
-    "date": "",
-    "credit": "Image provided by Landsbókasafn Íslands",
-    "description": "An illustration from page 23 of Mjallhvít (Snow White) an 1852 icelandic translation of the Grimm-version fairytale.",
+    "artist": "Franz Jüttner",
+    "date": "between 1905 and 1910 date QS:P,+1950-00-00T00:00:00Z/7,P1319,+1905-00-00T00:00:00Z/9,P1326,+1910-00-00T00:00:00Z/9",
+    "credit": "http://www.digibib.tu-bs.de/?docid=00000165",
+    "description": "Franz Jüttner (1865–1925): Illustration from Sneewittchen , Scholz' Künstler-Bilderbücher, Mainz 1905",
     "restrictions": "",
     "licenceTags": [
+     "Cc-pd-mark-footer",
      "License template tag",
-     "PD-Gutenberg",
-     "PD-Gutenberg/en",
-     "PD-Gutenberg/layout",
-     "PD-Layout"
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
     ]
    },
    {
-    "file": "Cultivation of the apple in Canada with descriptions and lists of varieties. (1925) (20624822060).jpg",
-    "width": 1944,
-    "height": 1376,
+    "file": "Franz Jüttner Schneewittchen 5.jpg",
+    "width": 892,
+    "height": 673,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Franz Jüttner",
+    "date": "between 1905 and 1910 date QS:P,+1950-00-00T00:00:00Z/7,P1319,+1905-00-00T00:00:00Z/9,P1326,+1910-00-00T00:00:00Z/9",
+    "credit": "http://www.digibib.tu-bs.de/?docid=00000165",
+    "description": "Franz Jüttner (1865–1925): Illustration from Sneewittchen , Scholz' Künstler-Bilderbücher, Mainz 1905",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Franz Jüttner Schneewittchen 7.jpg",
+    "width": 991,
+    "height": 766,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Franz Jüttner",
+    "date": "between 1905 and 1910 date QS:P,+1950-00-00T00:00:00Z/7,P1319,+1905-00-00T00:00:00Z/9,P1326,+1910-00-00T00:00:00Z/9",
+    "credit": "http://www.digibib.tu-bs.de/?docid=00000165",
+    "description": "Franz Jüttner (1865–1925): Illustration from Sneewittchen , Scholz' Künstler-Bilderbücher, Mainz 1905",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   }
+  ],
+  "Snow White Walter Crane": [
+   {
+    "file": "Household stories from the collection of the Bros. Grimm (1922) (14750598534).jpg",
+    "width": 1508,
+    "height": 1984,
     "mime": "image/jpeg",
     "licence": "No restrictions",
     "usage": "No known copyright restrictions",
     "copyrighted": "True",
     "artist": "Internet Archive Book Images",
-    "date": "1925",
-    "credit": "https://www.flickr.com/photos/internetarchivebookimages/20624822060/ Source book page: https://archive.org/stream/cultivationofapp55davi/#page/n20/mode/1up",
-    "description": "Title : Cultivation of the apple in Canada with descriptions and lists of varieties. Identifier : cultivationofapp55davi ( find matches ) Year : 1925 ( 1920s ) Authors : Davis, M. B ; Canada. Dept. of Agriculture. Dominion Experimental Farm",
+    "date": "1922",
+    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14750598534/ Source book page: https://archive.org/stream/householdstories00grim/householdstories00grim#page/n245/mode/1up",
+    "description": "Identifier : householdstories00grim ( find matches ) Title : Household stories from the collection of the Bros. Grimm Year : 1922 ( 1920s ) Authors : Grimm, Jacob, 1785-1863 Grimm, Wilhelm, 1786-1859 Crane, Lucy, 1842-1882 Crane, Walter, 18",
     "restrictions": "",
     "licenceTags": [
      "License template tag"
     ]
    },
    {
-    "file": "Snow White and the Seven Dwarfs - 53078643357 - Jack Zipes Historic Fairy Tale Postcard Collection - Kubel, Otto (German, 1868-1951).jpg",
-    "width": 674,
-    "height": 1024,
-    "mime": "image/jpeg",
-    "licence": "CC BY 2.0",
-    "usage": "Creative Commons Attribution 2.0",
-    "copyrighted": "True",
-    "artist": "MCAD Library",
-    "date": "2023-05-19 12:19:34",
-    "credit": "https://www.flickr.com/photos/69184488@N06/53078643357/",
-    "description": "Snow White and the Seven Dwarfs Record number: 23051801 Artist: Kubel, Otto (German, 1868-1951) Item caption, front: Brüder Grimm / Schneewittchen / O. Kubel, pinx. Item caption/descriptive text, back: 4. Schneewittchen hütete nun Tag für T",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-2.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Schneewittchen Apfel": [
-   {
-    "file": "Snow White and the Seven Dwarfs - 53078643357 - Jack Zipes Historic Fairy Tale Postcard Collection - Kubel, Otto (German, 1868-1951).jpg",
-    "width": 674,
-    "height": 1024,
-    "mime": "image/jpeg",
-    "licence": "CC BY 2.0",
-    "usage": "Creative Commons Attribution 2.0",
-    "copyrighted": "True",
-    "artist": "MCAD Library",
-    "date": "2023-05-19 12:19:34",
-    "credit": "https://www.flickr.com/photos/69184488@N06/53078643357/",
-    "description": "Snow White and the Seven Dwarfs Record number: 23051801 Artist: Kubel, Otto (German, 1868-1951) Item caption, front: Brüder Grimm / Schneewittchen / O. Kubel, pinx. Item caption/descriptive text, back: 4. Schneewittchen hütete nun Tag für T",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-2.0",
-     "Cc-by-layout",
-     "License template tag"
-    ]
-   }
-  ],
-  "Hansel Gretel gingerbread house": [
-   {
-    "file": "Gingerbread house witch.JPG",
-    "width": 4288,
-    "height": 2848,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 3.0",
-    "usage": "Creative Commons Attribution-Share Alike 3.0",
-    "copyrighted": "True",
-    "artist": "Zelda F. Scott",
-    "date": "2009-12-24",
-    "credit": "Own work",
-    "description": "Witch infront of a gingerbread house",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-3.0,2.5,2.0,1.0",
-     "Cc-by-sa-layout",
-     "GFDL",
-     "License migration",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Hansel and gretel.JPG",
-    "width": 4288,
-    "height": 2848,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 3.0",
-    "usage": "Creative Commons Attribution-Share Alike 3.0",
-    "copyrighted": "True",
-    "artist": "Zelda F. Scott",
-    "date": "2009-12-24",
-    "credit": "Own work",
-    "description": "Hansel and Gretel infront of a gingerbread house",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-3.0,2.5,2.0,1.0",
-     "Cc-by-sa-layout",
-     "GFDL",
-     "License migration",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Hansel and Gretel.jpg",
-    "width": 1123,
-    "height": 1086,
-    "mime": "image/jpeg",
+    "file": "Household stories Bros Grimm (L & W Crane) plate facing p213.png",
+    "width": 1568,
+    "height": 2500,
+    "mime": "image/png",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Sue Clark Malcom McGregor Jamieson",
-    "date": "2009-04-17 07:07:06",
-    "credit": "Flickr : Hansel and Gretel",
-    "description": "Public domain image from the book, Dramatic Reader For Lower Grades, by Florence Holbrook, Copyright 1911, page 118. This is Hansel and Gretel meeting the witch at the gingerbread house. Flickr data on 2011-08-16: Tags: image, illustration,",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-1923",
-     "PD-Layout",
-     "PD-US-expired",
-     "PD-US-expired-text",
-     "PD-US-expired/en",
-     "PD-US-expired/layout"
-    ]
-   },
-   {
-    "file": "001 1984 12 24 Gebaeck und Kuchen.jpg",
-    "width": 2616,
-    "height": 1911,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 4.0",
-    "usage": "Creative Commons Attribution-Share Alike 4.0",
-    "copyrighted": "True",
-    "artist": "Friedrich Haag",
-    "date": "Taken on 24.12.1984 00:00:05",
-    "credit": "Self-photographed",
-    "description": "Gingerbread house with Hansel and Gretel .",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-4.0",
-     "Cc-by-sa-layout",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Gingerbread house witch (cropped).JPG",
-    "width": 4288,
-    "height": 798,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 3.0",
-    "usage": "Creative Commons Attribution-Share Alike 3.0",
-    "copyrighted": "True",
-    "artist": "Zelda F. Scott",
-    "date": "2009-12-24",
-    "credit": "Own work",
-    "description": "Witch infront of a gingerbread house",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-3.0,2.5,2.0,1.0",
-     "Cc-by-sa-layout",
-     "GFDL",
-     "License migration",
-     "License template tag"
-    ]
-   }
-  ],
-  "Hänsel und Gretel Lebkuchenhaus": [
-   {
-    "file": "Hansel and gretel.JPG",
-    "width": 4288,
-    "height": 2848,
-    "mime": "image/jpeg",
-    "licence": "CC BY-SA 3.0",
-    "usage": "Creative Commons Attribution-Share Alike 3.0",
-    "copyrighted": "True",
-    "artist": "Zelda F. Scott",
-    "date": "2009-12-24",
-    "credit": "Own work",
-    "description": "Hansel and Gretel infront of a gingerbread house",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-by-sa-3.0,2.5,2.0,1.0",
-     "Cc-by-sa-layout",
-     "GFDL",
-     "License migration",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Josef Zeitler, 046.jpg",
-    "width": 1712,
-    "height": 2114,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Unknown author Unknown author",
-    "date": "1909",
-    "credit": "Julius Baum: Sanierung der Altstadt in Stuttgart. In: Architektonische Rundschau Band 25, 1909, Tafel 91.",
-    "description": "Erker im ersten Stock des Bäckerhauses Geißstraße 15 in Stuttgart mit Bildhauerschmuck von de:Josef Zeitler , 1906–1909. Die Relieftafel an der Brüstung stellt eine Szene aus dem Märchen „Hänsel und Gretel“ dar (Hänsel und Gretel und die He",
+    "artist": "Walter Crane",
+    "date": "1920",
+    "credit": "Internet Archive identifier: householdstories00grim2",
+    "description": "Illustration from Household stories from the collection of the Bros. Grimm, Lucy Crane [translator]; Walter Crane [illustrator] original printing 1882",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
      "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text",
+     "PD-scan",
+     "PD-scan/en",
+     "PD-scan/layout"
+    ]
+   },
+   {
+    "file": "Household stories Bros Grimm (L & W Crane) headpiece p213.png",
+    "width": 1399,
+    "height": 484,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Walter Crane",
+    "date": "1920",
+    "credit": "Internet Archive identifier: householdstories00grim2",
+    "description": "Illustration from Household stories from the collection of the Bros. Grimm, Lucy Crane [translator]; Walter Crane [illustrator] original printing 1882",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text",
+     "PD-scan",
+     "PD-scan/en",
+     "PD-scan/layout"
+    ]
+   },
+   {
+    "file": "Household stories Bros Grimm (L & W Crane) initial p213.png",
+    "width": 468,
+    "height": 471,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Walter Crane",
+    "date": "1920",
+    "credit": "Internet Archive identifier: householdstories00grim2",
+    "description": "Illustration from Household stories from the collection of the Bros. Grimm, Lucy Crane [translator]; Walter Crane [illustrator] original printing 1882",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text",
+     "PD-scan",
+     "PD-scan/en",
+     "PD-scan/layout"
+    ]
+   },
+   {
+    "file": "Household stories Bros Grimm (L & W Crane) tailpiece p221.png",
+    "width": 1163,
+    "height": 615,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Walter Crane",
+    "date": "1920",
+    "credit": "Internet Archive identifier: householdstories00grim2",
+    "description": "Illustration from Household stories from the collection of the Bros. Grimm, Lucy Crane [translator]; Walter Crane [illustrator] original printing 1882",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text",
+     "PD-scan",
+     "PD-scan/en",
+     "PD-scan/layout"
+    ]
+   }
+  ],
+  "Snow White queen apple Grimm illustration 1900s": [],
+  "Hänsel und Gretel Offterdinger": [
+   {
+    "file": "Offterdinger Hansel und Gretel (1).jpg",
+    "width": 2104,
+    "height": 2900,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Carl Offterdinger",
+    "date": "end of the 19th century",
+    "credit": "Mein erstes Märchenbuch, Verlag Wilh. Effenberger, Stuttgart, end of the 19th century. See Cover and title page",
+    "description": "Hansel and Gretel , illustration by Carl Offterdinger",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
      "PD-old-100",
      "PD-old-text",
      "PD-old-warning-text"
     ]
    },
    {
-    "file": "001 1984 12 24 Gebaeck und Kuchen.jpg",
-    "width": 2616,
-    "height": 1911,
+    "file": "Hansel und Gretel (2).jpg",
+    "width": 2024,
+    "height": 2792,
     "mime": "image/jpeg",
-    "licence": "CC BY-SA 4.0",
-    "usage": "Creative Commons Attribution-Share Alike 4.0",
-    "copyrighted": "True",
-    "artist": "Friedrich Haag",
-    "date": "Taken on 24.12.1984 00:00:05",
-    "credit": "Self-photographed",
-    "description": "Gingerbread house with Hansel and Gretel .",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Leutemann or Offterdinger , photo by Harke",
+    "date": "end of the 19th century",
+    "credit": "Mein erstes Märchenbuch, Verlag Wilh. Effenberger, Stuttgart, end of the 19th century. See Cover and title page",
+    "description": "Hansel and Gretel , illustration by Heinrich Leutemann or Carl Offterdinger",
     "restrictions": "",
     "licenceTags": [
-     "Cc-by-sa-4.0",
-     "Cc-by-sa-layout",
-     "License template tag"
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
     ]
-   },
+   }
+  ],
+  "Hänsel und Gretel Hexenhaus Illustration 19. Jahrhundert": [],
+  "Beowulf Hrunting sword illustration": [
    {
-    "file": "1. Mai, Bikás Park, Barta-Süßigkeiten, 'Hänsel und Gretel Lebkuchenhaus', 2024 Kelenföld.jpg",
-    "width": 2191,
-    "height": 1415,
+    "file": "Siegfried, the hero of the North, and Beowulf, the hero of the Anglo-Saxons (1909) (14566643048).jpg",
+    "width": 2384,
+    "height": 1502,
     "mime": "image/jpeg",
-    "licence": "CC BY-SA 4.0",
-    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "licence": "No restrictions",
+    "usage": "No known copyright restrictions",
     "copyrighted": "True",
-    "artist": "Globetrotter19",
-    "date": "Taken on 1 May 2024",
-    "credit": "Own work",
-    "description": "Barta sweets, 'Hansel and Gretel's gingerbread house' food stand. - Bikás parki majális 2024 (~May Feast 2024 in Bikás Park). Organized by Our Homeland Movement Party. The main organizer of the event, party vice president Előd Novák . Tents",
+    "artist": "Internet Archive Book Images",
+    "date": "1909",
+    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14566643048/ Source book page: https://archive.org/stream/siegfriedheroofn00rago/siegfriedheroofn00rago#page/n314/mode/1up",
+    "description": "Identifier : siegfriedheroofn00rago ( find matches ) Title : Siegfried, the hero of the North, and Beowulf, the hero of the Anglo-Saxons Year : 1909 ( 1900s ) Authors : Ragozin, Zénaïde A. (Zénaïde Alexeïevna), 1835-1924 Tobin, George T. (G",
     "restrictions": "",
     "licenceTags": [
-     "Cc-by-sa-4.0",
-     "Cc-by-sa-layout",
      "License template tag"
     ]
    }
-  ]
+  ],
+  "Beowulf cave sword giants": []
  },
  "categories": {},
  "peek": [
   {
-   "file": "Siegfried badet im Drachenblut (Schindler).jpg",
+   "file": "John William Waterhouse - Magic Circle.JPG",
    "saved": "00.jpg"
   },
   {
-   "file": "Das Bad im Drachenblut 02.jpg",
+   "file": "The magic circle, by John William Waterhouse.jpg",
    "saved": "01.jpg"
   },
   {
-   "file": "Das Bad im Drachenblut 05.jpg",
+   "file": "John William Waterhouse - The Magic Circle (study).jpg",
    "saved": "02.jpg"
   },
   {
-   "file": "Das Bad im Drachenblut 04.jpg",
+   "file": "The Magic Circle - John William Waterhouse.jpg",
    "saved": "03.jpg"
   },
   {
-   "file": "Das Bad im Drachenblut 03 Infoboard.jpg",
+   "file": "John William Waterhouse - Magic Circle (cropped).JPG",
    "saved": "04.jpg"
   },
   {
-   "file": "Das Bad im Drachenblut 01.jpg",
+   "file": "Circe Invidiosa - John William Waterhouse.jpg",
    "saved": "05.jpg"
   },
   {
-   "file": "Idun and the Apples.jpg",
+   "file": "J. W. Waterhouse - Circe Invidiosa - Google Art Project.jpg",
    "saved": "06.jpg"
   },
   {
-   "file": "Idun and the Apples by James Doyle Penrose, 1890.jpg",
+   "file": "Waterhouse, Circe Invidiosa, detail.jpg",
    "saved": "07.jpg"
   },
   {
-   "file": "Sleeping Beauty - Jack Zipes Historic Fairy Tale Postcard Collection - Dornröschen - Uncredited artist - 1899 or earlier.jpg",
+   "file": "John William Waterhouse \"Circe Invidiosa\" 1892.jpg",
    "saved": "08.jpg"
   },
   {
-   "file": "Sleeping Beauty - 53076704993 - Jack Zipes Historic Fairy Tale Postcard Collection - Dornröschen - Uncredited artist - 1905 or earlier.jpg",
+   "file": "John william waterhouse, circe invidiosa, 1892 (adelaide, art gallery of south australia) 01.jpg",
    "saved": "09.jpg"
   },
   {
-   "file": "Elise Goebeler - Dornröschen 1881.jpg",
+   "file": "WalterCrane, The Sleeping Beauty-02.jpg",
    "saved": "10.jpg"
   },
   {
-   "file": "Sleeping Beauty - 53076406329 - Jack Zipes Historic Fairy Tale Postcard Collection - Dornröschen - Kubel, Otto (German, 1868-1951).jpg",
+   "file": "WalterCrane, The Sleeping Beauty-07.jpg",
    "saved": "11.jpg"
   },
   {
-   "file": "Wiktor Michajlowitsch Wassnezow 004.jpg",
+   "file": "WalterCrane, The Sleeping Beauty-05.jpg",
    "saved": "12.jpg"
   },
   {
-   "file": "Ivan Tsarevich and the Grey Wolf (Zvorykin).jpg",
+   "file": "WalterCrane, The Sleeping Beauty-06.jpg",
    "saved": "13.jpg"
   },
   {
-   "file": "Ivan Tsarevich and the Grey Wolf (Zvorykin) 2.jpg",
+   "file": "Walter Crane - The sleeping Beauty.jpg",
    "saved": "14.jpg"
   },
   {
-   "file": "Moscou, galerie Tretiakov Ivan-Tsarevitch at the Grey Wolf (Vasnetsov).jpg",
+   "file": "Gerard Dou- Woman Eating Porridge-1637.jpg",
    "saved": "15.jpg"
   },
   {
-   "file": "Ivan-Tsarevitch at the Grey Wolf 01 by shakko.jpg",
+   "file": "Esaias Boursse - Interior with an Old Woman at a Spinning Wheel - WGA2957.jpg",
    "saved": "16.jpg"
   },
   {
-   "file": "Water Bewitched — The fairy tales of science.jpg",
+   "file": "Quiringh Gerritsz van Brekelenkam Interieur mit einer jungen Frau am Spinnrad und einer Magd.jpg",
    "saved": "17.jpg"
   },
   {
-   "file": "The fairy tales of the Brothers Grimm (1916) (14596242367).jpg",
+   "file": "Franz Jüttner Schneewittchen 2.jpg",
    "saved": "18.jpg"
   },
   {
-   "file": "Illustration at page 266 in Grimm's Household Tales (Edwardes, Bell).png",
+   "file": "Franz Jüttner Schneewittchen 3.jpg",
    "saved": "19.jpg"
   },
   {
-   "file": "Page 233 of Fairy tales and stories (Andersen, Tegner).jpg",
+   "file": "Franz Jüttner Schneewittchen 4.jpg",
    "saved": "20.jpg"
   },
   {
-   "file": "Image from page 204 of \"The pink fairy book\" (1897).jpg",
+   "file": "Franz Jüttner Schneewittchen 5.jpg",
    "saved": "21.jpg"
   },
   {
-   "file": "Odin, Suttungr and Gunnlöd.jpg",
+   "file": "Franz Jüttner Schneewittchen 7.jpg",
    "saved": "22.jpg"
   },
   {
-   "file": "Odin with Gunnlöd by Johannes Gehrts.jpg",
+   "file": "Household stories from the collection of the Bros. Grimm (1922) (14750598534).jpg",
    "saved": "23.jpg"
   },
   {
-   "file": "Odin and Gunnlöð by George Wright.jpg",
+   "file": "Household stories Bros Grimm (L & W Crane) plate facing p213.png",
    "saved": "24.jpg"
   },
   {
-   "file": "Odin and Gunnlöð by Frølich.jpg",
+   "file": "Household stories Bros Grimm (L & W Crane) headpiece p213.png",
    "saved": "25.jpg"
   },
   {
-   "file": "Odin bei Gunnlöd.png",
+   "file": "Household stories Bros Grimm (L & W Crane) initial p213.png",
    "saved": "26.jpg"
   },
   {
-   "file": "Processed SAM mjodr.jpg",
+   "file": "Household stories Bros Grimm (L & W Crane) tailpiece p221.png",
    "saved": "27.jpg"
   },
   {
-   "file": "Ceridwen.jpg",
+   "file": "Offterdinger Hansel und Gretel (1).jpg",
    "saved": "28.jpg"
   },
   {
-   "file": "Pair Ceridwen 00.JPG",
+   "file": "Hansel und Gretel (2).jpg",
    "saved": "29.jpg"
   },
   {
-   "file": "Dr Ceridwen Fraser.jpg",
+   "file": "Siegfried, the hero of the North, and Beowulf, the hero of the Anglo-Saxons (1909) (14566643048).jpg",
    "saved": "30.jpg"
-  },
-  {
-   "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham.jpg",
-   "saved": "31.jpg"
-  },
-  {
-   "file": "Cerflun o Geridwen (Ceridwen) yn Eisteddfod Wrecsam - A sculpture of Ceridwen (Mabinonion) at the 2025 National Eisteddfod Wrexham b.jpg",
-   "saved": "32.jpg"
-  },
-  {
-   "file": "Pair Ceridwen 00.JPG",
-   "saved": "33.jpg"
-  },
-  {
-   "file": "Mouth of the Witches' Cauldron - geograph.org.uk - 1397368.jpg",
-   "saved": "34.jpg"
-  },
-  {
-   "file": "Traeth Bach at low tide - geograph.org.uk - 1397353.jpg",
-   "saved": "35.jpg"
-  },
-  {
-   "file": "Winkles below the Witches' Cauldron - geograph.org.uk - 1397337.jpg",
-   "saved": "36.jpg"
-  },
-  {
-   "file": "Cerridwens Cauldron New Logo Bronze Plate - Flickr - Elicio Ember.png",
-   "saved": "37.jpg"
-  },
-  {
-   "file": "Snow White Poisoned Apple.png",
-   "saved": "38.jpg"
-  },
-  {
-   "file": "Cultivation of the apple in Canada with descriptions and lists of varieties. (1925) (20624822060).jpg",
-   "saved": "39.jpg"
-  },
-  {
-   "file": "Snow White and the Seven Dwarfs - 53078643357 - Jack Zipes Historic Fairy Tale Postcard Collection - Kubel, Otto (German, 1868-1951).jpg",
-   "saved": "40.jpg"
-  },
-  {
-   "file": "Snow White and the Seven Dwarfs - 53078643357 - Jack Zipes Historic Fairy Tale Postcard Collection - Kubel, Otto (German, 1868-1951).jpg",
-   "saved": "41.jpg"
-  },
-  {
-   "file": "Gingerbread house witch.JPG",
-   "saved": "42.jpg"
-  },
-  {
-   "file": "Hansel and gretel.JPG",
-   "saved": "43.jpg"
-  },
-  {
-   "file": "Hansel and Gretel.jpg",
-   "saved": "44.jpg"
-  },
-  {
-   "file": "001 1984 12 24 Gebaeck und Kuchen.jpg",
-   "saved": "45.jpg"
-  },
-  {
-   "file": "Gingerbread house witch (cropped).JPG",
-   "saved": "46.jpg"
-  },
-  {
-   "file": "Hansel and gretel.JPG",
-   "saved": "47.jpg"
-  },
-  {
-   "file": "Josef Zeitler, 046.jpg",
-   "saved": "48.jpg"
-  },
-  {
-   "file": "001 1984 12 24 Gebaeck und Kuchen.jpg",
-   "saved": "49.jpg"
-  },
-  {
-   "file": "1. Mai, Bikás Park, Barta-Süßigkeiten, 'Hänsel und Gretel Lebkuchenhaus', 2024 Kelenföld.jpg",
-   "saved": "50.jpg"
   }
  ]
 }
