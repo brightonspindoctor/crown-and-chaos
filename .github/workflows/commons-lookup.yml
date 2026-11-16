@@ -1,0 +1,28 @@
+name: Commons lookup
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["art/lookups.json"]
+
+permissions:
+  contents: write
+
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/commons-lookup.mjs
+      - name: Commit the report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add art/lookup-report.json
+          git diff --cached --quiet || git commit -m "Commons lookup report"
+          git pull --rebase
+          git push
