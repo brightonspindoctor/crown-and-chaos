@@ -1,6 +1,85 @@
 {
-  "ranAt": "2026-11-16T08:50:17.544Z",
-  "fetched": [],
+  "ranAt": "2026-11-16T09:05:14.610Z",
+  "fetched": [
+    {
+      "id": "golden-apple",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Idun_and_the_Apples_by_James_Doyle_Penrose%2C_1890.jpg?width=3000",
+      "bytes": 1496111
+    },
+    {
+      "id": "mead-of-poetry",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odin_bei_Gunnl%C3%B6d.png",
+      "bytes": 4909700
+    },
+    {
+      "id": "water-of-life",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wiktor_Michajlowitsch_Wassnezow_004.jpg",
+      "bytes": 803439
+    },
+    {
+      "id": "draught-of-the-cauldron",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Magic_Circle_-_John_William_Waterhouse.jpg",
+      "bytes": 3941283
+    },
+    {
+      "id": "poisoned-apple",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Franz_J%C3%BCttner_Schneewittchen_4.jpg",
+      "bytes": 586913
+    },
+    {
+      "id": "spindle",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elise_Goebeler_-_Dornr%C3%B6schen_1881.jpg",
+      "bytes": 383179
+    },
+    {
+      "id": "the-giants-sword",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_beowulf_fighting_the_dragon.jpg",
+      "bytes": 693802
+    },
+    {
+      "id": "mead-of-heorot",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_beowulf_queen_poring_wine.jpg",
+      "bytes": 666312
+    },
+    {
+      "id": "skull-lantern",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Russian_Wonder_Tales_081.jpg",
+      "bytes": 676079
+    },
+    {
+      "id": "dragons-blood",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Siegfried_and_the_Twilight_of_the_Gods_p_062.jpg",
+      "bytes": 2484990
+    },
+    {
+      "id": "gingerbread",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Offterdinger_Hansel_und_Gretel_(1).jpg",
+      "bytes": 5043194
+    },
+    {
+      "id": "poisoned-apple-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Household_stories_Bros_Grimm_(L_%26_W_Crane)_plate_facing_p213.png",
+      "bytes": 1909948
+    },
+    {
+      "id": "spindle-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quiringh_Gerritsz_van_Brekelenkam_Interieur_mit_einer_jungen_Frau_am_Spinnrad_und_einer_Magd.jpg?width=3000",
+      "bytes": 2825770
+    }
+  ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -105,6 +184,8 @@
     "gwydion-blodeuwedd-plate",
     "vasilisa-the-wise-variant-2",
     "gwydion-variant",
-    "leshy-variant"
+    "leshy-variant",
+    "draught-of-the-cauldron-variant",
+    "dragons-blood-variant"
   ]
 }
