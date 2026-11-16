@@ -1,31 +1,6 @@
 {
-  "ranAt": "2026-11-16T06:16:33.407Z",
-  "fetched": [
-    {
-      "id": "lancelot-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lancelot_and_Guinevere_by_Herbert_James_Draper.jpg",
-      "bytes": 812976
-    },
-    {
-      "id": "red-riding-hood-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arthur_Rackham_Little_Red_Riding_Hood%2B.jpg",
-      "bytes": 216608
-    },
-    {
-      "id": "beowulf-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_beowulf_wiglaf_and_beowulf.jpg",
-      "bytes": 2282820
-    },
-    {
-      "id": "grendel-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_beowulf_head_of_grendel.jpg",
-      "bytes": 1743650
-    }
-  ],
+  "ranAt": "2026-11-16T06:18:42.804Z",
+  "fetched": [],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -77,7 +52,11 @@
     "the-little-mermaid-variant",
     "the-tin-soldier-variant",
     "vasilisa-the-wise-variant",
-    "merlin-variant"
+    "merlin-variant",
+    "guinevere-variant-2",
+    "red-riding-hood-variant",
+    "beowulf-variant",
+    "grendel-variant"
   ],
   "unresolved": [
     {
