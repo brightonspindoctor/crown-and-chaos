@@ -78,5 +78,4 @@ Generated from `art/manifest.json` by `scripts/build-credits.mjs`. Do not edit b
 - **The North Cape** (board): Peder Balke, *The North Cape by Moonlight* (1848). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Peder_Balke_-_The_North_Cape_by_Moonlight_-_2019.167.4_-_Metropolitan_Museum_of_Art.jpg). CC0.
 - **The Dark Forest** (board): Caspar David Friedrich, *The Chasseur in the Forest* (1814). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_068.jpg). Public domain.
 - **The Spinning Room** (board): Diego Velázquez, *The Spinners (Las Hilanderas)* (c. 1657). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Velazquez-las_hilanderas.jpg). Public domain.
-- **The Fjord Valley** (board): Johan Christian Dahl, *View from Stalheim* (1842). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dahl-Stalheim.jpg). Public domain.
-- **The Edge of the World** (board): Peder Balke, *The North Cape* (1840s). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Nordkapp_(North_Cape)_by_Peder_Balke,_1840s_or_1850s.JPG). Public domain.
+- **The Northlands** (board): Johan Christian Dahl, *View from Stalheim* (1842). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dahl-Stalheim.jpg). Public domain.

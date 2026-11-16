@@ -1,24 +1,29 @@
 {
  "peekSearches": [
-  "Gustave Doré compère le Loup Chaperon",
-  "Doré Perrault 1862 Petit Chaperon rouge bois loup",
-  "Fonds Jules Verne Château des Carpathes",
-  "Pedersen tin soldier nursery Andersen",
-  "Christopher Williams Branwen painting",
-  "Guest Mabinogion 1849 woodcut",
-  "Rhiannon Pwyll illustration 19th century"
+  "Doré Little Red Riding Hood meeting wolf",
+  "Doré Red Riding Hood wolf forest 1862",
+  "Gustave Doré Le Petit Chaperon rouge 1",
+  "Carl Larsson Ett hem nursery",
+  "Carl Larsson children room",
+  "Château des Carpathes 1892 illustration château",
+  "Lleu Llaw Gyffes eagle oak Gwydion",
+  "Mabinogion Math Gwydion illustration 1900s"
  ],
- "iaPages": [
+ "iaFull": [
   {
-   "id": "10035526bsb",
-   "from": 0,
-   "to": 418,
-   "step": 1
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 112,
+   "name": "rhead-112"
   },
   {
    "id": "boldrobinhoodhis00rheauoft",
-   "from": 90,
-   "to": 145
+   "page": 118,
+   "name": "rhead-118"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 138,
+   "name": "rhead-138"
   }
  ]
 }
