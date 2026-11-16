@@ -23,6 +23,23 @@ The design reasoning lives in the design doc; this repository holds the data the
 - Stand-in paintings, such as the Bride's, are credited by their own title, never as the character.
 - An image marked `to-confirm` or `open` must not ship.
 
+## Cropping
+
+Each downloaded image has `size` and `crops` in the manifest. Crops are keyed by card id, because two cards can share one painting (Victor and the Creature) and need different cuts.
+
+- `window`: the 17:10 art window on a framed card.
+- `full`: the 5:7 full-bleed card. The subject sits in the top half, clear of the text panel.
+- `board`: the 16:10 battle backdrop.
+
+Each crop is `[x, y, width, height]` as fractions of the image. To show one in CSS on an element of the right shape:
+
+```css
+background-size: calc(100% / width) calc(100% / height);
+background-position: calc(100% * x / (1 - width)) calc(100% * y / (1 - height));
+```
+
+Use `0` for a position whose width or height is 1. `art/crop-preview/` shows every crop in a card frame. An image downloaded later has no `size` or `crops` until someone has looked at it and added them. Once `size` is set, `validate.mjs` fails on a missing or misshapen crop and warns when a crop is too small to be sharp.
+
 ## Hero status
 
 - `reviewed`: stats and abilities agreed.
