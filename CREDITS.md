@@ -79,3 +79,4 @@ Generated from `art/manifest.json` by `scripts/build-credits.mjs`. Do not edit b
 - **The Dark Forest** (board): Caspar David Friedrich, *The Chasseur in the Forest* (1814). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_068.jpg). Public domain.
 - **The Spinning Room** (board): Diego Velázquez, *The Spinners (Las Hilanderas)* (c. 1657). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Velazquez-las_hilanderas.jpg). Public domain.
 - **The Northlands** (board): Johan Christian Dahl, *View from Stalheim* (1842). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dahl-Stalheim.jpg). Public domain.
+- **The Kitchen Stove** (board): Carl Larsson, *The Kitchen (from A Home)* (1894-99). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:The_Kitchen._From_A_Home_(26_watercolours)_(Carl_Larsson)_-_Nationalmuseum_-_24211.tif). Public domain.
