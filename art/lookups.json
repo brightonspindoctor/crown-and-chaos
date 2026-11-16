@@ -1,66 +1,49 @@
 {
- "files": [],
+ "files": [
+  "Vasnetsov Frog Princess.jpg",
+  "Lleu.jpg",
+  "Gwydion Conquers Pryderi.jpeg"
+ ],
  "searches": [
-  "Math Mathonwy",
-  "Gwydion",
-  "Mabinogion illustration 1877 Guest Math",
-  "Lleu Llaw Gyffes",
-  "castle Carpathians painting 19th century",
-  "Hunyad Castle painting 19th century",
-  "Doré Petit Chaperon rouge loup bois",
-  "Rackham Little Red Riding Hood",
-  "Stories of Beowulf Marshall Skelton",
-  "Rhead Friar Tuck",
-  "Rhead Maid Marian",
-  "Bold Robin Hood Rhead Will Scarlet",
-  "Pyle Merry Adventures Robin Hood Sheriff",
-  "Bilibin Vasilisa Frog Princess dance feast",
-  "Dracula Stoker first edition 1897",
-  "Pygmalion Galatea Burne-Jones Soul Attains",
-  "Frankenstein 1831 Holst",
-  "Grendel illustration 1908",
-  "Lancelot Guinevere painting",
-  "Merlin Burne-Jones Beguiling",
-  "King Arthur painting Butler 1903",
-  "Baba Yaga Vasnetsov 1917",
-  "Morgan le Fay Sandys"
+  "Château des Carpathes Benett",
+  "Chateau des Carpathes",
+  "Carpathian castle engraving",
+  "Rohbock castle Transylvania",
+  "Thomas Jones The Bard 1774",
+  "John Martin The Bard",
+  "Arcimboldo Flora",
+  "Christopher Williams Branwen",
+  "Lady Charlotte Guest Mabinogion illustration",
+  "Doré Le Petit Chaperon rouge",
+  "Gustave Doré Little Red Riding Hood wolf",
+  "Doré Contes de Perrault Chaperon",
+  "Wyeth Robin Meets Maid Marian",
+  "Wyeth Robin Hood Creswick 1917 plate",
+  "Rhead Friar Tuck Bold Robin Hood",
+  "Rhead Maid Marian 1912"
  ],
  "categories": [
-  "The Frog Princess (Bilibin)",
-  "Drawings by Vilhelm Pedersen"
+  "Le Château des Carpathes",
+  "Illustrations by Léon Benett",
+  "Le Petit Chaperon rouge by Gustave Doré",
+  "Robin Hood (1917) illustrated by N. C. Wyeth",
+  "Christopher Williams (painter)"
  ],
- "peek": [
-  "Stories from Hans Andersen - Edmund Dulac color plate at page155.jpg",
-  "Stories from Hans Andersen - Edmund Dulac color plate at page 169.jpg",
-  "Stories from Hans Andersen - Edmund Dulac color plate at page 183.jpg",
-  "Stories from Hans Andersen - Edmund Dulac color plate at page 189.jpg",
-  "Stories from Hans Andersen - Edmund Dulac color plate at page 199.jpg",
-  "Stories from Hans Andersen - Edmund Dulac color plate at page 071.jpg",
-  "Stories from Hans Andersen - Edmund Dulac color plate at page 081.jpg",
-  "Edmund Dulac - The Snow Queen.jpg",
-  "Ivan Bilibin 018.jpg",
-  "Ivan Bilibin 059.jpeg",
-  "Билибин img561.jpg",
-  "Ivan Bilibin 029.jpeg",
-  "British Library digitised image from page 473 of \"Varney, the vampyre - or, The Feast of blood. A romance\" (11020813543).jpg",
-  "The Mabinogion page 465.png",
-  "The Mabinogion page 459.png",
-  "N.C. Wyeth - The Passing of Robin Hood.jpg",
-  "N. C. Wyeth Robin Hood.jpg",
-  "N. C. Wyeth Robin Hood Nottingham 1917 illustration.jpg",
-  "Robin Hood and lady Walter Crane.png",
-  "The King joins the hands of Robin Hood and Maid Marian.jpg",
-  "RobinandMaidMarion.JPG",
-  "Vilhelm Pedersen, DK2-0006, ubt.jpeg",
-  "Vilhelm Pedersen, VD9, ubt.jpeg",
-  "Louis John Rhead - The Sheriff Of Nottingham.jpg",
-  "Holy Grail tapestry The Summons.jpg",
-  "Major Oak, Sherwood Forest, Nottinghamshire Andrew MacCallum.jpg",
-  "Arpad Schmidhammer - Rotkäppchen-Verlag Josef Scholz, Mainz ca 1910.jpg",
-  "Ivan Bilibin 065.jpg",
-  "Louis Rhead Robin Hood.jpg",
-  "Robin Hood and Guy of Gisborne.jpg",
-  "Vasnetsov Frog Princess.jpg",
-  "Page 148 illustration in fairy tales of Andersen (Stratton).png"
+ "iaSearch": [
+  "title:(bold robin hood) AND creator:(rhead)",
+  "title:(robin hood) AND creator:(creswick) AND date:[1917 TO 1925]",
+  "title:(chateau des carpathes) AND date:[1890 TO 1925]",
+  "title:(mabinogion) AND date:[1840 TO 1925]"
+ ],
+ "iaPages": [
+  {
+   "id": "boldrobinhoodhis00rheaiala",
+   "from": 0,
+   "to": 80
+  }
+ ],
+ "pageImages": [
+  "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian",
+  "https://collections.hammer.ucla.edu/artwork/1962.35.330"
  ]
 }

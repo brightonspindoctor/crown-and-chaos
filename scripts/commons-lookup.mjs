@@ -21,7 +21,7 @@ const strip = (s) => (s ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").tri
 async function info(titles) {
   const out = [];
   for (let i = 0; i < titles.length; i += 40) {
-    const j = await api({ action: "query", prop: "imageinfo", iiprop: "size|extmetadata|mime", titles: titles.slice(i, i + 40).join("|") });
+    const j = await api({ action: "query", prop: "imageinfo|templates", iiprop: "size|extmetadata|mime", tllimit: 500, titles: titles.slice(i, i + 40).join("|") });
     for (const p of Object.values(j.query?.pages ?? {})) {
       const ii = p.imageinfo?.[0];
       if (!ii) { out.push({ file: p.title, missing: true }); continue; }
@@ -31,6 +31,7 @@ async function info(titles) {
         licence: strip(m.LicenseShortName?.value), usage: strip(m.UsageTerms?.value), copyrighted: strip(m.Copyrighted?.value),
         artist: strip(m.Artist?.value), date: strip(m.DateTimeOriginal?.value), credit: strip(m.Credit?.value),
         description: strip(m.ImageDescription?.value), restrictions: strip(m.Restrictions?.value),
+        licenceTags: (p.templates ?? []).map((t) => t.title.replace(/^Template:/, "")).filter((t) => /^(PD|CC|Cc-|FAL|GFDL|Copyright|No |Licen|Non-free|Public domain)/i.test(t)),
       });
     }
   }
@@ -65,6 +66,50 @@ if (asks.peek?.length) {
     writeFileSync(join(root, "art/peek", name), Buffer.from(await r.arrayBuffer()));
     report.peek.push({ file: f, saved: name });
     await new Promise((s) => setTimeout(s, 400));
+  }
+}
+
+// ia: Internet Archive. iaSearch finds book scans; iaPages saves small thumbnails of chosen pages
+// (to spot the plates), iaFull saves full-size pages that have been chosen.
+const IA_UA = { headers: { "User-Agent": UA } };
+if (asks.iaSearch?.length) {
+  report.iaSearch = {};
+  for (const q of asks.iaSearch) {
+    const u = "https://archive.org/advancedsearch.php?" + new URLSearchParams({ q, "fl[]": "identifier", rows: 15, output: "json" });
+    const j = await (await fetch(u, IA_UA)).json();
+    const ids = (j.response?.docs ?? []).map((d) => d.identifier);
+    report.iaSearch[q] = [];
+    for (const id of ids) {
+      const md = await (await fetch(`https://archive.org/metadata/${id}`, IA_UA)).json();
+      const m = md.metadata ?? {};
+      report.iaSearch[q].push({ id, title: m.title, creator: m.creator, date: m.date, publisher: m.publisher, pages: m.imagecount, rights: m.rights ?? m["possible-copyright-status"] });
+    }
+  }
+}
+const iaPage = async (id, n, width) => {
+  const r = await fetch(`https://iiif.archive.org/iiif/3/${id}$${n}/full/${width ? width + "," : "max"}/0/default.jpg`, IA_UA);
+  if (!r.ok) throw new Error(`IA ${id} page ${n}: HTTP ${r.status}`);
+  return Buffer.from(await r.arrayBuffer());
+};
+if (asks.iaPages?.length || asks.iaFull?.length) mkdirSync(join(root, "art/peek"), { recursive: true });
+for (const { id, from, to, step = 1 } of asks.iaPages ?? []) {
+  for (let n = from; n <= to; n += step) {
+    try { writeFileSync(join(root, "art/peek", `ia-${id}-${String(n).padStart(4, "0")}.jpg`), await iaPage(id, n, 160)); }
+    catch (e) { (report.errors ??= []).push(e.message); }
+  }
+}
+for (const { id, page, name } of asks.iaFull ?? []) {
+  try { writeFileSync(join(root, "art/peek", `full-${name}.jpg`), await iaPage(id, page)); }
+  catch (e) { (report.errors ??= []).push(e.message); }
+}
+// pageImages: list every image linked from a web page (to find the real file behind a gallery page).
+if (asks.pageImages?.length) {
+  report.pageImages = {};
+  for (const url of asks.pageImages) {
+    try {
+      const html = await (await fetch(url, IA_UA)).text();
+      report.pageImages[url] = [...new Set([...html.matchAll(/(?:src|href|content|srcset)="([^"]+\.(?:jpe?g|png|webp|avif)[^"\s]*)/gi)].map((m) => new URL(m[1], url).href))].slice(0, 40);
+    } catch (e) { report.pageImages[url] = ["error: " + e.message]; }
   }
 }
 writeFileSync(join(root, "art/lookup-report.json"), JSON.stringify(report, null, 1) + "\n");
