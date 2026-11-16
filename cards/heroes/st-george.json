@@ -7,10 +7,10 @@
   "aspect": "Guardian",
   "tags": [],
   "stats": {
-    "health": 8,
+    "health": 7,
     "attack": 3,
     "ranged": false,
-    "guard": 3,
+    "guard": 2,
     "speed": 2
   },
   "vulnerableTo": "Trickster",

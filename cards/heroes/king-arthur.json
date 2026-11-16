@@ -7,14 +7,14 @@
   "aspect": "Sovereign",
   "tags": [],
   "stats": {
-    "health": 13,
+    "health": 12,
     "attack": 3,
     "ranged": false,
     "guard": 2,
     "speed": 2
   },
   "vulnerableTo": "Witch",
-  "renown": 16,
+  "renown": 17,
   "crownPassive": {
     "name": "The Round Table",
     "text": "For your bonds, tale and realm no longer matter: each of your heroes counts as being from every tale and realm. Aspects still count, so a bond needing a Gothic Beast is met by any Beast. This works for penalties as well as bonuses."
