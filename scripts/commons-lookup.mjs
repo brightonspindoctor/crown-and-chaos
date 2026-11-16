@@ -44,6 +44,12 @@ for (const q of asks.searches ?? []) {
   const j = await api({ action: "query", list: "search", srnamespace: 6, srlimit: 12, srsearch: q + " filetype:bitmap" });
   report.searches[q] = await info((j.query?.search ?? []).map((s) => s.title));
 }
+// peekSearches: preview the top hits of a search as well as listing them.
+for (const q of asks.peekSearches ?? []) {
+  const j = await api({ action: "query", list: "search", srnamespace: 6, srlimit: 5, srsearch: q + " filetype:bitmap" });
+  report.searches[q] = await info((j.query?.search ?? []).map((s) => s.title));
+  (asks.peek ??= []).push(...report.searches[q].filter((f) => !f.missing).map((f) => f.file));
+}
 for (const c of asks.categories ?? []) {
   const j = await api({ action: "query", list: "categorymembers", cmtitle: "Category:" + c, cmtype: "file|subcat", cmlimit: 80 });
   const members = j.query?.categorymembers ?? [];

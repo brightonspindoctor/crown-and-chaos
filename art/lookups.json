@@ -1,47 +1,109 @@
 {
- "peek": [
-  "Le Petit Chaperon Rouge, RP-P-OB-33.985.jpg",
-  "Little Red Riding Hood Gustav Doré illustration for Charles Perrault - Project Gutenberg eText 17208.jpg",
-  "Lleu.jpg",
-  "Thomas Jones The Bard 1774.jpg",
-  "John Martin - The Bard - Google Art Project.jpg",
-  "Apparition Château des Carpathes.jpg",
-  "'The Carpathian Castle' by Léon Benett 03.jpg",
-  "'The Carpathian Castle' by Léon Benett 08.jpg",
-  "'The Carpathian Castle' by Léon Benett 11.jpg",
-  "'The Carpathian Castle' by Léon Benett 12.jpg",
-  "Verne - Le Château des Carpathes 8.jpg",
-  "Branwen.jpg",
-  "The salmon of Llyn Llyw (Culhwch ac Olwen Guest).jpg"
+ "files": [
+  "Lleu.jpg"
  ],
- "searches": [
-  "Little Red Riding Hood Gustav Doré illustration Perrault Gutenberg",
-  "Fonds Jules Verne Château des Carpathes",
-  "Carpathian Castle Benett"
+ "peekSearches": [
+  "Doré Little Red Riding Hood second illustration Perrault",
+  "Fonds Jules Verne Château des Carpathes btv1b10558642",
+  "Uccello Saint George Dragon National Gallery",
+  "Bilibin Baba Yaga hut Vasilisa",
+  "Vasnetsov Bogatyrs 1898",
+  "Vasnetsov Knight at the Crossroads",
+  "Царевна лягушка Bilibin",
+  "Dulac Snow Queen sledge",
+  "Dulac Stories from Hans Andersen color plate",
+  "Velázquez Las Hilanderas Spinners",
+  "Caspar David Friedrich Chasseur im Walde",
+  "Rackham Siegfried Fafner",
+  "Rackham Rhinegold Valkyrie Twilight of the Gods plate",
+  "Johan Christian Dahl Stalheim",
+  "Christopher Williams Branwen 1915",
+  "Christopher Williams Ceridwen",
+  "Aivazovsky Ninth Wave",
+  "Thomas Jones The Bard 1774",
+  "Vasnetsov Koschei Deathless",
+  "Bilibin Maria Morevna Koschei",
+  "Peder Balke North Cape",
+  "Grimm Hansel Gretel forest painting witch house"
  ],
  "iaPages": [
   {
-   "id": "boldrobinhoodhis00rheauoft",
-   "from": 0,
-   "to": 340
-  },
-  {
    "id": "robinhood00cresrich",
-   "from": 0,
-   "to": 406,
+   "from": 1,
+   "to": 405,
    "step": 2
+  }
+ ],
+ "iaFull": [
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 46,
+   "name": "rhead-46"
   },
   {
-   "id": "bnf-bpt6k6105866h",
-   "from": 0,
-   "to": 340,
-   "step": 2
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 54,
+   "name": "rhead-54"
   },
   {
-   "id": "mabinogionfromll00unse_0",
-   "from": 0,
-   "to": 200,
-   "step": 2
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 88,
+   "name": "rhead-88"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 146,
+   "name": "rhead-146"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 170,
+   "name": "rhead-170"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 182,
+   "name": "rhead-182"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 200,
+   "name": "rhead-200"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 206,
+   "name": "rhead-206"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 214,
+   "name": "rhead-214"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 220,
+   "name": "rhead-220"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 230,
+   "name": "rhead-230"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 250,
+   "name": "rhead-250"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 254,
+   "name": "rhead-254"
+  },
+  {
+   "id": "boldrobinhoodhis00rheauoft",
+   "page": 266,
+   "name": "rhead-266"
   }
  ]
 }
