@@ -67,6 +67,15 @@ for (const i of manifest.images) {
   }
 }
 
+// Tales: Bonds match tale names exactly, so flag names that differ only in case or a bracketed note.
+const taleKey = (t) => (t ?? "").toLowerCase().replace(/\s*\(.*?\)\s*/g, "").replace(/^the /, "").trim();
+const taleNames = new Map();
+for (const { data: h } of readDir("cards/heroes")) {
+  const k = taleKey(h.tale), seen = taleNames.get(k);
+  if (seen && seen !== h.tale) errors.push(`hero ${h.id}: tale "${h.tale}" looks like "${seen}"; use one spelling so they share Bonds`);
+  else taleNames.set(k, h.tale);
+}
+
 // Boards: every tale needs a board, chosen by the Crown hero's tale.
 const boardTales = new Map();
 for (const b of manifest.images.filter((i) => i.use === "board")) for (const t of b.tales ?? []) boardTales.set(t, b);
