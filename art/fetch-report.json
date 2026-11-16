@@ -1,49 +1,143 @@
 {
-  "ranAt": "2026-11-16T00:09:09.427Z",
+  "ranAt": "2026-11-16T00:15:10.916Z",
   "fetched": [
     {
-      "id": "gretel",
+      "id": "robin-hood",
       "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hansel-and-gretel-rackham.jpg",
-      "bytes": 436161
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Louis_Rhead_Robin_Hood.jpg",
+      "bytes": 735196
     },
     {
-      "id": "vasilisa-the-wise",
+      "id": "little-john",
       "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vasilisa.jpg",
-      "bytes": 676079
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Louis_Rhead_-_Little_John.jpg",
+      "bytes": 419339
     },
     {
-      "id": "bran-the-blessed",
+      "id": "maid-marian-variant",
+      "via": "imagePage",
+      "url": "https://standardebooks.org/images/logo.png",
+      "bytes": 27114
+    },
+    {
+      "id": "the-huntsman",
       "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Head_of_Bran_(Millais).png",
-      "bytes": 3417754
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arpad_Schmidhammer_-_Rotk%C3%A4ppchen-Verlag_Josef_Scholz%2C_Mainz_ca_1910.jpg",
+      "bytes": 118092
+    },
+    {
+      "id": "koschei",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%9C%D0%B0%D1%80%D1%8C%D1%8F_%D0%9C%D0%BE%D1%80%D0%B5%D0%B2%D0%BD%D0%B0_5.jpg",
+      "bytes": 881179
+    },
+    {
+      "id": "zmey-gorynych",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ivan_Bilibin_065.jpg",
+      "bytes": 201010
+    },
+    {
+      "id": "the-snow-queen",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edmund_Dulac_-_The_Snow_Queen.jpg",
+      "bytes": 381683
+    },
+    {
+      "id": "the-tin-soldier",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vilhelm_Pedersen%2C_DK2-0006%2C_ubt.jpeg",
+      "bytes": 690900
+    },
+    {
+      "id": "board-heorot",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_beowulf_queen_poring_wine.jpg",
+      "bytes": 666312
+    },
+    {
+      "id": "board-camelot",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Grail_tapestry_The_Summons.jpg",
+      "bytes": 550758
+    },
+    {
+      "id": "sheriff-of-nottingham",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Louis_John_Rhead_-_The_Sheriff_Of_Nottingham.jpg",
+      "bytes": 80987
     },
     {
       "id": "the-little-mermaid",
-      "via": "imagePage",
-      "url": "https://iiif.nypl.org/iiif/3/1701878/full/!288,288/0/default.jpg",
-      "bytes": 12317
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_189.jpg",
+      "bytes": 4492384
     },
     {
-      "id": "renfield",
+      "id": "board-sherwood",
       "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore_G%C3%A9ricault_-_Portrait_of_a_Kleptomaniac_-_WGA08636.jpg",
-      "bytes": 107780
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Major_Oak%2C_Sherwood_Forest%2C_Nottinghamshire_Andrew_MacCallum.jpg",
+      "bytes": 915426
     },
     {
-      "id": "van-helsing",
+      "id": "robin-hood-variant",
       "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg",
-      "bytes": 7746672
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/N._C._Wyeth_Robin_Hood.jpg",
+      "bytes": 432361
+    },
+    {
+      "id": "robin-hood-variant-2",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Robin_Hood_and_Guy_of_Gisborne.jpg",
+      "bytes": 321850
+    },
+    {
+      "id": "robin-hood-variant-3",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/N.C._Wyeth_-_The_Passing_of_Robin_Hood.jpg",
+      "bytes": 1856760
+    },
+    {
+      "id": "maid-marian-variant-2",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_King_joins_the_hands_of_Robin_Hood_and_Maid_Marian.jpg",
+      "bytes": 118418
+    },
+    {
+      "id": "maid-marian-variant-3",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/RobinandMaidMarion.JPG",
+      "bytes": 635770
+    },
+    {
+      "id": "the-little-mermaid-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_169.jpg",
+      "bytes": 4878292
+    },
+    {
+      "id": "the-tin-soldier-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vilhelm_Pedersen%2C_VD9%2C_ubt.jpeg",
+      "bytes": 473284
+    },
+    {
+      "id": "vasilisa-the-wise-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ivan_Bilibin_018.jpg",
+      "bytes": 655663
+    },
+    {
+      "id": "merlin-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward_Burne-Jones_-_The_Beguiling_of_Merlin%2C_1873-1874.jpg",
+      "bytes": 3207044
     }
   ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
     "the-princess",
-    "robin-hood",
-    "little-john",
     "friar-tuck",
     "maid-marian",
     "king-arthur",
@@ -57,35 +151,22 @@
     "grendels-mother",
     "the-wolf",
     "red-riding-hood-painting",
-    "the-huntsman",
     "rumpelstiltskin",
+    "gretel",
     "baba-yaga",
-    "koschei",
-    "zmey-gorynych",
+    "vasilisa-the-wise",
+    "bran-the-blessed",
     "rhiannon",
-    "the-snow-queen",
     "dracula",
     "victor-frankenstein",
     "the-bride",
     "the-bride-variant",
-    "board-heorot",
     "board-camelot-fallback",
-    "board-victors-laboratory"
+    "board-victors-laboratory",
+    "renfield",
+    "van-helsing"
   ],
-  "unresolved": [
-    {
-      "id": "maid-marian-variant",
-      "via": "none"
-    },
-    {
-      "id": "the-tin-soldier",
-      "via": "none"
-    },
-    {
-      "id": "sheriff-of-nottingham",
-      "via": "none"
-    }
-  ],
+  "unresolved": [],
   "failed": [
     {
       "id": "red-riding-hood",
@@ -94,12 +175,27 @@
     {
       "id": "board-forest-path",
       "error": "imagePage: page HTTP 429"
+    },
+    {
+      "id": "lancelot-variant",
+      "error": "HTTP 429 from https://commons.wikimedia.org/wiki/Special:FilePath/Lancelot_and_Guinevere_by_Herbert_James_Draper.jpg"
+    },
+    {
+      "id": "red-riding-hood-variant",
+      "error": "HTTP 429 from https://commons.wikimedia.org/wiki/Special:FilePath/Arthur_Rackham_Little_Red_Riding_Hood%2B.jpg"
+    },
+    {
+      "id": "beowulf-variant",
+      "error": "HTTP 429 from https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_beowulf_wiglaf_and_beowulf.jpg"
+    },
+    {
+      "id": "grendel-variant",
+      "error": "HTTP 429 from https://commons.wikimedia.org/wiki/Special:FilePath/Stories_of_beowulf_head_of_grendel.jpg"
     }
   ],
   "notCleared": [
     "gwydion",
-    "board-camelot",
     "board-castle-dracula",
-    "board-sherwood"
+    "vasilisa-the-wise-variant-2"
   ]
 }
