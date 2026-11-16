@@ -4,6 +4,7 @@
 //
 // How an image is found, in order:
 //   downloadUrl     a direct link to the image file
+//   maxWidth        with commonsFile: download a copy this many pixels wide instead of a huge original
 //   commonsFile     a Wikimedia Commons file name
 //   metObjectId     a Metropolitan Museum object id (Open Access API)
 //   wellcomeQuery   a Wellcome Collection record number (catalogue API + IIIF)
@@ -71,7 +72,7 @@ async function fromPage(page) {
 async function resolve(img) {
   const routes = [];
   if (img.downloadUrl) routes.push(["downloadUrl", async () => img.downloadUrl]);
-  if (img.commonsFile) routes.push(["commonsFile", async () => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(img.commonsFile)}`]);
+  if (img.commonsFile) routes.push(["commonsFile", async () => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(img.commonsFile)}${img.maxWidth ? "?width=" + img.maxWidth : ""}`]);
   if (img.metObjectId) routes.push(["met", () => fromMet(img.metObjectId)]);
   if (img.wellcomeQuery) routes.push(["wellcome", () => fromWellcome(img.wellcomeQuery)]);
   if (img.imagePage) routes.push(["imagePage", () => fromPage(img.imagePage)]);

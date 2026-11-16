@@ -1,5 +1,5 @@
 {
-  "about": "Every image used in Crown & Fable. Each entry must be public domain in the UK (artist died more than 70 years ago) and the US (published before 1931), and is credited in-game by artist, title, date and source. status: cleared = the specific image's rights page was checked; cleared-book = artist and book checked, specific file still to pick; to-confirm = not yet cleared, do not ship; open = no image chosen yet. size = pixel size of the downloaded file. crops = where to cut the image, keyed by card id (or 'board'); each rectangle is [x, y, width, height] as fractions of the image. window is the 17:10 art window, full is the 5:7 full-bleed card, board is the 16:10 battle backdrop. variant = the artwork's number for that card; the card's main artwork is number 1.",
+  "about": "Every image used in Crown & Fable. Each entry must be public domain in the UK (artist died more than 70 years ago) and the US (published before 1931), and is credited in-game by artist, title, date and source. status: cleared = the specific image's rights page was checked; cleared-book = artist and book checked, specific file still to pick; to-confirm = not yet cleared, do not ship; open = no image chosen yet. size = pixel size of the downloaded file. crops = where to cut the image, keyed by card id (or 'board'); each rectangle is [x, y, width, height] as fractions of the image. window is the 17:10 art window, full is the 5:7 full-bleed card, board is the 16:10 battle backdrop. variant = the artwork's number for that card; the card's main artwork is number 1. tales = for a board, the tales whose Crown hero sets it.",
   "checked": "2026-11-16",
   "images": [
     {
@@ -20,11 +20,24 @@
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
       "commonsFile": "Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg",
-      "size": [4152, 5454],
+      "size": [
+        4152,
+        5454
+      ],
       "crops": {
         "st-george": {
-          "window": [0.0, 0.2961, 1.0, 0.4478],
-          "full": [0.06, 0.0097, 0.92, 0.9805]
+          "window": [
+            0.0,
+            0.2961,
+            1.0,
+            0.4478
+          ],
+          "full": [
+            0.06,
+            0.0097,
+            0.92,
+            0.9805
+          ]
         }
       }
     },
@@ -46,11 +59,24 @@
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
       "commonsFile": "Sodoma_-_St_George_and_the_Dragon_-_WGA21547.jpg",
-      "size": [2064, 3000],
+      "size": [
+        2064,
+        3000
+      ],
       "crops": {
         "the-dragon": {
-          "window": [0.48, 0.6448, 0.52, 0.2104],
-          "full": [0.5, 0.5184, 0.5, 0.4816]
+          "window": [
+            0.48,
+            0.6448,
+            0.52,
+            0.2104
+          ],
+          "full": [
+            0.5,
+            0.5184,
+            0.5,
+            0.4816
+          ]
         }
       }
     },
@@ -72,11 +98,24 @@
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
       "commonsFile": "Saint_George_and_the_Dragon_Rogier.jpg",
-      "size": [2139, 3000],
+      "size": [
+        2139,
+        3000
+      ],
       "crops": {
         "the-princess": {
-          "window": [0.0, 0.2951, 0.5, 0.2097],
-          "full": [0.0, 0.1954, 0.45, 0.4492]
+          "window": [
+            0.0,
+            0.2951,
+            0.5,
+            0.2097
+          ],
+          "full": [
+            0.0,
+            0.1954,
+            0.45,
+            0.4492
+          ]
         }
       }
     },
@@ -92,20 +131,13 @@
       "date": "1912",
       "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
       "source": {
-        "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Louis_Rhead_Robin_Hood.jpg"
+        "name": "Internet Archive",
+        "url": "https://archive.org/details/boldrobinhoodhis00rheauoft/page/n46/mode/1up"
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "commonsFile": "Louis_Rhead_Robin_Hood.jpg",
-      "notes": "Larger scan of the same portrait.",
-      "size": [1032, 2619],
-      "crops": {
-        "robin-hood": {
-          "window": [0.04, 0.1334, 0.92, 0.2132],
-          "full": [0.02, 0.1052, 0.96, 0.5296]
-        }
-      }
+      "notes": "Full-page scan (2112 x 3392) from the University of Toronto copy, scan page 46.",
+      "downloadUrl": "https://iiif.archive.org/iiif/3/boldrobinhoodhis00rheauoft$46/full/max/0/default.jpg"
     },
     {
       "id": "little-john",
@@ -119,20 +151,13 @@
       "date": "1912",
       "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
       "source": {
-        "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Louis_Rhead_-_Little_John.jpg"
+        "name": "Internet Archive",
+        "url": "https://archive.org/details/boldrobinhoodhis00rheauoft/page/n54/mode/1up"
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "commonsFile": "Louis_Rhead_-_Little_John.jpg",
-      "notes": "Slightly larger scan of the same portrait.",
-      "size": [420, 1070],
-      "crops": {
-        "little-john": {
-          "window": [0.04, 0.1038, 0.92, 0.2124],
-          "full": [0.02, 0.0962, 0.96, 0.5276]
-        }
-      }
+      "notes": "Full-page scan (2112 x 3392) from the University of Toronto copy, scan page 54.",
+      "downloadUrl": "https://iiif.archive.org/iiif/3/boldrobinhoodhis00rheauoft$54/full/max/0/default.jpg"
     },
     {
       "id": "friar-tuck",
@@ -146,19 +171,13 @@
       "date": "1912",
       "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912)",
       "source": {
-        "name": "Old Book Illustrations",
-        "url": "https://www.oldbookillustrations.com/illustrations/friar-tuck/"
+        "name": "Internet Archive",
+        "url": "https://archive.org/details/boldrobinhoodhis00rheauoft/page/n88/mode/1up"
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "imagePage": "https://www.oldbookillustrations.com/illustrations/friar-tuck/",
-      "size": [301, 768],
-      "crops": {
-        "friar-tuck": {
-          "window": [0.04, 0.1039, 0.92, 0.2121],
-          "full": [0.02, 0.1066, 0.96, 0.5267]
-        }
-      }
+      "downloadUrl": "https://iiif.archive.org/iiif/3/boldrobinhoodhis00rheauoft$88/full/max/0/default.jpg",
+      "notes": "Full-page scan (2112 x 3392) from the University of Toronto copy, scan page 88."
     },
     {
       "id": "maid-marian",
@@ -178,11 +197,24 @@
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
       "imagePage": "https://www.oldbookillustrations.com/illustrations/maid-marian/",
-      "size": [308, 768],
+      "size": [
+        308,
+        768
+      ],
       "crops": {
         "maid-marian": {
-          "window": [0.04, 0.0815, 0.92, 0.217],
-          "full": [0.02, 0.0905, 0.96, 0.539]
+          "window": [
+            0.04,
+            0.0815,
+            0.92,
+            0.217
+          ],
+          "full": [
+            0.02,
+            0.0905,
+            0.96,
+            0.539
+          ]
         }
       }
     },
@@ -202,10 +234,10 @@
         "url": "https://standardebooks.org/artworks/n-c-wyeth/robin-meets-maid-marian"
       },
       "licence": "Public domain in the US and UK",
-      "status": "cleared-book",
-      "notes": "Public domain in the US and UK, but no downloadable file has been found yet. Still in copyright in life+100 countries such as Mexico until 2045.",
-      "commonsSearch": "N. C. Wyeth Robin Meets Maid Marian",
-      "variant": 2
+      "status": "cleared",
+      "notes": "Standard Ebooks' own scan; their page lists US public-domain proof. Still in copyright in life+100 countries such as Mexico until 2045.",
+      "variant": 2,
+      "downloadUrl": "https://standardebooks.org/images/artworks/2638.jpg"
     },
     {
       "id": "king-arthur",
@@ -226,11 +258,24 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p16.jpg",
-      "size": [1590, 1978],
+      "size": [
+        1590,
+        1978
+      ],
       "crops": {
         "king-arthur": {
-          "window": [0.04, 0.2825, 0.92, 0.435],
-          "full": [0.21, 0.1261, 0.7, 0.7878]
+          "window": [
+            0.04,
+            0.2825,
+            0.92,
+            0.435
+          ],
+          "full": [
+            0.21,
+            0.1261,
+            0.7,
+            0.7878
+          ]
         }
       }
     },
@@ -253,11 +298,24 @@
       "licence": "Public domain worldwide",
       "status": "cleared",
       "commonsFile": "Arthur-Pyle_The_Enchanter_Merlin.JPG",
-      "size": [1307, 1500],
+      "size": [
+        1307,
+        1500
+      ],
       "crops": {
         "merlin": {
-          "window": [0.03, 0.0291, 0.94, 0.4818],
-          "full": [0.17, 0.0121, 0.8, 0.9759]
+          "window": [
+            0.03,
+            0.0291,
+            0.94,
+            0.4818
+          ],
+          "full": [
+            0.17,
+            0.0121,
+            0.8,
+            0.9759
+          ]
         }
       }
     },
@@ -280,11 +338,24 @@
       "status": "cleared",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478",
       "commonsFile": "Sandys,_Frederick_-_Morgan_le_Fay.JPG",
-      "size": [1779, 2500],
+      "size": [
+        1779,
+        2500
+      ],
       "crops": {
         "morgan-le-fay": {
-          "window": [0.095, 0.0921, 0.85, 0.3558],
-          "full": [0.025, 0.0268, 0.95, 0.9464]
+          "window": [
+            0.095,
+            0.0921,
+            0.85,
+            0.3558
+          ],
+          "full": [
+            0.025,
+            0.0268,
+            0.95,
+            0.9464
+          ]
         }
       }
     },
@@ -308,11 +379,24 @@
       "status": "cleared",
       "notes": "Crop to Lancelot.",
       "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p38.jpg",
-      "size": [1600, 1983],
+      "size": [
+        1600,
+        1983
+      ],
       "crops": {
         "lancelot": {
-          "window": [0.07, 0.1464, 0.9, 0.4272],
-          "full": [0.08, 0.003, 0.88, 0.994]
+          "window": [
+            0.07,
+            0.1464,
+            0.9,
+            0.4272
+          ],
+          "full": [
+            0.08,
+            0.003,
+            0.88,
+            0.994
+          ]
         }
       }
     },
@@ -335,11 +419,24 @@
       "licence": "Public domain worldwide",
       "status": "cleared",
       "commonsFile": "Arthur-Pyle_The_Lady_Guinevere.JPG",
-      "size": [1299, 1480],
+      "size": [
+        1299,
+        1480
+      ],
       "crops": {
         "guinevere": {
-          "window": [0.045, 0.0264, 0.75, 0.3872],
-          "full": [0.06, 0.0208, 0.78, 0.9585]
+          "window": [
+            0.045,
+            0.0264,
+            0.75,
+            0.3872
+          ],
+          "full": [
+            0.06,
+            0.0208,
+            0.78,
+            0.9585
+          ]
         }
       }
     },
@@ -362,11 +459,24 @@
       "licence": "Public domain worldwide",
       "status": "cleared",
       "commonsFile": "Arthur-Pyle_King_Arthur_meets_Lady_Guinevere.JPG",
-      "size": [1247, 1500],
+      "size": [
+        1247,
+        1500
+      ],
       "crops": {
         "guinevere": {
-          "window": [0.2, 0.0288, 0.7, 0.3423],
-          "full": [0.12, 0.0345, 0.8, 0.9311]
+          "window": [
+            0.2,
+            0.0288,
+            0.7,
+            0.3423
+          ],
+          "full": [
+            0.12,
+            0.0345,
+            0.8,
+            0.9311
+          ]
         }
       },
       "variant": 2
@@ -390,11 +500,24 @@
       "licence": "Public domain",
       "status": "cleared",
       "notes": "Online scans are small; use a full book scan for card size.",
-      "size": [1045, 1335],
+      "size": [
+        1045,
+        1335
+      ],
       "crops": {
         "beowulf": {
-          "window": [0.01, 0.0928, 0.9, 0.4144],
-          "full": [0.02, 0.0069, 0.9, 0.9863]
+          "window": [
+            0.01,
+            0.0928,
+            0.9,
+            0.4144
+          ],
+          "full": [
+            0.02,
+            0.0069,
+            0.9,
+            0.9863
+          ]
         }
       }
     },
@@ -416,11 +539,24 @@
       "commonsFile": "Stories_of_beowulf_grendel.jpg",
       "licence": "Public domain",
       "status": "cleared",
-      "size": [1055, 1356],
+      "size": [
+        1055,
+        1356
+      ],
       "crops": {
         "grendel": {
-          "window": [0.015, 0.0555, 0.85, 0.389],
-          "full": [0.02, 0.0098, 0.9, 0.9803]
+          "window": [
+            0.015,
+            0.0555,
+            0.85,
+            0.389
+          ],
+          "full": [
+            0.02,
+            0.0098,
+            0.9,
+            0.9803
+          ]
         }
       }
     },
@@ -444,11 +580,24 @@
       "status": "cleared",
       "notes": "Commons file name still to record.",
       "commonsFile": "Stories_of_Beowulf_water_witch_trying_to_stab_beowulf.jpg",
-      "size": [1068, 1364],
+      "size": [
+        1068,
+        1364
+      ],
       "crops": {
         "grendels-mother": {
-          "window": [0.05, 0.1227, 0.9, 0.4145],
-          "full": [0.05, 0.0067, 0.9, 0.9866]
+          "window": [
+            0.05,
+            0.1227,
+            0.9,
+            0.4145
+          ],
+          "full": [
+            0.05,
+            0.0067,
+            0.9,
+            0.9866
+          ]
         }
       }
     },
@@ -493,11 +642,24 @@
       "licence": "Public domain (Rijksmuseum)",
       "status": "cleared",
       "notes": "The wolf at the grandmother's bed. Some text shows through from the reverse of the print.",
-      "size": [2546, 3306],
+      "size": [
+        2546,
+        3306
+      ],
       "crops": {
         "the-wolf": {
-          "window": [0.05, 0.0888, 0.8, 0.3624],
-          "full": [0.1, 0.0587, 0.8, 0.8625]
+          "window": [
+            0.05,
+            0.0888,
+            0.8,
+            0.3624
+          ],
+          "full": [
+            0.1,
+            0.0587,
+            0.8,
+            0.8625
+          ]
         }
       }
     },
@@ -519,11 +681,24 @@
       "status": "cleared",
       "notes": "NGV asks for a full reproduction somewhere if a detail is used. Darker bedroom scene.",
       "imagePage": "https://ngv.vic.gov.au/explore/collection/work/3918",
-      "size": [694, 555],
+      "size": [
+        694,
+        555
+      ],
       "crops": {
         "red-riding-hood": {
-          "window": [0.0, 0.0722, 1.0, 0.7356],
-          "full": [0.3455, 0.0195, 0.549, 0.9611]
+          "window": [
+            0.0,
+            0.0722,
+            1.0,
+            0.7356
+          ],
+          "full": [
+            0.3455,
+            0.0195,
+            0.549,
+            0.9611
+          ]
         }
       }
     },
@@ -546,11 +721,24 @@
       "date": "c. 1910",
       "publication": "Rotkäppchen (Verlag Josef Scholz, Mainz, c. 1910)",
       "notes": "Crop to the picture inside the cover.",
-      "size": [800, 581],
+      "size": [
+        800,
+        581
+      ],
       "crops": {
         "the-huntsman": {
-          "window": [0.285, 0.3546, 0.68, 0.5508],
-          "full": [0.29, 0.3408, 0.3, 0.5783]
+          "window": [
+            0.285,
+            0.3546,
+            0.68,
+            0.5508
+          ],
+          "full": [
+            0.29,
+            0.3408,
+            0.3,
+            0.5783
+          ]
         }
       }
     },
@@ -574,11 +762,24 @@
       "status": "cleared",
       "commonsFile": "Grimm-Rackham-202.jpg",
       "notes": "Downloaded image is a Rackham line drawing, not the colour fire plate. Review before use.",
-      "size": [663, 1235],
+      "size": [
+        663,
+        1235
+      ],
       "crops": {
         "rumpelstiltskin": {
-          "window": [0.0, 0.0621, 1.0, 0.3158],
-          "full": [0.0, 0.0442, 1.0, 0.7516]
+          "window": [
+            0.0,
+            0.0621,
+            1.0,
+            0.3158
+          ],
+          "full": [
+            0.0,
+            0.0442,
+            1.0,
+            0.7516
+          ]
         }
       }
     },
@@ -601,11 +802,24 @@
       "status": "cleared",
       "commonsFile": "Hansel-and-gretel-rackham.jpg",
       "notes": "Swapped from the 'Stupid goose!' plate, which had no findable file. This plate shows Hansel, Gretel and the Witch.",
-      "size": [768, 1092],
+      "size": [
+        768,
+        1092
+      ],
       "crops": {
         "gretel": {
-          "window": [0.0, 0.4231, 1.0, 0.4137],
-          "full": [0.12, 0.2458, 0.76, 0.7483]
+          "window": [
+            0.0,
+            0.4231,
+            1.0,
+            0.4137
+          ],
+          "full": [
+            0.12,
+            0.2458,
+            0.76,
+            0.7483
+          ]
         }
       }
     },
@@ -628,11 +842,24 @@
       "licence": "Public domain",
       "status": "cleared",
       "commonsFile": "Bilibin._Baba_Yaga.jpg",
-      "size": [1561, 2000],
+      "size": [
+        1561,
+        2000
+      ],
       "crops": {
         "baba-yaga": {
-          "window": [0.14, 0.1877, 0.62, 0.2847],
-          "full": [0.11, 0.0638, 0.78, 0.8523]
+          "window": [
+            0.14,
+            0.1877,
+            0.62,
+            0.2847
+          ],
+          "full": [
+            0.11,
+            0.0638,
+            0.78,
+            0.8523
+          ]
         }
       }
     },
@@ -655,11 +882,24 @@
       "licence": "CC0",
       "status": "cleared",
       "notes": "Larger scan of the same plate.",
-      "size": [2000, 1337],
+      "size": [
+        2000,
+        1337
+      ],
       "crops": {
         "koschei": {
-          "window": [0.07, 0.0916, 0.86, 0.7567],
-          "full": [0.27, 0.0612, 0.4, 0.8377]
+          "window": [
+            0.07,
+            0.0916,
+            0.86,
+            0.7567
+          ],
+          "full": [
+            0.27,
+            0.0612,
+            0.4,
+            0.8377
+          ]
         }
       }
     },
@@ -682,11 +922,24 @@
       "status": "cleared",
       "commonsFile": "Vasilisa.jpg",
       "notes": "Stand-in: this is Vasilisa the Beautiful, a different Vasilisa by the same artist. No file was found for Bilibin's 1899 Frog Princess plate showing Vasilisa the Wise. His 1930-31 Frog Princess set is too late for the US rule; don't use it.",
-      "size": [1704, 2156],
+      "size": [
+        1704,
+        2156
+      ],
       "crops": {
         "vasilisa-the-wise": {
-          "window": [0.1, 0.284, 0.8, 0.3719],
-          "full": [0.08, 0.0553, 0.84, 0.9295]
+          "window": [
+            0.1,
+            0.284,
+            0.8,
+            0.3719
+          ],
+          "full": [
+            0.08,
+            0.0553,
+            0.84,
+            0.9295
+          ]
         }
       }
     },
@@ -710,11 +963,24 @@
       "status": "cleared",
       "notes": "Larger scan than before, still small for a full-bleed card.",
       "commonsFile": "Ivan_Bilibin_065.jpg",
-      "size": [528, 827],
+      "size": [
+        528,
+        827
+      ],
       "crops": {
         "zmey-gorynych": {
-          "window": [0.07, 0.2185, 0.86, 0.323],
-          "full": [0.08, 0.1846, 0.84, 0.7508]
+          "window": [
+            0.07,
+            0.2185,
+            0.86,
+            0.323
+          ],
+          "full": [
+            0.08,
+            0.1846,
+            0.84,
+            0.7508
+          ]
         }
       }
     },
@@ -737,20 +1003,32 @@
       "status": "cleared",
       "commonsFile": "The_Head_of_Bran_(Millais).png",
       "notes": "Replaces the Bacon plate from Squire's Celtic Myth & Legend, which had no image file. Shows warriors carrying Bran's head.",
-      "size": [2058, 1848],
+      "size": [
+        2058,
+        1848
+      ],
       "crops": {
         "bran-the-blessed": {
-          "window": [0.0, 0.0525, 1.0, 0.6551],
-          "full": [0.19, 0.0167, 0.62, 0.9666]
+          "window": [
+            0.0,
+            0.0525,
+            1.0,
+            0.6551
+          ],
+          "full": [
+            0.19,
+            0.0167,
+            0.62,
+            0.9666
+          ]
         }
       }
     },
     {
-      "id": "gwydion",
-      "use": "card",
+      "id": "gwydion-blodeuwedd-plate",
+      "use": "variant",
       "cards": [
-        "gwydion",
-        "blodeuwedd"
+        "gwydion"
       ],
       "artist": "J. H. F. Bacon",
       "artistDied": 1914,
@@ -784,11 +1062,24 @@
       "commonsFile": "Charlotte_Guest_Rhiannon.jpg",
       "licence": "Public domain",
       "status": "cleared",
-      "size": [656, 574],
+      "size": [
+        656,
+        574
+      ],
       "crops": {
         "rhiannon": {
-          "window": [0.02, 0.1675, 0.9, 0.605],
-          "full": [0.1385, 0.0496, 0.563, 0.9008]
+          "window": [
+            0.02,
+            0.1675,
+            0.9,
+            0.605
+          ],
+          "full": [
+            0.1385,
+            0.0496,
+            0.563,
+            0.9008
+          ]
         }
       }
     },
@@ -812,11 +1103,24 @@
       "status": "cleared",
       "commonsFile": "Edmund_Dulac_-_The_Snow_Queen.jpg",
       "notes": "Larger scan of the same plate.",
-      "size": [1024, 1293],
+      "size": [
+        1024,
+        1293
+      ],
       "crops": {
         "the-snow-queen": {
-          "window": [0.075, 0.102, 0.85, 0.396],
-          "full": [0.08, 0.0243, 0.84, 0.9313]
+          "window": [
+            0.075,
+            0.102,
+            0.85,
+            0.396
+          ],
+          "full": [
+            0.08,
+            0.0243,
+            0.84,
+            0.9313
+          ]
         }
       }
     },
@@ -838,11 +1142,24 @@
       "licence": "Public domain",
       "status": "cleared",
       "commonsFile": "Vilhelm_Pedersen,_VD9,_ubt.jpeg",
-      "size": [1476, 615],
+      "size": [
+        1476,
+        615
+      ],
       "crops": {
         "the-tin-soldier": {
-          "window": [0.292, 0.0002, 0.708, 0.9995],
-          "full": [0.6515, 0.001, 0.297, 0.9979]
+          "window": [
+            0.292,
+            0.0002,
+            0.708,
+            0.9995
+          ],
+          "full": [
+            0.6515,
+            0.001,
+            0.297,
+            0.9979
+          ]
         }
       }
     },
@@ -864,11 +1181,24 @@
       "licence": "Public domain painting; faithful photographs carry no new copyright in the UK or US",
       "status": "cleared",
       "notes": "Stand-in: the real prince whose name Stoker borrowed. Credit by its own title, never as 'Dracula'.",
-      "size": [3033, 3673],
+      "size": [
+        3033,
+        3673
+      ],
       "crops": {
         "dracula": {
-          "window": [0.0, 0.1514, 0.9, 0.4372],
-          "full": [0.04, 0.0029, 0.86, 0.9942]
+          "window": [
+            0.0,
+            0.1514,
+            0.9,
+            0.4372
+          ],
+          "full": [
+            0.04,
+            0.0029,
+            0.86,
+            0.9942
+          ]
         }
       }
     },
@@ -890,15 +1220,38 @@
       "licence": "Public Domain Mark",
       "status": "cleared",
       "wellcomeQuery": "b11980072",
-      "size": [2000, 3370],
+      "size": [
+        2000,
+        3370
+      ],
       "crops": {
         "victor-frankenstein": {
-          "window": [0.11, 0.1669, 0.82, 0.2863],
-          "full": [0.105, 0.0443, 0.82, 0.6813]
+          "window": [
+            0.11,
+            0.1669,
+            0.82,
+            0.2863
+          ],
+          "full": [
+            0.105,
+            0.0443,
+            0.82,
+            0.6813
+          ]
         },
         "the-creature": {
-          "window": [0.11, 0.3978, 0.7, 0.2444],
-          "full": [0.105, 0.0443, 0.82, 0.6813]
+          "window": [
+            0.11,
+            0.3978,
+            0.7,
+            0.2444
+          ],
+          "full": [
+            0.105,
+            0.0443,
+            0.82,
+            0.6813
+          ]
         }
       }
     },
@@ -922,11 +1275,24 @@
       "notes": "Stand-in; head-and-shoulders crop. Credit by its own title.",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122",
       "commonsFile": "Edward_Burne-Jones_-_Pygmalion_and_the_Image_-_The_Godhead_Fires_-_Google_Art_Project.jpg",
-      "size": [4256, 5635],
+      "size": [
+        4256,
+        5635
+      ],
       "crops": {
         "the-bride": {
-          "window": [0.095, 0.0334, 0.75, 0.3332],
-          "full": [0.03, 0.003, 0.94, 0.9939]
+          "window": [
+            0.095,
+            0.0334,
+            0.75,
+            0.3332
+          ],
+          "full": [
+            0.03,
+            0.003,
+            0.94,
+            0.9939
+          ]
         }
       }
     },
@@ -948,11 +1314,24 @@
       "status": "cleared",
       "notes": "Stand-in; head-and-shoulders crop.",
       "metObjectId": 436483,
-      "size": [3185, 4000],
+      "size": [
+        3185,
+        4000
+      ],
       "crops": {
         "the-bride": {
-          "window": [0.17, 0.2295, 0.6, 0.281],
-          "full": [0.17, 0.1856, 0.6, 0.6689]
+          "window": [
+            0.17,
+            0.2295,
+            0.6,
+            0.281
+          ],
+          "full": [
+            0.17,
+            0.1856,
+            0.6,
+            0.6689
+          ]
         }
       },
       "variant": 2
@@ -974,12 +1353,23 @@
       "licence": "Public domain",
       "status": "cleared",
       "notes": "Larger scan of the same plate.",
-      "size": [1073, 1380],
+      "size": [
+        1073,
+        1380
+      ],
       "crops": {
         "board": {
-          "board": [0.0, 0.057, 1.0, 0.486]
+          "board": [
+            0.0,
+            0.057,
+            1.0,
+            0.486
+          ]
         }
-      }
+      },
+      "tales": [
+        "Beowulf"
+      ]
     },
     {
       "id": "board-camelot",
@@ -997,12 +1387,23 @@
       "status": "cleared",
       "commonsFile": "Holy_Grail_tapestry_The_Summons.jpg",
       "notes": "Designed by Burne-Jones (died 1898) with Morris (died 1896) and Dearle (died 1932); all out of UK copyright.",
-      "size": [1705, 791],
+      "size": [
+        1705,
+        791
+      ],
       "crops": {
         "board": {
-          "board": [0.21, 0.0993, 0.58, 0.7814]
+          "board": [
+            0.21,
+            0.0993,
+            0.58,
+            0.7814
+          ]
         }
-      }
+      },
+      "tales": [
+        "King Arthur"
+      ]
     },
     {
       "id": "board-camelot-fallback",
@@ -1021,12 +1422,23 @@
       "status": "cleared",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076",
       "commonsFile": "Edward_Burne-Jones_-_The_Attainment;_The_Vision_of_the_Holy_Grail_to_Sir_Galahad,_Sir_Bors_and_Sir_Percival_(from_the_series_'The_Quest_for_the_Holy_Grail').jpg",
-      "size": [1260, 435],
+      "size": [
+        1260,
+        435
+      ],
       "crops": {
         "board": {
-          "board": [0.324, 0.0003, 0.552, 0.9993]
+          "board": [
+            0.324,
+            0.0003,
+            0.552,
+            0.9993
+          ]
         }
-      }
+      },
+      "tales": [
+        "King Arthur"
+      ]
     },
     {
       "id": "board-forest-path",
@@ -1043,7 +1455,10 @@
       "licence": "CC0",
       "status": "cleared",
       "imagePage": "https://collections.hammer.ucla.edu/artwork/1962.35.330",
-      "notes": "Uses the Hammer engraving; save it by hand."
+      "notes": "Uses the Hammer engraving; save it by hand.",
+      "tales": [
+        "Red Riding Hood"
+      ]
     },
     {
       "id": "board-victors-laboratory",
@@ -1060,26 +1475,45 @@
       "licence": "Public Domain Mark",
       "status": "cleared",
       "wellcomeQuery": "b11980072",
-      "size": [2000, 3370],
+      "size": [
+        2000,
+        3370
+      ],
       "crops": {
         "board": {
-          "board": [0.105, 0.1479, 0.82, 0.3042]
+          "board": [
+            0.105,
+            0.1479,
+            0.82,
+            0.3042
+          ]
         }
-      }
+      },
+      "tales": [
+        "Frankenstein"
+      ]
     },
     {
       "id": "board-castle-dracula",
       "use": "board",
       "board": "Castle Dracula",
-      "artist": null,
-      "title": null,
-      "date": null,
+      "artist": "Léon Benett",
+      "title": "The castle (from Le Château des Carpathes)",
+      "date": "1892",
       "source": {
-        "name": null,
-        "url": null
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Apparition_Château_des_Carpathes.jpg"
       },
-      "licence": null,
-      "status": "open"
+      "licence": "Public domain",
+      "status": "cleared",
+      "tales": [
+        "Dracula",
+        "Dracula (Stoker, 1897)"
+      ],
+      "artistDied": 1916,
+      "publication": "Jules Verne, Le Château des Carpathes (Hetzel, 1892)",
+      "commonsFile": "Apparition_Château_des_Carpathes.jpg",
+      "notes": "Verne's haunted castle in the Transylvanian Carpathians, five years before Dracula. Only 1000px; a larger scan is wanted."
     },
     {
       "id": "sheriff-of-nottingham",
@@ -1093,20 +1527,13 @@
       "date": "1912",
       "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912), p. 129",
       "source": {
-        "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Louis_John_Rhead_-_The_Sheriff_Of_Nottingham.jpg"
+        "name": "Internet Archive",
+        "url": "https://archive.org/details/boldrobinhoodhis00rheauoft/page/n146/mode/1up"
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "notes": "Small scan (305px wide); a larger one is still wanted.",
-      "commonsFile": "Louis_John_Rhead_-_The_Sheriff_Of_Nottingham.jpg",
-      "size": [305, 800],
-      "crops": {
-        "sheriff-of-nottingham": {
-          "window": [0.04, 0.1968, 0.92, 0.2063],
-          "full": [0.02, 0.1638, 0.96, 0.5124]
-        }
-      }
+      "notes": "Full-page scan (2112 x 3392) from the University of Toronto copy, scan page 146.",
+      "downloadUrl": "https://iiif.archive.org/iiif/3/boldrobinhoodhis00rheauoft$146/full/max/0/default.jpg"
     },
     {
       "id": "the-little-mermaid",
@@ -1126,11 +1553,24 @@
       "licence": "Public domain",
       "status": "cleared",
       "commonsFile": "Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_189.jpg",
-      "size": [1751, 2210],
+      "size": [
+        1751,
+        2210
+      ],
       "crops": {
         "the-little-mermaid": {
-          "window": [0.0, 0.327, 1.0, 0.4661],
-          "full": [0.22, 0.3345, 0.6, 0.6655]
+          "window": [
+            0.0,
+            0.327,
+            1.0,
+            0.4661
+          ],
+          "full": [
+            0.22,
+            0.3345,
+            0.6,
+            0.6655
+          ]
         }
       }
     },
@@ -1153,11 +1593,24 @@
       "status": "cleared",
       "notes": "Stand-in: one of Géricault's portraits of asylum patients. Credit by its own title, never as Renfield.",
       "commonsFile": "Théodore_Géricault_-_Portrait_of_a_Kleptomaniac_-_WGA08636.jpg",
-      "size": [810, 1028],
+      "size": [
+        810,
+        1028
+      ],
       "crops": {
         "renfield": {
-          "window": [0.0, 0.1183, 1.0, 0.4635],
-          "full": [0.05, 0.0036, 0.9, 0.9928]
+          "window": [
+            0.0,
+            0.1183,
+            1.0,
+            0.4635
+          ],
+          "full": [
+            0.05,
+            0.0036,
+            0.9,
+            0.9928
+          ]
         }
       }
     },
@@ -1180,11 +1633,24 @@
       "status": "cleared",
       "notes": "Stand-in: a Dutch doctor for the Dutch doctor. Crop to Dr Tulp. Commons file name not yet confirmed; if the fetch fails, pick the file from the Commons page for this painting.",
       "commonsFile": "Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg",
-      "size": [6000, 4520],
+      "size": [
+        6000,
+        4520
+      ],
       "crops": {
         "van-helsing": {
-          "window": [0.37, 0.2248, 0.5, 0.3904],
-          "full": [0.47, 0.1669, 0.38, 0.7062]
+          "window": [
+            0.37,
+            0.2248,
+            0.5,
+            0.3904
+          ],
+          "full": [
+            0.47,
+            0.1669,
+            0.38,
+            0.7062
+          ]
         }
       }
     },
@@ -1204,12 +1670,24 @@
       "licence": "Public domain",
       "status": "cleared",
       "commonsFile": "Major_Oak,_Sherwood_Forest,_Nottinghamshire_Andrew_MacCallum.jpg",
-      "size": [1000, 806],
+      "size": [
+        1000,
+        806
+      ],
       "crops": {
         "board": {
-          "board": [0.0, 0.0323, 1.0, 0.7754]
+          "board": [
+            0.0,
+            0.0323,
+            1.0,
+            0.7754
+          ]
         }
-      }
+      },
+      "tales": [
+        "Robin Hood",
+        "The Robin Hood ballads"
+      ]
     },
     {
       "id": "robin-hood-variant",
@@ -1231,11 +1709,24 @@
       "commonsFile": "N._C._Wyeth_Robin_Hood.jpg",
       "notes": "Crop to the painting, below the title lettering. Still in copyright in life+100 countries such as Mexico until 2045.",
       "variant": 2,
-      "size": [1026, 1409],
+      "size": [
+        1026,
+        1409
+      ],
       "crops": {
         "robin-hood": {
-          "window": [0.11, 0.3929, 0.78, 0.3341],
-          "full": [0.215, 0.3695, 0.57, 0.5811]
+          "window": [
+            0.11,
+            0.3929,
+            0.78,
+            0.3341
+          ],
+          "full": [
+            0.215,
+            0.3695,
+            0.57,
+            0.5811
+          ]
         }
       }
     },
@@ -1258,11 +1749,24 @@
       "status": "cleared",
       "commonsFile": "Robin_Hood_and_Guy_of_Gisborne.jpg",
       "variant": 3,
-      "size": [721, 1000],
+      "size": [
+        721,
+        1000
+      ],
       "crops": {
         "robin-hood": {
-          "window": [0.0, 0.1179, 1.0, 0.4241],
-          "full": [0.0, 0.0205, 0.95, 0.9589]
+          "window": [
+            0.0,
+            0.1179,
+            1.0,
+            0.4241
+          ],
+          "full": [
+            0.0,
+            0.0205,
+            0.95,
+            0.9589
+          ]
         }
       }
     },
@@ -1286,11 +1790,24 @@
       "commonsFile": "N.C._Wyeth_-_The_Passing_of_Robin_Hood.jpg",
       "notes": "Still in copyright in life+100 countries such as Mexico until 2045.",
       "variant": 4,
-      "size": [2000, 2419],
+      "size": [
+        2000,
+        2419
+      ],
       "crops": {
         "robin-hood": {
-          "window": [0.2, 0.4255, 0.8, 0.3891],
-          "full": [0.36, 0.3981, 0.52, 0.6019]
+          "window": [
+            0.2,
+            0.4255,
+            0.8,
+            0.3891
+          ],
+          "full": [
+            0.36,
+            0.3981,
+            0.52,
+            0.6019
+          ]
         }
       }
     },
@@ -1313,11 +1830,24 @@
       "status": "cleared",
       "commonsFile": "The_King_joins_the_hands_of_Robin_Hood_and_Maid_Marian.jpg",
       "variant": 3,
-      "size": [564, 815],
+      "size": [
+        564,
+        815
+      ],
       "crops": {
         "maid-marian": {
-          "window": [0.0, 0.2165, 1.0, 0.4071],
-          "full": [0.07, 0.064, 0.9, 0.872]
+          "window": [
+            0.0,
+            0.2165,
+            1.0,
+            0.4071
+          ],
+          "full": [
+            0.07,
+            0.064,
+            0.9,
+            0.872
+          ]
         }
       }
     },
@@ -1340,11 +1870,24 @@
       "status": "cleared",
       "commonsFile": "RobinandMaidMarion.JPG",
       "variant": 4,
-      "size": [880, 1337],
+      "size": [
+        880,
+        1337
+      ],
       "crops": {
         "maid-marian": {
-          "window": [0.02, 0.2058, 0.9, 0.3485],
-          "full": [0.045, 0.0784, 0.85, 0.7832]
+          "window": [
+            0.02,
+            0.2058,
+            0.9,
+            0.3485
+          ],
+          "full": [
+            0.045,
+            0.0784,
+            0.85,
+            0.7832
+          ]
         }
       }
     },
@@ -1367,11 +1910,24 @@
       "status": "cleared",
       "commonsFile": "Stories_from_Hans_Andersen_-_Edmund_Dulac_color_plate_at_page_169.jpg",
       "variant": 2,
-      "size": [1752, 2201],
+      "size": [
+        1752,
+        2201
+      ],
       "crops": {
         "the-little-mermaid": {
-          "window": [0.1, 0.4561, 0.7, 0.3278],
-          "full": [0.175, 0.3871, 0.55, 0.6129]
+          "window": [
+            0.1,
+            0.4561,
+            0.7,
+            0.3278
+          ],
+          "full": [
+            0.175,
+            0.3871,
+            0.55,
+            0.6129
+          ]
         }
       }
     },
@@ -1394,11 +1950,24 @@
       "status": "cleared",
       "commonsFile": "Vilhelm_Pedersen,_DK2-0006,_ubt.jpeg",
       "variant": 2,
-      "size": [1341, 857],
+      "size": [
+        1341,
+        857
+      ],
       "crops": {
         "the-tin-soldier": {
-          "window": [0.0, 0.0398, 1.0, 0.9204],
-          "full": [0.222, 0.0005, 0.456, 0.9989]
+          "window": [
+            0.0,
+            0.0398,
+            1.0,
+            0.9204
+          ],
+          "full": [
+            0.222,
+            0.0005,
+            0.456,
+            0.9989
+          ]
         }
       }
     },
@@ -1422,11 +1991,24 @@
       "commonsFile": "Ivan_Bilibin_018.jpg",
       "notes": "The true tale: Vasilisa the Wise in her frog form, at the foot of the picture.",
       "variant": 2,
-      "size": [821, 1169],
+      "size": [
+        821,
+        1169
+      ],
       "crops": {
         "vasilisa-the-wise": {
-          "window": [0.08, 0.4465, 0.84, 0.347],
-          "full": [0.11, 0.1165, 0.78, 0.7669]
+          "window": [
+            0.08,
+            0.4465,
+            0.84,
+            0.347
+          ],
+          "full": [
+            0.11,
+            0.1165,
+            0.78,
+            0.7669
+          ]
         }
       }
     },
@@ -1469,11 +2051,24 @@
       "status": "cleared",
       "commonsFile": "Edward_Burne-Jones_-_The_Beguiling_of_Merlin,_1873-1874.jpg",
       "variant": 2,
-      "size": [2000, 3450],
+      "size": [
+        2000,
+        3450
+      ],
       "crops": {
         "merlin": {
-          "window": [0.0, 0.138, 0.95, 0.324],
-          "full": [0.01, 0.0223, 0.98, 0.7954]
+          "window": [
+            0.0,
+            0.138,
+            0.95,
+            0.324
+          ],
+          "full": [
+            0.01,
+            0.0223,
+            0.98,
+            0.7954
+          ]
         }
       }
     },
@@ -1496,11 +2091,24 @@
       "commonsFile": "Lancelot_and_Guinevere_by_Herbert_James_Draper.jpg",
       "variant": 3,
       "notes": "Guinevere is the centre of this painting; Lancelot is small in the corner, so it is her variant.",
-      "size": [1700, 1073],
+      "size": [
+        1700,
+        1073
+      ],
       "crops": {
         "guinevere": {
-          "window": [0.12, 0.0204, 0.6, 0.5592],
-          "full": [0.175, 0.0009, 0.45, 0.9981]
+          "window": [
+            0.12,
+            0.0204,
+            0.6,
+            0.5592
+          ],
+          "full": [
+            0.175,
+            0.0009,
+            0.45,
+            0.9981
+          ]
         }
       }
     },
@@ -1523,11 +2131,24 @@
       "status": "cleared",
       "commonsFile": "Arthur_Rackham_Little_Red_Riding_Hood+.jpg",
       "variant": 3,
-      "size": [800, 1183],
+      "size": [
+        800,
+        1183
+      ],
       "crops": {
         "red-riding-hood": {
-          "window": [0.25, 0.6608, 0.7, 0.2785],
-          "full": [0.41, 0.6012, 0.42, 0.3976]
+          "window": [
+            0.25,
+            0.6608,
+            0.7,
+            0.2785
+          ],
+          "full": [
+            0.41,
+            0.6012,
+            0.42,
+            0.3976
+          ]
         }
       }
     },
@@ -1550,11 +2171,24 @@
       "status": "cleared",
       "commonsFile": "Stories_of_beowulf_wiglaf_and_beowulf.jpg",
       "variant": 2,
-      "size": [1038, 1338],
+      "size": [
+        1038,
+        1338
+      ],
       "crops": {
         "beowulf": {
-          "window": [0.02, 0.1546, 0.9, 0.4107],
-          "full": [0.01, 0.0004, 0.92, 0.9992]
+          "window": [
+            0.02,
+            0.1546,
+            0.9,
+            0.4107
+          ],
+          "full": [
+            0.01,
+            0.0004,
+            0.92,
+            0.9992
+          ]
         }
       }
     },
@@ -1577,13 +2211,450 @@
       "status": "cleared",
       "commonsFile": "Stories_of_beowulf_head_of_grendel.jpg",
       "variant": 2,
-      "size": [1059, 1371],
+      "size": [
+        1059,
+        1371
+      ],
       "crops": {
         "grendel": {
-          "window": [0.0, 0.0728, 1.0, 0.4544],
-          "full": [0.0376, 0.0, 0.9247, 1.0]
+          "window": [
+            0.0,
+            0.0728,
+            1.0,
+            0.4544
+          ],
+          "full": [
+            0.0376,
+            0.0,
+            0.9247,
+            1.0
+          ]
         }
       }
+    },
+    {
+      "id": "the-wolf-variant",
+      "use": "variant",
+      "cards": [
+        "the-wolf"
+      ],
+      "artist": "Gustave Doré",
+      "artistDied": 1883,
+      "title": "Le Petit Chaperon rouge (the Wolf in Grandmother's bed)",
+      "date": "1862",
+      "publication": "Les Contes de Perrault (Hetzel, 1862)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Le_Petit_Chaperon_Rouge,_RP-P-OB-33.985.jpg",
+        "original": "Rijksmuseum, Amsterdam"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "commonsFile": "Le_Petit_Chaperon_Rouge,_RP-P-OB-33.985.jpg"
+    },
+    {
+      "id": "red-riding-hood-variant-2",
+      "use": "variant",
+      "cards": [
+        "red-riding-hood",
+        "the-wolf"
+      ],
+      "artist": "Gustave Doré",
+      "artistDied": 1883,
+      "title": "Le Petit Chaperon rouge (in Grandmother's bed)",
+      "date": "1862",
+      "publication": "Les Contes de Perrault (Hetzel, 1862)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Little_Red_Riding_Hood_Gustav_Doré_second_illustration_for_Charles_Perrault_-_Il_libro_delle_fate,_Longanesi,_Milano,_1891.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Little_Red_Riding_Hood_Gustav_Doré_second_illustration_for_Charles_Perrault_-_Il_libro_delle_fate,_Longanesi,_Milano,_1891.jpg"
+    },
+    {
+      "id": "st-george-variant",
+      "use": "variant",
+      "cards": [
+        "st-george",
+        "the-dragon",
+        "the-princess"
+      ],
+      "artist": "Paolo Uccello",
+      "artistDied": 1475,
+      "title": "Saint George and the Dragon",
+      "date": "c. 1470",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Paolo_Uccello_-_Saint_George_and_the_Dragon_(National_Gallery).jpg",
+        "original": "The National Gallery, London"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Paolo_Uccello_-_Saint_George_and_the_Dragon_(National_Gallery).jpg",
+      "notes": "The real St George, unlike the starter set's Saint Michael stand-in. One painting, three crops: the knight, the dragon and the princess."
+    },
+    {
+      "id": "fafnir",
+      "use": "card",
+      "cards": [
+        "fafnir"
+      ],
+      "artist": "Arthur Rackham",
+      "artistDied": 1939,
+      "title": "Fafner (plate facing page 22)",
+      "date": "1911",
+      "publication": "Siegfried & The Twilight of the Gods (Heinemann, 1911)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Siegfried_and_the_Twilight_of_the_Gods_p_022.jpg"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "commonsFile": "Siegfried_and_the_Twilight_of_the_Gods_p_022.jpg",
+      "notes": "Wagner's Siegfried and Fafner are the Sigurd and Fafnir of the Völsunga saga."
+    },
+    {
+      "id": "sigurd",
+      "use": "card",
+      "cards": [
+        "sigurd"
+      ],
+      "artist": "Arthur Rackham",
+      "artistDied": 1939,
+      "title": "Siegfried and Fafner (plate facing page 56)",
+      "date": "1911",
+      "publication": "Siegfried & The Twilight of the Gods (Heinemann, 1911)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Siegfried_and_the_Twilight_of_the_Gods_p_056.jpg"
+      },
+      "licence": "Public domain in the US and UK",
+      "status": "cleared",
+      "commonsFile": "Siegfried_and_the_Twilight_of_the_Gods_p_056.jpg",
+      "notes": "Wagner's Siegfried and Fafner are the Sigurd and Fafnir of the Völsunga saga."
+    },
+    {
+      "id": "gwydion",
+      "use": "stand-in",
+      "cards": [
+        "gwydion"
+      ],
+      "artist": "John Martin",
+      "artistDied": 1854,
+      "title": "The Bard",
+      "date": "c. 1817",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:John_Martin_-_The_Bard_-_Google_Art_Project.jpg",
+        "original": "Laing Art Gallery, Newcastle"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "John_Martin_-_The_Bard_-_Google_Art_Project.jpg",
+      "maxWidth": 3000,
+      "notes": "Stand-in: a Welsh bard on a crag. Gwydion was the greatest storyteller in the Mabinogion. Credit by its own title."
+    },
+    {
+      "id": "gwydion-variant",
+      "use": "variant",
+      "cards": [
+        "gwydion"
+      ],
+      "artist": "Unknown",
+      "title": "Gwydion finds Lleu as an eagle in the oak",
+      "date": null,
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Lleu.jpg"
+      },
+      "licence": "Public domain (claimed)",
+      "status": "to-confirm",
+      "commonsFile": "Lleu.jpg",
+      "notes": "The true scene from Math, son of Mathonwy, but the Commons file gives no artist, date or book. Looks like a mid-1800s wood engraving, possibly from Lady Charlotte Guest's Mabinogion (1838-49). Don't ship until the book is found."
+    },
+    {
+      "id": "blodeuwedd",
+      "use": "stand-in",
+      "cards": [
+        "blodeuwedd"
+      ],
+      "artist": "Giuseppe Arcimboldo (attributed)",
+      "artistDied": 1593,
+      "title": "Flora",
+      "date": "c. 1591",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arcimboldo,_Giuseppe_(attr.)_-_Flora_-_c._1591.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Arcimboldo,_Giuseppe_(attr.)_-_Flora_-_c._1591.jpg",
+      "notes": "Stand-in: a woman made of flowers, which is exactly what Blodeuwedd is. Credit by its own title."
+    },
+    {
+      "id": "board-st-george",
+      "use": "board",
+      "board": "St George and the Dragon",
+      "tales": [
+        "St George and the Dragon"
+      ],
+      "artist": "Paolo Uccello",
+      "artistDied": 1475,
+      "title": "Saint George and the Dragon",
+      "date": "c. 1470",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Paolo_Uccello_-_Saint_George_and_the_Dragon_(National_Gallery).jpg",
+        "original": "The National Gallery, London"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Paolo_Uccello_-_Saint_George_and_the_Dragon_(National_Gallery).jpg"
+    },
+    {
+      "id": "board-baba-yaga",
+      "use": "board",
+      "board": "Baba Yaga's Hut",
+      "tales": [
+        "Baba Yaga"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Vasilisa at Baba Yaga's hut",
+      "date": "1899",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Russian_Wonder_Tales_081.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Russian_Wonder_Tales_081.jpg",
+      "notes": "The same plate as Vasilisa's card, cut differently."
+    },
+    {
+      "id": "board-crossroads",
+      "use": "board",
+      "board": "The Crossroads Stone",
+      "tales": [
+        "Koschei the Deathless"
+      ],
+      "artist": "Viktor Vasnetsov",
+      "artistDied": 1926,
+      "title": "Knight at the Crossroads",
+      "date": "1882",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Victor_Vasnetsov_-_Knight_at_the_Crossroads_-_Google_Art_Project.jpg",
+        "original": "Russian Museum, St Petersburg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Victor_Vasnetsov_-_Knight_at_the_Crossroads_-_Google_Art_Project.jpg",
+      "maxWidth": 4000
+    },
+    {
+      "id": "board-bogatyrs",
+      "use": "board",
+      "board": "The Steppe",
+      "tales": [
+        "Dobrynya and the Zmey"
+      ],
+      "artist": "Viktor Vasnetsov",
+      "artistDied": 1926,
+      "title": "Bogatyrs",
+      "date": "1881-98",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Viktor_Vasnetsov_-_Богатыри_-_Google_Art_Project.jpg",
+        "original": "Tretyakov Gallery, Moscow"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Viktor_Vasnetsov_-_Богатыри_-_Google_Art_Project.jpg",
+      "maxWidth": 4000,
+      "notes": "Dobrynya Nikitich, the Zmey's slayer, rides on the left."
+    },
+    {
+      "id": "board-frog-princess",
+      "use": "board",
+      "board": "The Tsar's Shore",
+      "tales": [
+        "The Frog Princess"
+      ],
+      "artist": "Ivan Bilibin",
+      "artistDied": 1942,
+      "title": "Ivan Tsarevich on the shore",
+      "date": "1899",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Царевна_лягушка_6.jpg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Царевна_лягушка_6.jpg"
+    },
+    {
+      "id": "board-the-bard",
+      "use": "board",
+      "board": "The Bard's Crag",
+      "tales": [
+        "Math, Son of Mathonwy",
+        "Branwen, Daughter of Llŷr",
+        "Pwyll, Prince of Dyfed"
+      ],
+      "artist": "Thomas Jones",
+      "artistDied": 1803,
+      "title": "The Bard",
+      "date": "1774",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Amgueddfa_Cymru_-_Y_Bardd_-_The_Bard_-_2568.jpeg",
+        "original": "National Museum Wales"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "commonsFile": "Amgueddfa_Cymru_-_Y_Bardd_-_The_Bard_-_2568.jpeg",
+      "notes": "Shared by the three Welsh tales until each has its own."
+    },
+    {
+      "id": "board-ninth-wave",
+      "use": "board",
+      "board": "The Open Sea",
+      "tales": [
+        "The Little Mermaid (Andersen, 1837)"
+      ],
+      "artist": "Ivan Aivazovsky",
+      "artistDied": 1900,
+      "title": "The Ninth Wave",
+      "date": "1850",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Hovhannes_Aivazovsky_-_The_Ninth_Wave_-_Google_Art_Project.jpg",
+        "original": "Russian Museum, St Petersburg"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Hovhannes_Aivazovsky_-_The_Ninth_Wave_-_Google_Art_Project.jpg",
+      "maxWidth": 4000
+    },
+    {
+      "id": "board-north-cape",
+      "use": "board",
+      "board": "The North Cape",
+      "tales": [
+        "The Snow Queen"
+      ],
+      "artist": "Peder Balke",
+      "artistDied": 1887,
+      "title": "The North Cape by Moonlight",
+      "date": "1848",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Peder_Balke_-_The_North_Cape_by_Moonlight_-_2019.167.4_-_Metropolitan_Museum_of_Art.jpg",
+        "original": "The Metropolitan Museum of Art"
+      },
+      "licence": "CC0",
+      "status": "cleared",
+      "commonsFile": "Peder_Balke_-_The_North_Cape_by_Moonlight_-_2019.167.4_-_Metropolitan_Museum_of_Art.jpg",
+      "notes": "The Snow Queen's palace is in the far north, past Lapland."
+    },
+    {
+      "id": "board-dark-forest",
+      "use": "board",
+      "board": "The Dark Forest",
+      "tales": [
+        "Hansel and Gretel"
+      ],
+      "artist": "Caspar David Friedrich",
+      "artistDied": 1840,
+      "title": "The Chasseur in the Forest",
+      "date": "1814",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_068.jpg",
+        "original": "private collection"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Caspar_David_Friedrich_068.jpg"
+    },
+    {
+      "id": "board-spinners",
+      "use": "board",
+      "board": "The Spinning Room",
+      "tales": [
+        "Rumpelstiltskin"
+      ],
+      "artist": "Diego Velázquez",
+      "artistDied": 1660,
+      "title": "The Spinners (Las Hilanderas)",
+      "date": "c. 1657",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Velazquez-las_hilanderas.jpg",
+        "original": "Museo del Prado, Madrid"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Velazquez-las_hilanderas.jpg"
+    },
+    {
+      "id": "board-stalheim",
+      "use": "board",
+      "board": "The Fjord Valley",
+      "tales": [
+        "Völsunga saga"
+      ],
+      "artist": "Johan Christian Dahl",
+      "artistDied": 1857,
+      "title": "View from Stalheim",
+      "date": "1842",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Dahl-Stalheim.jpg",
+        "original": "National Museum, Oslo"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Dahl-Stalheim.jpg",
+      "maxWidth": 4000
+    },
+    {
+      "id": "board-nordkapp",
+      "use": "board",
+      "board": "The Edge of the World",
+      "tales": [
+        "Norse myth"
+      ],
+      "artist": "Peder Balke",
+      "artistDied": 1887,
+      "title": "The North Cape",
+      "date": "1840s",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Nordkapp_(North_Cape)_by_Peder_Balke,_1840s_or_1850s.JPG"
+      },
+      "licence": "Public domain",
+      "status": "cleared",
+      "commonsFile": "Nordkapp_(North_Cape)_by_Peder_Balke,_1840s_or_1850s.JPG"
+    },
+    {
+      "id": "board-tin-soldier",
+      "use": "board",
+      "board": "The Children's Room",
+      "tales": [
+        "The Steadfast Tin Soldier"
+      ],
+      "artist": null,
+      "title": null,
+      "date": null,
+      "source": {
+        "name": null,
+        "url": null
+      },
+      "licence": null,
+      "status": "open"
     }
   ]
 }

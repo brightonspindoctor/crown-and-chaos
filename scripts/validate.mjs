@@ -67,6 +67,15 @@ for (const i of manifest.images) {
   }
 }
 
+// Boards: every tale needs a board, chosen by the Crown hero's tale.
+const boardTales = new Map();
+for (const b of manifest.images.filter((i) => i.use === "board")) for (const t of b.tales ?? []) boardTales.set(t, b);
+for (const { data: h } of readDir("cards/heroes")) {
+  const b = boardTales.get(h.tale);
+  if (!b) warnings.push(`hero ${h.id}: no board for the tale "${h.tale}"`);
+  else if (b.status === "open") warnings.push(`hero ${h.id}: the board for "${h.tale}" has no art yet`);
+}
+
 const fronts = readDir("cards/front-rank");
 const items = readDir("cards/items");
 for (const w of warnings) console.log(`warning: ${w}`);

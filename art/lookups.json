@@ -1,109 +1,24 @@
 {
- "files": [
-  "Lleu.jpg"
- ],
  "peekSearches": [
-  "Doré Little Red Riding Hood second illustration Perrault",
-  "Fonds Jules Verne Château des Carpathes btv1b10558642",
-  "Uccello Saint George Dragon National Gallery",
-  "Bilibin Baba Yaga hut Vasilisa",
-  "Vasnetsov Bogatyrs 1898",
-  "Vasnetsov Knight at the Crossroads",
-  "Царевна лягушка Bilibin",
-  "Dulac Snow Queen sledge",
-  "Dulac Stories from Hans Andersen color plate",
-  "Velázquez Las Hilanderas Spinners",
-  "Caspar David Friedrich Chasseur im Walde",
-  "Rackham Siegfried Fafner",
-  "Rackham Rhinegold Valkyrie Twilight of the Gods plate",
-  "Johan Christian Dahl Stalheim",
-  "Christopher Williams Branwen 1915",
-  "Christopher Williams Ceridwen",
-  "Aivazovsky Ninth Wave",
-  "Thomas Jones The Bard 1774",
-  "Vasnetsov Koschei Deathless",
-  "Bilibin Maria Morevna Koschei",
-  "Peder Balke North Cape",
-  "Grimm Hansel Gretel forest painting witch house"
+  "Gustave Doré compère le Loup Chaperon",
+  "Doré Perrault 1862 Petit Chaperon rouge bois loup",
+  "Fonds Jules Verne Château des Carpathes",
+  "Pedersen tin soldier nursery Andersen",
+  "Christopher Williams Branwen painting",
+  "Guest Mabinogion 1849 woodcut",
+  "Rhiannon Pwyll illustration 19th century"
  ],
  "iaPages": [
   {
-   "id": "robinhood00cresrich",
-   "from": 1,
-   "to": 405,
-   "step": 2
-  }
- ],
- "iaFull": [
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 46,
-   "name": "rhead-46"
+   "id": "10035526bsb",
+   "from": 0,
+   "to": 418,
+   "step": 1
   },
   {
    "id": "boldrobinhoodhis00rheauoft",
-   "page": 54,
-   "name": "rhead-54"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 88,
-   "name": "rhead-88"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 146,
-   "name": "rhead-146"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 170,
-   "name": "rhead-170"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 182,
-   "name": "rhead-182"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 200,
-   "name": "rhead-200"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 206,
-   "name": "rhead-206"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 214,
-   "name": "rhead-214"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 220,
-   "name": "rhead-220"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 230,
-   "name": "rhead-230"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 250,
-   "name": "rhead-250"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 254,
-   "name": "rhead-254"
-  },
-  {
-   "id": "boldrobinhoodhis00rheauoft",
-   "page": 266,
-   "name": "rhead-266"
+   "from": 90,
+   "to": 145
   }
  ]
 }

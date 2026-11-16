@@ -3,7 +3,7 @@
   "name": "Blodeuwedd",
   "type": "hero",
   "realm": "Cymru",
-  "tale": "Math, son of Mathonwy",
+  "tale": "Math, Son of Mathonwy",
   "aspect": "Beast",
   "tags": [
     "nightfall"
@@ -40,7 +40,7 @@
   "rules": [
     "Owl at dusk: at the start of round 8's upkeep, before healing stops and before the first Nightfall damage, she heals to full and her printed Health, Attack and Guard double (14 / 4 / 2). Speed stays 4. Bonus Guard from bonds, passives and actions is not doubled."
   ],
-  "art": "gwydion",
+  "art": "blodeuwedd",
   "status": "reviewed",
   "notes": "Designed to hold on and hope to reach nightfall. Guard taken by the crown passive is applied at upkeep, so Guard from her move stays with the other heroes that round."
 }
