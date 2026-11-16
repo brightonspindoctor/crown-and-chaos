@@ -1,13 +1,6 @@
 {
-  "ranAt": "2026-11-16T07:11:03.193Z",
-  "fetched": [
-    {
-      "id": "board-tin-soldier",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Kitchen._From_A_Home_(26_watercolours)_(Carl_Larsson)_-_Nationalmuseum_-_24211.tif?width=3000",
-      "bytes": 858896
-    }
-  ],
+  "ranAt": "2026-11-16T07:12:46.110Z",
+  "fetched": [],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -83,7 +76,8 @@
     "board-north-cape",
     "board-dark-forest",
     "board-spinners",
-    "board-stalheim"
+    "board-stalheim",
+    "board-tin-soldier"
   ],
   "unresolved": [],
   "failed": [
