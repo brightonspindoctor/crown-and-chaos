@@ -17,6 +17,9 @@ export const ASSUMPTIONS = [
   "A Thrall made by Dracula's Turn has 3 Health and the victim's Attack, and attacks the card opposite.",
   "Merlin's Enchanted sleep stops the hero for this round only, because no hero can be stopped two rounds running.",
   "Fights that pass round 20 are draws.",
+  "The slot-1 rules (shielded only by two heroes; can't melee past its own heroes) apply to whoever is in slot 1, including under Robin's No Crown.",
+  "Only the standard Attack can be turned on your own heroes, and only from slot 1.",
+  "Front-rank cards in front of the Crown don't stop it attacking; only heroes in slots 2–3 do.",
 ];
 
 const NIGHTFALL = 8;
@@ -286,24 +289,30 @@ export function heal(st, src, target, amount, opts = {}) {
 
 // ---------- targeting ----------
 // Closest enemy row: front rank, then heroes in 2–3, then the Crown.
-export function closestRow(st, attackerSide) {
+// Enemy rows, closest first. The front rank shields everything. Behind it, the Crown (slot 1) is
+// shielded from melee only while both hero slots (2 and 3) are filled; once one is empty the Crown
+// can be struck alongside the remaining hero.
+function enemyRows(st, attackerSide) {
   const foe = 1 - attackerSide;
-  for (const row of [[4, 5, 6], [2, 3], [1]]) {
-    const cs = row.map((s) => at(st, foe, s)).filter(Boolean);
-    if (cs.length) return cs;
-  }
-  return [];
+  const front = [4, 5, 6].map((s) => at(st, foe, s)).filter(Boolean);
+  const mid = [2, 3].map((s) => at(st, foe, s)).filter(Boolean);
+  const back = at(st, foe, 1);
+  const rows = [front];
+  if (mid.length >= 2) { rows.push(mid); if (back) rows.push([back]); }
+  else rows.push(back ? [...mid, back] : mid);
+  return rows.filter((r) => r.length);
+}
+export function closestRow(st, attackerSide) { return enemyRows(st, attackerSide)[0] || []; }
+// A card in slot 1 can't melee the enemy while one of its own heroes stands in front of it.
+export function crownBlocked(st, c) {
+  return c.kind === "hero" && c.slot === 1 && [2, 3].some((s) => at(st, c.side, s)?.kind === "hero");
 }
 export function meleeTargets(st, attacker) {
-  const foe = 1 - attacker.side;
-  const rows = [[4, 5, 6], [2, 3], [1]];
-  let out = [];
-  let idx = rows.findIndex((r) => r.some((s) => at(st, foe, s)));
-  if (idx < 0) return [];
-  out = rows[idx].map((s) => at(st, foe, s)).filter(Boolean);
-  if (crownIs(st, attacker.side, "bran-the-blessed") && idx + 1 < rows.length) {
-    out = out.concat(rows[idx + 1].map((s) => at(st, foe, s)).filter(Boolean));
-  }
+  if (crownBlocked(st, attacker)) return [];
+  const rows = enemyRows(st, attacker.side);
+  if (!rows.length) return [];
+  let out = rows[0];
+  if (crownIs(st, attacker.side, "bran-the-blessed") && rows[1]) out = out.concat(rows[1]);
   return out;
 }
 export function rangedTargets(st, attacker) {
@@ -728,7 +737,11 @@ function standardAttack(st, a, x) {
 export function targetsFor(st, a, act) {
   const foe = 1 - a.side;
   const spec = ACTIONS[a.id]?.[act.name];
-  const type = spec ? spec.t : (a.ranged || act.text.includes("Ranged") ? "enemyAny" : "enemyMelee");
+  const type = spec?.t ?? (a.ranged || act.text.includes("Ranged") ? "enemyAny" : "enemyMelee");
+  // A standard melee attack from slot 1 may also be turned on your own heroes in slots 2–3.
+  if (!spec?.t && type === "enemyMelee" && a.slot === 1) {
+    return meleeTargets(st, a).concat([2, 3].map((x) => at(st, a.side, x)).filter((c) => c && c.kind === "hero"));
+  }
   const eh = heroes(st, foe);
   switch (type) {
     case "none": return [null];
@@ -999,6 +1012,7 @@ function valueOf(st, a, act, x) {
   const missing = (t) => (t ? t.maxHealth - t.health : 0);
   switch (name) {
     case "Attack": case "Claw":
+      if (x && x.side === a.side) return 0;
       if (a.id === "zmey-gorynych" && crownIs(st, a.side, "zmey-gorynych")) return 3 * (1 + countRealm(st, a, "Rus'"));
       return dmgValue(attackOf(st, a), x);
     case "Pestle": return dmgValue(5, x);

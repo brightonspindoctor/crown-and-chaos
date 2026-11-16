@@ -56,5 +56,17 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.kill(st3, card(st3, 0, "robin-hood"), null); E.checkWin(st3);
   ok("With No Crown, losing Robin doesn't lose the fight", !st3.over);
 }
+{ // Slot-1 rules
+  const st = game(lu("lancelot", ["merlin", "guinevere"]), lu("the-dragon", ["the-wolf"]));
+  const l = card(st, 0, "lancelot");
+  ok("A melee crown behind its heroes has no enemy targets", E.meleeTargets(st, l).length === 0);
+  ok("It can attack its own heroes", E.targetsFor(st, l, l.actions[0]).every((t) => t.side === 0) && E.targetsFor(st, l, l.actions[0]).length === 2);
+  const w = card(st, 1, "the-wolf");
+  ok("A crown with only one hero in front can be melee attacked", E.meleeTargets(st, card(st, 0, "merlin")).some((t) => t.id === "the-dragon"));
+  ok("A crown behind two heroes can't be", !E.meleeTargets(st, w).some((t) => t.id === "lancelot"));
+  const st2 = game(lu("dracula"), lu("merlin"));
+  const d = card(st2, 0, "dracula");
+  ok("Dracula's Claw has targets", E.targetsFor(st2, d, d.actions.find((a) => a.name === "Claw")).length === 1);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);
