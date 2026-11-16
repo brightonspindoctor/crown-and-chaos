@@ -64,12 +64,71 @@ label select { color: var(--ink); width: 100%; }
 .edit { display: flex; flex-wrap: wrap; gap: 8px; }
 .edit label { flex: 0 0 72px; } .edit input { width: 100%; }
 .banner { font: 400 22px/1.2 var(--display); text-align: center; padding: 18px 8px; text-wrap: balance; }
+
+/* ---------- animation layer ---------- */
+.fx-layer { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
+.fx-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.fx { position: fixed; pointer-events: none; will-change: transform, opacity; }
+.card { position: relative; transition: box-shadow .15s; }
+.card.fx-front { z-index: 25; }
+.card.fx-acting { box-shadow: 0 0 0 3px var(--gold), 0 0 18px color-mix(in srgb, var(--gold) 70%, transparent); translate: 0 -3px; z-index: 22; }
+.card.fx-hurt { background: color-mix(in srgb, #e04a2f 30%, var(--panel)); }
+.card.fx-healed { box-shadow: 0 0 0 3px #6fcf73, 0 0 20px #8ee08a; }
+.card.fx-strike { box-shadow: 0 0 0 3px #e04a2f; }
+.card.fx-fallen { opacity: .28; filter: grayscale(1); }
+.card.fx-fallen .nm { text-decoration: line-through; }
+.card.fx-stopped::after, .card.fx-frozen::after { content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none; }
+.card.fx-stopped::after { background: repeating-linear-gradient(135deg, transparent 0 7px, rgba(120,120,120,.35) 7px 10px); }
+.card.fx-frozen::after { background: linear-gradient(160deg, rgba(190,230,255,.65), rgba(140,200,255,.25)); box-shadow: inset 0 0 12px #bfe6ff; }
+.hp-pop { display: inline-block; animation: hp-pop .45s ease-out; }
+@keyframes hp-pop { 0% { transform: scale(1.6); color: var(--gold); } 100% { transform: scale(1); } }
+.board.fx-night { background: radial-gradient(ellipse at 50% 50%, rgba(30,30,70,.18), rgba(10,10,40,.38)); border-radius: 8px; }
+.mid.fx-phase { animation: phase .5s ease-out; color: var(--ink); }
+@keyframes phase { 0% { background: color-mix(in srgb, var(--gold) 35%, transparent); } 100% { background: transparent; } }
+.fx-text { font: 700 22px/1 var(--body); white-space: nowrap; text-shadow: 0 2px 0 rgba(0,0,0,.55), 0 0 6px rgba(0,0,0,.4); z-index: 30; }
+.fx-text.fx-small { font-size: 14px; }
+.fx-text.fx-big { font-size: 30px; }
+.fx-dmg { color: #ff5a3c; } .fx-heal { color: #6fe07a; } .fx-guard { color: #9cc4f0; } .fx-gold { color: #ffd45c; }
+.fx-miss { color: #e8ecdf; font-style: italic; } .fx-stop { color: #d0d0d0; } .fx-frost { color: #bfe6ff; } .fx-poison { color: #8fd14f; }
+.fx-sleep { color: #e8dcc0; font-size: 16px; letter-spacing: .2em; }
+.fx-tag { font: 700 13px/1 var(--body); background: var(--ink); color: var(--felt); padding: 5px 9px; border-radius: 99px; white-space: nowrap; z-index: 31; box-shadow: 0 2px 6px rgba(0,0,0,.35); }
+.fx-tag.fx-tag-auto { font-weight: 400; font-size: 12px; opacity: .9; }
+.fx-p { width: 7px; height: 7px; border-radius: 50%; }
+.fx-p.fx-drop { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+.fx-p.fx-crumb { border-radius: 2px; width: 6px; height: 5px; }
+.fx-p.fx-thread { width: 14px; height: 2px; border-radius: 1px; }
+.fx-p.fx-bubble { width: 9px; height: 9px; background: rgba(120,200,80,.55) !important; border: 1px solid #8fd14f; }
+.fx-slash { width: 3px; height: 54px; background: linear-gradient(transparent, #fff, #ff6a4a, transparent); border-radius: 2px; }
+.fx-arrow { width: 44px; height: 10px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.fx-arrow svg { display: block; overflow: visible; }
+.fx-beam { height: 8px; transform-origin: 0 50%; border-radius: 4px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 40%, transparent), var(--c) 30%, #fff 50%, var(--c) 70%, color-mix(in srgb, var(--c) 60%, transparent));
+  box-shadow: 0 0 14px var(--c), 0 0 4px #fff; }
+.fx-beam.fx-wave { height: 14px; border-radius: 50%; background: repeating-linear-gradient(90deg, var(--c) 0 12px, #e6ffff 12px 16px); opacity: .9; }
+.fx-orb { width: 22px; height: 22px; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(#fff, var(--c) 55%, transparent 70%); box-shadow: 0 0 18px var(--c); }
+.fx-shield svg { display: block; filter: drop-shadow(0 0 6px #9cc4f0); }
+.fx-sword svg { display: block; filter: drop-shadow(0 0 6px #fff); }
+.fx-pillar { width: 70px; height: 150px; transform-origin: 50% 100%; background: linear-gradient(transparent, rgba(255,240,180,.85), transparent); filter: blur(2px); }
+.fx-pillar.fx-smoke { background: radial-gradient(ellipse at 50% 70%, rgba(200,195,185,.8), transparent 70%); }
+.fx-item { width: 116px; transform-style: preserve-3d; background: #2a1712; border: 2px solid #c9a24a; border-radius: 8px; padding: 4px; box-shadow: 0 8px 24px rgba(0,0,0,.55); z-index: 28; }
+.fx-item.fx-item-red { border-color: var(--red); }
+.fx-item-art { height: 68px; border-radius: 4px; background: #5a3c22 center/cover; }
+.fx-item-name { font: 700 12px/1.2 var(--body); color: #f1e6cc; text-align: center; padding: 4px 0 1px; }
+.fx-item.fx-glint .fx-item-art { position: relative; overflow: hidden; }
+.fx-item.fx-glint .fx-item-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); animation: glint .5s ease-out; }
+@keyframes glint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.skip-fx { position: fixed; right: 14px; bottom: 14px; z-index: 40; display: none; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+body.animating .skip-fx { display: block; }
+body.animating #app button, body.animating #app select { pointer-events: none; }
+body.animating #app section.panel button, body.animating #app section.panel select { opacity: .5; }
+@media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }
 </style>
 </head>
 <body>
 <main id="app"></main>
+<button class="skip-fx primary" id="skip-fx" type="button">Skip animation</button>
 <script>
-const DATA = {"heroes":{"baba-yaga":{"id":"baba-yaga","name":"Baba Yaga","realm":"Rus'","tale":"Baba Yaga","aspect":"Witch","stats":{"health":25,"attack":5,"ranged":false,"guard":0,"speed":1},"renown":35,"crownPassive":{"text":"Must start in slot 1 and always holds the Crown, which travels with her. If the Crown ever passes to another of your heroes, you lose."},"bond":{"name":"Hut on hen's legs","text":"Your other heroes have -1 Speed (never below 1) and -2 Health. This bond doesn't affect the enemy."},"actions":[{"name":"Pestle","ap":1,"text":"Standard attack for 5."},{"name":"Skull fire","ap":2,"text":"Ranged attack for 3 on any card."},{"name":"Mortar ride","ap":3,"text":"Move to any adjacent space, on either side of the board, killing whatever is there. Gains 2 health if she kills something. Can't move onto the enemy Crown's space."}],"rules":["Starts on 25 health with no maximum; only kills raise it past 25.","Against Robin's No Crown she still can't move onto slot 1.","Her Mortar ride kills whatever is in the space she moves into, on either side, so it can kill your own heroes in her path."]},"beowulf":{"id":"beowulf","name":"Beowulf","realm":"Geatland","tale":"Beowulf","aspect":"Slayer","stats":{"health":10,"attack":3,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Bare hands","text":"All your heroes' attacks ignore Guard."},"bond":{"text":"When any Beast dies, on either side, he gains +1 Attack for the rest of the fight."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Arm-wrench","ap":2,"text":"Attack, and the target permanently loses 2 Attack.","usesPerFight":1}],"rules":[]},"blodeuwedd":{"id":"blodeuwedd","name":"Blodeuwedd","realm":"Cymru","tale":"Math, Son of Mathonwy","aspect":"Beast","stats":{"health":7,"attack":2,"ranged":false,"guard":1,"speed":4},"renown":13,"crownPassive":{"name":"Shelter of flowers","text":"At upkeep, your other Cymru heroes lose their Guard and she gains it, until the next upkeep."},"bond":{"name":"Cymru kin","text":"Your Cymru heroes have +1 Guard."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Oak, broom and meadowsweet","ap":2,"text":"Each of your other heroes gets +2 Guard this round."}],"rules":["Owl at dusk: at the start of round 8's upkeep, before healing stops and before the first Nightfall damage, she heals to full and her printed Health, Attack and Guard double (14 / 4 / 2). Speed stays 4. Bonus Guard from bonds, passives and actions is not doubled."]},"bran-the-blessed":{"id":"bran-the-blessed","name":"Bran the Blessed","realm":"Cymru","tale":"Branwen, Daughter of Llŷr","aspect":"Guardian","stats":{"health":16,"attack":3,"ranged":false,"guard":0,"speed":1},"renown":12,"crownPassive":{"name":"Let him who is chief be a bridge","text":"Your heroes' melee attacks can also target the row behind the one they would normally hit."},"bond":{"name":"Cymru kin","text":"+1 Guard for each other Cymru hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Cauldron of rebirth","ap":2,"text":"A dead front-rank card of yours comes back on full health.","usesPerFight":1}],"rules":[]},"dracula":{"id":"dracula","name":"Dracula","realm":"Gothic","tale":"Dracula","aspect":"Sovereign","stats":{"health":12,"attack":3,"ranged":false,"guard":0,"speed":3},"renown":14,"crownPassive":{"name":"Vampire court","text":"All your heroes heal 1 whenever their attacks damage a card."},"bond":{"name":"Master","text":"When another of your Gothic heroes dies, he heals 4."},"actions":[{"name":"Claw","ap":1,"text":"Standard attack on the closest enemy."},{"name":"Bite","ap":2,"text":"Attack, then heal equal to the damage dealt."},{"name":"Turn","ap":3,"text":"Destroy an enemy front-rank card, or an enemy hero that is not the Crown, on 3 health or less. A Thrall copy of it fills one of your empty front-rank slots until the fight ends.","usesPerFight":1}],"rules":[]},"friar-tuck":{"id":"friar-tuck","name":"Friar Tuck","realm":"Albion","tale":"Robin Hood","aspect":"Healer","stats":{"health":10,"attack":2,"ranged":false,"guard":1,"speed":2},"renown":12,"crownPassive":{"name":"Sanctuary","text":"At upkeep, return one of your dead front-rank cards to its slot on 1 health. 3 returns per fight."},"bond":{"text":"+1 Guard for each other Albion hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Ale and bread","ap":2,"text":"Heal 2 to each of your heroes.","usesPerFight":2}],"rules":[]},"grendel":{"id":"grendel","name":"Grendel","realm":"Geatland","tale":"Beowulf","aspect":"Beast","stats":{"health":11,"attack":4,"ranged":false,"guard":2,"speed":3},"renown":15,"crownPassive":{"name":"Night raid","text":"At upkeep, deal 2 damage to the enemy front-rank card with the lowest health."},"bond":{"text":"While a Grendel's Mother on your side lives, he heals 1 at upkeep."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Devour","ap":2,"text":"Destroy an enemy front-rank card on 2 health or less and heal 2."}],"rules":["Grendel and Grendel's Mother are a pair: they are drawn together and must be fielded together."]},"grendels-mother":{"id":"grendels-mother","name":"Grendel's Mother","realm":"Geatland","tale":"Beowulf","aspect":"Beast","stats":{"health":9,"attack":3,"ranged":false,"guard":1,"speed":1},"renown":14,"crownPassive":{"name":"The mere","text":"Your heroes take 2 less damage from Ranged attacks."},"bond":{"text":"When a Grendel on your side dies, she gains +3 Attack and Speed 3 for the rest of the fight."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Drag under","ap":2,"text":"Attack an enemy hero in slot 2 or 3, ignoring cover."}],"rules":["Grendel and Grendel's Mother are a pair: they are drawn together and must be fielded together."]},"gretel":{"id":"gretel","name":"Gretel","realm":"Märchen","tale":"Hansel and Gretel","aspect":"Slayer","stats":{"health":8,"attack":3,"ranged":false,"guard":0,"speed":3},"renown":11,"crownPassive":{"name":"Witch-hunter","text":"All your heroes deal +2 damage to Witches."},"bond":{"name":"Märchen kin","text":"+1 health for each other Märchen hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Into the oven","ap":2,"text":"Attack for 4. If the target is a Witch on 6 health or less after the hit, it is destroyed.","usesPerFight":1}],"rules":[]},"guinevere":{"id":"guinevere","name":"Guinevere","realm":"Albion","tale":"King Arthur","aspect":"Healer","stats":{"health":9,"attack":2,"ranged":false,"guard":1,"speed":3},"renown":12,"crownPassive":{"name":"The Queen's peace","text":"Enemy attacks that hit several cards hit only their first target."},"bond":{"text":"Your healing effects restore +1 for each Albion hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Queen's mercy","ap":2,"text":"Heal 3 to one of your heroes.","usesPerFight":2}],"rules":[]},"gwydion":{"id":"gwydion","name":"Gwydion","realm":"Cymru","tale":"Math, Son of Mathonwy","aspect":"Witch","stats":{"health":8,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"Shaper of flesh","text":"Your summoned cards arrive with +2 health and +1 Attack."},"bond":{"name":"Cymru kin","text":"His Spells deal +1 for each other Cymru hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Shape-shift","ap":2,"text":"An enemy front-rank card becomes a harmless animal; its Attack is 0 for the rest of the fight.","usesPerFight":1},{"name":"Battle of the trees","ap":2,"usesPerFight":3,"text":"Summon a Tree Warrior (2 Health, 2 Attack) into an empty front-rank slot of yours. It attacks the card opposite."}],"rules":[]},"king-arthur":{"id":"king-arthur","name":"King Arthur","realm":"Albion","tale":"King Arthur","aspect":"Sovereign","stats":{"health":12,"attack":3,"ranged":false,"guard":2,"speed":2},"renown":17,"crownPassive":{"name":"The Round Table","text":"For your bonds, tale and realm no longer matter: each of your heroes counts as being from every tale and realm. Aspects still count, so a bond needing a Gothic Beast is met by any Beast. This works for penalties as well as bonuses."},"bond":{"text":"Your Albion heroes have +1 Guard."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Excalibur","ap":2,"text":"Attack for 5, ignoring Guard."}],"rules":[]},"koschei":{"id":"koschei","name":"Koschei the Deathless","realm":"Rus'","tale":"Koschei the Deathless","aspect":"Sovereign","stats":{"health":8,"attack":3,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Thief of treasures","text":"Your opponent's items cost 2 action points instead of 1."},"bond":{"name":"Rus' kin","text":"+1 health for each other Rus' hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Whirlwind","ap":2,"text":"Deal 3 to an enemy hero and swap it with a card next to it."}],"rules":["Always on, in any slot: while your Needle lives, Koschei can't drop below 1 health.","Whenever you field Koschei, the Needle is placed in slot 6 automatically and costs no Renown.","Nightfall damage ignores the hidden death."]},"lancelot":{"id":"lancelot","name":"Lancelot","realm":"Albion","tale":"King Arthur","aspect":"Slayer","stats":{"health":11,"attack":4,"ranged":false,"guard":1,"speed":3},"renown":14,"crownPassive":{"name":"First knight","text":"When he attacks, the enemy Crown also takes 1 damage, at most once a round. No effect against a side with no Crown."},"bond":{"text":"Your Albion heroes have +1 Health. While you field a Sovereign and no Healer, Lancelot has +2 Attack."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Champion's charge","ap":2,"text":"Attack for 5."}],"rules":[]},"little-john":{"id":"little-john","name":"Little John","realm":"Albion","tale":"Robin Hood","aspect":"Guardian","stats":{"health":16,"attack":4,"ranged":false,"guard":1,"speed":1},"renown":15,"crownPassive":{"text":"Your Albion heroes have +1 Guard."},"bond":{"name":"Big man of Sherwood","text":"The first attack each round on any of your other Albion heroes hits Little John instead."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Quarterstaff","ap":2,"text":"Attack the closest enemy for 4 and a card next to it for 1."}],"rules":[]},"maid-marian":{"id":"maid-marian","name":"Maid Marian","realm":"Albion","tale":"Robin Hood","aspect":"Slayer","stats":{"health":8,"attack":4,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"Lady of the greenwood","text":"No enemy attack can deal more than 5 damage."},"bond":{"text":"The first time another of your Albion heroes dies, she gains +2 Attack and +1 Speed for the rest of the fight."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Fair fight","ap":2,"text":"Attack an enemy hero for 4. If she acts before it this round, it also loses its action.","usesPerFight":1}],"rules":["The 5-damage cap applies after every bonus. Removal effects are not damage, so it doesn't stop them."]},"merlin":{"id":"merlin","name":"Merlin","realm":"Albion","tale":"King Arthur","aspect":"Witch","stats":{"health":7,"attack":1,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"Raiser of stones","text":"Your front-rank cards have +1 Guard."},"bond":{"text":"While any other Albion hero of yours lives, Merlin's Spells deal +1."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Hex","ap":2,"text":"A Spell for 3 on any enemy card, ignoring Guard."},{"name":"Enchanted sleep","ap":2,"text":"An enemy hero takes no actions this round or next. Like every stopping effect, it can't stop the same hero two rounds running.","usesPerFight":1}],"rules":[]},"morgan-le-fay":{"id":"morgan-le-fay","name":"Morgan le Fay","realm":"Albion","tale":"King Arthur","aspect":"Witch","stats":{"health":8,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":13,"crownPassive":{"name":"Enchantress","text":"Enemy Bonds don't work."},"bond":{"text":"Against any Sovereign (Arthur, Koschei, Dracula), her Spells deal +2."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Hex","ap":2,"text":"A Spell for 3 on any enemy card, ignoring Guard."},{"name":"Stolen scabbard","ap":2,"text":"An enemy hero loses its Guard and can't be healed for the rest of the fight.","usesPerFight":1}],"rules":[]},"red-riding-hood":{"id":"red-riding-hood","name":"Red Riding Hood","realm":"Märchen","tale":"Red Riding Hood","aspect":"Healer","stats":{"health":7,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":10,"crownPassive":{"name":"The basket","text":"At upkeep, heal 2 to your most injured card."},"bond":{"text":"While one of your Slayers lives, the first time she would die each fight she survives on 3 Health."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Cake and wine","ap":2,"text":"Heal 4 to any one of your cards.","usesPerFight":2}],"rules":[]},"renfield":{"id":"renfield","name":"Renfield","realm":"Gothic","tale":"Dracula","aspect":"Trickster","stats":{"health":9,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"The master's servant","text":"You keep the Fate token all fight. If both crowns are Renfield, this cancels out and the token changes hands each round as normal."},"bond":{"name":"Gothic kin","text":"+1 Attack for each other Gothic hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"The master is at hand","ap":2,"text":"He gains +2 Guard this round and takes the next hit aimed at your crown."},{"name":"Betrayal","ap":3,"usesPerFight":1,"text":"A melee attack for 6 on the closest enemy, ignoring Guard. It reaches the crown only once every card in front of it is gone. Then his Guard drops to 0 and his Health to 1."}],"rules":["Betrayal is melee, so it can't hit the enemy crown until their front rank and other heroes are gone.","If Betrayal kills the enemy crown while Renfield is your crown, and an enemy card kills him that same round, both crowns are down and the fight is a draw. Otherwise you win."]},"rhiannon":{"id":"rhiannon","name":"Rhiannon","realm":"Cymru","tale":"Pwyll, Prince of Dyfed","aspect":"Trickster","stats":{"health":8,"attack":3,"ranged":false,"guard":0,"speed":4},"renown":12,"crownPassive":{"name":"Cannot be caught","text":"The first attack on her each round from a slower card misses."},"bond":{"name":"Cymru kin","text":"+1 Speed for each other Cymru hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"The unhurried pace","ap":2,"text":"An enemy hero's Speed drops to 1 this round."}],"rules":[]},"robin-hood":{"id":"robin-hood","name":"Robin Hood","realm":"Albion","tale":"Robin Hood","aspect":"Trickster","stats":{"health":9,"attack":3,"ranged":true,"guard":0,"speed":5},"renown":16,"crownPassive":{"name":"No Crown","text":"You have no Crown this fight, and the enemy wins only by killing all your heroes."},"bond":{"name":"Outlaw's Call","text":"Your other Albion heroes have +1 Speed."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Split the Arrow","ap":2,"text":"A Ranged attack for 5 on any enemy card."}],"rules":["No Crown lasts the whole fight if Robin starts in slot 1, even if he dies or is moved.","With No Crown, no other hero's Crown passive is active.","Longbowmen hit the hero in slot 1 instead, or the closest hero if slot 1 is empty.","An enemy Baba Yaga can't move onto your slot 1, as if it held a Crown."]},"rumpelstiltskin":{"id":"rumpelstiltskin","name":"Rumpelstiltskin","realm":"Märchen","tale":"Rumpelstiltskin","aspect":"Trickster","stats":{"health":9,"attack":2,"ranged":false,"guard":0,"speed":4},"renown":13,"crownPassive":{"name":"Guess my name","text":"Each round, while planning, you may secretly pick one enemy hero. If it planned an action, the action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 4 damage. Each enemy hero can be picked only once per fight."},"bond":{"name":"Märchen kin","text":"+1 Attack for each other Märchen hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Straw into gold","ap":2,"text":"Get back one item you have already used this fight.","usesPerFight":1}],"rules":[]},"sheriff-of-nottingham":{"id":"sheriff-of-nottingham","name":"The Sheriff of Nottingham","realm":"Albion","tale":"Robin Hood","aspect":"Sovereign","stats":{"health":9,"attack":3,"ranged":false,"guard":1,"speed":4},"renown":15,"crownPassive":{"name":"Taxed","text":"At the start of the fight, take one item at random from your opponent's belt into a fourth item slot of yours. If they brought no items, nothing happens."},"bond":{"name":"Men of the shire","text":"Your Albion cards have +1 Guard."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Wanted","ap":2,"text":"Mark an enemy card. Every attack on it this round deals +1 damage."},{"name":"Break their spirit","ap":3,"usesPerFight":1,"text":"Attack an enemy hero. It loses all Guard, printed and bonus, and can't gain Guard for the rest of the fight."}],"rules":[]},"st-george":{"id":"st-george","name":"St George","realm":"Albion","tale":"St George and the Dragon","aspect":"Guardian","stats":{"health":7,"attack":3,"ranged":false,"guard":2,"speed":2},"renown":14,"crownPassive":{"text":"Blocks the first 5 damage of the first attack on any of your heroes each round."},"bond":{"text":"When one of your Beast heroes dies, his Guard is added to his Attack. If one of your Healers dies, his Attack doubles."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Lance Charge","ap":2,"text":"Deal 5 to the closest enemy."},{"name":"Shield Brother","ap":1,"text":"An adjacent hero takes no damage this round."}],"rules":[]},"the-bride":{"id":"the-bride","name":"The Bride","realm":"Gothic","tale":"Frankenstein","aspect":"Slayer","stats":{"health":7,"attack":3,"ranged":true,"guard":0,"speed":4},"renown":12,"crownPassive":{"name":"Unfinished","text":"While you field a Gothic Beast, she has +1 Guard and +1 Attack."},"bond":{"text":"While you field a Gothic Beast, she has +1 Speed."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Strike","ap":1,"text":"A Ranged attack on any single enemy."},{"name":"Completion","ap":4,"text":"Heal every one of your heroes to full.","usesPerFight":1}],"rules":[]},"the-creature":{"id":"the-creature","name":"The Creature","realm":"Gothic","tale":"Frankenstein","aspect":"Beast","stats":{"health":16,"attack":4,"ranged":false,"guard":1,"speed":2},"renown":16,"crownPassive":{"name":"Dread","text":"Enemy heroes have -1 Speed, never below 1."},"bond":{"name":"Abandoned","text":"The first time another of your Gothic heroes dies, he gains +2 Attack. The second time, he gains +2 Attack and +1 Speed."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Rampage","ap":2,"text":"Deal 3 to the closest enemy and every enemy card next to it."},{"name":"The Pyre","ap":4,"text":"Deal 6 to every enemy card; he takes 8.","usesPerFight":1}],"rules":["4 AP actions need Victor's Galvanism or a Mead of Poetry."]},"the-dragon":{"id":"the-dragon","name":"The Dragon","realm":"Albion","tale":"St George and the Dragon","aspect":"Beast","stats":{"health":12,"attack":4,"ranged":false,"guard":0,"speed":1},"renown":12,"crownPassive":{"text":"When another of your heroes is about to die, he automatically swaps slots with it and takes the hit, even if it kills him. The saved hero becomes the Crown."},"bond":{"text":"Your heroes deal +1 damage to Slayers."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Fire Breath","ap":2,"text":"Deal 3 to any two enemies."},{"name":"Tail Sweep","ap":1,"text":"Deal 2 to the closest enemy and a card next to it."}],"rules":[]},"the-huntsman":{"id":"the-huntsman","name":"The Huntsman","realm":"Märchen","tale":"Red Riding Hood","aspect":"Slayer","stats":{"health":9,"attack":3,"ranged":true,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Hunter's mark","text":"Each round, while planning, choose one enemy hero. All your attacks on it deal +2 damage, and if it is a Beast it can't heal that round."},"bond":{"text":"+1 Attack for each other Märchen hero you field, up to +2."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Stones in the belly","ap":2,"text":"A Ranged attack that also drops the target's Speed to 1 for the rest of the fight.","usesPerFight":1}],"rules":[]},"the-little-mermaid":{"id":"the-little-mermaid","name":"The Little Mermaid","realm":"Eventyr","tale":"The Little Mermaid","aspect":"Healer","stats":{"health":8,"attack":3,"ranged":true,"guard":0,"speed":3},"renown":13,"crownPassive":{"name":"Turning tide","text":"Every enemy bond that gives a number is reversed: +1 Attack becomes -1 Attack, +1 Guard becomes -1 Guard, +1 Speed becomes -1 Speed, +1 to healing becomes -1 to healing, and so on. Bonds without a number work as normal."},"bond":{"name":"Sea foam","text":"When she dies, your other Eventyr heroes heal 3."},"actions":[{"name":"Sea magic","ap":1,"text":"A Spell for her Attack on any enemy card. She takes 1 damage, ignoring Guard."},{"name":"Saved from the wreck","ap":3,"usesPerFight":1,"text":"Heal 4 to each of your heroes."}],"rules":["Floors under Turning tide: an attack's final damage is never below 0, Speed never below 1, Guard never below 0, and a heal never below 0. A reversed Health bond lowers maximum Health but can't drop a card below 1, so it never deals damage.","Turning tide reverses penalties too: an enemy bond of -1 becomes +1. Against Baba Yaga it turns her -1 Speed and -2 Health into +1 Speed and +2 Health for her side."]},"the-princess":{"id":"the-princess","name":"The Princess","realm":"Albion","tale":"St George and the Dragon","aspect":"Healer","stats":{"health":8,"attack":2,"ranged":true,"guard":0,"speed":3},"renown":10,"crownPassive":{"text":"At upkeep, heal 1 to one of your cards, chosen at random."},"bond":{"text":"Her heals restore +1 for each other Albion hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Mend","ap":1,"text":"Heal 1 to each of your adjacent cards."},{"name":"Girdle Leash","ap":1,"text":"An enemy Beast can't act this round."}],"rules":[]},"the-snow-queen":{"id":"the-snow-queen","name":"The Snow Queen","realm":"Eventyr","tale":"The Snow Queen","aspect":"Witch","stats":{"health":10,"attack":2,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Hard frost","text":"At the start of each round, freeze one enemy front-rank card of your choice; it skips its automatic action. The same card can't be frozen two rounds running."},"bond":{"name":"Eventyr kin","text":"+1 Guard for each other Eventyr hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Shard of the mirror","ap":2,"text":"This round, an enemy hero's attack hits one of its own adjacent cards instead.","usesPerFight":1}],"rules":[]},"the-tin-soldier":{"id":"the-tin-soldier","name":"The Steadfast Tin Soldier","realm":"Eventyr","tale":"The Steadfast Tin Soldier","aspect":"Guardian","stats":{"health":12,"attack":2,"ranged":false,"guard":2,"speed":1},"renown":12,"crownPassive":{"name":"Steadfast","text":"None of your heroes can be moved, frozen or stopped from acting. Poison still works on them."},"bond":{"name":"Eventyr kin","text":"+1 Attack for each other Eventyr hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Steadfast stand","ap":2,"text":"Until the next round, he has +2 Guard and takes the first attack aimed at any hero next to him."}],"rules":[]},"the-wolf":{"id":"the-wolf","name":"The Wolf","realm":"Märchen","tale":"Red Riding Hood","aspect":"Beast","stats":{"health":11,"attack":4,"ranged":false,"guard":0,"speed":3},"renown":13,"crownPassive":{"name":"Big teeth","text":"Your heroes' attacks deal +1 damage to injured cards."},"bond":{"name":"Disguise","text":"While another of your Märchen heroes lives, Ranged attacks can't target him."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Swallow whole","ap":2,"text":"Remove the closest enemy front-rank card, or an enemy hero on 3 health or less. It returns on 1 health if he dies. He can't swallow a Crown.","usesPerFight":1}],"rules":[]},"van-helsing":{"id":"van-helsing","name":"Van Helsing","realm":"Gothic","tale":"Dracula","aspect":"Slayer","stats":{"health":9,"attack":3,"ranged":true,"guard":0,"speed":2},"renown":13,"crownPassive":{"name":"Garlic and the Host","text":"All healing, on both sides, is reduced by 1. No card can come back from death or cheat it: returns, revivals and 'survives on X health' effects don't work."},"bond":{"name":"Crew of Light","text":"+1 Attack for each other Gothic hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: a Ranged attack for his Attack."},{"name":"Blood transfusion","ap":2,"text":"He loses 2 Health, and one of your other heroes, chosen at random, heals 3. The heal stops working at Nightfall, but he still loses the Health."}],"rules":["Blocked by his crown passive: Victor returning a tale-mate, Friar Tuck returning front-rank cards, the Draught of the Cauldron, Vasilisa's crown passive, Red Riding Hood's bond, and a card swallowed by the Wolf coming back out.","From the crown his own Blood transfusion heals 2, not 3."]},"vasilisa-the-wise":{"id":"vasilisa-the-wise","name":"Vasilisa the Wise","realm":"Rus'","tale":"The Frog Princess","aspect":"Healer","stats":{"health":9,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":11,"crownPassive":{"name":"Her mother's doll","text":"The first of your heroes to die each fight survives on 1 health instead."},"bond":{"text":"While another Rus' hero of yours lives, her heals restore +1."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"The doll's advice","ap":2,"text":"Heal 3 to one of your heroes, who also gets +1 Guard this round.","usesPerFight":2}],"rules":[]},"victor-frankenstein":{"id":"victor-frankenstein","name":"Victor Frankenstein","realm":"Gothic","tale":"Frankenstein","aspect":"Healer","stats":{"health":8,"attack":1,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Galvanism","text":"You have 4 action points each round instead of 3."},"bond":{"name":"Spark of life","text":"At upkeep, he and each of your other Gothic heroes heal 2."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Reanimate","ap":2,"text":"Return a dead tale-mate to an empty hero slot on 3 health.","usesPerFight":1}],"rules":[]},"zmey-gorynych":{"id":"zmey-gorynych","name":"Zmey Gorynych","realm":"Rus'","tale":"Dobrynya and the Zmey","aspect":"Beast","stats":{"health":14,"attack":3,"ranged":false,"guard":1,"speed":1},"renown":15,"crownPassive":{"name":"Three heads","text":"His attack becomes three separate attacks of 1 damage each, at three random enemy cards in range. If fewer than three are in range, a card can be hit more than once."},"bond":{"name":"Rus' kin","text":"Each head deals +1 damage for each other Rus' hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Heads grow back","ap":2,"text":"Heal 6.","usesPerFight":1}],"rules":["Each head is its own attack: Guard and Vulnerable apply to each hit.","Guinevere's Queen's peace doesn't stop him."]}},"front":{"berserker":{"type":"front-rank","id":"berserker","name":"Berserker","health":3,"attack":2,"guard":0,"renown":4,"auto":"Attacks the card opposite and one enemy card next to it.","art":"berserker"},"crossbowman":{"type":"front-rank","id":"crossbowman","name":"Crossbowman","health":2,"attack":1,"guard":0,"renown":3,"auto":"Shoots an enemy hero in slot 2 or 3, the one on lower health. If there is none, shoots the card opposite.","art":"crossbowman"},"geat-thane":{"type":"front-rank","id":"geat-thane","name":"Geat Thane","health":3,"attack":1,"guard":0,"renown":2,"tale":"Beowulf","auto":"Attacks the card opposite.","art":"geat-thane"},"grandmother":{"type":"front-rank","id":"grandmother","name":"Grandmother","health":2,"attack":0,"guard":0,"renown":2,"tale":"Red Riding Hood","auto":"Heals 1 to the hero behind her.","art":"grandmother"},"knight":{"type":"front-rank","id":"knight","name":"Knight","health":2,"attack":2,"guard":1,"renown":3,"auto":"Attacks the card opposite.","art":"knight"},"leshy":{"type":"front-rank","id":"leshy","name":"Leshy","health":6,"attack":0,"guard":0,"renown":4,"auto":"No attack. The first attack each round aimed at any other card of yours hits the Leshy instead.","art":"leshy"},"longbowman":{"type":"front-rank","id":"longbowman","name":"Longbowman","health":1,"attack":1,"guard":0,"renown":3,"auto":"Shoots the enemy Crown.","art":"longbowman"},"mere-beast":{"type":"front-rank","id":"mere-beast","name":"Mere-beast","health":2,"attack":2,"guard":0,"renown":3,"tale":"Beowulf","auto":"Attacks the card opposite, applying Poison 1.","art":"mere-beast"},"monk":{"type":"front-rank","id":"monk","name":"Monk","health":2,"attack":0,"guard":0,"renown":3,"auto":"Heals 2 to a random injured card of yours, never above its maximum.","art":"monk"},"the-needle":{"type":"front-rank","id":"the-needle","name":"The Needle","health":8,"attack":0,"guard":0,"renown":0,"tale":"Koschei the Deathless","auto":"No action. Placed in slot 6 automatically whenever Koschei is fielded; not a collection card.","art":"the-needle"},"villager":{"type":"front-rank","id":"villager","name":"Villager","health":1,"attack":1,"guard":0,"renown":1,"auto":"Attacks the card opposite. Free: every player has unlimited copies.","art":"villager"}},"items":{"dragons-blood":{"id":"dragons-blood","name":"Dragon's Blood","type":"item","realm":"Norse","rarity":"Common","effect":"A hero gains +3 Guard this round.","renown":2,"ap":1,"art":"dragons-blood"},"draught-of-the-cauldron":{"id":"draught-of-the-cauldron","name":"Draught of the Cauldron","type":"item","realm":"Cymru","rarity":"Legendary","effect":"Return a dead hero to slot 2 or 3 on 1 health.","renown":4,"ap":1,"art":"draught-of-the-cauldron"},"gingerbread":{"id":"gingerbread","name":"Gingerbread","type":"item","realm":"Märchen","rarity":"Common","effect":"Heal a hero 2.","renown":1,"ap":1,"art":"gingerbread"},"golden-apple":{"id":"golden-apple","name":"Golden Apple","type":"item","realm":"Norse","rarity":"Common","effect":"Heal a hero 3 and remove Poison.","renown":2,"ap":1,"art":"golden-apple"},"mead-of-heorot":{"id":"mead-of-heorot","name":"Mead of Heorot","type":"item","realm":"Geatland","rarity":"Rare","effect":"Heal 2 to each of your heroes.","renown":2,"ap":1,"art":"mead-of-heorot"},"mead-of-poetry":{"id":"mead-of-poetry","name":"Mead of Poetry","type":"item","realm":"Norse","rarity":"Rare","effect":"Gain 2 action points this round.","renown":2,"ap":1,"art":"mead-of-poetry"},"poisoned-apple":{"id":"poisoned-apple","name":"Poisoned Apple","type":"item","realm":"Märchen","rarity":"Common","effect":"Poison 2 on an enemy hero.","renown":2,"ap":1,"art":"poisoned-apple"},"skull-lantern":{"id":"skull-lantern","name":"Skull Lantern","type":"item","realm":"Rus'","rarity":"Rare","effect":"2 Spell damage to an enemy hero; double against Witches.","renown":2,"ap":1,"art":"skull-lantern"},"spindle":{"id":"spindle","name":"Spindle","type":"item","realm":"Märchen","rarity":"Rare","effect":"An enemy hero skips its next action.","renown":3,"ap":1,"art":"spindle"},"the-giants-sword":{"id":"the-giants-sword","name":"The Giant's Sword","type":"item","realm":"Geatland","rarity":"Rare","effect":"A hero's next attack this round deals +3 damage and ignores Guard.","renown":3,"ap":1,"art":"the-giants-sword"},"water-of-life":{"id":"water-of-life","name":"Water of Life","type":"item","realm":"Rus'","rarity":"Legendary","effect":"Heal a hero to full health, up to a maximum of 20.","renown":4,"ap":1,"art":"water-of-life"}}};
+const DATA = {"heroes":{"baba-yaga":{"id":"baba-yaga","name":"Baba Yaga","realm":"Rus'","tale":"Baba Yaga","aspect":"Witch","stats":{"health":25,"attack":5,"ranged":false,"guard":0,"speed":1},"renown":35,"crownPassive":{"text":"Must start in slot 1 and always holds the Crown, which travels with her. If the Crown ever passes to another of your heroes, you lose."},"bond":{"name":"Hut on hen's legs","text":"Your other heroes have -1 Speed (never below 1) and -2 Health. This bond doesn't affect the enemy."},"actions":[{"name":"Pestle","ap":1,"text":"Standard attack for 5."},{"name":"Skull fire","ap":2,"text":"Ranged attack for 3 on any card."},{"name":"Mortar ride","ap":3,"text":"Move to any adjacent space, on either side of the board, killing whatever is there. Gains 2 health if she kills something. Can't move onto the enemy Crown's space."}],"rules":["Starts on 25 health with no maximum; only kills raise it past 25.","Against Robin's No Crown she still can't move onto slot 1.","Her Mortar ride kills whatever is in the space she moves into, on either side, so it can kill your own heroes in her path."]},"beowulf":{"id":"beowulf","name":"Beowulf","realm":"Geatland","tale":"Beowulf","aspect":"Slayer","stats":{"health":10,"attack":3,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Bare hands","text":"All your heroes' attacks ignore Guard."},"bond":{"text":"When any Beast dies, on either side, he gains +1 Attack for the rest of the fight."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Arm-wrench","ap":2,"text":"Attack, and the target permanently loses 2 Attack.","usesPerFight":1}],"rules":[]},"blodeuwedd":{"id":"blodeuwedd","name":"Blodeuwedd","realm":"Cymru","tale":"Math, Son of Mathonwy","aspect":"Beast","stats":{"health":7,"attack":2,"ranged":false,"guard":1,"speed":4},"renown":13,"crownPassive":{"name":"Shelter of flowers","text":"At upkeep, your other Cymru heroes lose their Guard and she gains it, until the next upkeep."},"bond":{"name":"Cymru kin","text":"Your Cymru heroes have +1 Guard."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Oak, broom and meadowsweet","ap":2,"text":"Each of your other heroes gets +2 Guard this round."}],"rules":["Owl at dusk: at the start of round 8's upkeep, before healing stops and before the first Nightfall damage, she heals to full and her printed Health, Attack and Guard double (14 / 4 / 2). Speed stays 4. Bonus Guard from bonds, passives and actions is not doubled."]},"bran-the-blessed":{"id":"bran-the-blessed","name":"Bran the Blessed","realm":"Cymru","tale":"Branwen, Daughter of Llŷr","aspect":"Guardian","stats":{"health":16,"attack":3,"ranged":false,"guard":0,"speed":1},"renown":12,"crownPassive":{"name":"Let him who is chief be a bridge","text":"Your heroes' melee attacks can also target the row behind the one they would normally hit."},"bond":{"name":"Cymru kin","text":"+1 Guard for each other Cymru hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Cauldron of rebirth","ap":2,"text":"A dead front-rank card of yours comes back on full health.","usesPerFight":1}],"rules":[]},"dracula":{"id":"dracula","name":"Dracula","realm":"Gothic","tale":"Dracula","aspect":"Sovereign","stats":{"health":12,"attack":3,"ranged":false,"guard":0,"speed":3},"renown":14,"crownPassive":{"name":"Vampire court","text":"All your heroes heal 1 whenever their attacks damage a card."},"bond":{"name":"Master","text":"When another of your Gothic heroes dies, he heals 4."},"actions":[{"name":"Claw","ap":1,"text":"Standard attack on the closest enemy."},{"name":"Bite","ap":2,"text":"Attack, then heal equal to the damage dealt."},{"name":"Turn","ap":3,"text":"Destroy an enemy front-rank card, or an enemy hero that is not the Crown, on 3 health or less. A Thrall copy of it fills one of your empty front-rank slots until the fight ends.","usesPerFight":1}],"rules":[]},"friar-tuck":{"id":"friar-tuck","name":"Friar Tuck","realm":"Albion","tale":"Robin Hood","aspect":"Healer","stats":{"health":10,"attack":2,"ranged":false,"guard":1,"speed":2},"renown":12,"crownPassive":{"name":"Sanctuary","text":"At upkeep, return one of your dead front-rank cards to its slot on 1 health. 3 returns per fight."},"bond":{"text":"+1 Guard for each other Albion hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Ale and bread","ap":2,"text":"Heal 2 to each of your heroes.","usesPerFight":2}],"rules":[]},"grendel":{"id":"grendel","name":"Grendel","realm":"Geatland","tale":"Beowulf","aspect":"Beast","stats":{"health":11,"attack":4,"ranged":false,"guard":2,"speed":3},"renown":15,"crownPassive":{"name":"Night raid","text":"At upkeep, deal 2 damage to the enemy front-rank card with the lowest health."},"bond":{"text":"While a Grendel's Mother on your side lives, he heals 1 at upkeep."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Devour","ap":2,"text":"Destroy an enemy front-rank card on 2 health or less and heal 2."}],"rules":["Grendel and Grendel's Mother are a pair: they are drawn together and must be fielded together."]},"grendels-mother":{"id":"grendels-mother","name":"Grendel's Mother","realm":"Geatland","tale":"Beowulf","aspect":"Beast","stats":{"health":9,"attack":3,"ranged":false,"guard":1,"speed":1},"renown":14,"crownPassive":{"name":"The mere","text":"Your heroes take 2 less damage from Ranged attacks."},"bond":{"text":"When a Grendel on your side dies, she gains +3 Attack and Speed 3 for the rest of the fight."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Drag under","ap":2,"text":"Attack an enemy hero in slot 2 or 3, ignoring cover."}],"rules":["Grendel and Grendel's Mother are a pair: they are drawn together and must be fielded together."]},"gretel":{"id":"gretel","name":"Gretel","realm":"Märchen","tale":"Hansel and Gretel","aspect":"Slayer","stats":{"health":8,"attack":3,"ranged":false,"guard":0,"speed":3},"renown":11,"crownPassive":{"name":"Witch-hunter","text":"All your heroes deal +2 damage to Witches."},"bond":{"name":"Märchen kin","text":"+1 health for each other Märchen hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Into the oven","ap":2,"text":"Attack for 4. If the target is a Witch on 6 health or less after the hit, it is destroyed.","usesPerFight":1}],"rules":[]},"guinevere":{"id":"guinevere","name":"Guinevere","realm":"Albion","tale":"King Arthur","aspect":"Healer","stats":{"health":9,"attack":2,"ranged":false,"guard":1,"speed":3},"renown":12,"crownPassive":{"name":"The Queen's peace","text":"Enemy attacks that hit several cards hit only their first target."},"bond":{"text":"Your healing effects restore +1 for each Albion hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Queen's mercy","ap":2,"text":"Heal 3 to one of your heroes.","usesPerFight":2}],"rules":[]},"gwydion":{"id":"gwydion","name":"Gwydion","realm":"Cymru","tale":"Math, Son of Mathonwy","aspect":"Witch","stats":{"health":8,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"Shaper of flesh","text":"Your summoned cards arrive with +2 health and +1 Attack."},"bond":{"name":"Cymru kin","text":"His Spells deal +1 for each other Cymru hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Shape-shift","ap":2,"text":"An enemy front-rank card becomes a harmless animal; its Attack is 0 for the rest of the fight.","usesPerFight":1},{"name":"Battle of the trees","ap":2,"usesPerFight":3,"text":"Summon a Tree Warrior (2 Health, 2 Attack) into an empty front-rank slot of yours. It attacks the card opposite."}],"rules":[]},"king-arthur":{"id":"king-arthur","name":"King Arthur","realm":"Albion","tale":"King Arthur","aspect":"Sovereign","stats":{"health":12,"attack":3,"ranged":false,"guard":2,"speed":2},"renown":17,"crownPassive":{"name":"The Round Table","text":"For your bonds, tale and realm no longer matter: each of your heroes counts as being from every tale and realm. Aspects still count, so a bond needing a Gothic Beast is met by any Beast. This works for penalties as well as bonuses."},"bond":{"text":"Your Albion heroes have +1 Guard."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Excalibur","ap":2,"text":"Attack for 5, ignoring Guard."}],"rules":[]},"koschei":{"id":"koschei","name":"Koschei the Deathless","realm":"Rus'","tale":"Koschei the Deathless","aspect":"Sovereign","stats":{"health":8,"attack":3,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Thief of treasures","text":"Your opponent's items cost 2 action points instead of 1."},"bond":{"name":"Rus' kin","text":"+1 health for each other Rus' hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Whirlwind","ap":2,"text":"Deal 3 to an enemy hero and swap it with a card next to it."}],"rules":["Always on, in any slot: while your Needle lives, Koschei can't drop below 1 health.","Whenever you field Koschei, the Needle is placed in slot 6 automatically and costs no Renown.","Nightfall damage ignores the hidden death."]},"lancelot":{"id":"lancelot","name":"Lancelot","realm":"Albion","tale":"King Arthur","aspect":"Slayer","stats":{"health":11,"attack":4,"ranged":false,"guard":1,"speed":3},"renown":14,"crownPassive":{"name":"First knight","text":"When he attacks, the enemy Crown also takes 1 damage, at most once a round. No effect against a side with no Crown."},"bond":{"text":"Your Albion heroes have +1 Health. While you field a Sovereign and no Healer, Lancelot has +2 Attack."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Champion's charge","ap":2,"text":"Attack for 5."}],"rules":[]},"little-john":{"id":"little-john","name":"Little John","realm":"Albion","tale":"Robin Hood","aspect":"Guardian","stats":{"health":16,"attack":4,"ranged":false,"guard":1,"speed":1},"renown":15,"crownPassive":{"text":"Your Albion heroes have +1 Guard."},"bond":{"name":"Big man of Sherwood","text":"The first attack each round on any of your other Albion heroes hits Little John instead."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Quarterstaff","ap":2,"text":"Attack the closest enemy for 4 and a card next to it for 1."}],"rules":[]},"maid-marian":{"id":"maid-marian","name":"Maid Marian","realm":"Albion","tale":"Robin Hood","aspect":"Slayer","stats":{"health":8,"attack":4,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"Lady of the greenwood","text":"No enemy attack can deal more than 5 damage."},"bond":{"text":"The first time another of your Albion heroes dies, she gains +2 Attack and +1 Speed for the rest of the fight."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Fair fight","ap":2,"text":"Attack an enemy hero for 4. If she acts before it this round, it also loses its action.","usesPerFight":1}],"rules":["The 5-damage cap applies after every bonus. Removal effects are not damage, so it doesn't stop them."]},"merlin":{"id":"merlin","name":"Merlin","realm":"Albion","tale":"King Arthur","aspect":"Witch","stats":{"health":7,"attack":1,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"Raiser of stones","text":"Your front-rank cards have +1 Guard."},"bond":{"text":"While any other Albion hero of yours lives, Merlin's Spells deal +1."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Hex","ap":2,"text":"A Spell for 3 on any enemy card, ignoring Guard."},{"name":"Enchanted sleep","ap":2,"text":"An enemy hero takes no actions this round or next. Like every stopping effect, it can't stop the same hero two rounds running.","usesPerFight":1}],"rules":[]},"morgan-le-fay":{"id":"morgan-le-fay","name":"Morgan le Fay","realm":"Albion","tale":"King Arthur","aspect":"Witch","stats":{"health":8,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":13,"crownPassive":{"name":"Enchantress","text":"Enemy Bonds don't work."},"bond":{"text":"Against any Sovereign (Arthur, Koschei, Dracula), her Spells deal +2."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Hex","ap":2,"text":"A Spell for 3 on any enemy card, ignoring Guard."},{"name":"Stolen scabbard","ap":2,"text":"An enemy hero loses its Guard and can't be healed for the rest of the fight.","usesPerFight":1}],"rules":[]},"red-riding-hood":{"id":"red-riding-hood","name":"Red Riding Hood","realm":"Märchen","tale":"Red Riding Hood","aspect":"Healer","stats":{"health":7,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":10,"crownPassive":{"name":"The basket","text":"At upkeep, heal 2 to your most injured card."},"bond":{"text":"While one of your Slayers lives, the first time she would die each fight she survives on 3 Health."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Cake and wine","ap":2,"text":"Heal 4 to any one of your cards.","usesPerFight":2}],"rules":[]},"renfield":{"id":"renfield","name":"Renfield","realm":"Gothic","tale":"Dracula","aspect":"Trickster","stats":{"health":9,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":12,"crownPassive":{"name":"The master's servant","text":"You keep the Fate token all fight. If both crowns are Renfield, this cancels out and the token changes hands each round as normal."},"bond":{"name":"Gothic kin","text":"+1 Attack for each other Gothic hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"The master is at hand","ap":2,"text":"He gains +2 Guard this round and takes the next hit aimed at your crown."},{"name":"Betrayal","ap":3,"usesPerFight":1,"text":"A melee attack for 6 on the closest enemy, ignoring Guard. It reaches the crown only once every card in front of it is gone. Then his Guard drops to 0 and his Health to 1."}],"rules":["Betrayal is melee, so it can't hit the enemy crown until their front rank and other heroes are gone.","If Betrayal kills the enemy crown while Renfield is your crown, and an enemy card kills him that same round, both crowns are down and the fight is a draw. Otherwise you win."]},"rhiannon":{"id":"rhiannon","name":"Rhiannon","realm":"Cymru","tale":"Pwyll, Prince of Dyfed","aspect":"Trickster","stats":{"health":8,"attack":3,"ranged":false,"guard":0,"speed":4},"renown":12,"crownPassive":{"name":"Cannot be caught","text":"The first attack on her each round from a slower card misses."},"bond":{"name":"Cymru kin","text":"+1 Speed for each other Cymru hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"The unhurried pace","ap":2,"text":"An enemy hero's Speed drops to 1 this round."}],"rules":[]},"robin-hood":{"id":"robin-hood","name":"Robin Hood","realm":"Albion","tale":"Robin Hood","aspect":"Trickster","stats":{"health":9,"attack":3,"ranged":true,"guard":0,"speed":5},"renown":16,"crownPassive":{"name":"No Crown","text":"You have no Crown this fight, and the enemy wins only by killing all your heroes."},"bond":{"name":"Outlaw's Call","text":"Your other Albion heroes have +1 Speed."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Split the Arrow","ap":2,"text":"A Ranged attack for 5 on any enemy card."}],"rules":["No Crown lasts the whole fight if Robin starts in slot 1, even if he dies or is moved.","With No Crown, no other hero's Crown passive is active.","Longbowmen hit the hero in slot 1 instead, or the closest hero if slot 1 is empty.","An enemy Baba Yaga can't move onto your slot 1, as if it held a Crown."]},"rumpelstiltskin":{"id":"rumpelstiltskin","name":"Rumpelstiltskin","realm":"Märchen","tale":"Rumpelstiltskin","aspect":"Trickster","stats":{"health":9,"attack":2,"ranged":false,"guard":0,"speed":4},"renown":13,"crownPassive":{"name":"Guess my name","text":"Each round, while planning, you may secretly pick one enemy hero. If it planned an action, the action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 4 damage. Each enemy hero can be picked only once per fight."},"bond":{"name":"Märchen kin","text":"+1 Attack for each other Märchen hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Straw into gold","ap":2,"text":"Get back one item you have already used this fight.","usesPerFight":1}],"rules":[]},"sheriff-of-nottingham":{"id":"sheriff-of-nottingham","name":"The Sheriff of Nottingham","realm":"Albion","tale":"Robin Hood","aspect":"Sovereign","stats":{"health":9,"attack":3,"ranged":false,"guard":1,"speed":4},"renown":15,"crownPassive":{"name":"Taxed","text":"At the start of the fight, take one item at random from your opponent's belt into a fourth item slot of yours. If they brought no items, nothing happens."},"bond":{"name":"Men of the shire","text":"Your Albion cards have +1 Guard."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Wanted","ap":2,"text":"Mark an enemy card. Every attack on it this round deals +1 damage."},{"name":"Break their spirit","ap":3,"usesPerFight":1,"text":"Attack an enemy hero. It loses all Guard, printed and bonus, and can't gain Guard for the rest of the fight."}],"rules":[]},"st-george":{"id":"st-george","name":"St George","realm":"Albion","tale":"St George and the Dragon","aspect":"Guardian","stats":{"health":7,"attack":3,"ranged":false,"guard":2,"speed":2},"renown":14,"crownPassive":{"text":"Blocks the first 5 damage of the first attack on any of your heroes each round."},"bond":{"text":"When one of your Beast heroes dies, his Guard is added to his Attack. If one of your Healers dies, his Attack doubles."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Lance Charge","ap":2,"text":"Deal 5 to the closest enemy."},{"name":"Shield Brother","ap":1,"text":"An adjacent hero takes no damage this round."}],"rules":[]},"the-bride":{"id":"the-bride","name":"The Bride","realm":"Gothic","tale":"Frankenstein","aspect":"Slayer","stats":{"health":7,"attack":3,"ranged":true,"guard":0,"speed":4},"renown":12,"crownPassive":{"name":"Unfinished","text":"While you field a Gothic Beast, she has +1 Guard and +1 Attack."},"bond":{"text":"While you field a Gothic Beast, she has +1 Speed."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Strike","ap":1,"text":"A Ranged attack on any single enemy."},{"name":"Completion","ap":4,"text":"Heal every one of your heroes to full.","usesPerFight":1}],"rules":[]},"the-creature":{"id":"the-creature","name":"The Creature","realm":"Gothic","tale":"Frankenstein","aspect":"Beast","stats":{"health":16,"attack":4,"ranged":false,"guard":1,"speed":2},"renown":16,"crownPassive":{"name":"Dread","text":"Enemy heroes have -1 Speed, never below 1."},"bond":{"name":"Abandoned","text":"The first time another of your Gothic heroes dies, he gains +2 Attack. The second time, he gains +2 Attack and +1 Speed."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Rampage","ap":2,"text":"Deal 3 to the closest enemy and every enemy card next to it."},{"name":"The Pyre","ap":4,"text":"Deal 6 to every enemy card; he takes 8.","usesPerFight":1}],"rules":["4 AP actions need Victor's Galvanism or a Mead of Poetry."]},"the-dragon":{"id":"the-dragon","name":"The Dragon","realm":"Albion","tale":"St George and the Dragon","aspect":"Beast","stats":{"health":12,"attack":4,"ranged":false,"guard":0,"speed":1},"renown":12,"crownPassive":{"text":"When another of your heroes is about to die, he automatically swaps slots with it and takes the hit, even if it kills him. The saved hero becomes the Crown."},"bond":{"text":"Your heroes deal +1 damage to Slayers."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Fire Breath","ap":2,"text":"Deal 3 to any two enemies."},{"name":"Tail Sweep","ap":1,"text":"Deal 2 to the closest enemy and a card next to it."}],"rules":[]},"the-huntsman":{"id":"the-huntsman","name":"The Huntsman","realm":"Märchen","tale":"Red Riding Hood","aspect":"Slayer","stats":{"health":9,"attack":3,"ranged":true,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Hunter's mark","text":"Each round, while planning, choose one enemy hero. All your attacks on it deal +2 damage, and if it is a Beast it can't heal that round."},"bond":{"text":"+1 Attack for each other Märchen hero you field, up to +2."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Stones in the belly","ap":2,"text":"A Ranged attack that also drops the target's Speed to 1 for the rest of the fight.","usesPerFight":1}],"rules":[]},"the-little-mermaid":{"id":"the-little-mermaid","name":"The Little Mermaid","realm":"Eventyr","tale":"The Little Mermaid","aspect":"Healer","stats":{"health":8,"attack":3,"ranged":true,"guard":0,"speed":3},"renown":13,"crownPassive":{"name":"Turning tide","text":"Every enemy bond that gives a number is reversed: +1 Attack becomes -1 Attack, +1 Guard becomes -1 Guard, +1 Speed becomes -1 Speed, +1 to healing becomes -1 to healing, and so on. Bonds without a number work as normal."},"bond":{"name":"Sea foam","text":"When she dies, your other Eventyr heroes heal 3."},"actions":[{"name":"Sea magic","ap":1,"text":"A Spell for her Attack on any enemy card. She takes 1 damage, ignoring Guard."},{"name":"Saved from the wreck","ap":3,"usesPerFight":1,"text":"Heal 4 to each of your heroes."}],"rules":["Floors under Turning tide: an attack's final damage is never below 0, Speed never below 1, Guard never below 0, and a heal never below 0. A reversed Health bond lowers maximum Health but can't drop a card below 1, so it never deals damage.","Turning tide reverses penalties too: an enemy bond of -1 becomes +1. Against Baba Yaga it turns her -1 Speed and -2 Health into +1 Speed and +2 Health for her side."]},"the-princess":{"id":"the-princess","name":"The Princess","realm":"Albion","tale":"St George and the Dragon","aspect":"Healer","stats":{"health":8,"attack":2,"ranged":true,"guard":0,"speed":3},"renown":10,"crownPassive":{"text":"At upkeep, heal 1 to one of your cards, chosen at random."},"bond":{"text":"Her heals restore +1 for each other Albion hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Mend","ap":1,"text":"Heal 1 to each of your adjacent cards."},{"name":"Girdle Leash","ap":1,"text":"An enemy Beast can't act this round."}],"rules":[]},"the-snow-queen":{"id":"the-snow-queen","name":"The Snow Queen","realm":"Eventyr","tale":"The Snow Queen","aspect":"Witch","stats":{"health":10,"attack":2,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Hard frost","text":"At the start of each round, freeze one enemy front-rank card of your choice; it skips its automatic action. The same card can't be frozen two rounds running."},"bond":{"name":"Eventyr kin","text":"+1 Guard for each other Eventyr hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Shard of the mirror","ap":2,"text":"This round, an enemy hero's attack hits one of its own adjacent cards instead.","usesPerFight":1}],"rules":[]},"the-tin-soldier":{"id":"the-tin-soldier","name":"The Steadfast Tin Soldier","realm":"Eventyr","tale":"The Steadfast Tin Soldier","aspect":"Guardian","stats":{"health":12,"attack":2,"ranged":false,"guard":2,"speed":1},"renown":12,"crownPassive":{"name":"Steadfast","text":"None of your heroes can be moved, frozen or stopped from acting. Poison still works on them."},"bond":{"name":"Eventyr kin","text":"+1 Attack for each other Eventyr hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Steadfast stand","ap":2,"text":"Until the next round, he has +2 Guard and takes the first attack aimed at any hero next to him."}],"rules":[]},"the-wolf":{"id":"the-wolf","name":"The Wolf","realm":"Märchen","tale":"Red Riding Hood","aspect":"Beast","stats":{"health":11,"attack":4,"ranged":false,"guard":0,"speed":3},"renown":13,"crownPassive":{"name":"Big teeth","text":"Your heroes' attacks deal +1 damage to injured cards."},"bond":{"name":"Disguise","text":"While another of your Märchen heroes lives, Ranged attacks can't target him."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Swallow whole","ap":2,"text":"Remove the closest enemy front-rank card, or an enemy hero on 3 health or less. It returns on 1 health if he dies. He can't swallow a Crown.","usesPerFight":1}],"rules":[]},"van-helsing":{"id":"van-helsing","name":"Van Helsing","realm":"Gothic","tale":"Dracula","aspect":"Slayer","stats":{"health":9,"attack":3,"ranged":true,"guard":0,"speed":2},"renown":13,"crownPassive":{"name":"Garlic and the Host","text":"All healing, on both sides, is reduced by 1. No card can come back from death or cheat it: returns, revivals and 'survives on X health' effects don't work."},"bond":{"name":"Crew of Light","text":"+1 Attack for each other Gothic hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: a Ranged attack for his Attack."},{"name":"Blood transfusion","ap":2,"text":"He loses 2 Health, and one of your other heroes, chosen at random, heals 3. The heal stops working at Nightfall, but he still loses the Health."}],"rules":["Blocked by his crown passive: Victor returning a tale-mate, Friar Tuck returning front-rank cards, the Draught of the Cauldron, Vasilisa's crown passive, Red Riding Hood's bond, and a card swallowed by the Wolf coming back out.","From the crown his own Blood transfusion heals 2, not 3."]},"vasilisa-the-wise":{"id":"vasilisa-the-wise","name":"Vasilisa the Wise","realm":"Rus'","tale":"The Frog Princess","aspect":"Healer","stats":{"health":9,"attack":2,"ranged":false,"guard":0,"speed":3},"renown":11,"crownPassive":{"name":"Her mother's doll","text":"The first of your heroes to die each fight survives on 1 health instead."},"bond":{"text":"While another Rus' hero of yours lives, her heals restore +1."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"The doll's advice","ap":2,"text":"Heal 3 to one of your heroes, who also gets +1 Guard this round.","usesPerFight":2}],"rules":[]},"victor-frankenstein":{"id":"victor-frankenstein","name":"Victor Frankenstein","realm":"Gothic","tale":"Frankenstein","aspect":"Healer","stats":{"health":8,"attack":1,"ranged":false,"guard":1,"speed":2},"renown":13,"crownPassive":{"name":"Galvanism","text":"You have 4 action points each round instead of 3."},"bond":{"name":"Spark of life","text":"At upkeep, he and each of your other Gothic heroes heal 2."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Reanimate","ap":2,"text":"Return a dead tale-mate to an empty hero slot on 3 health.","usesPerFight":1}],"rules":[]},"zmey-gorynych":{"id":"zmey-gorynych","name":"Zmey Gorynych","realm":"Rus'","tale":"Dobrynya and the Zmey","aspect":"Beast","stats":{"health":14,"attack":3,"ranged":false,"guard":1,"speed":1},"renown":15,"crownPassive":{"name":"Three heads","text":"His attack becomes three separate attacks of 1 damage each, at three random enemy cards in range. If fewer than three are in range, a card can be hit more than once."},"bond":{"name":"Rus' kin","text":"Each head deals +1 damage for each other Rus' hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Heads grow back","ap":2,"text":"Heal 6.","usesPerFight":1}],"rules":["Each head is its own attack: Guard and Vulnerable apply to each hit.","Guinevere's Queen's peace doesn't stop him."]}},"front":{"berserker":{"type":"front-rank","id":"berserker","name":"Berserker","health":3,"attack":2,"guard":0,"renown":4,"auto":"Attacks the card opposite and one enemy card next to it.","art":"berserker"},"crossbowman":{"type":"front-rank","id":"crossbowman","name":"Crossbowman","health":2,"attack":1,"guard":0,"renown":3,"auto":"Shoots an enemy hero in slot 2 or 3, the one on lower health. If there is none, shoots the card opposite.","art":"crossbowman"},"geat-thane":{"type":"front-rank","id":"geat-thane","name":"Geat Thane","health":3,"attack":1,"guard":0,"renown":2,"tale":"Beowulf","auto":"Attacks the card opposite.","art":"geat-thane"},"grandmother":{"type":"front-rank","id":"grandmother","name":"Grandmother","health":2,"attack":0,"guard":0,"renown":2,"tale":"Red Riding Hood","auto":"Heals 1 to the hero behind her.","art":"grandmother"},"knight":{"type":"front-rank","id":"knight","name":"Knight","health":2,"attack":2,"guard":1,"renown":3,"auto":"Attacks the card opposite.","art":"knight"},"leshy":{"type":"front-rank","id":"leshy","name":"Leshy","health":6,"attack":0,"guard":0,"renown":4,"auto":"No attack. The first attack each round aimed at any other card of yours hits the Leshy instead.","art":"leshy"},"longbowman":{"type":"front-rank","id":"longbowman","name":"Longbowman","health":1,"attack":1,"guard":0,"renown":3,"auto":"Shoots the enemy Crown.","art":"longbowman"},"mere-beast":{"type":"front-rank","id":"mere-beast","name":"Mere-beast","health":2,"attack":2,"guard":0,"renown":3,"tale":"Beowulf","auto":"Attacks the card opposite, applying Poison 1.","art":"mere-beast"},"monk":{"type":"front-rank","id":"monk","name":"Monk","health":2,"attack":0,"guard":0,"renown":3,"auto":"Heals 2 to a random injured card of yours, never above its maximum.","art":"monk"},"the-needle":{"type":"front-rank","id":"the-needle","name":"The Needle","health":8,"attack":0,"guard":0,"renown":0,"tale":"Koschei the Deathless","auto":"No action. Placed in slot 6 automatically whenever Koschei is fielded; not a collection card.","art":"the-needle"},"villager":{"type":"front-rank","id":"villager","name":"Villager","health":1,"attack":1,"guard":0,"renown":1,"auto":"Attacks the card opposite. Free: every player has unlimited copies.","art":"villager"}},"items":{"dragons-blood":{"id":"dragons-blood","name":"Dragon's Blood","type":"item","realm":"Norse","rarity":"Common","effect":"A hero gains +3 Guard this round.","renown":2,"ap":1,"art":"dragons-blood"},"draught-of-the-cauldron":{"id":"draught-of-the-cauldron","name":"Draught of the Cauldron","type":"item","realm":"Cymru","rarity":"Legendary","effect":"Return a dead hero to slot 2 or 3 on 1 health.","renown":4,"ap":1,"art":"draught-of-the-cauldron"},"gingerbread":{"id":"gingerbread","name":"Gingerbread","type":"item","realm":"Märchen","rarity":"Common","effect":"Heal a hero 2.","renown":1,"ap":1,"art":"gingerbread"},"golden-apple":{"id":"golden-apple","name":"Golden Apple","type":"item","realm":"Norse","rarity":"Common","effect":"Heal a hero 3 and remove Poison.","renown":2,"ap":1,"art":"golden-apple"},"mead-of-heorot":{"id":"mead-of-heorot","name":"Mead of Heorot","type":"item","realm":"Geatland","rarity":"Rare","effect":"Heal 2 to each of your heroes.","renown":2,"ap":1,"art":"mead-of-heorot"},"mead-of-poetry":{"id":"mead-of-poetry","name":"Mead of Poetry","type":"item","realm":"Norse","rarity":"Rare","effect":"Gain 2 action points this round.","renown":2,"ap":1,"art":"mead-of-poetry"},"poisoned-apple":{"id":"poisoned-apple","name":"Poisoned Apple","type":"item","realm":"Märchen","rarity":"Common","effect":"Poison 2 on an enemy hero.","renown":2,"ap":1,"art":"poisoned-apple"},"skull-lantern":{"id":"skull-lantern","name":"Skull Lantern","type":"item","realm":"Rus'","rarity":"Rare","effect":"2 Spell damage to an enemy hero; double against Witches.","renown":2,"ap":1,"art":"skull-lantern"},"spindle":{"id":"spindle","name":"Spindle","type":"item","realm":"Märchen","rarity":"Rare","effect":"An enemy hero skips its next action.","renown":3,"ap":1,"art":"spindle"},"the-giants-sword":{"id":"the-giants-sword","name":"The Giant's Sword","type":"item","realm":"Geatland","rarity":"Rare","effect":"A hero's next attack this round deals +3 damage and ignores Guard.","renown":3,"ap":1,"art":"the-giants-sword"},"water-of-life":{"id":"water-of-life","name":"Water of Life","type":"item","realm":"Rus'","rarity":"Legendary","effect":"Heal a hero to full health, up to a maximum of 20.","renown":4,"ap":1,"art":"water-of-life"}},"itemArt":{"dragons-blood":{"file":"../art/images/dragons-blood.jpg","crop":[0.025,0.307,0.95,0.3861],"credit":"Arthur Rackham, The dwarves quarrelling over the body of Fafner"},"draught-of-the-cauldron":{"file":"../art/images/draught-of-the-cauldron.jpg","crop":[0.05,0.36,0.8,0.3199],"credit":"John William Waterhouse, The Magic Circle"},"gingerbread":{"file":"../art/images/gingerbread.jpg","crop":[0,0.158,0.9,0.3841],"credit":"Carl Offterdinger, Hänsel und Gretel"},"golden-apple":{"file":"../art/images/golden-apple.jpg","crop":[0.15,0.0854,0.5,0.4692],"credit":"James Doyle Penrose, Idun and the Apples"},"mead-of-heorot":{"file":"../art/images/mead-of-heorot.jpg","crop":[0.19,0.1762,0.76,0.3476],"credit":"J. R. Skelton, The queen pours mead in Heorot"},"mead-of-poetry":{"file":"../art/images/mead-of-poetry.png","crop":[0.1,0.1028,0.8,0.5543],"credit":"Johannes Gehrts, Odin with Gunnlöd"},"poisoned-apple":{"file":"../art/images/poisoned-apple.jpg","crop":[0.105,0.1347,0.75,0.5706],"credit":"Franz Jüttner, Schneewittchen (the queen at the window)"},"skull-lantern":{"file":"../art/images/skull-lantern.jpg","crop":[0.3,0.1838,0.5,0.2325],"credit":"Ivan Bilibin, Vasilisa at Baba Yaga's hut"},"spindle":{"file":"../art/images/spindle.jpg","crop":[0.15,0.344,0.7,0.2719],"credit":"Elise Goebeler, Dornröschen bei der alten Spinnerin"},"the-giants-sword":{"file":"../art/images/the-giants-sword.jpg","crop":[0,0.2928,0.9,0.4144],"credit":"J. R. Skelton, Beowulf fighting the dragon"},"water-of-life":{"file":"../art/images/water-of-life.jpg","crop":[0.07,0.2839,0.9,0.3922],"credit":"Viktor Vasnetsov, Ivan Tsarevich Riding the Grey Wolf"}}};
 const E = (() => { // Crown & Fable rules engine.
 // Shared by the simulator (Node) and the playable page (browser). No dependencies.
 //
@@ -212,6 +271,35 @@ const sideName = (i) => (i === 0 ? "Blue" : "Red");
 const itemName = (st, id) => st.data.items[id]?.name || id;
 // st.onLog, if set, is called after every log line, so a page can record the fight step by step.
 function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.onLog(msg); }
+// Events: a structured record of what happened, in order, so a screen can animate it.
+// Every event has t (its type) and r (the round). Card references are uids.
+function ev(st, e) { (st.events ||= []).push({ r: st.round, ...e }); }
+const uidOf = (c) => (c && c.uid != null ? c.uid : null);
+const styleOf = (opts) => opts.spell ? "spell" : opts.ranged ? "ranged" : opts.attack ? "melee" : "effect";
+// Gains in Guard and Poison, and some changes to Health, are made in many places, so they are found
+// by comparing before and after. A health change no event explains gets an "hp" event; a card that
+// appears from nowhere (a summon) gets an "appear" event.
+function snapStats(st) {
+  const m = new Map(allCards(st).map((c) => [c.uid, { g: c.guardLeft, p: c.poison, h: c.health }]));
+  m.idx = (st.events || []).length;
+  return m;
+}
+function diffStats(st, before, src) {
+  const since = (st.events || []).slice(before.idx);
+  for (const c of allCards(st)) {
+    const b = before.get(c.uid);
+    if (!b) {
+      if (!since.some((e) => e.t === "revive" && e.uid === c.uid)) ev(st, { t: "appear", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
+      continue;
+    }
+    if (c.guardLeft > b.g) ev(st, { t: "guardUp", src: uidOf(src), item: src?.item, tgt: c.uid, amt: c.guardLeft - b.g });
+    if (c.poison > b.p) ev(st, { t: "poison", src: uidOf(src), item: src?.item, tgt: c.uid, amt: c.poison - b.p });
+    let shown = b.h;
+    for (const e of since) if ((e.tgt === c.uid || e.uid === c.uid) && "hp" in e) shown = e.hp;
+    if (c.health !== shown) ev(st, { t: "hp", src: uidOf(src), item: src?.item, tgt: c.uid, delta: c.health - shown, hp: c.health });
+  }
+}
+
 
 function cards(st, i) { return Object.values(st.sides[i].slots).filter((c) => c && !c.dead && !c.removed); }
 function heroes(st, i) { return cards(st, i).filter((c) => c.kind === "hero"); }
@@ -359,6 +447,7 @@ function heal(st, src, target, amount, opts = {}) {
   target.health = Math.min(cap, target.health + amt);
   const gain = target.health - before;
   if (gain > 0) log(st, `${src?.name || "Healing"} heals ${sideName(target.side)} ${target.name} for ${gain}.`);
+  if (gain > 0) ev(st, { t: "heal", src: uidOf(src), item: src?.item, tgt: target.uid, amt: gain, hp: target.health });
   return gain;
 }
 
@@ -407,15 +496,18 @@ function damage(st, src, target, amount, opts = {}) {
   // Redirects (attacks only)
   if (atk && !opts.noRedirect) t = redirect(st, src, t, opts);
   if (!t) return 0;
+  if (t !== target) ev(st, { t: "redirect", src: uidOf(src), from: target.uid, to: t.uid });
+  const style = styleOf(opts);
   // Misses and immunities
   if (atk && t.id === "rhiannon" && crownIs(st, t.side, "rhiannon") && src && speedOf(st, src) < speedOf(st, t) &&
       t.flags.missRound !== st.round) {
     t.flags.missRound = st.round;
     log(st, `${src.name}'s attack on Rhiannon misses.`);
+    ev(st, { t: "miss", src: uidOf(src), tgt: t.uid, style });
     return 0;
   }
-  if (t.flags.shieldRound === st.round) { log(st, `${t.name} is shielded and takes no damage.`); return 0; }
-  let amt = amount;
+  if (t.flags.shieldRound === st.round) { log(st, `${t.name} is shielded and takes no damage.`); ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style, dmg: 0, shielded: true, hp: t.health }); return 0; }
+  let amt = amount, saved = 0, guarded = 0;
   if (atk && src) {
     const s = src.side, f = bondFactor(st, s);
     if (crownIs(st, s, "gretel") && t.aspect === "Witch") amt += 2;
@@ -439,17 +531,17 @@ function damage(st, src, target, amount, opts = {}) {
   if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
     st.sides[t.side].flags.georgeRound = st.round;
     const blocked = Math.min(5, amt);
-    amt -= blocked;
+    amt -= blocked; saved = blocked;
     if (blocked) log(st, `St George blocks ${blocked} damage to ${t.name}.`);
   }
   const ignoreGuard = opts.ignoreGuard || (atk && src && crownIs(st, src.side, "beowulf"));
   if (!ignoreGuard && t.guardLeft > 0 && !opts.trueDamage) {
     const g = Math.min(t.guardLeft, amt);
-    t.guardLeft -= g; amt -= g;
+    t.guardLeft -= g; amt -= g; guarded = g;
     if (amt <= 0 && g > 0) log(st, `${sideName(t.side)} ${t.name}'s Guard blocks ${src ? src.name + "'s hit" : "the damage"}.`);
   }
-  if (amt <= 0) return 0;
-  return applyHealthLoss(st, src, t, amt, opts);
+  if (amt <= 0) { ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style, dmg: 0, guarded, saved, hp: t.health }); return 0; }
+  return applyHealthLoss(st, src, t, amt, { ...opts, _style: style, _guarded: guarded, _saved: saved });
 }
 
 function redirect(st, src, t, opts) {
@@ -503,21 +595,27 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
       t.slot = s1; dragon.slot = s2;
       st.sides[side].crownUid = t.uid;
       log(st, `The Dragon swaps in to save ${t.name}, who becomes the Crown.`);
+      ev(st, { t: "swap", a: t.uid, b: dragon.uid, side });
       return applyHealthLoss(st, src, dragon, amt, opts);
     }
     if (!noCheating(st)) {
       if (crownIs(st, side, "vasilisa-the-wise") && !st.sides[side].flags.vasilisaUsed) {
         st.sides[side].flags.vasilisaUsed = true;
-        t.health = 1; log(st, `${t.name} survives on 1 Health (Vasilisa).`); return amt;
+        t.health = 1; log(st, `${t.name} survives on 1 Health (Vasilisa).`);
+        ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style: opts._style || "effect", dmg: amt, hp: 1, survived: true }); return amt;
       }
       if (t.id === "red-riding-hood" && hasBond(st, t) && !t.flags.survived &&
           otherHeroes(st, t, (h) => h.aspect === "Slayer").length) {
         t.flags.survived = true;
-        t.health = 3; log(st, `Red Riding Hood survives on 3 Health.`); return amt;
+        t.health = 3; log(st, `Red Riding Hood survives on 3 Health.`);
+        ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style: opts._style || "effect", dmg: amt, hp: 3, survived: true }); return amt;
       }
     }
   }
   t.health -= amt;
+  ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, dmg: amt, hp: Math.max(0, t.health),
+    style: opts._style || (opts.nightfall ? "night" : src?.name === "Poison" ? "poison" : "effect"),
+    guarded: opts._guarded || 0, saved: opts._saved || 0 });
   log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
   if (t.health <= 0) kill(st, t, src);
@@ -527,6 +625,7 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
 function kill(st, t, src) {
   if (t.dead) return;
   t.dead = true; t.health = 0;
+  ev(st, { t: "death", uid: t.uid, side: t.side, slot: t.slot });
   const side = st.sides[t.side];
   side.grave.push(t);
   onDeath(st, t, src);
@@ -584,12 +683,15 @@ function stop(st, target, why) {
   if (crownIs(st, target.side, "the-tin-soldier") && target.kind === "hero") { log(st, `${target.name} can't be stopped (Tin Soldier).`); return false; }
   if (target.stoppedRound === st.round - 1) { log(st, `${target.name} was stopped last round, so it can't be stopped again.`); return false; }
   target.stopNow = true; target.stoppedRound = st.round;
+  ev(st, { t: "stop", tgt: target.uid, why });
   log(st, `${target.name} is stopped (${why}).`);
   return true;
 }
 
 // ---------- upkeep ----------
 function upkeep(st) {
+  ev(st, { t: "phase", name: "upkeep" });
+  const upkeepBefore = snapStats(st);
   st.round += 1;
   st.marks = {};
   // Fate token
@@ -638,7 +740,7 @@ function upkeep(st) {
       }
       case "the-snow-queen": {
         const fr = cards(st, foe).filter((c) => c.kind === "front" && c.flags.frozenRound !== st.round - 1).sort((a, b) => attackOf(st, b) - attackOf(st, a))[0];
-        if (fr && !crownIs(st, foe, "the-tin-soldier")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); }
+        if (fr && !crownIs(st, foe, "the-tin-soldier")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); ev(st, { t: "freeze", tgt: fr.uid }); }
         break;
       }
       case "friar-tuck": {
@@ -663,6 +765,7 @@ function upkeep(st) {
       if (h.id === "grendel" && heroes(st, i).some((x) => x.id === "grendels-mother")) heal(st, h, h, f > 0 ? 1 : 0);
     }
   }
+  diffStats(st, upkeepBefore, null);
   checkWin(st);
 }
 
@@ -672,20 +775,22 @@ function revive(st, c, health) {
   side.grave = side.grave.filter((x) => x.uid !== c.uid);
   side.slots[c.slot] = c;
   if (crownIs(st, c.side, "gwydion")) { c.maxHealth += 2; c.health += 2; c.atkPerm += 1; }
+  ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 }
 
 // ---------- win check ----------
 function checkWin(st) {
+  if (st.over) return true;
   const lost = [0, 1].map((i) => {
     const side = st.sides[i];
     if (side.noCrown) return heroes(st, i).length === 0;
     const crown = Object.values(side.slots).find((c) => c && c.uid === side.crownUid);
     return !crown || crown.dead;
   });
-  if (lost[0] && lost[1]) { st.over = true; st.winner = -1; log(st, "Both crowns fall: a draw."); }
-  else if (lost[0]) { st.over = true; st.winner = 1; log(st, "Red wins."); }
-  else if (lost[1]) { st.over = true; st.winner = 0; log(st, "Blue wins."); }
-  else if (st.round >= MAX_ROUNDS) { st.over = true; st.winner = -1; log(st, "Round limit reached: a draw."); }
+  if (lost[0] && lost[1]) { st.over = true; st.winner = -1; log(st, "Both crowns fall: a draw."); ev(st, { t: "over", winner: st.winner }); }
+  else if (lost[0]) { st.over = true; st.winner = 1; log(st, "Red wins."); ev(st, { t: "over", winner: st.winner }); }
+  else if (lost[1]) { st.over = true; st.winner = 0; log(st, "Blue wins."); ev(st, { t: "over", winner: st.winner }); }
+  else if (st.round >= MAX_ROUNDS) { st.over = true; st.winner = -1; log(st, "Round limit reached: a draw."); ev(st, { t: "over", winner: st.winner }); }
   return st.over;
 }
 
@@ -879,8 +984,10 @@ function useItem(st, i, id, x) {
   const side = st.sides[i];
   const k = side.items.indexOf(id); if (k < 0) return;
   side.items.splice(k, 1); side.usedItems.push(id);
-  const src = { name: itemName(st, id), side: i, id: "item", flags: {} };
+  const src = { name: itemName(st, id), side: i, id: "item", item: id, flags: {} };
   log(st, `${sideName(i)} uses ${itemName(st, id)}${x ? ` on ${x.name}` : ""}.`);
+  ev(st, { t: "item", side: i, item: id, name: itemName(st, id), tgt: uidOf(x) });
+  const before = snapStats(st), hp0 = x ? x.health : 0;
   switch (id) {
     case "dragons-blood": x.guardLeft += 3; break;
     case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); } break; }
@@ -891,13 +998,16 @@ function useItem(st, i, id, x) {
     case "skull-lantern": damage(st, src, x, x.aspect === "Witch" ? 4 : 2, { spell: true }); break;
     case "spindle": stop(st, x, "Spindle"); break;
     case "the-giants-sword": x.flags.giantSword = st.round; break;
-    case "water-of-life": x.health = Math.max(x.health, Math.min(20, x.maxHealth)); break;
+    case "water-of-life": x.health = Math.max(x.health, Math.min(20, x.maxHealth));
+      if (x.health > hp0) ev(st, { t: "heal", item: id, tgt: x.uid, amt: x.health - hp0, hp: x.health }); break;
   }
+  if (id === "the-giants-sword") ev(st, { t: "attackUp", item: id, tgt: x.uid, amt: 3 });
+  diffStats(st, before, src);
 }
 
 // ---------- front-rank automatic actions ----------
 function frontAct(st, c) {
-  if (c.flags.frozenRound === st.round) { log(st, `${c.name} is frozen and skips its action.`); return; }
+  if (c.flags.frozenRound === st.round) { log(st, `${c.name} is frozen and skips its action.`); ev(st, { t: "skip", uid: c.uid, why: "frozen" }); return; }
   const foe = 1 - c.side;
   const opposite = () => at(st, foe, c.slot) || st.rng.pick(closestRow(st, c.side));
   const a = attackOf(st, c);
@@ -966,10 +1076,12 @@ function playRound(st, plans) {
     st.sides[i].flags.rumpelPicked.push(pick);
     const o = ords.find((x) => x.actor && x.actor.uid === pick && !x.auto);
     const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
+    ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
     if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); applyHealthLoss(st, rum, tgt, 2, {}); }
     else { log(st, `Rumpelstiltskin guesses wrong.`); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
   }
   for (const c of allCards(st)) c.flags.acted = false;
+  ev(st, { t: "phase", name: "resolve" });
   // Resolve items, then cards in Speed order (recomputed each step)
   for (const o of ords.filter((o) => o.item)) {
     const tgt = o.item === "draught-of-the-cauldron"
@@ -987,9 +1099,12 @@ function playRound(st, plans) {
     const o = pending.shift();
     const a = o.actor;
     st.acting = a.uid;
-    if (o.cancelled || a.stopNow) { a.flags.acted = true; continue; }
+    if (o.cancelled || a.stopNow) { a.flags.acted = true; ev(st, { t: "skip", uid: a.uid, why: o.cancelled ? "cancelled" : "stopped" }); continue; }
     a.flags.acted = true;
-    if (o.auto) { frontAct(st, a); continue; }
+    if (o.auto) {
+      ev(st, { t: "act", uid: a.uid, side: a.side, auto: true, name: a.name });
+      const before = snapStats(st); frontAct(st, a); diffStats(st, before, a); continue;
+    }
     const act = a.actions[o.index];
     a.uses[act.name] = (a.uses[act.name] || 0) + (act.usesPerFight ? 1 : 0);
     let x = o.target ? findCard(st, o.target) : null;
@@ -998,15 +1113,18 @@ function playRound(st, plans) {
     if (spec && ["deadFront", "deadTalemate"].includes(spec.t)) x = st.sides[a.side].grave.find((c) => c.uid === o.target);
     if (needsTarget && !x) {
       // Target gone: wasted (the doc's rule), unless it's a standard melee attack with another target in reach.
-      log(st, `${a.name}'s ${act.name} is wasted: its target is gone.`); continue;
+      log(st, `${a.name}'s ${act.name} is wasted: its target is gone.`); ev(st, { t: "wasted", uid: a.uid, name: act.name }); continue;
     }
     if (needsTarget && x && !spec?.t?.startsWith("dead") && !["ally", "allyHero", "adjacentAllyHero"].includes(spec?.t)) {
       const legal = targetsFor(st, a, act).some((c) => c && c.uid === x.uid);
-      if (!legal) { log(st, `${a.name}'s ${act.name} is wasted: ${x.name} is out of reach.`); continue; }
+      if (!legal) { log(st, `${a.name}'s ${act.name} is wasted: ${x.name} is out of reach.`); ev(st, { t: "wasted", uid: a.uid, name: act.name }); continue; }
     }
     log(st, `${sideName(a.side)} ${a.name} uses ${act.name}${x ? ` on ${x.name}` : ""}.`);
+    ev(st, { t: "act", uid: a.uid, side: a.side, name: act.name, tgt: uidOf(x), standard: !spec });
+    const before = snapStats(st);
     if (spec && spec.go) spec.go(st, a, x, o.target2 ? findCard(st, o.target2) : null);
     else standardAttack(st, a, x);
+    diffStats(st, before, a);
   }
   st.acting = null;
   checkWin(st);
@@ -1242,12 +1360,12 @@ function apLeft(i) {
   for (const o of plan.orders) ap -= o.ap;
   return ap;
 }
-function cardHtml(c, i) {
+function cardHtml(c, i, slot) {
   const st = S.st;
-  if (!c) return `<div class="card empty">empty</div>`;
+  if (!c) return `<div class="card empty" data-side="${i}" data-slot="${slot}">empty</div>`;
   const crown = E.crownCard(st, i)?.uid === c.uid;
   const planned = S.screen === "plan" && i === S.p && S.plans[i].orders.some((o) => o.uid === c.uid);
-  return `<button class="card ${i ? "red" : "blue"}${crown ? " crown" : ""}${planned ? " planned" : ""}" data-act="card" data-uid="${c.uid}">
+  return `<button class="card ${i ? "red" : "blue"}${crown ? " crown" : ""}${planned ? " planned" : ""}" data-act="card" data-uid="${c.uid}" data-side="${i}" data-slot="${slot}" data-max="${c.maxHealth}">
     <span class="nm">${crown ? "♛ " : ""}${esc(c.name)}</span>
     <span class="st"><span class="hp">${c.health}/${c.maxHealth}</span> health</span>
     <span class="st">Atk ${E.attackOf(st, c)} · Grd ${c.guardLeft} · Spd ${E.speedOf(st, c)}${c.poison ? " · Poison " + c.poison : ""}</span></button>`;
@@ -1255,8 +1373,8 @@ function cardHtml(c, i) {
 function boardHtml() {
   const st = S.st;
   const live = (i, s) => { const c = st.sides[i].slots[s]; return c && !c.dead && !c.removed ? c : null; };
-  const rank = (i, slots) => `<div class="rank">${slots.map((s) => cardHtml(live(i, s), i)).join("")}</div>`;
-  return `<div class="board">${rank(1, [1])}${rank(1, [2, 3])}${rank(1, [4, 5, 6])}
+  const rank = (i, slots) => `<div class="rank">${slots.map((s) => cardHtml(live(i, s), i, s)).join("")}</div>`;
+  return `<div class="board${st.round >= 8 ? " fx-night" : ""}">${rank(1, [1])}${rank(1, [2, 3])}${rank(1, [4, 5, 6])}
     <div class="mid">Round ${st.round}${st.round >= 8 ? " · Nightfall" : ""} · ${NAMES[st.fate]} holds the Fate token</div>
     ${rank(0, [4, 5, 6])}${rank(0, [2, 3])}${rank(0, [1])}</div>`;
 }
@@ -1287,12 +1405,18 @@ function logHtml() {
     <button class="small" data-act="toggle-log">${S.fullLog ? "Show last round only" : "Show the whole fight"}</button></div>
     <div class="log">${lines.map((l) => `<span class="${/Blue/.test(l) ? "b" : /Red/.test(l) ? "r" : ""}">${esc(l)}</span>`).join("")}</div></section>`;
 }
+function fxControls() {
+  const sp = FX.speed;
+  return `<div class="row"><button class="small" data-act="mute" aria-pressed="${!SND.muted}">Sound: ${SND.muted ? "off" : "on"}</button>
+    <label style="flex-direction:row;align-items:center;gap:6px;flex:0 1 auto">Animations
+      <select id="fx-speed">${[["normal", "Normal"], ["fast", "Fast"], ["off", "Off"]].map(([v, l]) => `<option value="${v}"${v === sp ? " selected" : ""}>${l}</option>`).join("")}</select></label></div>`;
+}
 function renderFight() {
   const st = S.st, i = S.p;
   let controls = "";
   if (st.over) {
     controls = `<section class="panel"><p class="banner">${st.winner < 0 ? "A draw" : NAMES[st.winner] + " wins"} in round ${st.round}</p>
-      <div class="row"><button class="primary" data-act="start">Play these line-ups again</button><button data-act="setup">Change line-ups</button></div></section>`;
+      <div class="row"><button class="primary" data-act="start">Play these line-ups again</button><button data-act="setup">Change line-ups</button></div>${fxControls()}</section>`;
   } else if (S.screen === "pass") {
     controls = `<section class="panel side-red"><p class="banner">Blue's plan is locked. Pass the device to Red.</p>
       <button class="primary" data-act="red-ready">I am Red: let me plan</button></section>`;
@@ -1307,7 +1431,8 @@ function renderFight() {
       ${crownChoices(i)}
       <div class="row"><button class="primary" data-act="lock">${i === 0 && !S.botRed ? "Lock in Blue's plan" : "Lock in and play the round"}</button>
         <button data-act="suggest">Let the bot choose for me</button></div>
-      <div class="row"><button class="small" data-act="start">Restart this fight</button><button class="small" data-act="setup">Change line-ups</button></div></section>`;
+      <div class="row"><button class="small" data-act="start">Restart this fight</button><button class="small" data-act="setup">Change line-ups</button></div>
+      ${fxControls()}</section>`;
   }
   app.innerHTML = `<h1>Crown &amp; Fable playtest table</h1>${boardHtml()}${controls}${logHtml()}${sheetHtml()}`;
 }
@@ -1368,24 +1493,539 @@ function chooseItem(id) {
   if (!targets.length) return;
   S.sheet = { mode: "targets", title: `${DATA.items[id].name}: choose a target`, targets, done: add };
 }
-function lock() {
+// Locks the plan, plays the round, then shows it happening before the board updates.
+async function lock() {
   const st = S.st;
-  if (S.p === 0 && !S.botRed) { S.p = 1; S.screen = "pass"; S.sheet = null; return; }
+  if (S.p === 0 && !S.botRed) { S.p = 1; S.screen = "pass"; S.sheet = null; render(); return; }
   if (S.botRed) S.plans[1] = E.botPlan(st, 1);
+  SND.unlock();
   S.logFrom = st.log.length; S.fullLog = false;
+  if (S.sheet) { S.sheet = null; render(); }
+  const from = (st.events || []).length;
   E.playRound(st, S.plans);
   S.plans = [emptyPlan(), emptyPlan()]; S.p = 0; S.screen = "plan"; S.sheet = null;
+  S.animating = true; document.body.classList.add("animating");
+  try { await FX.play(st.events.slice(from)); }
+  finally { S.animating = false; document.body.classList.remove("animating"); render(); }
 }
 function suggest() {
   const plan = E.botPlan(S.st, S.p), st = S.st;
   plan.orders = plan.orders.map((o) => { const c = findAny(o.uid), a = c.actions[o.index]; return { ...o, ap: a.ap, name: a.name }; });
   S.plans[S.p] = plan;
 }
+// ---------- animation and sound ----------
+// Plays a round back from the engine's event stream, so every change on the board is shown with
+// its cause: a melee card lunges and thumps, a ranged card shoots, magic sends a beam, items fly
+// in and burst. Sounds are synthesised here with Web Audio: there are no sound files to license.
+// Built into play/index.html by scripts/build-play.mjs.
+
+const PREFS = (() => {
+  const read = (k, d) => { try { const v = localStorage.getItem("cf-" + k); return v == null ? d : JSON.parse(v); } catch { return d; } };
+  const write = (k, v) => { try { localStorage.setItem("cf-" + k, JSON.stringify(v)); } catch {} };
+  return { read, write };
+})();
+const reducedMotion = (() => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { return false; } })();
+
+// ---------- sound ----------
+const SND = (() => {
+  let ctx = null, master = null, noiseBuf = null;
+  let muted = PREFS.read("muted", false);
+  function ready() {
+    if (muted) return null;
+    try {
+      if (!ctx) {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        master = ctx.createGain(); master.gain.value = 0.55;
+        const comp = ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
+        noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 1.5, ctx.sampleRate);
+        const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      }
+      if (ctx.state === "suspended") ctx.resume();
+      return ctx;
+    } catch { return null; }
+  }
+  // A shaped tone: type, start and end pitch, length, volume, delay.
+  function tone(type, f0, f1, dur, vol = 0.5, at = 0, filter) {
+    const c = ready(); if (!c) return;
+    const t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(Math.max(20, f1), t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + Math.min(0.015, dur / 4)); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    let node = o;
+    if (filter) { const f = c.createBiquadFilter(); f.type = filter[0]; f.frequency.value = filter[1]; node.connect(f); node = f; }
+    node.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.05);
+  }
+  // Filtered noise: filter type, start and end frequency, length, volume, delay.
+  function noise(type, f0, f1, dur, vol = 0.4, at = 0, q = 1) {
+    const c = ready(); if (!c) return;
+    const t = c.currentTime + at, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf; f.type = type; f.Q.value = q;
+    f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(Math.max(20, f1), t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + Math.min(0.01, dur / 4)); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    s.connect(f); f.connect(g); g.connect(master); s.start(t, Math.random() * 0.5); s.stop(t + dur + 0.05);
+  }
+  const notes = (type, freqs, step, dur, vol, at = 0) => freqs.forEach((f, k) => tone(type, f, f * 1.001, dur, vol, at + k * step));
+  const S = {
+    thump() { tone("sine", 150, 42, 0.22, 0.9); noise("lowpass", 900, 120, 0.09, 0.55); },
+    claw() { noise("bandpass", 4200, 900, 0.16, 0.5, 0, 2); noise("bandpass", 3800, 800, 0.14, 0.4, 0.05, 2); tone("sine", 120, 50, 0.15, 0.5); },
+    draw() { noise("bandpass", 600, 1400, 0.12, 0.12, 0, 3); },
+    arrow() { noise("bandpass", 1600, 5200, 0.3, 0.22, 0, 4); },
+    thunk() { tone("triangle", 240, 90, 0.09, 0.6); noise("lowpass", 2500, 300, 0.05, 0.4); },
+    bolt() { noise("bandpass", 900, 2600, 0.18, 0.25, 0, 3); },
+    beam() { tone("sawtooth", 260, 820, 0.38, 0.16, 0, ["lowpass", 1800]); tone("sine", 620, 1860, 0.38, 0.18); tone("sine", 930, 2790, 0.3, 0.08, 0.04); },
+    zap() { noise("highpass", 3000, 7000, 0.12, 0.3); tone("square", 900, 160, 0.14, 0.12, 0, ["lowpass", 2400]); },
+    wave() { noise("lowpass", 400, 2200, 0.45, 0.35, 0, 0.7); tone("sine", 220, 440, 0.4, 0.12); },
+    splash() { noise("lowpass", 3000, 300, 0.35, 0.45); },
+    spark() { noise("highpass", 5000, 2000, 0.08, 0.2); },
+    heal() { notes("sine", [1047, 1319, 1568], 0.07, 0.35, 0.16); notes("sine", [2093], 0.0, 0.5, 0.05, 0.2); },
+    clang() { [523, 1187, 1690, 2410, 3130].forEach((f, k) => tone("sine", f, f * 0.995, 0.7 - k * 0.1, 0.18 / (k + 1) + 0.04)); noise("bandpass", 3000, 2000, 0.05, 0.25, 0, 2); },
+    ping() { tone("sine", 1568, 1560, 0.45, 0.22); tone("sine", 2349, 2340, 0.35, 0.1, 0.02); },
+    shing() { noise("highpass", 4000, 9000, 0.3, 0.18); tone("sine", 2637, 2600, 0.5, 0.12, 0.05); },
+    death() { tone("sawtooth", 220, 48, 0.75, 0.25, 0, ["lowpass", 900]); noise("lowpass", 700, 80, 0.4, 0.45); tone("sine", 90, 40, 0.5, 0.6, 0.05); },
+    rattle() { for (let k = 0; k < 7; k++) noise("highpass", 3500, 3000, 0.035, 0.28, k * 0.045 + Math.random() * 0.02, 3); },
+    frost() { for (let k = 0; k < 6; k++) noise("highpass", 7000, 5000, 0.03, 0.2, k * 0.04 + Math.random() * 0.02, 2); tone("sine", 2000, 3200, 0.5, 0.06); },
+    bubble() { for (let k = 0; k < 5; k++) { const f = 280 + Math.random() * 420; tone("sine", f, f * 1.8, 0.07, 0.22, k * 0.06); } },
+    whoosh() { noise("bandpass", 500, 1900, 0.32, 0.22, 0, 1.5); },
+    pop() { tone("sine", 520, 1250, 0.07, 0.35); },
+    card() { noise("bandpass", 1200, 3200, 0.16, 0.15, 0, 2); tone("sine", 880, 1320, 0.1, 0.08, 0.06); },
+    revive() { notes("triangle", [523, 659, 784, 1047], 0.09, 0.4, 0.2); },
+    summon() { noise("lowpass", 300, 2600, 0.5, 0.3); notes("triangle", [392, 587], 0.12, 0.35, 0.15, 0.2); },
+    miss() { noise("bandpass", 2600, 500, 0.2, 0.22, 0, 2); },
+    dud() { tone("triangle", 180, 120, 0.14, 0.25); },
+    tick() { tone("sine", 1400, 1400, 0.04, 0.12); },
+    night() { tone("sine", 55, 52, 1.6, 0.45); tone("sine", 58, 55, 1.6, 0.35); noise("lowpass", 200, 80, 1.4, 0.2); },
+    win() { notes("triangle", [392, 523, 659, 784], 0.13, 0.5, 0.25); notes("triangle", [1047], 0, 0.9, 0.18, 0.55); },
+    lose() { notes("triangle", [392, 349, 311, 262], 0.18, 0.55, 0.22); },
+  };
+  return {
+    play(name) { try { S[name]?.(); } catch {} },
+    get muted() { return muted; },
+    setMuted(v) { muted = v; PREFS.write("muted", v); if (!v) ready(); },
+    unlock() { ready(); },
+  };
+})();
+
+// ---------- animation ----------
+const FX = (() => {
+  let speed = PREFS.read("speed", "normal");      // normal | fast | off
+  let skip = false;
+  const layer = document.createElement("div"); layer.className = "fx-layer"; layer.setAttribute("aria-hidden", "true");
+  document.body.appendChild(layer);
+  const live = document.createElement("div"); live.className = "fx-live"; live.setAttribute("aria-live", "polite");
+  document.body.appendChild(live);
+  const k = () => (speed === "fast" ? 0.45 : 1);
+  const D = (ms) => Math.max(1, ms * k());
+  const wait = (ms) => (skip ? Promise.resolve() : new Promise((r) => setTimeout(r, D(ms))));
+  const anim = (el, frames, ms, opts = {}) => {
+    if (skip || !el) return Promise.resolve();
+    const a = el.animate(frames, { duration: D(ms), easing: "ease-out", fill: "forwards", ...opts });
+    return a.finished.catch(() => {});
+  };
+  const cardEl = (uid) => uid == null ? null : document.querySelector(`#app .card[data-uid="${uid}"]`);
+  const slotEl = (side, slot) => document.querySelector(`#app [data-side="${side}"][data-slot="${slot}"]`);
+  const centre = (el) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height }; };
+  const card = (uid) => (uid == null ? null : findAny(uid));
+  let itemPos = null, nightShown = false, raised = null, actor = null;
+
+  function spawn(cls, x, y, html = "") {
+    const d = document.createElement("div"); d.className = "fx " + cls; d.innerHTML = html;
+    d.style.left = x + "px"; d.style.top = y + "px"; layer.appendChild(d); return d;
+  }
+  async function floatText(at, text, cls) {
+    if (skip || !at) return;
+    const p = centre(at), d = spawn("fx-text " + cls, p.x, p.y - 6, text);
+    await anim(d, [{ transform: "translate(-50%,-50%) scale(.6)", opacity: 0 }, { transform: "translate(-50%,-90%) scale(1.15)", opacity: 1, offset: 0.2 },
+      { transform: "translate(-50%,-160%) scale(1)", opacity: 1, offset: 0.7 }, { transform: "translate(-50%,-210%) scale(.95)", opacity: 0 }], 1000);
+    d.remove();
+  }
+  function say(text) { live.textContent = text; }
+  function setHp(uid, hp) {
+    const el = cardEl(uid); if (!el) return;
+    const s = el.querySelector(".hp"); if (!s) return;
+    s.textContent = `${hp}/${el.dataset.max || "?"}`;
+    s.classList.remove("hp-pop"); void s.offsetWidth; s.classList.add("hp-pop");
+  }
+  async function shake(el, strong) {
+    if (!el) return;
+    const m = strong ? 9 : 5;
+    el.classList.add("fx-hurt");
+    await anim(el, [{ transform: "translateX(0)" }, { transform: `translateX(${-m}px) rotate(-1.5deg)` }, { transform: `translateX(${m}px) rotate(1.5deg)` },
+      { transform: `translateX(${-m / 2}px)` }, { transform: "translateX(0)" }], 320, { fill: "none" });
+    el.classList.remove("fx-hurt");
+  }
+  async function glow(el, cls, ms = 600) {
+    if (!el || skip) return;
+    el.classList.add(cls); await wait(ms); el.classList.remove(cls);
+  }
+  function burst(p, color, n = 10, spread = 46, shape = "dot") {
+    if (skip || !p) return;
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, r = spread * (0.5 + Math.random() * 0.7);
+      const d = spawn("fx-p fx-" + shape, p.x, p.y); d.style.background = color;
+      anim(d, [{ transform: "translate(-50%,-50%) scale(1)", opacity: 1 },
+        { transform: `translate(calc(-50% + ${Math.cos(a) * r}px), calc(-50% + ${Math.sin(a) * r + (shape === "drop" ? 18 : 0)}px)) scale(.3)`, opacity: 0 }],
+        500 + Math.random() * 300).then(() => d.remove());
+    }
+  }
+  // Small lights travel from one point to another (heals, buffs, item effects).
+  async function motes(from, to, color, n = 6) {
+    if (skip || !from || !to) return;
+    const ps = [];
+    for (let i = 0; i < n; i++) {
+      const d = spawn("fx-p fx-dot", from.x, from.y); d.style.background = color; d.style.boxShadow = `0 0 8px ${color}`;
+      const mx = (from.x + to.x) / 2 + (Math.random() - 0.5) * 80, my = Math.min(from.y, to.y) - 30 - Math.random() * 40;
+      const frames = [];
+      for (let t = 0; t <= 1.0001; t += 0.1) {
+        const x = (1 - t) ** 2 * from.x + 2 * (1 - t) * t * mx + t * t * to.x, y = (1 - t) ** 2 * from.y + 2 * (1 - t) * t * my + t * t * to.y;
+        frames.push({ transform: `translate(${x - from.x - 3}px, ${y - from.y - 3}px)`, opacity: t > 0.9 ? 0.2 : 1 });
+      }
+      ps.push(anim(d, frames, 520, { delay: D(i * 45), easing: "ease-in-out" }).then(() => d.remove()));
+    }
+    await Promise.all(ps);
+  }
+
+  // ---------- attacks ----------
+  async function lunge(a, b, impact, beast) {
+    if (!a || !b || reducedMotion || skip) { await glow(a, "fx-strike", 160); await impact(); return; }
+    const pa = centre(a), pb = centre(b), dx = (pb.x - pa.x) * 0.7, dy = (pb.y - pa.y) * 0.7;
+    a.classList.add("fx-front");
+    await anim(a, [{ transform: "translate(0,0) scale(1)" }, { transform: `translate(${-dx * 0.08}px,${-dy * 0.08}px) scale(1.04)`, offset: 0.35 },
+      { transform: `translate(${dx}px,${dy}px) scale(1.1) rotate(${dx > 0 ? 4 : -4}deg)` }], 300, { easing: "cubic-bezier(.55,0,.9,.55)" });
+    SND.play(beast ? "claw" : "thump");
+    if (beast) slash(pb);
+    const imp = impact();
+    await anim(a, [{ transform: `translate(${dx}px,${dy}px) scale(1.1)` }, { transform: "translate(0,0) scale(1)" }], 320, { easing: "cubic-bezier(.2,.8,.3,1)" });
+    a.classList.remove("fx-front"); a.getAnimations().forEach((x) => x.cancel());
+    await imp;
+  }
+  function slash(p) {
+    if (skip) return;
+    for (let i = 0; i < 3; i++) {
+      const d = spawn("fx-slash", p.x + (i - 1) * 12, p.y);
+      anim(d, [{ transform: "translate(-50%,-50%) rotate(35deg) scaleY(0)", opacity: 1 }, { transform: "translate(-50%,-50%) rotate(35deg) scaleY(1)", opacity: 1, offset: 0.4 },
+        { transform: "translate(-50%,-50%) rotate(35deg) scaleY(1)", opacity: 0 }], 420, { delay: D(i * 40) }).then(() => d.remove());
+    }
+  }
+  async function shoot(from, b, kind) {
+    const pb = centre(b);
+    if (!from || reducedMotion || skip) return;
+    const dist = Math.hypot(pb.x - from.x, pb.y - from.y), bolt = kind === "bolt";
+    SND.play("draw"); await wait(90); SND.play(bolt ? "bolt" : "arrow");
+    const d = spawn("fx-arrow" + (bolt ? " fx-bolt" : ""), from.x, from.y,
+      `<svg viewBox="0 0 44 10" width="${bolt ? 30 : 44}" height="10"><line x1="2" y1="5" x2="34" y2="5" stroke="#6b4a20" stroke-width="${bolt ? 3 : 2}"/><path d="M34 1 L44 5 L34 9 Z" fill="#c9cfd6"/>${bolt ? "" : '<path d="M2 5 L-3 1 M2 5 L-3 9 M6 5 L1 1 M6 5 L1 9" stroke="#b33" stroke-width="1.5"/>'}</svg>`);
+    const lift = bolt ? 0 : Math.min(70, dist * 0.22), frames = [];
+    for (let t = 0; t <= 1.0001; t += 0.08) {
+      const x = from.x + (pb.x - from.x) * t, y = from.y + (pb.y - from.y) * t - lift * 4 * t * (1 - t);
+      const dydt = (pb.y - from.y) - lift * 4 * (1 - 2 * t), ang = Math.atan2(dydt, pb.x - from.x) * 180 / Math.PI;
+      frames.push({ transform: `translate(${x - from.x}px, ${y - from.y}px) translate(-50%,-50%) rotate(${ang}deg)` });
+    }
+    await anim(d, frames, Math.max(260, dist * (bolt ? 0.55 : 0.8)), { easing: "linear" });
+    d.remove(); SND.play("thunk");
+  }
+  async function beam(from, b, color, kind) {
+    const pb = centre(b);
+    if (!from || skip) return;
+    SND.play(kind === "wave" ? "wave" : "beam");
+    const dist = Math.hypot(pb.x - from.x, pb.y - from.y), ang = Math.atan2(pb.y - from.y, pb.x - from.x) * 180 / Math.PI;
+    const d = spawn("fx-beam" + (kind === "wave" ? " fx-wave" : ""), from.x, from.y);
+    d.style.width = dist + "px"; d.style.setProperty("--c", color); d.style.transform = `translateY(-50%) rotate(${ang}deg)`;
+    const orb = spawn("fx-orb", from.x, from.y); orb.style.setProperty("--c", color);
+    await anim(d, [{ clipPath: "inset(0 100% 0 0)", opacity: 1 }, { clipPath: "inset(0 0 0 0)", opacity: 1 }], 220, { easing: "ease-in" });
+    SND.play(kind === "wave" ? "splash" : "zap"); burst(pb, color, 12, 40);
+    await anim(d, [{ opacity: 1, filter: "brightness(1.6)" }, { opacity: 0.85, filter: "brightness(1)" }, { opacity: 0 }], 360);
+    d.remove(); orb.remove();
+  }
+
+  // Where a hit comes from: a card, or the item being used.
+  function sourcePoint(e) {
+    if (e.item && itemPos) return itemPos;
+    const el = cardEl(e.src); return el ? centre(el) : null;
+  }
+  function hitStyle(e) {
+    const s = card(e.src);
+    if (e.item === "skull-lantern") return "flame";
+    if (e.style === "spell") return s?.id === "the-little-mermaid" ? "wave" : "beam";
+    if (e.style === "ranged") return s?.aspect === "Witch" ? "beam" : s?.id === "crossbowman" ? "bolt" : "arrow";
+    return e.style;
+  }
+  async function impact(e, tgtEl, opts = {}) {
+    const p = tgtEl ? centre(tgtEl) : null;
+    if (e.shielded) { SND.play("clang"); shieldPop(p); await floatText(tgtEl, "Shielded", "fx-guard"); return; }
+    if (e.dmg === 0) { SND.play("clang"); shieldPop(p); await floatText(tgtEl, e.saved ? `St George blocks ${e.saved}` : "Blocked", "fx-guard"); return; }
+    if (!opts.silent) SND.play(e.style === "poison" ? "bubble" : e.style === "night" ? "dud" : "thump");
+    if (e.guarded) { SND.play("clang"); floatText(tgtEl, `−${e.guarded} Guard`, "fx-guard fx-small"); }
+    if (e.saved) floatText(tgtEl, `St George blocks ${e.saved}`, "fx-guard fx-small");
+    setHp(e.tgt, e.hp);
+    burst(p, e.style === "poison" ? "#5fae3a" : "#e04a2f", e.dmg >= 5 ? 14 : 8, 36);
+    const sh = shake(tgtEl, e.dmg >= 5);
+    await Promise.all([sh, floatText(tgtEl, `−${e.dmg}`, "fx-dmg" + (e.dmg >= 5 ? " fx-big" : "")),
+      e.survived ? floatText(tgtEl, "Survives!", "fx-gold fx-small") : null]);
+  }
+  function shieldPop(p) {
+    if (!p || skip) return;
+    const d = spawn("fx-shield", p.x, p.y, '<svg viewBox="0 0 24 28" width="44" height="52"><path d="M12 1 L23 5 V13 C23 20 18 25 12 27 C6 25 1 20 1 13 V5 Z" fill="rgba(90,140,200,.35)" stroke="#9cc4f0" stroke-width="2"/></svg>');
+    anim(d, [{ transform: "translate(-50%,-50%) scale(.4)", opacity: 0 }, { transform: "translate(-50%,-50%) scale(1.15)", opacity: 1, offset: 0.3 },
+      { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }], 700).then(() => d.remove());
+  }
+  async function onHit(e) {
+    const t = cardEl(e.tgt), style = hitStyle(e), from = sourcePoint(e), srcEl = e.item ? null : cardEl(e.src);
+    say(`${card(e.src)?.name || (e.item ? DATA.items[e.item]?.name : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
+    if (style === "melee" && srcEl && t && srcEl !== t) {
+      const beast = card(e.src)?.aspect === "Beast" || card(e.src)?.id === "mere-beast";
+      return lunge(srcEl, t, () => impact(e, t, { silent: true }), beast);
+    }
+    if ((style === "arrow" || style === "bolt") && from && t) { await shoot(from, t, style); return impact(e, t, { silent: true }); }
+    if ((style === "beam" || style === "wave") && from && t) { await beam(from, t, style === "wave" ? "#4fc3c8" : "#a77bff", style); return impact(e, t, { silent: true }); }
+    if (style === "flame" && from && t) { await beam(from, t, "#7dff6a", "beam"); return impact(e, t, { silent: true }); }
+    if (style === "poison") { bubbles(t); return impact(e, t); }
+    if (style === "night") { if (!nightShown) { nightShown = true; await nightfall(); } return impact(e, t); }
+    if (style === "effect" && srcEl && t && srcEl !== t) { await motes(centre(srcEl), centre(t), "#ff7a5c", 4); SND.play("spark"); }
+    return impact(e, t);
+  }
+  function bubbles(t) {
+    if (!t || skip) return;
+    const p = centre(t);
+    for (let i = 0; i < 7; i++) {
+      const d = spawn("fx-p fx-bubble", p.x + (Math.random() - 0.5) * p.w * 0.6, p.y + p.h * 0.3);
+      anim(d, [{ transform: "translate(-50%,-50%) scale(.4)", opacity: 0.9 }, { transform: `translate(-50%, ${-40 - Math.random() * 40}px) scale(1.2)`, opacity: 0 }],
+        700 + Math.random() * 300, { delay: D(i * 60) }).then(() => d.remove());
+    }
+  }
+  async function nightfall() {
+    SND.play("night"); say("Nightfall");
+    const board = document.querySelector("#app .board"); if (!board) return;
+    board.classList.add("fx-night"); await wait(900);
+  }
+
+  // ---------- items ----------
+  const ITEM_FX = {
+    "golden-apple": { color: "#ffd24a", shape: "dot", sound: "heal" }, "gingerbread": { color: "#b06a2c", shape: "crumb", sound: "pop" },
+    "water-of-life": { color: "#6fd0ff", shape: "drop", sound: "splash" }, "mead-of-heorot": { color: "#f2b941", shape: "dot", sound: "heal" },
+    "mead-of-poetry": { color: "#ffe28a", shape: "dot", sound: "ping" }, "poisoned-apple": { color: "#4f8f2a", shape: "drop", sound: "bubble" },
+    "skull-lantern": { color: "#7dff6a", shape: "dot", sound: "zap" }, "spindle": { color: "#e8dcc0", shape: "thread", sound: "rattle" },
+    "the-giants-sword": { color: "#d8dee6", shape: "dot", sound: "shing" }, "dragons-blood": { color: "#c3261e", shape: "drop", sound: "clang" },
+    "draught-of-the-cauldron": { color: "#9be3a8", shape: "dot", sound: "revive" },
+  };
+  let itemCard = null;
+  // Load the item paintings early so they are ready when an item flies in.
+  try { for (const a of Object.values(DATA.itemArt || {})) { const im = new Image(); im.src = a.file; } } catch {}
+  function clearItem() { if (itemCard) { const c = itemCard; itemCard = null; anim(c, [{ opacity: 1 }, { opacity: 0 }], 200).then(() => c.remove()); } itemPos = null; }
+  async function onItem(e) {
+    clearItem(); actor = null;
+    const board = document.querySelector("#app .board"); if (!board) return;
+    const br = board.getBoundingClientRect(), mid = document.querySelector("#app .board .mid");
+    const cx = br.left + br.width / 2, cy = mid ? centre(mid).y : br.top + br.height / 2;
+    const art = DATA.itemArt?.[e.item], fx = ITEM_FX[e.item] || { color: "#fff", shape: "dot", sound: "pop" };
+    say(`${NAMES[e.side]} uses ${e.name}`);
+    if (skip) return;
+    const [x, y, w, h] = art ? art.crop : [0, 0, 1, 1];
+    const bg = art ? `background-image:url('${art.file}');background-size:${100 / w}% ${100 / h}%;background-position:${w >= 1 ? 0 : 100 * x / (1 - w)}% ${h >= 1 ? 0 : 100 * y / (1 - h)}%` : "";
+    const c = spawn("fx-item fx-item-" + (e.side ? "red" : "blue"), cx, cy, `<div class="fx-item-art" style="${bg}"></div><div class="fx-item-name">${esc(e.name)}</div>`);
+    itemCard = c;
+    const fromY = e.side ? -br.height * 0.6 : br.height * 0.6;
+    SND.play("card");
+    await anim(c, [{ transform: `translate(-50%, calc(-50% + ${fromY}px)) rotateY(90deg) scale(.6)`, opacity: 0 },
+      { transform: "translate(-50%,-50%) rotateY(0) scale(1.08)", opacity: 1, offset: 0.7 }, { transform: "translate(-50%,-50%) scale(1)", opacity: 1 }], 520, { easing: "cubic-bezier(.2,.8,.3,1)" });
+    c.classList.add("fx-glint"); await wait(380);
+    itemPos = { x: cx, y: cy };
+    const t = cardEl(e.tgt);
+    if (t) {
+      const pt = centre(t);
+      // Effects that land on a card: the item flies to it and bursts there.
+      if (e.item !== "skull-lantern") {
+        SND.play("whoosh");
+        await anim(c, [{ transform: "translate(-50%,-50%) scale(1)", opacity: 1 }, { transform: `translate(calc(-50% + ${pt.x - cx}px), calc(-50% + ${pt.y - cy}px)) scale(.35)`, opacity: 0.9 }], 380, { easing: "ease-in" });
+        c.remove(); itemCard = null; itemPos = pt;
+        SND.play(fx.sound); burst(pt, fx.color, 16, 50, fx.shape);
+        if (e.item === "spindle") spindle(pt);
+        if (e.item === "the-giants-sword") swordDrop(pt);
+      }
+    } else {
+      // No target: the item bursts where it is (Mead of Poetry, Mead of Heorot, the Cauldron).
+      SND.play(fx.sound); burst(itemPos, fx.color, 20, 70, fx.shape);
+      if (e.item === "mead-of-poetry") floatTextAt(itemPos, "+2 action points", "fx-gold");
+      await anim(c, [{ transform: "translate(-50%,-50%) scale(1)", opacity: 1 }, { transform: "translate(-50%,-50%) scale(1.25)", opacity: 0 }], 500);
+      c.remove(); itemCard = null;
+    }
+  }
+  function floatTextAt(p, text, cls) {
+    const d = spawn("fx-text " + cls, p.x, p.y, text);
+    anim(d, [{ transform: "translate(-50%,-50%)", opacity: 0 }, { transform: "translate(-50%,-120%)", opacity: 1, offset: 0.25 }, { transform: "translate(-50%,-220%)", opacity: 0 }], 1100).then(() => d.remove());
+  }
+  function spindle(p) {
+    const d = spawn("fx-text fx-sleep", p.x + 20, p.y - 10, "z z z");
+    anim(d, [{ transform: "translate(-50%,-50%)", opacity: 0 }, { transform: "translate(-20%,-140%)", opacity: 1, offset: 0.4 }, { transform: "translate(10%,-220%)", opacity: 0 }], 1200).then(() => d.remove());
+  }
+  function swordDrop(p) {
+    const d = spawn("fx-sword", p.x, p.y, '<svg viewBox="0 0 12 60" width="14" height="64"><path d="M6 0 L9 40 H3 Z" fill="#dfe5ec" stroke="#8a95a3"/><rect x="0" y="40" width="12" height="3" fill="#b8913e"/><rect x="4.5" y="43" width="3" height="12" fill="#5a3c22"/></svg>');
+    anim(d, [{ transform: "translate(-50%,-180%) rotate(180deg)", opacity: 0 }, { transform: "translate(-50%,-60%) rotate(180deg)", opacity: 1, offset: 0.5 }, { transform: "translate(-50%,-60%) rotate(180deg)", opacity: 0 }], 900).then(() => d.remove());
+  }
+
+  // ---------- everything else ----------
+  async function onAct(e) {
+    clearItem();
+    if (raised) raised.classList.remove("fx-acting");
+    const el = cardEl(e.uid); if (!el) return;
+    raised = el; el.classList.add("fx-acting"); actor = e.uid;
+    say(`${card(e.uid)?.name}: ${e.name}`);
+    if (!e.auto || speed !== "fast") {
+      const tag = spawn("fx-tag" + (e.auto ? " fx-tag-auto" : ""), 0, 0, esc(e.auto ? card(e.uid)?.name || e.name : e.name));
+      const p = centre(el); tag.style.left = p.x + "px"; tag.style.top = (p.y - p.h / 2 - 4) + "px";
+      anim(tag, [{ transform: "translate(-50%,-80%)", opacity: 0 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.15 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.8 }, { transform: "translate(-50%,-120%)", opacity: 0 }], e.auto ? 900 : 1400).then(() => tag.remove());
+    }
+    SND.play("tick");
+    await wait(e.auto ? 140 : 320);
+  }
+  async function onHeal(e) {
+    const t = cardEl(e.tgt), from = e.item ? itemPos : (e.src != null && e.src !== e.tgt ? (cardEl(e.src) ? centre(cardEl(e.src)) : null) : null);
+    say(`${card(e.tgt)?.name} heals ${e.amt}`);
+    if (from && t) await motes(from, centre(t), "#8ee08a", 6);
+    SND.play("heal"); setHp(e.tgt, e.hp);
+    if (t) burst(centre(t), "#a8f0a0", 8, 30);
+    await Promise.all([glow(t, "fx-healed", 500), floatText(t, `+${e.amt}`, "fx-heal")]);
+  }
+  async function onDeath(e) {
+    const el = cardEl(e.uid); if (!el) return;
+    say(`${card(e.uid)?.name} falls`);
+    SND.play("death");
+    if (raised === el) raised = null;
+    el.classList.remove("fx-acting");
+    burst(centre(el), "#5b4a3a", 18, 60);
+    await anim(el, [{ filter: "grayscale(0) brightness(1)", transform: "rotate(0) translateY(0)", opacity: 1 },
+      { filter: "grayscale(1) brightness(1.6)", transform: "rotate(-3deg) translateY(-4px)", opacity: 1, offset: 0.2 },
+      { filter: "grayscale(1) brightness(.6)", transform: "rotate(6deg) translateY(10px) scale(.92)", opacity: 0.28 }], 700, { easing: "ease-in" });
+    el.classList.add("fx-fallen");
+  }
+  async function onRevive(e, summon) {
+    const el = slotEl(e.side, e.slot); if (!el) return;
+    say(`${e.name} ${summon ? "appears" : "rises"}`);
+    SND.play(summon ? "summon" : "revive");
+    const p = centre(el);
+    if (!skip) {
+      const col = spawn("fx-pillar" + (summon ? " fx-smoke" : ""), p.x, p.y);
+      anim(col, [{ transform: "translate(-50%,-50%) scaleY(0)", opacity: 0 }, { transform: "translate(-50%,-50%) scaleY(1)", opacity: 1, offset: 0.4 }, { transform: "translate(-50%,-50%) scaleY(1)", opacity: 0 }], 900).then(() => col.remove());
+    }
+    burst(p, summon ? "#bfb5a5" : "#fff3c0", 14, 50);
+    el.getAnimations().forEach((a) => a.cancel());
+    el.classList.remove("fx-fallen", "empty"); el.classList.add("card", e.side ? "red" : "blue");
+    el.innerHTML = `<span class="nm">${esc(e.name)}</span><span class="st"><span class="hp">${e.hp}</span> health</span>`;
+    await anim(el, [{ transform: "scale(.6)", opacity: 0 }, { transform: "scale(1.06)", opacity: 1, offset: 0.7 }, { transform: "scale(1)", opacity: 1 }], 500);
+    await floatText(el, summon ? "Summoned" : "Revived", "fx-gold fx-small");
+  }
+  async function onSwap(e) {
+    const a = cardEl(e.a), b = cardEl(e.b); if (!a || !b) return;
+    say("The Dragon swaps places to save its Crown");
+    SND.play("whoosh");
+    const pa = centre(a), pb = centre(b);
+    await Promise.all([
+      anim(a, [{ transform: "translate(0,0)" }, { transform: `translate(${pb.x - pa.x}px,${pb.y - pa.y}px)` }], 520, { easing: "ease-in-out" }),
+      anim(b, [{ transform: "translate(0,0)" }, { transform: `translate(${pa.x - pb.x}px,${pa.y - pb.y}px)` }], 520, { easing: "ease-in-out" }),
+    ]);
+    await floatText(b, "Swaps in!", "fx-gold");
+  }
+  async function onRedirect(e) {
+    const to = cardEl(e.to), from = cardEl(e.from); if (!to || !from) return;
+    say(`${card(e.to)?.name} takes the blow meant for ${card(e.from)?.name}`);
+    SND.play("whoosh");
+    if (!reducedMotion && !skip) {
+      const pt = centre(to), pf = centre(from), dx = (pf.x - pt.x) * 0.45, dy = (pf.y - pt.y) * 0.45;
+      to.classList.add("fx-front");
+      await anim(to, [{ transform: "translate(0,0)" }, { transform: `translate(${dx}px,${dy}px) scale(1.06)` }], 220, { easing: "ease-out" });
+      floatText(to, "Intercepts!", "fx-gold fx-small");
+      await wait(160);
+      anim(to, [{ transform: `translate(${dx}px,${dy}px) scale(1.06)` }, { transform: "translate(0,0)" }], 320).then(() => { to.classList.remove("fx-front"); to.getAnimations().forEach((x) => x.cancel()); });
+    } else await floatText(to, "Intercepts!", "fx-gold fx-small");
+  }
+  async function onMiss(e) {
+    const t = cardEl(e.tgt), s = cardEl(e.src);
+    say(`${card(e.src)?.name} misses`);
+    SND.play("miss");
+    if (t && !reducedMotion) anim(t, [{ transform: "translateX(0)" }, { transform: "translateX(18px)", offset: 0.4 }, { transform: "translateX(0)" }], 500, { fill: "none" });
+    if (s) glow(s, "fx-strike", 200);
+    await floatText(t, "Miss!", "fx-miss");
+  }
+  // Status effects show their cause: a beam or lights from the card acting, or from the item.
+  async function status(e, text, cls, sound, extra, cause) {
+    const t = cardEl(e.tgt ?? e.uid);
+    const srcUid = e.src ?? actor, srcEl = srcUid != null && srcUid !== (e.tgt ?? e.uid) ? cardEl(srcUid) : null;
+    const from = e.item ? null : srcEl ? centre(srcEl) : null;
+    if (cause && from && t) {
+      if (cause === "beam") await beam(from, t, cls.includes("frost") ? "#bfe6ff" : "#c9b8ff", "beam");
+      else await motes(from, centre(t), cause, 5);
+    }
+    SND.play(sound);
+    if (extra) extra(t);
+    await floatText(t, text, cls);
+  }
+  async function onGuardUp(e) {
+    const s = e.src ?? actor;
+    const t = cardEl(e.tgt), from = e.item ? itemPos : (s != null && s !== e.tgt && cardEl(s) ? centre(cardEl(s)) : null);
+    if (from && t) await motes(from, centre(t), "#8fb8ee", 4);
+    SND.play("ping"); if (t) shieldPop(centre(t));
+    await floatText(t, `+${e.amt} Guard`, "fx-guard");
+  }
+  async function onOver(e) {
+    clearItem(); if (raised) raised.classList.remove("fx-acting");
+    SND.play(e.winner < 0 ? "lose" : "win");
+    say(e.winner < 0 ? "A draw" : `${NAMES[e.winner]} wins`);
+    await wait(700);
+  }
+  async function onPhase(e) {
+    actor = null;
+    const mid = document.querySelector("#app .board .mid"); if (!mid) return;
+    const text = e.name === "upkeep" ? "End of round: poison, Nightfall and Crown passives" : "Items first, then cards in Speed order";
+    mid.textContent = text; mid.classList.remove("fx-phase"); void mid.offsetWidth; mid.classList.add("fx-phase");
+    await wait(e.name === "upkeep" ? 250 : 350);
+  }
+
+  const HANDLERS = {
+    phase: onPhase, act: onAct, item: onItem, hit: onHit, heal: onHeal, death: onDeath,
+    revive: (e) => onRevive(e, false), appear: (e) => onRevive(e, true), swap: onSwap, redirect: onRedirect, miss: onMiss,
+    stop: (e) => status(e, "Stopped", "fx-stop", "rattle", (t) => t && t.classList.add("fx-stopped"), "beam"),
+    freeze: (e) => status(e, "Frozen", "fx-frost", "frost", (t) => t && t.classList.add("fx-frozen"), "beam"),
+    skip: (e) => status(e, e.why === "frozen" ? "Frozen: skips" : e.why === "cancelled" ? "Cancelled" : "Stopped: skips", "fx-stop fx-small", "dud"),
+    wasted: (e) => status(e, "Wasted: no target", "fx-stop fx-small", "dud"),
+    guardUp: onGuardUp,
+    attackUp: (e) => status(e, `+${e.amt} Attack`, "fx-gold", "shing", null, "#ffd45c"),
+    poison: (e) => status(e, `+${e.amt} Poison`, "fx-poison", "bubble", bubbles, "#8fd14f"),
+    hp: (e) => e.delta > 0 ? onHeal({ ...e, amt: e.delta }) : impact({ ...e, dmg: -e.delta, style: "effect" }, cardEl(e.tgt)),
+    over: onOver,
+  };
+
+  async function play(events) {
+    skip = speed === "off";
+    nightShown = !!document.querySelector("#app .board.fx-night");
+    raised = null; itemPos = null;
+    const board = document.querySelector("#app .board");
+    if (board && !skip) board.scrollIntoView({ block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
+    // Pause briefly between steps so each cause and effect can be read.
+    const gap = { act: 0, hit: 120, heal: 80, death: 160, item: 120, phase: 0 };
+    for (const e of events) {
+      const h = HANDLERS[e.t];
+      if (h) { try { await h(e); } catch (err) { console.warn("fx", e, err); } }
+      await wait(gap[e.t] ?? 60);
+    }
+    clearItem();
+    if (raised) raised.classList.remove("fx-acting");
+    layer.replaceChildren();
+    skip = false;
+  }
+  return {
+    play,
+    skipNow() { skip = true; layer.replaceChildren(); },
+    get speed() { return speed; },
+    setSpeed(v) { speed = v; PREFS.write("speed", v); },
+  };
+})();
+
 function render() { if (S.screen === "setup") renderSetup(); else renderFight(); }
+document.getElementById("skip-fx").addEventListener("click", () => FX.skipNow());
 
 app.addEventListener("click", (e) => {
+  if (S.animating) return;
   const b = e.target.closest("[data-act]"); if (!b) return;
   const act = b.dataset.act;
+  if (act === "lock") { lock(); return; }
+  if (act === "mute") { SND.setMuted(!SND.muted); render(); return; }
   if (act === "start") startFight();
   else if (act === "setup") { S.screen = "setup"; S.sheet = null; render(); }
   else if (act === "random") { S.lineups[+b.dataset.side] = randomLineup(); render(); }
@@ -1397,7 +2037,6 @@ app.addEventListener("click", (e) => {
     else if (act === "item") chooseItem(b.dataset.id);
     else if (act === "del-order") S.plans[S.p].orders.splice(+b.dataset.k, 1);
     else if (act === "del-item") S.plans[S.p].items.splice(+b.dataset.k, 1);
-    else if (act === "lock") lock();
     else if (act === "red-ready") S.screen = "plan";
     else if (act === "suggest") suggest();
     else if (act === "toggle-log") S.fullLog = !S.fullLog;
@@ -1407,6 +2046,7 @@ app.addEventListener("click", (e) => {
 app.addEventListener("change", (e) => {
   const t = e.target;
   if (t.id === "bot-red") { S.botRed = t.checked; return; }
+  if (t.id === "fx-speed") { FX.setSpeed(t.value); return; }
   if (t.dataset.key) {
     const lu = S.lineups[+t.dataset.side];
     if (t.dataset.key === "crown") lu.crown = t.value; else lu[t.dataset.key][+t.dataset.k] = t.value;

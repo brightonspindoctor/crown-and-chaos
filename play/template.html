@@ -64,10 +64,69 @@ label select { color: var(--ink); width: 100%; }
 .edit { display: flex; flex-wrap: wrap; gap: 8px; }
 .edit label { flex: 0 0 72px; } .edit input { width: 100%; }
 .banner { font: 400 22px/1.2 var(--display); text-align: center; padding: 18px 8px; text-wrap: balance; }
+
+/* ---------- animation layer ---------- */
+.fx-layer { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
+.fx-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.fx { position: fixed; pointer-events: none; will-change: transform, opacity; }
+.card { position: relative; transition: box-shadow .15s; }
+.card.fx-front { z-index: 25; }
+.card.fx-acting { box-shadow: 0 0 0 3px var(--gold), 0 0 18px color-mix(in srgb, var(--gold) 70%, transparent); translate: 0 -3px; z-index: 22; }
+.card.fx-hurt { background: color-mix(in srgb, #e04a2f 30%, var(--panel)); }
+.card.fx-healed { box-shadow: 0 0 0 3px #6fcf73, 0 0 20px #8ee08a; }
+.card.fx-strike { box-shadow: 0 0 0 3px #e04a2f; }
+.card.fx-fallen { opacity: .28; filter: grayscale(1); }
+.card.fx-fallen .nm { text-decoration: line-through; }
+.card.fx-stopped::after, .card.fx-frozen::after { content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none; }
+.card.fx-stopped::after { background: repeating-linear-gradient(135deg, transparent 0 7px, rgba(120,120,120,.35) 7px 10px); }
+.card.fx-frozen::after { background: linear-gradient(160deg, rgba(190,230,255,.65), rgba(140,200,255,.25)); box-shadow: inset 0 0 12px #bfe6ff; }
+.hp-pop { display: inline-block; animation: hp-pop .45s ease-out; }
+@keyframes hp-pop { 0% { transform: scale(1.6); color: var(--gold); } 100% { transform: scale(1); } }
+.board.fx-night { background: radial-gradient(ellipse at 50% 50%, rgba(30,30,70,.18), rgba(10,10,40,.38)); border-radius: 8px; }
+.mid.fx-phase { animation: phase .5s ease-out; color: var(--ink); }
+@keyframes phase { 0% { background: color-mix(in srgb, var(--gold) 35%, transparent); } 100% { background: transparent; } }
+.fx-text { font: 700 22px/1 var(--body); white-space: nowrap; text-shadow: 0 2px 0 rgba(0,0,0,.55), 0 0 6px rgba(0,0,0,.4); z-index: 30; }
+.fx-text.fx-small { font-size: 14px; }
+.fx-text.fx-big { font-size: 30px; }
+.fx-dmg { color: #ff5a3c; } .fx-heal { color: #6fe07a; } .fx-guard { color: #9cc4f0; } .fx-gold { color: #ffd45c; }
+.fx-miss { color: #e8ecdf; font-style: italic; } .fx-stop { color: #d0d0d0; } .fx-frost { color: #bfe6ff; } .fx-poison { color: #8fd14f; }
+.fx-sleep { color: #e8dcc0; font-size: 16px; letter-spacing: .2em; }
+.fx-tag { font: 700 13px/1 var(--body); background: var(--ink); color: var(--felt); padding: 5px 9px; border-radius: 99px; white-space: nowrap; z-index: 31; box-shadow: 0 2px 6px rgba(0,0,0,.35); }
+.fx-tag.fx-tag-auto { font-weight: 400; font-size: 12px; opacity: .9; }
+.fx-p { width: 7px; height: 7px; border-radius: 50%; }
+.fx-p.fx-drop { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+.fx-p.fx-crumb { border-radius: 2px; width: 6px; height: 5px; }
+.fx-p.fx-thread { width: 14px; height: 2px; border-radius: 1px; }
+.fx-p.fx-bubble { width: 9px; height: 9px; background: rgba(120,200,80,.55) !important; border: 1px solid #8fd14f; }
+.fx-slash { width: 3px; height: 54px; background: linear-gradient(transparent, #fff, #ff6a4a, transparent); border-radius: 2px; }
+.fx-arrow { width: 44px; height: 10px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.fx-arrow svg { display: block; overflow: visible; }
+.fx-beam { height: 8px; transform-origin: 0 50%; border-radius: 4px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 40%, transparent), var(--c) 30%, #fff 50%, var(--c) 70%, color-mix(in srgb, var(--c) 60%, transparent));
+  box-shadow: 0 0 14px var(--c), 0 0 4px #fff; }
+.fx-beam.fx-wave { height: 14px; border-radius: 50%; background: repeating-linear-gradient(90deg, var(--c) 0 12px, #e6ffff 12px 16px); opacity: .9; }
+.fx-orb { width: 22px; height: 22px; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(#fff, var(--c) 55%, transparent 70%); box-shadow: 0 0 18px var(--c); }
+.fx-shield svg { display: block; filter: drop-shadow(0 0 6px #9cc4f0); }
+.fx-sword svg { display: block; filter: drop-shadow(0 0 6px #fff); }
+.fx-pillar { width: 70px; height: 150px; transform-origin: 50% 100%; background: linear-gradient(transparent, rgba(255,240,180,.85), transparent); filter: blur(2px); }
+.fx-pillar.fx-smoke { background: radial-gradient(ellipse at 50% 70%, rgba(200,195,185,.8), transparent 70%); }
+.fx-item { width: 116px; transform-style: preserve-3d; background: #2a1712; border: 2px solid #c9a24a; border-radius: 8px; padding: 4px; box-shadow: 0 8px 24px rgba(0,0,0,.55); z-index: 28; }
+.fx-item.fx-item-red { border-color: var(--red); }
+.fx-item-art { height: 68px; border-radius: 4px; background: #5a3c22 center/cover; }
+.fx-item-name { font: 700 12px/1.2 var(--body); color: #f1e6cc; text-align: center; padding: 4px 0 1px; }
+.fx-item.fx-glint .fx-item-art { position: relative; overflow: hidden; }
+.fx-item.fx-glint .fx-item-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); animation: glint .5s ease-out; }
+@keyframes glint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.skip-fx { position: fixed; right: 14px; bottom: 14px; z-index: 40; display: none; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+body.animating .skip-fx { display: block; }
+body.animating #app button, body.animating #app select { pointer-events: none; }
+body.animating #app section.panel button, body.animating #app section.panel select { opacity: .5; }
+@media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }
 </style>
 </head>
 <body>
 <main id="app"></main>
+<button class="skip-fx primary" id="skip-fx" type="button">Skip animation</button>
 <script>
 const DATA = /*DATA*/;
 const E = (() => { /*ENGINE*/
@@ -157,12 +216,12 @@ function apLeft(i) {
   for (const o of plan.orders) ap -= o.ap;
   return ap;
 }
-function cardHtml(c, i) {
+function cardHtml(c, i, slot) {
   const st = S.st;
-  if (!c) return `<div class="card empty">empty</div>`;
+  if (!c) return `<div class="card empty" data-side="${i}" data-slot="${slot}">empty</div>`;
   const crown = E.crownCard(st, i)?.uid === c.uid;
   const planned = S.screen === "plan" && i === S.p && S.plans[i].orders.some((o) => o.uid === c.uid);
-  return `<button class="card ${i ? "red" : "blue"}${crown ? " crown" : ""}${planned ? " planned" : ""}" data-act="card" data-uid="${c.uid}">
+  return `<button class="card ${i ? "red" : "blue"}${crown ? " crown" : ""}${planned ? " planned" : ""}" data-act="card" data-uid="${c.uid}" data-side="${i}" data-slot="${slot}" data-max="${c.maxHealth}">
     <span class="nm">${crown ? "♛ " : ""}${esc(c.name)}</span>
     <span class="st"><span class="hp">${c.health}/${c.maxHealth}</span> health</span>
     <span class="st">Atk ${E.attackOf(st, c)} · Grd ${c.guardLeft} · Spd ${E.speedOf(st, c)}${c.poison ? " · Poison " + c.poison : ""}</span></button>`;
@@ -170,8 +229,8 @@ function cardHtml(c, i) {
 function boardHtml() {
   const st = S.st;
   const live = (i, s) => { const c = st.sides[i].slots[s]; return c && !c.dead && !c.removed ? c : null; };
-  const rank = (i, slots) => `<div class="rank">${slots.map((s) => cardHtml(live(i, s), i)).join("")}</div>`;
-  return `<div class="board">${rank(1, [1])}${rank(1, [2, 3])}${rank(1, [4, 5, 6])}
+  const rank = (i, slots) => `<div class="rank">${slots.map((s) => cardHtml(live(i, s), i, s)).join("")}</div>`;
+  return `<div class="board${st.round >= 8 ? " fx-night" : ""}">${rank(1, [1])}${rank(1, [2, 3])}${rank(1, [4, 5, 6])}
     <div class="mid">Round ${st.round}${st.round >= 8 ? " · Nightfall" : ""} · ${NAMES[st.fate]} holds the Fate token</div>
     ${rank(0, [4, 5, 6])}${rank(0, [2, 3])}${rank(0, [1])}</div>`;
 }
@@ -202,12 +261,18 @@ function logHtml() {
     <button class="small" data-act="toggle-log">${S.fullLog ? "Show last round only" : "Show the whole fight"}</button></div>
     <div class="log">${lines.map((l) => `<span class="${/Blue/.test(l) ? "b" : /Red/.test(l) ? "r" : ""}">${esc(l)}</span>`).join("")}</div></section>`;
 }
+function fxControls() {
+  const sp = FX.speed;
+  return `<div class="row"><button class="small" data-act="mute" aria-pressed="${!SND.muted}">Sound: ${SND.muted ? "off" : "on"}</button>
+    <label style="flex-direction:row;align-items:center;gap:6px;flex:0 1 auto">Animations
+      <select id="fx-speed">${[["normal", "Normal"], ["fast", "Fast"], ["off", "Off"]].map(([v, l]) => `<option value="${v}"${v === sp ? " selected" : ""}>${l}</option>`).join("")}</select></label></div>`;
+}
 function renderFight() {
   const st = S.st, i = S.p;
   let controls = "";
   if (st.over) {
     controls = `<section class="panel"><p class="banner">${st.winner < 0 ? "A draw" : NAMES[st.winner] + " wins"} in round ${st.round}</p>
-      <div class="row"><button class="primary" data-act="start">Play these line-ups again</button><button data-act="setup">Change line-ups</button></div></section>`;
+      <div class="row"><button class="primary" data-act="start">Play these line-ups again</button><button data-act="setup">Change line-ups</button></div>${fxControls()}</section>`;
   } else if (S.screen === "pass") {
     controls = `<section class="panel side-red"><p class="banner">Blue's plan is locked. Pass the device to Red.</p>
       <button class="primary" data-act="red-ready">I am Red: let me plan</button></section>`;
@@ -222,7 +287,8 @@ function renderFight() {
       ${crownChoices(i)}
       <div class="row"><button class="primary" data-act="lock">${i === 0 && !S.botRed ? "Lock in Blue's plan" : "Lock in and play the round"}</button>
         <button data-act="suggest">Let the bot choose for me</button></div>
-      <div class="row"><button class="small" data-act="start">Restart this fight</button><button class="small" data-act="setup">Change line-ups</button></div></section>`;
+      <div class="row"><button class="small" data-act="start">Restart this fight</button><button class="small" data-act="setup">Change line-ups</button></div>
+      ${fxControls()}</section>`;
   }
   app.innerHTML = `<h1>Crown &amp; Fable playtest table</h1>${boardHtml()}${controls}${logHtml()}${sheetHtml()}`;
 }
@@ -283,24 +349,36 @@ function chooseItem(id) {
   if (!targets.length) return;
   S.sheet = { mode: "targets", title: `${DATA.items[id].name}: choose a target`, targets, done: add };
 }
-function lock() {
+// Locks the plan, plays the round, then shows it happening before the board updates.
+async function lock() {
   const st = S.st;
-  if (S.p === 0 && !S.botRed) { S.p = 1; S.screen = "pass"; S.sheet = null; return; }
+  if (S.p === 0 && !S.botRed) { S.p = 1; S.screen = "pass"; S.sheet = null; render(); return; }
   if (S.botRed) S.plans[1] = E.botPlan(st, 1);
+  SND.unlock();
   S.logFrom = st.log.length; S.fullLog = false;
+  if (S.sheet) { S.sheet = null; render(); }
+  const from = (st.events || []).length;
   E.playRound(st, S.plans);
   S.plans = [emptyPlan(), emptyPlan()]; S.p = 0; S.screen = "plan"; S.sheet = null;
+  S.animating = true; document.body.classList.add("animating");
+  try { await FX.play(st.events.slice(from)); }
+  finally { S.animating = false; document.body.classList.remove("animating"); render(); }
 }
 function suggest() {
   const plan = E.botPlan(S.st, S.p), st = S.st;
   plan.orders = plan.orders.map((o) => { const c = findAny(o.uid), a = c.actions[o.index]; return { ...o, ap: a.ap, name: a.name }; });
   S.plans[S.p] = plan;
 }
+/*FX*/
 function render() { if (S.screen === "setup") renderSetup(); else renderFight(); }
+document.getElementById("skip-fx").addEventListener("click", () => FX.skipNow());
 
 app.addEventListener("click", (e) => {
+  if (S.animating) return;
   const b = e.target.closest("[data-act]"); if (!b) return;
   const act = b.dataset.act;
+  if (act === "lock") { lock(); return; }
+  if (act === "mute") { SND.setMuted(!SND.muted); render(); return; }
   if (act === "start") startFight();
   else if (act === "setup") { S.screen = "setup"; S.sheet = null; render(); }
   else if (act === "random") { S.lineups[+b.dataset.side] = randomLineup(); render(); }
@@ -312,7 +390,6 @@ app.addEventListener("click", (e) => {
     else if (act === "item") chooseItem(b.dataset.id);
     else if (act === "del-order") S.plans[S.p].orders.splice(+b.dataset.k, 1);
     else if (act === "del-item") S.plans[S.p].items.splice(+b.dataset.k, 1);
-    else if (act === "lock") lock();
     else if (act === "red-ready") S.screen = "plan";
     else if (act === "suggest") suggest();
     else if (act === "toggle-log") S.fullLog = !S.fullLog;
@@ -322,6 +399,7 @@ app.addEventListener("click", (e) => {
 app.addEventListener("change", (e) => {
   const t = e.target;
   if (t.id === "bot-red") { S.botRed = t.checked; return; }
+  if (t.id === "fx-speed") { FX.setSpeed(t.value); return; }
   if (t.dataset.key) {
     const lu = S.lineups[+t.dataset.side];
     if (t.dataset.key === "crown") lu.crown = t.value; else lu[t.dataset.key][+t.dataset.k] = t.value;

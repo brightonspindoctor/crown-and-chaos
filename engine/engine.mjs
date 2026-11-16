@@ -140,6 +140,35 @@ const sideName = (i) => (i === 0 ? "Blue" : "Red");
 const itemName = (st, id) => st.data.items[id]?.name || id;
 // st.onLog, if set, is called after every log line, so a page can record the fight step by step.
 export function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.onLog(msg); }
+// Events: a structured record of what happened, in order, so a screen can animate it.
+// Every event has t (its type) and r (the round). Card references are uids.
+export function ev(st, e) { (st.events ||= []).push({ r: st.round, ...e }); }
+const uidOf = (c) => (c && c.uid != null ? c.uid : null);
+const styleOf = (opts) => opts.spell ? "spell" : opts.ranged ? "ranged" : opts.attack ? "melee" : "effect";
+// Gains in Guard and Poison, and some changes to Health, are made in many places, so they are found
+// by comparing before and after. A health change no event explains gets an "hp" event; a card that
+// appears from nowhere (a summon) gets an "appear" event.
+function snapStats(st) {
+  const m = new Map(allCards(st).map((c) => [c.uid, { g: c.guardLeft, p: c.poison, h: c.health }]));
+  m.idx = (st.events || []).length;
+  return m;
+}
+function diffStats(st, before, src) {
+  const since = (st.events || []).slice(before.idx);
+  for (const c of allCards(st)) {
+    const b = before.get(c.uid);
+    if (!b) {
+      if (!since.some((e) => e.t === "revive" && e.uid === c.uid)) ev(st, { t: "appear", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
+      continue;
+    }
+    if (c.guardLeft > b.g) ev(st, { t: "guardUp", src: uidOf(src), item: src?.item, tgt: c.uid, amt: c.guardLeft - b.g });
+    if (c.poison > b.p) ev(st, { t: "poison", src: uidOf(src), item: src?.item, tgt: c.uid, amt: c.poison - b.p });
+    let shown = b.h;
+    for (const e of since) if ((e.tgt === c.uid || e.uid === c.uid) && "hp" in e) shown = e.hp;
+    if (c.health !== shown) ev(st, { t: "hp", src: uidOf(src), item: src?.item, tgt: c.uid, delta: c.health - shown, hp: c.health });
+  }
+}
+
 
 export function cards(st, i) { return Object.values(st.sides[i].slots).filter((c) => c && !c.dead && !c.removed); }
 export function heroes(st, i) { return cards(st, i).filter((c) => c.kind === "hero"); }
@@ -287,6 +316,7 @@ export function heal(st, src, target, amount, opts = {}) {
   target.health = Math.min(cap, target.health + amt);
   const gain = target.health - before;
   if (gain > 0) log(st, `${src?.name || "Healing"} heals ${sideName(target.side)} ${target.name} for ${gain}.`);
+  if (gain > 0) ev(st, { t: "heal", src: uidOf(src), item: src?.item, tgt: target.uid, amt: gain, hp: target.health });
   return gain;
 }
 
@@ -335,15 +365,18 @@ export function damage(st, src, target, amount, opts = {}) {
   // Redirects (attacks only)
   if (atk && !opts.noRedirect) t = redirect(st, src, t, opts);
   if (!t) return 0;
+  if (t !== target) ev(st, { t: "redirect", src: uidOf(src), from: target.uid, to: t.uid });
+  const style = styleOf(opts);
   // Misses and immunities
   if (atk && t.id === "rhiannon" && crownIs(st, t.side, "rhiannon") && src && speedOf(st, src) < speedOf(st, t) &&
       t.flags.missRound !== st.round) {
     t.flags.missRound = st.round;
     log(st, `${src.name}'s attack on Rhiannon misses.`);
+    ev(st, { t: "miss", src: uidOf(src), tgt: t.uid, style });
     return 0;
   }
-  if (t.flags.shieldRound === st.round) { log(st, `${t.name} is shielded and takes no damage.`); return 0; }
-  let amt = amount;
+  if (t.flags.shieldRound === st.round) { log(st, `${t.name} is shielded and takes no damage.`); ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style, dmg: 0, shielded: true, hp: t.health }); return 0; }
+  let amt = amount, saved = 0, guarded = 0;
   if (atk && src) {
     const s = src.side, f = bondFactor(st, s);
     if (crownIs(st, s, "gretel") && t.aspect === "Witch") amt += 2;
@@ -367,17 +400,17 @@ export function damage(st, src, target, amount, opts = {}) {
   if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
     st.sides[t.side].flags.georgeRound = st.round;
     const blocked = Math.min(5, amt);
-    amt -= blocked;
+    amt -= blocked; saved = blocked;
     if (blocked) log(st, `St George blocks ${blocked} damage to ${t.name}.`);
   }
   const ignoreGuard = opts.ignoreGuard || (atk && src && crownIs(st, src.side, "beowulf"));
   if (!ignoreGuard && t.guardLeft > 0 && !opts.trueDamage) {
     const g = Math.min(t.guardLeft, amt);
-    t.guardLeft -= g; amt -= g;
+    t.guardLeft -= g; amt -= g; guarded = g;
     if (amt <= 0 && g > 0) log(st, `${sideName(t.side)} ${t.name}'s Guard blocks ${src ? src.name + "'s hit" : "the damage"}.`);
   }
-  if (amt <= 0) return 0;
-  return applyHealthLoss(st, src, t, amt, opts);
+  if (amt <= 0) { ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style, dmg: 0, guarded, saved, hp: t.health }); return 0; }
+  return applyHealthLoss(st, src, t, amt, { ...opts, _style: style, _guarded: guarded, _saved: saved });
 }
 
 function redirect(st, src, t, opts) {
@@ -431,21 +464,27 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
       t.slot = s1; dragon.slot = s2;
       st.sides[side].crownUid = t.uid;
       log(st, `The Dragon swaps in to save ${t.name}, who becomes the Crown.`);
+      ev(st, { t: "swap", a: t.uid, b: dragon.uid, side });
       return applyHealthLoss(st, src, dragon, amt, opts);
     }
     if (!noCheating(st)) {
       if (crownIs(st, side, "vasilisa-the-wise") && !st.sides[side].flags.vasilisaUsed) {
         st.sides[side].flags.vasilisaUsed = true;
-        t.health = 1; log(st, `${t.name} survives on 1 Health (Vasilisa).`); return amt;
+        t.health = 1; log(st, `${t.name} survives on 1 Health (Vasilisa).`);
+        ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style: opts._style || "effect", dmg: amt, hp: 1, survived: true }); return amt;
       }
       if (t.id === "red-riding-hood" && hasBond(st, t) && !t.flags.survived &&
           otherHeroes(st, t, (h) => h.aspect === "Slayer").length) {
         t.flags.survived = true;
-        t.health = 3; log(st, `Red Riding Hood survives on 3 Health.`); return amt;
+        t.health = 3; log(st, `Red Riding Hood survives on 3 Health.`);
+        ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style: opts._style || "effect", dmg: amt, hp: 3, survived: true }); return amt;
       }
     }
   }
   t.health -= amt;
+  ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, dmg: amt, hp: Math.max(0, t.health),
+    style: opts._style || (opts.nightfall ? "night" : src?.name === "Poison" ? "poison" : "effect"),
+    guarded: opts._guarded || 0, saved: opts._saved || 0 });
   log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
   if (t.health <= 0) kill(st, t, src);
@@ -455,6 +494,7 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
 export function kill(st, t, src) {
   if (t.dead) return;
   t.dead = true; t.health = 0;
+  ev(st, { t: "death", uid: t.uid, side: t.side, slot: t.slot });
   const side = st.sides[t.side];
   side.grave.push(t);
   onDeath(st, t, src);
@@ -512,12 +552,15 @@ function stop(st, target, why) {
   if (crownIs(st, target.side, "the-tin-soldier") && target.kind === "hero") { log(st, `${target.name} can't be stopped (Tin Soldier).`); return false; }
   if (target.stoppedRound === st.round - 1) { log(st, `${target.name} was stopped last round, so it can't be stopped again.`); return false; }
   target.stopNow = true; target.stoppedRound = st.round;
+  ev(st, { t: "stop", tgt: target.uid, why });
   log(st, `${target.name} is stopped (${why}).`);
   return true;
 }
 
 // ---------- upkeep ----------
 export function upkeep(st) {
+  ev(st, { t: "phase", name: "upkeep" });
+  const upkeepBefore = snapStats(st);
   st.round += 1;
   st.marks = {};
   // Fate token
@@ -566,7 +609,7 @@ export function upkeep(st) {
       }
       case "the-snow-queen": {
         const fr = cards(st, foe).filter((c) => c.kind === "front" && c.flags.frozenRound !== st.round - 1).sort((a, b) => attackOf(st, b) - attackOf(st, a))[0];
-        if (fr && !crownIs(st, foe, "the-tin-soldier")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); }
+        if (fr && !crownIs(st, foe, "the-tin-soldier")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); ev(st, { t: "freeze", tgt: fr.uid }); }
         break;
       }
       case "friar-tuck": {
@@ -591,6 +634,7 @@ export function upkeep(st) {
       if (h.id === "grendel" && heroes(st, i).some((x) => x.id === "grendels-mother")) heal(st, h, h, f > 0 ? 1 : 0);
     }
   }
+  diffStats(st, upkeepBefore, null);
   checkWin(st);
 }
 
@@ -600,20 +644,22 @@ function revive(st, c, health) {
   side.grave = side.grave.filter((x) => x.uid !== c.uid);
   side.slots[c.slot] = c;
   if (crownIs(st, c.side, "gwydion")) { c.maxHealth += 2; c.health += 2; c.atkPerm += 1; }
+  ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 }
 
 // ---------- win check ----------
 export function checkWin(st) {
+  if (st.over) return true;
   const lost = [0, 1].map((i) => {
     const side = st.sides[i];
     if (side.noCrown) return heroes(st, i).length === 0;
     const crown = Object.values(side.slots).find((c) => c && c.uid === side.crownUid);
     return !crown || crown.dead;
   });
-  if (lost[0] && lost[1]) { st.over = true; st.winner = -1; log(st, "Both crowns fall: a draw."); }
-  else if (lost[0]) { st.over = true; st.winner = 1; log(st, "Red wins."); }
-  else if (lost[1]) { st.over = true; st.winner = 0; log(st, "Blue wins."); }
-  else if (st.round >= MAX_ROUNDS) { st.over = true; st.winner = -1; log(st, "Round limit reached: a draw."); }
+  if (lost[0] && lost[1]) { st.over = true; st.winner = -1; log(st, "Both crowns fall: a draw."); ev(st, { t: "over", winner: st.winner }); }
+  else if (lost[0]) { st.over = true; st.winner = 1; log(st, "Red wins."); ev(st, { t: "over", winner: st.winner }); }
+  else if (lost[1]) { st.over = true; st.winner = 0; log(st, "Blue wins."); ev(st, { t: "over", winner: st.winner }); }
+  else if (st.round >= MAX_ROUNDS) { st.over = true; st.winner = -1; log(st, "Round limit reached: a draw."); ev(st, { t: "over", winner: st.winner }); }
   return st.over;
 }
 
@@ -807,8 +853,10 @@ function useItem(st, i, id, x) {
   const side = st.sides[i];
   const k = side.items.indexOf(id); if (k < 0) return;
   side.items.splice(k, 1); side.usedItems.push(id);
-  const src = { name: itemName(st, id), side: i, id: "item", flags: {} };
+  const src = { name: itemName(st, id), side: i, id: "item", item: id, flags: {} };
   log(st, `${sideName(i)} uses ${itemName(st, id)}${x ? ` on ${x.name}` : ""}.`);
+  ev(st, { t: "item", side: i, item: id, name: itemName(st, id), tgt: uidOf(x) });
+  const before = snapStats(st), hp0 = x ? x.health : 0;
   switch (id) {
     case "dragons-blood": x.guardLeft += 3; break;
     case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); } break; }
@@ -819,13 +867,16 @@ function useItem(st, i, id, x) {
     case "skull-lantern": damage(st, src, x, x.aspect === "Witch" ? 4 : 2, { spell: true }); break;
     case "spindle": stop(st, x, "Spindle"); break;
     case "the-giants-sword": x.flags.giantSword = st.round; break;
-    case "water-of-life": x.health = Math.max(x.health, Math.min(20, x.maxHealth)); break;
+    case "water-of-life": x.health = Math.max(x.health, Math.min(20, x.maxHealth));
+      if (x.health > hp0) ev(st, { t: "heal", item: id, tgt: x.uid, amt: x.health - hp0, hp: x.health }); break;
   }
+  if (id === "the-giants-sword") ev(st, { t: "attackUp", item: id, tgt: x.uid, amt: 3 });
+  diffStats(st, before, src);
 }
 
 // ---------- front-rank automatic actions ----------
 function frontAct(st, c) {
-  if (c.flags.frozenRound === st.round) { log(st, `${c.name} is frozen and skips its action.`); return; }
+  if (c.flags.frozenRound === st.round) { log(st, `${c.name} is frozen and skips its action.`); ev(st, { t: "skip", uid: c.uid, why: "frozen" }); return; }
   const foe = 1 - c.side;
   const opposite = () => at(st, foe, c.slot) || st.rng.pick(closestRow(st, c.side));
   const a = attackOf(st, c);
@@ -894,10 +945,12 @@ export function playRound(st, plans) {
     st.sides[i].flags.rumpelPicked.push(pick);
     const o = ords.find((x) => x.actor && x.actor.uid === pick && !x.auto);
     const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
+    ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
     if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); applyHealthLoss(st, rum, tgt, 2, {}); }
     else { log(st, `Rumpelstiltskin guesses wrong.`); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
   }
   for (const c of allCards(st)) c.flags.acted = false;
+  ev(st, { t: "phase", name: "resolve" });
   // Resolve items, then cards in Speed order (recomputed each step)
   for (const o of ords.filter((o) => o.item)) {
     const tgt = o.item === "draught-of-the-cauldron"
@@ -915,9 +968,12 @@ export function playRound(st, plans) {
     const o = pending.shift();
     const a = o.actor;
     st.acting = a.uid;
-    if (o.cancelled || a.stopNow) { a.flags.acted = true; continue; }
+    if (o.cancelled || a.stopNow) { a.flags.acted = true; ev(st, { t: "skip", uid: a.uid, why: o.cancelled ? "cancelled" : "stopped" }); continue; }
     a.flags.acted = true;
-    if (o.auto) { frontAct(st, a); continue; }
+    if (o.auto) {
+      ev(st, { t: "act", uid: a.uid, side: a.side, auto: true, name: a.name });
+      const before = snapStats(st); frontAct(st, a); diffStats(st, before, a); continue;
+    }
     const act = a.actions[o.index];
     a.uses[act.name] = (a.uses[act.name] || 0) + (act.usesPerFight ? 1 : 0);
     let x = o.target ? findCard(st, o.target) : null;
@@ -926,15 +982,18 @@ export function playRound(st, plans) {
     if (spec && ["deadFront", "deadTalemate"].includes(spec.t)) x = st.sides[a.side].grave.find((c) => c.uid === o.target);
     if (needsTarget && !x) {
       // Target gone: wasted (the doc's rule), unless it's a standard melee attack with another target in reach.
-      log(st, `${a.name}'s ${act.name} is wasted: its target is gone.`); continue;
+      log(st, `${a.name}'s ${act.name} is wasted: its target is gone.`); ev(st, { t: "wasted", uid: a.uid, name: act.name }); continue;
     }
     if (needsTarget && x && !spec?.t?.startsWith("dead") && !["ally", "allyHero", "adjacentAllyHero"].includes(spec?.t)) {
       const legal = targetsFor(st, a, act).some((c) => c && c.uid === x.uid);
-      if (!legal) { log(st, `${a.name}'s ${act.name} is wasted: ${x.name} is out of reach.`); continue; }
+      if (!legal) { log(st, `${a.name}'s ${act.name} is wasted: ${x.name} is out of reach.`); ev(st, { t: "wasted", uid: a.uid, name: act.name }); continue; }
     }
     log(st, `${sideName(a.side)} ${a.name} uses ${act.name}${x ? ` on ${x.name}` : ""}.`);
+    ev(st, { t: "act", uid: a.uid, side: a.side, name: act.name, tgt: uidOf(x), standard: !spec });
+    const before = snapStats(st);
     if (spec && spec.go) spec.go(st, a, x, o.target2 ? findCard(st, o.target2) : null);
     else standardAttack(st, a, x);
+    diffStats(st, before, a);
   }
   st.acting = null;
   checkWin(st);

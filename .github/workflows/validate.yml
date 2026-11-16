@@ -13,3 +13,5 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/validate.mjs
+      - run: node sim/checks.mjs
+      - run: node sim/events-check.mjs
