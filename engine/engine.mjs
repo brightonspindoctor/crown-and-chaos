@@ -537,7 +537,8 @@ export function upkeep(st) {
     const n = st.round - NIGHTFALL + 1;
     for (const c of allCards(st)) applyHealthLoss(st, null, c, n, { nightfall: true });
   }
-  for (const c of allCards(st)) if (c.poison > 0) applyHealthLoss(st, { name: "Poison", side: -1 }, c, c.poison, {});
+  // Poison halves after each tick (rounded down), so it ends after it deals 1.
+  for (const c of allCards(st)) if (c.poison > 0) { const p = c.poison; c.poison = Math.floor(p / 2); applyHealthLoss(st, { name: "Poison", side: -1 }, c, p, {}); }
   // Crown passives at upkeep
   for (const i of [0, 1]) {
     const crown = crownCard(st, i);

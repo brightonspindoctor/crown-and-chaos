@@ -68,5 +68,11 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const d = card(st2, 0, "dracula");
   ok("Dracula's Claw has targets", E.targetsFor(st2, d, d.actions.find((a) => a.name === "Claw")).length === 1);
 }
+{ // Poison halves each round
+  const st = game(lu("merlin"), lu("the-dragon", [], [], []));
+  const d = card(st, 1, "the-dragon"); d.poison = 4; const h0 = d.health;
+  for (let k = 0; k < 4; k++) E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  ok("Poison 4 deals 4, 2, 1 and stops", h0 - d.health === 7 && d.poison === 0, [h0 - d.health, d.poison]);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);
