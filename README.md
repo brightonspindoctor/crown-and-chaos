@@ -40,3 +40,14 @@ node scripts/fetch-art.mjs      # download images (normally run by GitHub Action
 ```
 
 To download art, run the **Fetch art** workflow from the Actions tab. It also runs whenever `art/manifest.json` changes on `main`. Only images with a `commonsFile` or `downloadUrl` can be fetched automatically.
+
+## Playtesting
+
+| Path | What it is |
+|---|---|
+| `engine/engine.mjs` | The rules engine, shared by the simulator and the playable page. Its `ASSUMPTIONS` list names every rule detail it had to guess |
+| `sim/run.mjs` | Plays bot-vs-bot fights between random legal line-ups and writes `sim/results.md`. Run `node sim/run.mjs 100000` |
+| `sim/checks.mjs` | Small rule checks. Run `node sim/checks.mjs` |
+| `play/index.html` | A two-player page for one device, or one player against a bot. Rebuild it with `node scripts/build-play.mjs` after changing cards or the engine |
+
+Card numbers are read from the JSON files, but each card's effect is coded by hand in the engine, so a change to a card's text needs the matching change in `engine/engine.mjs`.

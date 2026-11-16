@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crown & Fable Playtest Table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a card table. Red's pyramid above, Blue's below, front ranks meeting in the middle; controls dock underneath. */
+:root {
+  --felt: #e9ecdf; --panel: #f8f8f1; --ink: #20281f; --muted: #5d685a; --line: #c3cab6;
+  --blue: #2c5a8c; --red: #a23a2e; --gold: #a57a13; --good: #2f7a45;
+  --display: "IM Fell English SC", Georgia, serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --felt: #171d18; --panel: #212922; --ink: #e8ecdf; --muted: #a0aa98; --line: #3b463a;
+  --blue: #7fb0e6; --red: #ee8a7c; --gold: #e0b64a; --good: #7fca93; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --felt: #171d18; --panel: #212922; --ink: #e8ecdf; --muted: #a0aa98; --line: #3b463a;
+  --blue: #7fb0e6; --red: #ee8a7c; --gold: #e0b64a; --good: #7fca93; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--felt); color: var(--ink); font: 15px/1.4 var(--body); }
+main { max-width: 720px; margin: 0 auto; padding: 12px 16px 48px; display: flex; flex-direction: column; gap: 12px; }
+h1 { font: 400 26px/1.1 var(--display); margin: 4px 0 0; text-wrap: balance; }
+h2 { font: 400 19px/1.2 var(--display); margin: 0; }
+p { margin: 0; }
+.muted { color: var(--muted); font-size: 13px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+button, select, input { font: inherit; color: inherit; }
+button { background: var(--panel); border: 1px solid var(--ink); border-radius: 6px; padding: 9px 12px; cursor: pointer; }
+button.primary { background: var(--ink); color: var(--felt); font-weight: 700; }
+button.small { padding: 5px 9px; font-size: 13px; }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible, select:focus-visible, input:focus-visible, .card:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+select, input[type=number] { background: var(--felt); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px; max-width: 100%; }
+label { display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: var(--muted); flex: 1 1 140px; min-width: 0; }
+label select { color: var(--ink); width: 100%; }
+.side-blue { border-left: 5px solid var(--blue); }
+.side-red { border-left: 5px solid var(--red); }
+.tag { font-size: 12px; border: 1px solid var(--line); border-radius: 99px; padding: 1px 8px; white-space: nowrap; }
+.tag.over { border-color: var(--red); color: var(--red); font-weight: 700; }
+.board { display: flex; flex-direction: column; gap: 6px; }
+.rank { display: flex; justify-content: center; gap: 6px; }
+.card { flex: 0 1 31%; min-width: 0; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--line); border-radius: 6px; padding: 5px 6px; text-align: left; display: flex; flex-direction: column; gap: 1px; }
+.card.blue { border-top-color: var(--blue); } .card.red { border-top-color: var(--red); }
+.card.crown { box-shadow: inset 0 0 0 2px var(--gold); }
+.card.planned { background: color-mix(in srgb, var(--good) 16%, var(--panel)); }
+.card.empty { border-style: dashed; border-top-width: 1px; color: var(--muted); align-items: center; justify-content: center; min-height: 58px; font-size: 12px; }
+.card .nm { font-weight: 700; font-size: 13px; line-height: 1.15; overflow-wrap: anywhere; }
+.card .st { font-size: 12px; font-variant-numeric: tabular-nums; color: var(--muted); }
+.card .hp { color: var(--ink); font-weight: 700; }
+.mid { text-align: center; font: 400 14px var(--display); color: var(--muted); border-block: 1px solid var(--line); padding: 3px 0; }
+.orders { display: flex; flex-direction: column; gap: 5px; }
+.orders div { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 14px; }
+.log { font-size: 13px; max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+.log .b { color: var(--blue); } .log .r { color: var(--red); }
+.sheet { position: fixed; inset: auto 0 0 0; background: var(--panel); border-top: 2px solid var(--ink); padding: 12px 16px 20px; max-height: 72vh; overflow-y: auto; display: flex; flex-direction: column; gap: 9px; z-index: 5; }
+.sheet .acts { display: flex; flex-direction: column; gap: 6px; }
+.sheet .acts button { text-align: left; }
+.edit { display: flex; flex-wrap: wrap; gap: 8px; }
+.edit label { flex: 0 0 72px; } .edit input { width: 100%; }
+.banner { font: 400 22px/1.2 var(--display); text-align: center; padding: 18px 8px; text-wrap: balance; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const DATA = /*DATA*/;
+const E = (() => { /*ENGINE*/
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, kill, checkWin, ITEM_TARGETS, ASSUMPTIONS, makeRng };
+})();
+
+const NAMES = ["Blue", "Red"];
+const heroList = Object.values(DATA.heroes).sort((a, b) => a.realm.localeCompare(b.realm) || a.name.localeCompare(b.name));
+const frontList = Object.values(DATA.front).filter((f) => f.id !== "the-needle");
+const itemList = Object.values(DATA.items);
+const S = {
+  screen: "setup", botRed: true, seed: 1,
+  lineups: [
+    { crown: "king-arthur", heroes: ["lancelot", "merlin"], front: ["knight", "knight", "longbowman"], items: ["gingerbread", ""] , },
+    { crown: "dracula", heroes: ["renfield", "van-helsing"], front: ["berserker", "villager", "monk"], items: ["skull-lantern", ""] },
+  ],
+  st: null, p: 0, plans: [null, null], sheet: null, logFrom: 0, fullLog: false,
+};
+const app = document.getElementById("app");
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const emptyPlan = () => ({ orders: [], items: [], rumpel: null, hunt: null });
+const renown = (lu) => [lu.crown, ...lu.heroes].filter(Boolean).reduce((s, id) => s + DATA.heroes[id].renown, 0)
+  + lu.front.filter(Boolean).reduce((s, id) => s + DATA.front[id].renown, 0)
+  + lu.items.filter(Boolean).reduce((s, id) => s + DATA.items[id].renown, 0);
+
+// ---------- setup ----------
+function opt(list, val, none) {
+  return (none ? `<option value="">${none}</option>` : "") + list.map((x) =>
+    `<option value="${x.id}"${x.id === val ? " selected" : ""}>${esc(x.name)} (${x.renown})</option>`).join("");
+}
+function heroOpt(val, none) {
+  let out = none ? `<option value="">${none}</option>` : "", realm = "";
+  for (const h of heroList) {
+    if (h.realm !== realm) { out += `${realm ? "</optgroup>" : ""}<optgroup label="${esc(h.realm)}">`; realm = h.realm; }
+    out += `<option value="${h.id}"${h.id === val ? " selected" : ""}>${esc(h.name)} · ${h.aspect} (${h.renown})</option>`;
+  }
+  return out + "</optgroup>";
+}
+function setupSide(i) {
+  const lu = S.lineups[i], r = renown(lu);
+  const sel = (key, k, html, label) => `<label>${label}<select id="s${i}-${key}-${k}" data-side="${i}" data-key="${key}" data-k="${k}">${html}</select></label>`;
+  return `<section class="panel side-${i ? "red" : "blue"}">
+    <div class="row"><h2>${NAMES[i]}</h2><span class="tag ${r > 50 ? "over" : ""}">${r} of 50 Renown</span>
+      <button class="small" data-act="random" data-side="${i}">Random line-up</button></div>
+    <div class="row">${sel("crown", 0, heroOpt(lu.crown), "Crown (slot 1)")}
+      ${sel("heroes", 0, heroOpt(lu.heroes[0], "No hero"), "Hero (slot 2)")}${sel("heroes", 1, heroOpt(lu.heroes[1], "No hero"), "Hero (slot 3)")}</div>
+    <div class="row">${[0, 1, 2].map((k) => sel("front", k, opt(frontList, lu.front[k], "Empty"), `Front rank (slot ${4 + k})`)).join("")}</div>
+    <div class="row">${[0, 1].map((k) => sel("items", k, opt(itemList, lu.items[k], "No item"), `Item ${k + 1}`)).join("")}</div>
+  </section>`;
+}
+function randomLineup() {
+  const rng = E.makeRng(Date.now() + Math.floor(Math.random() * 1e6));
+  const hs = [];
+  let budget = 50;
+  for (const h of rng.shuffle(heroList)) {
+    if (hs.length >= 3) break;
+    if (h.renown > budget - 3 || (h.id.startsWith("grendel"))) continue;
+    hs.push(h.id); budget -= h.renown;
+  }
+  if (hs.includes("baba-yaga")) hs.sort((a) => (a === "baba-yaga" ? -1 : 1));
+  const front = [0, 1, 2].map((k) => { const ok = frontList.filter((f) => f.renown <= budget - (2 - k)); const f = ok.length ? rng.pick(ok) : DATA.front.villager; budget -= f.renown; return f.id; });
+  const items = [0, 1].map(() => { const ok = itemList.filter((x) => x.renown <= budget); if (!ok.length) return ""; const x = rng.pick(ok); budget -= x.renown; return x.id; });
+  return { crown: hs[0], heroes: [hs[1] || "", hs[2] || ""], front, items };
+}
+function renderSetup() {
+  app.innerHTML = `<h1>Crown &amp; Fable playtest table</h1>
+    <p class="muted">Build two line-ups and play them against each other on one device, or against a simple bot. Tap any card during a fight to read it or change its numbers.</p>
+    ${setupSide(0)}${setupSide(1)}
+    <section class="panel"><div class="row">
+      <label style="flex-direction:row;align-items:center;gap:8px;color:var(--ink);font-size:15px"><input type="checkbox" id="bot-red"${S.botRed ? " checked" : ""}> A bot plays Red</label></div>
+      <button class="primary" data-act="start">Start the fight</button>
+      <p class="muted">Renown over 50 is allowed here so you can try things, but it is flagged. Grendel and his Mother should be fielded together. Koschei brings his Needle into slot 6.</p></section>`;
+}
+
+// ---------- fight ----------
+function startFight() {
+  S.seed = Date.now() % 1000000;
+  const clean = (lu) => ({ crown: lu.crown, heroes: lu.heroes.filter(Boolean), front: lu.front.map((f) => f || null), items: lu.items.filter(Boolean) });
+  S.st = E.createGame(DATA, S.lineups.map(clean), { seed: S.seed });
+  S.plans = [emptyPlan(), emptyPlan()]; S.p = 0; S.screen = "plan"; S.sheet = null; S.logFrom = 0; S.fullLog = false;
+  render();
+}
+function apLeft(i) {
+  const st = S.st, plan = S.plans[i];
+  let ap = st.sides[i].ap;
+  for (const it of plan.items) { ap -= E.itemCost(st, i); if (it.id === "mead-of-poetry") ap += 2; }
+  for (const o of plan.orders) ap -= o.ap;
+  return ap;
+}
+function cardHtml(c, i) {
+  const st = S.st;
+  if (!c) return `<div class="card empty">empty</div>`;
+  const crown = E.crownCard(st, i)?.uid === c.uid;
+  const planned = S.screen === "plan" && i === S.p && S.plans[i].orders.some((o) => o.uid === c.uid);
+  return `<button class="card ${i ? "red" : "blue"}${crown ? " crown" : ""}${planned ? " planned" : ""}" data-act="card" data-uid="${c.uid}">
+    <span class="nm">${crown ? "♛ " : ""}${esc(c.name)}</span>
+    <span class="st"><span class="hp">${c.health}/${c.maxHealth}</span> health</span>
+    <span class="st">Atk ${E.attackOf(st, c)} · Grd ${c.guardLeft} · Spd ${E.speedOf(st, c)}${c.poison ? " · Poison " + c.poison : ""}</span></button>`;
+}
+function boardHtml() {
+  const st = S.st;
+  const live = (i, s) => { const c = st.sides[i].slots[s]; return c && !c.dead && !c.removed ? c : null; };
+  const rank = (i, slots) => `<div class="rank">${slots.map((s) => cardHtml(live(i, s), i)).join("")}</div>`;
+  return `<div class="board">${rank(1, [1])}${rank(1, [2, 3])}${rank(1, [4, 5, 6])}
+    <div class="mid">Round ${st.round}${st.round >= 8 ? " · Nightfall" : ""} · ${NAMES[st.fate]} holds the Fate token</div>
+    ${rank(0, [4, 5, 6])}${rank(0, [2, 3])}${rank(0, [1])}</div>`;
+}
+function findAny(uid) {
+  for (const s of S.st.sides) { for (const c of [...Object.values(s.slots), ...s.grave]) if (c && c.uid === uid) return c; }
+  return null;
+}
+function ordersHtml(i) {
+  const plan = S.plans[i], st = S.st;
+  const rows = [];
+  plan.items.forEach((it, k) => rows.push(`<div><span>Item: ${esc(DATA.items[it.id].name)}${it.target ? " → " + esc(findAny(it.target)?.name) : ""}</span><button class="small" data-act="del-item" data-k="${k}">Remove</button></div>`));
+  plan.orders.forEach((o, k) => rows.push(`<div><span>${esc(findAny(o.uid)?.name)}: ${esc(o.name)} (${o.ap} AP)${o.target ? " → " + esc(findAny(o.target)?.name) : ""}${o.target2 ? " and " + esc(findAny(o.target2)?.name) : ""}</span><button class="small" data-act="del-order" data-k="${k}">Remove</button></div>`));
+  return rows.length ? `<div class="orders">${rows.join("")}</div>` : `<p class="muted">Nothing planned yet. Tap one of your heroes to give it an action.</p>`;
+}
+function crownChoices(i) {
+  const st = S.st, crown = E.crownCard(st, i), plan = S.plans[i];
+  if (!crown) return "";
+  const foes = E.heroes(st, 1 - i);
+  const sel = (key, label, list) => `<label>${label}<select id="pick-${key}" data-pick="${key}"><option value="">Nobody</option>${list.map((h) => `<option value="${h.uid}"${plan[key] === h.uid ? " selected" : ""}>${esc(h.name)}</option>`).join("")}</select></label>`;
+  if (crown.id === "the-huntsman") return sel("hunt", "Huntsman's mark this round", foes);
+  if (crown.id === "rumpelstiltskin") { const used = st.sides[i].flags.rumpelPicked || []; return sel("rumpel", "Rumpelstiltskin's guess this round", foes.filter((h) => !used.includes(h.uid))); }
+  return "";
+}
+function logHtml() {
+  const lines = S.fullLog ? S.st.log : S.st.log.slice(S.logFrom);
+  if (!lines.length) return "";
+  return `<section class="panel"><div class="row"><h2>${S.fullLog ? "Whole fight" : "Last round"}</h2>
+    <button class="small" data-act="toggle-log">${S.fullLog ? "Show last round only" : "Show the whole fight"}</button></div>
+    <div class="log">${lines.map((l) => `<span class="${/Blue/.test(l) ? "b" : /Red/.test(l) ? "r" : ""}">${esc(l)}</span>`).join("")}</div></section>`;
+}
+function renderFight() {
+  const st = S.st, i = S.p;
+  let controls = "";
+  if (st.over) {
+    controls = `<section class="panel"><p class="banner">${st.winner < 0 ? "A draw" : NAMES[st.winner] + " wins"} in round ${st.round}</p>
+      <div class="row"><button class="primary" data-act="start">Play these line-ups again</button><button data-act="setup">Change line-ups</button></div></section>`;
+  } else if (S.screen === "pass") {
+    controls = `<section class="panel side-red"><p class="banner">Blue's plan is locked. Pass the device to Red.</p>
+      <button class="primary" data-act="red-ready">I am Red: let me plan</button></section>`;
+  } else {
+    const ap = apLeft(i), belt = st.sides[i].items;
+    const used = S.plans[i].items.map((x) => x.id);
+    const beltLeft = belt.filter((id) => { const k = used.indexOf(id); if (k >= 0) { used.splice(k, 1); return false; } return true; });
+    controls = `<section class="panel side-${i ? "red" : "blue"}">
+      <div class="row"><h2>${NAMES[i]} plans</h2><span class="tag">${ap} action point${ap === 1 ? "" : "s"} left</span></div>
+      ${ordersHtml(i)}
+      ${beltLeft.length ? `<div class="row"><span class="muted">Items (${E.itemCost(st, i)} AP each):</span>${beltLeft.map((id) => `<button class="small" data-act="item" data-id="${id}"${ap < E.itemCost(st, i) ? " disabled" : ""}>${esc(DATA.items[id].name)}</button>`).join("")}</div>` : ""}
+      ${crownChoices(i)}
+      <div class="row"><button class="primary" data-act="lock">${i === 0 && !S.botRed ? "Lock in Blue's plan" : "Lock in and play the round"}</button>
+        <button data-act="suggest">Let the bot choose for me</button></div>
+      <div class="row"><button class="small" data-act="start">Restart this fight</button><button class="small" data-act="setup">Change line-ups</button></div></section>`;
+  }
+  app.innerHTML = `<h1>Crown &amp; Fable playtest table</h1>${boardHtml()}${controls}${logHtml()}${sheetHtml()}`;
+}
+
+// ---------- the card sheet ----------
+function sheetHtml() {
+  const sh = S.sheet; if (!sh) return "";
+  const st = S.st;
+  const close = `<button class="small" data-act="close">Close</button>`;
+  if (sh.mode === "targets") {
+    return `<div class="sheet" role="dialog" aria-label="Choose a target"><div class="row"><h2>${esc(sh.title)}</h2>${close}</div>
+      <div class="acts">${sh.targets.map((t) => `<button data-act="target" data-uid="${t.uid}">${esc(NAMES[t.side])} ${esc(t.name)} · ${t.dead ? "dead" : `${t.health}/${t.maxHealth} health, Grd ${t.guardLeft}`}</button>`).join("")}</div></div>`;
+  }
+  const c = findAny(sh.uid); if (!c) return "";
+  const def = DATA.heroes[c.id] || DATA.front[c.id] || {};
+  const mine = S.screen === "plan" && !st.over && c.side === S.p && c.kind === "hero";
+  const ordered = mine && S.plans[S.p].orders.some((o) => o.uid === c.uid);
+  let acts = "";
+  if (mine && !ordered) {
+    const ap = apLeft(S.p), opts = E.options(st, c);
+    acts = `<div class="acts">${c.actions.map((a, k) => {
+      const o = opts.find((x) => x.index === k);
+      const why = !o ? (a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight ? "used up" : "no target") : a.ap > ap ? "not enough AP" : "";
+      return `<button data-act="action" data-k="${k}"${why ? " disabled" : ""}><strong>${esc(a.name)}</strong> · ${a.ap} AP${a.usesPerFight ? ` · ${a.usesPerFight} per fight` : ""}${why ? ` · ${why}` : ""}<br><span class="muted">${esc(a.text)}</span></button>`;
+    }).join("")}</div>`;
+  } else if (mine) acts = `<p class="muted">This hero already has an action this round. Remove it from the plan to choose another.</p>`;
+  const texts = c.kind === "hero"
+    ? `<p><strong>Crown passive:</strong> ${esc(def.crownPassive?.text)}</p><p><strong>Bond:</strong> ${esc(def.bond?.text || "None")}</p>${(def.rules || []).map((r) => `<p class="muted">${esc(r)}</p>`).join("")}`
+    : `<p>${esc(c.auto || "")}</p>`;
+  const num = (key, label, val) => `<label>${label}<input type="number" id="ed-${key}" data-edit="${key}" value="${val}"></label>`;
+  return `<div class="sheet" role="dialog" aria-label="${esc(c.name)}"><div class="row"><h2>${esc(c.name)}</h2>
+    <span class="tag">${esc(NAMES[c.side])}${c.aspect ? " · " + esc(c.realm) + " " + esc(c.aspect) : " · front rank"}</span>${close}</div>
+    ${acts}${texts}
+    <p class="muted">Change the numbers to try an idea. Changes last for this fight only.</p>
+    <div class="edit">${num("health", "Health", c.health)}${num("maxHealth", "Max", c.maxHealth)}${num("baseAtk", "Attack", c.baseAtk)}${num("baseGuard", "Guard", c.baseGuard)}${num("baseSpeed", "Speed", c.baseSpeed)}</div></div>`;
+}
+function addOrder(c, k, target, target2) {
+  const a = c.actions[k];
+  S.plans[S.p].orders.push({ uid: c.uid, index: k, target: target ? target.uid : null, target2: target2 ? target2.uid : null, ap: a.ap, name: a.name });
+  S.sheet = null;
+}
+function chooseAction(c, k) {
+  const o = E.options(S.st, c).find((x) => x.index === k); if (!o) return;
+  if (o.targets.length === 1 && o.targets[0] === null) return addOrder(c, k, null);
+  const two = o.action.name === "Fire Breath";
+  S.sheet = { mode: "targets", title: `${o.action.name}: choose a target`, targets: o.targets, done: (t) => {
+    if (two) {
+      const rest = o.targets.filter((x) => x.uid !== t.uid);
+      if (rest.length) { S.sheet = { mode: "targets", title: "Fire Breath: choose a second target", targets: rest, done: (t2) => addOrder(c, k, t, t2) }; return; }
+    }
+    addOrder(c, k, t);
+  } };
+}
+function chooseItem(id) {
+  const targets = E.itemTargets(S.st, S.p, id);
+  const add = (t) => { S.plans[S.p].items.push({ id, target: t ? t.uid : null }); S.sheet = null; };
+  if (targets.length === 1 && targets[0] === null) return add(null);
+  if (!targets.length) return;
+  S.sheet = { mode: "targets", title: `${DATA.items[id].name}: choose a target`, targets, done: add };
+}
+function lock() {
+  const st = S.st;
+  if (S.p === 0 && !S.botRed) { S.p = 1; S.screen = "pass"; S.sheet = null; return; }
+  if (S.botRed) S.plans[1] = E.botPlan(st, 1);
+  S.logFrom = st.log.length; S.fullLog = false;
+  E.playRound(st, S.plans);
+  S.plans = [emptyPlan(), emptyPlan()]; S.p = 0; S.screen = "plan"; S.sheet = null;
+}
+function suggest() {
+  const plan = E.botPlan(S.st, S.p), st = S.st;
+  plan.orders = plan.orders.map((o) => { const c = findAny(o.uid), a = c.actions[o.index]; return { ...o, ap: a.ap, name: a.name }; });
+  S.plans[S.p] = plan;
+}
+function render() { if (S.screen === "setup") renderSetup(); else renderFight(); }
+
+app.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-act]"); if (!b) return;
+  const act = b.dataset.act;
+  if (act === "start") startFight();
+  else if (act === "setup") { S.screen = "setup"; S.sheet = null; render(); }
+  else if (act === "random") { S.lineups[+b.dataset.side] = randomLineup(); render(); }
+  else {
+    if (act === "card") S.sheet = { mode: "card", uid: +b.dataset.uid };
+    else if (act === "close") S.sheet = null;
+    else if (act === "action") chooseAction(findAny(S.sheet.uid), +b.dataset.k);
+    else if (act === "target") S.sheet.done(S.sheet.targets.find((t) => t.uid === +b.dataset.uid));
+    else if (act === "item") chooseItem(b.dataset.id);
+    else if (act === "del-order") S.plans[S.p].orders.splice(+b.dataset.k, 1);
+    else if (act === "del-item") S.plans[S.p].items.splice(+b.dataset.k, 1);
+    else if (act === "lock") lock();
+    else if (act === "red-ready") S.screen = "plan";
+    else if (act === "suggest") suggest();
+    else if (act === "toggle-log") S.fullLog = !S.fullLog;
+    render();
+  }
+});
+app.addEventListener("change", (e) => {
+  const t = e.target;
+  if (t.id === "bot-red") { S.botRed = t.checked; return; }
+  if (t.dataset.key) {
+    const lu = S.lineups[+t.dataset.side];
+    if (t.dataset.key === "crown") lu.crown = t.value; else lu[t.dataset.key][+t.dataset.k] = t.value;
+    render(); return;
+  }
+  if (t.dataset.pick) { S.plans[S.p][t.dataset.pick] = t.value ? +t.value : null; return; }
+  if (t.dataset.edit) {
+    const c = findAny(S.sheet.uid), v = Math.max(0, Math.round(+t.value || 0));
+    c[t.dataset.edit] = v;
+    if (t.dataset.edit === "maxHealth") c.health = Math.min(c.health, v);
+    if (t.dataset.edit === "health") { c.maxHealth = Math.max(c.maxHealth, v); if (v <= 0) { E.kill(S.st, c, null); E.checkWin(S.st); S.sheet = null; } }
+    if (t.dataset.edit === "baseGuard") c.guardLeft = E.guardOf(S.st, c);
+    render();
+  }
+});
+render();
+</script>
+</body>
+</html>
