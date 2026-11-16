@@ -1,7 +1,7 @@
 // Looks things up on Wikimedia Commons and records what each file's own page says about its rights.
 // Reads art/lookups.json ({ files: [...], searches: [...], categories: [...] }) and writes
 // art/lookup-report.json. Runs in GitHub Actions (see .github/workflows/commons-lookup.yml).
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
@@ -50,6 +50,22 @@ for (const c of asks.categories ?? []) {
     subcategories: members.filter((m) => m.ns === 14).map((m) => m.title.replace(/^Category:/, "")),
     files: await info(members.filter((m) => m.ns === 6).map((m) => m.title)),
   };
+}
+
+// peek: small copies of candidate images so they can be looked at before one is chosen.
+// art/peek/ is scratch space and is emptied on every run.
+rmSync(join(root, "art/peek"), { recursive: true, force: true });
+if (asks.peek?.length) {
+  mkdirSync(join(root, "art/peek"), { recursive: true });
+  report.peek = [];
+  for (const [n, f] of asks.peek.entries()) {
+    const r = await fetch(`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(f.replace(/ /g, "_"))}?width=640`, { headers: { "User-Agent": UA }, redirect: "follow" });
+    if (!r.ok) { report.peek.push({ file: f, error: r.status }); continue; }
+    const name = String(n).padStart(2, "0") + ".jpg";
+    writeFileSync(join(root, "art/peek", name), Buffer.from(await r.arrayBuffer()));
+    report.peek.push({ file: f, saved: name });
+    await new Promise((s) => setTimeout(s, 400));
+  }
 }
 writeFileSync(join(root, "art/lookup-report.json"), JSON.stringify(report, null, 1) + "\n");
 console.log(`${report.files.length} files, ${Object.keys(report.searches).length} searches, ${Object.keys(report.categories).length} categories`);
