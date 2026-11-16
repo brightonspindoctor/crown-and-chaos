@@ -806,12 +806,12 @@ function useItem(st, i, id, x) {
   log(st, `${sideName(i)} uses ${itemName(st, id)}${x ? ` on ${x.name}` : ""}.`);
   switch (id) {
     case "dragons-blood": x.guardLeft += 3; break;
-    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 3); } break; }
+    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); } break; }
     case "gingerbread": heal(st, src, x, 2); break;
     case "golden-apple": heal(st, src, x, 3); x.poison = 0; break;
     case "mead-of-heorot": heroes(st, i).forEach((h) => heal(st, src, h, 2)); break;
     case "poisoned-apple": x.poison += 2; break;
-    case "skull-lantern": damage(st, src, x, x.aspect === "Witch" ? 6 : 3, { spell: true }); break;
+    case "skull-lantern": damage(st, src, x, x.aspect === "Witch" ? 4 : 2, { spell: true }); break;
     case "spindle": stop(st, x, "Spindle"); break;
     case "the-giants-sword": x.flags.giantSword = st.round; break;
     case "water-of-life": x.health = Math.max(x.health, Math.min(20, x.maxHealth)); break;

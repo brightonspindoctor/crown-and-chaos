@@ -4,7 +4,7 @@
   "type": "item",
   "realm": "Rus'",
   "rarity": "Rare",
-  "effect": "3 Spell damage to an enemy hero; double against Witches.",
+  "effect": "2 Spell damage to an enemy hero; double against Witches.",
   "renown": 2,
   "ap": 1
 }
