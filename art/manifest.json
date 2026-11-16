@@ -1,6 +1,6 @@
 {
-  "about": "Every image used in Crown & Fable. Each entry must be public domain in the UK (artist died more than 70 years ago) and the US (published before 1931), and is credited in-game by artist, title, date and source. status: cleared = the specific image's rights page was checked; cleared-book = artist and book checked, specific file still to pick; to-confirm = not yet cleared, do not ship; open = no image chosen yet.",
-  "checked": "2026-11-15",
+  "about": "Every image used in Crown & Fable. Each entry must be public domain in the UK (artist died more than 70 years ago) and the US (published before 1931), and is credited in-game by artist, title, date and source. status: cleared = the specific image's rights page was checked; cleared-book = artist and book checked, specific file still to pick; to-confirm = not yet cleared, do not ship; open = no image chosen yet. size = pixel size of the downloaded file. crops = where to cut the image, keyed by card id (or 'board'); each rectangle is [x, y, width, height] as fractions of the image. window is the 17:10 art window, full is the 5:7 full-bleed card, board is the 16:10 battle backdrop.",
+  "checked": "2026-11-16",
   "images": [
     {
       "id": "st-george",
@@ -19,7 +19,14 @@
       },
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
-      "commonsFile": "Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg"
+      "commonsFile": "Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg",
+      "size": [4152, 5454],
+      "crops": {
+        "st-george": {
+          "window": [0.0, 0.2961, 1.0, 0.4478],
+          "full": [0.06, 0.0097, 0.92, 0.9805]
+        }
+      }
     },
     {
       "id": "the-dragon",
@@ -38,7 +45,14 @@
       },
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
-      "commonsFile": "Sodoma_-_St_George_and_the_Dragon_-_WGA21547.jpg"
+      "commonsFile": "Sodoma_-_St_George_and_the_Dragon_-_WGA21547.jpg",
+      "size": [2064, 3000],
+      "crops": {
+        "the-dragon": {
+          "window": [0.48, 0.6448, 0.52, 0.2104],
+          "full": [0.5, 0.5184, 0.5, 0.4816]
+        }
+      }
     },
     {
       "id": "the-princess",
@@ -57,7 +71,14 @@
       },
       "licence": "Public domain (NGA open access)",
       "status": "cleared",
-      "commonsFile": "Saint_George_and_the_Dragon_Rogier.jpg"
+      "commonsFile": "Saint_George_and_the_Dragon_Rogier.jpg",
+      "size": [2139, 3000],
+      "crops": {
+        "the-princess": {
+          "window": [0.0, 0.2951, 0.5, 0.2097],
+          "full": [0.0, 0.1954, 0.45, 0.4492]
+        }
+      }
     },
     {
       "id": "robin-hood",
@@ -76,7 +97,14 @@
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "imagePage": "https://www.oldbookillustrations.com/illustrations/robin-hood/"
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/robin-hood/",
+      "size": [307, 768],
+      "crops": {
+        "robin-hood": {
+          "window": [0.04, 0.1218, 0.92, 0.2163],
+          "full": [0.02, 0.1114, 0.96, 0.5372]
+        }
+      }
     },
     {
       "id": "little-john",
@@ -95,7 +123,14 @@
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "imagePage": "https://www.oldbookillustrations.com/illustrations/little-john/"
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/little-john/",
+      "size": [305, 768],
+      "crops": {
+        "little-john": {
+          "window": [0.04, 0.0725, 0.92, 0.2149],
+          "full": [0.02, 0.0831, 0.96, 0.5338]
+        }
+      }
     },
     {
       "id": "friar-tuck",
@@ -114,7 +149,14 @@
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "imagePage": "https://www.oldbookillustrations.com/illustrations/friar-tuck/"
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/friar-tuck/",
+      "size": [301, 768],
+      "crops": {
+        "friar-tuck": {
+          "window": [0.04, 0.1039, 0.92, 0.2121],
+          "full": [0.02, 0.1066, 0.96, 0.5267]
+        }
+      }
     },
     {
       "id": "maid-marian",
@@ -133,7 +175,14 @@
       },
       "licence": "Public domain in the US and life+70 countries",
       "status": "cleared",
-      "imagePage": "https://www.oldbookillustrations.com/illustrations/maid-marian/"
+      "imagePage": "https://www.oldbookillustrations.com/illustrations/maid-marian/",
+      "size": [308, 768],
+      "crops": {
+        "maid-marian": {
+          "window": [0.04, 0.0815, 0.92, 0.217],
+          "full": [0.02, 0.0905, 0.96, 0.539]
+        }
+      }
     },
     {
       "id": "maid-marian-variant",
@@ -173,7 +222,14 @@
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p16.jpg"
+      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p16.jpg",
+      "size": [1590, 1978],
+      "crops": {
+        "king-arthur": {
+          "window": [0.04, 0.2825, 0.92, 0.435],
+          "full": [0.21, 0.1261, 0.7, 0.7878]
+        }
+      }
     },
     {
       "id": "merlin",
@@ -193,7 +249,14 @@
       },
       "licence": "Public domain worldwide",
       "status": "cleared",
-      "commonsFile": "Arthur-Pyle_The_Enchanter_Merlin.JPG"
+      "commonsFile": "Arthur-Pyle_The_Enchanter_Merlin.JPG",
+      "size": [1307, 1500],
+      "crops": {
+        "merlin": {
+          "window": [0.03, 0.0291, 0.94, 0.4818],
+          "full": [0.17, 0.0121, 0.8, 0.9759]
+        }
+      }
     },
     {
       "id": "morgan-le-fay",
@@ -213,7 +276,14 @@
       "licence": "CC0",
       "status": "cleared",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3478",
-      "commonsFile": "Sandys,_Frederick_-_Morgan_le_Fay.JPG"
+      "commonsFile": "Sandys,_Frederick_-_Morgan_le_Fay.JPG",
+      "size": [1779, 2500],
+      "crops": {
+        "morgan-le-fay": {
+          "window": [0.095, 0.0921, 0.85, 0.3558],
+          "full": [0.025, 0.0268, 0.95, 0.9464]
+        }
+      }
     },
     {
       "id": "lancelot",
@@ -234,7 +304,14 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "notes": "Crop to Lancelot.",
-      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p38.jpg"
+      "commonsFile": "Boys_King_Arthur_-_N._C._Wyeth_-_p38.jpg",
+      "size": [1600, 1983],
+      "crops": {
+        "lancelot": {
+          "window": [0.07, 0.1464, 0.9, 0.4272],
+          "full": [0.08, 0.003, 0.88, 0.994]
+        }
+      }
     },
     {
       "id": "guinevere",
@@ -254,7 +331,14 @@
       },
       "licence": "Public domain worldwide",
       "status": "cleared",
-      "commonsFile": "Arthur-Pyle_The_Lady_Guinevere.JPG"
+      "commonsFile": "Arthur-Pyle_The_Lady_Guinevere.JPG",
+      "size": [1299, 1480],
+      "crops": {
+        "guinevere": {
+          "window": [0.045, 0.0264, 0.75, 0.3872],
+          "full": [0.06, 0.0208, 0.78, 0.9585]
+        }
+      }
     },
     {
       "id": "guinevere-variant",
@@ -274,7 +358,14 @@
       },
       "licence": "Public domain worldwide",
       "status": "cleared",
-      "commonsFile": "Arthur-Pyle_King_Arthur_meets_Lady_Guinevere.JPG"
+      "commonsFile": "Arthur-Pyle_King_Arthur_meets_Lady_Guinevere.JPG",
+      "size": [1247, 1500],
+      "crops": {
+        "guinevere": {
+          "window": [0.2, 0.0288, 0.7, 0.3423],
+          "full": [0.12, 0.0345, 0.8, 0.9311]
+        }
+      }
     },
     {
       "id": "beowulf",
@@ -294,7 +385,14 @@
       "commonsFile": "Stories_of_beowulf_fighting_the_dragon.jpg",
       "licence": "Public domain",
       "status": "cleared",
-      "notes": "Online scans are small; use a full book scan for card size."
+      "notes": "Online scans are small; use a full book scan for card size.",
+      "size": [1045, 1335],
+      "crops": {
+        "beowulf": {
+          "window": [0.01, 0.0928, 0.9, 0.4144],
+          "full": [0.02, 0.0069, 0.9, 0.9863]
+        }
+      }
     },
     {
       "id": "grendel",
@@ -313,7 +411,14 @@
       },
       "commonsFile": "Stories_of_beowulf_grendel.jpg",
       "licence": "Public domain",
-      "status": "cleared"
+      "status": "cleared",
+      "size": [1055, 1356],
+      "crops": {
+        "grendel": {
+          "window": [0.015, 0.0555, 0.85, 0.389],
+          "full": [0.02, 0.0098, 0.9, 0.9803]
+        }
+      }
     },
     {
       "id": "grendels-mother",
@@ -334,11 +439,18 @@
       "licence": "Public domain",
       "status": "cleared",
       "notes": "Commons file name still to record.",
-      "commonsFile": "Stories_of_Beowulf_water_witch_trying_to_stab_beowulf.jpg"
+      "commonsFile": "Stories_of_Beowulf_water_witch_trying_to_stab_beowulf.jpg",
+      "size": [1068, 1364],
+      "crops": {
+        "grendels-mother": {
+          "window": [0.05, 0.1227, 0.9, 0.4145],
+          "full": [0.05, 0.0067, 0.9, 0.9866]
+        }
+      }
     },
     {
       "id": "red-riding-hood",
-      "use": "card",
+      "use": "variant",
       "cards": [
         "red-riding-hood"
       ],
@@ -375,14 +487,20 @@
       "commonsFile": "Le_Petit_Chaperon_Rouge,_RP-P-OB-33.985.jpg",
       "licence": "Public domain (Rijksmuseum)",
       "status": "cleared",
-      "notes": "The wolf at the grandmother's bed. Some text shows through from the reverse of the print."
+      "notes": "The wolf at the grandmother's bed. Some text shows through from the reverse of the print.",
+      "size": [2546, 3306],
+      "crops": {
+        "the-wolf": {
+          "window": [0.05, 0.0888, 0.8, 0.3624],
+          "full": [0.1, 0.0587, 0.8, 0.8625]
+        }
+      }
     },
     {
       "id": "red-riding-hood-painting",
-      "use": "alternative",
+      "use": "card",
       "cards": [
-        "red-riding-hood",
-        "the-wolf"
+        "red-riding-hood"
       ],
       "artist": "Gustave Doré",
       "artistDied": 1883,
@@ -395,7 +513,14 @@
       "licence": "Public domain (NGV)",
       "status": "cleared",
       "notes": "NGV asks for a full reproduction somewhere if a detail is used. Darker bedroom scene.",
-      "imagePage": "https://ngv.vic.gov.au/explore/collection/work/3918"
+      "imagePage": "https://ngv.vic.gov.au/explore/collection/work/3918",
+      "size": [694, 555],
+      "crops": {
+        "red-riding-hood": {
+          "window": [0.0, 0.0722, 1.0, 0.7356],
+          "full": [0.3455, 0.0195, 0.549, 0.9611]
+        }
+      }
     },
     {
       "id": "the-huntsman",
@@ -412,7 +537,14 @@
       },
       "licence": "Public domain in the US; artist died over 70 years ago",
       "status": "cleared",
-      "imagePage": "https://digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e"
+      "imagePage": "https://digitalcollections.nypl.org/items/6c3fd3a0-c00a-b7e1-e040-e00a1806549e",
+      "size": [288, 229],
+      "crops": {
+        "the-huntsman": {
+          "window": [0.0, 0.0801, 1.0, 0.7398],
+          "full": [0.005, 0.051, 0.51, 0.898]
+        }
+      }
     },
     {
       "id": "rumpelstiltskin",
@@ -433,7 +565,14 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "commonsFile": "Grimm-Rackham-202.jpg",
-      "notes": "Downloaded image is a Rackham line drawing, not the colour fire plate. Review before use."
+      "notes": "Downloaded image is a Rackham line drawing, not the colour fire plate. Review before use.",
+      "size": [663, 1235],
+      "crops": {
+        "rumpelstiltskin": {
+          "window": [0.0, 0.0621, 1.0, 0.3158],
+          "full": [0.0, 0.0442, 1.0, 0.7516]
+        }
+      }
     },
     {
       "id": "gretel",
@@ -443,16 +582,17 @@
       ],
       "artist": "Arthur Rackham",
       "artistDied": 1939,
-      "title": "'Stupid goose!' cried the Witch",
+      "title": "Hansel and Gretel (the witch at her door)",
       "date": "1909",
       "publication": "The Fairy Tales of the Brothers Grimm (Constable, 1909)",
       "source": {
-        "name": "SurLaLune Fairy Tales",
-        "url": "https://surlalunefairytales.com/oldsite/illustrations/hanselgretel/rackhamhansel4.html"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Hansel-and-gretel-rackham.jpg"
       },
       "licence": "Public domain in the US and UK",
       "status": "cleared",
-      "commonsSearch": "Rackham Hansel Gretel witch"
+      "commonsFile": "Hansel-and-gretel-rackham.jpg",
+      "notes": "Swapped from the 'Stupid goose!' plate, which had no findable file. This plate shows Hansel, Gretel and the Witch."
     },
     {
       "id": "baba-yaga",
@@ -472,7 +612,14 @@
       },
       "licence": "Public domain",
       "status": "cleared-book",
-      "commonsFile": "Bilibin._Baba_Yaga.jpg"
+      "commonsFile": "Bilibin._Baba_Yaga.jpg",
+      "size": [1561, 2000],
+      "crops": {
+        "baba-yaga": {
+          "window": [0.14, 0.1877, 0.62, 0.2847],
+          "full": [0.11, 0.0638, 0.78, 0.8523]
+        }
+      }
     },
     {
       "id": "koschei",
@@ -491,26 +638,34 @@
       },
       "commonsFile": "Ivan_Bilibin_Koshchey.jpg",
       "licence": "Public domain",
-      "status": "cleared"
+      "status": "cleared",
+      "size": [1174, 814],
+      "crops": {
+        "koschei": {
+          "window": [0.07, 0.1052, 0.86, 0.7296],
+          "full": [0.242, 0.08, 0.416, 0.84]
+        }
+      }
     },
     {
       "id": "vasilisa-the-wise",
-      "use": "card",
+      "use": "stand-in",
       "cards": [
         "vasilisa-the-wise"
       ],
       "artist": "Ivan Bilibin",
       "artistDied": 1942,
-      "title": "Ivan Tsarevich and the Frog Princess",
-      "date": "1901",
-      "publication": "The Frog Princess (1901)",
+      "title": "Vasilisa the Beautiful",
+      "date": "1899",
+      "publication": "Vasilisa the Beautiful (1902)",
       "source": {
         "name": "Wikimedia Commons",
-        "url": null
+        "url": "https://commons.wikimedia.org/wiki/File:Vasilisa.jpg"
       },
       "licence": "Public domain",
       "status": "cleared-book",
-      "commonsSearch": "Bilibin Ivan Tsarevich Frog Princess Vasilisa"
+      "commonsFile": "Vasilisa.jpg",
+      "notes": "Stand-in: this is Vasilisa the Beautiful, a different Vasilisa by the same artist. No file was found for Bilibin's 1899 Frog Princess plate showing Vasilisa the Wise. His 1930-31 Frog Princess set is too late for the US rule; don't use it."
     },
     {
       "id": "zmey-gorynych",
@@ -531,7 +686,14 @@
       "licence": "Public domain; a free scan is still needed",
       "status": "cleared-book",
       "notes": "Commons copy is small (about 60 KB); look for a larger scan.",
-      "commonsFile": "Ivan_Bilibin_-_zmey-gorynych-1912.jpg"
+      "commonsFile": "Ivan_Bilibin_-_zmey-gorynych-1912.jpg",
+      "size": [360, 552],
+      "crops": {
+        "zmey-gorynych": {
+          "window": [0.07, 0.215, 0.86, 0.3299],
+          "full": [0.08, 0.1765, 0.84, 0.767]
+        }
+      }
     },
     {
       "id": "bran-the-blessed",
@@ -539,18 +701,19 @@
       "cards": [
         "bran-the-blessed"
       ],
-      "artist": "J. H. F. Bacon",
-      "artistDied": 1914,
-      "title": "Listening to the Pleasant Conversation of Bran's Head",
-      "date": "1910s",
-      "publication": "Celtic Myth & Legend, Poetry & Romance, Charles Squire (Gresham)",
+      "artist": "John Everett Millais",
+      "artistDied": 1896,
+      "title": "The Head of Bran",
+      "date": "1860",
+      "publication": "Once a Week, 1860 (illustration to George Meredith's poem)",
       "source": {
-        "name": "Internet Archive",
-        "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:The_Head_of_Bran_(Millais).png"
       },
       "licence": "Public domain",
       "status": "cleared",
-      "commonsSearch": "Bacon Bran head Celtic myth legend"
+      "commonsFile": "The_Head_of_Bran_(Millais).png",
+      "notes": "Replaces the Bacon plate from Squire's Celtic Myth & Legend, which had no image file. Shows warriors carrying Bran's head."
     },
     {
       "id": "gwydion",
@@ -569,8 +732,9 @@
         "url": "https://ia801505.us.archive.org/22/items/celticmythlegend00squi/celticmythlegend00squi.pdf"
       },
       "licence": "Public domain",
-      "status": "cleared",
-      "commonsSearch": "Bacon Blodeuwedd"
+      "status": "to-confirm",
+      "commonsSearch": "Bacon Blodeuwedd",
+      "notes": "Artist not confirmed. Some plates in Squire's Celtic Myth & Legend are by Ernest Wallcousins (believed to have died in 1976), which would still be in UK copyright. Confirm who drew 'The Making of Blodeuwedd' before use, or choose another image."
     },
     {
       "id": "rhiannon",
@@ -589,7 +753,14 @@
       },
       "commonsFile": "Charlotte_Guest_Rhiannon.jpg",
       "licence": "Public domain",
-      "status": "cleared"
+      "status": "cleared",
+      "size": [656, 574],
+      "crops": {
+        "rhiannon": {
+          "window": [0.02, 0.1675, 0.9, 0.605],
+          "full": [0.1385, 0.0496, 0.563, 0.9008]
+        }
+      }
     },
     {
       "id": "the-snow-queen",
@@ -609,7 +780,14 @@
       },
       "licence": "Public domain (Met open access)",
       "status": "cleared",
-      "commonsFile": "Edmund_Dulac_-_Snow_Queen.jpg"
+      "commonsFile": "Edmund_Dulac_-_Snow_Queen.jpg",
+      "size": [600, 749],
+      "crops": {
+        "the-snow-queen": {
+          "window": [0.075, 0.0997, 0.85, 0.4005],
+          "full": [0.08, 0.019, 0.84, 0.9421]
+        }
+      }
     },
     {
       "id": "the-tin-soldier",
@@ -647,7 +825,14 @@
       "commonsFile": "Vlad_Tepes_002.jpg",
       "licence": "Public domain painting; faithful photographs carry no new copyright in the UK or US",
       "status": "cleared",
-      "notes": "Stand-in: the real prince whose name Stoker borrowed. Credit by its own title, never as 'Dracula'."
+      "notes": "Stand-in: the real prince whose name Stoker borrowed. Credit by its own title, never as 'Dracula'.",
+      "size": [3033, 3673],
+      "crops": {
+        "dracula": {
+          "window": [0.0, 0.1514, 0.9, 0.4372],
+          "full": [0.04, 0.0029, 0.86, 0.9942]
+        }
+      }
     },
     {
       "id": "victor-frankenstein",
@@ -666,7 +851,18 @@
       },
       "licence": "Public Domain Mark",
       "status": "cleared",
-      "wellcomeQuery": "b11980072"
+      "wellcomeQuery": "b11980072",
+      "size": [2000, 3370],
+      "crops": {
+        "victor-frankenstein": {
+          "window": [0.11, 0.1669, 0.82, 0.2863],
+          "full": [0.105, 0.0443, 0.82, 0.6813]
+        },
+        "the-creature": {
+          "window": [0.11, 0.3978, 0.7, 0.2444],
+          "full": [0.105, 0.0443, 0.82, 0.6813]
+        }
+      }
     },
     {
       "id": "the-bride",
@@ -687,7 +883,14 @@
       "status": "cleared",
       "notes": "Stand-in; head-and-shoulders crop. Credit by its own title.",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=3122",
-      "commonsFile": "Edward_Burne-Jones_-_Pygmalion_and_the_Image_-_The_Godhead_Fires_-_Google_Art_Project.jpg"
+      "commonsFile": "Edward_Burne-Jones_-_Pygmalion_and_the_Image_-_The_Godhead_Fires_-_Google_Art_Project.jpg",
+      "size": [4256, 5635],
+      "crops": {
+        "the-bride": {
+          "window": [0.095, 0.0334, 0.75, 0.3332],
+          "full": [0.03, 0.003, 0.94, 0.9939]
+        }
+      }
     },
     {
       "id": "the-bride-variant",
@@ -706,7 +909,14 @@
       "licence": "Public domain (Met open access)",
       "status": "cleared",
       "notes": "Stand-in; head-and-shoulders crop.",
-      "metObjectId": 436483
+      "metObjectId": 436483,
+      "size": [3185, 4000],
+      "crops": {
+        "the-bride": {
+          "window": [0.17, 0.2295, 0.6, 0.281],
+          "full": [0.17, 0.1856, 0.6, 0.6689]
+        }
+      }
     },
     {
       "id": "board-heorot",
@@ -724,7 +934,13 @@
       "commonsFile": "Wealhtheow.PNG",
       "licence": "Public domain",
       "status": "cleared",
-      "notes": "Candidate backdrop; small scan."
+      "notes": "Candidate backdrop; small scan.",
+      "size": [351, 450],
+      "crops": {
+        "board": {
+          "board": [0.0, 0.1062, 1.0, 0.4875]
+        }
+      }
     },
     {
       "id": "board-camelot",
@@ -757,7 +973,13 @@
       "licence": "CC0",
       "status": "cleared",
       "imagePage": "https://dams.birminghammuseums.org.uk/asset-bank/action/viewAsset?id=7076",
-      "commonsFile": "Edward_Burne-Jones_-_The_Attainment;_The_Vision_of_the_Holy_Grail_to_Sir_Galahad,_Sir_Bors_and_Sir_Percival_(from_the_series_'The_Quest_for_the_Holy_Grail').jpg"
+      "commonsFile": "Edward_Burne-Jones_-_The_Attainment;_The_Vision_of_the_Holy_Grail_to_Sir_Galahad,_Sir_Bors_and_Sir_Percival_(from_the_series_'The_Quest_for_the_Holy_Grail').jpg",
+      "size": [1260, 435],
+      "crops": {
+        "board": {
+          "board": [0.324, 0.0003, 0.552, 0.9993]
+        }
+      }
     },
     {
       "id": "board-forest-path",
@@ -790,7 +1012,13 @@
       },
       "licence": "Public Domain Mark",
       "status": "cleared",
-      "wellcomeQuery": "b11980072"
+      "wellcomeQuery": "b11980072",
+      "size": [2000, 3370],
+      "crops": {
+        "board": {
+          "board": [0.105, 0.1479, 0.82, 0.3042]
+        }
+      }
     },
     {
       "id": "board-castle-dracula",
@@ -826,19 +1054,18 @@
       "cards": [
         "sheriff-of-nottingham"
       ],
-      "artist": "Howard Pyle",
-      "artistDied": 1911,
-      "title": "To be confirmed: a Sheriff of Nottingham plate",
-      "date": "1883",
-      "publication": "The Merry Adventures of Robin Hood (Scribner, 1883)",
+      "artist": "Louis Rhead",
+      "artistDied": 1926,
+      "title": "Ye Sheriff of Nottingham",
+      "date": "1912",
+      "publication": "Bold Robin Hood and His Outlaw Band (Harper, 1912), p. 129",
       "source": {
-        "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/"
+        "name": "Internet Archive",
+        "url": "https://archive.org/details/boldrobinhoodhis00rheaiala"
       },
-      "licence": "Public domain",
-      "status": "to-confirm",
-      "commonsSearch": "Howard Pyle Merry Adventures Robin Hood Sheriff",
-      "notes": "Check the image shows the Sheriff before use."
+      "licence": "Public domain in the US and life+70 countries",
+      "status": "cleared-book",
+      "notes": "Matches the other Merry Men portraits. Take the scan of page 129 from the Internet Archive copy. ClipArt ETC also hosts it (etc.usf.edu/clipart/8100/8198/sheriff_nott_8198.htm) but under its own site terms, so don't use that copy."
     },
     {
       "id": "the-little-mermaid",
@@ -848,55 +1075,57 @@
       ],
       "artist": "Edmund Dulac",
       "artistDied": 1953,
-      "title": "To be confirmed: a Little Mermaid plate",
+      "title": "The Little Mermaid (plate from Stories from Hans Andersen)",
       "date": "1911",
       "publication": "Stories from Hans Andersen (Hodder & Stoughton, 1911)",
       "source": {
-        "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/"
+        "name": "New York Public Library Digital Collections",
+        "url": "https://digitalcollections.nypl.org/items/6b27a1d9-1d61-b8da-e040-e00a18062c91"
       },
-      "licence": "Public domain",
-      "status": "to-confirm",
-      "commonsSearch": "Edmund Dulac Little Mermaid",
-      "notes": "Check the plate shows the Little Mermaid. Fallback: Vilhelm Pedersen (died 1859)."
+      "licence": "Public domain in the US (1911) and UK (Dulac died 1953)",
+      "status": "cleared-book",
+      "notes": "The NYPL page could not be opened from the workspace, so its rights line still needs reading. Fallback: Vilhelm Pedersen (died 1859).",
+      "imagePage": "https://digitalcollections.nypl.org/items/6b27a1d9-1d61-b8da-e040-e00a18062c91"
     },
     {
       "id": "renfield",
-      "use": "card",
+      "use": "stand-in",
       "cards": [
         "renfield"
       ],
-      "artist": "To be found",
-      "artistDied": null,
-      "title": "To be found: Renfield",
-      "date": "",
-      "publication": "",
+      "artist": "Théodore Géricault",
+      "artistDied": 1824,
+      "title": "Portrait of a Kleptomaniac",
+      "date": "c. 1822",
       "source": {
-        "name": "To be found",
-        "url": ""
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Théodore_Géricault_-_Portrait_of_a_Kleptomaniac_-_WGA08636.jpg",
+        "original": "Museum of Fine Arts, Ghent"
       },
-      "licence": "",
-      "status": "open",
-      "notes": "Few pre-1931 illustrations of Renfield exist; may need a stand-in credited by its own title."
+      "licence": "Public domain",
+      "status": "cleared",
+      "notes": "Stand-in: one of Géricault's portraits of asylum patients. Credit by its own title, never as Renfield.",
+      "commonsFile": "Théodore_Géricault_-_Portrait_of_a_Kleptomaniac_-_WGA08636.jpg"
     },
     {
       "id": "van-helsing",
-      "use": "card",
+      "use": "stand-in",
       "cards": [
         "van-helsing"
       ],
-      "artist": "To be found",
-      "artistDied": null,
-      "title": "To be found: Van Helsing",
-      "date": "",
-      "publication": "",
+      "artist": "Rembrandt van Rijn",
+      "artistDied": 1669,
+      "title": "The Anatomy Lesson of Dr Nicolaes Tulp",
+      "date": "1632",
       "source": {
-        "name": "To be found",
-        "url": ""
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg",
+        "original": "Mauritshuis, The Hague"
       },
-      "licence": "",
-      "status": "open",
-      "notes": "Few pre-1931 illustrations of the novel exist; may need a stand-in credited by its own title."
+      "licence": "Public domain",
+      "status": "cleared",
+      "notes": "Stand-in: a Dutch doctor for the Dutch doctor. Crop to Dr Tulp. Commons file name not yet confirmed; if the fetch fails, pick the file from the Commons page for this painting.",
+      "commonsFile": "Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg"
     }
   ]
 }
