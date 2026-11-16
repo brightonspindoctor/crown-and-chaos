@@ -138,7 +138,8 @@ function setupSide(st, i, lu) {
 // ---------- small helpers ----------
 const sideName = (i) => (i === 0 ? "Blue" : "Red");
 const itemName = (st, id) => st.data.items[id]?.name || id;
-export function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); }
+// st.onLog, if set, is called after every log line, so a page can record the fight step by step.
+export function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.onLog(msg); }
 
 export function cards(st, i) { return Object.values(st.sides[i].slots).filter((c) => c && !c.dead && !c.removed); }
 export function heroes(st, i) { return cards(st, i).filter((c) => c.kind === "hero"); }
@@ -284,7 +285,9 @@ export function heal(st, src, target, amount, opts = {}) {
   const cap = target.id === "baba-yaga" ? Math.max(target.maxHealth, target.health) : target.maxHealth;
   const before = target.health;
   target.health = Math.min(cap, target.health + amt);
-  return target.health - before;
+  const gain = target.health - before;
+  if (gain > 0) log(st, `${src?.name || "Healing"} heals ${sideName(target.side)} ${target.name} for ${gain}.`);
+  return gain;
 }
 
 // ---------- targeting ----------
@@ -371,6 +374,7 @@ export function damage(st, src, target, amount, opts = {}) {
   if (!ignoreGuard && t.guardLeft > 0 && !opts.trueDamage) {
     const g = Math.min(t.guardLeft, amt);
     t.guardLeft -= g; amt -= g;
+    if (amt <= 0 && g > 0) log(st, `${sideName(t.side)} ${t.name}'s Guard blocks ${src ? src.name + "'s hit" : "the damage"}.`);
   }
   if (amt <= 0) return 0;
   return applyHealthLoss(st, src, t, amt, opts);
@@ -852,6 +856,7 @@ function frontAct(st, c) {
 //   rumpel: uid | null, hunt: uid | null }
 export function playRound(st, plans) {
   if (st.over) return st;
+  st.acting = null; // uid of the card acting right now, for pages that replay the round
   const ords = [];
   for (const i of [0, 1]) {
     const plan = plans[i] || { orders: [], items: [] };
@@ -909,6 +914,7 @@ export function playRound(st, plans) {
       (p.side === st.fate ? -1 : 0) - (q.side === st.fate ? -1 : 0) || p.actor.slot - q.actor.slot);
     const o = pending.shift();
     const a = o.actor;
+    st.acting = a.uid;
     if (o.cancelled || a.stopNow) { a.flags.acted = true; continue; }
     a.flags.acted = true;
     if (o.auto) { frontAct(st, a); continue; }
@@ -930,6 +936,7 @@ export function playRound(st, plans) {
     if (spec && spec.go) spec.go(st, a, x, o.target2 ? findCard(st, o.target2) : null);
     else standardAttack(st, a, x);
   }
+  st.acting = null;
   checkWin(st);
   if (!st.over) upkeep(st);
   return st;

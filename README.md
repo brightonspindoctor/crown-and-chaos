@@ -76,3 +76,13 @@ To download art, run the **Fetch art** workflow from the Actions tab. It also ru
 | `play/index.html` | A two-player page for one device, or one player against a bot. Rebuild it with `node scripts/build-play.mjs` after changing cards or the engine |
 
 Card numbers are read from the JSON files, but each card's effect is coded by hand in the engine, so a change to a card's text needs the matching change in `engine/engine.mjs`.
+
+## Tutorial
+
+| Path | What it is |
+|---|---|
+| `tutorial/template.html` | The scripted tutorial fight, "The Field at Silene": the Princess (Crown) and St George against the Dragon. The `TUTORIAL` list near the top holds every step and the Dragon's fixed moves |
+| `tutorial/img/` | The paintings the tutorial uses, cropped to card size from `art/images/` using the crops in the manifest |
+| `tutorial/index.html` | The built page. Rebuild with `node scripts/build-tutorial.mjs` |
+
+The tutorial runs on the same engine as everything else. The engine calls `st.onLog` after every log line and sets `st.acting`, which is how the page replays a round card by card. After the tutorial, the same fight can be played freely against the bot.

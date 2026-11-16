@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crown & Fable: The Field at Silene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* Crown & Fable tutorial fight. Colours and type come from the Crown & Fable design system (Gallery theme).
+   Phone: enemy pyramid on top, yours below, front ranks meeting in the middle.
+   Desktop: your pyramid on the left, the enemy's on the right. */
+:root {
+  --surface: #17110c; --raised: #221912; --ink: #efe4cc; --muted: #b9a68c; --line: #3a2c20;
+  --gold-text: #d9b763; --gold-leaf: #c9a24a; --gold-shade: #8a6424;
+  --ultramarine: #1f3a6e; --umber: #4a3222; --oxblood: #6e2a22; --vermilion: #b5381f; --verdigris: #2f5f51;
+  --display: Cinzel, "Trajan Pro", Georgia, serif;
+  --serif: "EB Garamond", Garamond, Georgia, serif;
+  --head: 38px; --dock: 160px;
+  --ch: clamp(64px, calc((100dvh - var(--head) - var(--dock) - 76px) / 6), 132px);
+  --cw: min(calc((100vw - 28px) / 3.25), calc(var(--ch) * 1.12));
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--surface); color: var(--ink); font: 16px/1.3 var(--serif); overflow: hidden; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 3px; }
+.dt { display: none; }
+#app { height: 100dvh; display: flex; flex-direction: column; position: relative; }
+
+/* ---------- header ---------- */
+#head { height: var(--head); flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 12px; border-bottom: 1px solid var(--line); background: var(--surface); }
+#head .round { font: 600 12px/1 var(--display); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+#head .place { text-align: center; min-width: 0; }
+#head .place b { display: block; font: 600 13px/1.15 var(--display); letter-spacing: .1em; color: var(--gold-text); text-transform: uppercase; white-space: nowrap; }
+#head .place i { display: block; font-size: 11px; line-height: 1.1; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#head .menu { font: 600 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 0 10px 10px; white-space: nowrap; }
+#head .menu:hover { color: var(--ink); }
+
+/* ---------- the table ---------- */
+#table { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: linear-gradient(rgba(23,17,12,.72), rgba(23,17,12,.82)), url(img/board.jpg) center / cover no-repeat; }
+.side { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.side.me { flex-direction: column-reverse; }
+.rank { display: flex; gap: 6px; justify-content: center; }
+.mid { display: flex; align-items: center; gap: 8px; height: 24px; width: 100%; justify-content: center; }
+.mid::before, .mid::after { content: ""; flex: 1; border-top: 1px dashed rgba(201,162,74,.45); margin: 0 10px; }
+.fate { width: 24px; height: 24px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 700 7px/1 var(--display); letter-spacing: .04em; color: #2a1d14;
+  background: radial-gradient(circle at 35% 30%, #f1dc9a, var(--gold-leaf) 55%, var(--gold-shade)); box-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.fate-txt { font-style: italic; font-size: 13px; color: var(--ink); text-shadow: 0 1px 3px #000; white-space: nowrap; }
+
+/* ---------- cards ---------- */
+.card { position: relative; width: var(--cw); height: var(--ch); flex: none; display: flex; flex-direction: column; gap: calc(var(--cw) * .03);
+  padding: calc(var(--cw) * .045); border-radius: calc(var(--cw) * .08); font-size: calc(var(--cw) * .118); text-align: left;
+  background: #2a1c12; border: max(2px, calc(var(--cw) * .028)) solid #5d4330; box-shadow: 0 2px 8px rgba(20,13,8,.55); transition: transform .18s, opacity .25s, filter .25s; }
+.card.hero { background: #1c130c; border-color: var(--gold-leaf); box-shadow: inset 0 0 0 1px var(--gold-shade), 0 2px 8px rgba(20,13,8,.55); }
+.card.slot { background: none; border: 1px dashed rgba(185,166,140,.2); box-shadow: none; cursor: default; }
+.nm { font: 600 .82em/1.25 var(--display); letter-spacing: .03em; text-align: center; white-space: nowrap; overflow: hidden; border-radius: 2px; background: var(--umber); padding: 0 .15em; flex: none; text-transform: uppercase; }
+.hero .nm { background: var(--ultramarine); }
+.art { flex: 1; min-height: 0; overflow: hidden; border-radius: 2px; position: relative; background: #0c0805; }
+.art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.stats { flex: none; display: flex; align-items: center; gap: .35em; font: 700 1.05em/1 var(--display); height: 1.35em; }
+.stats svg { width: .95em; height: .95em; flex: none; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.atk { display: flex; align-items: center; gap: .2em; }
+.grd { width: 1.15em; height: 1.15em; transform: rotate(45deg); background: #35507f; border: 1px solid #9fb3d6; display: grid; place-items: center; margin-left: .25em; }
+.grd b { transform: rotate(-45deg); font-size: .78em; }
+.grd.spent { opacity: .35; }
+.hp { margin-left: auto; min-width: 1.75em; text-align: center; padding: .16em .2em .5em; margin-bottom: -.32em; background: #8f2a16; clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%); }
+.hp.hurt { color: #ffd9c9; }
+.spd, .crownmark { position: absolute; top: -.5em; width: 1.6em; height: 1.6em; border-radius: 50%; display: grid; place-items: center; z-index: 2; box-shadow: 0 1px 3px rgba(0,0,0,.6); }
+.spd { left: -.5em; background: var(--vermilion); border: 1px solid #e9b9a6; font: 700 .9em/1 var(--display); }
+.crownmark { right: -.5em; background: #1c130c; border: 1px solid var(--gold-leaf); }
+.crownmark svg { width: 1.05em; height: 1.05em; fill: var(--gold-leaf); }
+.order, .badge { position: absolute; left: 0; right: 0; bottom: 0; font: 600 .78em/1.5 var(--display); letter-spacing: .03em; text-align: center; white-space: nowrap; overflow: hidden; background: rgba(47,95,81,.94); }
+.badge { background: rgba(110,42,34,.94); }
+.card.focus, .card.can, .fate.focus { animation: glow 1.1s ease-in-out infinite alternate; z-index: 3; }
+.card.dim { opacity: .5; }
+.card.acting { transform: scale(1.07); z-index: 4; box-shadow: 0 0 0 2px #f1dc9a, 0 10px 24px rgba(20,13,8,.7); }
+.card.hit { animation: shake .4s; }
+.card.fallen { opacity: .28; filter: grayscale(1); }
+.card.stopped { filter: saturate(.4) brightness(.8); }
+.float { position: absolute; left: 50%; top: 34%; transform: translate(-50%, -50%); font: 700 1.9em/1 var(--display); z-index: 5; pointer-events: none; text-shadow: 0 0 6px #000, 0 2px 2px #000; animation: rise 1.2s ease-out forwards; white-space: nowrap; }
+.float.dmg { color: #ff8f73; } .float.heal { color: #8fe0c2; } .float.blk { color: #c9d6f0; font-size: 1.05em; }
+@keyframes glow { from { box-shadow: 0 0 0 2px var(--gold-text), 0 0 6px 2px rgba(217,183,99,.35); } to { box-shadow: 0 0 0 3px #f6e3a6, 0 0 18px 7px rgba(217,183,99,.7); } }
+@keyframes shake { 20% { transform: translateX(-5px); } 45% { transform: translateX(5px); } 70% { transform: translateX(-3px); } }
+@keyframes rise { 0% { opacity: 0; transform: translate(-50%, -20%) scale(.7); } 15% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } 75% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -110%); } }
+
+/* ---------- dock: the guide's words, action points, tool belt, lock in ---------- */
+#dock { height: var(--dock); flex: none; display: flex; flex-direction: column; gap: 6px; padding: 8px 12px 10px; background: var(--raised); border-top: 1px solid var(--gold-shade); }
+.coach { flex: 1; min-height: 0; overflow-y: auto; font-size: 15.5px; line-height: 1.26; }
+.coach p { margin: 0; text-wrap: pretty; }
+.coach .who { font: 600 10px/1.4 var(--display); letter-spacing: .14em; color: var(--gold-text); text-transform: uppercase; }
+.coach.nudge { animation: shake .4s; }
+.chips { display: flex; gap: 6px; margin-top: 5px; overflow-x: auto; scrollbar-width: none; }
+.chip { flex: none; white-space: nowrap; }
+.chip { font-size: 13px; line-height: 1.2; border: 1px solid var(--line); border-radius: 99px; padding: 2px 4px 2px 9px; display: inline-flex; align-items: center; gap: 4px; background: var(--surface); }
+.chip button { width: 22px; height: 22px; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
+.ctl { flex: none; display: flex; align-items: center; gap: 10px; height: 40px; }
+.ap { display: flex; align-items: center; gap: 4px; }
+.ap span { font: 600 10px/1 var(--display); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; margin-right: 3px; }
+.pip { width: 15px; height: 15px; border-radius: 50%; border: 1px dashed var(--gold-shade); }
+.pip.on { border: 1px solid var(--gold-shade); background: radial-gradient(circle at 35% 30%, #f1dc9a, var(--gold-leaf) 60%, var(--gold-shade)); }
+.belt { display: flex; gap: 6px; min-width: 0; }
+.item { height: 38px; display: flex; align-items: center; gap: 6px; padding: 2px 9px 2px 2px; border: 1px solid var(--oxblood); border-radius: 6px; background: #1c130c; font-size: 14px; white-space: nowrap; position: relative; }
+.item img { width: 32px; height: 32px; object-fit: cover; border-radius: 4px; display: block; }
+.item.focus { animation: glow 1.1s ease-in-out infinite alternate; }
+.item:disabled { opacity: .45; cursor: default; }
+.grow { flex: 1; }
+.btn { height: 40px; padding: 0 16px; border-radius: 6px; font: 700 12.5px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; color: #2a1d14;
+  background: linear-gradient(#e9cf85, var(--gold-leaf)); border: 1px solid var(--gold-shade); box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+.btn:disabled { opacity: .4; cursor: default; }
+.btn.quiet { background: none; color: var(--gold-text); border-color: var(--gold-shade); box-shadow: none; }
+.btn.focus { animation: glow 1.1s ease-in-out infinite alternate; }
+
+/* ---------- card sheet ---------- */
+#sheet:empty, #over:empty { display: none; }
+#sheet { position: absolute; inset: 0; z-index: 20; display: flex; align-items: flex-end; justify-content: center; background: rgba(12,8,5,.55); }
+.sheet { width: min(560px, 100%); max-height: 86dvh; overflow-y: auto; background: var(--raised); border: 1px solid var(--gold-shade); border-bottom: 0; border-radius: 14px 14px 0 0; padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -10px 30px rgba(0,0,0,.6); }
+.sheet .hint { font-style: italic; color: var(--gold-text); margin: 0; }
+.sheet .top { display: flex; gap: 12px; }
+.sheet .pic { width: 86px; aspect-ratio: 5 / 7; object-fit: cover; border-radius: 6px; border: 2px solid var(--gold-leaf); flex: none; }
+.sheet h2 { margin: 0; font: 600 20px/1.2 var(--display); letter-spacing: .04em; }
+.sheet .kind { font-style: italic; color: var(--muted); margin: 0 0 4px; }
+.sheet .nums { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 15px; margin: 0; }
+.sheet .nums b { font-family: var(--display); }
+.sheet .credit { font-size: 12.5px; font-style: italic; color: var(--muted); margin: 4px 0 0; }
+.sheet .x { margin-left: auto; align-self: flex-start; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); color: var(--muted); font-size: 20px; line-height: 1; flex: none; }
+.sheet .rule { margin: 0; font-size: 15.5px; line-height: 1.3; }
+.sheet .rule b { font: 600 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-text); display: block; margin-bottom: 2px; }
+.sheet .rule.off { color: var(--muted); }
+.acts { display: flex; flex-direction: column; gap: 7px; }
+.act { display: grid; grid-template-columns: 1fr auto; gap: 1px 10px; text-align: left; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--gold-shade); background: var(--surface); }
+.act strong { font: 600 15px/1.2 var(--display); letter-spacing: .04em; }
+.act .cost { display: flex; gap: 3px; align-items: center; }
+.act .cost .pip { width: 12px; height: 12px; }
+.act small { grid-column: 1 / -1; font-size: 14.5px; color: var(--muted); line-height: 1.25; }
+.act:disabled { opacity: .42; cursor: default; }
+.act.focus { animation: glow 1.1s ease-in-out infinite alternate; }
+
+/* ---------- start and end screens ---------- */
+#over { position: absolute; inset: 0; z-index: 30; display: grid; place-items: center; padding: 20px; background: rgba(12,8,5,.8); }
+.panel { width: min(440px, 100%); background: var(--raised); border: 2px solid var(--gold-leaf); box-shadow: inset 0 0 0 1px var(--gold-shade), 0 20px 50px rgba(0,0,0,.7); border-radius: 14px; padding: 26px 22px 22px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.panel svg { width: 44px; height: 44px; fill: var(--gold-leaf); }
+.panel .eyebrow { font: 600 11px/1 var(--display); letter-spacing: .18em; color: var(--muted); text-transform: uppercase; margin: 0; }
+.panel h1 { margin: 0; font: 600 34px/1.1 var(--display); letter-spacing: .03em; color: var(--gold-text); text-wrap: balance; }
+.panel p { margin: 0; font-size: 17px; line-height: 1.35; text-wrap: pretty; }
+.panel .btns { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 6px; }
+.panel .btn { width: 100%; height: 46px; }
+.panel ul { margin: 0; padding: 0; list-style: none; text-align: left; font-size: 15.5px; line-height: 1.3; display: flex; flex-direction: column; gap: 4px; }
+.panel li::before { content: "◆ "; color: var(--gold-leaf); font-size: 10px; vertical-align: 2px; }
+
+/* ---------- desktop ---------- */
+@media (min-width: 900px) and (min-aspect-ratio: 5/4) {
+  :root { --head: 60px; --dock: 96px;
+    --ch: clamp(96px, calc((100dvh - var(--head) - var(--dock) - 70px) / 3), 210px);
+    --cw: min(calc(var(--ch) * .74), calc((100vw - 260px) / 6.6)); }
+  .dt { display: inline; } .ph { display: none; }
+  #head { padding: 0 24px; }
+  #head .round { font-size: 13px; } #head .place b { font-size: 19px; } #head .place i { font-size: 14px; } #head .menu { font-size: 12px; }
+  #table { flex-direction: row-reverse; gap: 16px; }
+  .side, .side.me { flex-direction: row; gap: 16px; }
+  .side.foe { flex-direction: row-reverse; }
+  .rank { flex-direction: column; gap: 12px; }
+  .mid { flex-direction: column; width: auto; height: 100%; padding: 24px 0; gap: 8px; }
+  .mid::before, .mid::after { border-top: 0; border-left: 1px dashed rgba(201,162,74,.45); margin: 0; }
+  .fate { width: 56px; height: 56px; font-size: 12px; }
+  .fate-txt { font-size: 15px; width: 60px; text-align: center; white-space: normal; line-height: 1.1; }
+  #dock { flex-direction: row; align-items: center; gap: 24px; padding: 10px 24px; }
+  .ctl { display: contents; } .ctl .grow { display: none; }
+  .ap { order: 1; } .belt { order: 2; } .coach { order: 3; font-size: 18px; flex: 1; max-height: 100%; } #dock .btn { order: 4; }
+  .pip { width: 20px; height: 20px; } .ap span { font-size: 12px; margin-right: 8px; }
+  .item { height: 50px; font-size: 16px; } .item img { width: 44px; height: 44px; }
+  .btn { height: 50px; padding: 0 26px; font-size: 14px; }
+  #sheet { align-items: center; } .sheet { border-bottom: 1px solid var(--gold-shade); border-radius: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .card.focus, .card.can, .card.hit, .btn.focus, .item.focus, .act.focus, .coach.nudge { animation: none; transition: none; }
+  .card.focus, .card.can, .btn.focus, .item.focus, .act.focus { box-shadow: 0 0 0 3px #f6e3a6; }
+  .float { animation: none; top: 20%; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="head"></header>
+  <main id="table"></main>
+  <footer id="dock"></footer>
+  <div id="sheet"></div>
+  <div id="over"></div>
+</div>
+<script>
+const DATA = /*DATA*/;
+const ART = /*ART*/;
+const E = (() => { /*ENGINE*/
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost };
+})();
+
+// ---------- the fight ----------
+const LINEUPS = [
+  { crown: "the-princess", heroes: ["st-george"], front: ["villager", "longbowman", "villager"], items: ["gingerbread"] },
+  { crown: "the-dragon", heroes: [], front: ["knight", "berserker", "knight"], items: [] },
+];
+const TUTORIAL_SEED = 7;
+const ph = (a, b) => `<span class="ph">${a}</span><span class="dt">${b}</span>`;
+
+// The scripted fight. Each round is a list of steps for the player and one fixed move for the Dragon.
+// A step waits for one thing: next (Continue), tap (your hero's slot), action (its name), target ([side, slot]),
+// item (its id) or lock. focus: [side, slot] or "fate" only draws the eye.
+const TUTORIAL = [
+  { steps: [
+      { say: `The Dragon has come to the Field at Silene for the Princess, and St George rides out to stop it. Your cards are ${ph("at the bottom", "on the left")}.`, next: true },
+      { say: "The Princess wears your Crown. If she falls, you lose. Every other card of yours is there to protect her.", focus: [0, 1], next: true },
+      { say: "The Dragon wears the enemy Crown. Bring it down and you win.", focus: [1, 1], next: true },
+      { say: "Heroes stand in front of the Crown, and the front rank in front of them. You have 3 action points a round to spend on your heroes. Tap St George.", tap: 2 },
+      { say: "Each action shows what it costs. Choose Attack, for 1 action point.", action: "Attack" },
+      { say: "St George fights hand to hand, so he can only reach the closest enemy row. Tap the Berserker.", target: [1, 5] },
+      { say: "A hero acts once a round. The Princess is ranged, so she can hit any enemy. Tap her.", tap: 1 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Aim past their front rank: tap the Dragon.", target: [1, 1] },
+      { say: "Both sides plan in secret, then every card acts in Speed order, fastest first. The red seal on a hero is its Speed. Your front rank acts on its own.", next: true },
+      { say: "When Speeds tie, the holder of the Fate token goes first. It is yours this round and swaps every round. Lock in your plan.", focus: "fate", lock: true },
+    ],
+    foe: { slot: 1, act: "Tail Sweep", t: [0, 5] },
+    after: [
+      { say: "Your Villagers couldn't get past the Knights' Guard, the blue diamond: it soaks up that much damage each round. Front-rank cards that die are used up.", next: true },
+    ] },
+  { steps: [
+      { say: "With your front rank gone and only one hero in front of her, the Princess can be attacked hand to hand. Two heroes in front would shield her.", focus: [0, 1], next: true },
+      { say: "Stronger actions cost more. Tap St George.", tap: 2 },
+      { say: "Choose Lance Charge: 5 damage for 2 action points.", action: "Lance Charge" },
+      { say: "Tap the glowing Knight.", target: [1, 4] },
+      { say: "One action point left. Tap the Princess.", tap: 1 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Keep wearing the Dragon down.", target: [1, 1] },
+      { say: "The enemy holds the Fate token this round, so their Knights act before St George does. Lock in.", focus: "fate", lock: true },
+    ],
+    foe: { slot: 1, act: "Fire Breath", t: [0, 1], t2: [0, 2] },
+    after: [
+      { say: "St George's Guard stopped a Knight, but it was spent by the time the fire came. Guard refills every round.", focus: [0, 2], next: true },
+      { say: "The Princess is hurt. While she wears the Crown, one of your cards heals a little at the start of each round.", focus: [0, 1], next: true },
+    ] },
+  { steps: [
+      { say: "Your tool belt holds single-use items. An item costs 1 action point and acts before any card. Tap the Gingerbread.", item: "gingerbread" },
+      { say: "Give it to the Princess.", target: [0, 1] },
+      { say: "Now hold the Dragon back. Tap the Princess.", tap: 1 },
+      { say: "Choose Girdle Leash: an enemy Beast can't act this round.", action: "Girdle Leash" },
+      { say: "Tap the Dragon.", target: [1, 1] },
+      { say: "Last action point. Tap St George.", tap: 2 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Clear the last Knight.", target: [1, 6] },
+      { say: "The Fate token is yours again, so St George strikes before the Knight can. Lock in.", focus: "fate", lock: true },
+    ],
+    foe: { slot: 1, act: "Tail Sweep", t: [0, 2] },
+    after: [
+      { say: "The Dragon lost its turn and its front rank is gone. Nothing stands between St George and the enemy Crown.", focus: [1, 1], next: true },
+    ] },
+  { steps: [
+      { say: "Finish it. Tap St George.", tap: 2 },
+      { say: "Choose Lance Charge.", action: "Lance Charge" },
+      { say: "Tap the Dragon.", target: [1, 1] },
+      { say: "Tap the Princess.", tap: 1 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Tap the Dragon.", target: [1, 1] },
+      { say: "The Dragon is the slowest card on the table, Speed 1, so both your heroes act before it. Lock in.", lock: true },
+    ],
+    foe: { slot: 1, act: "Attack", t: [0, 2] } },
+];
+
+// ---------- state ----------
+const S = { mode: "intro", st: null, phase: "plan", r: 0, i: 0, post: false, plan: null, sheet: null, pick: null,
+  view: null, prev: null, frames: [], fi: 0, caption: "", acting: null, timer: null, nudge: false };
+const el = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const short = (n) => String(n).replace(/^The /, "");
+const emptyPlan = () => ({ orders: [], items: [] });
+const CROWN_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18l1.5-10-5.5 4-5-7-5 7-5.5-4zM3 19.5h18V21H3z"/></svg>`;
+const SWORD_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 2.5 6 10M4.5 8.5l3 3M5 11l-2.5 2.5"/></svg>`;
+const BOW_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2c6 0 11 5 11 11M3 2l11 11M2 14 9 7M9 7H6.5M9 7v2.5"/></svg>`;
+
+function live(side, slot) { const c = S.st.sides[side].slots[slot]; return c && !c.dead && !c.removed ? c : null; }
+function byUid(uid) { for (const sd of S.st.sides) for (const c of Object.values(sd.slots)) if (c && c.uid === uid) return c; return null; }
+function viewOf(st, c) {
+  return { uid: c.uid, id: c.id, name: c.name, kind: c.kind, side: c.side, slot: c.slot, health: c.health, maxHealth: c.maxHealth,
+    guard: c.guardLeft, atk: E.attackOf(st, c), spd: E.speedOf(st, c), ranged: c.ranged, stopped: !!c.stopNow };
+}
+function snap(st) {
+  return { round: st.round, fate: st.fate, sides: st.sides.map((sd, i) => {
+    const slots = {};
+    for (let s = 1; s <= 6; s++) { const c = sd.slots[s]; slots[s] = c && !c.dead && !c.removed && c.health > 0 ? viewOf(st, c) : null; }
+    return { slots, crown: E.crownCard(st, i)?.uid ?? null, items: sd.items.slice(), ap: sd.ap };
+  }) };
+}
+const sig = (v) => JSON.stringify(v.sides.map((sd) => Object.values(sd.slots).map((c) => c && [c.uid, c.slot, c.health, c.guard, c.stopped])));
+function inSnap(v, uid) { for (const sd of v.sides) for (const c of Object.values(sd.slots)) if (c && c.uid === uid) return c; return null; }
+
+function start(mode) {
+  clearTimeout(S.timer);
+  const st = E.createGame(DATA, LINEUPS, { seed: mode === "guided" ? TUTORIAL_SEED : (Date.now() % 1000000) + 1 });
+  if (mode === "guided") st.fate = 0;
+  Object.assign(S, { mode, st, phase: "plan", r: 0, i: 0, post: false, plan: emptyPlan(), sheet: null, pick: null,
+    view: snap(st), prev: null, frames: [], fi: 0, caption: "", acting: null });
+  render();
+}
+
+// ---------- the guide ----------
+function step() {
+  if (S.mode !== "guided" || S.phase !== "plan") return null;
+  const R = TUTORIAL[S.r]; if (!R) return null;
+  return (S.post ? R.after : R.steps)[S.i] || null;
+}
+function advance() {
+  S.i += 1;
+  const R = TUTORIAL[S.r];
+  if (S.post && S.i >= R.after.length) { S.post = false; S.r += 1; S.i = 0; }
+}
+function nudge() { S.nudge = true; render(); }
+function apLeft() {
+  let ap = S.st.sides[0].ap;
+  ap -= S.plan.items.length * E.itemCost(S.st, 0);
+  for (const o of S.plan.orders) ap -= o.ap;
+  return ap;
+}
+
+// ---------- planning ----------
+function tapCard(uid) {
+  if (S.phase !== "plan") return;
+  const g = step();
+  if (S.pick) {
+    if (!S.pick.targets.includes(uid)) return;
+    if (g) { const want = g.target && live(g.target[0], g.target[1]); if (!want || want.uid !== uid) return nudge(); }
+    if (S.pick.kind === "item") S.plan.items.push({ id: S.pick.id, target: uid, name: S.pick.name, tname: byUid(uid).name });
+    else S.plan.orders.push({ uid: S.pick.uid, index: S.pick.index, target: uid, target2: null, ap: S.pick.ap, name: S.pick.name, tname: byUid(uid).name });
+    S.pick = null;
+    if (g) advance();
+    return render();
+  }
+  const c = byUid(uid); if (!c) return;
+  if (S.mode === "guided") {
+    if (!g || g.tap == null || c.side !== 0 || c.slot !== g.tap) return nudge();
+    S.sheet = { uid }; advance(); return render();
+  }
+  S.sheet = { uid }; render();
+}
+function chooseAction(k) {
+  const c = byUid(S.sheet.uid), a = c.actions[k], g = step();
+  if (g && g.action !== a.name) return nudge();
+  const o = E.options(S.st, c).find((x) => x.index === k);
+  if (!o || a.ap > apLeft()) return;
+  if (o.targets.length === 1 && o.targets[0] === null) {
+    S.plan.orders.push({ uid: c.uid, index: k, target: null, target2: null, ap: a.ap, name: a.name, tname: "" });
+  } else {
+    S.pick = { kind: "action", uid: c.uid, index: k, ap: a.ap, name: a.name, targets: o.targets.map((t) => t.uid) };
+  }
+  S.sheet = null;
+  if (g) advance();
+  render();
+}
+function tapItem(id) {
+  if (S.phase !== "plan" || S.pick) return;
+  const g = step();
+  if (S.mode === "guided" && (!g || g.item !== id)) return nudge();
+  if (S.plan.items.length || apLeft() < E.itemCost(S.st, 0)) return;
+  const targets = E.itemTargets(S.st, 0, id).filter(Boolean);
+  if (!targets.length) return;
+  S.pick = { kind: "item", id, name: DATA.items[id].name, targets: targets.map((t) => t.uid) };
+  if (g) advance();
+  render();
+}
+function scriptedFoe() {
+  const f = TUTORIAL[S.r].foe, a = live(1, f.slot);
+  if (!a) return emptyPlan();
+  const at = (p) => (p && live(p[0], p[1]) ? live(p[0], p[1]).uid : null);
+  return { orders: [{ uid: a.uid, index: a.actions.findIndex((x) => x.name === f.act), target: at(f.t), target2: at(f.t2) }], items: [] };
+}
+
+// ---------- playing a round back ----------
+function lock() {
+  if (S.phase !== "plan" || S.pick) return;
+  const g = step();
+  if (S.mode === "guided" && (!g || !g.lock)) return nudge();
+  const st = S.st, before = snap(st), raw = [];
+  const foePlan = S.mode === "guided" ? scriptedFoe() : E.botPlan(st, 1);
+  st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st) });
+  E.playRound(st, [S.plan, foePlan]);
+  st.onLog = null;
+  S.frames = buildFrames(raw, before);
+  S.plan = emptyPlan(); S.sheet = null; S.phase = "play"; S.fi = -1;
+  nextFrame();
+}
+function buildFrames(raw, before) {
+  const out = []; let lines = [], last = before, lastSig = sig(before);
+  raw.forEach((f, k) => {
+    if (/ wins\.$| a draw\.$/.test(f.text)) return;
+    lines.push(f.text);
+    const sg = sig(f.snap), nxt = raw[k + 1];
+    if (sg !== lastSig || !nxt || nxt.acting !== f.acting) {
+      const actor = f.acting ? inSnap(last, f.acting) || inSnap(f.snap, f.acting) : null;
+      out.push({ text: tidy(lines, actor), acting: f.acting, snap: f.snap, prev: last });
+      lines = []; last = f.snap; lastSig = sg;
+    }
+  });
+  return out;
+}
+// Turns the engine's log lines into one sentence or two about what just happened.
+function tidy(lines, actor) {
+  const whose = (side) => (side === "Blue" ? "your" : "the enemy");
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  const the = (n) => n.replace(/^The /, "the ");
+  const who = actor ? `${actor.side === 0 ? "your" : "the enemy"} ${short(actor.name)}` : "";
+  let uses = null; const fx = [];
+  for (const l of lines) {
+    let m;
+    if ((m = l.match(/^(Blue|Red) uses (.+?)(?: on (.+))?\.$/))) {
+      fx.push(`${m[1] === "Blue" ? "You use" : "The enemy uses"} ${m[2]}${m[3] ? ` on ${the(m[3])}` : ""}.`);
+    } else if (actor && (m = l.match(/^(?:Blue|Red) .+? uses (.+?)(?: on (.+))?\.$/))) {
+      uses = { act: m[1], on: m[2] };
+    } else if ((m = l.match(/^(.+) deals (\d+) to (Blue|Red) (.+?)( — it dies)?\.$/))) {
+      fx.push(`${actor ? "" : m[1] + ": "}${m[2]} damage to ${whose(m[3])} ${short(m[4])}${m[5] ? ", who falls" : ""}.`);
+    } else if ((m = l.match(/^(.+) heals (Blue|Red) (.+) for (\d+)\.$/))) {
+      fx.push(`${cap(whose(m[2]))} ${short(m[3])} heals ${m[4]}${m[1] === m[3] || (actor && m[1] === actor.name) ? "" : ` from ${the(m[1])}`}.`);
+    } else if ((m = l.match(/^(Blue|Red) (.+)'s Guard blocks (.+)'s hit\.$/))) {
+      fx.push(`${cap(whose(m[1]))} ${short(m[2])}'s Guard blocks ${who || the(m[3])}.`);
+    } else if ((m = l.match(/^(.+) is stopped \(.+\)\.$/))) {
+      fx.push(`${m[1]} can't act this round.`);
+    } else fx.push(l.replace(/^Blue /, "Your ").replace(/^Red /, "The enemy ").replace(/ Blue /g, " your ").replace(/ Red /g, " the enemy "));
+  }
+  const numbers = fx.length && /^\d/.test(fx[0]);
+  if (uses) return numbers ? `${cap(who)} uses ${uses.act}: ${fx.join(" ")}` : `${cap(who)} uses ${uses.act}${uses.on ? ` on ${the(uses.on)}` : ""}. ${fx.join(" ")}`.trim();
+  return numbers && who ? `${cap(who)}: ${fx.join(" ")}` : fx.join(" ");
+}
+function nextFrame() {
+  S.fi += 1;
+  const f = S.frames[S.fi];
+  if (!f) return endPlayback();
+  S.view = f.snap; S.prev = f.prev; S.caption = f.text; S.acting = f.acting;
+  render();
+  S.timer = setTimeout(nextFrame, Math.min(3600, 1300 + f.text.length * 24));
+}
+function endPlayback() {
+  clearTimeout(S.timer);
+  const st = S.st;
+  Object.assign(S, { view: snap(st), prev: null, caption: "", acting: null, frames: [], phase: st.over ? "over" : "plan" });
+  if (S.mode === "guided") {
+    const R = TUTORIAL[S.r];
+    if (!st.over && R.after && R.after.length) { S.post = true; S.i = 0; }
+    else { S.post = false; S.r += 1; S.i = 0; }
+    if (!st.over && !TUTORIAL[S.r]) S.mode = "free"; // the script ran out: carry on freely
+  }
+  render();
+}
+
+// ---------- drawing ----------
+function cardHtml(c, v, opts = {}) {
+  const side = c.side, mine = side === 0, g = step();
+  const cls = ["card", c.kind === "hero" ? "hero" : "front", mine ? "mine" : "foe"];
+  const order = S.plan && S.plan.orders.find((o) => o.uid === c.uid);
+  let floats = "";
+  if (opts.fallen) cls.push("fallen");
+  if (S.phase === "play") {
+    if (S.acting === c.uid) cls.push("acting");
+    const p = S.prev && inSnap(S.prev, c.uid);
+    const now = opts.fallen ? { health: 0, guard: 0 } : c;
+    if (p) {
+      const d = now.health - p.health;
+      if (d < 0) { cls.push("hit"); floats = `<span class="float dmg">−${-d}</span>`; }
+      else if (d > 0) floats = `<span class="float heal">+${d}</span>`;
+      else if (now.guard < p.guard) floats = `<span class="float blk">Blocked</span>`;
+    }
+  } else if (S.phase === "plan") {
+    if (S.pick) {
+      let ok = S.pick.targets.includes(c.uid);
+      if (ok && g && g.target) ok = live(g.target[0], g.target[1])?.uid === c.uid;
+      cls.push(ok ? "can" : "dim");
+    } else if (g) {
+      if (Array.isArray(g.focus) && g.focus[0] === side && g.focus[1] === c.slot) cls.push("focus");
+      if (g.tap != null && mine && g.tap === c.slot) cls.push("focus");
+    }
+    if (order) cls.push("planned");
+  }
+  if (c.stopped) cls.push("stopped");
+  const crown = v.sides[side].crown === c.uid;
+  const label = `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}${c.kind === "hero" ? `, Speed ${c.spd}` : ""}`;
+  return `<button class="${cls.join(" ")}" data-act="card" data-uid="${c.uid}" aria-label="${esc(label)}">
+    ${c.kind === "hero" ? `<span class="spd" title="Speed">${c.spd}</span>` : ""}
+    ${crown ? `<span class="crownmark" title="Wears the Crown">${CROWN_SVG}</span>` : ""}
+    <span class="nm">${esc(short(c.name))}</span>
+    <span class="art"><img src="img/${c.id}.jpg" alt="" decoding="sync">
+      ${order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Leashed</span>` : ""}</span>
+    <span class="stats"><span class="atk">${c.ranged ? BOW_SVG : SWORD_SVG}${c.atk}</span>
+      ${c.guard > 0 ? `<span class="grd" title="Guard"><b>${c.guard}</b></span>` : ""}
+      <span class="hp${c.health < c.maxHealth ? " hurt" : ""}" title="Health">${opts.fallen ? 0 : c.health}</span></span>
+    ${floats}</button>`;
+}
+function slotHtml(v, side, slot) {
+  const c = v.sides[side].slots[slot];
+  if (c) return cardHtml(c, v);
+  const gone = S.phase === "play" && S.prev && S.prev.sides[side].slots[slot];
+  if (gone && !inSnap(v, gone.uid)) return cardHtml(gone, S.prev, { fallen: true });
+  return `<div class="card slot" aria-hidden="true"></div>`;
+}
+function renderTable() {
+  const v = S.view; if (!v) { el("table").innerHTML = ""; return; }
+  const g = step();
+  const sideHtml = (i) => `<section class="side ${i ? "foe" : "me"}" aria-label="${i ? "Enemy cards" : "Your cards"}">
+    ${[[1], [2, 3], [4, 5, 6]].map((r) => `<div class="rank">${r.map((s) => slotHtml(v, i, s)).join("")}</div>`).join("")}</section>`;
+  el("table").innerHTML = `${sideHtml(1)}
+    <div class="mid"><span class="fate${g && g.focus === "fate" ? " focus" : ""}">FATE</span>
+      <span class="fate-txt">${v.fate === 0 ? "Yours this round" : "Theirs this round"}</span></div>
+    ${sideHtml(0)}`;
+}
+function renderHead() {
+  const v = S.view, a = ART.board;
+  el("head").innerHTML = `<span class="round">${v ? `Round ${v.round}` : ""}${S.phase === "play" ? ph("", " · Battle") : S.phase === "plan" && v ? ph("", " · Planning") : ""}</span>
+    <span class="place"><b>The Field at Silene</b><i>${esc(a.artist)}, ${esc(a.title)}, ${esc(a.date)}</i></span>
+    <button class="menu" data-act="menu">Menu</button>`;
+}
+function renderDock() {
+  const v = S.view; if (!v) { el("dock").innerHTML = ""; return; }
+  const g = step(), ap = S.phase === "plan" ? apLeft() : v.sides[0].ap, total = S.st.sides[0].ap;
+  let who = "", text = "", chips = "", button = "";
+  if (S.phase === "play") {
+    who = `Round ${S.frames[S.fi]?.prev.round ?? v.round}`; text = esc(S.caption);
+    button = `<button class="btn quiet" data-act="skip">Skip</button>`;
+  } else if (g) {
+    who = "Tutorial"; text = g.say;
+    if (g.next) button = `<button class="btn focus" data-act="next">Continue</button>`;
+    else button = `<button class="btn${g.lock ? " focus" : ""}" data-act="lock"${g.lock ? "" : " disabled"}>Lock in</button>`;
+  } else if (S.phase === "plan") {
+    who = "Your plan";
+    text = S.pick ? `Choose a target for ${esc(S.pick.name)}.`
+      : ap > 0 ? (S.plan.orders.length || S.plan.items.length ? "Give another order, or lock in." : "Tap one of your heroes to give it an order. Tap any card to read it.")
+      : "No action points left. Lock in your plan.";
+    chips = [...S.plan.items.map((it, k) => `<span class="chip">${esc(it.name)} → ${esc(short(it.tname))}<button data-act="del-item" data-k="${k}" aria-label="Remove ${esc(it.name)}">×</button></span>`),
+      ...S.plan.orders.map((o, k) => `<span class="chip">${esc(short(byUid(o.uid).name))}: ${esc(o.name)}${o.tname ? ` → ${esc(short(o.tname))}` : ""}<button data-act="del-order" data-k="${k}" aria-label="Remove ${esc(o.name)}">×</button></span>`)].join("");
+    button = S.pick ? `<button class="btn quiet" data-act="cancel">Cancel</button>` : `<button class="btn" data-act="lock">Lock in</button>`;
+  }
+  const used = S.plan ? S.plan.items.map((x) => x.id) : [];
+  const belt = v.sides[0].items.filter((id) => { const k = used.indexOf(id); if (k >= 0) { used.splice(k, 1); return false; } return true; });
+  const pips = Array.from({ length: total }, (_, k) => `<i class="pip${k < ap ? " on" : ""}"></i>`).join("");
+  el("dock").innerHTML = `<div class="coach${S.nudge ? " nudge" : ""}" aria-live="polite"><span class="who">${who}</span><p>${text}</p>${chips ? `<div class="chips">${chips}</div>` : ""}</div>
+    <div class="ctl"><div class="ap" role="img" aria-label="${ap} of ${total} action points left"><span>${ph("AP", "Action points")}</span>${pips}</div>
+      <div class="belt">${belt.map((id) => `<button class="item${g && g.item === id ? " focus" : ""}" data-act="item" data-id="${id}"${S.phase !== "plan" || S.plan.items.length ? " disabled" : ""}><img src="img/${id}.jpg" alt="">${esc(DATA.items[id].name)}</button>`).join("")}</div>
+      <span class="grow"></span>${button}</div>`;
+  S.nudge = false;
+}
+function credit(id) { const a = ART[id]; return a ? `${a.artist}, <i>${esc(a.title)}</i>, ${esc(a.date)}` : ""; }
+function renderSheet() {
+  const sh = S.sheet; if (!sh) { el("sheet").innerHTML = ""; return; }
+  const c = byUid(sh.uid), st = S.st, g = step();
+  const hero = c.kind === "hero", def = hero ? DATA.heroes[c.id] : DATA.front[c.id] || {};
+  const mine = c.side === 0, crown = E.crownCard(st, c.side)?.uid === c.uid;
+  const ordered = S.plan.orders.find((o) => o.uid === c.uid);
+  let acts = "";
+  if (hero && mine && S.phase === "plan" && !c.dead) {
+    if (ordered) acts = `<p class="rule off">Already ordered this round: ${esc(ordered.name)}. Remove it from your plan to choose again.</p>`;
+    else {
+      const ap = apLeft(), opts = E.options(st, c);
+      acts = `<div class="acts">${c.actions.map((a, k) => {
+        const o = opts.find((x) => x.index === k);
+        const why = !o ? "No target in reach" : a.ap > ap ? "Not enough action points" : "";
+        const want = g && g.action === a.name, off = why || (g && !want);
+        return `<button class="act${want ? " focus" : ""}" data-act="action" data-k="${k}"${off ? " disabled" : ""}>
+          <strong>${esc(a.name)}</strong><span class="cost" aria-label="${a.ap} action point${a.ap === 1 ? "" : "s"}">${'<i class="pip on"></i>'.repeat(a.ap)}</span>
+          <small>${esc(a.text)}${why ? ` (${why}.)` : ""}</small></button>`;
+      }).join("")}</div>`;
+    }
+  }
+  const rules = hero
+    ? `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>
+       <p class="rule"><b>Bond</b>${esc(def.bond?.text || "None")}</p>`
+    : `<p class="rule"><b>Front rank · acts on its own at Speed ${E.speedOf(st, c)}</b>${esc(c.auto || "")}</p>`;
+  el("sheet").innerHTML = `<div class="sheet" role="dialog" aria-label="${esc(c.name)}">
+    ${g && g.action ? `<p class="hint">${g.say}</p>` : ""}
+    <div class="top"><img class="pic" src="img/${c.id}-full.jpg" alt="">
+      <div><h2>${esc(c.name)}</h2>
+        <p class="kind">${mine ? "Yours" : "Enemy"} · ${hero ? `${esc(def.aspect)} of ${esc(def.realm)}${c.ranged ? " · ranged" : ""}` : "front rank"}</p>
+        <p class="nums"><span>Health <b>${c.health}/${c.maxHealth}</b></span><span>Attack <b>${E.attackOf(st, c)}</b></span><span>Guard <b>${E.guardOf(st, c)}</b></span>${hero ? `<span>Speed <b>${E.speedOf(st, c)}</b></span>` : ""}</p>
+        <p class="credit">${credit(c.id)}</p></div>
+      ${g ? "" : `<button class="x" data-act="close" aria-label="Close">×</button>`}</div>
+    ${acts}${rules}</div>`;
+}
+function renderOver() {
+  let html = "";
+  if (S.mode === "intro") {
+    html = `<div class="panel">${CROWN_SVG}<p class="eyebrow">Crown &amp; Fable · Tutorial</p><h1>The Field at Silene</h1>
+      <p>A dragon, a princess and a knight. Learn the game in one short fight: about four rounds.</p>
+      <div class="btns"><button class="btn" data-act="guided">Begin</button><button class="btn quiet" data-act="free">Skip to free play</button></div></div>`;
+  } else if (S.mode === "menu") {
+    html = `<div class="panel"><p class="eyebrow">Crown &amp; Fable</p><h1>The Field at Silene</h1>
+      <div class="btns"><button class="btn" data-act="resume">Back to the fight</button><button class="btn quiet" data-act="guided">Restart the tutorial</button><button class="btn quiet" data-act="free">New free-play fight</button></div></div>`;
+  } else if (S.phase === "over") {
+    const w = S.st.winner, guided = S.wasGuided;
+    html = `<div class="panel">${w === 0 ? CROWN_SVG : ""}<p class="eyebrow">${guided ? "Tutorial complete" : `Round ${S.st.round}`}</p>
+      <h1>${w === 0 ? "Victory" : w === 1 ? "Defeat" : "A draw"}</h1>
+      <p>${w === 0 ? "The Dragon is down and the Princess keeps her Crown." : w === 1 ? "The Princess has fallen, and the Crown with her." : "Both Crowns fell in the same moment."}</p>
+      ${guided ? `<ul><li>Protect your Crown; take theirs.</li><li>3 action points a round, one action per hero.</li><li>The front rank acts on its own.</li><li>Fastest acts first; the Fate token breaks ties.</li><li>Items act before any card.</li></ul>` : ""}
+      <div class="btns"><button class="btn" data-act="free">${guided ? "Play it your own way" : "Fight again"}</button><button class="btn quiet" data-act="guided">Replay the tutorial</button></div></div>`;
+  }
+  el("over").innerHTML = html;
+}
+function render() {
+  if (S.phase === "over" && S.mode === "guided") { S.wasGuided = true; }
+  renderHead(); renderTable(); renderDock(); renderSheet(); renderOver();
+}
+
+// ---------- input ----------
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-act]");
+  if (!b) { if (e.target.id === "sheet" && !step()) { S.sheet = null; render(); } return; }
+  if (b.disabled) return;
+  const act = b.dataset.act;
+  if (act === "card") tapCard(+b.dataset.uid);
+  else if (act === "action") chooseAction(+b.dataset.k);
+  else if (act === "item") tapItem(b.dataset.id);
+  else if (act === "lock") lock();
+  else if (act === "next") { const g = step(); if (g && g.next) { advance(); render(); } }
+  else if (act === "skip") endPlayback();
+  else if (act === "close") { S.sheet = null; render(); }
+  else if (act === "cancel") { S.pick = null; render(); }
+  else if (act === "del-order") { S.plan.orders.splice(+b.dataset.k, 1); render(); }
+  else if (act === "del-item") { S.plan.items.splice(+b.dataset.k, 1); render(); }
+  else if (act === "guided") { S.wasGuided = false; start("guided"); }
+  else if (act === "free") { S.wasGuided = false; start("free"); }
+  else if (act === "menu") { if (S.phase === "play") endPlayback(); if (S.phase !== "over") { S.back = S.mode; S.mode = "menu"; if (S.back !== "guided") { S.sheet = null; S.pick = null; } render(); } }
+  else if (act === "resume") { S.mode = S.back; render(); }
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.sheet && !step()) { S.sheet = null; render(); } });
+render();
+</script>
+</body>
+</html>

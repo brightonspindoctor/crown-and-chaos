@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crown & Fable: The Field at Silene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* Crown & Fable tutorial fight. Colours and type come from the Crown & Fable design system (Gallery theme).
+   Phone: enemy pyramid on top, yours below, front ranks meeting in the middle.
+   Desktop: your pyramid on the left, the enemy's on the right. */
+:root {
+  --surface: #17110c; --raised: #221912; --ink: #efe4cc; --muted: #b9a68c; --line: #3a2c20;
+  --gold-text: #d9b763; --gold-leaf: #c9a24a; --gold-shade: #8a6424;
+  --ultramarine: #1f3a6e; --umber: #4a3222; --oxblood: #6e2a22; --vermilion: #b5381f; --verdigris: #2f5f51;
+  --display: Cinzel, "Trajan Pro", Georgia, serif;
+  --serif: "EB Garamond", Garamond, Georgia, serif;
+  --head: 38px; --dock: 160px;
+  --ch: clamp(64px, calc((100dvh - var(--head) - var(--dock) - 76px) / 6), 132px);
+  --cw: min(calc((100vw - 28px) / 3.25), calc(var(--ch) * 1.12));
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--surface); color: var(--ink); font: 16px/1.3 var(--serif); overflow: hidden; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 3px; }
+.dt { display: none; }
+#app { height: 100dvh; display: flex; flex-direction: column; position: relative; }
+
+/* ---------- header ---------- */
+#head { height: var(--head); flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 12px; border-bottom: 1px solid var(--line); background: var(--surface); }
+#head .round { font: 600 12px/1 var(--display); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+#head .place { text-align: center; min-width: 0; }
+#head .place b { display: block; font: 600 13px/1.15 var(--display); letter-spacing: .1em; color: var(--gold-text); text-transform: uppercase; white-space: nowrap; }
+#head .place i { display: block; font-size: 11px; line-height: 1.1; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#head .menu { font: 600 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 0 10px 10px; white-space: nowrap; }
+#head .menu:hover { color: var(--ink); }
+
+/* ---------- the table ---------- */
+#table { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: linear-gradient(rgba(23,17,12,.72), rgba(23,17,12,.82)), url(img/board.jpg) center / cover no-repeat; }
+.side { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.side.me { flex-direction: column-reverse; }
+.rank { display: flex; gap: 6px; justify-content: center; }
+.mid { display: flex; align-items: center; gap: 8px; height: 24px; width: 100%; justify-content: center; }
+.mid::before, .mid::after { content: ""; flex: 1; border-top: 1px dashed rgba(201,162,74,.45); margin: 0 10px; }
+.fate { width: 24px; height: 24px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 700 7px/1 var(--display); letter-spacing: .04em; color: #2a1d14;
+  background: radial-gradient(circle at 35% 30%, #f1dc9a, var(--gold-leaf) 55%, var(--gold-shade)); box-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.fate-txt { font-style: italic; font-size: 13px; color: var(--ink); text-shadow: 0 1px 3px #000; white-space: nowrap; }
+
+/* ---------- cards ---------- */
+.card { position: relative; width: var(--cw); height: var(--ch); flex: none; display: flex; flex-direction: column; gap: calc(var(--cw) * .03);
+  padding: calc(var(--cw) * .045); border-radius: calc(var(--cw) * .08); font-size: calc(var(--cw) * .118); text-align: left;
+  background: #2a1c12; border: max(2px, calc(var(--cw) * .028)) solid #5d4330; box-shadow: 0 2px 8px rgba(20,13,8,.55); transition: transform .18s, opacity .25s, filter .25s; }
+.card.hero { background: #1c130c; border-color: var(--gold-leaf); box-shadow: inset 0 0 0 1px var(--gold-shade), 0 2px 8px rgba(20,13,8,.55); }
+.card.slot { background: none; border: 1px dashed rgba(185,166,140,.2); box-shadow: none; cursor: default; }
+.nm { font: 600 .82em/1.25 var(--display); letter-spacing: .03em; text-align: center; white-space: nowrap; overflow: hidden; border-radius: 2px; background: var(--umber); padding: 0 .15em; flex: none; text-transform: uppercase; }
+.hero .nm { background: var(--ultramarine); }
+.art { flex: 1; min-height: 0; overflow: hidden; border-radius: 2px; position: relative; background: #0c0805; }
+.art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.stats { flex: none; display: flex; align-items: center; gap: .35em; font: 700 1.05em/1 var(--display); height: 1.35em; }
+.stats svg { width: .95em; height: .95em; flex: none; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.atk { display: flex; align-items: center; gap: .2em; }
+.grd { width: 1.15em; height: 1.15em; transform: rotate(45deg); background: #35507f; border: 1px solid #9fb3d6; display: grid; place-items: center; margin-left: .25em; }
+.grd b { transform: rotate(-45deg); font-size: .78em; }
+.grd.spent { opacity: .35; }
+.hp { margin-left: auto; min-width: 1.75em; text-align: center; padding: .16em .2em .5em; margin-bottom: -.32em; background: #8f2a16; clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%); }
+.hp.hurt { color: #ffd9c9; }
+.spd, .crownmark { position: absolute; top: -.5em; width: 1.6em; height: 1.6em; border-radius: 50%; display: grid; place-items: center; z-index: 2; box-shadow: 0 1px 3px rgba(0,0,0,.6); }
+.spd { left: -.5em; background: var(--vermilion); border: 1px solid #e9b9a6; font: 700 .9em/1 var(--display); }
+.crownmark { right: -.5em; background: #1c130c; border: 1px solid var(--gold-leaf); }
+.crownmark svg { width: 1.05em; height: 1.05em; fill: var(--gold-leaf); }
+.order, .badge { position: absolute; left: 0; right: 0; bottom: 0; font: 600 .78em/1.5 var(--display); letter-spacing: .03em; text-align: center; white-space: nowrap; overflow: hidden; background: rgba(47,95,81,.94); }
+.badge { background: rgba(110,42,34,.94); }
+.card.focus, .card.can, .fate.focus { animation: glow 1.1s ease-in-out infinite alternate; z-index: 3; }
+.card.dim { opacity: .5; }
+.card.acting { transform: scale(1.07); z-index: 4; box-shadow: 0 0 0 2px #f1dc9a, 0 10px 24px rgba(20,13,8,.7); }
+.card.hit { animation: shake .4s; }
+.card.fallen { opacity: .28; filter: grayscale(1); }
+.card.stopped { filter: saturate(.4) brightness(.8); }
+.float { position: absolute; left: 50%; top: 34%; transform: translate(-50%, -50%); font: 700 1.9em/1 var(--display); z-index: 5; pointer-events: none; text-shadow: 0 0 6px #000, 0 2px 2px #000; animation: rise 1.2s ease-out forwards; white-space: nowrap; }
+.float.dmg { color: #ff8f73; } .float.heal { color: #8fe0c2; } .float.blk { color: #c9d6f0; font-size: 1.05em; }
+@keyframes glow { from { box-shadow: 0 0 0 2px var(--gold-text), 0 0 6px 2px rgba(217,183,99,.35); } to { box-shadow: 0 0 0 3px #f6e3a6, 0 0 18px 7px rgba(217,183,99,.7); } }
+@keyframes shake { 20% { transform: translateX(-5px); } 45% { transform: translateX(5px); } 70% { transform: translateX(-3px); } }
+@keyframes rise { 0% { opacity: 0; transform: translate(-50%, -20%) scale(.7); } 15% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } 75% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -110%); } }
+
+/* ---------- dock: the guide's words, action points, tool belt, lock in ---------- */
+#dock { height: var(--dock); flex: none; display: flex; flex-direction: column; gap: 6px; padding: 8px 12px 10px; background: var(--raised); border-top: 1px solid var(--gold-shade); }
+.coach { flex: 1; min-height: 0; overflow-y: auto; font-size: 15.5px; line-height: 1.26; }
+.coach p { margin: 0; text-wrap: pretty; }
+.coach .who { font: 600 10px/1.4 var(--display); letter-spacing: .14em; color: var(--gold-text); text-transform: uppercase; }
+.coach.nudge { animation: shake .4s; }
+.chips { display: flex; gap: 6px; margin-top: 5px; overflow-x: auto; scrollbar-width: none; }
+.chip { flex: none; white-space: nowrap; }
+.chip { font-size: 13px; line-height: 1.2; border: 1px solid var(--line); border-radius: 99px; padding: 2px 4px 2px 9px; display: inline-flex; align-items: center; gap: 4px; background: var(--surface); }
+.chip button { width: 22px; height: 22px; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
+.ctl { flex: none; display: flex; align-items: center; gap: 10px; height: 40px; }
+.ap { display: flex; align-items: center; gap: 4px; }
+.ap span { font: 600 10px/1 var(--display); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; margin-right: 3px; }
+.pip { width: 15px; height: 15px; border-radius: 50%; border: 1px dashed var(--gold-shade); }
+.pip.on { border: 1px solid var(--gold-shade); background: radial-gradient(circle at 35% 30%, #f1dc9a, var(--gold-leaf) 60%, var(--gold-shade)); }
+.belt { display: flex; gap: 6px; min-width: 0; }
+.item { height: 38px; display: flex; align-items: center; gap: 6px; padding: 2px 9px 2px 2px; border: 1px solid var(--oxblood); border-radius: 6px; background: #1c130c; font-size: 14px; white-space: nowrap; position: relative; }
+.item img { width: 32px; height: 32px; object-fit: cover; border-radius: 4px; display: block; }
+.item.focus { animation: glow 1.1s ease-in-out infinite alternate; }
+.item:disabled { opacity: .45; cursor: default; }
+.grow { flex: 1; }
+.btn { height: 40px; padding: 0 16px; border-radius: 6px; font: 700 12.5px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; color: #2a1d14;
+  background: linear-gradient(#e9cf85, var(--gold-leaf)); border: 1px solid var(--gold-shade); box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+.btn:disabled { opacity: .4; cursor: default; }
+.btn.quiet { background: none; color: var(--gold-text); border-color: var(--gold-shade); box-shadow: none; }
+.btn.focus { animation: glow 1.1s ease-in-out infinite alternate; }
+
+/* ---------- card sheet ---------- */
+#sheet:empty, #over:empty { display: none; }
+#sheet { position: absolute; inset: 0; z-index: 20; display: flex; align-items: flex-end; justify-content: center; background: rgba(12,8,5,.55); }
+.sheet { width: min(560px, 100%); max-height: 86dvh; overflow-y: auto; background: var(--raised); border: 1px solid var(--gold-shade); border-bottom: 0; border-radius: 14px 14px 0 0; padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -10px 30px rgba(0,0,0,.6); }
+.sheet .hint { font-style: italic; color: var(--gold-text); margin: 0; }
+.sheet .top { display: flex; gap: 12px; }
+.sheet .pic { width: 86px; aspect-ratio: 5 / 7; object-fit: cover; border-radius: 6px; border: 2px solid var(--gold-leaf); flex: none; }
+.sheet h2 { margin: 0; font: 600 20px/1.2 var(--display); letter-spacing: .04em; }
+.sheet .kind { font-style: italic; color: var(--muted); margin: 0 0 4px; }
+.sheet .nums { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 15px; margin: 0; }
+.sheet .nums b { font-family: var(--display); }
+.sheet .credit { font-size: 12.5px; font-style: italic; color: var(--muted); margin: 4px 0 0; }
+.sheet .x { margin-left: auto; align-self: flex-start; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); color: var(--muted); font-size: 20px; line-height: 1; flex: none; }
+.sheet .rule { margin: 0; font-size: 15.5px; line-height: 1.3; }
+.sheet .rule b { font: 600 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-text); display: block; margin-bottom: 2px; }
+.sheet .rule.off { color: var(--muted); }
+.acts { display: flex; flex-direction: column; gap: 7px; }
+.act { display: grid; grid-template-columns: 1fr auto; gap: 1px 10px; text-align: left; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--gold-shade); background: var(--surface); }
+.act strong { font: 600 15px/1.2 var(--display); letter-spacing: .04em; }
+.act .cost { display: flex; gap: 3px; align-items: center; }
+.act .cost .pip { width: 12px; height: 12px; }
+.act small { grid-column: 1 / -1; font-size: 14.5px; color: var(--muted); line-height: 1.25; }
+.act:disabled { opacity: .42; cursor: default; }
+.act.focus { animation: glow 1.1s ease-in-out infinite alternate; }
+
+/* ---------- start and end screens ---------- */
+#over { position: absolute; inset: 0; z-index: 30; display: grid; place-items: center; padding: 20px; background: rgba(12,8,5,.8); }
+.panel { width: min(440px, 100%); background: var(--raised); border: 2px solid var(--gold-leaf); box-shadow: inset 0 0 0 1px var(--gold-shade), 0 20px 50px rgba(0,0,0,.7); border-radius: 14px; padding: 26px 22px 22px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.panel svg { width: 44px; height: 44px; fill: var(--gold-leaf); }
+.panel .eyebrow { font: 600 11px/1 var(--display); letter-spacing: .18em; color: var(--muted); text-transform: uppercase; margin: 0; }
+.panel h1 { margin: 0; font: 600 34px/1.1 var(--display); letter-spacing: .03em; color: var(--gold-text); text-wrap: balance; }
+.panel p { margin: 0; font-size: 17px; line-height: 1.35; text-wrap: pretty; }
+.panel .btns { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 6px; }
+.panel .btn { width: 100%; height: 46px; }
+.panel ul { margin: 0; padding: 0; list-style: none; text-align: left; font-size: 15.5px; line-height: 1.3; display: flex; flex-direction: column; gap: 4px; }
+.panel li::before { content: "◆ "; color: var(--gold-leaf); font-size: 10px; vertical-align: 2px; }
+
+/* ---------- desktop ---------- */
+@media (min-width: 900px) and (min-aspect-ratio: 5/4) {
+  :root { --head: 60px; --dock: 96px;
+    --ch: clamp(96px, calc((100dvh - var(--head) - var(--dock) - 70px) / 3), 210px);
+    --cw: min(calc(var(--ch) * .74), calc((100vw - 260px) / 6.6)); }
+  .dt { display: inline; } .ph { display: none; }
+  #head { padding: 0 24px; }
+  #head .round { font-size: 13px; } #head .place b { font-size: 19px; } #head .place i { font-size: 14px; } #head .menu { font-size: 12px; }
+  #table { flex-direction: row-reverse; gap: 16px; }
+  .side, .side.me { flex-direction: row; gap: 16px; }
+  .side.foe { flex-direction: row-reverse; }
+  .rank { flex-direction: column; gap: 12px; }
+  .mid { flex-direction: column; width: auto; height: 100%; padding: 24px 0; gap: 8px; }
+  .mid::before, .mid::after { border-top: 0; border-left: 1px dashed rgba(201,162,74,.45); margin: 0; }
+  .fate { width: 56px; height: 56px; font-size: 12px; }
+  .fate-txt { font-size: 15px; width: 60px; text-align: center; white-space: normal; line-height: 1.1; }
+  #dock { flex-direction: row; align-items: center; gap: 24px; padding: 10px 24px; }
+  .ctl { display: contents; } .ctl .grow { display: none; }
+  .ap { order: 1; } .belt { order: 2; } .coach { order: 3; font-size: 18px; flex: 1; max-height: 100%; } #dock .btn { order: 4; }
+  .pip { width: 20px; height: 20px; } .ap span { font-size: 12px; margin-right: 8px; }
+  .item { height: 50px; font-size: 16px; } .item img { width: 44px; height: 44px; }
+  .btn { height: 50px; padding: 0 26px; font-size: 14px; }
+  #sheet { align-items: center; } .sheet { border-bottom: 1px solid var(--gold-shade); border-radius: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .card.focus, .card.can, .card.hit, .btn.focus, .item.focus, .act.focus, .coach.nudge { animation: none; transition: none; }
+  .card.focus, .card.can, .btn.focus, .item.focus, .act.focus { box-shadow: 0 0 0 3px #f6e3a6; }
+  .float { animation: none; top: 20%; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="head"></header>
+  <main id="table"></main>
+  <footer id="dock"></footer>
+  <div id="sheet"></div>
+  <div id="over"></div>
+</div>
+<script>
+const DATA = {"heroes":{"the-princess":{"id":"the-princess","name":"The Princess","type":"hero","realm":"Albion","tale":"St George and the Dragon","aspect":"Healer","tags":[],"stats":{"health":8,"attack":2,"ranged":true,"guard":0,"speed":3},"vulnerableTo":"Beast","renown":10,"crownPassive":{"text":"At upkeep, heal 1 to one of your cards, chosen at random."},"bond":{"text":"Her heals restore +1 for each other Albion hero you field."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Mend","ap":1,"text":"Heal 1 to each of your adjacent cards."},{"name":"Girdle Leash","ap":1,"text":"An enemy Beast can't act this round."}],"art":"the-princess","status":"reviewed","notes":"Girdle Leash comes from the design-system mock-up and the lore cards."},"st-george":{"id":"st-george","name":"St George","type":"hero","realm":"Albion","tale":"St George and the Dragon","aspect":"Guardian","tags":[],"stats":{"health":7,"attack":3,"ranged":false,"guard":2,"speed":2},"vulnerableTo":"Trickster","renown":14,"crownPassive":{"text":"Blocks the first 5 damage of the first attack on any of your heroes each round."},"bond":{"text":"When one of your Beast heroes dies, his Guard is added to his Attack. If one of your Healers dies, his Attack doubles."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Lance Charge","ap":2,"text":"Deal 5 to the closest enemy."},{"name":"Shield Brother","ap":1,"text":"An adjacent hero takes no damage this round."}],"art":"st-george","status":"reviewed","notes":"Actions come from the design-system card mock-up, not yet confirmed in the design doc."},"the-dragon":{"id":"the-dragon","name":"The Dragon","type":"hero","realm":"Albion","tale":"St George and the Dragon","aspect":"Beast","tags":["Dragon"],"stats":{"health":12,"attack":4,"ranged":false,"guard":0,"speed":1},"vulnerableTo":"Slayer","renown":12,"crownPassive":{"text":"When another of your heroes is about to die, he automatically swaps slots with it and takes the hit, even if it kills him. The saved hero becomes the Crown."},"bond":{"text":"Your heroes deal +1 damage to Slayers."},"actions":[{"name":"Attack","ap":1,"text":"Standard attack: damage equal to Attack."},{"name":"Fire Breath","ap":2,"text":"Deal 3 to any two enemies."},{"name":"Tail Sweep","ap":1,"text":"Deal 2 to the closest enemy and a card next to it."}],"art":"the-dragon","status":"reviewed","notes":"Actions come from the design-system card mock-up."}},"front":{"villager":{"type":"front-rank","id":"villager","name":"Villager","health":1,"attack":1,"guard":0,"renown":1,"auto":"Attacks the card opposite. Free: every player has unlimited copies.","art":"villager"},"longbowman":{"type":"front-rank","id":"longbowman","name":"Longbowman","health":1,"attack":1,"guard":0,"renown":3,"auto":"Shoots the enemy Crown.","art":"longbowman"},"knight":{"type":"front-rank","id":"knight","name":"Knight","health":2,"attack":2,"guard":1,"renown":3,"auto":"Attacks the card opposite.","art":"knight"},"berserker":{"type":"front-rank","id":"berserker","name":"Berserker","health":3,"attack":2,"guard":0,"renown":4,"auto":"Attacks the card opposite and one enemy card next to it.","art":"berserker"}},"items":{"gingerbread":{"id":"gingerbread","name":"Gingerbread","type":"item","realm":"Märchen","rarity":"Common","effect":"Heal a hero 2.","renown":1,"ap":1,"art":"gingerbread"}}};
+const ART = {"the-princess":{"artist":"Rogier van der Weyden","title":"Saint George and the Dragon","date":"c. 1432-35"},"st-george":{"artist":"Raphael","title":"Saint George and the Dragon","date":"c. 1506"},"the-dragon":{"artist":"Il Sodoma","title":"Saint George and the Dragon","date":"c. 1518"},"villager":{"artist":"Antoine Le Nain","title":"A Peasant Family","date":"c. 1640-45"},"longbowman":{"artist":"Loyset Liédet","title":"The Battle of Crécy (Froissart's Chronicles)","date":"c. 1470"},"knight":{"artist":"Albrecht Dürer","title":"Knight, Death and the Devil","date":"1513"},"berserker":{"artist":"Peter Nicolai Arbo","title":"The Fall of Saint Olav at the Battle of Stiklestad","date":"1859"},"gingerbread":{"artist":"Carl Offterdinger","title":"Hänsel und Gretel","date":"late 1800s"},"board":{"artist":"Paolo Uccello","title":"Saint George and the Dragon","date":"c. 1470"}};
+const E = (() => { // Crown & Fable rules engine.
+// Shared by the simulator (Node) and the playable page (browser). No dependencies.
+//
+// Board: each side has slots 1–6. Slot 1 is the Crown, slots 2–3 are heroes,
+// slots 4–6 are the front rank. A round is: upkeep, plan, resolve (Speed order).
+//
+// Where the design doc leaves a detail open, the engine makes a choice and lists it
+// in ASSUMPTIONS so it can be checked against playtesting.
+
+const ASSUMPTIONS = [
+  "Front-rank cards act at Speed 2.",
+  "Items resolve before any card acts that round.",
+  "Opposite slots face each other: 4 faces 4, 5 faces 5, 6 faces 6.",
+  "Slot 1 counts as next to slots 2 and 3; front-rank slots are next to their row neighbours.",
+  "Baba Yaga's Mortar ride is simplified: she kills the closest enemy card that isn't the Crown and stays in slot 1.",
+  "Koschei's Whirlwind swaps the target with the other hero in slots 2–3 (never the Crown).",
+  "A Thrall made by Dracula's Turn has 3 Health and the victim's Attack, and attacks the card opposite.",
+  "Merlin's Enchanted sleep stops the hero for this round only, because no hero can be stopped two rounds running.",
+  "Fights that pass round 20 are draws.",
+  "The slot-1 rules (shielded only by two heroes; can't melee past its own heroes) apply to whoever is in slot 1, including under Robin's No Crown.",
+  "Only the standard Attack can be turned on your own heroes, and only from slot 1.",
+  "Front-rank cards in front of the Crown don't stop it attacking; only heroes in slots 2–3 do.",
+];
+
+const NIGHTFALL = 8;
+const MAX_ROUNDS = 20;
+const FRONT_SPEED = 2;
+
+// ---------- random numbers (seedable, so fights can be replayed) ----------
+function makeRng(seed = Date.now()) {
+  let s = (Math.imul(seed >>> 0, 2654435761) ^ 0x9e3779b9) >>> 0 || 1;
+  const next = () => {
+    s ^= s << 13; s >>>= 0;
+    s ^= s >>> 17;
+    s ^= s << 5; s >>>= 0;
+    return s / 4294967296;
+  };
+  for (let k = 0; k < 8; k++) next(); // warm up, so small seeds don't give lopsided first rolls
+  return {
+    next,
+    int: (n) => Math.floor(next() * n),
+    pick: (arr) => arr[Math.floor(next() * arr.length)],
+    shuffle: (arr) => {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(next() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    },
+  };
+}
+
+// ---------- setting up a fight ----------
+let UID = 0;
+
+function makeHero(def, side, slot) {
+  const s = def.stats;
+  return {
+    uid: ++UID, id: def.id, kind: "hero", side, slot, name: def.name,
+    realm: def.realm, tale: def.tale, aspect: def.aspect, ranged: !!s.ranged,
+    baseHealth: s.health, maxHealth: s.health, health: s.health,
+    baseAtk: s.attack, baseGuard: s.guard, baseSpeed: s.speed,
+    atkPerm: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
+    actions: def.actions.map((a) => ({ ...a })), uses: {},
+    guardLeft: 0, roundGuard: 0, poison: 0, dead: false, removed: false,
+    noGuard: false, noHeal: false, stoppedRound: -9, stopNow: false,
+    flags: {},
+  };
+}
+
+function makeFront(def, side, slot) {
+  return {
+    uid: ++UID, id: def.id, kind: "front", side, slot, name: def.name,
+    realm: def.realm || null, tale: def.tale || null, aspect: null, ranged: false,
+    baseHealth: def.health, maxHealth: def.health, health: def.health,
+    baseAtk: def.attack, baseGuard: def.guard, baseSpeed: FRONT_SPEED,
+    atkPerm: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
+    auto: def.auto, actions: [], uses: {},
+    guardLeft: 0, roundGuard: 0, poison: 0, dead: false, removed: false,
+    noGuard: false, noHeal: false, stoppedRound: -9, stopNow: false,
+    flags: {},
+  };
+}
+
+// lineup: { crown, heroes: [id, id], front: [id, id, id], items: [id...] }
+function createGame(data, lineups, opts = {}) {
+  const rng = opts.rng || makeRng(opts.seed);
+  const st = {
+    data, rng, round: 0, fate: rng.int(2), log: [], over: false, winner: null,
+    sides: [0, 1].map((i) => ({ index: i, slots: {}, items: [], usedItems: [], grave: [], swallowed: [],
+      noCrown: false, crownUid: null, ap: 3, flags: {} })),
+    marks: {},
+  };
+  lineups.forEach((lu, i) => setupSide(st, i, lu));
+  // Start-of-fight effects
+  for (const side of st.sides) {
+    const crown = crownCard(st, side.index);
+    if (crown?.id === "robin-hood") side.noCrown = true;
+  }
+  applyStartingHealth(st);
+  for (const side of st.sides) {
+    const crown = crownCard(st, side.index);
+    if (crown && crownActive(st, side.index) && crown.id === "sheriff-of-nottingham") {
+      const foe = st.sides[1 - side.index];
+      if (foe.items.length) {
+        const i = rng.int(foe.items.length);
+        const [taken] = foe.items.splice(i, 1);
+        side.items.push(taken);
+        log(st, `${sideName(side.index)} taxed: the Sheriff of Nottingham takes ${itemName(st, taken)} from ${sideName(foe.index)}.`);
+      }
+    }
+  }
+  if (opts.noUpkeep !== true) upkeep(st);
+  return st;
+}
+
+function setupSide(st, i, lu) {
+  const side = st.sides[i];
+  const H = (id) => st.data.heroes[id];
+  const F = (id) => st.data.front[id];
+  let crownId = lu.crown;
+  const heroes = (lu.heroes || []).slice(0, 2);
+  if ([crownId, ...heroes].includes("baba-yaga") && crownId !== "baba-yaga") {
+    heroes[heroes.indexOf("baba-yaga")] = crownId;
+    crownId = "baba-yaga";
+  }
+  if (crownId) side.slots[1] = makeHero(H(crownId), i, 1);
+  heroes.forEach((id, k) => { if (id) side.slots[2 + k] = makeHero(H(id), i, 2 + k); });
+  const front = (lu.front || []).slice(0, 3);
+  const hasKoschei = [crownId, ...heroes].includes("koschei");
+  front.forEach((id, k) => { if (id && !(hasKoschei && k === 2)) side.slots[4 + k] = makeFront(F(id), i, 4 + k); });
+  if (hasKoschei) side.slots[6] = makeFront(F("the-needle"), i, 6);
+  side.items = (lu.items || []).slice();
+  side.crownUid = side.slots[1]?.uid ?? null;
+}
+
+// ---------- small helpers ----------
+const sideName = (i) => (i === 0 ? "Blue" : "Red");
+const itemName = (st, id) => st.data.items[id]?.name || id;
+// st.onLog, if set, is called after every log line, so a page can record the fight step by step.
+function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.onLog(msg); }
+
+function cards(st, i) { return Object.values(st.sides[i].slots).filter((c) => c && !c.dead && !c.removed); }
+function heroes(st, i) { return cards(st, i).filter((c) => c.kind === "hero"); }
+function allCards(st) { return [...cards(st, 0), ...cards(st, 1)]; }
+function at(st, i, slot) { const c = st.sides[i].slots[slot]; return c && !c.dead && !c.removed ? c : null; }
+function crownCard(st, i) {
+  const side = st.sides[i];
+  if (side.noCrown) return null;
+  return Object.values(side.slots).find((c) => c && c.uid === side.crownUid && !c.dead) || null;
+}
+function crownActive(st, i) { return !st.sides[i].noCrown; }
+function crownIs(st, i, id) { const c = crownCard(st, i); return !!c && c.id === id && crownActive(st, i); }
+function anyCrown(st, id) { return crownIs(st, 0, id) || crownIs(st, 1, id); }
+const isNight = (st) => st.round >= NIGHTFALL;
+const injured = (c) => c.health < c.maxHealth;
+
+function neighbours(st, c) {
+  const i = c.side, s = c.slot;
+  const map = { 1: [2, 3], 2: [1, 3], 3: [1, 2], 4: [5], 5: [4, 6], 6: [5] };
+  return (map[s] || []).map((x) => at(st, i, x)).filter(Boolean);
+}
+
+// For bonds: realm/tale checks bend under King Arthur's crown.
+function arthur(st, i) { return crownIs(st, i, "king-arthur"); }
+function isRealm(st, c, realm) { return c.realm === realm || (arthur(st, c.side) && c.kind === "hero"); }
+function isTale(st, c, tale) { return c.tale === tale || (arthur(st, c.side) && c.kind === "hero"); }
+function otherHeroes(st, c, pred = () => true) { return heroes(st, c.side).filter((h) => h.uid !== c.uid && pred(h)); }
+function countRealm(st, c, realm) { return otherHeroes(st, c, (h) => isRealm(st, h, realm)).length; }
+
+// Bond strength for a side: 1 normally, 0 if the enemy crown is Morgan, -1 if it is the Little Mermaid.
+function bondFactor(st, i) {
+  const foe = 1 - i;
+  if (crownIs(st, foe, "morgan-le-fay")) return 0;
+  if (crownIs(st, foe, "the-little-mermaid")) return -1;
+  return 1;
+}
+function hasBond(st, c) { return bondFactor(st, c.side) !== 0; }
+
+// ---------- derived stats ----------
+function attackOf(st, c) {
+  let a = c.baseAtk + c.atkPerm + c.guardIntoAtk;
+  if (c.flags.harmless) return 0;
+  const f = bondFactor(st, c.side);
+  if (c.kind === "hero" && f) {
+    if (["renfield", "van-helsing"].includes(c.id)) a += f * countRealm(st, c, "Gothic");
+    if (c.id === "rumpelstiltskin") a += f * countRealm(st, c, "Märchen");
+    if (c.id === "the-huntsman") a += f * Math.min(2, countRealm(st, c, "Märchen"));
+    if (c.id === "the-tin-soldier") a += f * countRealm(st, c, "Eventyr");
+    if (c.id === "lancelot") {
+      const mine = heroes(st, c.side);
+      if (mine.some((h) => h.aspect === "Sovereign") && !mine.some((h) => h.aspect === "Healer")) a += f * 2;
+    }
+  }
+  if (c.id === "the-bride" && crownIs(st, c.side, "the-bride") && gothicBeast(st, c)) a += 1;
+  a = a * c.atkMult;
+  return Math.max(0, a);
+}
+function gothicBeast(st, c) { return otherHeroes(st, c, (h) => h.aspect === "Beast" && isRealm(st, h, "Gothic")).length > 0; }
+
+function guardOf(st, c) {
+  if (c.noGuard) return 0;
+  let g = c.baseGuard;
+  if (c.id === "blodeuwedd" && c.flags.night) g = c.baseGuard * 2;
+  const i = c.side;
+  // bonds from cards on this side
+  for (const src of heroes(st, i)) {
+    const f = bondFactor(st, i);
+    if (!f) break;
+    if (src.id === "king-arthur" && c.kind === "hero" && isRealm(st, c, "Albion")) g += f;
+    if (src.id === "sheriff-of-nottingham" && isRealm(st, c, "Albion")) g += f;
+    if (src.id === "blodeuwedd" && c.kind === "hero" && isRealm(st, c, "Cymru")) g += f;
+  }
+  const f = bondFactor(st, i);
+  if (c.kind === "hero" && f) {
+    if (c.id === "bran-the-blessed") g += f * countRealm(st, c, "Cymru");
+    if (c.id === "friar-tuck") g += f * countRealm(st, c, "Albion");
+    if (c.id === "the-snow-queen") g += f * countRealm(st, c, "Eventyr");
+  }
+  if (crownIs(st, i, "little-john") && c.kind === "hero" && c.realm === "Albion") g += 1;
+  if (crownIs(st, i, "merlin") && c.kind === "front") g += 1;
+  if (c.id === "the-bride" && crownIs(st, i, "the-bride") && gothicBeast(st, c)) g += 1;
+  return Math.max(0, g);
+}
+
+function speedOf(st, c) {
+  if (c.flags.speedOneRound === st.round) return 1;
+  if (c.speedFixed != null) return c.speedFixed;
+  let s = c.baseSpeed + c.speedPerm;
+  const i = c.side, f = bondFactor(st, i);
+  if (f) {
+    for (const src of heroes(st, i)) {
+      if (src.id === "robin-hood" && src.uid !== c.uid && c.kind === "hero" && isRealm(st, c, "Albion")) s += f;
+      if (src.id === "baba-yaga" && src.uid !== c.uid && c.kind === "hero") s -= f;
+    }
+    if (c.id === "rhiannon") s += f * countRealm(st, c, "Cymru");
+    if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
+  }
+  if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
+  return Math.max(1, s);
+}
+
+// Health bonuses from bonds are set once, at the start of the fight.
+function applyStartingHealth(st) {
+  for (const i of [0, 1]) {
+    const f = bondFactor(st, i);
+    for (const c of cards(st, i)) {
+      let bonus = 0;
+      if (f && c.kind === "hero") {
+        for (const src of heroes(st, i)) {
+          if (src.id === "lancelot" && isRealm(st, c, "Albion")) bonus += f;
+          if (src.id === "baba-yaga" && src.uid !== c.uid) bonus -= 2 * f;
+        }
+        if (c.id === "koschei") bonus += f * countRealm(st, c, "Rus'");
+        if (c.id === "gretel") bonus += f * countRealm(st, c, "Märchen");
+      }
+      if (bonus) {
+        c.maxHealth = Math.max(1, c.maxHealth + bonus);
+        c.health = Math.max(1, Math.min(c.maxHealth, c.health + bonus));
+      }
+    }
+  }
+}
+
+// ---------- healing ----------
+function heal(st, src, target, amount, opts = {}) {
+  if (!target || target.dead || target.removed) return 0;
+  if (isNight(st) && !opts.ignoreNight) return 0;
+  if (target.noHeal) return 0;
+  if (target.flags.noHealRound === st.round) return 0;
+  let amt = amount;
+  if (src && !opts.flat) {
+    const i = src.side, f = bondFactor(st, i);
+    if (f) {
+      const guin = heroes(st, i).find((h) => h.id === "guinevere");
+      if (guin) amt += f * heroes(st, i).filter((h) => isRealm(st, h, "Albion")).length;
+      if (src.id === "the-princess") amt += f * countRealm(st, src, "Albion");
+      if (src.id === "vasilisa-the-wise" && countRealm(st, src, "Rus'") > 0) amt += f;
+    }
+  }
+  if (crownIs(st, 0, "van-helsing")) amt -= 1;
+  if (crownIs(st, 1, "van-helsing")) amt -= 1;
+  amt = Math.max(0, amt);
+  const cap = target.id === "baba-yaga" ? Math.max(target.maxHealth, target.health) : target.maxHealth;
+  const before = target.health;
+  target.health = Math.min(cap, target.health + amt);
+  const gain = target.health - before;
+  if (gain > 0) log(st, `${src?.name || "Healing"} heals ${sideName(target.side)} ${target.name} for ${gain}.`);
+  return gain;
+}
+
+// ---------- targeting ----------
+// Closest enemy row: front rank, then heroes in 2–3, then the Crown.
+// Enemy rows, closest first. The front rank shields everything. Behind it, the Crown (slot 1) is
+// shielded from melee only while both hero slots (2 and 3) are filled; once one is empty the Crown
+// can be struck alongside the remaining hero.
+function enemyRows(st, attackerSide) {
+  const foe = 1 - attackerSide;
+  const front = [4, 5, 6].map((s) => at(st, foe, s)).filter(Boolean);
+  const mid = [2, 3].map((s) => at(st, foe, s)).filter(Boolean);
+  const back = at(st, foe, 1);
+  const rows = [front];
+  if (mid.length >= 2) { rows.push(mid); if (back) rows.push([back]); }
+  else rows.push(back ? [...mid, back] : mid);
+  return rows.filter((r) => r.length);
+}
+function closestRow(st, attackerSide) { return enemyRows(st, attackerSide)[0] || []; }
+// A card in slot 1 can't melee the enemy while one of its own heroes stands in front of it.
+function crownBlocked(st, c) {
+  return c.kind === "hero" && c.slot === 1 && [2, 3].some((s) => at(st, c.side, s)?.kind === "hero");
+}
+function meleeTargets(st, attacker) {
+  if (crownBlocked(st, attacker)) return [];
+  const rows = enemyRows(st, attacker.side);
+  if (!rows.length) return [];
+  let out = rows[0];
+  if (crownIs(st, attacker.side, "bran-the-blessed") && rows[1]) out = out.concat(rows[1]);
+  return out;
+}
+function rangedTargets(st, attacker) {
+  const foe = 1 - attacker.side;
+  return cards(st, foe).filter((c) => !(c.id === "the-wolf" && hasBond(st, c) &&
+    otherHeroes(st, c, (h) => isRealm(st, h, "Märchen")).length > 0));
+}
+function reachable(st, attacker, ranged) { return ranged ? rangedTargets(st, attacker) : meleeTargets(st, attacker); }
+
+// ---------- damage ----------
+// opts: { attack: bool, ranged: bool, spell: bool, ignoreGuard: bool, noRedirect: bool }
+function damage(st, src, target, amount, opts = {}) {
+  if (!target || target.dead || target.removed) return 0;
+  let t = target;
+  const atk = !!opts.attack;
+  const tSide = t.side;
+  // Redirects (attacks only)
+  if (atk && !opts.noRedirect) t = redirect(st, src, t, opts);
+  if (!t) return 0;
+  // Misses and immunities
+  if (atk && t.id === "rhiannon" && crownIs(st, t.side, "rhiannon") && src && speedOf(st, src) < speedOf(st, t) &&
+      t.flags.missRound !== st.round) {
+    t.flags.missRound = st.round;
+    log(st, `${src.name}'s attack on Rhiannon misses.`);
+    return 0;
+  }
+  if (t.flags.shieldRound === st.round) { log(st, `${t.name} is shielded and takes no damage.`); return 0; }
+  let amt = amount;
+  if (atk && src) {
+    const s = src.side, f = bondFactor(st, s);
+    if (crownIs(st, s, "gretel") && t.aspect === "Witch") amt += 2;
+    if (crownIs(st, s, "the-wolf") && injured(t)) amt += 1;
+    if (crownIs(st, s, "the-huntsman") && st.marks[`hunt${s}`] === t.uid) amt += 2;
+    if (st.marks[`wanted${s}`] === t.uid) amt += 1;
+    if (f && heroes(st, s).some((h) => h.id === "the-dragon") && t.aspect === "Slayer") amt += f;
+    if (src.flags.giantSword === st.round) { amt += 3; opts = { ...opts, ignoreGuard: true }; src.flags.giantSword = -1; }
+    if (opts.ranged && crownIs(st, t.side, "grendels-mother") && t.kind === "hero") amt -= 2;
+  }
+  if (opts.spell && src) {
+    const f = bondFactor(st, src.side);
+    if (f) {
+      if (src.id === "merlin" && otherHeroes(st, src, (h) => isRealm(st, h, "Albion")).length) amt += f;
+      if (src.id === "gwydion") amt += f * countRealm(st, src, "Cymru");
+      if (src.id === "morgan-le-fay" && t.aspect === "Sovereign") amt += 2 * f;
+    }
+  }
+  amt = Math.max(0, amt);
+  if (atk && crownIs(st, t.side, "maid-marian")) amt = Math.min(5, amt);
+  if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
+    st.sides[t.side].flags.georgeRound = st.round;
+    const blocked = Math.min(5, amt);
+    amt -= blocked;
+    if (blocked) log(st, `St George blocks ${blocked} damage to ${t.name}.`);
+  }
+  const ignoreGuard = opts.ignoreGuard || (atk && src && crownIs(st, src.side, "beowulf"));
+  if (!ignoreGuard && t.guardLeft > 0 && !opts.trueDamage) {
+    const g = Math.min(t.guardLeft, amt);
+    t.guardLeft -= g; amt -= g;
+    if (amt <= 0 && g > 0) log(st, `${sideName(t.side)} ${t.name}'s Guard blocks ${src ? src.name + "'s hit" : "the damage"}.`);
+  }
+  if (amt <= 0) return 0;
+  return applyHealthLoss(st, src, t, amt, opts);
+}
+
+function redirect(st, src, t, opts) {
+  const side = t.side;
+  // The Renfield guard: takes the next hit aimed at your crown.
+  const crown = crownCard(st, side);
+  if (crown && t.uid === crown.uid) {
+    const ren = heroes(st, side).find((h) => h.flags.guardCrownRound === st.round && h.uid !== t.uid);
+    if (ren) { ren.flags.guardCrownRound = -1; log(st, `${ren.name} takes the hit meant for the crown.`); return ren; }
+  }
+  // Tin Soldier: takes the first attack aimed at a hero next to him.
+  if (t.kind === "hero") {
+    const tin = neighbours(st, t).find((n) => n.id === "the-tin-soldier" && n.flags.steadfastRound >= st.round - 1 && n.flags.steadfastUsed !== st.round);
+    if (tin) { tin.flags.steadfastUsed = st.round; log(st, `The Tin Soldier steps in front of ${t.name}.`); return tin; }
+  }
+  // Little John's bond: first attack each round on another Albion hero.
+  if (t.kind === "hero" && isRealm(st, t, "Albion") && t.id !== "little-john") {
+    const lj = heroes(st, side).find((h) => h.id === "little-john");
+    if (lj && hasBond(st, lj) && bondFactor(st, side) > 0 && st.sides[side].flags.johnRound !== st.round) {
+      st.sides[side].flags.johnRound = st.round;
+      log(st, `Little John takes the blow meant for ${t.name}.`);
+      return lj;
+    }
+  }
+  // Leshy: the first attack each round aimed at another card of yours.
+  const leshy = cards(st, side).find((c) => c.id === "leshy" && c.uid !== t.uid);
+  if (leshy && st.sides[side].flags.leshyRound !== st.round) {
+    st.sides[side].flags.leshyRound = st.round;
+    log(st, `The Leshy takes the attack meant for ${t.name}.`);
+    return leshy;
+  }
+  return t;
+}
+
+const noCheating = (st) => anyCrown(st, "van-helsing");
+
+function applyHealthLoss(st, src, t, amt, opts = {}) {
+  const side = t.side;
+  // Koschei's hidden death
+  if (t.id === "koschei" && !opts.nightfall) {
+    const needle = cards(st, side).find((c) => c.id === "the-needle");
+    if (needle && t.health - amt < 1) amt = t.health - 1;
+  }
+  if (t.health - amt <= 0 && t.kind === "hero") {
+    // The Dragon's crown: he swaps in and takes the hit (once).
+    const dragon = crownCard(st, side);
+    if (dragon && dragon.id === "the-dragon" && dragon.uid !== t.uid && !st.sides[side].flags.dragonSwapped && !opts.nightfall) {
+      st.sides[side].flags.dragonSwapped = true;
+      const s1 = dragon.slot, s2 = t.slot;
+      st.sides[side].slots[s1] = t; st.sides[side].slots[s2] = dragon;
+      t.slot = s1; dragon.slot = s2;
+      st.sides[side].crownUid = t.uid;
+      log(st, `The Dragon swaps in to save ${t.name}, who becomes the Crown.`);
+      return applyHealthLoss(st, src, dragon, amt, opts);
+    }
+    if (!noCheating(st)) {
+      if (crownIs(st, side, "vasilisa-the-wise") && !st.sides[side].flags.vasilisaUsed) {
+        st.sides[side].flags.vasilisaUsed = true;
+        t.health = 1; log(st, `${t.name} survives on 1 Health (Vasilisa).`); return amt;
+      }
+      if (t.id === "red-riding-hood" && hasBond(st, t) && !t.flags.survived &&
+          otherHeroes(st, t, (h) => h.aspect === "Slayer").length) {
+        t.flags.survived = true;
+        t.health = 3; log(st, `Red Riding Hood survives on 3 Health.`); return amt;
+      }
+    }
+  }
+  t.health -= amt;
+  log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
+  if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
+  if (t.health <= 0) kill(st, t, src);
+  return amt;
+}
+
+function kill(st, t, src) {
+  if (t.dead) return;
+  t.dead = true; t.health = 0;
+  const side = st.sides[t.side];
+  side.grave.push(t);
+  onDeath(st, t, src);
+}
+
+function onDeath(st, t, src) {
+  const i = t.side;
+  if (t.kind !== "hero") return;
+  // Released from the Wolf
+  if (t.id === "the-wolf") {
+    for (const s of st.sides) {
+      for (const v of s.swallowed.filter((x) => x.by === t.uid)) {
+        if (noCheating(st)) continue;
+        const slot = v.card.slot;
+        if (!at(st, v.card.side, slot)) {
+          v.card.removed = false; v.card.health = 1; st.sides[v.card.side].slots[slot] = v.card;
+          log(st, `${v.card.name} comes back out of the Wolf on 1 Health.`);
+        }
+      }
+      s.swallowed = s.swallowed.filter((x) => x.by !== t.uid);
+    }
+  }
+  // Bonds that react to deaths, on both sides
+  for (const side of [0, 1]) {
+    const f = bondFactor(st, side);
+    if (!f) continue;
+    for (const h of heroes(st, side)) {
+      const mine = side === i;
+      if (h.id === "beowulf" && t.aspect === "Beast") h.atkPerm += f;
+      if (!mine) continue;
+      if (h.id === "maid-marian" && isRealm(st, t, "Albion") && !h.flags.marianDone) {
+        h.flags.marianDone = true; h.atkPerm += 2 * f; h.speedPerm += f;
+      }
+      if (h.id === "st-george") {
+        if (t.aspect === "Beast" && !h.flags.georgeBeast) { h.flags.georgeBeast = true; h.guardIntoAtk += f * guardOf(st, h); }
+        if (t.aspect === "Healer" && !h.flags.georgeHealer) { h.flags.georgeHealer = true; h.atkMult = f > 0 ? 2 : 1; }
+      }
+      if (h.id === "grendels-mother" && t.id === "grendel") { h.atkPerm += 3 * f; h.speedFixed = 3; }
+      if (h.id === "the-creature" && isRealm(st, t, "Gothic")) {
+        h.flags.gothicDeaths = (h.flags.gothicDeaths || 0) + 1;
+        if (h.flags.gothicDeaths === 1) h.atkPerm += 2 * f;
+        if (h.flags.gothicDeaths === 2) { h.atkPerm += 2 * f; h.speedPerm += f; }
+      }
+      if (h.id === "dracula" && isRealm(st, t, "Gothic")) heal(st, h, h, 4 * f > 0 ? 4 : 0, { flat: true });
+    }
+    if (side === i && t.id === "the-little-mermaid") {
+      for (const h of heroes(st, side)) if (isRealm(st, h, "Eventyr")) heal(st, t, h, 3);
+    }
+  }
+}
+
+// ---------- stopping a card from acting ----------
+function stop(st, target, why) {
+  if (!target || target.dead) return false;
+  if (crownIs(st, target.side, "the-tin-soldier") && target.kind === "hero") { log(st, `${target.name} can't be stopped (Tin Soldier).`); return false; }
+  if (target.stoppedRound === st.round - 1) { log(st, `${target.name} was stopped last round, so it can't be stopped again.`); return false; }
+  target.stopNow = true; target.stoppedRound = st.round;
+  log(st, `${target.name} is stopped (${why}).`);
+  return true;
+}
+
+// ---------- upkeep ----------
+function upkeep(st) {
+  st.round += 1;
+  st.marks = {};
+  // Fate token
+  const ren0 = crownIs(st, 0, "renfield"), ren1 = crownIs(st, 1, "renfield");
+  if (ren0 && !ren1) st.fate = 0; else if (ren1 && !ren0) st.fate = 1; else if (st.round > 1) st.fate = 1 - st.fate;
+  for (const i of [0, 1]) {
+    st.sides[i].ap = crownIs(st, i, "victor-frankenstein") ? 4 : 3;
+    st.sides[i].flags.itemApExtra = 0;
+  }
+  // Blodeuwedd's change at nightfall comes first
+  if (st.round === NIGHTFALL) {
+    for (const c of allCards(st)) if (c.id === "blodeuwedd" && !c.flags.night) {
+      c.flags.night = true; c.maxHealth = c.baseHealth * 2; c.health = c.maxHealth; c.baseAtk *= 2;
+      log(st, `Blodeuwedd becomes the owl: 14 Health, Attack 4, Guard 2.`);
+    }
+  }
+  // Guard refreshes
+  for (const c of allCards(st)) { c.guardLeft = guardOf(st, c); c.stopNow = false; }
+  // Nightfall damage and Poison (ignore Guard)
+  if (isNight(st)) {
+    const n = st.round - NIGHTFALL + 1;
+    for (const c of allCards(st)) applyHealthLoss(st, null, c, n, { nightfall: true });
+  }
+  // Poison halves after each tick (rounded down), so it ends after it deals 1.
+  for (const c of allCards(st)) if (c.poison > 0) { const p = c.poison; c.poison = Math.floor(p / 2); applyHealthLoss(st, { name: "Poison", side: -1 }, c, p, {}); }
+  // Crown passives at upkeep
+  for (const i of [0, 1]) {
+    const crown = crownCard(st, i);
+    if (!crown || !crownActive(st, i)) continue;
+    const foe = 1 - i;
+    switch (crown.id) {
+      case "blodeuwedd": {
+        for (const h of heroes(st, i)) if (h.uid !== crown.uid && h.realm === "Cymru") { crown.guardLeft += h.guardLeft; h.guardLeft = 0; }
+        break;
+      }
+      case "the-princess": { const c = st.rng.pick(cards(st, i)); heal(st, crown, c, 1); break; }
+      case "red-riding-hood": {
+        const c = cards(st, i).filter(injured).sort((a, b) => (b.maxHealth - b.health) - (a.maxHealth - a.health))[0];
+        if (c) heal(st, crown, c, 2);
+        break;
+      }
+      case "grendel": {
+        const fr = cards(st, foe).filter((c) => c.kind === "front").sort((a, b) => a.health - b.health)[0];
+        if (fr) damage(st, crown, fr, 2, {});
+        break;
+      }
+      case "the-snow-queen": {
+        const fr = cards(st, foe).filter((c) => c.kind === "front" && c.flags.frozenRound !== st.round - 1).sort((a, b) => attackOf(st, b) - attackOf(st, a))[0];
+        if (fr && !crownIs(st, foe, "the-tin-soldier")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); }
+        break;
+      }
+      case "friar-tuck": {
+        const side = st.sides[i];
+        side.flags.tuckReturns = side.flags.tuckReturns || 0;
+        if (side.flags.tuckReturns < 3 && !isNight(st) && !noCheating(st)) {
+          const dead = side.grave.find((c) => c.kind === "front" && !at(st, i, c.slot));
+          if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); }
+        }
+        break;
+      }
+    }
+  }
+  // Bonds at upkeep
+  for (const i of [0, 1]) {
+    const f = bondFactor(st, i);
+    if (!f) continue;
+    for (const h of heroes(st, i)) {
+      if (h.id === "victor-frankenstein") {
+        for (const c of heroes(st, i)) if (c.uid === h.uid || isRealm(st, c, "Gothic")) heal(st, h, c, 2 * f > 0 ? 2 : 0, { flat: f < 0 });
+      }
+      if (h.id === "grendel" && heroes(st, i).some((x) => x.id === "grendels-mother")) heal(st, h, h, f > 0 ? 1 : 0);
+    }
+  }
+  checkWin(st);
+}
+
+function revive(st, c, health) {
+  const side = st.sides[c.side];
+  c.dead = false; c.removed = false; c.health = health;
+  side.grave = side.grave.filter((x) => x.uid !== c.uid);
+  side.slots[c.slot] = c;
+  if (crownIs(st, c.side, "gwydion")) { c.maxHealth += 2; c.health += 2; c.atkPerm += 1; }
+}
+
+// ---------- win check ----------
+function checkWin(st) {
+  const lost = [0, 1].map((i) => {
+    const side = st.sides[i];
+    if (side.noCrown) return heroes(st, i).length === 0;
+    const crown = Object.values(side.slots).find((c) => c && c.uid === side.crownUid);
+    return !crown || crown.dead;
+  });
+  if (lost[0] && lost[1]) { st.over = true; st.winner = -1; log(st, "Both crowns fall: a draw."); }
+  else if (lost[0]) { st.over = true; st.winner = 1; log(st, "Red wins."); }
+  else if (lost[1]) { st.over = true; st.winner = 0; log(st, "Blue wins."); }
+  else if (st.round >= MAX_ROUNDS) { st.over = true; st.winner = -1; log(st, "Round limit reached: a draw."); }
+  return st.over;
+}
+
+// ---------- actions ----------
+// Each action has a target type the planner/UI uses and a resolver.
+// Target types: none, self, enemyMelee, enemyAny, enemyHero, enemyHeroMelee, enemyHeroNotCrown, enemyFront,
+// ally, allyHero, allyHeroOther, adjacentAllyHero, enemyAny2
+const STD = { type: "attack" };
+const ACTIONS = {
+  "baba-yaga": { "Pestle": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5) },
+    "Skull fire": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 3, { ranged: true }) },
+    "Mortar ride": { t: "enemyNotCrown", go: (st, a, x) => { log(st, `Baba Yaga rides her mortar onto ${x.name}.`); kill(st, x, a); a.health += 2; } } },
+  "beowulf": { "Arm-wrench": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.atkPerm -= 2; } } },
+  "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
+  "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); } } },
+  "dracula": { "Claw": STD,
+    "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
+    "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
+      kill(st, x, a);
+      const slot = [4, 5, 6].find((s) => !at(st, a.side, s));
+      if (slot) {
+        const th = makeFront({ id: "thrall", name: `Thrall ${x.name}`, health: 3, attack: x.baseAtk, guard: 0, auto: "Attacks the card opposite." }, a.side, slot);
+        st.sides[a.side].slots[slot] = th;
+        if (crownIs(st, a.side, "gwydion")) { th.maxHealth += 2; th.health += 2; th.atkPerm += 1; }
+        log(st, `${x.name} rises as a Thrall for Dracula.`);
+      }
+    } } },
+  "friar-tuck": { "Ale and bread": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 2)) } },
+  "grendel": { "Devour": { t: "enemyFrontWeak2", go: (st, a, x) => { kill(st, x, a); heal(st, a, a, 2); } } },
+  "grendels-mother": { "Drag under": { t: "enemyHero23", go: (st, a, x) => hit(st, a, x, attackOf(st, a)) } },
+  "gretel": { "Into the oven": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && x.aspect === "Witch" && x.health <= 6) { kill(st, x, a); log(st, `${x.name} goes into the oven.`); } } } },
+  "guinevere": { "Queen's mercy": { t: "allyHero", go: (st, a, x) => heal(st, a, x, 3) } },
+  "gwydion": { "Battle of the trees": { t: "emptyFront", go: (st, a) => {
+      const slot = [4, 5, 6].find((s) => !at(st, a.side, s)); if (!slot) return;
+      const tw = makeFront({ id: "tree-warrior", name: "Tree Warrior", health: 2, attack: 2, guard: 0, auto: "Attacks the card opposite." }, a.side, slot);
+      st.sides[a.side].slots[slot] = tw;
+      if (crownIs(st, a.side, "gwydion")) { tw.maxHealth += 2; tw.health += 2; tw.atkPerm += 1; }
+      log(st, `Gwydion calls a Tree Warrior out of the forest.`);
+    } },
+    "Shape-shift": { t: "enemyFront", go: (st, a, x) => { x.flags.harmless = true; log(st, `${x.name} becomes a harmless animal.`); } } },
+  "king-arthur": { "Excalibur": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
+  "koschei": { "Whirlwind": { t: "enemyHeroNotCrown", go: (st, a, x) => {
+    damage(st, a, x, 3, { attack: true });
+    if (!x.dead && !crownIs(st, x.side, "the-tin-soldier")) {
+      const other = x.slot === 2 ? 3 : 2; const side = st.sides[x.side]; const y = side.slots[other];
+      side.slots[other] = x; side.slots[x.slot] = y && !y.dead ? y : null; if (y && !y.dead) y.slot = x.slot; x.slot = other;
+    }
+  } } },
+  "lancelot": { "Champion's charge": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5) } },
+  "little-john": { "Quarterstaff": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 4); const n = neighbours(st, x)[0]; if (n) hit(st, a, n, 1); } } },
+  "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
+  "merlin": { "Hex": { t: "enemyAny", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+    "Enchanted sleep": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Enchanted sleep") } },
+  "morgan-le-fay": { "Hex": { t: "enemyAny", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+    "Stolen scabbard": { t: "enemyHero", go: (st, a, x) => { x.noGuard = true; x.guardLeft = 0; x.noHeal = true; log(st, `${x.name} loses its Guard and healing.`); } } },
+  "red-riding-hood": { "Cake and wine": { t: "ally", go: (st, a, x) => heal(st, a, x, 4) } },
+  "renfield": { "The master is at hand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.guardCrownRound = st.round; } },
+    "Betrayal": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 6, { ignoreGuard: true }); a.guardLeft = 0; a.noGuard = true; a.health = Math.min(a.health, 1); log(st, "Renfield's betrayal leaves him on 1 Health."); } } },
+  "rhiannon": { "The unhurried pace": { t: "enemyHero", go: (st, a, x) => { x.flags.speedOneRound = st.round; } } },
+  "robin-hood": { "Split the Arrow": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 5, { ranged: true }) } },
+  "rumpelstiltskin": { "Straw into gold": { t: "none", go: (st, a) => { const side = st.sides[a.side]; const it = side.usedItems.pop(); if (it) { side.items.push(it); log(st, `Rumpelstiltskin spins back ${itemName(st, it)}.`); } } } },
+  "sheriff-of-nottingham": { "Wanted": { t: "enemyAny", go: (st, a, x) => { st.marks[`wanted${a.side}`] = x.uid; log(st, `${x.name} is Wanted.`); } },
+    "Break their spirit": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.noGuard = true; x.guardLeft = 0; } } },
+  "st-george": { "Lance Charge": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5) },
+    "Shield Brother": { t: "adjacentAllyHero", go: (st, a, x) => { x.flags.shieldRound = st.round; } } },
+  "the-bride": { "Strike": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, attackOf(st, a), { ranged: true }) },
+    "Completion": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 99)) } },
+  "the-creature": { "Rampage": { t: "enemyMelee", go: (st, a, x) => { const ns = neighbours(st, x); hit(st, a, x, 3); ns.forEach((n) => hit(st, a, n, 3)); } },
+    "The Pyre": { t: "none", go: (st, a) => { cards(st, 1 - a.side).forEach((c) => damage(st, a, c, 6, { attack: true })); damage(st, null, a, 8, { trueDamage: true }); } } },
+  "the-dragon": { "Fire Breath": { t: "enemyAny2", go: (st, a, x, y) => { hit(st, a, x, 3, { ranged: true }); if (y) hit(st, a, y, 3, { ranged: true }); } },
+    "Tail Sweep": { t: "enemyMelee", go: (st, a, x) => { const n = neighbours(st, x)[0]; hit(st, a, x, 2); if (n) hit(st, a, n, 2); } } },
+  "the-huntsman": { "Stones in the belly": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, attackOf(st, a), { ranged: true }); if (!x.dead) x.speedFixed = 1; } } },
+  "the-little-mermaid": { "Sea magic": { t: "enemyAny", go: (st, a, x) => { damage(st, a, x, attackOf(st, a), { spell: true, attack: true, ranged: true }); applyHealthLoss(st, { name: "The knives", side: -1 }, a, 1, {}); } },
+    "Saved from the wreck": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
+  "the-princess": { "Mend": { t: "none", go: (st, a) => neighbours(st, a).forEach((n) => heal(st, a, n, 1)) },
+    "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => stop(st, x, "Girdle Leash") } },
+  "the-snow-queen": { "Shard of the mirror": { t: "enemyHero", go: (st, a, x) => { x.flags.shardRound = st.round; } } },
+  "the-tin-soldier": { "Steadfast stand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.steadfastRound = st.round; } } },
+  "the-wolf": { "Swallow whole": { t: "enemyWolf", go: (st, a, x) => {
+    x.removed = true; st.sides[x.side].slots[x.slot] = null; st.sides[x.side].swallowed.push({ by: a.uid, card: x });
+    log(st, `The Wolf swallows ${x.name} whole.`);
+  } } },
+  "van-helsing": { "Blood transfusion": { t: "none", go: (st, a) => {
+    applyHealthLoss(st, { name: "Blood transfusion", side: -1 }, a, 2, {});
+    const others = heroes(st, a.side).filter((h) => h.uid !== a.uid);
+    if (others.length) heal(st, a, st.rng.pick(others), 3);
+  } } },
+  "vasilisa-the-wise": { "The doll's advice": { t: "allyHero", go: (st, a, x) => { heal(st, a, x, 3); x.guardLeft += 1; } } },
+  "victor-frankenstein": { "Reanimate": { t: "deadTalemate", go: (st, a, x) => {
+    if (noCheating(st)) return;
+    const slot = [2, 3].find((s) => !at(st, a.side, s)); if (!slot) return;
+    x.slot = slot; revive(st, x, 3); log(st, `Victor reanimates ${x.name}.`);
+  } } },
+  "zmey-gorynych": { "Heads grow back": { t: "none", go: (st, a) => heal(st, a, a, 6) } },
+};
+
+// A standard or named attack. Returns damage dealt.
+function hit(st, a, x, amount, opts = {}) {
+  let target = x;
+  if (a.flags.shardRound === st.round) {
+    const own = neighbours(st, a)[0];
+    if (own) { log(st, `${a.name}'s attack turns on ${own.name} (Shard of the mirror).`); target = own; }
+  }
+  const d = damage(st, a, target, amount, { attack: true, ...opts });
+  if (a.id === "lancelot" && crownIs(st, a.side, "lancelot") && a.flags.chipRound !== st.round) {
+    const ec = crownCard(st, 1 - a.side);
+    if (ec) { a.flags.chipRound = st.round; applyHealthLoss(st, a, ec, 1, {}); }
+  }
+  return d;
+}
+
+function standardAttack(st, a, x) {
+  if (a.id === "zmey-gorynych" && crownIs(st, a.side, "zmey-gorynych")) {
+    const per = 1 + Math.max(0, bondFactor(st, a.side)) * countRealm(st, a, "Rus'");
+    for (let k = 0; k < 3; k++) {
+      const pool = meleeTargets(st, a);
+      if (!pool.length) break;
+      hit(st, a, st.rng.pick(pool), per);
+    }
+    return;
+  }
+  hit(st, a, x, attackOf(st, a), { ranged: a.ranged });
+}
+
+// Targets for an action, for the planner and the UI.
+function targetsFor(st, a, act) {
+  const foe = 1 - a.side;
+  const spec = ACTIONS[a.id]?.[act.name];
+  const type = spec?.t ?? (a.ranged || act.text.includes("Ranged") ? "enemyAny" : "enemyMelee");
+  // A standard melee attack from slot 1 may also be turned on your own heroes in slots 2–3.
+  if (!spec?.t && type === "enemyMelee" && a.slot === 1) {
+    return meleeTargets(st, a).concat([2, 3].map((x) => at(st, a.side, x)).filter((c) => c && c.kind === "hero"));
+  }
+  const eh = heroes(st, foe);
+  switch (type) {
+    case "none": return [null];
+    case "emptyFront": return [4, 5, 6].some((x) => !at(st, a.side, x)) ? [null] : [];
+    case "enemyMelee": return meleeTargets(st, a);
+    case "enemyAny": case "enemyAny2": return rangedTargets(st, a);
+    case "enemyHero": return eh;
+    case "enemyHeroMelee": { const m = meleeTargets(st, a).filter((c) => c.kind === "hero"); return m.length ? m : []; }
+    case "enemyHeroNotCrown": return eh.filter((c) => c.uid !== st.sides[foe].crownUid);
+    case "enemyHero23": return eh.filter((c) => c.slot === 2 || c.slot === 3);
+    case "enemyFront": return cards(st, foe).filter((c) => c.kind === "front");
+    case "enemyFrontWeak2": return cards(st, foe).filter((c) => c.kind === "front" && c.health <= 2);
+    case "enemyWeakNotCrown": return cards(st, foe).filter((c) => (c.kind === "front" || c.uid !== st.sides[foe].crownUid) && c.health <= 3 && !(c.kind === "hero" && c.uid === st.sides[foe].crownUid));
+    case "enemyWolf": { const fr = closestRow(st, a.side).filter((c) => c.kind === "front"); return [...fr, ...eh.filter((c) => c.health <= 3 && c.uid !== st.sides[foe].crownUid)]; }
+    case "enemyNotCrown": return closestRow(st, a.side).filter((c) => c.uid !== st.sides[foe].crownUid);
+    case "enemyBeast": return eh.filter((c) => c.aspect === "Beast");
+    case "ally": return cards(st, a.side);
+    case "allyHero": return heroes(st, a.side);
+    case "adjacentAllyHero": return neighbours(st, a).filter((c) => c.kind === "hero");
+    case "deadFront": return st.sides[a.side].grave.filter((c) => c.kind === "front" && !at(st, a.side, c.slot));
+    case "deadTalemate": return st.sides[a.side].grave.filter((c) => c.kind === "hero" && c.uid !== a.uid && isTale(st, c, a.tale));
+    default: return [];
+  }
+}
+
+// Usable actions for a hero this round: [{ index, action, targets }]
+function options(st, a) {
+  const side = st.sides[a.side];
+  const out = [];
+  a.actions.forEach((act, index) => {
+    if (act.usesPerFight && (a.uses[act.name] || 0) >= act.usesPerFight) return;
+    if (act.ap > 4) return;
+    const targets = targetsFor(st, a, act);
+    if (!targets.length) return;
+    out.push({ index, action: act, targets });
+  });
+  return out;
+}
+
+function itemCost(st, i) { return crownIs(st, 1 - i, "koschei") ? 2 : 1; }
+
+const ITEM_TARGETS = {
+  "dragons-blood": "allyHero", "draught-of-the-cauldron": "deadHero", "gingerbread": "allyHero", "golden-apple": "allyHero",
+  "mead-of-heorot": "none", "mead-of-poetry": "none", "poisoned-apple": "enemyHero", "skull-lantern": "enemyHero",
+  "spindle": "enemyHero", "the-giants-sword": "allyHero", "water-of-life": "allyHero",
+};
+function itemTargets(st, i, id) {
+  switch (ITEM_TARGETS[id]) {
+    case "none": return [null];
+    case "allyHero": return heroes(st, i);
+    case "enemyHero": return heroes(st, 1 - i);
+    case "deadHero": return [2, 3].some((s) => !at(st, i, s)) ? st.sides[i].grave.filter((c) => c.kind === "hero") : [];
+    default: return [];
+  }
+}
+
+function useItem(st, i, id, x) {
+  const side = st.sides[i];
+  const k = side.items.indexOf(id); if (k < 0) return;
+  side.items.splice(k, 1); side.usedItems.push(id);
+  const src = { name: itemName(st, id), side: i, id: "item", flags: {} };
+  log(st, `${sideName(i)} uses ${itemName(st, id)}${x ? ` on ${x.name}` : ""}.`);
+  switch (id) {
+    case "dragons-blood": x.guardLeft += 3; break;
+    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); } break; }
+    case "gingerbread": heal(st, src, x, 2); break;
+    case "golden-apple": heal(st, src, x, 3); x.poison = 0; break;
+    case "mead-of-heorot": heroes(st, i).forEach((h) => heal(st, src, h, 2)); break;
+    case "poisoned-apple": x.poison += 2; break;
+    case "skull-lantern": damage(st, src, x, x.aspect === "Witch" ? 4 : 2, { spell: true }); break;
+    case "spindle": stop(st, x, "Spindle"); break;
+    case "the-giants-sword": x.flags.giantSword = st.round; break;
+    case "water-of-life": x.health = Math.max(x.health, Math.min(20, x.maxHealth)); break;
+  }
+}
+
+// ---------- front-rank automatic actions ----------
+function frontAct(st, c) {
+  if (c.flags.frozenRound === st.round) { log(st, `${c.name} is frozen and skips its action.`); return; }
+  const foe = 1 - c.side;
+  const opposite = () => at(st, foe, c.slot) || st.rng.pick(closestRow(st, c.side));
+  const a = attackOf(st, c);
+  switch (c.id) {
+    case "berserker": { const x = opposite(); if (!x) return; const n = neighbours(st, x)[0]; damage(st, c, x, a, { attack: true }); if (n) damage(st, c, n, a, { attack: true }); return; }
+    case "crossbowman": {
+      const hs = heroes(st, foe).filter((h) => h.slot === 2 || h.slot === 3).sort((p, q) => p.health - q.health);
+      const x = hs[0] || opposite(); if (x) damage(st, c, x, a, { attack: true, ranged: true }); return;
+    }
+    case "longbowman": {
+      const x = crownCard(st, foe) || at(st, foe, 1) || st.rng.pick(closestRow(st, c.side));
+      if (x) damage(st, c, x, a, { attack: true, ranged: true }); return;
+    }
+    case "grandmother": {
+      const behind = { 4: [2], 5: [2, 3], 6: [3] }[c.slot] || [];
+      const h = behind.map((s) => at(st, c.side, s)).filter(Boolean).sort((p, q) => p.health - q.health)[0];
+      if (h) heal(st, c, h, 1); return;
+    }
+    case "monk": { const x = cards(st, c.side).filter(injured); if (x.length) heal(st, c, st.rng.pick(x), 2); return; }
+    case "leshy": case "the-needle": return;
+    case "mere-beast": { const x = opposite(); if (!x) return; const d = damage(st, c, x, a, { attack: true }); if (d >= 0 && !x.dead) x.poison = Math.max(x.poison, 1); return; }
+    default: { const x = opposite(); if (x && a > 0) damage(st, c, x, a, { attack: true }); }
+  }
+}
+
+// ---------- a full round ----------
+// plans: [planBlue, planRed]; a plan is { orders: [{ uid, index, target, target2 }], items: [{ id, target }],
+//   rumpel: uid | null, hunt: uid | null }
+function playRound(st, plans) {
+  if (st.over) return st;
+  st.acting = null; // uid of the card acting right now, for pages that replay the round
+  const ords = [];
+  for (const i of [0, 1]) {
+    const plan = plans[i] || { orders: [], items: [] };
+    let ap = st.sides[i].ap;
+    for (const it of plan.items || []) {
+      if (it.id === "mead-of-poetry") ap += 2;
+    }
+    // Items first
+    for (const it of plan.items || []) {
+      const cost = itemCost(st, i);
+      if (ap < cost || !st.sides[i].items.includes(it.id)) continue;
+      ap -= cost;
+      ords.push({ side: i, item: it.id, target: it.target, prio: 100 });
+    }
+    const used = new Set();
+    for (const o of plan.orders || []) {
+      const a = cards(st, i).find((c) => c.uid === o.uid);
+      if (!a || used.has(a.uid)) continue;
+      const act = a.actions[o.index]; if (!act) continue;
+      if (act.ap > ap) continue;
+      ap -= act.ap; used.add(a.uid);
+      ords.push({ side: i, actor: a, index: o.index, target: o.target, target2: o.target2 });
+    }
+    if (crownIs(st, i, "the-huntsman") && plan.hunt) st.marks[`hunt${i}`] = plan.hunt;
+    // Front rank acts automatically
+    for (const c of cards(st, i).filter((c) => c.kind === "front")) ords.push({ side: i, actor: c, auto: true });
+  }
+  // Rumpelstiltskin's guess
+  for (const i of [0, 1]) {
+    const pick = plans[i]?.rumpel;
+    const rum = crownCard(st, i);
+    if (!pick || !rum || rum.id !== "rumpelstiltskin" || !crownActive(st, i)) continue;
+    st.sides[i].flags.rumpelPicked = st.sides[i].flags.rumpelPicked || [];
+    if (st.sides[i].flags.rumpelPicked.includes(pick)) continue;
+    st.sides[i].flags.rumpelPicked.push(pick);
+    const o = ords.find((x) => x.actor && x.actor.uid === pick && !x.auto);
+    const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
+    if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); applyHealthLoss(st, rum, tgt, 2, {}); }
+    else { log(st, `Rumpelstiltskin guesses wrong.`); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
+  }
+  for (const c of allCards(st)) c.flags.acted = false;
+  // Resolve items, then cards in Speed order (recomputed each step)
+  for (const o of ords.filter((o) => o.item)) {
+    const tgt = o.item === "draught-of-the-cauldron"
+      ? st.sides[o.side].grave.find((c) => c.uid === o.target)
+      : (o.target ? findCard(st, o.target) : null);
+    if (ITEM_TARGETS[o.item] !== "none" && !tgt) continue; // no valid target: the item isn't spent
+    useItem(st, o.side, o.item, tgt);
+  }
+  let pending = ords.filter((o) => !o.item);
+  while (pending.length && !st.over) {
+    pending = pending.filter((o) => o.actor && !o.actor.dead && !o.actor.removed);
+    if (!pending.length) break;
+    pending.sort((p, q) => speedOf(st, q.actor) - speedOf(st, p.actor) ||
+      (p.side === st.fate ? -1 : 0) - (q.side === st.fate ? -1 : 0) || p.actor.slot - q.actor.slot);
+    const o = pending.shift();
+    const a = o.actor;
+    st.acting = a.uid;
+    if (o.cancelled || a.stopNow) { a.flags.acted = true; continue; }
+    a.flags.acted = true;
+    if (o.auto) { frontAct(st, a); continue; }
+    const act = a.actions[o.index];
+    a.uses[act.name] = (a.uses[act.name] || 0) + (act.usesPerFight ? 1 : 0);
+    let x = o.target ? findCard(st, o.target) : null;
+    const spec = ACTIONS[a.id]?.[act.name];
+    const needsTarget = spec ? !["none", "emptyFront"].includes(spec.t) : true;
+    if (spec && ["deadFront", "deadTalemate"].includes(spec.t)) x = st.sides[a.side].grave.find((c) => c.uid === o.target);
+    if (needsTarget && !x) {
+      // Target gone: wasted (the doc's rule), unless it's a standard melee attack with another target in reach.
+      log(st, `${a.name}'s ${act.name} is wasted: its target is gone.`); continue;
+    }
+    if (needsTarget && x && !spec?.t?.startsWith("dead") && !["ally", "allyHero", "adjacentAllyHero"].includes(spec?.t)) {
+      const legal = targetsFor(st, a, act).some((c) => c && c.uid === x.uid);
+      if (!legal) { log(st, `${a.name}'s ${act.name} is wasted: ${x.name} is out of reach.`); continue; }
+    }
+    log(st, `${sideName(a.side)} ${a.name} uses ${act.name}${x ? ` on ${x.name}` : ""}.`);
+    if (spec && spec.go) spec.go(st, a, x, o.target2 ? findCard(st, o.target2) : null);
+    else standardAttack(st, a, x);
+  }
+  st.acting = null;
+  checkWin(st);
+  if (!st.over) upkeep(st);
+  return st;
+}
+
+function findCard(st, uid) {
+  for (const s of st.sides) for (const c of Object.values(s.slots)) if (c && c.uid === uid && !c.dead && !c.removed) return c;
+  return null;
+}
+
+// ---------- a simple bot ----------
+// Scores every (hero, action, target) and picks greedily by value per action point, with a little noise.
+function botPlan(st, i, rng = st.rng, noise = 0.35) {
+  const foe = 1 - i;
+  const plan = { orders: [], items: [], rumpel: null, hunt: null };
+  let ap = st.sides[i].ap;
+  const ec = crownCard(st, foe);
+  const cand = [];
+  for (const a of heroes(st, i)) {
+    for (const o of options(st, a)) {
+      for (const x of o.targets) {
+        const v = valueOf(st, a, o.action, x);
+        if (v <= 0) continue;
+        const t2 = o.action.name === "Fire Breath" ? rangedTargets(st, a).find((c) => c.uid !== x?.uid) : null;
+        cand.push({ a, index: o.index, ap: o.action.ap, x, t2, v: (v / Math.max(1, o.action.ap)) * (1 + noise * (rng.next() - 0.5)) });
+      }
+    }
+  }
+  cand.sort((p, q) => q.v - p.v);
+  const used = new Set();
+  // Items: use when clearly useful
+  const cost = itemCost(st, i);
+  for (const id of st.sides[i].items.slice()) {
+    const mine = heroes(st, i);
+    let t = null, ok = false;
+    switch (id) {
+      case "gingerbread": case "golden-apple": case "water-of-life": {
+        if (isNight(st)) break;
+        t = mine.filter((h) => h.maxHealth - h.health >= (id === "water-of-life" ? 6 : 3)).sort((p, q) => p.health - q.health)[0]; ok = !!t; break;
+      }
+      case "mead-of-heorot": ok = !isNight(st) && mine.filter((h) => h.maxHealth - h.health >= 2).length >= 2; break;
+      case "skull-lantern": case "poisoned-apple": { t = heroes(st, foe).sort((p, q) => p.health - q.health)[0]; ok = !!t; break; }
+      case "spindle": { t = heroes(st, foe).sort((p, q) => attackOf(st, q) - attackOf(st, p))[0]; ok = !!t && st.round > 1; break; }
+      case "dragons-blood": { t = crownCard(st, i); ok = !!t && t.health <= t.maxHealth / 2; break; }
+      case "the-giants-sword": { t = mine.sort((p, q) => attackOf(st, q) - attackOf(st, p))[0]; ok = !!t; break; }
+      case "draught-of-the-cauldron": { t = itemTargets(st, i, id)[0]; ok = !!t; break; }
+      case "mead-of-poetry": ok = st.round >= 2; break;
+    }
+    if (ok && ap >= cost && rng.next() < 0.6) {
+      plan.items.push({ id, target: t ? t.uid : null });
+      ap -= cost; if (id === "mead-of-poetry") ap += 2;
+    }
+  }
+  for (const c of cand) {
+    if (used.has(c.a.uid) || c.ap > ap) continue;
+    used.add(c.a.uid); ap -= c.ap;
+    plan.orders.push({ uid: c.a.uid, index: c.index, target: c.x ? c.x.uid : null, target2: c.t2 ? c.t2.uid : null });
+  }
+  const eh = heroes(st, foe);
+  if (eh.length) {
+    const picked = st.sides[i].flags.rumpelPicked || [];
+    const fresh = eh.filter((h) => !picked.includes(h.uid));
+    if (fresh.length && rng.next() < 0.5) plan.rumpel = rng.pick(fresh).uid;
+    plan.hunt = (ec && eh.find((h) => h.uid === ec.uid)) ? ec.uid : rng.pick(eh).uid;
+  }
+  return plan;
+}
+
+function valueOf(st, a, act, x) {
+  const foe = 1 - a.side;
+  const ec = crownCard(st, foe);
+  const name = act.name;
+  const dmgValue = (d, t) => {
+    if (!t) return 0;
+    const eff = Math.max(0, d - (t.guardLeft || 0));
+    let v = Math.min(eff, t.health);
+    if (eff >= t.health) v += t.kind === "hero" ? 6 : 3;
+    if (ec && t.uid === ec.uid) v *= eff >= t.health ? 10 : 1.6;
+    return v;
+  };
+  const missing = (t) => (t ? t.maxHealth - t.health : 0);
+  switch (name) {
+    case "Attack": case "Claw":
+      if (x && x.side === a.side) return 0;
+      if (a.id === "zmey-gorynych" && crownIs(st, a.side, "zmey-gorynych")) return 3 * (1 + countRealm(st, a, "Rus'"));
+      return dmgValue(attackOf(st, a), x);
+    case "Pestle": return dmgValue(5, x);
+    case "Skull fire": return dmgValue(3, x);
+    case "Mortar ride": return x ? (x.kind === "hero" ? 10 + x.health / 2 : 4 + x.health / 2) : 0;
+    case "Excalibur": return dmgValue(5 + (x?.guardLeft || 0), x);
+    case "Champion's charge": case "Lance Charge": case "Split the Arrow": return dmgValue(5, x);
+    case "Fair fight": return dmgValue(4, x) + (x && !x.flags.acted ? attackOf(st, x) : 0);
+    case "Arm-wrench": return dmgValue(attackOf(st, a), x) + 4;
+    case "Bite": return dmgValue(attackOf(st, a), x) * 1.4;
+    case "Hex": return dmgValue(3 + 1, x);
+    case "Sea magic": return a.health > 3 ? dmgValue(attackOf(st, a), x) - 0.5 : 0;
+    case "Strike": case "Stones in the belly": return dmgValue(attackOf(st, a), x) + (name === "Stones in the belly" ? 2 : 0);
+    case "Quarterstaff": return dmgValue(4, x) + 1;
+    case "Rampage": return dmgValue(3, x) + 3 * neighbours(st, x).length * 0.8;
+    case "Tail Sweep": return dmgValue(2, x) + 1.5;
+    case "Fire Breath": return dmgValue(3, x) + 2.5;
+    case "Into the oven": return dmgValue(4, x) + (x?.aspect === "Witch" ? 8 : 0);
+    case "Betrayal": return x && ec && x.uid === ec.uid ? dmgValue(6 + (x.guardLeft || 0), x) : (a.health <= 3 ? dmgValue(6, x) : 0);
+    case "Break their spirit": return x ? dmgValue(attackOf(st, a), x) + guardOf(st, x) * 3 : 0;
+    case "Whirlwind": return dmgValue(3, x) + 1;
+    case "The Pyre": {
+      if (a.health <= 9) return 0;
+      return cards(st, foe).reduce((s, c) => s + dmgValue(6, c), 0) - 6;
+    }
+    case "Turn": return x ? (x.kind === "hero" ? 14 : 6) : 0;
+    case "Swallow whole": return x ? (x.kind === "hero" ? 12 : 4 + x.health / 2) : 0;
+    case "Devour": return x ? 5 : 0;
+    case "Drag under": return dmgValue(attackOf(st, a), x) + 1;
+    case "Shape-shift": return x ? attackOf(st, x) * 2.5 : 0;
+    case "Stolen scabbard": return x ? guardOf(st, x) * 3 + 2 : 0;
+    case "Enchanted sleep": case "Girdle Leash": return x && x.stoppedRound !== st.round - 1 ? attackOf(st, x) * 1.5 + 1 : 0;
+    case "The unhurried pace": return x ? Math.max(0, speedOf(st, x) - 2) : 0;
+    case "Shard of the mirror": return x ? attackOf(st, x) * 1.5 : 0;
+    case "Wanted": return x ? 3 + (ec && x.uid === ec.uid ? 3 : 0) : 0;
+    case "Shield Brother": return x && x.health < x.maxHealth / 2 ? 4 : 0;
+    case "Battle of the trees": return crownIs(st, a.side, "gwydion") ? 7 : 4.5;
+    case "Steadfast stand": return 2.5;
+    case "The master is at hand": return 1.5;
+    case "Oak, broom and meadowsweet": return heroes(st, a.side).length > 1 ? 3 : 0;
+    case "Queen's mercy": case "The doll's advice": return isNight(st) ? 0 : Math.min(missing(x), 3 + 1) * 1.1;
+    case "Cake and wine": return isNight(st) ? 0 : Math.min(missing(x), 4) * 1.1;
+    case "Ale and bread": return isNight(st) ? 0 : heroes(st, a.side).reduce((s, h) => s + Math.min(missing(h), 2), 0);
+    case "Saved from the wreck": return isNight(st) ? 0 : heroes(st, a.side).reduce((s, h) => s + Math.min(missing(h), 4), 0) - 3;
+    case "Completion": return isNight(st) ? 0 : heroes(st, a.side).reduce((s, h) => s + missing(h), 0) - 6;
+    case "Heads grow back": return isNight(st) ? 0 : Math.min(missing(a), 6) - 1;
+    case "Mend": return isNight(st) ? 0 : neighbours(st, a).reduce((s, n) => s + Math.min(missing(n), 1), 0);
+    case "Blood transfusion": return isNight(st) ? 0 : heroes(st, a.side).some((h) => h.uid !== a.uid && missing(h) >= 3) && a.health > 5 ? 2 : 0;
+    case "Reanimate": case "Cauldron of rebirth": return x ? 8 : 0;
+    case "Straw into gold": return st.sides[a.side].usedItems.length ? 3 : 0;
+    case "Gnaw": return 0;
+    default: return dmgValue(attackOf(st, a), x);
+  }
+}
+
+// Plays a whole fight between two bots. Returns 0, 1 or -1 (draw).
+function botFight(data, lineups, seed) {
+  const rng = makeRng(seed);
+  const st = createGame(data, lineups, { rng });
+  while (!st.over) playRound(st, [botPlan(st, 0, rng), botPlan(st, 1, rng)]);
+  return st;
+}
+
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost };
+})();
+
+// ---------- the fight ----------
+const LINEUPS = [
+  { crown: "the-princess", heroes: ["st-george"], front: ["villager", "longbowman", "villager"], items: ["gingerbread"] },
+  { crown: "the-dragon", heroes: [], front: ["knight", "berserker", "knight"], items: [] },
+];
+const TUTORIAL_SEED = 7;
+const ph = (a, b) => `<span class="ph">${a}</span><span class="dt">${b}</span>`;
+
+// The scripted fight. Each round is a list of steps for the player and one fixed move for the Dragon.
+// A step waits for one thing: next (Continue), tap (your hero's slot), action (its name), target ([side, slot]),
+// item (its id) or lock. focus: [side, slot] or "fate" only draws the eye.
+const TUTORIAL = [
+  { steps: [
+      { say: `The Dragon has come to the Field at Silene for the Princess, and St George rides out to stop it. Your cards are ${ph("at the bottom", "on the left")}.`, next: true },
+      { say: "The Princess wears your Crown. If she falls, you lose. Every other card of yours is there to protect her.", focus: [0, 1], next: true },
+      { say: "The Dragon wears the enemy Crown. Bring it down and you win.", focus: [1, 1], next: true },
+      { say: "Heroes stand in front of the Crown, and the front rank in front of them. You have 3 action points a round to spend on your heroes. Tap St George.", tap: 2 },
+      { say: "Each action shows what it costs. Choose Attack, for 1 action point.", action: "Attack" },
+      { say: "St George fights hand to hand, so he can only reach the closest enemy row. Tap the Berserker.", target: [1, 5] },
+      { say: "A hero acts once a round. The Princess is ranged, so she can hit any enemy. Tap her.", tap: 1 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Aim past their front rank: tap the Dragon.", target: [1, 1] },
+      { say: "Both sides plan in secret, then every card acts in Speed order, fastest first. The red seal on a hero is its Speed. Your front rank acts on its own.", next: true },
+      { say: "When Speeds tie, the holder of the Fate token goes first. It is yours this round and swaps every round. Lock in your plan.", focus: "fate", lock: true },
+    ],
+    foe: { slot: 1, act: "Tail Sweep", t: [0, 5] },
+    after: [
+      { say: "Your Villagers couldn't get past the Knights' Guard, the blue diamond: it soaks up that much damage each round. Front-rank cards that die are used up.", next: true },
+    ] },
+  { steps: [
+      { say: "With your front rank gone and only one hero in front of her, the Princess can be attacked hand to hand. Two heroes in front would shield her.", focus: [0, 1], next: true },
+      { say: "Stronger actions cost more. Tap St George.", tap: 2 },
+      { say: "Choose Lance Charge: 5 damage for 2 action points.", action: "Lance Charge" },
+      { say: "Tap the glowing Knight.", target: [1, 4] },
+      { say: "One action point left. Tap the Princess.", tap: 1 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Keep wearing the Dragon down.", target: [1, 1] },
+      { say: "The enemy holds the Fate token this round, so their Knights act before St George does. Lock in.", focus: "fate", lock: true },
+    ],
+    foe: { slot: 1, act: "Fire Breath", t: [0, 1], t2: [0, 2] },
+    after: [
+      { say: "St George's Guard stopped a Knight, but it was spent by the time the fire came. Guard refills every round.", focus: [0, 2], next: true },
+      { say: "The Princess is hurt. While she wears the Crown, one of your cards heals a little at the start of each round.", focus: [0, 1], next: true },
+    ] },
+  { steps: [
+      { say: "Your tool belt holds single-use items. An item costs 1 action point and acts before any card. Tap the Gingerbread.", item: "gingerbread" },
+      { say: "Give it to the Princess.", target: [0, 1] },
+      { say: "Now hold the Dragon back. Tap the Princess.", tap: 1 },
+      { say: "Choose Girdle Leash: an enemy Beast can't act this round.", action: "Girdle Leash" },
+      { say: "Tap the Dragon.", target: [1, 1] },
+      { say: "Last action point. Tap St George.", tap: 2 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Clear the last Knight.", target: [1, 6] },
+      { say: "The Fate token is yours again, so St George strikes before the Knight can. Lock in.", focus: "fate", lock: true },
+    ],
+    foe: { slot: 1, act: "Tail Sweep", t: [0, 2] },
+    after: [
+      { say: "The Dragon lost its turn and its front rank is gone. Nothing stands between St George and the enemy Crown.", focus: [1, 1], next: true },
+    ] },
+  { steps: [
+      { say: "Finish it. Tap St George.", tap: 2 },
+      { say: "Choose Lance Charge.", action: "Lance Charge" },
+      { say: "Tap the Dragon.", target: [1, 1] },
+      { say: "Tap the Princess.", tap: 1 },
+      { say: "Choose Attack.", action: "Attack" },
+      { say: "Tap the Dragon.", target: [1, 1] },
+      { say: "The Dragon is the slowest card on the table, Speed 1, so both your heroes act before it. Lock in.", lock: true },
+    ],
+    foe: { slot: 1, act: "Attack", t: [0, 2] } },
+];
+
+// ---------- state ----------
+const S = { mode: "intro", st: null, phase: "plan", r: 0, i: 0, post: false, plan: null, sheet: null, pick: null,
+  view: null, prev: null, frames: [], fi: 0, caption: "", acting: null, timer: null, nudge: false };
+const el = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const short = (n) => String(n).replace(/^The /, "");
+const emptyPlan = () => ({ orders: [], items: [] });
+const CROWN_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18l1.5-10-5.5 4-5-7-5 7-5.5-4zM3 19.5h18V21H3z"/></svg>`;
+const SWORD_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 2.5 6 10M4.5 8.5l3 3M5 11l-2.5 2.5"/></svg>`;
+const BOW_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2c6 0 11 5 11 11M3 2l11 11M2 14 9 7M9 7H6.5M9 7v2.5"/></svg>`;
+
+function live(side, slot) { const c = S.st.sides[side].slots[slot]; return c && !c.dead && !c.removed ? c : null; }
+function byUid(uid) { for (const sd of S.st.sides) for (const c of Object.values(sd.slots)) if (c && c.uid === uid) return c; return null; }
+function viewOf(st, c) {
+  return { uid: c.uid, id: c.id, name: c.name, kind: c.kind, side: c.side, slot: c.slot, health: c.health, maxHealth: c.maxHealth,
+    guard: c.guardLeft, atk: E.attackOf(st, c), spd: E.speedOf(st, c), ranged: c.ranged, stopped: !!c.stopNow };
+}
+function snap(st) {
+  return { round: st.round, fate: st.fate, sides: st.sides.map((sd, i) => {
+    const slots = {};
+    for (let s = 1; s <= 6; s++) { const c = sd.slots[s]; slots[s] = c && !c.dead && !c.removed && c.health > 0 ? viewOf(st, c) : null; }
+    return { slots, crown: E.crownCard(st, i)?.uid ?? null, items: sd.items.slice(), ap: sd.ap };
+  }) };
+}
+const sig = (v) => JSON.stringify(v.sides.map((sd) => Object.values(sd.slots).map((c) => c && [c.uid, c.slot, c.health, c.guard, c.stopped])));
+function inSnap(v, uid) { for (const sd of v.sides) for (const c of Object.values(sd.slots)) if (c && c.uid === uid) return c; return null; }
+
+function start(mode) {
+  clearTimeout(S.timer);
+  const st = E.createGame(DATA, LINEUPS, { seed: mode === "guided" ? TUTORIAL_SEED : (Date.now() % 1000000) + 1 });
+  if (mode === "guided") st.fate = 0;
+  Object.assign(S, { mode, st, phase: "plan", r: 0, i: 0, post: false, plan: emptyPlan(), sheet: null, pick: null,
+    view: snap(st), prev: null, frames: [], fi: 0, caption: "", acting: null });
+  render();
+}
+
+// ---------- the guide ----------
+function step() {
+  if (S.mode !== "guided" || S.phase !== "plan") return null;
+  const R = TUTORIAL[S.r]; if (!R) return null;
+  return (S.post ? R.after : R.steps)[S.i] || null;
+}
+function advance() {
+  S.i += 1;
+  const R = TUTORIAL[S.r];
+  if (S.post && S.i >= R.after.length) { S.post = false; S.r += 1; S.i = 0; }
+}
+function nudge() { S.nudge = true; render(); }
+function apLeft() {
+  let ap = S.st.sides[0].ap;
+  ap -= S.plan.items.length * E.itemCost(S.st, 0);
+  for (const o of S.plan.orders) ap -= o.ap;
+  return ap;
+}
+
+// ---------- planning ----------
+function tapCard(uid) {
+  if (S.phase !== "plan") return;
+  const g = step();
+  if (S.pick) {
+    if (!S.pick.targets.includes(uid)) return;
+    if (g) { const want = g.target && live(g.target[0], g.target[1]); if (!want || want.uid !== uid) return nudge(); }
+    if (S.pick.kind === "item") S.plan.items.push({ id: S.pick.id, target: uid, name: S.pick.name, tname: byUid(uid).name });
+    else S.plan.orders.push({ uid: S.pick.uid, index: S.pick.index, target: uid, target2: null, ap: S.pick.ap, name: S.pick.name, tname: byUid(uid).name });
+    S.pick = null;
+    if (g) advance();
+    return render();
+  }
+  const c = byUid(uid); if (!c) return;
+  if (S.mode === "guided") {
+    if (!g || g.tap == null || c.side !== 0 || c.slot !== g.tap) return nudge();
+    S.sheet = { uid }; advance(); return render();
+  }
+  S.sheet = { uid }; render();
+}
+function chooseAction(k) {
+  const c = byUid(S.sheet.uid), a = c.actions[k], g = step();
+  if (g && g.action !== a.name) return nudge();
+  const o = E.options(S.st, c).find((x) => x.index === k);
+  if (!o || a.ap > apLeft()) return;
+  if (o.targets.length === 1 && o.targets[0] === null) {
+    S.plan.orders.push({ uid: c.uid, index: k, target: null, target2: null, ap: a.ap, name: a.name, tname: "" });
+  } else {
+    S.pick = { kind: "action", uid: c.uid, index: k, ap: a.ap, name: a.name, targets: o.targets.map((t) => t.uid) };
+  }
+  S.sheet = null;
+  if (g) advance();
+  render();
+}
+function tapItem(id) {
+  if (S.phase !== "plan" || S.pick) return;
+  const g = step();
+  if (S.mode === "guided" && (!g || g.item !== id)) return nudge();
+  if (S.plan.items.length || apLeft() < E.itemCost(S.st, 0)) return;
+  const targets = E.itemTargets(S.st, 0, id).filter(Boolean);
+  if (!targets.length) return;
+  S.pick = { kind: "item", id, name: DATA.items[id].name, targets: targets.map((t) => t.uid) };
+  if (g) advance();
+  render();
+}
+function scriptedFoe() {
+  const f = TUTORIAL[S.r].foe, a = live(1, f.slot);
+  if (!a) return emptyPlan();
+  const at = (p) => (p && live(p[0], p[1]) ? live(p[0], p[1]).uid : null);
+  return { orders: [{ uid: a.uid, index: a.actions.findIndex((x) => x.name === f.act), target: at(f.t), target2: at(f.t2) }], items: [] };
+}
+
+// ---------- playing a round back ----------
+function lock() {
+  if (S.phase !== "plan" || S.pick) return;
+  const g = step();
+  if (S.mode === "guided" && (!g || !g.lock)) return nudge();
+  const st = S.st, before = snap(st), raw = [];
+  const foePlan = S.mode === "guided" ? scriptedFoe() : E.botPlan(st, 1);
+  st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st) });
+  E.playRound(st, [S.plan, foePlan]);
+  st.onLog = null;
+  S.frames = buildFrames(raw, before);
+  S.plan = emptyPlan(); S.sheet = null; S.phase = "play"; S.fi = -1;
+  nextFrame();
+}
+function buildFrames(raw, before) {
+  const out = []; let lines = [], last = before, lastSig = sig(before);
+  raw.forEach((f, k) => {
+    if (/ wins\.$| a draw\.$/.test(f.text)) return;
+    lines.push(f.text);
+    const sg = sig(f.snap), nxt = raw[k + 1];
+    if (sg !== lastSig || !nxt || nxt.acting !== f.acting) {
+      const actor = f.acting ? inSnap(last, f.acting) || inSnap(f.snap, f.acting) : null;
+      out.push({ text: tidy(lines, actor), acting: f.acting, snap: f.snap, prev: last });
+      lines = []; last = f.snap; lastSig = sg;
+    }
+  });
+  return out;
+}
+// Turns the engine's log lines into one sentence or two about what just happened.
+function tidy(lines, actor) {
+  const whose = (side) => (side === "Blue" ? "your" : "the enemy");
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  const the = (n) => n.replace(/^The /, "the ");
+  const who = actor ? `${actor.side === 0 ? "your" : "the enemy"} ${short(actor.name)}` : "";
+  let uses = null; const fx = [];
+  for (const l of lines) {
+    let m;
+    if ((m = l.match(/^(Blue|Red) uses (.+?)(?: on (.+))?\.$/))) {
+      fx.push(`${m[1] === "Blue" ? "You use" : "The enemy uses"} ${m[2]}${m[3] ? ` on ${the(m[3])}` : ""}.`);
+    } else if (actor && (m = l.match(/^(?:Blue|Red) .+? uses (.+?)(?: on (.+))?\.$/))) {
+      uses = { act: m[1], on: m[2] };
+    } else if ((m = l.match(/^(.+) deals (\d+) to (Blue|Red) (.+?)( — it dies)?\.$/))) {
+      fx.push(`${actor ? "" : m[1] + ": "}${m[2]} damage to ${whose(m[3])} ${short(m[4])}${m[5] ? ", who falls" : ""}.`);
+    } else if ((m = l.match(/^(.+) heals (Blue|Red) (.+) for (\d+)\.$/))) {
+      fx.push(`${cap(whose(m[2]))} ${short(m[3])} heals ${m[4]}${m[1] === m[3] || (actor && m[1] === actor.name) ? "" : ` from ${the(m[1])}`}.`);
+    } else if ((m = l.match(/^(Blue|Red) (.+)'s Guard blocks (.+)'s hit\.$/))) {
+      fx.push(`${cap(whose(m[1]))} ${short(m[2])}'s Guard blocks ${who || the(m[3])}.`);
+    } else if ((m = l.match(/^(.+) is stopped \(.+\)\.$/))) {
+      fx.push(`${m[1]} can't act this round.`);
+    } else fx.push(l.replace(/^Blue /, "Your ").replace(/^Red /, "The enemy ").replace(/ Blue /g, " your ").replace(/ Red /g, " the enemy "));
+  }
+  const numbers = fx.length && /^\d/.test(fx[0]);
+  if (uses) return numbers ? `${cap(who)} uses ${uses.act}: ${fx.join(" ")}` : `${cap(who)} uses ${uses.act}${uses.on ? ` on ${the(uses.on)}` : ""}. ${fx.join(" ")}`.trim();
+  return numbers && who ? `${cap(who)}: ${fx.join(" ")}` : fx.join(" ");
+}
+function nextFrame() {
+  S.fi += 1;
+  const f = S.frames[S.fi];
+  if (!f) return endPlayback();
+  S.view = f.snap; S.prev = f.prev; S.caption = f.text; S.acting = f.acting;
+  render();
+  S.timer = setTimeout(nextFrame, Math.min(3600, 1300 + f.text.length * 24));
+}
+function endPlayback() {
+  clearTimeout(S.timer);
+  const st = S.st;
+  Object.assign(S, { view: snap(st), prev: null, caption: "", acting: null, frames: [], phase: st.over ? "over" : "plan" });
+  if (S.mode === "guided") {
+    const R = TUTORIAL[S.r];
+    if (!st.over && R.after && R.after.length) { S.post = true; S.i = 0; }
+    else { S.post = false; S.r += 1; S.i = 0; }
+    if (!st.over && !TUTORIAL[S.r]) S.mode = "free"; // the script ran out: carry on freely
+  }
+  render();
+}
+
+// ---------- drawing ----------
+function cardHtml(c, v, opts = {}) {
+  const side = c.side, mine = side === 0, g = step();
+  const cls = ["card", c.kind === "hero" ? "hero" : "front", mine ? "mine" : "foe"];
+  const order = S.plan && S.plan.orders.find((o) => o.uid === c.uid);
+  let floats = "";
+  if (opts.fallen) cls.push("fallen");
+  if (S.phase === "play") {
+    if (S.acting === c.uid) cls.push("acting");
+    const p = S.prev && inSnap(S.prev, c.uid);
+    const now = opts.fallen ? { health: 0, guard: 0 } : c;
+    if (p) {
+      const d = now.health - p.health;
+      if (d < 0) { cls.push("hit"); floats = `<span class="float dmg">−${-d}</span>`; }
+      else if (d > 0) floats = `<span class="float heal">+${d}</span>`;
+      else if (now.guard < p.guard) floats = `<span class="float blk">Blocked</span>`;
+    }
+  } else if (S.phase === "plan") {
+    if (S.pick) {
+      let ok = S.pick.targets.includes(c.uid);
+      if (ok && g && g.target) ok = live(g.target[0], g.target[1])?.uid === c.uid;
+      cls.push(ok ? "can" : "dim");
+    } else if (g) {
+      if (Array.isArray(g.focus) && g.focus[0] === side && g.focus[1] === c.slot) cls.push("focus");
+      if (g.tap != null && mine && g.tap === c.slot) cls.push("focus");
+    }
+    if (order) cls.push("planned");
+  }
+  if (c.stopped) cls.push("stopped");
+  const crown = v.sides[side].crown === c.uid;
+  const label = `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}${c.kind === "hero" ? `, Speed ${c.spd}` : ""}`;
+  return `<button class="${cls.join(" ")}" data-act="card" data-uid="${c.uid}" aria-label="${esc(label)}">
+    ${c.kind === "hero" ? `<span class="spd" title="Speed">${c.spd}</span>` : ""}
+    ${crown ? `<span class="crownmark" title="Wears the Crown">${CROWN_SVG}</span>` : ""}
+    <span class="nm">${esc(short(c.name))}</span>
+    <span class="art"><img src="img/${c.id}.jpg" alt="" decoding="sync">
+      ${order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Leashed</span>` : ""}</span>
+    <span class="stats"><span class="atk">${c.ranged ? BOW_SVG : SWORD_SVG}${c.atk}</span>
+      ${c.guard > 0 ? `<span class="grd" title="Guard"><b>${c.guard}</b></span>` : ""}
+      <span class="hp${c.health < c.maxHealth ? " hurt" : ""}" title="Health">${opts.fallen ? 0 : c.health}</span></span>
+    ${floats}</button>`;
+}
+function slotHtml(v, side, slot) {
+  const c = v.sides[side].slots[slot];
+  if (c) return cardHtml(c, v);
+  const gone = S.phase === "play" && S.prev && S.prev.sides[side].slots[slot];
+  if (gone && !inSnap(v, gone.uid)) return cardHtml(gone, S.prev, { fallen: true });
+  return `<div class="card slot" aria-hidden="true"></div>`;
+}
+function renderTable() {
+  const v = S.view; if (!v) { el("table").innerHTML = ""; return; }
+  const g = step();
+  const sideHtml = (i) => `<section class="side ${i ? "foe" : "me"}" aria-label="${i ? "Enemy cards" : "Your cards"}">
+    ${[[1], [2, 3], [4, 5, 6]].map((r) => `<div class="rank">${r.map((s) => slotHtml(v, i, s)).join("")}</div>`).join("")}</section>`;
+  el("table").innerHTML = `${sideHtml(1)}
+    <div class="mid"><span class="fate${g && g.focus === "fate" ? " focus" : ""}">FATE</span>
+      <span class="fate-txt">${v.fate === 0 ? "Yours this round" : "Theirs this round"}</span></div>
+    ${sideHtml(0)}`;
+}
+function renderHead() {
+  const v = S.view, a = ART.board;
+  el("head").innerHTML = `<span class="round">${v ? `Round ${v.round}` : ""}${S.phase === "play" ? ph("", " · Battle") : S.phase === "plan" && v ? ph("", " · Planning") : ""}</span>
+    <span class="place"><b>The Field at Silene</b><i>${esc(a.artist)}, ${esc(a.title)}, ${esc(a.date)}</i></span>
+    <button class="menu" data-act="menu">Menu</button>`;
+}
+function renderDock() {
+  const v = S.view; if (!v) { el("dock").innerHTML = ""; return; }
+  const g = step(), ap = S.phase === "plan" ? apLeft() : v.sides[0].ap, total = S.st.sides[0].ap;
+  let who = "", text = "", chips = "", button = "";
+  if (S.phase === "play") {
+    who = `Round ${S.frames[S.fi]?.prev.round ?? v.round}`; text = esc(S.caption);
+    button = `<button class="btn quiet" data-act="skip">Skip</button>`;
+  } else if (g) {
+    who = "Tutorial"; text = g.say;
+    if (g.next) button = `<button class="btn focus" data-act="next">Continue</button>`;
+    else button = `<button class="btn${g.lock ? " focus" : ""}" data-act="lock"${g.lock ? "" : " disabled"}>Lock in</button>`;
+  } else if (S.phase === "plan") {
+    who = "Your plan";
+    text = S.pick ? `Choose a target for ${esc(S.pick.name)}.`
+      : ap > 0 ? (S.plan.orders.length || S.plan.items.length ? "Give another order, or lock in." : "Tap one of your heroes to give it an order. Tap any card to read it.")
+      : "No action points left. Lock in your plan.";
+    chips = [...S.plan.items.map((it, k) => `<span class="chip">${esc(it.name)} → ${esc(short(it.tname))}<button data-act="del-item" data-k="${k}" aria-label="Remove ${esc(it.name)}">×</button></span>`),
+      ...S.plan.orders.map((o, k) => `<span class="chip">${esc(short(byUid(o.uid).name))}: ${esc(o.name)}${o.tname ? ` → ${esc(short(o.tname))}` : ""}<button data-act="del-order" data-k="${k}" aria-label="Remove ${esc(o.name)}">×</button></span>`)].join("");
+    button = S.pick ? `<button class="btn quiet" data-act="cancel">Cancel</button>` : `<button class="btn" data-act="lock">Lock in</button>`;
+  }
+  const used = S.plan ? S.plan.items.map((x) => x.id) : [];
+  const belt = v.sides[0].items.filter((id) => { const k = used.indexOf(id); if (k >= 0) { used.splice(k, 1); return false; } return true; });
+  const pips = Array.from({ length: total }, (_, k) => `<i class="pip${k < ap ? " on" : ""}"></i>`).join("");
+  el("dock").innerHTML = `<div class="coach${S.nudge ? " nudge" : ""}" aria-live="polite"><span class="who">${who}</span><p>${text}</p>${chips ? `<div class="chips">${chips}</div>` : ""}</div>
+    <div class="ctl"><div class="ap" role="img" aria-label="${ap} of ${total} action points left"><span>${ph("AP", "Action points")}</span>${pips}</div>
+      <div class="belt">${belt.map((id) => `<button class="item${g && g.item === id ? " focus" : ""}" data-act="item" data-id="${id}"${S.phase !== "plan" || S.plan.items.length ? " disabled" : ""}><img src="img/${id}.jpg" alt="">${esc(DATA.items[id].name)}</button>`).join("")}</div>
+      <span class="grow"></span>${button}</div>`;
+  S.nudge = false;
+}
+function credit(id) { const a = ART[id]; return a ? `${a.artist}, <i>${esc(a.title)}</i>, ${esc(a.date)}` : ""; }
+function renderSheet() {
+  const sh = S.sheet; if (!sh) { el("sheet").innerHTML = ""; return; }
+  const c = byUid(sh.uid), st = S.st, g = step();
+  const hero = c.kind === "hero", def = hero ? DATA.heroes[c.id] : DATA.front[c.id] || {};
+  const mine = c.side === 0, crown = E.crownCard(st, c.side)?.uid === c.uid;
+  const ordered = S.plan.orders.find((o) => o.uid === c.uid);
+  let acts = "";
+  if (hero && mine && S.phase === "plan" && !c.dead) {
+    if (ordered) acts = `<p class="rule off">Already ordered this round: ${esc(ordered.name)}. Remove it from your plan to choose again.</p>`;
+    else {
+      const ap = apLeft(), opts = E.options(st, c);
+      acts = `<div class="acts">${c.actions.map((a, k) => {
+        const o = opts.find((x) => x.index === k);
+        const why = !o ? "No target in reach" : a.ap > ap ? "Not enough action points" : "";
+        const want = g && g.action === a.name, off = why || (g && !want);
+        return `<button class="act${want ? " focus" : ""}" data-act="action" data-k="${k}"${off ? " disabled" : ""}>
+          <strong>${esc(a.name)}</strong><span class="cost" aria-label="${a.ap} action point${a.ap === 1 ? "" : "s"}">${'<i class="pip on"></i>'.repeat(a.ap)}</span>
+          <small>${esc(a.text)}${why ? ` (${why}.)` : ""}</small></button>`;
+      }).join("")}</div>`;
+    }
+  }
+  const rules = hero
+    ? `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>
+       <p class="rule"><b>Bond</b>${esc(def.bond?.text || "None")}</p>`
+    : `<p class="rule"><b>Front rank · acts on its own at Speed ${E.speedOf(st, c)}</b>${esc(c.auto || "")}</p>`;
+  el("sheet").innerHTML = `<div class="sheet" role="dialog" aria-label="${esc(c.name)}">
+    ${g && g.action ? `<p class="hint">${g.say}</p>` : ""}
+    <div class="top"><img class="pic" src="img/${c.id}-full.jpg" alt="">
+      <div><h2>${esc(c.name)}</h2>
+        <p class="kind">${mine ? "Yours" : "Enemy"} · ${hero ? `${esc(def.aspect)} of ${esc(def.realm)}${c.ranged ? " · ranged" : ""}` : "front rank"}</p>
+        <p class="nums"><span>Health <b>${c.health}/${c.maxHealth}</b></span><span>Attack <b>${E.attackOf(st, c)}</b></span><span>Guard <b>${E.guardOf(st, c)}</b></span>${hero ? `<span>Speed <b>${E.speedOf(st, c)}</b></span>` : ""}</p>
+        <p class="credit">${credit(c.id)}</p></div>
+      ${g ? "" : `<button class="x" data-act="close" aria-label="Close">×</button>`}</div>
+    ${acts}${rules}</div>`;
+}
+function renderOver() {
+  let html = "";
+  if (S.mode === "intro") {
+    html = `<div class="panel">${CROWN_SVG}<p class="eyebrow">Crown &amp; Fable · Tutorial</p><h1>The Field at Silene</h1>
+      <p>A dragon, a princess and a knight. Learn the game in one short fight: about four rounds.</p>
+      <div class="btns"><button class="btn" data-act="guided">Begin</button><button class="btn quiet" data-act="free">Skip to free play</button></div></div>`;
+  } else if (S.mode === "menu") {
+    html = `<div class="panel"><p class="eyebrow">Crown &amp; Fable</p><h1>The Field at Silene</h1>
+      <div class="btns"><button class="btn" data-act="resume">Back to the fight</button><button class="btn quiet" data-act="guided">Restart the tutorial</button><button class="btn quiet" data-act="free">New free-play fight</button></div></div>`;
+  } else if (S.phase === "over") {
+    const w = S.st.winner, guided = S.wasGuided;
+    html = `<div class="panel">${w === 0 ? CROWN_SVG : ""}<p class="eyebrow">${guided ? "Tutorial complete" : `Round ${S.st.round}`}</p>
+      <h1>${w === 0 ? "Victory" : w === 1 ? "Defeat" : "A draw"}</h1>
+      <p>${w === 0 ? "The Dragon is down and the Princess keeps her Crown." : w === 1 ? "The Princess has fallen, and the Crown with her." : "Both Crowns fell in the same moment."}</p>
+      ${guided ? `<ul><li>Protect your Crown; take theirs.</li><li>3 action points a round, one action per hero.</li><li>The front rank acts on its own.</li><li>Fastest acts first; the Fate token breaks ties.</li><li>Items act before any card.</li></ul>` : ""}
+      <div class="btns"><button class="btn" data-act="free">${guided ? "Play it your own way" : "Fight again"}</button><button class="btn quiet" data-act="guided">Replay the tutorial</button></div></div>`;
+  }
+  el("over").innerHTML = html;
+}
+function render() {
+  if (S.phase === "over" && S.mode === "guided") { S.wasGuided = true; }
+  renderHead(); renderTable(); renderDock(); renderSheet(); renderOver();
+}
+
+// ---------- input ----------
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-act]");
+  if (!b) { if (e.target.id === "sheet" && !step()) { S.sheet = null; render(); } return; }
+  if (b.disabled) return;
+  const act = b.dataset.act;
+  if (act === "card") tapCard(+b.dataset.uid);
+  else if (act === "action") chooseAction(+b.dataset.k);
+  else if (act === "item") tapItem(b.dataset.id);
+  else if (act === "lock") lock();
+  else if (act === "next") { const g = step(); if (g && g.next) { advance(); render(); } }
+  else if (act === "skip") endPlayback();
+  else if (act === "close") { S.sheet = null; render(); }
+  else if (act === "cancel") { S.pick = null; render(); }
+  else if (act === "del-order") { S.plan.orders.splice(+b.dataset.k, 1); render(); }
+  else if (act === "del-item") { S.plan.items.splice(+b.dataset.k, 1); render(); }
+  else if (act === "guided") { S.wasGuided = false; start("guided"); }
+  else if (act === "free") { S.wasGuided = false; start("free"); }
+  else if (act === "menu") { if (S.phase === "play") endPlayback(); if (S.phase !== "over") { S.back = S.mode; S.mode = "menu"; if (S.back !== "guided") { S.sheet = null; S.pick = null; } render(); } }
+  else if (act === "resume") { S.mode = S.back; render(); }
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.sheet && !step()) { S.sheet = null; render(); } });
+render();
+</script>
+</body>
+</html>
