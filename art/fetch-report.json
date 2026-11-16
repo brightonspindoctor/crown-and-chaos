@@ -1,6 +1,133 @@
 {
-  "ranAt": "2026-11-16T06:18:42.804Z",
-  "fetched": [],
+  "ranAt": "2026-11-16T07:03:47.078Z",
+  "fetched": [
+    {
+      "id": "maid-marian-variant",
+      "via": "downloadUrl",
+      "url": "https://standardebooks.org/images/artworks/2638.jpg",
+      "bytes": 882042
+    },
+    {
+      "id": "board-castle-dracula",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Apparition_Ch%C3%A2teau_des_Carpathes.jpg",
+      "bytes": 777612
+    },
+    {
+      "id": "the-wolf-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Petit_Chaperon_Rouge%2C_RP-P-OB-33.985.jpg",
+      "bytes": 2004663
+    },
+    {
+      "id": "red-riding-hood-variant-2",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Little_Red_Riding_Hood_Gustav_Dor%C3%A9_second_illustration_for_Charles_Perrault_-_Il_libro_delle_fate%2C_Longanesi%2C_Milano%2C_1891.jpg",
+      "bytes": 1728851
+    },
+    {
+      "id": "st-george-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paolo_Uccello_-_Saint_George_and_the_Dragon_(National_Gallery).jpg",
+      "bytes": 7441385
+    },
+    {
+      "id": "fafnir",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Siegfried_and_the_Twilight_of_the_Gods_p_022.jpg",
+      "bytes": 2195059
+    },
+    {
+      "id": "sigurd",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Siegfried_and_the_Twilight_of_the_Gods_p_056.jpg",
+      "bytes": 2128636
+    },
+    {
+      "id": "gwydion",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Martin_-_The_Bard_-_Google_Art_Project.jpg?width=3000",
+      "bytes": 2455407
+    },
+    {
+      "id": "blodeuwedd",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arcimboldo%2C_Giuseppe_(attr.)_-_Flora_-_c._1591.jpg",
+      "bytes": 456602
+    },
+    {
+      "id": "board-st-george",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paolo_Uccello_-_Saint_George_and_the_Dragon_(National_Gallery).jpg",
+      "bytes": 7441385
+    },
+    {
+      "id": "board-baba-yaga",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Russian_Wonder_Tales_081.jpg",
+      "bytes": 676079
+    },
+    {
+      "id": "board-crossroads",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Victor_Vasnetsov_-_Knight_at_the_Crossroads_-_Google_Art_Project.jpg?width=4000",
+      "bytes": 1646121
+    },
+    {
+      "id": "board-bogatyrs",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Viktor_Vasnetsov_-_%D0%91%D0%BE%D0%B3%D0%B0%D1%82%D1%8B%D1%80%D0%B8_-_Google_Art_Project.jpg?width=4000",
+      "bytes": 2445595
+    },
+    {
+      "id": "board-frog-princess",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%A6%D0%B0%D1%80%D0%B5%D0%B2%D0%BD%D0%B0_%D0%BB%D1%8F%D0%B3%D1%83%D1%88%D0%BA%D0%B0_6.jpg",
+      "bytes": 841192
+    },
+    {
+      "id": "board-the-bard",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amgueddfa_Cymru_-_Y_Bardd_-_The_Bard_-_2568.jpeg",
+      "bytes": 1241893
+    },
+    {
+      "id": "board-ninth-wave",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hovhannes_Aivazovsky_-_The_Ninth_Wave_-_Google_Art_Project.jpg?width=4000",
+      "bytes": 1238373
+    },
+    {
+      "id": "board-north-cape",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peder_Balke_-_The_North_Cape_by_Moonlight_-_2019.167.4_-_Metropolitan_Museum_of_Art.jpg",
+      "bytes": 1392703
+    },
+    {
+      "id": "board-dark-forest",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar_David_Friedrich_068.jpg",
+      "bytes": 3219924
+    },
+    {
+      "id": "board-spinners",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Velazquez-las_hilanderas.jpg",
+      "bytes": 7430096
+    },
+    {
+      "id": "board-stalheim",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dahl-Stalheim.jpg?width=4000",
+      "bytes": 3448970
+    },
+    {
+      "id": "board-nordkapp",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nordkapp_(North_Cape)_by_Peder_Balke%2C_1840s_or_1850s.JPG",
+      "bytes": 784092
+    }
+  ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -58,12 +185,7 @@
     "beowulf-variant",
     "grendel-variant"
   ],
-  "unresolved": [
-    {
-      "id": "maid-marian-variant",
-      "via": "none"
-    }
-  ],
+  "unresolved": [],
   "failed": [
     {
       "id": "red-riding-hood",
@@ -75,8 +197,9 @@
     }
   ],
   "notCleared": [
-    "gwydion",
-    "board-castle-dracula",
-    "vasilisa-the-wise-variant-2"
+    "gwydion-blodeuwedd-plate",
+    "vasilisa-the-wise-variant-2",
+    "gwydion-variant",
+    "board-tin-soldier"
   ]
 }
