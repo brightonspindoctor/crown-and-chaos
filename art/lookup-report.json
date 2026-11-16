@@ -1,25 +1,265 @@
 {
- "ranAt": "2026-11-16T07:08:14.735Z",
+ "ranAt": "2026-11-16T08:42:35.453Z",
  "files": [],
  "searches": {
-  "Doré Little Red Riding Hood meeting wolf": [],
-  "Doré Red Riding Hood wolf forest 1862": [],
-  "Gustave Doré Le Petit Chaperon rouge 1": [
+  "Dürer Knight Death and the Devil": [
    {
-    "file": "GustaveDore She was astonished to see how her grandmother looked.1.jpg",
-    "width": 800,
-    "height": 622,
+    "file": "Knight, Death, and the Devil MET DP815737.jpg",
+    "width": 2849,
+    "height": 3658,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Albrecht Dürer",
+    "date": "1513 date QS:P571,+1513-00-00T00:00:00Z/9",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art . See the Image and Data Resources Open Access Policy",
+    "description": "print medium QS:P186,Q11060274",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Knight, Death and the Devil MET DP815739.jpg",
+    "width": 2845,
+    "height": 3665,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Albrecht Dürer",
+    "date": "1513 date QS:P571,+1513-00-00T00:00:00Z/9",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art . See the Image and Data Resources Open Access Policy",
+    "description": "print medium QS:P186,Q11060274",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Knight, Death and the Devil MET DP159049.jpg",
+    "width": 2768,
+    "height": 3563,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Albrecht Dürer",
+    "date": "1513 date QS:P571,+1513-00-00T00:00:00Z/9",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art . See the Image and Data Resources Open Access Policy",
+    "description": "print medium QS:P186,Q11060274",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Albrecht Dürer, Knight, Death and Devil, 1513, NGA 598.jpg",
+    "width": 3084,
+    "height": 4000,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Albrecht Dürer",
+    "date": "1513 date QS:P571,+1513-00-00T00:00:00Z/9",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art . Please see the Gallery's Open Access Policy .",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "CC0",
+     "Cc-zero",
+     "Fallback"
+    ]
+   },
+   {
+    "file": "Albrecht Dürer, Knight, Death and Devil, 1513, NGA 6637.jpg",
+    "width": 3087,
+    "height": 4000,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Albrecht Dürer",
+    "date": "1513 date QS:P571,+1513-00-00T00:00:00Z/9",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art . Please see the Gallery's Open Access Policy .",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": []
+   }
+  ],
+  "Uccello Battle of San Romano": [
+   {
+    "file": "San Romano Battle (Paolo Uccello, London) 01.jpg",
+    "width": 6074,
+    "height": 3435,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Gustave Doré",
-    "date": "",
-    "credit": "Engraving by Gustave Doré",
-    "description": "Le Petit Chaperon rouge et le loup, illustration de Gustave Doré",
+    "artist": "Paolo Uccello",
+    "date": "circa 1438 date QS:P571,+1438-40-00T00:00:00Z/10,P1480,Q5727902",
+    "credit": "Gallery link",
+    "description": "Niccolò da Tolentino Leads the Florentine Troops",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Paolo Uccello, The Battle of San Romano, c1436-40, Uffizi, detail1.jpg",
+    "width": 5961,
+    "height": 3857,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Paolo Uccello",
+    "date": "between 1436 and 1440 date QS:P,+1450-00-00T00:00:00Z/7,P1319,+1436-00-00T00:00:00Z/9,P1326,+1440-00-00T00:00:00Z/9",
+    "credit": "Own work by MenkinAlRire . Taken on 14 September 2021, 08:32",
+    "description": "Paolo Uccello, The Battle of San Romano, c. 1436–1440, 188 x 327 cm, detail of the ground with lances and shield laid out like grid lines parallel to the picture plane, Uffizi, Florence (Inv. 00285047)",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Paolo Uccello, The Battle of San Romano, c1436-40, Uffizi, detail3.jpg",
+    "width": 2547,
+    "height": 3829,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Paolo Uccello",
+    "date": "between 1436 and 1440 date QS:P,+1450-00-00T00:00:00Z/7,P1319,+1436-00-00T00:00:00Z/9,P1326,+1440-00-00T00:00:00Z/9",
+    "credit": "Own work by MenkinAlRire . Taken on 14 September 2021, 08:32",
+    "description": "Paolo Uccello, The Battle of San Romano, c. 1436–1440, 188 x 327 cm, detail of lower right corner with white horse from behind and fallen soldier in armour, Uffizi, Florence (Inv. 00285047)",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Paolo Uccello, The Battle of San Romano, c1436-40, Uffizi, detail2.jpg",
+    "width": 6000,
+    "height": 4000,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Paolo Uccello",
+    "date": "between 1436 and 1440 date QS:P,+1450-00-00T00:00:00Z/7,P1319,+1436-00-00T00:00:00Z/9,P1326,+1440-00-00T00:00:00Z/9",
+    "credit": "Own work by MenkinAlRire . Taken on 14 September 2021, 08:31",
+    "description": "Paolo Uccello, The Battle of San Romano, c. 1436–1440, 188 x 327 cm, detail of rearing and kicking horses and falling rider in armour, Uffizi, Florence (Inv. 00285047)",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Uccello — the Battle of San Romano.jpg",
+    "width": 11305,
+    "height": 6351,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Gleb Simonov",
+    "date": "2023-12-31",
+    "credit": "Own work",
+    "description": "Uccello — the Battle of San Romano",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "Fallback",
+     "License template tag"
+    ]
+   }
+  ],
+  "Froissart Battle of Crécy archers": [
+   {
+    "file": "Battle of crecy froissart.jpg",
+    "width": 1998,
+    "height": 1755,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Loyset Liédet",
+    "date": "15 th century date QS:P571,+1450-00-00T00:00:00Z/7",
+    "credit": "This file comes from Gallica Digital Library and is available under the digital ID btv1b84386043/f354",
+    "description": "From a illuminated manuscript of Jean Froissart 's Chronicles",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Battle of Crecy (crossbowmen).jpg",
+    "width": 1094,
+    "height": 740,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Loyset Liédet",
+    "date": "15 th century date QS:P571,+1450-00-00T00:00:00Z/7",
+    "credit": "This file comes from Gallica Digital Library and is available under the digital ID btv1b84386043/f354",
+    "description": "Battle of Crécy part of manuscript showing genoese crossbowmen. From a 15th-century illuminated manuscript of Jean Froissart 's Chronicles ( BNF , FR 2643, fol. 165v).",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Fallback",
      "License template tag",
      "PD-Art",
      "PD-Art/en",
@@ -33,278 +273,178 @@
     ]
    },
    {
-    "file": "Little Red Riding-Hood (2) in Tales of Mother Goose (Welsh).png",
-    "width": 1578,
-    "height": 2139,
-    "mime": "image/png",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "D J Munro, after Gustave Doré",
-    "date": "1901",
-    "credit": "talesofmothergoo00perr Adjustment: PNG, greyscale conversion, black and white point adjustment, slight rotation to compensate for skew",
-    "description": "An illustration from Tales of Mother Goose by Charles Perrault ; translated and edited by Charles Welsh",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag",
-     "PD-Layout",
-     "PD-US",
-     "PD-US/en",
-     "PD-US/layout"
-    ]
-   },
-   {
-    "file": "Le Petit Chaperon Rouge, RP-P-OB-33.985.jpg",
-    "width": 2546,
-    "height": 3306,
-    "mime": "image/jpeg",
-    "licence": "CC0",
-    "usage": "Creative Commons Zero, Public Domain Dedication",
-    "copyrighted": "True",
-    "artist": "Rijksmuseum",
-    "date": "1867",
-    "credit": "http://hdl.handle.net/10934/RM0001.collect.160428",
-    "description": "Identificatie Titel(s): Grootmoeder en de wolf Le Petit Chaperon Rouge (titel op object) Objecttype: prent Objectnummer: RP-P-OB-33.985 Opschriften / Merken: verzamelaarsmerk, verso, gestempeld: Lugt 2228, opschrift, recto, gedrukt: ‘Les co",
-    "restrictions": "",
-    "licenceTags": [
-     "CC-Layout",
-     "CC-zero",
-     "Cc-zero",
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Little Red Riding Hood Gustav Doré illustration for Charles Perrault - Il libro delle fate, Longanesi, Milano, 1891.jpg",
-    "width": 2289,
-    "height": 2992,
+    "file": "Battle of crecy froissart (retouched crop).jpg",
+    "width": 1926,
+    "height": 1712,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "",
-    "date": "",
-    "credit": "",
-    "description": "",
+    "artist": "Loyset Liédet",
+    "date": "15 th century date QS:P571,+1450-00-00T00:00:00Z/7",
+    "credit": "This file comes from Gallica Digital Library and is available under the digital ID btv1b84386043/f354",
+    "description": "Battle of Crécy between the English and French in the Hundred Years' War",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old-70",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Little Red Riding Hood Gustav Doré second illustration for Charles Perrault - Il libro delle fate, Longanesi, Milano, 1891.jpg",
-    "width": 2906,
-    "height": 2414,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "",
-    "date": "",
-    "credit": "",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
-     "PD-old-70",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   }
-  ],
-  "Carl Larsson Ett hem nursery": [],
-  "Carl Larsson children room": [
-   {
-    "file": "Mammas och småflickornas rum av Carl Larsson 1897.jpg",
-    "width": 4000,
-    "height": 2654,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Carl Larsson",
-    "date": "1897 date QS:P571,+1897-00-00T00:00:00Z/9",
-    "credit": "Carl Larsson. \"Ett hem åt solsidan\", page 32, Stockholm: Bonniers 1955. ISBN 9915140770",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
      "Fallback",
      "License template tag",
      "PD-Art",
      "PD-Art/en",
      "PD-Art/layout",
      "PD-Layout",
-     "PD-Sweden-photo",
-     "PD-Sweden-photo/en",
-     "PD-Sweden-photo/layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-80-1923",
-     "PD-old-80-expired",
-     "PD-old-X-expired",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Mammas och småflickornas rum av Carl Larsson 1897 crop.jpg",
-    "width": 1469,
-    "height": 2079,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Carl Larsson",
-    "date": "1897 date QS:P571,+1897-00-00T00:00:00Z/9",
-    "credit": "Carl Larsson. \"Ett hem åt solsidan\", page 32, Stockholm: Bonniers 1955. ISBN 9915140770",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-Sweden-photo",
-     "PD-Sweden-photo/en",
-     "PD-Sweden-photo/layout",
-     "PD-US-expired-text",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-80-1923",
-     "PD-old-80-expired",
-     "PD-old-X-expired",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "The Kitchen. From A Home (26 watercolours) (Carl Larsson) - Nationalmuseum - 24211.tif",
-    "width": 3606,
-    "height": 2471,
-    "mime": "image/tiff",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Carl Larsson",
-    "date": "Unknown date",
-    "credit": "Bodil Karlsson / Nationalmuseum",
-    "description": "Carl and Karin Larsson combined new design with old traditions. Practicality dictated their interior design, but it was equally important that furniture and objects form an attractive harmony. This ideal was also propagated by others, inclu",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "Licensed-PD-Art",
-     "Licensed-PD-Art/en",
-     "Licensed-PD-Art/layout",
-     "PD-Layout",
-     "PD-Nationalmuseum Stockholm",
-     "PD-Nationalmuseum Stockholm/i18n/en",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-auto",
-     "PD-old-auto/core",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Mamma's and the Small Girls' Room. From A Home (26 watercolours) (Carl Larsson) - Nationalmuseum - 24215.tif",
-    "width": 3552,
-    "height": 2458,
-    "mime": "image/tiff",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Carl Larsson",
-    "date": "Unknown date",
-    "credit": "Erik Cornelius / Nationalmuseum",
-    "description": "Carl and Karin Larsson combined new design with old traditions. Practicality dictated their interior design, but it was equally important that furniture and objects form an attractive harmony. This ideal was also propagated by others, inclu",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "Licensed-PD-Art",
-     "Licensed-PD-Art/en",
-     "Licensed-PD-Art/layout",
-     "PD-Layout",
-     "PD-Nationalmuseum Stockholm",
-     "PD-Nationalmuseum Stockholm/i18n/en",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-auto",
-     "PD-old-auto/core",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "Daddy's Room. From A Home (26 watercolours) (Carl Larsson) - Nationalmuseum - 24214.tif",
-    "width": 3533,
-    "height": 2412,
-    "mime": "image/tiff",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Carl Larsson",
-    "date": "Unknown date",
-    "credit": "Nationalmuseum",
-    "description": "Carl Larsson’s bedroom at Lilla Hyttnäs was a through-room. The door is wide open to the end room where his wife and the smaller children slept. The white four-poster with embroidered curtains stands in the middle of the floor. It has sever",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "Fallback",
-     "License template tag",
-     "Licensed-PD-Art",
-     "Licensed-PD-Art/en",
-     "Licensed-PD-Art/layout",
-     "PD-Layout",
-     "PD-Nationalmuseum Stockholm",
-     "PD-Nationalmuseum Stockholm/i18n/en",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-auto",
-     "PD-old-auto/core",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   }
-  ],
-  "Château des Carpathes 1892 illustration château": [
-   {
-    "file": "Chateaucarpathes.jpg",
-    "width": 315,
-    "height": 468,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Leon Benett, in a work from Jules Verne",
-    "date": "1892",
-    "credit": "scanned from Le Chateau des Carpathes",
-    "description": "Frontpage from Le Chateau des Carpathes.",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Layout",
      "PD-US-expired-text",
      "PD-art-category",
      "PD-art-category/core",
      "PD-old-X-expired",
-     "PD-old-auto-1923",
      "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Battle of crecy froissart (cropped).jpg",
+    "width": 1666,
+    "height": 855,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Loyset Liédet",
+    "date": "15 th century date QS:P571,+1450-00-00T00:00:00Z/7",
+    "credit": "This file comes from Gallica Digital Library and is available under the digital ID btv1b84386043/f354",
+    "description": "The victorious English are on the right.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Folio 165v Battle of Crecy Froissart.jpg",
+    "width": 1024,
+    "height": 1439,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Loyset Liédet",
+    "date": "15 th century date QS:P571,+1450-00-00T00:00:00Z/7",
+    "credit": "This file comes from Gallica Digital Library and is available under the digital ID btv1b84386043/f354",
+    "description": "We can see that the illumination creates a frame around the text across the entire surface of the page. The cannon on the left emits smoke that spreads across the image depicting the battle.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Fallback",
+     "License template tag",
+     "PD-Layout",
+     "PD-old-70",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   }
+  ],
+  "Pollaiuolo Martyrdom of Saint Sebastian": [
+   {
+    "file": "Antonio del Pollaiolo - Martyrdom of St Sebastian - WGA18032.jpg",
+    "width": 750,
+    "height": 1085,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Unknown author Unknown author",
+    "date": "",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"p/pollaiol/antonio/martyrdo\"",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Antonio Pollaiuolo 003 cropframe.JPG",
+    "width": 2125,
+    "height": 2993,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Antonio del Pollaiuolo / Piero del Pollaiuolo",
+    "date": "before 1475 date QS:P,+1475-00-00T00:00:00Z/7,P1326,+1475-00-00T00:00:00Z/9",
+    "credit": "This image has been extracted from another file",
+    "description": "martyrdom of Saint Sebastian",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-YorckProject",
+     "PD-Art-YorckProject/en",
+     "PD-Art-old-100-expired",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-art-old-100-expired",
+     "PD-generic/layout",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Pollaiolo - Martyrdom of Saint Sebastian - NG.jpeg",
+    "width": 4919,
+    "height": 6759,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Antonio del Pollaiuolo / Piero del Pollaiuolo",
+    "date": "before 1475 date QS:P,+1475-00-00T00:00:00Z/7,P1326,+1475-00-00T00:00:00Z/9",
+    "credit": "scan from Alison Wright, The Pollaiolo Brothers, p. 175",
+    "description": "martyrdom of Saint Sebastian",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-1923",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
      "PD-old-text",
      "PD-scan",
      "PD-scan/en",
@@ -312,186 +452,1442 @@
     ]
    },
    {
-    "file": "Apparition Château des Carpathes.jpg",
-    "width": 1000,
+    "file": "London National Gallery Pollaiuolo Saint Sebastian.jpg",
+    "width": 2512,
+    "height": 3576,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Ad Meskens You are free to use this picture for any purpose as long as you credit its author, Ad Meskens . Example: © Ad Meskens / Wikimedia Commons If you use this work outside of the Wikimedia projects, a message or a copy is very much ap",
+    "date": "2019-09-22 10:42:31",
+    "credit": "Own work",
+    "description": "Het martelaarschap van Sint-Sebastiaan door Antonio en Piero Pollaiuolo in de National Gallery, Londen.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Pollaiolo, Antonio and Piero del - Martyrdom of Saint Sebastian.jpg",
+    "width": 4165,
+    "height": 6000,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Antonio del Pollaiuolo / Piero del Pollaiuolo",
+    "date": "before 1475 date QS:P,+1475-00-00T00:00:00Z/7,P1326,+1475-00-00T00:00:00Z/9",
+    "credit": "https://www.nationalgallery.org.uk/paintings/antonio-del-pollaiuolo-and-piero-del-pollaiuolo-the-martyrdom-of-saint-sebastian",
+    "description": "martyrdom of Saint Sebastian",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "crossbowman painting 15th century": [
+   {
+    "file": "Balestriere1.jpg",
+    "width": 367,
+    "height": 499,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 3.0",
+    "usage": "Creative Commons Attribution-Share Alike 3.0",
+    "copyrighted": "True",
+    "artist": "User:Julo",
+    "date": "",
+    "credit": "Ugo Pozzati",
+    "description": "Model of a Pavese shield (with Bartolomeo Vivarini's \" St. Martin and the Beggar \" painting on it) and crossbowman , middle-ages",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-by-sa-3.0-migrated",
+     "GFDL",
+     "License migration",
+     "License migration complete",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Altarpiece of St Sebastian (detail).jpg",
+    "width": 1752,
+    "height": 2709,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Master of the Holy Kinship the Younger",
+    "date": "between 1493 and 1494 date QS:P,+1493-00-00T00:00:00Z/8,P1319,+1493-00-00T00:00:00Z/9,P1326,+1494-00-00T00:00:00Z/9",
+    "credit": "Own work",
+    "description": "Crossbowman cocking his weapon by means of a mechanical device. Detail of an altarpiece of St Sebastian. Painted in Cologne, Germany, around 1493-1494. Current location: Wallraf-Richartz-Museum, Cologne",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "berserker painting": [
+   {
+    "file": "Berserker-marktplatz-2011-da-089.jpg",
+    "width": 4000,
+    "height": 3000,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 3.0",
+    "usage": "Creative Commons Attribution-Share Alike 3.0",
+    "copyrighted": "True",
+    "artist": "Dontworry",
+    "date": "2011-10-02",
+    "credit": "Own work",
+    "description": "Der Berserker , 1976-79, von Waldemar Grzimek, auf dem Marktplatz in Darmstadt.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-3.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Berserker-marktplatz-2011-da-091.jpg",
+    "width": 4000,
+    "height": 3000,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 3.0",
+    "usage": "Creative Commons Attribution-Share Alike 3.0",
+    "copyrighted": "True",
+    "artist": "Dontworry",
+    "date": "2011-10-02",
+    "credit": "Own work",
+    "description": "Der Berserker , 1976-79, von Waldemar Grzimek, auf dem Marktplatz in Darmstadt.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-3.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Berserker-Marktplatz-Darmstadt.jpg",
+    "width": 4592,
+    "height": 3448,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Erkaha",
+    "date": "2017-07-23",
+    "credit": "Own work",
+    "description": "Skulptur Berserker, Marktplatz in Darmstadt",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Berserk by Anders Zorn 1914, PMA 1985-52-38579.jpg",
+    "width": 1500,
+    "height": 2070,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Anders Zorn",
+    "date": "1914 date QS:P571,+1914-00-00T00:00:00Z/9",
+    "credit": "https://www.philamuseum.org/collection/object/30618",
+    "description": "Based on the oil painting Bärsärk by Zorn,1913.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-two-auto",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Berserk by Anders Zorn 1914, UA 836.jpg",
+    "width": 1802,
+    "height": 2602,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Anders Zorn",
+    "date": "1914 date QS:P571,+1914-00-00T00:00:00Z/9",
+    "credit": "Uppsala Auktionskammare",
+    "description": "Based on the oil painting Bärsärk by Zorn,1913.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-two-auto",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "viking warrior painting 19th century": [
+   {
+    "file": "Birkebeinerne ski.jpg",
+    "width": 226,
+    "height": 236,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Knud Bergslien",
+    "date": "1869 date QS:P571,+1869-00-00T00:00:00Z/9",
+    "credit": "Birkebeinerne på Ski over Fjeldet med Kongsbarnet. The Ski Museum. Holmenkollen, Oslo",
+    "description": "Birkebeinerne Torstein Skevla og Skjervald Skrukka frakter med seg lille Håkon Håkonsson, kongssønnen, i 1206.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Layout",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   }
+  ],
+  "Stories of Beowulf Skelton": [
+   {
+    "file": "Stories of beowulf wiglaf and beowulf.jpg",
+    "width": 1038,
+    "height": 1338,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "J. R. Skelton",
+    "date": "1908",
+    "credit": "Marshall, Henrietta Elizabeth (1908) Stories of Beowulf , T.C. &amp; E.C. Jack",
+    "description": "\"He knew his days upon this earth were past\" Wiglaf speaking to Beowulf after his battle with the dragon. Beowulf is mortally wounded. Marshall, Henrietta Elizabeth (1908) Stories of Beowulf , T.C. &amp; E.C. Jack, p. 99",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Stories of beowulf viking ship cover.jpg",
+    "width": 1195,
+    "height": 866,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "J. R. Skelton",
+    "date": "1908",
+    "credit": "Marshall, Henrietta Elizabeth (1908) Stories of Beowulf , T.C. &amp; E.C. Jack",
+    "description": "A viking ship on a book cover.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Stories of beowulf grendel.jpg",
+    "width": 1055,
+    "height": 1356,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Joseph Ratcliffe Skelton",
+    "date": "1908",
+    "credit": "Marshall, Henrietta Elizabeth (1908) Stories of Beowulf , T.C. &amp; E.C. Jack",
+    "description": "The epic poem Beowulf burr describes a battle in Denmark between Beowulf and a terrible monster called Grendel. The physical nature of the monster is left vague. “Now day by day this fearsome giant was tortured more and more, for to him it ",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Stories of beowulf queen poring wine.jpg",
+    "width": 1073,
+    "height": 1380,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "J. R. Skelton",
+    "date": "1908",
+    "credit": "Marshall, Henrietta Elizabeth (1908) Stories of Beowulf , T.C. &amp; E.C. Jack",
+    "description": "\"Then forth from the bower came Wealtheow, Hrothgar's queen. Stately and tall, and very beautiful she came, clothed in rich garments girdled with gold. A golden crown was upon her head, and jewels glittered upon her neck. In her hand she he",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Stories of beowulf head of grendel.jpg",
+    "width": 1059,
+    "height": 1371,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Joseph Ratcliffe Skelton",
+    "date": "1908",
+    "credit": "Marshall, Henrietta Elizabeth (1908) Stories of Beowulf , T.C. &amp; E.C. Jack",
+    "description": "\"They carried with them the hideous head of Grendel.\" An illustration of 4 men carrying the head of Grendel. Marshall, Henrietta Elizabeth (1908) Stories of Beowulf , T.C. &amp; E.C. Jack, p. 63 Stories of Beowulf-88.jpg",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Beowulf sea monsters nicors illustration": [],
+  "Grendel's mere illustration": [
+   {
+    "file": "Siegfried, the hero of the North, and Beowulf, the hero of the Anglo-Saxons (1909) (14566643048).jpg",
+    "width": 2384,
+    "height": 1502,
+    "mime": "image/jpeg",
+    "licence": "No restrictions",
+    "usage": "No known copyright restrictions",
+    "copyrighted": "True",
+    "artist": "Internet Archive Book Images",
+    "date": "1909",
+    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14566643048/ Source book page: https://archive.org/stream/siegfriedheroofn00rago/siegfriedheroofn00rago#page/n314/mode/1up",
+    "description": "Identifier : siegfriedheroofn00rago ( find matches ) Title : Siegfried, the hero of the North, and Beowulf, the hero of the Anglo-Saxons Year : 1909 ( 1900s ) Authors : Ragozin, Zénaïde A. (Zénaïde Alexeïevna), 1835-1924 Tobin, George T. (G",
+    "restrictions": "",
+    "licenceTags": [
+     "License template tag"
+    ]
+   },
+   {
+    "file": "The red animal story book - plate facing page 038.png",
+    "width": 1431,
+    "height": 2262,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Henry Justice Ford",
+    "date": "1899",
+    "credit": "Andrew Lang",
+    "description": "illustration from an anthology of stories",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text",
+     "PD-scan",
+     "PD-scan/en",
+     "PD-scan/layout"
+    ]
+   }
+  ],
+  "Gerrit Dou old woman reading": [
+   {
+    "file": "Gerard Dou 005.jpg",
+    "width": 4536,
+    "height": 5868,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Gerrit Dou",
+    "date": "between 1631 and 1632 date QS:P,+1631-00-00T00:00:00Z/8,P1319,+1631-00-00T00:00:00Z/9,P1326,+1632-00-00T00:00:00Z/9",
+    "credit": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN : 3936122202 .",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art-YorckProject",
+     "PD-Art-YorckProject/en",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-generic/layout",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Gerard Dou - Portret van een lezende oude vrouw.jpg",
+    "width": 761,
     "height": 1000,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Léon Benett",
-    "date": "1892",
-    "credit": "Le Château des Carpathes - Jules Verne",
-    "description": "Dame blanche au sommet d'une tour. Gravure de vu Léon Benett parue dans le roman Le Château des Carpathes de Jules Verne en 1892.",
+    "artist": "Gerrit Dou",
+    "date": "between 1631 and 1632 date QS:P,+1631-00-00T00:00:00Z/8,P1319,+1631-00-00T00:00:00Z/9,P1326,+1632-00-00T00:00:00Z/9",
+    "credit": "Unknown source Unknown source",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
      "PD-Layout",
      "PD-US-expired-text",
      "PD-art-category",
      "PD-art-category/core",
+     "PD-old-100-expired",
      "PD-old-X-expired",
-     "PD-old-auto-1923",
-     "PD-old-auto-expired",
-     "PD-old-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
+     "PD-old-text"
     ]
    },
    {
-    "file": "Verne - Le Château des Carpathes 8.jpg",
-    "width": 375,
-    "height": 598,
+    "file": "Gerard Dou - Old Woman Reading a Bible - WGA06639.jpg",
+    "width": 669,
+    "height": 902,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Léon Benett",
-    "date": "2011-04-20 05:32",
-    "credit": "Verne_-_Le_Château_des_Carpathes.djvu",
-    "description": "Scan from the original work",
+    "artist": "Gerrit Dou",
+    "date": "between 1631 and 1632 date QS:P,+1631-00-00T00:00:00Z/8,P1319,+1631-00-00T00:00:00Z/9,P1326,+1632-00-00T00:00:00Z/9",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"d/dou/1/old_read\"",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Amsterdam - Rijksmuseum 1885 - The Gallery of Honour (1st Floor) - Portrait of an old woman reading the Bible c. 1630-35 by Gerrit Dou.jpg",
+    "width": 2864,
+    "height": 3491,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Txllxt TxllxT",
+    "date": "2015-04-16 20:15:53",
+    "credit": "Own work",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Amsterdam - Rijksmuseum 1885 - The Gallery of Honour (1st Floor) - Portrait of an old woman reading the Bible c. 1630-35 by Gerrit Dou.png",
+    "width": 2877,
+    "height": 3459,
+    "mime": "image/png",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Txllxt TxllxT",
+    "date": "16 April 2015, 20:15:53",
+    "credit": "Own work",
+    "description": "Amsterdam - Rijksmuseum 1885 - The Gallery of Honour (1st Floor) - Portrait of an old woman reading the Bible c. 1630-35 by Gerrit Dou",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   }
+  ],
+  "Rembrandt old woman reading": [
+   {
+    "file": "An old woman sitting and reading a book. Etching after Rembrandt Wellcome V0015833.jpg",
+    "width": 2358,
+    "height": 3430,
+    "mime": "image/jpeg",
+    "licence": "CC BY 4.0",
+    "usage": "Creative Commons Attribution 4.0",
+    "copyrighted": "True",
+    "artist": "Rembrandt",
+    "date": "",
+    "credit": "https://wellcomeimages.org/indexplus/obf_images/07/23/6ca0d9bd4b863f07ae3315fa9837.jpg Gallery: https://wellcomeimages.org/indexplus/image/V0015833.html Wellcome Collection gallery (2018-03-23): https://wellcomecollection.org/works/eeuabpc6",
+    "description": "An old woman sitting and reading a book. Etching after Rembrandt. Iconographic Collections",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-4.0",
+     "Cc-by-layout",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Amsterdam - Rijksmuseum - Late Rembrandt Exposition 2015 - An Old Woman Reading 1655.jpg",
+    "width": 3276,
+    "height": 3890,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Txllxt TxllxT",
+    "date": "2015-04-16 19:41:13",
+    "credit": "Own work",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Circle of Rembrandt - Rembrandts moeder.jpg",
+    "width": 2407,
+    "height": 2879,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "After Rembrandt",
+    "date": "circa 1631 date QS:P571,+1631-00-00T00:00:00Z/9,P1480,Q5727902 -34",
+    "credit": "http://www.nrc.nl/handelsblad/2006/02/02/rembrandt-in-leiden-11077747",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-100",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Amsterdam - Rijksmuseum - Late Rembrandt Exposition 2015 - An Old Woman Reading 1655.png",
+    "width": 3261,
+    "height": 3684,
+    "mime": "image/png",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Txllxt TxllxT",
+    "date": "16 April 2015, 19:41:13",
+    "credit": "Own work",
+    "description": "Amsterdam - Rijksmuseum - Late Rembrandt Exposition 2015 - An Old Woman Reading 1655 - RAW Developing by DxO Photolab 4",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "Cc-by-sa-layout/styles.css",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "John Graham-Gilbert (1794-1866) - Old Woman Reading (after Rembrandt van Rijn) - 558 - Glasgow Museums Resource Centre.jpg",
+    "width": 654,
+    "height": 800,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John Graham Gilbert",
+    "date": "between 1814 and 1866 date QS:P,+1850-00-00T00:00:00Z/7,P1319,+1814-00-00T00:00:00Z/9,P1326,+1866-00-00T00:00:00Z/9",
+    "credit": "Art UK",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
      "PD-Layout",
      "PD-US-expired-text",
      "PD-art-category",
      "PD-art-category/core",
      "PD-old-X-expired",
-     "PD-old-auto-1923",
      "PD-old-auto-expired",
-     "PD-old-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Leshy Bilibin": [],
+  "Korotkov Leshy": [],
+  "Leshy painting forest spirit": [],
+  "Benedictine Monk Hugo van der Goes": [
+   {
+    "file": "Hugo van der goes, monaco benedettino, 1478 ca. 01.JPG",
+    "width": 2286,
+    "height": 3060,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 3.0",
+    "usage": "Creative Commons Attribution-Share Alike 3.0",
+    "copyrighted": "True",
+    "artist": "Sailko",
+    "date": "2014-01-23 20:49:01",
+    "credit": "Own work",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-3.0",
+     "Cc-by-sa-layout",
+     "License template tag"
     ]
    },
    {
-    "file": "'The Carpathian Castle' by Léon Benett 19.jpg",
-    "width": 493,
+    "file": "Hugo van der goes, monaco benedettino, 1478 ca. 02.JPG",
+    "width": 2220,
+    "height": 3318,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 3.0",
+    "usage": "Creative Commons Attribution-Share Alike 3.0",
+    "copyrighted": "True",
+    "artist": "Sailko",
+    "date": "2014-01-23 20:49:11",
+    "credit": "Own work",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-3.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Painted door with a Benedictine monk and cat.JPG",
+    "width": 3352,
+    "height": 4020,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Livioandronico2013",
+    "date": "2015-01-04 18:19:54",
+    "credit": "Own work",
+    "description": "Painted door with a Benedictine monk and cat",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "A Benedictine Monk MET EP721.jpg",
+    "width": 519,
+    "height": 700,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Hugo van der Goes",
+    "date": "circa 1478 date QS:P571,+1478-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art . See the Image and Data Resources Open Access Policy",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "A Benedictine Monk (by Hugo van der Goes) - Metropolitan Museum of Art, New York City.jpg",
+    "width": 2764,
+    "height": 3840,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Hugo van der Goes",
+    "date": "circa 1478 date QS:P571,+1478-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art . See the Image and Data Resources Open Access Policy",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-pd-mark-footer",
+     "Cc-zero",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Le Nain Peasant Family": [
+   {
+    "file": "Louis Le Nain- Happy Family- 1642- Louvre.jpg",
+    "width": 2000,
+    "height": 1574,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Attributed to Louis Le Nain / Antoine Le Nain",
+    "date": "1642",
+    "credit": "1. Unknown source Unknown source 2. Bridgeman Art Library : Object 90079",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-1923",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Le Nain Brothers - Peasant Family - WGA12580.jpg",
+    "width": 1073,
     "height": 750,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Léon Benett",
-    "date": "1892-10-27",
-    "credit": "http://jv.gilead.org.il/rpaul/Le%20ch%C3%A2teau%20des%20Carpathes/",
-    "description": "An illustration from Jules Verne's novel \"The Carpathian Castle\" (also published as \"The Castle of the Carpathians\", \"The Castle in Transylvania\", and \"Rodolphe de Gortz; or the Castle of the Carpathians\").",
+    "artist": "Le Nain Brothers",
+    "date": "circa 1640 date QS:P571,+1640-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"/l/le_nain/p_family\"",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
      "PD-Layout",
-     "PD-US-expired-text",
+     "PD-art",
      "PD-art-category",
      "PD-art-category/core",
-     "PD-old-X-expired",
-     "PD-old-auto-1923",
-     "PD-old-auto-expired",
+     "PD-old-100",
      "PD-old-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
+     "PD-old-warning-text"
     ]
    },
    {
-    "file": "'The Carpathian Castle' by Léon Benett 40.jpg",
-    "width": 485,
-    "height": 704,
+    "file": "Le Nain Brothers - The Happy Family - WGA12577.jpg",
+    "width": 1306,
+    "height": 1001,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Léon Benett",
-    "date": "1892-10-27",
-    "credit": "http://jv.gilead.org.il/rpaul/Le%20ch%C3%A2teau%20des%20Carpathes/",
-    "description": "An illustration from Jules Verne's novel \"The Carpathian Castle\" (also published as \"The Castle of the Carpathians\", \"The Castle in Transylvania\", and \"Rodolphe de Gortz; or the Castle of the Carpathians\").",
+    "artist": "Attributed to Antoine Le Nain / Attributed to Louis Le Nain",
+    "date": "1642 date QS:P571,+1642-00-00T00:00:00Z/9",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"l/le_nain/happyfam\"",
+    "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
      "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Antoine or Louis Le Nain - Peasant family in an interior - Louvre.jpg",
+    "width": 470,
+    "height": 330,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Louis Le Nain / Antoine Le Nain",
+    "date": "between 1625 and 1648 date QS:P571,+1650-00-00T00:00:00Z/7,P1319,+1625-00-00T00:00:00Z/9,P1326,+1648-00-00T00:00:00Z/9",
+    "credit": "Smarthistory at Khan Academy",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-1923",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Antoine Le Nain - A Peasant Family - 2023.605 - Metropolitan Museum of Art.jpg",
+    "width": 3149,
+    "height": 4000,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Antoine Le Nain",
+    "date": "between 1640 and 1648 date QS:P,+1640-00-00T00:00:00Z/8,P1319,+1640-00-00T00:00:00Z/9,P1326,+1648-00-00T00:00:00Z/9",
+    "credit": "Metropolitan Museum of Art",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-pd-mark-footer",
+     "Cc-zero",
+     "Fallback",
+     "License template tag",
+     "Licensed-PD-Art",
+     "Licensed-PD-Art/en",
+     "Licensed-PD-Art/layout",
      "PD-Layout",
      "PD-US-expired-text",
      "PD-art-category",
      "PD-art-category/core",
      "PD-old-X-expired",
-     "PD-old-auto-1923",
      "PD-old-auto-expired",
-     "PD-old-text",
-     "PD-scan",
-     "PD-scan/en",
-     "PD-scan/layout"
+     "PD-old-text"
     ]
    }
   ],
-  "Lleu Llaw Gyffes eagle oak Gwydion": [],
-  "Mabinogion Math Gwydion illustration 1900s": []
+  "Bruegel peasants": [
+   {
+    "file": "Pieter Brueghel the Elder - The Dutch Proverbs - Google Art Project.jpg",
+    "width": 5649,
+    "height": 4000,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Pieter Bruegel the Elder",
+    "date": "1559",
+    "credit": "Google Arts &amp; Culture — WwG8mD89xbELbQ",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Pieter Bruegel the Elder - Peasant Wedding - Google Art Project 2.jpg",
+    "width": 7678,
+    "height": 5306,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Pieter Bruegel the Elder",
+    "date": "1568",
+    "credit": "Google Art Project: Home – pic Maximum resolution.",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Pieter Bruegel the Elder - The Fall of the Rebel Angels - Google Art Project.jpg",
+    "width": 30000,
+    "height": 21654,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Pieter Bruegel the Elder",
+    "date": "1562 date QS:P571,+1562-00-00T00:00:00Z/9",
+    "credit": "[//www.google.com/culturalinstitute/asset-viewer/ewEs_8lOXkz7tQ This is a featured picture on the Persian language Wikipedia ( نگاره‌های برگزیده ) and is considered one of the finest images. See its nomination here . If you think this file ",
+    "description": "« Падение мятежных ангелов » ( нид. De aartsengel Michaël doodt de apocalyptische draak ). 1562. Дерево, масло. 117 × 162 см. Королевские музеи изящных искусств , Брюссель ( Бельгия )",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-1923",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art Project - edited.jpg",
+    "width": 30000,
+    "height": 21952,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Pieter Bruegel the Elder",
+    "date": "1563 date QS:P571,+1563-00-00T00:00:00Z/9",
+    "credit": "Levels adjusted from File:Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project.jpg , originally from Google Art Project.",
+    "description": "Tower of Babel",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback"
+    ]
+   },
+   {
+    "file": "Pieter Bruegel the Elder - Hunters in the Snow (Winter) - Google Art Project.jpg",
+    "width": 6819,
+    "height": 4853,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Pieter Bruegel the Elder",
+    "date": "1565 date QS:P571,+1565-00-00T00:00:00Z/9",
+    "credit": "WgFmzFNNN74nUg at Google Cultural Institute maximum zoom level",
+    "description": "\" The Hunters in the Snow \" by Pieter Bruegel the Elder . 1565. oil on panel , 117 cm × 162 cm. Kunsthistorisches Museum , Vienna",
+    "restrictions": "",
+    "licenceTags": []
+   }
+  ],
+  "Koschei death needle egg": [],
+  "Bilibin Maria Morevna": [
+   {
+    "file": "Maria Morevna (Bilibin) - cover.jpg",
+    "width": 500,
+    "height": 630,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Bilibin",
+    "date": "1903",
+    "credit": "http://audioskazki.net/wp-content/gallery/rus_skazki/marya_morevna/001.jpg",
+    "description": "Maria Morevna (Bilibin)",
+    "restrictions": "",
+    "licenceTags": [
+     "License template tag",
+     "PD-Layout",
+     "PD-Russia-expired",
+     "PD-Russia-expired/en",
+     "PD-Russia-expired/lang",
+     "PD-Russia-expired/layout",
+     "PD-US-expired-text"
+    ]
+   },
+   {
+    "file": "Maria Morevna (Bilibin) old orph. - 00.png",
+    "width": 993,
+    "height": 1280,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Ivan Bilibin",
+    "date": "1903",
+    "credit": "http://humus.livejournal.com/3996690.html",
+    "description": "Марья Маревна",
+    "restrictions": "",
+    "licenceTags": [
+     "License template tag",
+     "PD-Layout",
+     "PD-Russia-expired",
+     "PD-Russia-expired/en",
+     "PD-Russia-expired/lang",
+     "PD-Russia-expired/layout",
+     "PD-US-expired-text"
+    ]
+   },
+   {
+    "file": "Maria Morevna (Bilibin) old orph. - 03.png",
+    "width": 1044,
+    "height": 1280,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Ivan Bilibin",
+    "date": "1903",
+    "credit": "https://humus.livejournal.com/3996690.html",
+    "description": "Марья Маревна",
+    "restrictions": "",
+    "licenceTags": [
+     "License template tag",
+     "PD-Layout",
+     "PD-Russia-expired",
+     "PD-Russia-expired/en",
+     "PD-Russia-expired/lang",
+     "PD-Russia-expired/layout",
+     "PD-US-expired-text"
+    ]
+   },
+   {
+    "file": "Maria Morevna (Bilibin) old orph. - 11.png",
+    "width": 1045,
+    "height": 1280,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Ivan Bilibin",
+    "date": "1903",
+    "credit": "http://humus.livejournal.com/3996690.html",
+    "description": "Марья Маревна",
+    "restrictions": "",
+    "licenceTags": [
+     "License template tag",
+     "PD-Layout",
+     "PD-Russia-expired",
+     "PD-Russia-expired/en",
+     "PD-Russia-expired/lang",
+     "PD-Russia-expired/layout",
+     "PD-US-expired-text"
+    ]
+   },
+   {
+    "file": "Maria Morevna (Bilibin) old orph. - 12.png",
+    "width": 1022,
+    "height": 1280,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Ivan Bilibin",
+    "date": "1903",
+    "credit": "http://humus.livejournal.com/3996690.html",
+    "description": "Марья Маревна",
+    "restrictions": "",
+    "licenceTags": [
+     "License template tag",
+     "PD-Layout",
+     "PD-Russia-expired",
+     "PD-Russia-expired/en",
+     "PD-Russia-expired/lang",
+     "PD-Russia-expired/layout",
+     "PD-US-expired-text"
+    ]
+   }
+  ]
  },
  "categories": {},
  "peek": [
   {
-   "file": "GustaveDore She was astonished to see how her grandmother looked.1.jpg",
+   "file": "Knight, Death, and the Devil MET DP815737.jpg",
    "saved": "00.jpg"
   },
   {
-   "file": "Little Red Riding-Hood (2) in Tales of Mother Goose (Welsh).png",
+   "file": "Knight, Death and the Devil MET DP815739.jpg",
    "saved": "01.jpg"
   },
   {
-   "file": "Le Petit Chaperon Rouge, RP-P-OB-33.985.jpg",
+   "file": "Knight, Death and the Devil MET DP159049.jpg",
    "saved": "02.jpg"
   },
   {
-   "file": "Little Red Riding Hood Gustav Doré illustration for Charles Perrault - Il libro delle fate, Longanesi, Milano, 1891.jpg",
+   "file": "Albrecht Dürer, Knight, Death and Devil, 1513, NGA 598.jpg",
    "saved": "03.jpg"
   },
   {
-   "file": "Little Red Riding Hood Gustav Doré second illustration for Charles Perrault - Il libro delle fate, Longanesi, Milano, 1891.jpg",
+   "file": "Albrecht Dürer, Knight, Death and Devil, 1513, NGA 6637.jpg",
    "saved": "04.jpg"
   },
   {
-   "file": "Mammas och småflickornas rum av Carl Larsson 1897.jpg",
+   "file": "San Romano Battle (Paolo Uccello, London) 01.jpg",
    "saved": "05.jpg"
   },
   {
-   "file": "Mammas och småflickornas rum av Carl Larsson 1897 crop.jpg",
+   "file": "Paolo Uccello, The Battle of San Romano, c1436-40, Uffizi, detail1.jpg",
    "saved": "06.jpg"
   },
   {
-   "file": "The Kitchen. From A Home (26 watercolours) (Carl Larsson) - Nationalmuseum - 24211.tif",
+   "file": "Paolo Uccello, The Battle of San Romano, c1436-40, Uffizi, detail3.jpg",
    "saved": "07.jpg"
   },
   {
-   "file": "Mamma's and the Small Girls' Room. From A Home (26 watercolours) (Carl Larsson) - Nationalmuseum - 24215.tif",
+   "file": "Paolo Uccello, The Battle of San Romano, c1436-40, Uffizi, detail2.jpg",
    "saved": "08.jpg"
   },
   {
-   "file": "Daddy's Room. From A Home (26 watercolours) (Carl Larsson) - Nationalmuseum - 24214.tif",
+   "file": "Uccello — the Battle of San Romano.jpg",
    "saved": "09.jpg"
   },
   {
-   "file": "Chateaucarpathes.jpg",
+   "file": "Battle of crecy froissart.jpg",
    "saved": "10.jpg"
   },
   {
-   "file": "Apparition Château des Carpathes.jpg",
+   "file": "Battle of Crecy (crossbowmen).jpg",
    "saved": "11.jpg"
   },
   {
-   "file": "Verne - Le Château des Carpathes 8.jpg",
+   "file": "Battle of crecy froissart (retouched crop).jpg",
    "saved": "12.jpg"
   },
   {
-   "file": "'The Carpathian Castle' by Léon Benett 19.jpg",
+   "file": "Battle of crecy froissart (cropped).jpg",
    "saved": "13.jpg"
   },
   {
-   "file": "'The Carpathian Castle' by Léon Benett 40.jpg",
+   "file": "Folio 165v Battle of Crecy Froissart.jpg",
    "saved": "14.jpg"
+  },
+  {
+   "file": "Antonio del Pollaiolo - Martyrdom of St Sebastian - WGA18032.jpg",
+   "saved": "15.jpg"
+  },
+  {
+   "file": "Antonio Pollaiuolo 003 cropframe.JPG",
+   "saved": "16.jpg"
+  },
+  {
+   "file": "Pollaiolo - Martyrdom of Saint Sebastian - NG.jpeg",
+   "saved": "17.jpg"
+  },
+  {
+   "file": "London National Gallery Pollaiuolo Saint Sebastian.jpg",
+   "saved": "18.jpg"
+  },
+  {
+   "file": "Pollaiolo, Antonio and Piero del - Martyrdom of Saint Sebastian.jpg",
+   "saved": "19.jpg"
+  },
+  {
+   "file": "Balestriere1.jpg",
+   "saved": "20.jpg"
+  },
+  {
+   "file": "Altarpiece of St Sebastian (detail).jpg",
+   "saved": "21.jpg"
+  },
+  {
+   "file": "Berserker-marktplatz-2011-da-089.jpg",
+   "saved": "22.jpg"
+  },
+  {
+   "file": "Berserker-marktplatz-2011-da-091.jpg",
+   "saved": "23.jpg"
+  },
+  {
+   "file": "Berserker-Marktplatz-Darmstadt.jpg",
+   "saved": "24.jpg"
+  },
+  {
+   "file": "Berserk by Anders Zorn 1914, PMA 1985-52-38579.jpg",
+   "saved": "25.jpg"
+  },
+  {
+   "file": "Berserk by Anders Zorn 1914, UA 836.jpg",
+   "saved": "26.jpg"
+  },
+  {
+   "file": "Birkebeinerne ski.jpg",
+   "saved": "27.jpg"
+  },
+  {
+   "file": "Stories of beowulf wiglaf and beowulf.jpg",
+   "saved": "28.jpg"
+  },
+  {
+   "file": "Stories of beowulf viking ship cover.jpg",
+   "saved": "29.jpg"
+  },
+  {
+   "file": "Stories of beowulf grendel.jpg",
+   "saved": "30.jpg"
+  },
+  {
+   "file": "Stories of beowulf queen poring wine.jpg",
+   "saved": "31.jpg"
+  },
+  {
+   "file": "Stories of beowulf head of grendel.jpg",
+   "saved": "32.jpg"
+  },
+  {
+   "file": "Siegfried, the hero of the North, and Beowulf, the hero of the Anglo-Saxons (1909) (14566643048).jpg",
+   "saved": "33.jpg"
+  },
+  {
+   "file": "The red animal story book - plate facing page 038.png",
+   "saved": "34.jpg"
+  },
+  {
+   "file": "Gerard Dou 005.jpg",
+   "saved": "35.jpg"
+  },
+  {
+   "file": "Gerard Dou - Portret van een lezende oude vrouw.jpg",
+   "saved": "36.jpg"
+  },
+  {
+   "file": "Gerard Dou - Old Woman Reading a Bible - WGA06639.jpg",
+   "saved": "37.jpg"
+  },
+  {
+   "file": "Amsterdam - Rijksmuseum 1885 - The Gallery of Honour (1st Floor) - Portrait of an old woman reading the Bible c. 1630-35 by Gerrit Dou.jpg",
+   "saved": "38.jpg"
+  },
+  {
+   "file": "Amsterdam - Rijksmuseum 1885 - The Gallery of Honour (1st Floor) - Portrait of an old woman reading the Bible c. 1630-35 by Gerrit Dou.png",
+   "saved": "39.jpg"
+  },
+  {
+   "file": "An old woman sitting and reading a book. Etching after Rembrandt Wellcome V0015833.jpg",
+   "saved": "40.jpg"
+  },
+  {
+   "file": "Amsterdam - Rijksmuseum - Late Rembrandt Exposition 2015 - An Old Woman Reading 1655.jpg",
+   "saved": "41.jpg"
+  },
+  {
+   "file": "Circle of Rembrandt - Rembrandts moeder.jpg",
+   "saved": "42.jpg"
+  },
+  {
+   "file": "Amsterdam - Rijksmuseum - Late Rembrandt Exposition 2015 - An Old Woman Reading 1655.png",
+   "saved": "43.jpg"
+  },
+  {
+   "file": "John Graham-Gilbert (1794-1866) - Old Woman Reading (after Rembrandt van Rijn) - 558 - Glasgow Museums Resource Centre.jpg",
+   "saved": "44.jpg"
+  },
+  {
+   "file": "Hugo van der goes, monaco benedettino, 1478 ca. 01.JPG",
+   "saved": "45.jpg"
+  },
+  {
+   "file": "Hugo van der goes, monaco benedettino, 1478 ca. 02.JPG",
+   "saved": "46.jpg"
+  },
+  {
+   "file": "Painted door with a Benedictine monk and cat.JPG",
+   "saved": "47.jpg"
+  },
+  {
+   "file": "A Benedictine Monk MET EP721.jpg",
+   "saved": "48.jpg"
+  },
+  {
+   "file": "A Benedictine Monk (by Hugo van der Goes) - Metropolitan Museum of Art, New York City.jpg",
+   "saved": "49.jpg"
+  },
+  {
+   "file": "Louis Le Nain- Happy Family- 1642- Louvre.jpg",
+   "saved": "50.jpg"
+  },
+  {
+   "file": "Le Nain Brothers - Peasant Family - WGA12580.jpg",
+   "saved": "51.jpg"
+  },
+  {
+   "file": "Le Nain Brothers - The Happy Family - WGA12577.jpg",
+   "saved": "52.jpg"
+  },
+  {
+   "file": "Antoine or Louis Le Nain - Peasant family in an interior - Louvre.jpg",
+   "saved": "53.jpg"
+  },
+  {
+   "file": "Antoine Le Nain - A Peasant Family - 2023.605 - Metropolitan Museum of Art.jpg",
+   "saved": "54.jpg"
+  },
+  {
+   "file": "Pieter Brueghel the Elder - The Dutch Proverbs - Google Art Project.jpg",
+   "saved": "55.jpg"
+  },
+  {
+   "file": "Pieter Bruegel the Elder - Peasant Wedding - Google Art Project 2.jpg",
+   "saved": "56.jpg"
+  },
+  {
+   "file": "Pieter Bruegel the Elder - The Fall of the Rebel Angels - Google Art Project.jpg",
+   "saved": "57.jpg"
+  },
+  {
+   "file": "Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art Project - edited.jpg",
+   "saved": "58.jpg"
+  },
+  {
+   "file": "Pieter Bruegel the Elder - Hunters in the Snow (Winter) - Google Art Project.jpg",
+   "saved": "59.jpg"
+  },
+  {
+   "file": "Maria Morevna (Bilibin) - cover.jpg",
+   "saved": "60.jpg"
+  },
+  {
+   "file": "Maria Morevna (Bilibin) old orph. - 00.png",
+   "saved": "61.jpg"
+  },
+  {
+   "file": "Maria Morevna (Bilibin) old orph. - 03.png",
+   "saved": "62.jpg"
+  },
+  {
+   "file": "Maria Morevna (Bilibin) old orph. - 11.png",
+   "saved": "63.jpg"
+  },
+  {
+   "file": "Maria Morevna (Bilibin) old orph. - 12.png",
+   "saved": "64.jpg"
   }
  ]
 }
