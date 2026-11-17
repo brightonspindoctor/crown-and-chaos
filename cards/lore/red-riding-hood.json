@@ -1,0 +1,52 @@
+{
+  "hero": "red-riding-hood",
+  "personality": "Bright, trusting and quick to learn. She is fooled once and never again.",
+  "voice": "I will never leave the path again.",
+  "cards": [
+    {
+      "id": "red-riding-hood-1",
+      "n": 1,
+      "title": "Cake and Wine",
+      "text": "Her grandmother gave her a cap of red velvet, and she loved it so much she would wear nothing else, so everyone called her Little Red-Cap. One morning her mother gave her a piece of cake and a bottle of wine for her grandmother, who was ill and weak, and told her to keep to the path through the wood.",
+      "playNote": "Cake and wine: heal 4. Her Crown passive heals your most injured card.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "red-riding-hood-2",
+      "n": 2,
+      "title": "Out of the Dark",
+      "text": "She did leave the path, to pick flowers for her grandmother, and the wolf reached the cottage first. When she arrived he swallowed her whole. But a huntsman passing by heard the snoring, came in, and cut the sleeping wolf open. Out she sprang, crying how dark it had been inside, and then her grandmother came out after her, still alive.",
+      "playNote": "Her Bond: while a Slayer lives, she survives her first death on 3 Health.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "red-riding-hood-3",
+      "n": 3,
+      "title": "The Second Wolf",
+      "text": "Another wolf once spoke to her in the wood and tried to lead her astray. This time she went straight to her grandmother's and told her everything, and they bolted the door. When the wolf climbed onto the roof to wait for her, they filled the trough below with the water sausages had been boiled in. The smell drew him down; he slipped off the roof into the trough and drowned.",
+      "playNote": "She learned the wood's tricks: she heals and survives rather than fights.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

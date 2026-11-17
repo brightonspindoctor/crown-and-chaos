@@ -1,0 +1,52 @@
+{
+  "hero": "the-huntsman",
+  "personality": "Steady, watchful and slow to shoot. He has been tracking this one for a long time.",
+  "voice": "Do I find you here, you old sinner?",
+  "cards": [
+    {
+      "id": "the-huntsman-1",
+      "n": 1,
+      "title": "The Snoring",
+      "text": "He was passing the old woman's cottage when he heard snoring far louder than an old woman could make. Worried she was ill, he went in, and there in her bed lay the wolf he had been hunting for years. He had long sought him, and now he had found him.",
+      "playNote": "His Crown passive: mark one enemy hero each round; your attacks on it hit harder.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-huntsman-2",
+      "n": 2,
+      "title": "Scissors, Not a Shot",
+      "text": "He raised his gun, then stopped. The wolf might have swallowed the grandmother, and she might still be saved. So he did not fire. He took a pair of scissors and began, very carefully, to cut open the sleeping wolf's stomach. After a few snips he saw the red cap shining.",
+      "playNote": "A Slayer by trade: while he lives, Red Riding Hood can survive her first death.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-huntsman-3",
+      "n": 3,
+      "title": "Stones in the Belly",
+      "text": "Red-Cap fetched great stones, and together they filled the wolf's belly with them. When he woke and tried to run away, the stones were so heavy that he sank down and fell dead. The huntsman skinned him and went home with the pelt, the grandmother ate the cake and drank the wine, and all three were glad.",
+      "playNote": "Stones in the belly: the target's Speed drops to 1 for the rest of the fight. His Bond: stronger alongside his tale-mates.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

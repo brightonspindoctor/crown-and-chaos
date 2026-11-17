@@ -1,0 +1,52 @@
+{
+  "hero": "baba-yaga",
+  "personality": "Ancient, hungry and fair in her own terrible way. She keeps her word, and she eats those who waste her time.",
+  "voice": "Ask too much and you grow old here.",
+  "cards": [
+    {
+      "id": "baba-yaga-1",
+      "n": 1,
+      "title": "The House of Bones",
+      "text": "Deep in the forest stands a house fenced with human bones. A skull sits on every stake, and at night their eyes burn so bright that the clearing is lit like noon. The bolts on the gate are hands, and the lock is a mouth full of teeth. Everyone who comes here works for her or is eaten, and the more she eats, the stronger she grows.",
+      "playNote": "No maximum Health, and +2 Health for every kill.",
+      "source": {
+        "work": "Vasilísa the Fair",
+        "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
+        "edition": "Russian Folk-Tales, Kegan Paul, 1915",
+        "chapter": "Vasilísa the Fair",
+        "url": "https://www.gutenberg.org/ebooks/62509",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "baba-yaga-2",
+      "n": 2,
+      "title": "Mortar and Pestle",
+      "text": "She does not walk. The trees creak and the leaves rattle, and out of the forest she comes riding in an iron mortar, driving it on with the pestle and sweeping her tracks away behind her with a broom. Whatever is in her path when she lands is simply gone.",
+      "playNote": "Mortar ride: move to any adjacent space and kill what is there, friend or foe.",
+      "source": {
+        "work": "Vasilísa the Fair",
+        "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
+        "edition": "Russian Folk-Tales, Kegan Paul, 1915",
+        "chapter": "Vasilísa the Fair",
+        "url": "https://www.gutenberg.org/ebooks/62509",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "baba-yaga-3",
+      "n": 3,
+      "title": "The Skull Lantern",
+      "text": "She set the girl three impossible tasks and found them all done. When she heard a mother's blessing had helped, she would not keep a blessed girl in her house. She sent her home with fire, as was asked: a skull on a stick with burning eyes. That night its stare followed the cruel stepmother and her daughters wherever they hid, until there was nothing left of them but ash.",
+      "playNote": "Skull fire: a ranged blast on any card.",
+      "source": {
+        "work": "Vasilísa the Fair",
+        "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
+        "edition": "Russian Folk-Tales, Kegan Paul, 1915",
+        "chapter": "Vasilísa the Fair",
+        "url": "https://www.gutenberg.org/ebooks/62509",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

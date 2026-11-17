@@ -1,0 +1,52 @@
+{
+  "hero": "the-wolf",
+  "personality": "Patient, polite and always hungry. He speaks kindly to the weak because they are the easiest to eat.",
+  "voice": "All the better to see you with.",
+  "cards": [
+    {
+      "id": "the-wolf-1",
+      "n": 1,
+      "title": "Good-day, Little Red-Cap",
+      "text": "He met her as she entered the wood and asked so pleasantly where she was going. She didn't know what a wicked creature he was, so she told him. He walked beside her and thought: what a tender young creature, a nice plump mouthful. Look at the pretty flowers, he said, and she left the path.",
+      "playNote": "His Crown passive: your attacks deal +1 to cards that are already hurt.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-wolf-2",
+      "n": 2,
+      "title": "Grandmother's Cap",
+      "text": "He ran ahead to the cottage, knocked, and spoke in the girl's voice. Then he swallowed the old woman, put on her clothes and her nightcap, lay down in her bed and drew the curtains. When the girl came in she saw only her grandmother, strangely changed, with very large ears, eyes, hands and mouth.",
+      "playNote": "His Bond: while another Märchen hero lives, Ranged attacks can't target him.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-wolf-3",
+      "n": 3,
+      "title": "Swallowed Whole",
+      "text": "With one bound he was out of the bed and swallowed Red-Cap too, then lay down and fell into a deep sleep, snoring loudly. He never chewed. That was his mistake: when the huntsman cut him open, everyone he had eaten came out alive.",
+      "playNote": "Swallow whole: remove a card, but it comes back if he dies.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "chapter": "Little Red-Cap",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Little_Red-Cap",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}
