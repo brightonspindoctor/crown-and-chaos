@@ -358,6 +358,54 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .arttile > i { font-size: 13px; line-height: 1.15; color: var(--muted); padding: 0 2px; }
 .arttile.on { border: 2px solid var(--gold-leaf); box-shadow: 0 0 0 1px var(--gold-shade), 0 4px 14px rgba(20,13,8,.6); }
 .arttile em { position: absolute; top: 9px; left: 9px; font: 700 9.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: #2a1d14; background: var(--gold-leaf); border-radius: 99px; padding: 4px 7px; }
+/* levels, your court, Hall of Fame */
+.lvseal { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 112px; height: 112px; border-radius: 50%; background: var(--gold-leaf); box-shadow: inset 0 0 0 4px var(--gold-leaf), inset 0 0 0 6px var(--gold-shade), 0 10px 24px rgba(20,13,8,.45); color: #2a1d14; font: 700 50px/1 var(--display); }
+.lvseal i { font: 700 10px/1.2 var(--display); letter-spacing: .18em; text-transform: uppercase; font-style: normal; }
+.lvseal.sm { width: 34px; height: 34px; font-size: 14px; box-shadow: inset 0 0 0 2px var(--gold-shade); }
+.lvseal.sm i { display: none; }
+.rep { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.rep-top { display: flex; justify-content: space-between; font: 600 12px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.rep-top span:first-child { color: var(--gold-text); }
+.rep-bar { height: 10px; border-radius: 5px; background: var(--surface); border: 1px solid var(--gold-shade); overflow: hidden; }
+.rep-bar i { display: block; height: 100%; background: var(--gold-leaf); }
+.lvpanel { gap: 14px; margin: auto 0; }
+#over:has(.lvpanel) { place-items: start center; }
+.giftcards { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.avatar { position: relative; display: inline-block; width: 36px; height: 48px; flex: none; }
+.avatar .avface { position: absolute; left: 2px; bottom: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--ultramarine); box-shadow: 0 0 0 2px var(--gold-leaf); display: grid; place-items: center; font: 700 13px/1 var(--display); color: var(--gold-leaf); }
+.avatar .avcrown { position: absolute; left: 3px; top: 0; width: 30px; height: 21px; z-index: 1; }
+.avatar .avcrown svg { width: 100%; height: 100%; }
+.avatar.big { width: 120px; height: 150px; }
+.avatar.big .avface { left: 10px; width: 100px; height: 100px; font-size: 40px; box-shadow: 0 0 0 3px var(--gold-leaf); }
+.avatar.big .avcrown { left: 18px; width: 84px; height: 59px; }
+.newcrown .avcrown { animation: crown-in .7s ease-out both; }
+@keyframes crown-in { 0% { transform: translateY(-40px); opacity: 0 } 70% { transform: translateY(4px); opacity: 1 } 100% { transform: none } }
+@media (prefers-reduced-motion: reduce) { .newcrown .avcrown { animation: none; } }
+.me-chip { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 2px 14px 2px 6px; border-radius: 26px; border: 1px solid var(--line); background: var(--raised); color: var(--ink); text-align: left; cursor: pointer; }
+.me-chip b { display: block; font: 600 14px/1.1 var(--display); }
+.me-chip i { display: block; font-size: 13px; color: var(--muted); }
+.court-me { flex-direction: row; align-items: center; gap: 16px; }
+.court-lv { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; }
+.courtstats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.courtstats > div { background: var(--raised); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.courtstats i { font: 600 10px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-style: normal; }
+.courtstats b { font: 700 20px/1.1 var(--display); color: var(--gold-text); }
+.hof { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.hof li { display: grid; grid-template-columns: 24px 36px 1fr 34px 48px; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); }
+.hof li.me { background: var(--ultramarine); border-color: var(--gold-leaf); }
+.hof li b { text-align: right; font: 700 15px/1 var(--display); }
+/* settings */
+.setrow { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 52px; }
+.setrow b { display: block; font: 600 15px/1.2 var(--display); letter-spacing: .03em; }
+.setrow i { display: block; font-size: 14px; color: var(--muted); }
+.switch { width: 52px; height: 30px; flex: none; border-radius: 15px; background: var(--surface); border: 1px solid var(--gold-shade); position: relative; }
+.switch span { position: absolute; left: 3px; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--muted); transition: transform .15s ease, background .15s ease; }
+.switch.on { background: var(--ultramarine); border-color: var(--gold-leaf); }
+.switch.on span { transform: translateX(22px); background: var(--gold-leaf); }
+.setslider { display: flex; flex-direction: column; gap: 6px; padding: 0 0 8px; font-size: 14px; color: var(--muted); }
+.setslider input { width: 100%; accent-color: var(--gold-leaf); height: 28px; }
+.setslider.off { opacity: .5; }
+.box.admin { border-color: var(--vermilion); }
 /* crowns */
 .crownicon { display: block; }
 .box.wearing { flex-direction: row; align-items: center; gap: 14px; }
@@ -1783,8 +1831,8 @@ const PAY = { win: 30, loss: 15, bonus: 5 };
 const RENOWN_CAP = 50, BELT = 2, START_GOLD = 50;
 const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", ""] });
 const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), crowns: 0, wins: 0, losses: 0, draws: 0, dry: 0, tip: 0,
-  lore: [], variants: [], art: {}, ownCrowns: ["gold"], wearing: "gold" });
-function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); if (g.lineup?.items) g.lineup.items = g.lineup.items.slice(0, BELT); return Object.assign(fresh(), g); } } catch (e) {} return fresh(); }
+  lore: [], variants: [], art: {}, ownCrowns: ["gold"], wearing: "gold", spent: 0, levelSeen: 1 });
+function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); if (g.lineup?.items) g.lineup.items = g.lineup.items.slice(0, BELT); const out = Object.assign(fresh(), g); if (g.levelSeen == null) out.levelSeen = levelOf(repPoints(out)); return out; } } catch (e) {} return fresh(); }
 function save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) {} }
 let G = load();
 
@@ -1841,6 +1889,112 @@ function fablePack() {
     }
   }
   return [...cards, ...better];
+}
+
+// ---------- levels ----------
+// A player's level comes from the gold they have spent and the Crowns they have won. Players never see the sums,
+// only their level and a Reputation bar. Level L needs 25 x L x (L - 1) points. A Crown taken from the computer
+// is worth 5 points (25 from a real player, once there are real players), so the computer can't be farmed for levels.
+// Every 5th level gifts a hero (never one you own 3 of); every 10th level gifts a level crown.
+function spend(n) { G.gold -= n; G.spent = (G.spent || 0) + n; }
+function repPoints(g) { return (g.spent || 0) + 5 * (g.crowns || 0); }
+function levelOf(pts) { return Math.max(1, Math.floor((1 + Math.sqrt(1 + pts / 6.25)) / 2)); }
+const levelStart = (L) => 25 * L * (L - 1);
+const myLevel = () => levelOf(repPoints(G));
+function repShare() { const pts = repPoints(G), L = levelOf(pts); return Math.min(1, (pts - levelStart(L)) / (levelStart(L + 1) - levelStart(L))); }
+const nextGift = (L) => Math.ceil((L + 1) / 5) * 5;
+function giftHero() {
+  const can = Object.values(DATA.heroes).filter((h) => owned(h.id) < 3).map((h) => h.id);
+  if (!can.length) { G.gold += 100; return null; }
+  const h = pick(can);
+  if (PAIR.includes(h)) { PAIR.forEach((id) => give(id)); return PAIR.slice(); }
+  give(h); return [h];
+}
+// Called whenever the player is back on a menu screen: shows any levels gained since last time, then their gifts.
+function checkLevel() {
+  if (!G.packOpened || U.over) return;
+  const to = myLevel(), from = G.levelSeen || 1;
+  if (to <= from) return;
+  const steps = [{ kind: "level" }];
+  for (let L = from + 1; L <= to; L++) {
+    if (L % 10 === 0) { const c = CROWNS.find((x) => x.level === L); if (c && !G.ownCrowns.includes(c.id)) { G.ownCrowns.push(c.id); steps.push({ kind: "crown", id: c.id, level: L }); } }
+    if (L % 5 === 0) { const got = giftHero(); steps.push(got ? { kind: "hero", ids: got, level: L } : { kind: "gold", level: L }); }
+  }
+  G.levelSeen = to; save();
+  U.over = { type: "levelup", from, to, steps, i: 0 };
+}
+function repBar(L) {
+  const pct = Math.round(repShare() * 100);
+  return `<div class="rep"><div class="rep-top"><span>Reputation</span><span>Level ${L + 1}</span></div>
+    <div class="rep-bar" role="progressbar" aria-label="Progress to level ${L + 1}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div></div>`;
+}
+const levelSeal = (L, small) => `<span class="lvseal${small ? " sm" : ""}" aria-label="Level ${L}"><i>Level</i>${L}</span>`;
+function avatar(cls = "") { return `<span class="avatar ${cls}"><span class="avcrown">${crownSvg(G.wearing)}</span><span class="avface">P</span></span>`; }
+function levelUpHtml(o) {
+  const st = o.steps[o.i], last = o.i === o.steps.length - 1, L = o.to;
+  const btn = (label) => `<div class="btns"><button class="btn" data-act="lv-next">${label}</button></div>`;
+  if (st.kind === "level") {
+    const n = o.to - o.from, g = nextGift(L), rest = o.steps.length - 1;
+    return `<div class="panel lvpanel"><p class="eyebrow">${n > 1 ? `Level up × ${n}` : "Level up"}</p>${levelSeal(L)}
+      <h1>${n > 1 ? `Level ${o.from} to ${L}` : "Your reputation grows"}</h1>
+      <p>${n > 1 ? "Your reputation soars." : "Word of your deeds spreads across the realms."}</p>
+      ${repBar(L)}
+      ${rest ? "" : `<p class="credit">A hero ${g % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${g}.</p>`}
+      ${btn(rest ? "Claim your rewards" : "Continue")}</div>`;
+  }
+  if (st.kind === "crown") {
+    const c = crownById[st.id];
+    return `<div class="panel lvpanel"><p class="eyebrow">Level ${st.level} · New crown</p>
+      <div class="newcrown">${avatar("big")}</div>
+      <h1>The ${esc(c.name)} is yours</h1><p>Worn on your icon in battle, so every rival sees how far you have come.</p>
+      <div class="btns"><button class="btn" data-act="lv-wear" data-id="${c.id}">Wear it now</button><button class="btn quiet" data-act="lv-next">Keep my current crown</button></div>
+      <p class="credit">Another crown awaits at Level ${st.level + 10}.</p></div>`;
+  }
+  if (st.kind === "hero") {
+    return `<div class="panel lvpanel"><p class="eyebrow">Level ${st.level} · Hero gift</p><h1>A hero joins your court</h1>
+      <div class="giftcards">${st.ids.map((id) => fullCard(id)).join("")}</div>
+      <p class="credit">Your next hero gift is at Level ${st.level + 5}.</p>${btn(last ? "Add to my Library" : "Next")}</div>`;
+  }
+  return `<div class="panel lvpanel"><p class="eyebrow">Level ${st.level} · Hero gift</p><h1>You own every hero</h1><p>Three of each, no less. Take 100 gold instead.</p>${btn(last ? "Continue" : "Next")}</div>`;
+}
+
+// ---------- your court (profile) and the Hall of Fame ----------
+function courtHtml() {
+  const L = myLevel(), heroes = Object.values(DATA.heroes).filter((h) => owned(h.id) > 0).length;
+  const w = crownById[G.wearing] || CROWNS[0];
+  return `<div class="wrap"><div class="bar"><h1>Your court</h1></div>
+    <div class="box court-me">${avatar("big")}<div><h2>Player One</h2><div class="court-lv">${levelSeal(L, true)}<span>Level ${L}</span></div><p class="credit">Wearing the ${esc(w.name)}</p></div></div>
+    <div class="box">${repBar(L)}<p class="credit">A hero ${nextGift(L) % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${nextGift(L)}.</p></div>
+    <div class="courtstats"><div><i>Crowns won</i><b>${G.crowns}</b></div><div><i>Heroes</i><b>${heroes}</b></div><div><i>Fights</i><b>${G.wins} won · ${G.losses} lost</b></div></div>
+    <div class="box"><h2>Your crowns</h2><p>Wear any crown you own. New ones are a surprise until you find them.</p><button class="btn quiet" data-act="court-crowns">Choose a crown</button></div>
+    <div class="box"><h2>Hall of Fame</h2>
+      <ol class="hof"><li class="me"><span>1</span>${avatar()}<span>You</span>${levelSeal(L, true)}<b>${G.crowns}</b></li></ol>
+      <p class="credit">Ranked by Crowns won. Other players join the Hall once you can fight them. Line-ups are never shown.</p></div>
+    <button class="btn quiet" data-go="settings">Settings</button></div>`;
+}
+
+// ---------- settings and admin ----------
+// Admin mode is for the game's makers: open the game once with ?admin=1 on the address (?admin=0 turns it off).
+// It adds an Admin section to Settings, whose switch shows every card in the Library, owned or not.
+// It never gives you cards: line-ups still use only what you own.
+const isAdmin = () => PREFS.read("admin", false);
+const adminAll = () => isAdmin() && PREFS.read("adminAll", false);
+function toggleRow(act, label, on, note) {
+  return `<div class="setrow"><div><b>${label}</b>${note ? `<i>${note}</i>` : ""}</div><button class="switch${on ? " on" : ""}" data-act="${act}" role="switch" aria-checked="${on}" aria-label="${label}"><span></span></button></div>`;
+}
+const slider = (key, label, val, on) => `<label class="setslider${on ? "" : " off"}"><span>${label} volume</span><input type="range" min="0" max="100" step="5" value="${Math.round(val * 100)}" data-vol="${key}"${on ? "" : " disabled"}></label>`;
+function settingsHtml() {
+  return `<div class="wrap"><div class="bar"><h1>Settings</h1></div>
+    <div class="box"><h2>Sound</h2>
+      ${toggleRow("set-sound", "Sound effects", !SND.muted)}${slider("sfx", "Sound effects", SND.volume, !SND.muted)}
+      ${toggleRow("set-music", "Music", SND.music)}${slider("music", "Music", SND.musicVolume, SND.music)}</div>
+    <div class="box"><h2>Battles</h2>
+      ${toggleRow("motion", "Card animations", G.motion !== false, "Cards lunge, shoot and cast as they act")}
+      ${toggleRow("set-fast", "Fast battles", !!G.fast, "Plays each round back at double speed")}</div>
+    ${isAdmin() ? `<div class="box admin"><h2>Admin</h2>
+      ${toggleRow("admin-all", "See every card", adminAll(), "Shows every hero, front-rank card, item and crown in the Library, owned or not")}
+      <p class="credit">Only you see this section on this device. Open the game with ?admin=0 to hide it.</p></div>` : ""}
+    <p class="credit">Settings are saved on this device.</p></div>`;
 }
 
 // ---------- line-up ----------
@@ -1924,8 +2078,23 @@ const CROWNS = [
   { id: "sun", name: "Sun Crown", price: 4000, svg: `<path fill="#e8b33a" d="M4 21h16v-4H4zM12 3l1.8 13h-3.6zM5.5 6.5l4 9.5H6.8zM18.5 6.5 17.2 16h-2.7zM2.5 11.5 6 16H3.5zM21.5 11.5 20.5 16H18z"/>` },
   { id: "skull", name: "Skull Crown", price: 5000, svg: `<path fill="#5a4a3a" d="M3 21h18v-4H3z"/><g fill="#e8e0cc"><circle cx="6.5" cy="13" r="3"/><circle cx="12" cy="10.5" r="3.4"/><circle cx="17.5" cy="13" r="3"/><path d="M5 15h3v2H5zM10.3 13h3.4v2.6h-3.4zM16 15h3v2h-3z"/></g><g fill="#2a1d14"><circle cx="5.5" cy="12.8" r=".8"/><circle cx="7.5" cy="12.8" r=".8"/><circle cx="10.9" cy="10.3" r=".9"/><circle cx="13.1" cy="10.3" r=".9"/><circle cx="16.5" cy="12.8" r=".8"/><circle cx="18.5" cy="12.8" r=".8"/></g>` },
 ];
+// Level crowns: one every ten levels, earned only, never sold or found in packs.
+CROWNS.push(
+  { id: "lv-iron", name: "Iron Circlet", level: 10, vb: "0 0 120 84", svg: `<path d="M18 58 L18 44 L30 52 L42 40 L54 52 L60 36 L66 52 L78 40 L90 52 L102 44 L102 58 Z" fill="#706b64" stroke="#26221e" stroke-width="2" stroke-linejoin="round"/> <rect x="14" y="56" width="92" height="16" rx="2" fill="#57534e" stroke="#26221e" stroke-width="2"/> <path d="M16 61h88" stroke="#7c776f" stroke-width="1"/> <circle cx="24" cy="65" r="2.5" fill="#a39d93"/><circle cx="42" cy="65" r="2.5" fill="#a39d93"/><circle cx="60" cy="65" r="2.5" fill="#a39d93"/><circle cx="78" cy="65" r="2.5" fill="#a39d93"/><circle cx="96" cy="65" r="2.5" fill="#a39d93"/>` },
+  { id: "lv-bronze", name: "Bronze Crown", level: 20, vb: "0 0 120 84", svg: `<path d="M18 58 L20 30 L30 50 L40 26 L50 50 L60 18 L70 50 L80 26 L90 50 L100 30 L102 58 Z" fill="#b57a3a" stroke="#5a3a18" stroke-width="2" stroke-linejoin="round"/> <circle cx="20" cy="28" r="4" fill="#d0954f" stroke="#5a3a18" stroke-width="1.5"/><circle cx="40" cy="24" r="4" fill="#d0954f" stroke="#5a3a18" stroke-width="1.5"/><circle cx="60" cy="15" r="4.5" fill="#d0954f" stroke="#5a3a18" stroke-width="1.5"/><circle cx="80" cy="24" r="4" fill="#d0954f" stroke="#5a3a18" stroke-width="1.5"/><circle cx="100" cy="28" r="4" fill="#d0954f" stroke="#5a3a18" stroke-width="1.5"/> <rect x="14" y="56" width="92" height="16" rx="2" fill="#9a632c" stroke="#5a3a18" stroke-width="2"/> <path d="M18 60h84M18 68h84" stroke="#c88a46" stroke-width="1"/>` },
+  { id: "lv-silver", name: "Silver Coronet", level: 30, vb: "0 0 120 84", svg: `<path d="M16 58 L16 40 L26 52 L36 22 L46 52 L60 14 L74 52 L84 22 L94 52 L104 40 L104 58 Z" fill="#cfd0d5" stroke="#55585f" stroke-width="2" stroke-linejoin="round"/> <path d="M36 26 L36 50 M60 18 L60 50 M84 26 L84 50" stroke="#9fa2aa" stroke-width="1"/> <circle cx="16" cy="37" r="3.5" fill="#f4efe4" stroke="#8a8c93" stroke-width="1.2"/><circle cx="36" cy="19" r="3.5" fill="#f4efe4" stroke="#8a8c93" stroke-width="1.2"/><circle cx="60" cy="11" r="4" fill="#f4efe4" stroke="#8a8c93" stroke-width="1.2"/><circle cx="84" cy="19" r="3.5" fill="#f4efe4" stroke="#8a8c93" stroke-width="1.2"/><circle cx="104" cy="37" r="3.5" fill="#f4efe4" stroke="#8a8c93" stroke-width="1.2"/> <rect x="14" y="56" width="92" height="16" rx="2" fill="#b7b9c0" stroke="#55585f" stroke-width="2"/> <circle cx="30" cy="64" r="3" fill="#f4efe4"/><circle cx="45" cy="64" r="3" fill="#f4efe4"/><circle cx="60" cy="64" r="3" fill="#f4efe4"/><circle cx="75" cy="64" r="3" fill="#f4efe4"/><circle cx="90" cy="64" r="3" fill="#f4efe4"/>` },
+  { id: "lv-fleur", name: "Fleur Crown", level: 40, vb: "0 0 120 84", svg: `<g fill="#c9a24a" stroke="#8a6424" stroke-width="1.6" stroke-linejoin="round"> <path d="M60 56 C53 45 54 34 60 22 C66 34 67 45 60 56Z"/> <path d="M58 52 C48 50 43 40 48 34 C50 42 54 47 58 49Z"/> <path d="M62 52 C72 50 77 40 72 34 C70 42 66 47 62 49Z"/> <path d="M30 56 C25 47 26 39 30 30 C34 39 35 47 30 56Z"/> <path d="M28.5 53 C21 51 18 44 21 40 C23 46 25 49 28.5 51Z"/> <path d="M31.5 53 C39 51 42 44 39 40 C37 46 35 49 31.5 51Z"/> <path d="M90 56 C85 47 86 39 90 30 C94 39 95 47 90 56Z"/> <path d="M88.5 53 C81 51 78 44 81 40 C83 46 85 49 88.5 51Z"/> <path d="M91.5 53 C99 51 102 44 99 40 C97 46 95 49 91.5 51Z"/> <path d="M14 56 L14 46 L18 50 Z M106 56 L106 46 L102 50 Z"/> </g> <rect x="14" y="54" width="92" height="18" rx="2" fill="#c9a24a" stroke="#8a6424" stroke-width="2"/> <path d="M16 58h88M16 68h88" stroke="#8a6424" stroke-width="1"/> <rect x="27" y="60" width="6" height="6" transform="rotate(45 30 63)" fill="#1f3a6e"/><rect x="57" y="60" width="6" height="6" transform="rotate(45 60 63)" fill="#b5381f"/><rect x="87" y="60" width="6" height="6" transform="rotate(45 90 63)" fill="#1f3a6e"/>` },
+  { id: "lv-garnet", name: "Garnet Crown", level: 50, vb: "0 0 120 84", svg: `<path d="M16 58 L22 34 L28 52 L35 26 L41 52 L48 20 L54 52 L60 12 L66 52 L72 20 L79 52 L85 26 L92 52 L98 34 L104 58 Z" fill="#c9a24a" stroke="#8a6424" stroke-width="2" stroke-linejoin="round"/> <circle cx="60" cy="40" r="4" fill="#b5381f" stroke="#6e2a22" stroke-width="1"/><circle cx="48" cy="44" r="3" fill="#b5381f" stroke="#6e2a22" stroke-width="1"/><circle cx="72" cy="44" r="3" fill="#b5381f" stroke="#6e2a22" stroke-width="1"/> <rect x="14" y="56" width="92" height="16" rx="2" fill="#c9a24a" stroke="#8a6424" stroke-width="2"/> <ellipse cx="60" cy="64" rx="8" ry="5.5" fill="#b5381f" stroke="#6e2a22" stroke-width="1.5"/> <ellipse cx="34" cy="64" rx="5.5" ry="4" fill="#b5381f" stroke="#6e2a22" stroke-width="1.5"/> <ellipse cx="86" cy="64" rx="5.5" ry="4" fill="#b5381f" stroke="#6e2a22" stroke-width="1.5"/> <path d="M57 62 l3 -1.5" stroke="#e8907a" stroke-width="1.5" stroke-linecap="round"/>` },
+  { id: "lv-lapis", name: "Lapis Crown", level: 60, vb: "0 0 120 84", svg: `<path d="M16 58 L16 40 Q24 24 32 40 Q40 20 48 40 Q60 6 72 40 Q80 20 88 40 Q96 24 104 40 L104 58 Z" fill="#c9a24a" stroke="#8a6424" stroke-width="2" stroke-linejoin="round"/> <circle cx="24" cy="40" r="4" fill="#1f3a6e" stroke="#8a6424" stroke-width="1.2"/><circle cx="40" cy="36" r="4.5" fill="#1f3a6e" stroke="#8a6424" stroke-width="1.2"/><circle cx="60" cy="28" r="6" fill="#1f3a6e" stroke="#8a6424" stroke-width="1.2"/><circle cx="80" cy="36" r="4.5" fill="#1f3a6e" stroke="#8a6424" stroke-width="1.2"/><circle cx="96" cy="40" r="4" fill="#1f3a6e" stroke="#8a6424" stroke-width="1.2"/> <circle cx="58" cy="26" r="1.5" fill="#3d5c99"/> <rect x="14" y="56" width="92" height="16" rx="2" fill="#c9a24a" stroke="#8a6424" stroke-width="2"/> <rect x="22" y="60" width="14" height="8" rx="1.5" fill="#1f3a6e"/><rect x="53" y="60" width="14" height="8" rx="1.5" fill="#1f3a6e"/><rect x="84" y="60" width="14" height="8" rx="1.5" fill="#1f3a6e"/> <circle cx="44.5" cy="64" r="2" fill="#efe4cc"/><circle cx="75.5" cy="64" r="2" fill="#efe4cc"/>` },
+  { id: "lv-greenwood", name: "Greenwood Crown", level: 70, vb: "0 0 120 84", svg: `<g fill="#3f7a5c" stroke="#1e3d2f" stroke-width="1.5" stroke-linejoin="round"> <path transform="translate(24 60) rotate(-34)" d="M0 0 C-3 -4 -8 -6 -6 -11 C-9 -14 -6 -19 -3 -20 C-4 -25 -1 -29 0 -32 C1 -29 4 -25 3 -20 C6 -19 9 -14 6 -11 C8 -6 3 -4 0 0Z"/> <path transform="translate(41 58) rotate(-16)" d="M0 0 C-3 -4 -8 -6 -6 -11 C-9 -14 -6 -19 -3 -20 C-4 -25 -1 -29 0 -32 C1 -29 4 -25 3 -20 C6 -19 9 -14 6 -11 C8 -6 3 -4 0 0Z"/> <path transform="translate(60 57) scale(1.2)" d="M0 0 C-3 -4 -8 -6 -6 -11 C-9 -14 -6 -19 -3 -20 C-4 -25 -1 -29 0 -32 C1 -29 4 -25 3 -20 C6 -19 9 -14 6 -11 C8 -6 3 -4 0 0Z"/> <path transform="translate(79 58) rotate(16)" d="M0 0 C-3 -4 -8 -6 -6 -11 C-9 -14 -6 -19 -3 -20 C-4 -25 -1 -29 0 -32 C1 -29 4 -25 3 -20 C6 -19 9 -14 6 -11 C8 -6 3 -4 0 0Z"/> <path transform="translate(96 60) rotate(34)" d="M0 0 C-3 -4 -8 -6 -6 -11 C-9 -14 -6 -19 -3 -20 C-4 -25 -1 -29 0 -32 C1 -29 4 -25 3 -20 C6 -19 9 -14 6 -11 C8 -6 3 -4 0 0Z"/> </g> <path d="M60 55 V22" stroke="#1e3d2f" stroke-width="1"/> <g fill="#8a5a2e" stroke="#3e2a14" stroke-width="1.2"><ellipse cx="32" cy="50" rx="3.5" ry="4.5"/><ellipse cx="50" cy="48" rx="3.5" ry="4.5"/><ellipse cx="70" cy="48" rx="3.5" ry="4.5"/><ellipse cx="88" cy="50" rx="3.5" ry="4.5"/></g> <g fill="#c9a24a"><rect x="29" y="44" width="6" height="3" rx="1"/><rect x="47" y="42" width="6" height="3" rx="1"/><rect x="67" y="42" width="6" height="3" rx="1"/><rect x="85" y="44" width="6" height="3" rx="1"/></g> <rect x="14" y="56" width="92" height="16" rx="8" fill="#6b4a2a" stroke="#3e2a14" stroke-width="2"/> <path d="M20 60 C30 68 40 60 50 68 C60 60 70 68 80 60 C90 68 100 60 102 64" stroke="#8f6a40" stroke-width="2" fill="none"/>` },
+  { id: "lv-winter", name: "Winter Crown", level: 80, vb: "0 0 120 84", svg: `<path d="M16 58 L20 38 L26 50 L32 24 L38 50 L46 30 L52 50 L60 6 L68 50 L74 30 L82 50 L88 24 L94 50 L100 38 L104 58 Z" fill="#e3edf3" stroke="#4f7389" stroke-width="2" stroke-linejoin="round"/> <path d="M32 26 L34 50 M60 10 L58 50 M60 10 L63 50 M88 26 L86 50 M46 32 L47 50 M74 32 L73 50" stroke="#9ebccd" stroke-width="1"/> <rect x="14" y="56" width="92" height="16" rx="2" fill="#c3d7e3" stroke="#4f7389" stroke-width="2"/> <g stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"><path d="M30 60v8M26 64h8M27 61l6 6M33 61l-6 6"/><path d="M60 60v8M56 64h8M57 61l6 6M63 61l-6 6"/><path d="M90 60v8M86 64h8M87 61l6 6M93 61l-6 6"/></g>` },
+  { id: "lv-wyrm", name: "Wyrm Crown", level: 90, vb: "0 0 120 84", svg: `<path d="M22 58 C8 46 8 28 20 16 C18 30 22 44 34 54Z" fill="#c9a24a" stroke="#8a6424" stroke-width="2" stroke-linejoin="round"/> <path d="M98 58 C112 46 112 28 100 16 C102 30 98 44 86 54Z" fill="#c9a24a" stroke="#8a6424" stroke-width="2" stroke-linejoin="round"/> <path d="M36 56 C32 44 42 40 40 28 C50 36 52 46 48 56Z" fill="#b5381f" stroke="#6e2a22" stroke-width="1.5" stroke-linejoin="round"/> <path d="M84 56 C88 44 78 40 80 28 C70 36 68 46 72 56Z" fill="#b5381f" stroke="#6e2a22" stroke-width="1.5" stroke-linejoin="round"/> <path d="M50 56 C44 40 56 32 60 10 C64 32 76 40 70 56Z" fill="#b5381f" stroke="#6e2a22" stroke-width="1.5" stroke-linejoin="round"/> <path d="M55 55 C52 44 59 38 60 26 C62 38 68 44 65 55Z" fill="#e8907a"/> <rect x="14" y="56" width="92" height="16" rx="2" fill="#8a6424" stroke="#4a3222" stroke-width="2"/> <path d="M18 64 q5 -6 10 0 q5 -6 10 0 q5 -6 10 0 M72 64 q5 -6 10 0 q5 -6 10 0 q5 -6 10 0" stroke="#c9a24a" stroke-width="1.5" fill="none"/> <ellipse cx="60" cy="64" rx="7" ry="5" fill="#2a1d14" stroke="#c9a24a" stroke-width="1.5"/> <ellipse cx="60" cy="64" rx="1.6" ry="4.2" fill="#b5381f"/>` },
+  { id: "lv-legends", name: "Crown of Legends", level: 100, vb: "0 0 120 84", svg: `<path d="M20 56 C22 30 48 22 60 22 C72 22 98 30 100 56 Z" fill="#6e2a22"/> <path d="M18 56 C18 28 48 20 60 20 C72 20 102 28 102 56" stroke="#c9a24a" stroke-width="6" fill="none"/> <path d="M60 56 V20" stroke="#c9a24a" stroke-width="6"/> <path d="M18 56 C18 28 48 20 60 20 C72 20 102 28 102 56 M60 56 V20" stroke="#8a6424" stroke-width="1" fill="none"/> <g fill="#f4efe4"><circle cx="24" cy="38" r="2"/><circle cx="34" cy="28" r="2"/><circle cx="46" cy="23" r="2"/><circle cx="74" cy="23" r="2"/><circle cx="86" cy="28" r="2"/><circle cx="96" cy="38" r="2"/><circle cx="60" cy="32" r="2"/><circle cx="60" cy="44" r="2"/></g> <circle cx="60" cy="14" r="6" fill="#c9a24a" stroke="#8a6424" stroke-width="1.5"/> <path d="M54 14h12" stroke="#8a6424" stroke-width="1.2"/> <path d="M60 1 V9 M56 4 H64" stroke="#c9a24a" stroke-width="2.5" stroke-linecap="round"/> <rect x="14" y="52" width="92" height="14" rx="2" fill="#c9a24a" stroke="#8a6424" stroke-width="2"/> <circle cx="26" cy="59" r="3.2" fill="#2f5f51"/><circle cx="43" cy="59" r="3.2" fill="#1f3a6e"/><circle cx="60" cy="59" r="4" fill="#b5381f"/><circle cx="77" cy="59" r="3.2" fill="#1f3a6e"/><circle cx="94" cy="59" r="3.2" fill="#2f5f51"/> <rect x="12" y="66" width="96" height="10" rx="5" fill="#f4efe4" stroke="#8a8072" stroke-width="1.5"/> <g fill="#2a1d14"><path d="M22 69 l1.5 4 l1.5 -4z"/><path d="M38 69 l1.5 4 l1.5 -4z"/><path d="M54 69 l1.5 4 l1.5 -4z"/><path d="M70 69 l1.5 4 l1.5 -4z"/><path d="M86 69 l1.5 4 l1.5 -4z"/><path d="M100 69 l1.5 4 l1.5 -4z"/></g>` },
+);
 const crownById = Object.fromEntries(CROWNS.map((c) => [c.id, c]));
-const crownSvg = (id, label) => `<svg class="crownicon" viewBox="0 0 24 24"${label ? ` role="img" aria-label="${esc(label)}"` : ' aria-hidden="true"'}>${(crownById[id] || CROWNS[0]).svg}</svg>`;
+const crownSvg = (id, label) => { const c = crownById[id] || CROWNS[0]; return `<svg class="crownicon" viewBox="${c.vb || "0 0 24 24"}"${label ? ` role="img" aria-label="${esc(label)}"` : ' aria-hidden="true"'}>${c.svg}</svg>`; };
+// A crown you haven't got yet stays a surprise: no picture, no name.
+const MYSTERY_SVG = `<svg class="crownicon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#5e4a39" stroke-width="1.4" stroke-dasharray="2.5 2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="Cinzel, Georgia, serif" font-weight="700" font-size="12" fill="#8a6424">?</text></svg>`;
 
 // Lore: up to 3 cards per hero, only ever drawn for heroes the player owns.
 const LORE_CARDS = Object.values(LORE).flatMap((l) => l.cards.map((c) => ({ ...c, hero: l.hero })));
@@ -2123,15 +2292,18 @@ const reducedMotion = (() => { try { return matchMedia("(prefers-reduced-motion:
 
 // ---------- sound ----------
 const SND = (() => {
-  let ctx = null, master = null, noiseBuf = null;
-  let muted = PREFS.read("muted", false);
-  function ready() {
-    if (muted) return null;
+  let ctx = null, master = null, musicBus = null, noiseBuf = null;
+  let muted = PREFS.read("muted", false);           // sound effects off
+  let sfxVol = PREFS.read("sfxVol", 0.8);           // 0..1
+  let musicOn = PREFS.read("music", true);
+  let musicVol = PREFS.read("musicVol", 0.4);       // 0..1
+  function ensure() {
     try {
       if (!ctx) {
         ctx = new (window.AudioContext || window.webkitAudioContext)();
-        master = ctx.createGain(); master.gain.value = 0.55;
-        const comp = ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
+        const comp = ctx.createDynamicsCompressor(); comp.connect(ctx.destination);
+        master = ctx.createGain(); master.gain.value = 0.55 * sfxVol; master.connect(comp);
+        musicBus = ctx.createGain(); musicBus.gain.value = 0.3 * musicVol; musicBus.connect(comp);
         noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 1.5, ctx.sampleRate);
         const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
       }
@@ -2139,6 +2311,7 @@ const SND = (() => {
       return ctx;
     } catch { return null; }
   }
+  function ready() { return muted ? null : ensure(); }
   // A shaped tone: type, start and end pitch, length, volume, delay.
   function tone(type, f0, f1, dur, vol = 0.5, at = 0, filter) {
     const c = ready(); if (!c) return;
@@ -2201,10 +2374,54 @@ const SND = (() => {
     win() { notes("triangle", [392, 523, 659, 784], 0.13, 0.5, 0.25); notes("triangle", [1047], 0, 0.9, 0.18, 0.55); },
     lose() { notes("triangle", [392, 349, 311, 262], 0.18, 0.55, 0.22); },
   };
+  // ---------- music ----------
+  // A quiet, endless tune made on the spot: a low drone under a plucked, lute-like line that wanders
+  // through D minor, C and B flat. Synthesised like the sound effects, so there is nothing to license.
+  const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
+  const CHORDS = [[50, 57, 62, 65, 69], [48, 55, 60, 64, 67], [46, 53, 58, 62, 65], [48, 55, 60, 64, 67]];
+  const LINES = [[0, 2, 3, 4, 3, 2, 1, 2], [0, 1, 2, 4, 2, 3, 1, 0], [0, 2, 4, 3, 2, 1, 2, 3]];
+  let mTimer = null, nextT = 0, mStep = 0, line = LINES[0];
+  function pluck(f, t, dur, vol) {
+    const o = ctx.createOscillator(), lp = ctx.createBiquadFilter(), g = ctx.createGain();
+    o.type = "triangle"; o.frequency.value = f; lp.type = "lowpass"; lp.frequency.setValueAtTime(2600, t); lp.frequency.exponentialRampToValueAtTime(500, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(lp); lp.connect(g); g.connect(musicBus); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function pad(f, t, dur, vol) {
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = "sine"; o.frequency.value = f;
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 1.2); g.gain.setValueAtTime(vol, t + dur - 1.2); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(musicBus); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function schedule() {
+    const eighth = 60 / 84 / 2;
+    while (nextT < ctx.currentTime + 0.8) {
+      const bar = Math.floor(mStep / 8) % 4, i = mStep % 8, ch = CHORDS[bar];
+      if (i === 0) {
+        if (bar === 0) line = LINES[Math.floor(Math.random() * LINES.length)];
+        pad(mtof(ch[0] - 12), nextT, eighth * 8.4, 0.22); pad(mtof(ch[1] - 12), nextT, eighth * 8.4, 0.12);
+      }
+      if (Math.random() < 0.88) pluck(mtof(ch[line[i]] + (i === 4 && Math.random() < 0.3 ? 12 : 0)), nextT, 0.9, i % 4 === 0 ? 0.16 : 0.11);
+      nextT += eighth; mStep += 1;
+    }
+  }
+  function startMusic() {
+    if (!musicOn || mTimer) return;
+    const c = ensure(); if (!c) return;
+    nextT = c.currentTime + 0.15; mStep = 0; mTimer = setInterval(schedule, 150); schedule();
+  }
+  function stopMusic() { clearInterval(mTimer); mTimer = null; }
   return {
     play(name) { try { S[name]?.(); } catch {} },
     get muted() { return muted; },
     setMuted(v) { muted = v; PREFS.write("muted", v); if (!v) ready(); },
+    get volume() { return sfxVol; },
+    setVolume(v) { sfxVol = Math.max(0, Math.min(1, v)); PREFS.write("sfxVol", sfxVol); if (master) master.gain.value = 0.55 * sfxVol; },
+    get music() { return musicOn; },
+    setMusic(v) { musicOn = v; PREFS.write("music", v); if (v) startMusic(); else stopMusic(); },
+    get musicVolume() { return musicVol; },
+    setMusicVolume(v) { musicVol = Math.max(0, Math.min(1, v)); PREFS.write("musicVol", musicVol); if (musicBus) musicBus.gain.value = 0.3 * musicVol; },
+    startMusic,
     unlock() { ready(); },
   };
 })();
@@ -3300,7 +3517,7 @@ function targetSheet(sh) {
 const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Library"], ["shop", "Shop"]];
 function renderPage() {
   const v = el("view"), keep = U.kept === U.screen ? v.scrollTop : 0;
-  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml }[U.screen];
+  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml }[U.screen];
   v.innerHTML = fn();
   v.scrollTop = keep; U.kept = U.screen;
   const showNav = G.packOpened && U.screen !== "pack" && U.screen !== "ready";
@@ -3318,9 +3535,10 @@ function homeHtml() {
   }
   const bad = issues(G.lineup).length;
   return coverHtml(`
+    <button class="me-chip" data-go="court" aria-label="Your court: Level ${myLevel()}">${avatar()}<span><b>Your court</b><i>Level ${myLevel()}</i></span></button>
     <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
     <div class="btns"><button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button></div>
-    <div class="links"><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
+    <div class="links"><button class="link" data-go="settings">Settings</button><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
     <p class="credit">Fights are against the computer for now. Your progress is saved in this browser only.</p>`);
 }
 function readyHtml() {
@@ -3400,7 +3618,8 @@ function collectionHtml() {
     ${body}</div>`;
 }
 function libCards() {
-  const src = { hero: G.heroes, front: { villager: Infinity, ...G.front }, item: G.items }[U.tab];
+  let src = { hero: G.heroes, front: { villager: Infinity, ...G.front }, item: G.items }[U.tab];
+  if (adminAll()) { const all = { hero: DATA.heroes, front: DATA.front, item: DATA.items }[U.tab]; src = Object.fromEntries(Object.keys(all).map((id) => [id, src[id] || 0])); if (U.tab === "front") src.villager = Infinity; }
   let ids = Object.keys(src).sort(byName);
   const filter = U.tab === "hero" ? realmFilter(ids) : "";
   if (U.tab === "hero") ids = ids.filter(realmOk);
@@ -3475,10 +3694,10 @@ function libCrowns() {
   return `<div class="box wearing">${crownSvg(w.id)}<div><h2>You wear the ${esc(w.name)}</h2><p>It shows on your icon in battle. Crowns change nothing in play.</p></div></div>
     <div class="crowngrid">${CROWNS.map((c) => {
       const have = G.ownCrowns.includes(c.id), on = G.wearing === c.id;
+      if (!have && adminAll()) return `<div class="crowntile">${crownSvg(c.id)}<b>${esc(c.name)}</b><i>${c.level ? `Level ${c.level}` : `${c.price} gold`} · admin view</i></div>`;
       return have ? `<button class="crowntile${on ? " on" : ""}" data-act="wear-crown" data-id="${c.id}" aria-pressed="${on}">${crownSvg(c.id)}<b>${esc(c.name)}</b><i>${on ? "Wearing" : "Tap to wear"}</i></button>`
-        : `<div class="crowntile locked">${crownSvg(c.id)}<b>${esc(c.name)}</b><i>Packs or the shop</i></div>`;
-    }).join("")}</div>
-    <p class="lede">Crowns come from Fable packs and the shop. A crown you already own becomes 20 gold.</p>`;
+        : `<div class="crowntile locked" aria-label="A crown you haven't found yet">${MYSTERY_SVG}<b>???</b><i>${c.level ? `Level ${c.level}` : "Still to find"}</i></div>`;
+    }).join("")}</div>`;
 }
 
 // Pack cards that aren't heroes, front rank or items: gold, lore, variants and crowns.
@@ -3589,10 +3808,12 @@ function detailSheet(sh) {
 // ---------- panels ----------
 function overHtml() {
   const o = U.over; if (!o) return "";
+  if (o.type === "levelup") return levelUpHtml(o);
   if (o.type === "menu") {
     return `<div class="panel"><p class="eyebrow">Crown &amp; Chaos</p><h1>${esc(S.board.name)}</h1>
       <div class="btns"><button class="btn" data-act="resume">Back to the fight</button>
       <button class="btn quiet" data-act="sound" aria-pressed="${!SND.muted}">Sound: ${SND.muted ? "off" : "on"}</button>
+      <button class="btn quiet" data-act="set-music" aria-pressed="${SND.music}">Music: ${SND.music ? "on" : "off"}</button>
       <button class="btn quiet" data-act="motion" aria-pressed="${G.motion !== false}">Card animations: ${G.motion === false ? "off" : "on"}</button>
       ${S.kind === "tutorial" ? `<button class="btn quiet" data-act="tutorial">Restart the tutorial</button><button class="btn quiet" data-act="leave">Leave the tutorial</button>`
         : `<button class="btn quiet" data-act="concede">Concede this fight</button>`}</div>
@@ -3643,6 +3864,7 @@ function go(screen) {
   clearTimeout(S.timer);
   Object.assign(U, { screen, sheet: null, over: null, confirmReset: false });
   if (screen === "formation") prune();
+  if (screen !== "pack" && screen !== "ready") checkLevel();
   render();
 }
 function chooseForSlot(id) {
@@ -3653,7 +3875,7 @@ function chooseForSlot(id) {
 function buy(id) {
   const price = kindOf(id) === "front" ? PRICES.front : PRICES[DATA.items[id].rarity];
   if (G.gold < price) return;
-  G.gold -= price; give(id); save(); render();
+  spend(price); give(id); save(); checkLevel(); render();
 }
 document.addEventListener("click", (e) => {
   const t = e.target.closest("[data-act],[data-go],[data-tab]");
@@ -3703,18 +3925,33 @@ document.addEventListener("click", (e) => {
     case "fight": U.over = null; startFight(); break;
     case "fight-anyway": U.over = null; startFight(true); break;
     case "buy": buy(d.id); break;
-    case "buy-crown": { const c = crownById[d.id]; if (c && c.price && G.gold >= c.price && !G.ownCrowns.includes(c.id)) { G.gold -= c.price; G.ownCrowns.push(c.id); save(); render(); } break; }
+    case "set-sound": SND.setMuted(!SND.muted); if (!SND.muted) SND.play("ping"); render(); break;
+    case "set-music": SND.setMusic(!SND.music); render(); break;
+    case "set-fast": G.fast = !G.fast; save(); render(); break;
+    case "admin-all": PREFS.write("adminAll", !adminAll()); render(); break;
+    case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); } // falls through to the next step
+    case "lv-next": { const o = U.over; if (o && o.type === "levelup" && o.i < o.steps.length - 1) o.i += 1; else U.over = null; render(); break; }
+    case "court-crowns": U.tab = "crown"; go("collection"); break;
+    case "buy-crown": { const c = crownById[d.id]; if (c && c.price && G.gold >= c.price && !G.ownCrowns.includes(c.id)) { spend(c.price); G.ownCrowns.push(c.id); save(); checkLevel(); render(); } break; }
     case "lore": U.sheet = { type: "lore", id: d.id }; render(); break;
     case "wear-crown": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); } U.sheet = null; render(); break;
     case "wear-art": if (!d.key || G.variants.includes(d.key)) { if (d.key) G.art[d.card] = d.key; else delete G.art[d.card]; save(); } render(); break;
     case "lib-tab": U.tab = d.tab2; U.sheet = null; U.kept = null; render(); break;
-    case "buy-pack": if (G.gold >= PRICES.pack) { G.gold -= PRICES.pack; openPack(fablePack(), { title: "Fable pack" }); render(); } break;
+    case "buy-pack": if (G.gold >= PRICES.pack) { spend(PRICES.pack); openPack(fablePack(), { title: "Fable pack" }); render(); } break;
     case "reset": if (U.confirmReset) { G = fresh(); save(); U.confirmReset = false; go("home"); } else { U.confirmReset = true; render(); } break;
   }
+});
+document.addEventListener("input", (e) => {
+  const k = e.target.dataset && e.target.dataset.vol; if (!k) return;
+  const v = +e.target.value / 100;
+  if (k === "sfx") { SND.setVolume(v); SND.play("tick"); } else SND.setMusicVolume(v);
 });
 document.addEventListener("change", (e) => { if (e.target.dataset.filter != null) { U.realm = e.target.value; render(); } });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && U.sheet && !step()) { U.sheet = U.sheet.back || null; render(); } });
 if (G.tutorialDone && !G.packOpened) U.screen = "ready";
+try { const q = new URLSearchParams(location.search); if (q.has("admin")) PREFS.write("admin", q.get("admin") !== "0"); } catch (e) {}
+document.addEventListener("pointerdown", () => SND.startMusic(), { once: true });
+checkLevel();
 render();
 </script>
 <script>
