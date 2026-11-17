@@ -35,7 +35,7 @@
     {
       "name": "Girdle Leash",
       "ap": 1,
-      "text": "An enemy Beast can't act this round."
+      "text": "An enemy Beast can't act this round. She can leash each Beast only once a fight."
     }
   ],
   "art": "the-princess",

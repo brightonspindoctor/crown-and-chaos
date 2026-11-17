@@ -558,6 +558,13 @@ function stop(st, target, why) {
   return true;
 }
 
+// Fire Breath: two different enemy cards, chosen at random when it resolves (one if only one is left).
+function fireTargets(st, a) {
+  const pool = cards(st, 1 - a.side).slice(), out = [];
+  while (out.length < 2 && pool.length) out.push(pool.splice(st.rng.int(pool.length), 1)[0]);
+  return out;
+}
+
 // A card stopped last round can't be stopped again this round, so it isn't offered as a target.
 export function canBeStopped(st, c) { return c.stoppedRound !== st.round - 1; }
 
@@ -733,13 +740,13 @@ export const ACTIONS = {
     "Completion": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 99)) } },
   "the-creature": { "Rampage": { t: "enemyMelee", go: (st, a, x) => { const ns = neighbours(st, x); hit(st, a, x, 3); ns.forEach((n) => hit(st, a, n, 3)); } },
     "The Pyre": { t: "none", go: (st, a) => { cards(st, 1 - a.side).forEach((c) => damage(st, a, c, 6, { attack: true })); damage(st, null, a, 8, { trueDamage: true }); } } },
-  "the-dragon": { "Fire Breath": { t: "enemyAny2", go: (st, a, x, y) => { hit(st, a, x, 3, { ranged: true }); if (y) hit(st, a, y, 3, { ranged: true }); } },
+  "the-dragon": { "Fire Breath": { t: "none", go: (st, a) => { for (const x of fireTargets(st, a)) hit(st, a, x, 3, { ranged: true }); } },
     "Tail Sweep": { t: "enemyMelee", go: (st, a, x) => { const n = neighbours(st, x)[0]; hit(st, a, x, 2); if (n) hit(st, a, n, 2); } } },
   "the-huntsman": { "Stones in the belly": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, attackOf(st, a), { ranged: true }); if (!x.dead) x.speedFixed = 1; } } },
   "the-little-mermaid": { "Sea magic": { t: "enemyAny", go: (st, a, x) => { damage(st, a, x, attackOf(st, a), { spell: true, attack: true, ranged: true }); applyHealthLoss(st, { name: "The knives", side: -1 }, a, 1, {}); } },
     "Saved from the wreck": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
   "the-princess": { "Mend": { t: "none", go: (st, a) => neighbours(st, a).forEach((n) => heal(st, a, n, 1)) },
-    "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => stop(st, x, "Girdle Leash") } },
+    "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => { (a.flags.leashed ||= []).push(x.uid); stop(st, x, "Girdle Leash"); } } },
   "the-snow-queen": { "Shard of the mirror": { t: "enemyHero", go: (st, a, x) => { x.flags.shardRound = st.round; } } },
   "the-tin-soldier": { "Steadfast stand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.steadfastRound = st.round; } } },
   "the-wolf": { "Swallow whole": { t: "enemyWolf", go: (st, a, x) => {
@@ -812,7 +819,8 @@ export function targetsFor(st, a, act) {
     case "enemyWeakNotCrown": return cards(st, foe).filter((c) => (c.kind === "front" || c.uid !== st.sides[foe].crownUid) && c.health <= 3 && !(c.kind === "hero" && c.uid === st.sides[foe].crownUid));
     case "enemyWolf": { const fr = closestRow(st, a.side).filter((c) => c.kind === "front"); return [...fr, ...eh.filter((c) => c.health <= 3 && c.uid !== st.sides[foe].crownUid)]; }
     case "enemyNotCrown": return closestRow(st, a.side).filter((c) => c.uid !== st.sides[foe].crownUid);
-    case "enemyBeast": return eh.filter((c) => c.aspect === "Beast" && canBeStopped(st, c));
+    // Girdle Leash: each enemy Beast can be leashed by the same Princess only once a fight.
+    case "enemyBeast": return eh.filter((c) => c.aspect === "Beast" && canBeStopped(st, c) && !(a.flags.leashed || []).includes(c.uid));
     case "ally": return cards(st, a.side);
     case "allyHero": return heroes(st, a.side);
     case "adjacentAllyHero": return neighbours(st, a).filter((c) => c.kind === "hero");
@@ -1023,7 +1031,7 @@ export function botPlan(st, i, rng = st.rng, noise = 0.35) {
       for (const x of o.targets) {
         const v = valueOf(st, a, o.action, x);
         if (v <= 0) continue;
-        const t2 = o.action.name === "Fire Breath" ? rangedTargets(st, a).find((c) => c.uid !== x?.uid) : null;
+        const t2 = null;
         cand.push({ a, index: o.index, ap: o.action.ap, x, t2, v: (v / Math.max(1, o.action.ap)) * (1 + noise * (rng.next() - 0.5)) });
       }
     }
@@ -1100,7 +1108,7 @@ function valueOf(st, a, act, x) {
     case "Quarterstaff": return dmgValue(4, x) + 1;
     case "Rampage": return dmgValue(3, x) + 3 * neighbours(st, x).length * 0.8;
     case "Tail Sweep": return dmgValue(2, x) + 1.5;
-    case "Fire Breath": return dmgValue(3, x) + 2.5;
+    case "Fire Breath": return Math.min(2, cards(st, 1 - a.side).length) * 2.8;
     case "Into the oven": return dmgValue(4, x) + (x?.aspect === "Witch" ? 8 : 0);
     case "Betrayal": return x && ec && x.uid === ec.uid ? dmgValue(6 + (x.guardLeft || 0), x) : (a.health <= 3 ? dmgValue(6, x) : 0);
     case "Break their spirit": return x ? dmgValue(attackOf(st, a), x) + guardOf(st, x) * 3 : 0;

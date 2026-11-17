@@ -387,7 +387,7 @@ const TUTORIAL = [
       { say: "An item costs 1 action point and acts before any card. Use it.", useItem: true },
       { say: "Give it to the Princess.", target: [0, 1] },
       { say: "Now hold the Dragon back. Tap the Princess.", tap: 1 },
-      { say: "Choose Girdle Leash: an enemy Beast can't act this round. A card can't be stopped two rounds running.", action: "Girdle Leash" },
+      { say: "Choose Girdle Leash: an enemy Beast can't act this round. She can leash each Beast only once a fight, so choose the moment.", action: "Girdle Leash" },
       { say: "Tap the Dragon.", target: [1, 1] },
       { say: "Last action point. Tap St George.", tap: 2 },
       { say: "Choose Attack.", action: "Attack" },
@@ -437,13 +437,15 @@ const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const shuffle = (arr) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const PAIR = ["grendel", "grendels-mother"];
 
-// The first pack: 20 cards. One of each of the six front-rank cards, two random types topped up to six copies,
-// the whole St George set, and one hero from another realm (never Baba Yaga or the Grendel pair).
+// The first pack, revealed in this order: the front rank grouped by type (one of each of the six, with two random
+// types topped up to six copies), three common items, then the whole St George set and one hero from another
+// realm (never Baba Yaga or the Grendel pair).
 function firstPack() {
   const [a, b] = shuffle(CORE_FRONT);
-  const front = shuffle([...CORE_FRONT, ...Array(5).fill(a), ...Array(5).fill(b)]);
+  const front = CORE_FRONT.flatMap((id) => Array(id === a || id === b ? 6 : 1).fill(id))
+    .sort((x, y) => (x === a || x === b) - (y === a || y === b));
   const others = Object.values(DATA.heroes).filter((h) => h.realm !== "Albion" && h.id !== "baba-yaga" && !PAIR.includes(h.id));
-  return [...front, "the-princess", "the-dragon", "st-george", pick(others).id];
+  return [...front, ...STARTER_ITEMS, "the-princess", "the-dragon", "st-george", pick(others).id];
 }
 // A Fable pack: 4 front-rank cards and 2 items; about 1 pack in 5 swaps an item for a hero.
 function fablePack() {
@@ -631,7 +633,7 @@ function chooseAction(k) {
   if (!o || a.ap > apLeft()) return;
   U.sheet = null;
   if (o.targets.length === 1 && o.targets[0] === null) S.plan.orders.push({ uid: c.uid, index: k, target: null, target2: null, ap: a.ap, name: a.name, tname: "" });
-  else beginPick({ kind: "action", uid: c.uid, index: k, ap: a.ap, name: a.name, two: a.name === "Fire Breath" }, o.targets);
+  else beginPick({ kind: "action", uid: c.uid, index: k, ap: a.ap, name: a.name }, o.targets);
   if (g) advance();
   render();
 }
@@ -741,7 +743,7 @@ function nextFrame() {
   if (!f) return endPlayback();
   S.view = f.snap; S.prev = f.prev; S.caption = f.text; S.acting = f.acting;
   render();
-  S.timer = setTimeout(nextFrame, Math.min(3600, 1300 + f.text.length * 24));
+  S.timer = setTimeout(nextFrame, Math.min(1800, 600 + f.text.length * 12) / (G.fast ? 2 : 1));
 }
 function endPlayback() {
   clearTimeout(S.timer);
@@ -900,7 +902,7 @@ function renderBattle() {
   if (S.phase === "play") {
     const f = S.frames[S.fi];
     who = `Round ${f?.prev.round ?? v.round}${f && f.auto ? " · Front rank, acting on its own" : ""}`; text = esc(S.caption);
-    button = `<button class="btn quiet" data-act="skip">Skip</button>`;
+    button = `<button class="btn quiet" data-act="speed" aria-pressed="${!!G.fast}" title="Playback speed" aria-label="Playback speed ${G.fast ? "fast" : "normal"}">${G.fast ? "×2" : "×1"}</button><button class="btn quiet" data-act="skip">Skip</button>`;
   } else if (g) {
     who = "Tutorial"; text = g.say;
     if (g.next) button = `<button class="btn focus" data-act="next">Continue</button>`;
@@ -922,7 +924,7 @@ function renderBattle() {
   const pips = Array.from({ length: total }, (_, k) => `<i class="pip${k < ap ? " on" : ""}"></i>`).join("");
   el("dock").innerHTML = `<div class="coach${S.nudge ? " nudge" : ""}" aria-live="polite"><span class="who">${who}</span><p>${text}</p>${chips ? `<div class="chips">${chips}</div>` : ""}</div>
     <div class="ctl"><div class="ap" role="img" aria-label="${ap} of ${total} action points left"><span>${ph("AP", "Action points")}</span>${pips}</div>
-      <div class="belt">${belt.map((id) => `<button class="item${belt.length === 1 ? " solo" : ""}${g && g.item === id ? " focus" : ""}" data-act="item" data-id="${id}"${S.phase !== "plan" ? " disabled" : ""} aria-label="${esc(DATA.items[id].name)}">${img(id)}<span>${esc(DATA.items[id].name)}</span></button>`).join("")}</div>
+      <div class="belt">${(S.phase === "play" ? [] : belt).map((id) => `<button class="item${belt.length === 1 ? " solo" : ""}${g && g.item === id ? " focus" : ""}" data-act="item" data-id="${id}"${S.phase !== "plan" ? " disabled" : ""} aria-label="${esc(DATA.items[id].name)}">${img(id)}<span>${esc(DATA.items[id].name)}</span></button>`).join("")}</div>
       <span class="grow"></span>${button}</div>`;
   S.nudge = false;
 }
@@ -1021,13 +1023,12 @@ function homeHtml() {
 }
 function readyHtml() {
   return `<div class="hero-screen"><div class="title">${CROWN_SVG}<p class="eyebrow">Your first Fable pack</p><h1 style="text-transform:none;letter-spacing:.03em">Are you ready?</h1>
-    <p class="lede">Twenty cards are waiting: the start of your collection.</p>
+    <p class="lede">Your first cards are waiting: a front rank, items for your tool belt, and heroes to lead them.</p>
     <div class="btns"><button class="btn big" data-act="open-first">Yes</button></div></div></div>`;
 }
 const packArt = (label) => `<span class="packart">${CROWN_SVG}<b>FABLES</b><i>${label}</i></span>`;
 function openPack(cards, opts) {
   cards.forEach((id) => give(id));
-  (opts.extras || []).forEach((id) => give(id));
   U.pack = { cards, i: -1, ...opts };
   U.screen = "pack"; save();
 }
@@ -1041,18 +1042,19 @@ function packHtml() {
   if (p.i < n) {
     const id = p.cards[p.i], kind = kindOf(id), d = defOf(id), star = kind === "hero" || d.rarity === "Legendary";
     const seen = p.cards.slice(0, p.i).filter((x) => x === id).length;
-    const label = kind === "hero" ? "A hero" : kind === "front" ? `Front rank${seen ? ` · your ${["second", "third", "fourth", "fifth", "sixth"][seen - 1] || "next"} ${d.name}` : ""}` : `${d.rarity} item`;
+    const of = p.cards.filter((x) => x === id).length;
+    const label = kind === "hero" ? "A hero" : kind === "front" ? `Front rank · ${d.name}${of > 1 ? ` ${seen + 1} of ${of}` : ""}` : `${d.rarity} item`;
     return `<div class="opening"><p class="eyebrow">Card ${p.i + 1} of ${n} · ${esc(label)}</p>
       <button class="reveal${star ? " star" : ""}" data-act="pack-next" aria-label="${esc(d.name)}. Next card">${fullCard(id)}</button>
       <div class="stack" aria-hidden="true">${p.cards.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
       <div class="row" style="width:min(310px,84vw)"><button class="btn" data-act="pack-next">${p.i === n - 1 ? "See them all" : "Next card"}</button>${p.i < n - 2 ? `<button class="btn quiet" data-act="pack-all">Reveal all</button>` : ""}</div></div>`;
   }
   const counts = {}; p.cards.forEach((id) => (counts[id] = (counts[id] || 0) + 1));
-  const order = Object.keys(counts).sort((a, b) => ["hero", "item", "front"].indexOf(kindOf(a)) - ["hero", "item", "front"].indexOf(kindOf(b)));
+  const group = (kind) => Object.keys(counts).filter((id) => kindOf(id) === kind);
+  const section = (kind, label) => { const ids = group(kind); return ids.length ? `<p class="rowlabel" style="text-align:left">${label}</p>
+    <div class="grid">${ids.map((id) => staticCard(id, { attrs: `data-act="detail" data-id="${id}"`, count: counts[id] > 1 ? `×${counts[id]}` : "" })).join("")}</div>` : ""; };
   return `<div class="wrap"><div class="bar"><h1>${esc(p.title)}</h1><span class="eyebrow">${n} cards</span></div>
-    <div class="grid">${order.map((id) => staticCard(id, { attrs: `data-act="detail" data-id="${id}"`, count: counts[id] > 1 ? `×${counts[id]}` : "" })).join("")}</div>
-    ${p.extras ? `<div class="box"><h2>And for your tool belt</h2><p>Three items to start you off: ${p.extras.map((id) => esc(DATA.items[id].name)).join(", ")}.</p>
-      <div class="grid">${p.extras.map((id) => staticCard(id, { attrs: `data-act="detail" data-id="${id}"` })).join("")}</div></div>` : ""}
+    ${section("hero", "Heroes")}${section("item", "Items · for your tool belt")}${section("front", "Front rank · acts on its own")}
     <p class="lede">Tap any card to read it.</p>
     <div class="row"><button class="btn big" data-go="${p.first ? "formation" : "shop"}">${p.first ? "Build your line-up" : "Back to the shop"}</button>${p.first ? "" : `<button class="btn big quiet" data-go="formation">Line-up</button>`}</div></div>`;
 }
@@ -1214,6 +1216,7 @@ document.addEventListener("click", (e) => {
     case "lock": lock(); break;
     case "next": { const g = step(); if (g && g.next) { advance(); render(); } break; }
     case "skip": endPlayback(); break;
+    case "speed": G.fast = !G.fast; save(); clearTimeout(S.timer); S.timer = setTimeout(nextFrame, 250); render(); break;
     case "night": if (!step() && !S.pick) { U.sheet = { type: "night" }; render(); } break;
     case "night-ok": G.nightSeen = true; save(); U.over = null; render(); break;
     case "close": U.sheet = null; render(); break;
@@ -1228,7 +1231,7 @@ document.addEventListener("click", (e) => {
     case "tutorial": startTutorial(); break;
     case "after-tutorial": G.tutorialDone = true; save(); go(G.packOpened ? "home" : "ready"); break;
     case "open-first": G.packOpened = true; G.tutorialDone = true; G.gold += START_GOLD; U.over = null;
-      openPack(firstPack(), { title: "Your first Fable pack", first: true, extras: STARTER_ITEMS }); render(); break;
+      openPack(firstPack(), { title: "Your first Fable pack", first: true }); render(); break;
     case "pack-next": U.pack.i += 1; render(); break;
     case "pack-all": U.pack.i = U.pack.cards.length; render(); break;
     case "detail": U.sheet = { type: "detail", id: d.id, back: U.sheet && U.sheet.type === "picker" ? U.sheet : null }; render(); break;

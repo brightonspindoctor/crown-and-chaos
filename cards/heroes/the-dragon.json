@@ -32,7 +32,7 @@
     {
       "name": "Fire Breath",
       "ap": 2,
-      "text": "Deal 3 to any two enemies."
+      "text": "Deal 3 to two random enemy cards (any rank)."
     },
     {
       "name": "Tail Sweep",
