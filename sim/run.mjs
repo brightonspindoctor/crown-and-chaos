@@ -40,7 +40,7 @@ export function randomLineup() {
       front.push(id); budget -= data.front[id].renown;
     }
     const items = [];
-    for (let k = 0; k < 3; k++) {
+    for (let k = 0; k < 2; k++) {
       const ok = itemIds.filter((id) => data.items[id].renown <= budget);
       if (!ok.length || rng.next() < 0.2) break;
       const id = rng.pick(ok); items.push(id); budget -= data.items[id].renown;

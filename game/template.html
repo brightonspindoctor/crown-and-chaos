@@ -459,7 +459,7 @@ const TUTORIAL = [
       { say: `The Dragon has come to the Field at Silene for the Princess, and St George rides out to stop it. Your cards are ${ph("at the bottom", "on the left")}.`, next: true },
       { say: "The Princess wears your Crown. If she falls, you lose. Every other card of yours is there to protect her.", focus: [0, 1], next: true },
       { say: "The Dragon wears the enemy Crown. Bring it down and you win.", focus: [1, 1], next: true },
-      { say: "Heroes stand in front of the Crown, and the front rank in front of them. You have 3 action points a round to spend on your heroes. Tap St George.", tap: 2 },
+      { say: "Heroes stand in front of the Crown, and the front rank in front of them. You have 4 action points a round to spend on your heroes. Tap St George.", tap: 2 },
       { say: "Each action shows what it costs. Choose Attack, for 1 action point.", action: "Attack" },
       { say: "St George fights hand to hand, so he can only reach the closest enemy row. Tap the Berserker.", target: [1, 5] },
       { say: "A hero acts once a round. The Princess is ranged, so she can hit any enemy. Tap her.", tap: 1 },
@@ -477,9 +477,9 @@ const TUTORIAL = [
   { steps: [
       { say: "With your front rank gone and only one hero in front of her, the Princess can be attacked hand to hand. Two heroes in front would shield her.", focus: [0, 1], next: true },
       { say: "Stronger actions cost more. Tap St George.", tap: 2 },
-      { say: "Choose Lance Charge: 5 damage for 2 action points.", action: "Lance Charge" },
+      { say: "Choose Lance Charge: 3 damage that ignores Guard, for 2 action points.", action: "Lance Charge" },
       { say: "Tap the glowing Knight.", target: [1, 4] },
-      { say: "One action point left. Tap the Princess.", tap: 1 },
+      { say: "Two action points left. Tap the Princess.", tap: 1 },
       { say: "Choose Attack.", action: "Attack" },
       { say: "Keep wearing the Dragon down.", target: [1, 1] },
       { say: "The Fate token has crossed to the enemy, so their Knights act before St George does. Lock in.", focus: "fate", lock: true },
@@ -491,12 +491,12 @@ const TUTORIAL = [
     ] },
   { steps: [
       { say: "Your tool belt holds single-use items. Tap the Gingerbread to read it.", item: "gingerbread" },
-      { say: "An item costs 1 action point and acts before any card. Use it.", useItem: true },
+      { say: "Items cost no action points and act before any card, but you can use only one a round. Use it.", useItem: true },
       { say: "Give it to the Princess.", target: [0, 1] },
       { say: "Now hold the Dragon back. Tap the Princess.", tap: 1 },
       { say: "Choose Girdle Leash: an enemy Beast can't act this round. She can leash each Beast only once a fight, so choose the moment.", action: "Girdle Leash" },
       { say: "Tap the Dragon.", target: [1, 1] },
-      { say: "Last action point. Tap St George.", tap: 2 },
+      { say: "Now tap St George.", tap: 2 },
       { say: "Choose Attack.", action: "Attack" },
       { say: "Clear the last Knight.", target: [1, 6] },
       { say: "The Fate token is back on your side, so St George strikes before the Knight can. Lock in.", focus: "fate", lock: true },
@@ -527,11 +527,11 @@ const CORE_FRONT = ["knight", "crossbowman", "longbowman", "leshy", "monk", "ber
 const STARTER_ITEMS = ["gingerbread", "golden-apple", "dragons-blood"];
 const PRICES = { pack: 50, front: 20, Common: 40, Rare: 100, Legendary: 250 };
 const PAY = { win: 30, loss: 15, bonus: 5 };
-const RENOWN_CAP = 50, BELT = 3, START_GOLD = 50;
-const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", "", ""] });
+const RENOWN_CAP = 50, BELT = 2, START_GOLD = 50;
+const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", ""] });
 const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), crowns: 0, wins: 0, losses: 0, draws: 0, dry: 0, tip: 0,
   lore: [], variants: [], art: {}, ownCrowns: ["gold"], wearing: "gold" });
-function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); return Object.assign(fresh(), g); } } catch (e) {} return fresh(); }
+function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); if (g.lineup?.items) g.lineup.items = g.lineup.items.slice(0, BELT); return Object.assign(fresh(), g); } } catch (e) {} return fresh(); }
 function save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) {} }
 let G = load();
 
@@ -1218,7 +1218,7 @@ function itemSheet(sh) {
       <div><h2>${esc(d.name)}</h2><p class="kind">${esc(d.rarity)} item · single use</p><p class="credit">${creditOf(sh.id)}</p></div>
       ${g ? "" : `<button class="x" data-act="close" aria-label="Close">×</button>`}</div>
     <p class="rule"><b>What it does</b>${esc(d.effect)}</p>
-    <p class="rule off">Costs ${inFight ? E.itemCost(S.st, 0) : 1} action point. Items act before any card, and you can use one a round. Once used, it is gone.</p>
+    <p class="rule off">${inFight && E.itemCost(S.st, 0) ? `Costs ${E.itemCost(S.st, 0)} action point here, because of the enemy Crown.` : "Free to use: no action points."} Items act before any card, and you can use one a round. Once used, it is gone.</p>
     ${inFight && S.phase === "plan" ? `<button class="btn big${g && g.useItem ? " focus" : ""}" data-act="use-item"${why ? " disabled" : ""}>Use ${esc(d.name)}</button>${why ? `<p class="rule off">${why}.</p>` : ""}` : ""}</div>`;
 }
 const NIGHT_RULES = `<p class="rule"><b>When</b>Night falls at the start of round ${E.NIGHTFALL_ROUND}, so no fight can drag on for ever.</p>
@@ -1451,7 +1451,7 @@ const TIPS = [
   { say: "The hero in the bottom slot wears the Crown. Only that hero's Crown passive is switched on, and if they fall you lose. Any hero can wear it, so each of yours plays differently there.", focus: "crown" },
   { say: "Bonds work in any slot. Heroes from the same tale or realm strengthen each other, so St George, the Dragon and the Princess are at their best together.", focus: "bonds" },
   { say: "Front-rank cards act on their own. One that dies in a fight is gone for good; survivors come back. Villagers are free and never run out.", focus: "front" },
-  { say: "Your tool belt carries up to 3 items. An item is single use: once used in a fight, it leaves your collection.", focus: "belt" },
+  { say: "Your tool belt carries up to 2 items. An item is single use: once used in a fight, it leaves your collection.", focus: "belt" },
   { say: "Fights last until a Crown falls. If one reaches round 8, night falls: healing stops and every card takes rising damage each round, so plan to win or to outlast it.", focus: "" },
   { say: "Fill your slots and press Fight. Every fight pays gold, win or lose, and gold buys Fable packs in the shop.", focus: "fight" },
 ];
@@ -1553,7 +1553,7 @@ function overHtml() {
     return `<div class="panel">${CROWN_SVG}<p class="eyebrow">Tutorial complete</p><h1>Victory</h1>
       <p>The Dragon is down and the Princess keeps her Crown.${o.first ? " You have taken your first enemy Crown." : ""}</p>
       ${o.first ? `<div class="ledger"><div class="tot"><span>Crowns won</span><b>${G.crowns}</b></div></div>` : ""}
-      <ul><li>Protect your Crown; take theirs.</li><li>3 action points a round, one action per hero.</li><li>The front rank acts on its own, every round.</li><li>Fastest acts first; the Fate token breaks ties and crosses the board each round.</li><li>Items act before any card.</li><li>Night falls in round 8: no healing, and every card takes rising damage.</li></ul>
+      <ul><li>Protect your Crown; take theirs.</li><li>4 action points a round, one action per hero.</li><li>The front rank acts on its own, every round.</li><li>Fastest acts first; the Fate token breaks ties and crosses the board each round.</li><li>Items act before any card.</li><li>Night falls in round 8: no healing, and every card takes rising damage.</li></ul>
       <div class="btns"><button class="btn" data-act="after-tutorial">Continue</button></div></div>`;
   }
   const names = (ids) => { const c = {}; ids.forEach((id) => (c[id] = (c[id] || 0) + 1)); return Object.entries(c).map(([id, n]) => `${defOf(id).name}${n > 1 ? ` × ${n}` : ""}`).join(", "); };

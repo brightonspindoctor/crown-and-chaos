@@ -38,6 +38,6 @@
   "art": "maid-marian",
   "status": "reviewed",
   "rules": [
-    "The 5-damage cap applies after every bonus. Removal effects are not damage, so it doesn't stop them."
+    "Halving applies after every bonus. Removal effects are not damage, so it doesn't stop them."
   ]
 }

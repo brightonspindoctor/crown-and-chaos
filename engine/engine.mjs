@@ -23,6 +23,8 @@ export const ASSUMPTIONS = [
 ];
 
 const NIGHTFALL = 8;
+// Action points each round, and how many items a line-up can bring into a fight.
+export const BASE_AP = 4, TOOL_BELT = 2;
 const MAX_ROUNDS = 20;
 const FRONT_SPEED = 2;
 
@@ -89,7 +91,7 @@ export function createGame(data, lineups, opts = {}) {
   const st = {
     data, rng, round: 0, fate: rng.int(2), log: [], over: false, winner: null,
     sides: [0, 1].map((i) => ({ index: i, slots: {}, items: [], usedItems: [], grave: [], swallowed: [],
-      noCrown: false, crownUid: null, ap: 3, flags: {} })),
+      noCrown: false, crownUid: null, ap: BASE_AP, flags: {} })),
     marks: {},
   };
   lineups.forEach((lu, i) => setupSide(st, i, lu));
@@ -131,7 +133,7 @@ function setupSide(st, i, lu) {
   const hasKoschei = [crownId, ...heroes].includes("koschei");
   front.forEach((id, k) => { if (id && !(hasKoschei && k === 2)) side.slots[4 + k] = makeFront(F(id), i, 4 + k); });
   if (hasKoschei) side.slots[6] = makeFront(F("the-needle"), i, 6);
-  side.items = (lu.items || []).slice();
+  side.items = (lu.items || []).filter(Boolean).slice(0, TOOL_BELT);
   side.crownUid = side.slots[1]?.uid ?? null;
 }
 
@@ -582,7 +584,7 @@ export function upkeep(st) {
   const ren0 = crownIs(st, 0, "renfield"), ren1 = crownIs(st, 1, "renfield");
   if (ren0 && !ren1) st.fate = 0; else if (ren1 && !ren0) st.fate = 1; else if (st.round > 1) st.fate = 1 - st.fate;
   for (const i of [0, 1]) {
-    st.sides[i].ap = crownIs(st, i, "victor-frankenstein") ? 4 : 3;
+    st.sides[i].ap = BASE_AP + (crownIs(st, i, "victor-frankenstein") ? 1 : 0);
     st.sides[i].flags.itemApExtra = 0;
   }
   // Blodeuwedd's change at nightfall comes first
@@ -608,7 +610,7 @@ export function upkeep(st) {
     const foe = 1 - i;
     switch (crown.id) {
       case "blodeuwedd": {
-        for (const h of heroes(st, i)) if (h.uid !== crown.uid && h.realm === "Cymru") { crown.guardLeft += h.guardLeft; h.guardLeft = 0; }
+        for (const h of heroes(st, i)) if (h.uid !== crown.uid) { crown.guardLeft += h.guardLeft; h.guardLeft = 0; }
         break;
       }
       case "the-princess": { const c = st.rng.pick(cards(st, i)); heal(st, crown, c, 1); break; }
@@ -844,7 +846,8 @@ export function options(st, a) {
   return out;
 }
 
-export function itemCost(st, i) { return crownIs(st, 1 - i, "koschei") ? 2 : 1; }
+// Items are free to use, except against Koschei, whose Crown makes them cost 1 action point.
+export function itemCost(st, i) { return crownIs(st, 1 - i, "koschei") ? 1 : 0; }
 
 export const ITEM_TARGETS = {
   "dragons-blood": "allyHero", "draught-of-the-cauldron": "deadHero", "gingerbread": "allyHero", "golden-apple": "allyHero",
@@ -924,11 +927,11 @@ export function playRound(st, plans) {
   for (const i of [0, 1]) {
     const plan = plans[i] || { orders: [], items: [] };
     let ap = st.sides[i].ap;
-    for (const it of plan.items || []) {
+    for (const it of (plan.items || []).slice(0, 1)) {
       if (it.id === "mead-of-poetry") ap += 2;
     }
-    // Items first
-    for (const it of plan.items || []) {
+    // Items first: one a round
+    for (const it of (plan.items || []).slice(0, 1)) {
       const cost = itemCost(st, i);
       if (ap < cost || !st.sides[i].items.includes(it.id)) continue;
       ap -= cost;
@@ -1059,6 +1062,7 @@ export function botPlan(st, i, rng = st.rng, noise = 0.35) {
     if (ok && ap >= cost && rng.next() < 0.6) {
       plan.items.push({ id, target: t ? t.uid : null });
       ap -= cost; if (id === "mead-of-poetry") ap += 2;
+      break;
     }
   }
   for (const c of cand) {

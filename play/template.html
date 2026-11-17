@@ -231,7 +231,7 @@ function renderFight() {
     controls = `<section class="panel side-${i ? "red" : "blue"}">
       <div class="row"><h2>${NAMES[i]} plans</h2><span class="tag">${ap} action point${ap === 1 ? "" : "s"} left</span></div>
       ${ordersHtml(i)}
-      ${beltLeft.length ? `<div class="row"><span class="muted">Items (${E.itemCost(st, i)} AP each):</span>${beltLeft.map((id) => `<button class="small" data-act="item" data-id="${id}"${ap < E.itemCost(st, i) ? " disabled" : ""}>${esc(DATA.items[id].name)}</button>`).join("")}</div>` : ""}
+      ${beltLeft.length ? `<div class="row"><span class="muted">Items (${E.itemCost(st, i) ? E.itemCost(st, i) + " AP each" : "free"}, one a round):</span>${beltLeft.map((id) => `<button class="small" data-act="item" data-id="${id}"${ap < E.itemCost(st, i) ? " disabled" : ""}>${esc(DATA.items[id].name)}</button>`).join("")}</div>` : ""}
       ${crownChoices(i)}
       <div class="row"><button class="primary" data-act="lock">${i === 0 && !S.botRed ? "Lock in Blue's plan" : "Lock in and play the round"}</button>
         <button data-act="suggest">Let the bot choose for me</button></div>

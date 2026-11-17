@@ -17,7 +17,7 @@
   "renown": 13,
   "crownPassive": {
     "name": "Galvanism",
-    "text": "You have 4 action points each round instead of 3."
+    "text": "You have 5 action points each round instead of 4."
   },
   "bond": {
     "name": "Spark of life",

@@ -17,7 +17,7 @@
   "renown": 13,
   "crownPassive": {
     "name": "Thief of treasures",
-    "text": "Your opponent's items cost 2 action points instead of 1."
+    "text": "Your opponent's items cost 1 action point instead of being free."
   },
   "bond": {
     "name": "Rus' kin",

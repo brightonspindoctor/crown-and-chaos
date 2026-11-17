@@ -19,7 +19,7 @@
   "renown": 13,
   "crownPassive": {
     "name": "Shelter of flowers",
-    "text": "At upkeep, your other Cymru heroes lose their Guard and she gains it, until the next upkeep."
+    "text": "At upkeep, your other heroes lose their Guard and she gains it, until the next upkeep."
   },
   "bond": {
     "name": "Cymru kin",
