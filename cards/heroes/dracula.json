@@ -9,7 +9,7 @@
   "stats": {
     "health": 12,
     "attack": 3,
-    "ranged": true,
+    "ranged": false,
     "guard": 0,
     "speed": 3
   },
@@ -27,12 +27,12 @@
     {
       "name": "Claw",
       "ap": 1,
-      "text": "Standard ranged attack on any enemy card."
+      "text": "Standard attack on the closest enemy."
     },
     {
       "name": "Bite",
       "ap": 2,
-      "text": "A melee attack on the closest enemy, then heal equal to the damage dealt."
+      "text": "A melee attack on the closest enemy, then heal equal to the damage dealt, +1 in rounds when you hold the Fate token."
     },
     {
       "name": "Turn",

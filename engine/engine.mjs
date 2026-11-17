@@ -705,7 +705,7 @@ export const ACTIONS = {
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
   "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
-    "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
+    "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d + (d > 0 && st.fate === a.side ? 1 : 0)); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
       kill(st, x, a);
       const slot = [4, 5, 6].find((s) => !at(st, a.side, s));
