@@ -244,6 +244,8 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .bar h1 { font: 600 24px/1.15 var(--display); letter-spacing: .05em; }
 .gold { display: inline-flex; align-items: center; gap: 7px; font: 700 18px/1 var(--display); white-space: nowrap; }
+.crowns { display: inline-flex; align-items: center; gap: 6px; font: 700 18px/1 var(--display); white-space: nowrap; color: var(--gold-text); }
+.crowns svg { width: 20px; height: 20px; fill: var(--gold-leaf); }
 .gold::before { content: ""; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f1dc9a, var(--gold-leaf) 60%, var(--gold-shade)); box-shadow: inset 0 0 0 1px var(--gold-shade); }
 .lede { font-size: 17px; line-height: 1.35; color: var(--muted); text-wrap: pretty; }
 .hero-screen { min-height: 100%; display: grid; place-items: center; padding: 24px 18px; background: linear-gradient(rgba(23,17,12,.72), rgba(23,17,12,.93)), url(img/board-st-george.jpg) center / cover no-repeat; }
@@ -1639,8 +1641,8 @@ const PRICES = { pack: 50, front: 20, Common: 40, Rare: 100, Legendary: 250 };
 const PAY = { win: 30, loss: 15, bonus: 5 };
 const RENOWN_CAP = 50, BELT = 3, START_GOLD = 50;
 const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", "", ""] });
-const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), wins: 0, losses: 0, draws: 0, dry: 0, tip: 0 });
-function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) return Object.assign(fresh(), g); } catch (e) {} return fresh(); }
+const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), crowns: 0, wins: 0, losses: 0, draws: 0, dry: 0, tip: 0 });
+function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); return Object.assign(fresh(), g); } } catch (e) {} return fresh(); }
 function save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) {} }
 let G = load();
 
@@ -2546,9 +2548,13 @@ function endPlayback() {
 function minus(have, gone) { const left = have.slice(); for (const id of gone) { const k = left.indexOf(id); if (k >= 0) left.splice(k, 1); } return left; }
 function finishFight() {
   const st = S.st, w = st.winner;
-  if (S.kind === "tutorial") { U.over = { type: "tutorial-end", winner: w }; return; }
+  if (S.kind === "tutorial") {
+    const first = w === 0 && !G.tutorialDone; // the tutorial's Crown counts once, the first time it is won
+    if (first) { G.crowns++; G.tutorialDone = true; save(); }
+    U.over = { type: "tutorial-end", winner: w, first }; return;
+  }
   const mine = S.lineups[0], lines = [];
-  if (w === 0) { lines.push(["Victory", PAY.win]); G.wins++; }
+  if (w === 0) { lines.push(["Victory", PAY.win]); G.wins++; G.crowns++; }
   else {
     lines.push([w === 1 ? "Defeat" : "A draw", PAY.loss]); if (w === 1) G.losses++; else G.draws++;
     const foeCrown = E.crownCard(st, 1);
@@ -2586,7 +2592,6 @@ function staticCard(id, o = {}) {
   const d = defOf(id), kind = kindOf(id), s = kind === "hero" ? d.stats : d;
   return cardShell({ cls: ["card", kind, ...(o.cls || [])], attrs: o.attrs || "", kind, id, name: d.name, spd: s.speed, crown: o.crown, count: o.count,
     atk: s.attack, ranged: s.ranged, guard: s.guard, hp: s.health, rarity: d.rarity,
-    overlay: d.renown != null ? `<span class="coin" title="Renown">${d.renown}</span>` : "",
     label: `${d.name}${o.crown ? ", wearing the Crown" : ""}${d.renown != null ? `, ${d.renown} Renown` : ""}${o.count ? `, ${o.count}` : ""}` });
 }
 function battleCard(c, v, opts = {}) {
@@ -2795,7 +2800,7 @@ function homeHtml() {
   }
   const bad = issues(G.lineup).length;
   return `<div class="hero-screen"><div class="title">${CROWN_SVG}<h1>Crown <span>&amp;</span> Fable</h1>
-    <div class="meta"><span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
+    <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
     <div class="btns"><button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button>
       <button class="btn big quiet" data-go="formation">Line-up</button>
       <button class="btn big quiet" data-go="shop">Shop</button>
@@ -2845,13 +2850,13 @@ function collectionHtml() {
   const src = { hero: G.heroes, front: { villager: Infinity, ...G.front }, item: G.items }[U.tab];
   const ids = Object.keys(src).sort((a, b) => (defOf(a).realm || "").localeCompare(defOf(b).realm || "") || defOf(a).name.localeCompare(defOf(b).name));
   const total = Object.values(G.heroes).reduce((a, b) => a + b, 0) + Object.values(G.front).reduce((a, b) => a + b, 0) + Object.values(G.items).reduce((a, b) => a + b, 0);
-  return `<div class="wrap"><div class="bar"><h1>Your cards</h1><span class="eyebrow">${total} cards</span></div>
+  return `<div class="wrap"><div class="bar"><h1>Your cards</h1><span style="display:flex;gap:14px;align-items:center">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="eyebrow">${total} cards</span></span></div>
     <div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${U.tab === k}" class="${U.tab === k ? "on" : ""}" data-tab="${k}">${l}</button>`).join("")}</div>
     ${ids.length ? `<div class="grid">${ids.map((id) => staticCard(id, { attrs: `data-act="detail" data-id="${id}"`, count: id === "villager" ? "∞" : src[id] > 1 ? `×${src[id]}` : "" })).join("")}</div>` : `<p class="empty">None yet. Items come in Fable packs and from the shop.</p>`}
     <p class="lede">${U.tab === "hero" ? "Heroes are yours to keep and come only from packs." : U.tab === "front" ? "A front-rank card that dies in a fight is gone for good. Villagers are free and never run out." : "Items are single use: one that is used in a fight leaves your collection."}</p></div>`;
 }
 const TIPS = [
-  { say: "Every card has a Renown cost, the gold coin on it. Your whole line-up may cost at most 50 Renown, so you can't simply field all your strongest cards.", focus: "meter" },
+  { say: "Every card has a Renown cost, shown when you choose it for a slot. Your whole line-up may cost at most 50 Renown, so you can't simply field all your strongest cards.", focus: "meter" },
   { say: "The hero in the bottom slot wears the Crown. Only that hero's Crown passive is switched on, and if they fall you lose. Any hero can wear it, so each of yours plays differently there.", focus: "crown" },
   { say: "Bonds work in any slot. Heroes from the same tale or realm strengthen each other, so St George, the Dragon and the Princess are at their best together.", focus: "bonds" },
   { say: "Front-rank cards act on their own. One that dies in a fight is gone for good; survivors come back. Villagers are free and never run out.", focus: "front" },
@@ -2940,14 +2945,15 @@ function overHtml() {
   if (o.type === "tutorial-end") {
     if (o.winner !== 0) return `<div class="panel"><p class="eyebrow">Tutorial</p><h1>${o.winner === 1 ? "Defeat" : "A draw"}</h1><p>The Crown fell. Try the tutorial again.</p><div class="btns"><button class="btn" data-act="tutorial">Try again</button></div></div>`;
     return `<div class="panel">${CROWN_SVG}<p class="eyebrow">Tutorial complete</p><h1>Victory</h1>
-      <p>The Dragon is down and the Princess keeps her Crown.</p>
+      <p>The Dragon is down and the Princess keeps her Crown.${o.first ? " You have taken your first enemy Crown." : ""}</p>
+      ${o.first ? `<div class="ledger"><div class="tot"><span>Crowns won</span><b>${G.crowns}</b></div></div>` : ""}
       <ul><li>Protect your Crown; take theirs.</li><li>3 action points a round, one action per hero.</li><li>The front rank acts on its own, every round.</li><li>Fastest acts first; the Fate token breaks ties and crosses the board each round.</li><li>Items act before any card.</li><li>Night falls in round 8: no healing, and every card takes rising damage.</li></ul>
       <div class="btns"><button class="btn" data-act="after-tutorial">Continue</button></div></div>`;
   }
   const names = (ids) => { const c = {}; ids.forEach((id) => (c[id] = (c[id] || 0) + 1)); return Object.entries(c).map(([id, n]) => `${defOf(id).name}${n > 1 ? ` × ${n}` : ""}`).join(", "); };
   return `<div class="panel">${o.winner === 0 ? CROWN_SVG : ""}<p class="eyebrow">Round ${o.round} · against ${esc(S.foeName)}</p>
     <h1>${o.winner === 0 ? "Victory" : o.winner === 1 ? "Defeat" : "A draw"}</h1>
-    <div class="ledger">${o.lines.map(([l, n]) => `<div><span>${esc(l)}</span><b>+${n}</b></div>`).join("")}<div class="tot"><span>Your gold</span><b>${G.gold}</b></div></div>
+    <div class="ledger">${o.lines.map(([l, n]) => `<div><span>${esc(l)}</span><b>+${n}</b></div>`).join("")}<div class="tot"><span>Your gold</span><b>${G.gold}</b></div>${o.winner === 0 ? `<div class="tot"><span>Crowns won</span><b>${G.crowns}</b></div>` : ""}</div>
     <p style="font-size:15.5px">${o.lostFront.length ? `Fell in the front rank, and gone for good: ${esc(names(o.lostFront))}.` : "Your front rank all came home."}${o.usedItems.length ? ` Used up: ${esc(names(o.usedItems))}.` : ""}</p>
     <div class="btns"><button class="btn" data-act="fight">Fight again</button><button class="btn quiet" data-go="formation">Line-up</button><button class="btn quiet" data-go="shop">Shop</button><button class="btn quiet" data-go="home">Home</button></div></div>`;
 }
