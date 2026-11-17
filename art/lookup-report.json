@@ -1,333 +1,125 @@
 {
- "ranAt": "2026-11-17T15:49:45.836Z",
- "files": [
-  {
-   "file": "The Miller's Daughter by Anne Anderson.jpg",
-   "width": 600,
-   "height": 827,
-   "mime": "image/jpeg",
-   "licence": "Public domain",
-   "usage": "Public domain",
-   "copyrighted": "False",
-   "artist": "Anne Anderson",
-   "date": "1922",
-   "credit": "http://www.artsycraftsy.com/anderson_prints.html",
-   "description": "\"The Miller's Daughter\" He boasted she could spin gold from straw...",
-   "restrictions": "",
-   "licenceTags": [
-    "Cc-pd-mark-footer",
-    "License template tag",
-    "PD-Layout",
-    "PD-US-expired-text",
-    "PD-old-X-expired",
-    "PD-old-auto-expired",
-    "PD-old-text"
-   ]
-  },
-  {
-   "file": "Rumplestiltskin - Anne Anderson.jpg",
-   "width": 600,
-   "height": 713,
-   "mime": "image/jpeg",
-   "licence": "Public domain",
-   "usage": "Public domain",
-   "copyrighted": "False",
-   "artist": "Anne Anderson (1874-1930)",
-   "date": "",
-   "credit": "http://www.artsycraftsy.com/anderson_prints.html",
-   "description": "Old, Old Fairy Tales: \"Rumplestiltskin\" by Anne Anderson. Rumplestiltskin is my name...",
-   "restrictions": "",
-   "licenceTags": [
-    "Cc-pd-mark-footer",
-    "License template tag",
-    "PD-Layout",
-    "PD-old",
-    "PD-old-text",
-    "PD-old-warning-text"
-   ]
-  },
-  {
-   "file": "Walther Caspari - Rumpelstilzchen, c. 1905.jpg",
-   "width": 1000,
-   "height": 994,
-   "mime": "image/jpeg",
-   "licence": "Public domain",
-   "usage": "Public domain",
-   "copyrighted": "False",
-   "artist": "Walther Caspari (1869-1913)",
-   "date": "1905",
-   "credit": "https://www.invaluable.com/auction-lot/walther-caspari-aschenbroedel-knusperhexe-rumpels-186-c-f0f4ffaabf#",
-   "description": "Walther Caspari - Rumpelstilzchen . Farblithographie. Um 1905. 22,5 : 22,5 cm (26 : 26 cm). Die Bildtafel wurde bei C. Wolf &amp; Sohn, München, auf olivgrünem Grund gedruckt und ediert vom Leipziger Verlag R. Voigtländer",
-   "restrictions": "",
-   "licenceTags": [
-    "Cc-pd-mark-footer",
-    "License template tag",
-    "PD-Art",
-    "PD-Art/en",
-    "PD-Art/layout",
-    "PD-Layout",
-    "PD-US-expired-text",
-    "PD-art-category",
-    "PD-art-category/core",
-    "PD-old-X-expired",
-    "PD-old-auto-1923",
-    "PD-old-auto-expired",
-    "PD-old-text"
-   ]
-  },
-  {
-   "file": "J. E. Rogers, Rumpelstiltzchen.jpg",
-   "width": 663,
-   "height": 977,
-   "mime": "image/jpeg",
-   "licence": "Public domain",
-   "usage": "Public domain",
-   "copyrighted": "False",
-   "artist": "J. E. Rogers (1838 – 1896)",
-   "date": "2022-02-13 06:40:07",
-   "credit": "“The Fairy Book the Best Popular Fairy Stories Selected and Rendered Anew” by Dinah Craik (London: Macmillan and Co., 1870)",
-   "description": "J. E. Rogers, “Rumpelstiltzchen” (chromolithograph, 1870)",
-   "restrictions": "",
-   "licenceTags": [
-    "Cc-pd-mark-footer",
-    "License template tag",
-    "PD-Art",
-    "PD-Art/en",
-    "PD-Art/layout",
-    "PD-Layout",
-    "PD-art-category",
-    "PD-art-category/core",
-    "PD-old-70",
-    "PD-old-text",
-    "PD-old-warning-text"
-   ]
-  },
-  {
-   "file": "Hey Märchen 055.jpg",
-   "width": 1023,
-   "height": 1562,
-   "mime": "image/jpeg",
-   "licence": "Public domain",
-   "usage": "Public domain",
-   "copyrighted": "False",
-   "artist": "Paul Hey",
-   "date": "1939",
-   "credit": "https://archive.org/details/deutschemarchen01ciga",
-   "description": "“Rumpelstilzchen“, Illustration aus \"Deutsche Märchen\" (Text Paul Alverdes, mit 100 Illustrationen von Paul Hey)",
-   "restrictions": "",
-   "licenceTags": [
-    "Cc-pd-mark-footer",
-    "License template tag",
-    "PD-Art",
-    "PD-Art/en",
-    "PD-Art/layout",
-    "PD-Layout",
-    "PD-art",
-    "PD-art-category",
-    "PD-art-category/core",
-    "PD-old-auto",
-    "PD-old-auto/core",
-    "PD-old-text",
-    "PD-old-warning-text"
-   ]
-  }
- ],
- "searches": {
-  "Anne Anderson Grimm fairy tales Collins": [
+ "ranAt": "2026-11-17T15:50:44.012Z",
+ "files": [],
+ "searches": {},
+ "categories": {},
+ "iaSearch": {
+  "creator:(Anderson, Anne) AND title:(Grimm)": [],
+  "title:(Grimm's fairy tales) AND (Anne Anderson) AND date:[1915 TO 1930]": [],
+  "title:(Old, Old Fairy Tales)": [
    {
-    "file": "12 dancing princess par Anne Anderson.jpg",
-    "width": 300,
-    "height": 408,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Anne Anderson",
-    "date": "2012-07-15",
-    "credit": "https://www.abebooks.co.uk/servlet/BookDetailsPL?bi=30458294944&amp;searchurl=yrh%3D1940%26yrl%3D1922%26pn%3DCollins%26bi%3D0%26ds%3D30%26bx%3Doff%26sortby%3D1%26tn%3Dgrimm%2527s%2Bfairy%2Btales%26an%3Danne%2Banderson%26recentlyadded%3Dall&",
-    "description": "Illustration de l'arrivée au bal par Anne Anderson",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-Art",
-     "PD-Art/en",
-     "PD-Art/layout",
-     "PD-Layout",
-     "PD-art-category",
-     "PD-art-category/core",
-     "PD-old-auto",
-     "PD-old-auto/core",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
+    "id": "oldrofairytalesicr",
+    "title": "Old Romanian Fairy Tales at the ICR New York",
+    "creator": "RTVNY",
+    "date": "2014-04-12"
+   },
+   {
+    "id": "primaryreader_1605_librivox",
+    "title": "A Primary Reader: Old-time Stories, Fairy Tales and Myths Retold by Children",
+    "creator": "E. Louise Smythe",
+    "date": "2016-05-20"
+   },
+   {
+    "id": "oldworldnewworld0000unse_s4k8",
+    "title": "Old world and new world fairy tales",
+    "creator": "amabel williams-ellis",
+    "date": "1966",
+    "publisher": "Blackie",
+    "pages": "394"
+   },
+   {
+    "id": "bwb_Y0-DAN-447",
+    "title": "Time for Fairy Tales old and new",
+    "creator": "John Averill, Wade Ray, Seymour Rosofsky, Debi Sussman, Hal Kearney",
+    "date": "1952",
+    "publisher": "Scott, Foresman and Company",
+    "pages": "430"
+   },
+   {
+    "id": "fairytalesinpsyc0000fran",
+    "title": "Fairy tales in psychotherapy : the creative use of old and new tales",
+    "creator": "Franzke, Erich",
+    "date": "1989",
+    "publisher": "Toronto ; Lewiston, N.Y. : H. Huber",
+    "pages": "154"
+   },
+   {
+    "id": "yedghe688ztkqfadnmqyzqtxsmh5lt4rppxz4br3",
+    "title": "#211 - Old Fairy Tales are Terrifying! (and other such nonsense)",
+    "creator": "wellRED podcast",
+    "date": "2021-03-10"
+   },
+   {
+    "id": "timeforfairytale0000mayh_x2o3",
+    "title": "time for fairy tales old and new",
+    "creator": "may hill arbutnot",
+    "date": "1952",
+    "publisher": "scott, foresman and company",
+    "pages": "428"
+   },
+   {
+    "id": "micro_IA41153536_0817",
+    "title": "Alte Marchen?--alter Hut. Neue Marchen!--neuer Hut? 3 Moderne Marchen bearbeitet als Horspiele, mit Aufgaben und Ubungen (Old Fairy Tales?--Old Hat. New Fairy Tales!--New Hat? Three Modern Fairy Tales Presented in a Radio Play, with Activities and Drills).",
+    "creator": [
+     "Kage, Michael",
+     "Alberta Dept. of Education, Edmonton."
+    ],
+    "date": "1991-07-00",
+    "pages": "70"
+   },
+   {
+    "id": "oldoldfairytales00valerich",
+    "title": "The old old fairy tales",
+    "creator": "Valentine, L. (Laura), d. 1899",
+    "date": "[1902]",
+    "publisher": "New York, A.L. Burt",
+    "pages": "400",
+    "rights": "NOT_IN_COPYRIGHT"
+   },
+   {
+    "id": "bwb_P9-DBH-369",
+    "title": "Old french fairy tales",
+    "creator": "Comfesse de segur",
+    "date": "1920",
+    "publisher": "The penn publishing company",
+    "pages": "322"
+   },
+   {
+    "id": "oldoldfairytales_1707_librivox",
+    "title": "The Old Old Fairy Tales",
+    "creator": "Laura Valentine",
+    "date": "2017-07-30"
+   },
+   {
+    "id": "salmagundimr",
+    "title": "Old Romanian Fairy Tales by Mirela Roznoveanu at Salmagundi",
+    "creator": "Romanian voice TV"
+   },
+   {
+    "id": "fairyelves0000unse",
+    "title": "Fairy elves : a dictionary of the little people with some old tales and verses about them",
+    "creator": "Palmer, Robin, 1911-",
+    "date": "1964",
+    "publisher": "New York : Henry Z. Walck",
+    "pages": "106"
+   },
+   {
+    "id": "fairygoldbookofo0000cjos",
+    "title": "Fairy-Gold. A Book of Old English Fairy Tales",
+    "creator": "Cjosen By Ernest Rhys",
+    "date": "1906-01-01",
+    "publisher": "J.M. Dent & Co.",
+    "pages": "334"
+   },
+   {
+    "id": "fairygoldbookofo0000erne",
+    "title": "Fairy Gold a Book of Old English Fairy Tales Chosen",
+    "creator": "Ernest Rhys",
+    "date": "1913",
+    "pages": "334"
    }
   ],
-  "Rumpelstiltskin 1920s illustration colour": []
- },
- "categories": {
-  "Old, Old Fairy Tales": {
-   "subcategories": [],
-   "files": [
-    {
-     "file": "The Frog Prince - Anne Anderson.jpg",
-     "width": 600,
-     "height": 723,
-     "mime": "image/jpeg",
-     "licence": "Public domain",
-     "usage": "Public domain",
-     "copyrighted": "False",
-     "artist": "Anne Anderson (1874-1930)",
-     "date": "",
-     "credit": "http://www.artsycraftsy.com/anderson_prints.html",
-     "description": "Old, Old Fairy Tales: \"The Frog Prince\" by Anne Anderson. A voice asked what was the matter - it was a frog...",
-     "restrictions": "",
-     "licenceTags": [
-      "Cc-pd-mark-footer",
-      "License template tag",
-      "PD-Layout",
-      "PD-old",
-      "PD-old-text",
-      "PD-old-warning-text"
-     ]
-    },
-    {
-     "file": "Briar Rose - Anne Anderson.jpg",
-     "width": 600,
-     "height": 717,
-     "mime": "image/jpeg",
-     "licence": "Public domain",
-     "usage": "Public domain",
-     "copyrighted": "False",
-     "artist": "Anne Anderson (1874-1930)",
-     "date": "",
-     "credit": "http://www.artsycraftsy.com/anderson_prints.html",
-     "description": "Old, Old Fairy Tales: \"Briar Rose\" by Anne Anderson. Aurora pricked her finger on the witches spindle...",
-     "restrictions": "",
-     "licenceTags": [
-      "Cc-pd-mark-footer",
-      "License template tag",
-      "PD-Layout",
-      "PD-old",
-      "PD-old-text",
-      "PD-old-warning-text"
-     ]
-    },
-    {
-     "file": "The Three Dwarfs - Anne Anderson.jpg",
-     "width": 600,
-     "height": 729,
-     "mime": "image/jpeg",
-     "licence": "Public domain",
-     "usage": "Public domain",
-     "copyrighted": "False",
-     "artist": "Anne Anderson (1874-1930)",
-     "date": "",
-     "credit": "http://www.artsycraftsy.com/anderson_prints.html",
-     "description": "Old, Old Fairy Tales: \"The Three Dwarfs\" by Anne Anderson. The Three Dwarfs in the Wood...",
-     "restrictions": "",
-     "licenceTags": [
-      "Cc-pd-mark-footer",
-      "License template tag",
-      "PD-Layout",
-      "PD-old",
-      "PD-old-text",
-      "PD-old-warning-text"
-     ]
-    },
-    {
-     "file": "Rumplestiltskin - Anne Anderson.jpg",
-     "width": 600,
-     "height": 713,
-     "mime": "image/jpeg",
-     "licence": "Public domain",
-     "usage": "Public domain",
-     "copyrighted": "False",
-     "artist": "Anne Anderson (1874-1930)",
-     "date": "",
-     "credit": "http://www.artsycraftsy.com/anderson_prints.html",
-     "description": "Old, Old Fairy Tales: \"Rumplestiltskin\" by Anne Anderson. Rumplestiltskin is my name...",
-     "restrictions": "",
-     "licenceTags": [
-      "Cc-pd-mark-footer",
-      "License template tag",
-      "PD-Layout",
-      "PD-old",
-      "PD-old-text",
-      "PD-old-warning-text"
-     ]
-    },
-    {
-     "file": "Madame Holl - Anne Anderson.jpg",
-     "width": 600,
-     "height": 719,
-     "mime": "image/jpeg",
-     "licence": "Public domain",
-     "usage": "Public domain",
-     "copyrighted": "False",
-     "artist": "Anne Anderson (1874-1930)",
-     "date": "",
-     "credit": "http://www.artsycraftsy.com/anderson_prints.html",
-     "description": "Old, Old Fairy Tales: \"Madame Holl\" by Anne Anderson. Always shake my featherbed out the window...",
-     "restrictions": "",
-     "licenceTags": [
-      "Cc-pd-mark-footer",
-      "License template tag",
-      "PD-Layout",
-      "PD-old",
-      "PD-old-text",
-      "PD-old-warning-text"
-     ]
-    },
-    {
-     "file": "Behaltendiskussion.gif",
-     "width": 400,
-     "height": 350,
-     "mime": "image/gif",
-     "licence": "Public domain",
-     "usage": "Public domain",
-     "copyrighted": "False",
-     "artist": "Rumplestiltskin_-_Anne_Anderson.jpg : Anne Anderson (1874-1930) derivative work: Plenz",
-     "date": "2012-03-21 10:42",
-     "credit": "This file was derived from: Rumplestiltskin - Anne Anderson.jpg :",
-     "description": "Allzu oft gesehene Reaktion auf Löschanträge",
-     "restrictions": "",
-     "licenceTags": [
-      "Cc-pd-mark-footer",
-      "License template tag",
-      "PD-Layout",
-      "PD-old",
-      "PD-old-text",
-      "PD-old-warning-text"
-     ]
-    }
-   ]
-  },
-  "Grimm's Fairy Tales (Anne Anderson)": {
-   "subcategories": [],
-   "files": []
-  }
- },
- "peek": [
-  {
-   "file": "Walther Caspari - Rumpelstilzchen, c. 1905.jpg",
-   "saved": "00.jpg"
-  },
-  {
-   "file": "J. E. Rogers, Rumpelstiltzchen.jpg",
-   "saved": "01.jpg"
-  },
-  {
-   "file": "The fairy tales of the Brothers Grimm (1916) (14782367222).jpg",
-   "saved": "02.jpg"
-  },
-  {
-   "file": "Rumpelstiltskin - Jack Zipes Historic Fairy Tale Postcard Collection - 53074302397.jpg",
-   "error": 404
-  },
-  {
-   "file": "12 dancing princess par Anne Anderson.jpg",
-   "saved": "04.jpg"
-  }
- ]
+  "title:(Anne Anderson picture book)": [],
+  "title:(fairy tales of Grimm and Andersen) AND Anderson": []
+ }
 }
