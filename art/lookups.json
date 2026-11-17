@@ -1,3 +1,3 @@
 {
-  "iaSearch": ["creator:(Anderson, Anne) AND title:(Grimm)", "title:(Grimm's fairy tales) AND (Anne Anderson) AND date:[1915 TO 1930]", "title:(Old, Old Fairy Tales)", "title:(Anne Anderson picture book)", "title:(fairy tales of Grimm and Andersen) AND Anderson"]
+  "iaSearch": ["title:(fairy book) AND creator:(Craik) AND date:[1869 TO 1875]", "title:(\"The fairy book\") AND (Craik OR Mulock)", "title:(fairy book best popular fairy stories)"]
 }
