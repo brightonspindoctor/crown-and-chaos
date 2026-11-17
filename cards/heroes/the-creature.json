@@ -36,7 +36,7 @@
     },
     {
       "name": "The Pyre",
-      "ap": 4,
+      "ap": 5,
       "text": "Deal 6 to every enemy card; he takes 8.",
       "usesPerFight": 1
     }

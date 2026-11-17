@@ -29,7 +29,7 @@ for (const { file, data: h } of readDir("cards/heroes")) {
   if (typeof h.renown !== "number") errors.push(`${file}: missing renown`);
   if (h.renown > 50) errors.push(`${file}: renown ${h.renown} is over the 50 budget`);
   for (const a of h.actions ?? []) {
-    if (a.ap > 4) errors.push(`${file}: action "${a.name}" costs more than 4 AP`);
+    if (a.ap > 5) errors.push(`${file}: action "${a.name}" costs more than 5 AP`);
   }
   if (!h.art) warnings.push(`${file}: no art assigned`);
   else if (!art.has(h.art)) errors.push(`${file}: art "${h.art}" is not in the manifest`);

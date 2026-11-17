@@ -584,7 +584,8 @@ export function upkeep(st) {
   const ren0 = crownIs(st, 0, "renfield"), ren1 = crownIs(st, 1, "renfield");
   if (ren0 && !ren1) st.fate = 0; else if (ren1 && !ren0) st.fate = 1; else if (st.round > 1) st.fate = 1 - st.fate;
   for (const i of [0, 1]) {
-    st.sides[i].ap = BASE_AP + (crownIs(st, i, "victor-frankenstein") ? 1 : 0);
+    // Galvanism: +1 action point for each of Victor's other living heroes, counted at upkeep.
+    st.sides[i].ap = BASE_AP + (crownIs(st, i, "victor-frankenstein") ? heroes(st, i).filter((h) => h.id !== "victor-frankenstein").length : 0);
     st.sides[i].flags.itemApExtra = 0;
   }
   // Blodeuwedd's change at nightfall comes first
@@ -742,7 +743,7 @@ export const ACTIONS = {
     "Completion": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 99)) } },
   "the-creature": { "Rampage": { t: "enemyMelee", go: (st, a, x) => { const ns = neighbours(st, x); hit(st, a, x, 3); ns.forEach((n) => hit(st, a, n, 3)); } },
     "The Pyre": { t: "none", go: (st, a) => { cards(st, 1 - a.side).forEach((c) => damage(st, a, c, 6, { attack: true })); damage(st, null, a, 8, { trueDamage: true }); } } },
-  "the-dragon": { "Fire Breath": { t: "none", go: (st, a) => { for (const x of fireTargets(st, a)) hit(st, a, x, 3, { ranged: true }); } },
+  "the-dragon": { "Fire Breath": { t: "none", go: (st, a) => { for (const x of fireTargets(st, a)) hit(st, a, x, 2, { ranged: true }); } },
     "Tail Sweep": { t: "enemyMelee", go: (st, a, x) => { const n = neighbours(st, x)[0]; hit(st, a, x, 2); if (n) hit(st, a, n, 2); } } },
   "the-huntsman": { "Stones in the belly": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, attackOf(st, a), { ranged: true }); if (!x.dead) x.speedFixed = 1; } } },
   "the-little-mermaid": { "Sea magic": { t: "enemyAny", go: (st, a, x) => { damage(st, a, x, attackOf(st, a), { spell: true, attack: true, ranged: true }); applyHealthLoss(st, { name: "The knives", side: -1 }, a, 1, {}); } },
@@ -1114,7 +1115,7 @@ function valueOf(st, a, act, x) {
     case "Quarterstaff": return dmgValue(4, x) + 1;
     case "Rampage": return dmgValue(3, x) + 3 * neighbours(st, x).length * 0.8;
     case "Tail Sweep": return dmgValue(2, x) + 1.5;
-    case "Fire Breath": return Math.min(2, cards(st, 1 - a.side).length) * 2.8;
+    case "Fire Breath": return Math.min(2, cards(st, 1 - a.side).length) * 1.9;
     case "Into the oven": return dmgValue(4, x) + (x?.aspect === "Witch" ? 8 : 0);
     case "Betrayal": return x && ec && x.uid === ec.uid ? dmgValue(6 + (x.guardLeft || 0), x) : (a.health <= 3 ? dmgValue(6, x) : 0);
     case "Break their spirit": return x ? dmgValue(attackOf(st, a), x) + guardOf(st, x) * 3 : 0;
