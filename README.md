@@ -79,12 +79,12 @@ To download art, run the **Fetch art** workflow from the Actions tab. It also ru
 
 Card numbers are read from the JSON files, but each card's effect is coded by hand in the engine, so a change to a card's text needs the matching change in `engine/engine.mjs`.
 
-## Tutorial
+## Playable prototype
 
 | Path | What it is |
 |---|---|
-| `tutorial/template.html` | The scripted tutorial fight, "The Field at Silene": the Princess (Crown) and St George against the Dragon. The `TUTORIAL` list near the top holds every step and the Dragon's fixed moves |
-| `tutorial/img/` | The paintings the tutorial uses, cropped to card size from `art/images/` using the crops in the manifest |
-| `tutorial/index.html` | The built page. Rebuild with `node scripts/build-tutorial.mjs` |
+| `game/template.html` | The prototype: the scripted tutorial fight ("The Field at Silene"), "Are you ready?", the 20-card first pack, your collection, line-up building within 50 Renown, fights against the computer that pay gold, and the shop. The `TUTORIAL` list near the top holds every tutorial step and the Dragon's fixed moves |
+| `game/img/` | Every card's painting and every battle board, cropped from `art/images/` using the crops in the manifest. Rebuild with `python3 scripts/crop-game-art.py` |
+| `game/index.html` | The built page. Rebuild with `node scripts/build-game.mjs` |
 
-The tutorial runs on the same engine as everything else. The engine calls `st.onLog` after every log line and sets `st.acting`, which is how the page replays a round card by card. After the tutorial, the same fight can be played freely against the bot.
+Progress (gold, cards, line-up) is saved in the player's browser only. The page runs on the same engine as everything else: the engine calls `st.onLog` after every log line and sets `st.acting`, which is how the page replays a round card by card.

@@ -7,6 +7,7 @@
 // Where the design doc leaves a detail open, the engine makes a choice and lists it
 // in ASSUMPTIONS so it can be checked against playtesting.
 
+export const NIGHTFALL_ROUND = 8;
 export const ASSUMPTIONS = [
   "Front-rank cards act at Speed 2.",
   "Items resolve before any card acts that round.",
@@ -529,7 +530,7 @@ function onDeath(st, t, src) {
         h.flags.marianDone = true; h.atkPerm += 2 * f; h.speedPerm += f;
       }
       if (h.id === "st-george") {
-        if (t.aspect === "Beast" && !h.flags.georgeBeast) { h.flags.georgeBeast = true; h.guardIntoAtk += f * guardOf(st, h); }
+        if (t.aspect === "Beast" && !h.flags.georgeBeast) { h.flags.georgeBeast = true; h.guardIntoAtk += f * guardOf(st, h); if (f > 0) { h.noGuard = true; h.guardLeft = 0; log(st, `St George gives up his Guard: his Attack is now ${attackOf(st, h)}.`); } }
         if (t.aspect === "Healer" && !h.flags.georgeHealer) { h.flags.georgeHealer = true; h.atkMult = f > 0 ? 2 : 1; }
       }
       if (h.id === "grendels-mother" && t.id === "grendel") { h.atkPerm += 3 * f; h.speedFixed = 3; }
@@ -556,6 +557,9 @@ function stop(st, target, why) {
   log(st, `${target.name} is stopped (${why}).`);
   return true;
 }
+
+// A card stopped last round can't be stopped again this round, so it isn't offered as a target.
+export function canBeStopped(st, c) { return c.stoppedRound !== st.round - 1; }
 
 // ---------- upkeep ----------
 export function upkeep(st) {
@@ -799,7 +803,7 @@ export function targetsFor(st, a, act) {
     case "emptyFront": return [4, 5, 6].some((x) => !at(st, a.side, x)) ? [null] : [];
     case "enemyMelee": return meleeTargets(st, a);
     case "enemyAny": case "enemyAny2": return rangedTargets(st, a);
-    case "enemyHero": return eh;
+    case "enemyHero": return act.name === "Enchanted sleep" ? eh.filter((c) => canBeStopped(st, c)) : eh;
     case "enemyHeroMelee": { const m = meleeTargets(st, a).filter((c) => c.kind === "hero"); return m.length ? m : []; }
     case "enemyHeroNotCrown": return eh.filter((c) => c.uid !== st.sides[foe].crownUid);
     case "enemyHero23": return eh.filter((c) => c.slot === 2 || c.slot === 3);
@@ -808,7 +812,7 @@ export function targetsFor(st, a, act) {
     case "enemyWeakNotCrown": return cards(st, foe).filter((c) => (c.kind === "front" || c.uid !== st.sides[foe].crownUid) && c.health <= 3 && !(c.kind === "hero" && c.uid === st.sides[foe].crownUid));
     case "enemyWolf": { const fr = closestRow(st, a.side).filter((c) => c.kind === "front"); return [...fr, ...eh.filter((c) => c.health <= 3 && c.uid !== st.sides[foe].crownUid)]; }
     case "enemyNotCrown": return closestRow(st, a.side).filter((c) => c.uid !== st.sides[foe].crownUid);
-    case "enemyBeast": return eh.filter((c) => c.aspect === "Beast");
+    case "enemyBeast": return eh.filter((c) => c.aspect === "Beast" && canBeStopped(st, c));
     case "ally": return cards(st, a.side);
     case "allyHero": return heroes(st, a.side);
     case "adjacentAllyHero": return neighbours(st, a).filter((c) => c.kind === "hero");
@@ -843,7 +847,7 @@ export function itemTargets(st, i, id) {
   switch (ITEM_TARGETS[id]) {
     case "none": return [null];
     case "allyHero": return heroes(st, i);
-    case "enemyHero": return heroes(st, 1 - i);
+    case "enemyHero": return id === "spindle" ? heroes(st, 1 - i).filter((c) => canBeStopped(st, c)) : heroes(st, 1 - i);
     case "deadHero": return [2, 3].some((s) => !at(st, i, s)) ? st.sides[i].grave.filter((c) => c.kind === "hero") : [];
     default: return [];
   }

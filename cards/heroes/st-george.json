@@ -19,7 +19,7 @@
     "text": "Blocks the first 5 damage of the first attack on any of your heroes each round."
   },
   "bond": {
-    "text": "When one of your Beast heroes dies, his Guard is added to his Attack. If one of your Healers dies, his Attack doubles."
+    "text": "When one of your Beast heroes dies, St George gives up his own Guard for the rest of the fight and adds it to his Attack. When one of your Healers dies, St George's Attack doubles."
   },
   "actions": [
     {
