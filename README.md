@@ -6,6 +6,19 @@ Every card is earned by playing, never bought, and every painting on a card is i
 
 The design reasoning lives in the design doc; this repository holds the data the game reads.
 
+## Play it on your phone
+
+The game is published to GitHub Pages by the **Publish the game** workflow on every push to `main`:
+**https://brightonspindoctor.github.io/crown-and-fable/**
+
+- **iPhone (Safari):** open the link, tap Share, then **Add to Home Screen**.
+- **Android (Chrome):** open the link, tap the menu, then **Install app** (or **Add to Home screen**).
+
+It then opens full screen from its own icon and works offline. Progress is saved on that phone only.
+
+The icon is drawn in `game/icons/icon.svg`. To change it, replace that file and run
+`python3 scripts/build-icons.py && node scripts/build-game.mjs`.
+
 ## What's here
 
 | Path | What it holds |
