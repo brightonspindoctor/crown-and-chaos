@@ -255,6 +255,8 @@ export function guardOf(st, c) {
   if (crownIs(st, i, "little-john") && c.kind === "hero" && c.realm === "Albion") g += 1;
   if (crownIs(st, i, "merlin") && c.kind === "front") g += 1;
   if (c.id === "the-bride" && crownIs(st, i, "the-bride") && gothicBeast(st, c)) g += 1;
+  // Dread: the Creature as Crown takes 1 Guard from every enemy hero.
+  if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") g -= 1;
   return Math.max(0, g);
 }
 

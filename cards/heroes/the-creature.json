@@ -17,7 +17,7 @@
   "renown": 16,
   "crownPassive": {
     "name": "Dread",
-    "text": "Enemy heroes have -1 Speed, never below 1."
+    "text": "Enemy heroes have -1 Speed (never below 1) and -1 Guard (never below 0)."
   },
   "bond": {
     "name": "Abandoned",
