@@ -1,6 +1,3 @@
 {
-  "files": ["Rumplestiltskin - Anne Anderson.jpg", "The Miller's Daughter by Anne Anderson.jpg", "Walther Caspari - Rumpelstilzchen, c. 1905.jpg", "J. E. Rogers, Rumpelstiltzchen.jpg", "Hey Märchen 055.jpg"],
-  "categories": ["Old, Old Fairy Tales", "Grimm's Fairy Tales (Anne Anderson)"],
-  "peekSearches": ["Anne Anderson Grimm fairy tales Collins", "Rumpelstiltskin 1920s illustration colour"],
-  "peek": ["Walther Caspari - Rumpelstilzchen, c. 1905.jpg", "J. E. Rogers, Rumpelstiltzchen.jpg", "The fairy tales of the Brothers Grimm (1916) (14782367222).jpg", "Rumpelstiltskin - Jack Zipes Historic Fairy Tale Postcard Collection - 53074302397.jpg"]
+  "iaSearch": ["creator:(Anderson, Anne) AND title:(Grimm)", "title:(Grimm's fairy tales) AND (Anne Anderson) AND date:[1915 TO 1930]", "title:(Old, Old Fairy Tales)", "title:(Anne Anderson picture book)", "title:(fairy tales of Grimm and Andersen) AND Anderson"]
 }
