@@ -17,7 +17,7 @@
   "renown": 13,
   "crownPassive": {
     "name": "Guess my name",
-    "text": "Each round, while planning, you may secretly pick one enemy hero. If it planned an action, the action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 4 damage. Each enemy hero can be picked only once per fight."
+    "text": "Each round, while planning, you may secretly pick one enemy hero. If it planned an action, the action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 2 damage. Each enemy hero can be picked only once per fight."
   },
   "bond": {
     "name": "Märchen kin",

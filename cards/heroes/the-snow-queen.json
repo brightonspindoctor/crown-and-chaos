@@ -17,7 +17,7 @@
   "renown": 13,
   "crownPassive": {
     "name": "Hard frost",
-    "text": "At the start of each round, freeze one enemy front-rank card of your choice; it skips its automatic action. The same card can't be frozen two rounds running."
+    "text": "In every round that you hold the Fate token, all enemy front-rank cards are frozen and skip their automatic actions."
   },
   "bond": {
     "name": "Eventyr kin",

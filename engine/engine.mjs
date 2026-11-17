@@ -399,7 +399,7 @@ export function damage(st, src, target, amount, opts = {}) {
     }
   }
   amt = Math.max(0, amt);
-  if (atk && crownIs(st, t.side, "maid-marian")) amt = Math.min(4, amt);
+  if (atk && crownIs(st, t.side, "maid-marian")) amt = Math.ceil(amt / 2);
   if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
     st.sides[t.side].flags.georgeRound = st.round;
     const blocked = Math.min(3, amt);
@@ -621,8 +621,9 @@ export function upkeep(st) {
         break;
       }
       case "the-snow-queen": {
-        const fr = cards(st, foe).filter((c) => c.kind === "front" && c.flags.frozenRound !== st.round - 1).sort((a, b) => attackOf(st, b) - attackOf(st, a))[0];
-        if (fr && !crownIs(st, foe, "the-tin-soldier")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); ev(st, { t: "freeze", tgt: fr.uid }); }
+        // Hard frost: in rounds when she holds the Fate token, every enemy front-rank card is frozen.
+        if (st.fate !== i || crownIs(st, foe, "the-tin-soldier")) break;
+        for (const fr of cards(st, foe).filter((c) => c.kind === "front")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); ev(st, { t: "freeze", tgt: fr.uid }); }
         break;
       }
       case "friar-tuck": {
@@ -962,7 +963,7 @@ export function playRound(st, plans) {
     const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
     const guessed = () => ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
     if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); guessed(); applyHealthLoss(st, rum, tgt, 2, {}); }
-    else { log(st, `Rumpelstiltskin guesses wrong.`); guessed(); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
+    else { log(st, `Rumpelstiltskin guesses wrong.`); guessed(); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 2, {}); }
   }
   for (const c of allCards(st)) c.flags.acted = false;
   ev(st, { t: "phase", name: "resolve" });
