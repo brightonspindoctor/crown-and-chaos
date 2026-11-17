@@ -50,4 +50,40 @@
 .fx-item.fx-glint .fx-item-art { position: relative; overflow: hidden; }
 .fx-item.fx-glint .fx-item-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); animation: glint .5s ease-out; }
 @keyframes glint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+/* themed effects */
+.fx-flame { width: 20px; height: 28px; border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%; mix-blend-mode: screen; filter: blur(.5px);
+  background: radial-gradient(ellipse at 50% 70%, #fffbd0 0, #ffd34a 22%, #ff8a1a 48%, rgba(220,40,10,.85) 68%, transparent 74%); }
+.fx-glow { width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(rgba(255,200,90,.85), rgba(255,110,20,.45) 40%, transparent 70%); mix-blend-mode: screen; filter: blur(4px); }
+.fx-glow.fx-big { width: 170px; height: 190px; }
+.fx-glow.fx-green { background: radial-gradient(rgba(190,255,140,.85), rgba(60,200,70,.45) 40%, transparent 70%); }
+.fx-smoke { width: 16px; height: 16px; background: radial-gradient(rgba(60,50,45,.75), transparent 70%); }
+.fx-flame.fx-green { background: radial-gradient(ellipse at 50% 70%, #f4ffd8 0, #b6ff6a 25%, #3fd04a 50%, rgba(20,120,40,.8) 68%, transparent 74%); }
+.fx-shard { width: 6px; height: 17px; clip-path: polygon(50% 0, 100% 40%, 50% 100%, 0 40%); background: linear-gradient(#ffffff, #a8dcff); }
+.fx-droplet { width: 9px; height: 12px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 35% 35%, #fff, #7fe0ff 45%, #2a8fbf); }
+.fx-glowdot { background: var(--c) !important; box-shadow: 0 0 7px var(--c); }
+.fx-ring { width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--c); box-shadow: 0 0 12px var(--c), inset 0 0 10px var(--c); }
+.fx-flash { left: 0 !important; top: 0 !important; width: 100vw; height: 100vh; mix-blend-mode: screen; z-index: 19; }
+.fx-boltsvg svg { display: block; filter: drop-shadow(0 0 6px #bfe0ff); }
+.fx-thrown svg { display: block; overflow: visible; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+.fx-sweep { transform: translate(-50%,-50%); }
+.fx-sweep svg { display: block; overflow: visible; }
+.fx-sweep path { fill: none; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 1; filter: drop-shadow(0 0 6px #fff); }
+.fx-blade { width: 92px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, transparent, #fff 40%, #ffe9b0 60%, transparent); box-shadow: 0 0 10px #fff; }
+.fx-runes svg { display: block; overflow: visible; fill: none; stroke: var(--c); stroke-width: 2.5; filter: drop-shadow(0 0 6px var(--c)); }
+.fx-holy { width: 50px; height: 280px; transform-origin: 50% 100%; background: linear-gradient(transparent, rgba(255,240,170,.85) 70%, #fff); filter: blur(3px); mix-blend-mode: screen; }
+.fx-cross { width: 96px; height: 96px; background: linear-gradient(90deg, transparent 46%, #fff6c8 50%, transparent 54%), linear-gradient(transparent 46%, #fff6c8 50%, transparent 54%); filter: drop-shadow(0 0 8px #ffd45c); }
+.fx-whirl { width: 84px; height: 84px; border-radius: 50%; border: 3px solid transparent; border-top-color: rgba(230,240,255,.95); border-right-color: rgba(230,240,255,.45); }
+.fx-leaf { width: 8px; height: 5px; border-radius: 0 80% 0 80%; background: #8fae5a; }
+.fx-jaw svg { display: block; }
+.fx-ash { width: 5px; height: 5px; border-radius: 1px; background: #8d8478; }
+.fx-rope svg { display: block; overflow: visible; }
+.fx-rope ellipse { fill: none; stroke: #e2b84a; stroke-width: 5; stroke-dasharray: 1; filter: drop-shadow(0 0 4px #ffd45c); }
+.fx-mist { width: 22px; height: 22px; background: radial-gradient(rgba(185,162,255,.75), transparent 70%); }
+.fx-moon { width: 46px; height: 46px; border-radius: 50%; box-shadow: inset -12px 7px 0 0 #f1ead0; filter: drop-shadow(0 0 12px #f1ead0); }
+.fx-star { width: 3px; height: 3px; background: #fff; box-shadow: 0 0 6px #fff; }
+.fx-shadow { width: 18px; height: 18px; background: radial-gradient(rgba(40,15,70,.9), transparent 70%); }
+.fx-plus { color: var(--c); font: 700 18px/1 system-ui, sans-serif; text-shadow: 0 0 6px var(--c); }
+.fx-plus::before { content: "+"; }
+.card.fx-scorch { filter: sepia(.6) saturate(1.8) brightness(1.15); }
+.card.fx-iced { box-shadow: 0 0 0 3px #bfe6ff, 0 0 18px #bfe6ff; }
 @media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }

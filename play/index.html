@@ -117,6 +117,42 @@ label select { color: var(--ink); width: 100%; }
 .fx-item.fx-glint .fx-item-art { position: relative; overflow: hidden; }
 .fx-item.fx-glint .fx-item-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); animation: glint .5s ease-out; }
 @keyframes glint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+/* themed effects */
+.fx-flame { width: 20px; height: 28px; border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%; mix-blend-mode: screen; filter: blur(.5px);
+  background: radial-gradient(ellipse at 50% 70%, #fffbd0 0, #ffd34a 22%, #ff8a1a 48%, rgba(220,40,10,.85) 68%, transparent 74%); }
+.fx-glow { width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(rgba(255,200,90,.85), rgba(255,110,20,.45) 40%, transparent 70%); mix-blend-mode: screen; filter: blur(4px); }
+.fx-glow.fx-big { width: 170px; height: 190px; }
+.fx-glow.fx-green { background: radial-gradient(rgba(190,255,140,.85), rgba(60,200,70,.45) 40%, transparent 70%); }
+.fx-smoke { width: 16px; height: 16px; background: radial-gradient(rgba(60,50,45,.75), transparent 70%); }
+.fx-flame.fx-green { background: radial-gradient(ellipse at 50% 70%, #f4ffd8 0, #b6ff6a 25%, #3fd04a 50%, rgba(20,120,40,.8) 68%, transparent 74%); }
+.fx-shard { width: 6px; height: 17px; clip-path: polygon(50% 0, 100% 40%, 50% 100%, 0 40%); background: linear-gradient(#ffffff, #a8dcff); }
+.fx-droplet { width: 9px; height: 12px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 35% 35%, #fff, #7fe0ff 45%, #2a8fbf); }
+.fx-glowdot { background: var(--c) !important; box-shadow: 0 0 7px var(--c); }
+.fx-ring { width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--c); box-shadow: 0 0 12px var(--c), inset 0 0 10px var(--c); }
+.fx-flash { left: 0 !important; top: 0 !important; width: 100vw; height: 100vh; mix-blend-mode: screen; z-index: 19; }
+.fx-boltsvg svg { display: block; filter: drop-shadow(0 0 6px #bfe0ff); }
+.fx-thrown svg { display: block; overflow: visible; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+.fx-sweep { transform: translate(-50%,-50%); }
+.fx-sweep svg { display: block; overflow: visible; }
+.fx-sweep path { fill: none; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 1; filter: drop-shadow(0 0 6px #fff); }
+.fx-blade { width: 92px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, transparent, #fff 40%, #ffe9b0 60%, transparent); box-shadow: 0 0 10px #fff; }
+.fx-runes svg { display: block; overflow: visible; fill: none; stroke: var(--c); stroke-width: 2.5; filter: drop-shadow(0 0 6px var(--c)); }
+.fx-holy { width: 50px; height: 280px; transform-origin: 50% 100%; background: linear-gradient(transparent, rgba(255,240,170,.85) 70%, #fff); filter: blur(3px); mix-blend-mode: screen; }
+.fx-cross { width: 96px; height: 96px; background: linear-gradient(90deg, transparent 46%, #fff6c8 50%, transparent 54%), linear-gradient(transparent 46%, #fff6c8 50%, transparent 54%); filter: drop-shadow(0 0 8px #ffd45c); }
+.fx-whirl { width: 84px; height: 84px; border-radius: 50%; border: 3px solid transparent; border-top-color: rgba(230,240,255,.95); border-right-color: rgba(230,240,255,.45); }
+.fx-leaf { width: 8px; height: 5px; border-radius: 0 80% 0 80%; background: #8fae5a; }
+.fx-jaw svg { display: block; }
+.fx-ash { width: 5px; height: 5px; border-radius: 1px; background: #8d8478; }
+.fx-rope svg { display: block; overflow: visible; }
+.fx-rope ellipse { fill: none; stroke: #e2b84a; stroke-width: 5; stroke-dasharray: 1; filter: drop-shadow(0 0 4px #ffd45c); }
+.fx-mist { width: 22px; height: 22px; background: radial-gradient(rgba(185,162,255,.75), transparent 70%); }
+.fx-moon { width: 46px; height: 46px; border-radius: 50%; box-shadow: inset -12px 7px 0 0 #f1ead0; filter: drop-shadow(0 0 12px #f1ead0); }
+.fx-star { width: 3px; height: 3px; background: #fff; box-shadow: 0 0 6px #fff; }
+.fx-shadow { width: 18px; height: 18px; background: radial-gradient(rgba(40,15,70,.9), transparent 70%); }
+.fx-plus { color: var(--c); font: 700 18px/1 system-ui, sans-serif; text-shadow: 0 0 6px var(--c); }
+.fx-plus::before { content: "+"; }
+.card.fx-scorch { filter: sepia(.6) saturate(1.8) brightness(1.15); }
+.card.fx-iced { box-shadow: 0 0 0 3px #bfe6ff, 0 0 18px #bfe6ff; }
 @media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }
 
 .skip-fx { position: fixed; right: 14px; bottom: 14px; z-index: 40; display: none; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
@@ -1609,6 +1645,16 @@ const SND = (() => {
     miss() { noise("bandpass", 2600, 500, 0.2, 0.22, 0, 2); },
     dud() { tone("triangle", 180, 120, 0.14, 0.25); },
     tick() { tone("sine", 1400, 1400, 0.04, 0.12); },
+    fire() { noise("lowpass", 260, 1500, 0.75, 0.55, 0, 0.8); noise("bandpass", 900, 450, 0.65, 0.25, 0.05, 1); tone("sawtooth", 70, 48, 0.7, 0.12, 0, ["lowpass", 260]);
+      for (let k = 0; k < 9; k++) noise("highpass", 4200, 3000, 0.02, 0.2, 0.05 + k * 0.07 + Math.random() * 0.03, 2); },
+    ignite() { noise("lowpass", 2600, 180, 0.45, 0.5); tone("sine", 95, 38, 0.32, 0.5); for (let k = 0; k < 5; k++) noise("highpass", 5000, 3500, 0.02, 0.18, 0.1 + k * 0.08, 2); },
+    thunder() { noise("lowpass", 7000, 300, 0.12, 0.65); for (let k = 0; k < 5; k++) noise("highpass", 6000, 2000, 0.03, 0.3, k * 0.035, 1); noise("lowpass", 420, 55, 1.0, 0.5, 0.08); tone("sine", 60, 34, 0.9, 0.5, 0.05); },
+    holy() { notes("sine", [523, 659, 784, 1047], 0, 1.0, 0.11); noise("highpass", 4000, 9000, 0.3, 0.16); tone("sine", 2637, 2600, 0.6, 0.1, 0.05); },
+    swoosh() { noise("bandpass", 300, 2800, 0.24, 0.38, 0, 1.2); },
+    crunch() { noise("bandpass", 1800, 600, 0.12, 0.55, 0, 1.5); tone("square", 140, 60, 0.1, 0.2, 0, ["lowpass", 800]); noise("bandpass", 1500, 500, 0.1, 0.4, 0.08, 1.5); },
+    stone() { tone("triangle", 190, 70, 0.13, 0.65); noise("lowpass", 1600, 200, 0.12, 0.55); },
+    wind() { noise("bandpass", 380, 1700, 0.85, 0.38, 0, 3); noise("bandpass", 1700, 480, 0.65, 0.26, 0.3, 3); },
+    smash() { tone("sine", 115, 30, 0.38, 1); noise("lowpass", 1300, 70, 0.34, 0.75); },
     night() { tone("sine", 55, 52, 1.6, 0.45); tone("sine", 58, 55, 1.6, 0.35); noise("lowpass", 200, 80, 1.4, 0.2); },
     win() { notes("triangle", [392, 523, 659, 784], 0.13, 0.5, 0.25); notes("triangle", [1047], 0, 0.9, 0.18, 0.55); },
     lose() { notes("triangle", [392, 349, 311, 262], 0.18, 0.55, 0.22); },
@@ -1701,15 +1747,210 @@ function makeFX(A) {
     await Promise.all(ps);
   }
 
+  // ---------- themed effects: fire, water, ice, lightning, holy light, wind, stone, rope ----------
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  // One particle that drifts from p by (dx, dy), changing size and fading.
+  function puff(cls, p, dx, dy, ms, o = {}) {
+    if (skip || !p) return Promise.resolve();
+    const d = spawn(cls, p.x, p.y); if (o.color) d.style.setProperty("--c", o.color);
+    return anim(d, [{ transform: `translate(-50%,-50%) scale(${o.s0 ?? 0.5}) rotate(${o.r0 || 0}deg)`, opacity: o.o0 ?? 1 },
+      { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${o.s1 ?? 1.3}) rotate(${o.r1 || 0}deg)`, opacity: 0 }],
+      ms, { delay: D(o.delay || 0), easing: o.ease || "ease-out" }).then(() => d.remove());
+  }
+  // A stream of particles from one point to another: fire, the Skull Lantern's green fire, ice shards.
+  async function stream(from, to, kind, ms = 520) {
+    if (!from || !to || skip) return;
+    const dx = to.x - from.x, dy = to.y - from.y, len = Math.hypot(dx, dy) || 1, nx = -dy / len, ny = dx / len;
+    const fire = kind !== "ice", cls = { fire: "fx-flame", green: "fx-flame fx-green", ice: "fx-shard" }[kind], n = fire ? 46 : 28;
+    if (fire) { const g = spawn("fx-glow" + (kind === "green" ? " fx-green" : ""), from.x, from.y); anim(g, [{ transform: "translate(-50%,-50%) scale(.4)", opacity: 0 }, { transform: "translate(-50%,-50%) scale(1.3)", opacity: 0.9, offset: 0.3 }, { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }], ms + 200).then(() => g.remove()); }
+    for (let i = 0; i < n; i++) {
+      const spread = Math.min(34, len * 0.16) * (fire ? 1.2 : 1), j = rnd(-1, 1) * spread;
+      // fire widens into a cone as it travels; each flame grows, turns and fades
+      puff(cls, from, dx + nx * j, dy + ny * j, rnd(340, 500), { delay: (i / n) * ms * 0.75, s0: fire ? 0.5 : 0.35, s1: fire ? rnd(2.2, 3.4) : 0.9,
+        o0: 1, ease: "cubic-bezier(.3,.6,.5,1)", r0: rnd(-40, 40), r1: fire ? rnd(-140, 140) : rnd(-30, 30) });
+      if (fire && i % 4 === 0) puff("fx-p fx-smoke", { x: from.x + dx * 0.6, y: from.y + dy * 0.6 }, dx * 0.35 + rnd(-10, 10), dy * 0.35 - rnd(20, 50), rnd(700, 950), { delay: (i / n) * ms * 0.75 + 150, s0: 0.8, s1: 3, o0: 0.5 });
+    }
+    await wait(ms);
+  }
+  // Effects that wrap a card: flames licking up it, frost crystals, a splash of water.
+  function engulf(el, kind) {
+    if (!el || skip) return;
+    const r = el.getBoundingClientRect(), p = centre(el);
+    if (kind === "fire" || kind === "green") {
+      const cls = kind === "green" ? "fx-flame fx-green" : "fx-flame";
+      const g = spawn("fx-glow fx-big" + (kind === "green" ? " fx-green" : ""), p.x, p.y + r.height * 0.15);
+      anim(g, [{ transform: "translate(-50%,-50%) scale(.5)", opacity: 0 }, { transform: "translate(-50%,-50%) scale(1.2)", opacity: 1, offset: 0.25 }, { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }], 950).then(() => g.remove());
+      for (let i = 0; i < 22; i++) {
+        const q = { x: r.left + r.width * rnd(0.04, 0.96), y: r.bottom - r.height * rnd(0.0, 0.35) };
+        puff(cls, q, rnd(-8, 8), -r.height * rnd(0.5, 0.95), rnd(520, 820), { delay: rnd(0, 320), s0: 0.8, s1: rnd(2, 3.2), r0: rnd(-15, 15), r1: rnd(-30, 30) });
+      }
+      for (let i = 0; i < 5; i++) puff("fx-p fx-smoke", { x: r.left + r.width * rnd(0.2, 0.8), y: r.top + r.height * 0.3 }, rnd(-15, 15), -rnd(50, 90), rnd(900, 1200), { delay: rnd(200, 500), s0: 1, s1: 3.5, o0: 0.45 });
+      embers(p, kind === "green" ? "#b6ff7a" : "#ffb347");
+      el.classList.add("fx-scorch"); setTimeout(() => el.classList.remove("fx-scorch"), D(900));
+    } else if (kind === "ice") {
+      for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; puff("fx-shard", p, Math.cos(a) * r.width * 0.6, Math.sin(a) * r.height * 0.55, 620, { s0: 1.2, s1: 0.4, r0: a * 57 + 90, r1: a * 57 + 90 }); }
+      el.classList.add("fx-iced"); setTimeout(() => el.classList.remove("fx-iced"), D(850));
+    } else if (kind === "water") {
+      for (let i = 0; i < 16; i++) puff("fx-droplet", { x: p.x + rnd(-r.width * 0.32, r.width * 0.32), y: p.y + r.height * 0.2 }, rnd(-34, 34), -rnd(30, 80), 640, { s0: 1, s1: 0.5, ease: "cubic-bezier(.2,.8,.6,1)" });
+      ring(p, "#7fe0ff", 1.3);
+    }
+  }
+  function embers(p, color) {
+    if (!p || skip) return;
+    for (let i = 0; i < 10; i++) puff("fx-p fx-dot fx-glowdot", { x: p.x + rnd(-p.w * 0.4, p.w * 0.4), y: p.y + rnd(0, p.h * 0.3) }, rnd(-22, 22), -rnd(50, 110), rnd(800, 1200), { delay: rnd(100, 400), s0: 1, s1: 0.3, color });
+  }
+  // An expanding shockwave ring.
+  function ring(p, color, size = 1) {
+    if (!p || skip) return;
+    const d = spawn("fx-ring", p.x, p.y); d.style.setProperty("--c", color);
+    anim(d, [{ transform: "translate(-50%,-50%) scale(.2)", opacity: 1 }, { transform: `translate(-50%,-50%) scale(${2.2 * size})`, opacity: 0 }], 520, { easing: "cubic-bezier(.2,.7,.4,1)" }).then(() => d.remove());
+  }
+  // Shakes the whole board for a heavy blow.
+  function quake(n = 6) {
+    const b = A.boardEl(); if (!b || skip || reducedMotion) return;
+    anim(b, [{ transform: "translate(0,0)" }, { transform: `translate(${-n}px,${n / 2}px)` }, { transform: `translate(${n}px,${-n / 2}px)` },
+      { transform: `translate(${-n / 2}px,0)` }, { transform: "translate(0,0)" }], 280, { fill: "none" });
+  }
+  // A brief flash over the whole screen.
+  function flash(color, op = 0.3) {
+    if (skip || reducedMotion) return;
+    const d = spawn("fx-flash", 0, 0); d.style.background = color;
+    anim(d, [{ opacity: op }, { opacity: 0 }], 280).then(() => d.remove());
+  }
+  // A forked lightning bolt between two points.
+  async function lightning(from, to) {
+    if (!from || !to || skip) return;
+    SND.play("thunder");
+    const pts = [], n = 9;
+    for (let i = 0; i <= n; i++) { const t = i / n, j = i === 0 || i === n ? 0 : rnd(-20, 20); pts.push([(from.x + (to.x - from.x) * t + j).toFixed(1), (from.y + (to.y - from.y) * t + (i % n ? rnd(-10, 10) : 0)).toFixed(1)]); }
+    const line = pts.map((q) => q.join(",")).join(" ");
+    const d = spawn("fx-boltsvg", 0, 0, `<svg width="${innerWidth}" height="${innerHeight}"><polyline points="${line}" fill="none" stroke="#9fd0ff" stroke-width="10" stroke-opacity=".4" stroke-linejoin="round"/><polyline points="${line}" fill="none" stroke="#fffde8" stroke-width="3" stroke-linejoin="round"/></svg>`);
+    flash("#dff0ff", 0.35);
+    await anim(d, [{ opacity: 1 }, { opacity: 0.15 }, { opacity: 1 }, { opacity: 0.35 }, { opacity: 1 }, { opacity: 0 }], 440, { easing: "linear" });
+    d.remove(); burst(to, "#cfe8ff", 14, 44); ring(to, "#bfe0ff", 0.9);
+  }
+  // A thrown object (a stone, a golden arrow) on an arc, with an optional sparkling trail.
+  async function throwAt(from, to, html, o = {}) {
+    if (!from || !to || skip) return;
+    const d = spawn("fx-thrown", from.x, from.y, html), dist = Math.hypot(to.x - from.x, to.y - from.y), lift = o.lift ?? Math.min(80, dist * 0.28), frames = [];
+    for (let t = 0; t <= 1.0001; t += 0.08) {
+      const x = (to.x - from.x) * t, y = (to.y - from.y) * t - lift * 4 * t * (1 - t);
+      const ang = o.aim ? Math.atan2((to.y - from.y) - lift * 4 * (1 - 2 * t), to.x - from.x) * 180 / Math.PI : (o.spin || 0) * t;
+      frames.push({ transform: `translate(${x}px, ${y}px) translate(-50%,-50%) rotate(${ang}deg)` });
+    }
+    const iv = o.trail ? setInterval(() => { const r = d.getBoundingClientRect(); puff("fx-p fx-dot fx-glowdot", { x: r.left + r.width / 2, y: r.top + r.height / 2 }, rnd(-6, 6), rnd(-6, 6), 420, { s0: 1, s1: 0.2, color: o.trail }); }, 28) : null;
+    await anim(d, frames, Math.max(300, dist * (o.speed || 0.7)), { easing: "linear" });
+    if (iv) clearInterval(iv);
+    d.remove();
+  }
+  // A sweeping crescent: tail sweeps, quarterstaffs, axes, rampages.
+  function sweep(p, color = "#ffffff") {
+    if (!p || skip) return;
+    const d = spawn("fx-sweep", p.x, p.y, `<svg viewBox="-60 -60 120 120" width="140" height="140"><path d="M-50 20 A54 54 0 0 1 42 -34" pathLength="1" stroke="${color}"/></svg>`);
+    anim(d.querySelector("path"), [{ strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, opacity: 1, offset: 0.55 }, { strokeDashoffset: 0, opacity: 0 }], 400);
+    setTimeout(() => d.remove(), D(440));
+  }
+  // One bright sword streak across the target.
+  function blade(p) {
+    if (!p || skip) return;
+    const d = spawn("fx-blade", p.x, p.y);
+    anim(d, [{ transform: "translate(-50%,-50%) rotate(-35deg) scaleX(0)", opacity: 1 }, { transform: "translate(-50%,-50%) rotate(-35deg) scaleX(1)", opacity: 1, offset: 0.45 },
+      { transform: "translate(-50%,-50%) rotate(-35deg) scaleX(1.1)", opacity: 0 }], 300).then(() => d.remove());
+  }
+  // A glowing, turning circle of runes.
+  function runes(p, color) {
+    if (!p || skip) return;
+    const d = spawn("fx-runes", p.x, p.y, `<svg viewBox="-50 -50 100 100" width="84" height="84"><circle r="44"/><circle r="34" stroke-dasharray="4 6"/><path d="M0 -44 L38 22 L-38 22 Z M0 44 L-38 -22 L38 -22 Z"/></svg>`); d.style.setProperty("--c", color);
+    anim(d, [{ transform: "translate(-50%,-50%) scale(.3) rotate(0deg)", opacity: 0 }, { transform: "translate(-50%,-50%) scale(1) rotate(90deg)", opacity: 1, offset: 0.4 },
+      { transform: "translate(-50%,-50%) scale(1.15) rotate(200deg)", opacity: 0 }], 950).then(() => d.remove());
+  }
+  // A shaft of golden light falls on a card, with a starburst (Excalibur).
+  function holyLight(el) {
+    if (!el || skip) return;
+    const p = centre(el), d = spawn("fx-holy", p.x, p.y + p.h / 2);
+    anim(d, [{ transform: "translate(-50%,-100%) scaleY(0)", opacity: 0 }, { transform: "translate(-50%,-100%) scaleY(1)", opacity: 1, offset: 0.3 }, { transform: "translate(-50%,-100%) scaleY(1)", opacity: 0 }], 800).then(() => d.remove());
+    const x = spawn("fx-cross", p.x, p.y);
+    anim(x, [{ transform: "translate(-50%,-50%) scale(.2) rotate(0)", opacity: 1 }, { transform: "translate(-50%,-50%) scale(1.5) rotate(45deg)", opacity: 0 }], 650).then(() => x.remove());
+  }
+  // A whirlwind spinning over a card (Koschei).
+  function whirl(el) {
+    if (!el || skip) return;
+    const p = centre(el); SND.play("wind");
+    for (let i = 0; i < 4; i++) {
+      const d = spawn("fx-whirl", p.x, p.y);
+      anim(d, [{ transform: `translate(-50%,-50%) scale(${0.35 + i * 0.22}) rotate(0deg)`, opacity: 0.95 }, { transform: `translate(-50%,-62%) scale(${1 + i * 0.3}) rotate(${600 + i * 90}deg)`, opacity: 0 }],
+        850, { delay: D(i * 70), easing: "ease-in" }).then(() => d.remove());
+    }
+    for (let i = 0; i < 10; i++) puff("fx-p fx-leaf", p, rnd(-60, 60), -rnd(20, 80), rnd(600, 900), { delay: rnd(0, 300), s0: 1, s1: 0.6, r0: 0, r1: rnd(300, 720) });
+  }
+  // Jaws snap shut on a card, then drops of blood.
+  function bite(p) {
+    if (!p || skip) return;
+    for (const top of [true, false]) {
+      const teeth = top ? "M0 0 H60 L54 14 L48 2 L42 14 L36 2 L30 14 L24 2 L18 14 L12 2 L6 14 Z" : "M0 16 H60 L54 2 L48 14 L42 2 L36 14 L30 2 L24 14 L18 2 L12 14 L6 2 Z";
+      const d = spawn("fx-jaw", p.x, p.y, `<svg viewBox="0 0 60 16" width="66" height="18"><path d="${teeth}" fill="#f4efe2" stroke="#6b1010" stroke-width="1"/></svg>`);
+      anim(d, [{ transform: `translate(-50%, ${top ? -190 : 90}%)`, opacity: 0.2 }, { transform: `translate(-50%, ${top ? -62 : -38}%)`, opacity: 1, offset: 0.5 },
+        { transform: `translate(-50%, ${top ? -62 : -38}%)`, opacity: 0 }], 440, { easing: "cubic-bezier(.6,0,.9,.5)" }).then(() => d.remove());
+    }
+    setTimeout(() => burst(p, "#9e0d0d", 12, 36, "drop"), D(220));
+  }
+  // Ash and cinders rising from a card that falls.
+  function ash(el) {
+    if (!el || skip) return;
+    const r = el.getBoundingClientRect();
+    for (let i = 0; i < 16; i++) puff("fx-p fx-ash", { x: r.left + rnd(0.1, 0.9) * r.width, y: r.top + rnd(0.3, 0.95) * r.height }, rnd(-22, 22), -rnd(40, 100), rnd(800, 1250), { delay: rnd(0, 260), s0: 1, s1: 0.4, r1: rnd(-180, 180) });
+  }
+  // A golden cord loops round a card and pulls tight (Girdle Leash).
+  function rope(el) {
+    if (!el || skip) return;
+    const p = centre(el);
+    const d = spawn("fx-rope", p.x, p.y, `<svg viewBox="-60 -70 120 140" width="${p.w * 1.3}" height="${p.h * 1.15}"><ellipse rx="54" ry="18" cy="-24" pathLength="1"/><ellipse rx="54" ry="18" cy="20" pathLength="1"/></svg>`);
+    d.querySelectorAll("ellipse").forEach((e, i) => anim(e, [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], 440, { delay: D(i * 130) }));
+    anim(d, [{ transform: "translate(-50%,-50%) scale(1.18)", opacity: 1 }, { transform: "translate(-50%,-50%) scale(.94)", opacity: 1, offset: 0.65 }, { transform: "translate(-50%,-50%) scale(.94)", opacity: 0 }], 1200).then(() => d.remove());
+  }
+  // A drifting violet mist with "z z z" (Enchanted sleep).
+  function sleepMist(el) {
+    if (!el || skip) return;
+    const r = el.getBoundingClientRect();
+    for (let i = 0; i < 9; i++) puff("fx-p fx-mist", { x: r.left + rnd(0.1, 0.9) * r.width, y: r.top + rnd(0.4, 0.9) * r.height }, rnd(-20, 20), -rnd(10, 40), rnd(900, 1300), { delay: rnd(0, 300), s0: 0.8, s1: 2.4, o0: 0.8 });
+    spindle(centre(el));
+  }
+  // The moon rises and stars come out over the board when night falls.
+  function nightSky() {
+    const b = A.boardEl(); if (!b || skip) return;
+    const r = b.getBoundingClientRect();
+    const m = spawn("fx-moon", r.right - 54, r.top + 44);
+    anim(m, [{ transform: "translate(-50%,-10%)", opacity: 0 }, { transform: "translate(-50%,-50%)", opacity: 1, offset: 0.45 }, { transform: "translate(-50%,-50%)", opacity: 0 }], 2400).then(() => m.remove());
+    for (let i = 0; i < 18; i++) puff("fx-p fx-star", { x: r.left + rnd(0.05, 0.95) * r.width, y: r.top + rnd(0.03, 0.45) * r.height }, 0, 0, rnd(1300, 2100), { delay: rnd(0, 600), s0: 0.4, s1: 1.3 });
+  }
+  // Shadow wisps rising from a card hurt by the dark.
+  function shadows(el) {
+    if (!el || skip) return;
+    const r = el.getBoundingClientRect();
+    for (let i = 0; i < 9; i++) puff("fx-p fx-shadow", { x: r.left + rnd(0.15, 0.85) * r.width, y: r.bottom - 6 }, rnd(-12, 12), -r.height * rnd(0.5, 0.95), rnd(700, 1050), { delay: rnd(0, 220), s0: 0.6, s1: 2.2 });
+  }
+  // Green crosses rising from a healed card.
+  function sparkles(el, color) {
+    if (!el || skip) return;
+    const r = el.getBoundingClientRect();
+    for (let i = 0; i < 9; i++) puff("fx-plus", { x: r.left + rnd(0.15, 0.85) * r.width, y: r.top + rnd(0.5, 0.95) * r.height }, rnd(-6, 6), -rnd(30, 64), rnd(700, 950), { delay: rnd(0, 260), s0: 0.6, s1: 1.15, color });
+  }
+  // Green drops running down a poisoned card.
+  function drips(el) {
+    if (!el || skip) return;
+    const r = el.getBoundingClientRect();
+    for (let i = 0; i < 7; i++) puff("fx-p fx-drop fx-glowdot", { x: r.left + rnd(0.15, 0.85) * r.width, y: r.top + r.height * 0.2 }, 0, r.height * rnd(0.4, 0.7), rnd(700, 1000), { delay: rnd(0, 300), s0: 1, s1: 0.7, color: "#7fd04a", ease: "ease-in" });
+  }
+
   // ---------- attacks ----------
-  async function lunge(a, b, impact, beast) {
+  async function lunge(a, b, impact, beast, reach = 0.7) {
     if (!a || !b || reducedMotion || skip) { await glow(a, "fx-strike", 160); await impact(); return; }
-    const pa = centre(a), pb = centre(b), dx = (pb.x - pa.x) * 0.7, dy = (pb.y - pa.y) * 0.7;
+    const pa = centre(a), pb = centre(b), dx = (pb.x - pa.x) * reach, dy = (pb.y - pa.y) * reach;
     a.classList.add("fx-front");
     await anim(a, [{ transform: "translate(0,0) scale(1)" }, { transform: `translate(${-dx * 0.08}px,${-dy * 0.08}px) scale(1.04)`, offset: 0.35 },
       { transform: `translate(${dx}px,${dy}px) scale(1.1) rotate(${dx > 0 ? 4 : -4}deg)` }], 300, { easing: "cubic-bezier(.55,0,.9,.55)" });
     SND.play(beast ? "claw" : "thump");
-    if (beast) slash(pb);
+    if (beast === true) slash(pb); else if (beast !== "none") blade(pb);
     const imp = impact();
     await anim(a, [{ transform: `translate(${dx}px,${dy}px) scale(1.1)` }, { transform: "translate(0,0) scale(1)" }], 320, { easing: "cubic-bezier(.2,.8,.3,1)" });
     a.classList.remove("fx-front"); a.getAnimations().forEach((x) => x.cancel());
@@ -1773,7 +2014,8 @@ function makeFX(A) {
     if (e.guarded) { SND.play("clang"); floatText(tgtEl, `−${e.guarded} Guard`, "fx-guard fx-small"); }
     if (e.saved) floatText(tgtEl, `St George blocks ${e.saved}`, "fx-guard fx-small");
     setHp(e.tgt, e.hp);
-    burst(p, e.style === "poison" ? "#5fae3a" : "#e04a2f", e.dmg >= 5 ? 14 : 8, 36);
+    burst(p, opts.color || (e.style === "poison" ? "#5fae3a" : "#e04a2f"), e.dmg >= 5 ? 14 : 8, 36);
+    if (e.dmg >= 5) { quake(e.dmg >= 7 ? 9 : 6); ring(p, opts.color || "#ff7a5c", 1); }
     const sh = shake(tgtEl, e.dmg >= 5);
     await Promise.all([sh, floatText(tgtEl, `−${e.dmg}`, "fx-dmg" + (e.dmg >= 5 ? " fx-big" : "")),
       e.survived ? floatText(tgtEl, "Survives!", "fx-gold fx-small") : null]);
@@ -1784,18 +2026,87 @@ function makeFX(A) {
     anim(d, [{ transform: "translate(-50%,-50%) scale(.4)", opacity: 0 }, { transform: "translate(-50%,-50%) scale(1.15)", opacity: 1, offset: 0.3 },
       { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }], 700).then(() => d.remove());
   }
+  // Which effect an attack gets: by the action being taken, then by who is acting. Anything else uses the hit's style.
+  const ACTION_FX = {
+    "Fire Breath": "fire", "Skull fire": "fire", "The Pyre": "pyre", "Into the oven": "oven",
+    "Hex": "hex", "Sea magic": "wave", "Drag under": "drown", "Excalibur": "holy", "Strike": "lightning",
+    "Lance Charge": "charge", "Champion's charge": "charge", "Betrayal": "charge",
+    "Pestle": "smash", "Arm-wrench": "smash", "Break their spirit": "smash",
+    "Bite": "bite", "Claw": "claws", "Tail Sweep": "sweep", "Rampage": "sweep", "Quarterstaff": "sweep",
+    "Whirlwind": "whirl", "Split the Arrow": "goldarrow", "Stones in the belly": "stone",
+  };
+  const CARD_FX = { "berserker": "sweep", "the-snow-queen": "ice", "gwydion": "hex", "the-bride": "lightning", "baba-yaga": "fire" };
+  let actNow = null, pyreLit = false, lastBite = null;
+  function themeOf(e) {
+    if (e.item === "skull-lantern") return "lantern";
+    if (e.item || e.style === "poison" || e.style === "night" || reducedMotion) return null;
+    if (!actNow || actNow.uid !== e.src) return null;
+    return ACTION_FX[actNow.name] || (e.style !== "effect" ? CARD_FX[actNow.id] : null) || null;
+  }
+  const GOLD_ARROW = `<svg viewBox="0 0 48 12" width="50" height="12"><line x1="2" y1="6" x2="36" y2="6" stroke="#ffe08a" stroke-width="2.5"/><path d="M36 1 L48 6 L36 11 Z" fill="#fff6c8"/><path d="M2 6 L-3 1 M2 6 L-3 11 M7 6 L2 1 M7 6 L2 11" stroke="#ffd45c" stroke-width="1.6"/></svg>`;
+  const STONE = `<svg viewBox="0 0 20 16" width="20" height="16"><path d="M3 5 L9 1 L17 3 L19 10 L12 15 L4 13 Z" fill="#8a8580" stroke="#4a4540" stroke-width="1.2"/><path d="M7 5 L11 4" stroke="#b5b0aa"/></svg>`;
+  async function themedHit(theme, e, t, from, srcEl) {
+    const tp = centre(t), melee = srcEl && srcEl !== t;
+    switch (theme) {
+      case "fire": case "lantern": {
+        const green = theme === "lantern";
+        if (from) { SND.play("fire"); await stream(from, tp, green ? "green" : "fire"); }
+        SND.play("ignite"); engulf(t, green ? "green" : "fire");
+        return impact(e, t, { silent: true, color: green ? "#7dff6a" : "#ff8a2a" });
+      }
+      case "pyre": {
+        if (!pyreLit) { pyreLit = true; SND.play("fire"); flash("#ff8a2a", 0.3); quake(9); if (srcEl) { ring(centre(srcEl), "#ff7a1a", 3); engulf(srcEl, "fire"); } await wait(250); }
+        engulf(t, "fire"); return impact(e, t, { silent: true, color: "#ff8a2a" });
+      }
+      case "oven": if (melee) return lunge(srcEl, t, async () => { SND.play("ignite"); engulf(t, "fire"); await impact(e, t, { silent: true, color: "#ff8a2a" }); });
+        break;
+      case "hex": {
+        const c = actNow?.id === "gwydion" ? "#7be08a" : actNow?.id === "morgan-le-fay" ? "#d36bff" : "#9a86ff";
+        if (from) { runes(from, c); await wait(180); await beam(from, t, c, "beam"); }
+        runes(tp, c); return impact(e, t, { silent: true, color: c });
+      }
+      case "ice": if (from) { SND.play("frost"); await stream(from, tp, "ice", 420); engulf(t, "ice"); return impact(e, t, { silent: true, color: "#bfe6ff" }); }
+        break;
+      case "wave": if (from) { await beam(from, t, "#4fc3c8", "wave"); engulf(t, "water"); return impact(e, t, { silent: true, color: "#7fe0ff" }); }
+        break;
+      case "drown": if (melee) return lunge(srcEl, t, async () => { SND.play("splash"); engulf(t, "water"); await impact(e, t, { silent: true, color: "#7fe0ff" }); }, true);
+        break;
+      case "lightning": if (from) { await lightning(from, tp); return impact(e, t, { silent: true, color: "#cfe8ff" }); }
+        break;
+      case "goldarrow": if (from) { SND.play("draw"); await wait(90); SND.play("arrow"); await throwAt(from, tp, GOLD_ARROW, { aim: true, trail: "#ffd45c", speed: 0.6 }); SND.play("thunk"); ring(tp, "#ffd45c", 0.8); return impact(e, t, { silent: true, color: "#ffd45c" }); }
+        break;
+      case "stone": if (from) { SND.play("whoosh"); await throwAt(from, tp, STONE, { spin: 720, lift: 50 }); SND.play("stone"); return impact(e, t, { silent: true, color: "#a59c90" }); }
+        break;
+      case "holy": if (melee) return lunge(srcEl, t, async () => { SND.play("holy"); holyLight(t); ring(tp, "#ffe08a", 1.4); await impact(e, t, { silent: true, color: "#ffe08a" }); }, false, 0.8);
+        break;
+      case "charge": if (melee) return lunge(srcEl, t, async () => { ring(tp, "#e8d6b0", 1.1); quake(6); await impact(e, t, { silent: true }); }, false, 0.88);
+        break;
+      case "smash": if (melee) return lunge(srcEl, t, async () => { SND.play("smash"); ring(tp, "#c9a77a", 1.3); quake(8); burst(tp, "#8a6a4a", 10, 50); await impact(e, t, { silent: true }); }, "none");
+        break;
+      case "bite": if (melee) return lunge(srcEl, t, async () => { SND.play("crunch"); bite(tp); lastBite = tp; await impact(e, t, { silent: true, color: "#b01010" }); }, "none");
+        break;
+      case "claws": if (melee) return lunge(srcEl, t, () => impact(e, t, { silent: true, color: "#b01010" }), true);
+        break;
+      case "sweep": if (melee) return lunge(srcEl, t, async () => { SND.play("swoosh"); sweep(tp, srcEl && card(e.src)?.aspect === "Beast" ? "#ffcf9a" : "#ffffff"); await impact(e, t, { silent: true }); }, "none");
+        break;
+      case "whirl": whirl(t); if (!reducedMotion) anim(t, [{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], 650, { fill: "none", easing: "ease-in-out" }); await wait(450); return impact(e, t, { silent: true, color: "#dfe8f0" });
+    }
+    return null;
+  }
   async function onHit(e) {
     const t = cardEl(e.tgt), style = hitStyle(e), from = sourcePoint(e), srcEl = e.item ? null : cardEl(e.src);
     say(`${card(e.src)?.name || (e.item ? A.itemName?.(e.item) || "" : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
+    const theme = t ? themeOf(e) : null;
+    if (theme) { const done = await themedHit(theme, e, t, from, srcEl).then((v) => v === null ? null : true); if (done) return; }
     if (style === "melee" && srcEl && t && srcEl !== t) {
       const beast = card(e.src)?.aspect === "Beast" || card(e.src)?.id === "mere-beast";
       return lunge(srcEl, t, () => impact(e, t, { silent: true }), beast);
     }
     if ((style === "arrow" || style === "bolt") && from && t) { await shoot(from, t, style); return impact(e, t, { silent: true }); }
     if ((style === "beam" || style === "wave") && from && t) { await beam(from, t, style === "wave" ? "#4fc3c8" : "#a77bff", style); return impact(e, t, { silent: true }); }
-    if (style === "flame" && from && t) { await beam(from, t, "#7dff6a", "beam"); return impact(e, t, { silent: true }); }
+    if (style === "flame" && from && t) { await stream(from, centre(t), "green"); engulf(t, "green"); return impact(e, t, { silent: true, color: "#7dff6a" }); }
     if (style === "poison") { bubbles(t); return impact(e, t); }
-    if (style === "night") { if (!nightShown) { nightShown = true; await nightfall(); } return impact(e, t); }
+    if (style === "night") { if (!nightShown) { nightShown = true; await nightfall(); } shadows(t); return impact(e, t, { color: "#4a3a6a" }); }
     if (style === "effect" && srcEl && t && srcEl !== t) { await motes(centre(srcEl), centre(t), "#ff7a5c", 4); SND.play("spark"); }
     return impact(e, t);
   }
@@ -1811,7 +2122,7 @@ function makeFX(A) {
   async function nightfall() {
     SND.play("night"); say("Nightfall");
     const board = A.boardEl(); if (!board) return;
-    board.classList.add("fx-night"); await wait(900);
+    board.classList.add("fx-night"); nightSky(); await wait(1000);
   }
 
   // ---------- items ----------
@@ -1883,6 +2194,7 @@ function makeFX(A) {
     if (raised) raised.classList.remove("fx-acting");
     const el = cardEl(e.uid); if (!el) return;
     raised = el; el.classList.add("fx-acting"); actor = e.uid;
+    actNow = { uid: e.uid, name: e.name, id: card(e.uid)?.id }; pyreLit = false; lastBite = null;
     say(`${card(e.uid)?.name}: ${e.name}`);
     if (A.actTags !== false && (!e.auto || speedNow() !== "fast")) {
       const tag = spawn("fx-tag" + (e.auto ? " fx-tag-auto" : ""), 0, 0, esc(e.auto ? card(e.uid)?.name || e.name : e.name));
@@ -1895,9 +2207,10 @@ function makeFX(A) {
   async function onHeal(e) {
     const t = cardEl(e.tgt), from = e.item ? itemPos : (e.src != null && e.src !== e.tgt ? (cardEl(e.src) ? centre(cardEl(e.src)) : null) : null);
     say(`${card(e.tgt)?.name} heals ${e.amt}`);
-    if (from && t) await motes(from, centre(t), "#8ee08a", 6);
+    if (lastBite && t && actNow && e.tgt === actNow.uid) { await motes(lastBite, centre(t), "#c41818", 8); lastBite = null; }
+    else if (from && t) await motes(from, centre(t), "#8ee08a", 6);
     SND.play("heal"); setHp(e.tgt, e.hp);
-    if (t) burst(centre(t), "#a8f0a0", 8, 30);
+    if (t) { burst(centre(t), "#a8f0a0", 8, 30); sparkles(t, "#8ee08a"); if (card(e.src)?.id === "monk") ring(centre(t), "#ffe08a", 0.8); }
     await Promise.all([glow(t, "fx-healed", 500), floatText(t, `+${e.amt}`, "fx-heal")]);
   }
   async function onDeath(e) {
@@ -1906,7 +2219,8 @@ function makeFX(A) {
     SND.play("death");
     if (raised === el) raised = null;
     el.classList.remove("fx-acting");
-    burst(centre(el), "#5b4a3a", 18, 60);
+    burst(centre(el), "#5b4a3a", 18, 60); ash(el);
+    if (card(e.uid)?.kind === "hero") quake(5);
     await anim(el, [{ filter: "grayscale(0) brightness(1)", transform: "rotate(0) translateY(0)", opacity: 1 },
       { filter: "grayscale(1) brightness(1.6)", transform: "rotate(-3deg) translateY(-4px)", opacity: 1, offset: 0.2 },
       { filter: "grayscale(1) brightness(.6)", transform: "rotate(6deg) translateY(10px) scale(.92)", opacity: 0.28 }], 700, { easing: "ease-in" });
@@ -1973,6 +2287,20 @@ function makeFX(A) {
     if (extra) extra(t);
     await floatText(t, text, cls);
   }
+  async function onStop(e) {
+    const t = cardEl(e.tgt ?? e.uid), name = !e.item && actNow ? actNow.name : null, src = actNow ? cardEl(actNow.uid) : null;
+    if (t && name === "Girdle Leash") {
+      if (src && src !== t) await motes(centre(src), centre(t), "#ffd45c", 7);
+      SND.play("rattle"); rope(t); t.classList.add("fx-stopped");
+      return floatText(t, "Leashed", "fx-gold");
+    }
+    if (t && name === "Enchanted sleep") {
+      if (src && src !== t) await beam(centre(src), t, "#b9a2ff", "beam");
+      SND.play("frost"); sleepMist(t); t.classList.add("fx-stopped");
+      return floatText(t, "Asleep", "fx-frost");
+    }
+    return status(e, "Stopped", "fx-stop", "rattle", (x) => x && x.classList.add("fx-stopped"), "beam");
+  }
   async function onGuardUp(e) {
     const s = e.src ?? actor;
     const t = cardEl(e.tgt), from = e.item ? itemPos : (s != null && s !== e.tgt && cardEl(s) ? centre(cardEl(s)) : null);
@@ -1997,13 +2325,13 @@ function makeFX(A) {
   const HANDLERS = {
     phase: onPhase, act: onAct, item: onItem, hit: onHit, heal: onHeal, death: onDeath,
     revive: (e) => onRevive(e, false), appear: (e) => onRevive(e, true), swap: onSwap, redirect: onRedirect, miss: onMiss,
-    stop: (e) => status(e, "Stopped", "fx-stop", "rattle", (t) => t && t.classList.add("fx-stopped"), "beam"),
-    freeze: (e) => status(e, "Frozen", "fx-frost", "frost", (t) => t && t.classList.add("fx-frozen"), "beam"),
+    stop: onStop,
+    freeze: (e) => status(e, "Frozen", "fx-frost", "frost", (t) => { if (t) { t.classList.add("fx-frozen"); engulf(t, "ice"); } }, "beam"),
     skip: (e) => status(e, e.why === "frozen" ? "Frozen: skips" : e.why === "cancelled" ? "Cancelled" : "Stopped: skips", "fx-stop fx-small", "dud"),
     wasted: (e) => status(e, "Wasted: no target", "fx-stop fx-small", "dud"),
     guardUp: onGuardUp,
     attackUp: (e) => status(e, `+${e.amt} Attack`, "fx-gold", "shing", null, "#ffd45c"),
-    poison: (e) => status(e, `+${e.amt} Poison`, "fx-poison", "bubble", bubbles, "#8fd14f"),
+    poison: (e) => status(e, `+${e.amt} Poison`, "fx-poison", "bubble", (t) => { bubbles(t); drips(t); }, "#8fd14f"),
     hp: (e) => e.delta > 0 ? onHeal({ ...e, amt: e.delta }) : impact({ ...e, dmg: -e.delta, style: "effect" }, cardEl(e.tgt)),
     over: onOver,
   };

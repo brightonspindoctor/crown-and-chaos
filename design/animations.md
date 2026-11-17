@@ -57,6 +57,34 @@ In the prototype, each caption under the board is shown first. Its events then p
 | Revive | A column of light rises in the empty slot and the card fades back in, with "Revived" | Rising four-note arpeggio |
 | Summon | A puff of smoke in the slot, then the card appears, with "Summoned" | Whoosh and two notes |
 
+## Themed effects
+
+Some actions and heroes have their own effect in place of the plain lunge, arrow or beam. The player picks it from the action being taken, then from the card acting (see `ACTION_FX` and `CARD_FX` in `play/fx.js`).
+
+| Effect | Used by | Animation | Sound |
+| --- | --- | --- | --- |
+| Fire | Fire Breath, Skull fire, Baba Yaga's other attacks | A widening gout of flame and smoke from the caster; flames lick up the target, which glows and scorches, and embers rise | Roar and crackle, then a whoomph |
+| Green fire | The Skull Lantern | The same, in green | Roar and crackle |
+| The Pyre | The Creature | A flash and a ring of fire round him, the board shakes, and every enemy card is engulfed | Roar |
+| Into the oven | Gretel | Her lunge sets the target alight | Whoomph |
+| Hex | Merlin, Morgan le Fay, Gwydion | A rune circle turns under the caster, a beam crosses, and a second circle flares on the target (blue-violet, purple or green) | Shimmer and zap |
+| Ice | The Snow Queen | A spray of ice shards; the target is ringed in frost | Ice crackle |
+| Sea magic | The Little Mermaid | A wave beam, then a splash and a ripple ring | Wave and splash |
+| Drag under | Grendel's Mother | A lunge and a splash of water | Splash |
+| Lightning | The Bride | A forked bolt with a flash of the screen, then sparks and a ring | Thunder |
+| Excalibur | King Arthur | A shaft of golden light falls on the target, with a starburst and ring | A chord and a ring of steel |
+| Charges | Lance Charge, Champion's charge, Betrayal | A longer lunge, a dust ring and a board shake | Thump |
+| Smashes | Pestle, Arm-wrench, Break their spirit | A heavy blow, a ring, flying splinters and a big board shake | Deep smash |
+| Bite | Dracula | Jaws snap shut and blood drips; if he heals, red light drains back to him | Crunch |
+| Sweeps | Tail Sweep, Rampage, Quarterstaff, the Berserker | A crescent swipe across the target | Swoosh |
+| Whirlwind | Koschei | Spinning rings of wind and leaves; the target spins round | Howling wind |
+| Split the Arrow | Robin Hood | A golden arrow with a sparkling trail and a gold ring | Bow and thunk |
+| Stones in the belly | The Huntsman | A tumbling stone on an arc | Whoosh and crack |
+| Girdle Leash | The Princess | Gold lights travel to the Beast, then golden cords loop round it and pull tight: "Leashed" | Rattle |
+| Enchanted sleep | Merlin | A violet beam, then drifting mist and "z z z": "Asleep" | Ice crackle |
+
+Every other melee hit now shows a sword streak at the moment of impact. Any hit for 5 or more shakes the board and sends out a ring. Heals send up green crosses, and the Monk's heal adds a gold halo. A falling card gives off rising ash, and a falling hero shakes the board. Poison runs down the card in green drips. When night falls the moon rises and stars come out over the board, and night damage sends up shadow wisps.
+
 ## Items
 
 Every item first flies in from its owner's side (Blue from below, Red from above). It flips over to show its painting and name, and a glint crosses the painting. Then:
