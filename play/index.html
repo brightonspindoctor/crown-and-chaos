@@ -65,7 +65,7 @@ label select { color: var(--ink); width: 100%; }
 .edit label { flex: 0 0 72px; } .edit input { width: 100%; }
 .banner { font: 400 22px/1.2 var(--display); text-align: center; padding: 18px 8px; text-wrap: balance; }
 
-/* ---------- animation layer ---------- */
+/* Animation layer, shared by the playtest table and the prototype (see play/fx.js). */
 .fx-layer { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
 .fx-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .fx { position: fixed; pointer-events: none; will-change: transform, opacity; }
@@ -117,11 +117,12 @@ label select { color: var(--ink); width: 100%; }
 .fx-item.fx-glint .fx-item-art { position: relative; overflow: hidden; }
 .fx-item.fx-glint .fx-item-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); animation: glint .5s ease-out; }
 @keyframes glint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }
+
 .skip-fx { position: fixed; right: 14px; bottom: 14px; z-index: 40; display: none; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
 body.animating .skip-fx { display: block; }
 body.animating #app button, body.animating #app select { pointer-events: none; }
 body.animating #app section.panel button, body.animating #app section.panel select { opacity: .5; }
-@media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }
 </style>
 </head>
 <body>
@@ -274,7 +275,9 @@ const itemName = (st, id) => st.data.items[id]?.name || id;
 function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.onLog(msg); }
 // Events: a structured record of what happened, in order, so a screen can animate it.
 // Every event has t (its type) and r (the round). Card references are uids.
-function ev(st, e) { (st.events ||= []).push({ r: st.round, ...e }); }
+// Each event carries n, the number of log lines written before it. An event explains the log line just
+// before it, except phase, skip and a front-rank card's act, which open what follows.
+function ev(st, e) { (st.events ||= []).push({ r: st.round, n: st.log.length, ...e }); }
 const uidOf = (c) => (c && c.uid != null ? c.uid : null);
 const styleOf = (opts) => opts.spell ? "spell" : opts.ranged ? "ranged" : opts.attack ? "melee" : "effect";
 // Gains in Guard and Poison, and some changes to Health, are made in many places, so they are found
@@ -614,10 +617,10 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
     }
   }
   t.health -= amt;
+  log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, dmg: amt, hp: Math.max(0, t.health),
     style: opts._style || (opts.nightfall ? "night" : src?.name === "Poison" ? "poison" : "effect"),
     guarded: opts._guarded || 0, saved: opts._saved || 0 });
-  log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
   if (t.health <= 0) kill(st, t, src);
   return amt;
@@ -684,8 +687,8 @@ function stop(st, target, why) {
   if (crownIs(st, target.side, "the-tin-soldier") && target.kind === "hero") { log(st, `${target.name} can't be stopped (Tin Soldier).`); return false; }
   if (target.stoppedRound === st.round - 1) { log(st, `${target.name} was stopped last round, so it can't be stopped again.`); return false; }
   target.stopNow = true; target.stoppedRound = st.round;
-  ev(st, { t: "stop", tgt: target.uid, why });
   log(st, `${target.name} is stopped (${why}).`);
+  ev(st, { t: "stop", tgt: target.uid, why });
   return true;
 }
 
@@ -759,7 +762,7 @@ function upkeep(st) {
         side.flags.tuckReturns = side.flags.tuckReturns || 0;
         if (side.flags.tuckReturns < 3 && !isNight(st) && !noCheating(st)) {
           const dead = side.grave.find((c) => c.kind === "front" && !at(st, i, c.slot));
-          if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); }
+          if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); revived(st, dead); }
         }
         break;
       }
@@ -786,8 +789,9 @@ function revive(st, c, health) {
   side.grave = side.grave.filter((x) => x.uid !== c.uid);
   side.slots[c.slot] = c;
   if (crownIs(st, c.side, "gwydion")) { c.maxHealth += 2; c.health += 2; c.atkPerm += 1; }
-  ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 }
+// The revive event goes after the log line that explains it.
+const revived = (st, c) => ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 
 // ---------- win check ----------
 function checkWin(st) {
@@ -816,7 +820,7 @@ const ACTIONS = {
     "Mortar ride": { t: "enemyNotCrown", go: (st, a, x) => { log(st, `Baba Yaga rides her mortar onto ${x.name}.`); kill(st, x, a); a.health += 2; } } },
   "beowulf": { "Arm-wrench": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.atkPerm -= 2; } } },
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
-  "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); } } },
+  "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
     "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
@@ -893,7 +897,7 @@ const ACTIONS = {
   "victor-frankenstein": { "Reanimate": { t: "deadTalemate", go: (st, a, x) => {
     if (noCheating(st)) return;
     const slot = [2, 3].find((s) => !at(st, a.side, s)); if (!slot) return;
-    x.slot = slot; revive(st, x, 3); log(st, `Victor reanimates ${x.name}.`);
+    x.slot = slot; revive(st, x, 3); log(st, `Victor reanimates ${x.name}.`); revived(st, x);
   } } },
   "zmey-gorynych": { "Heads grow back": { t: "none", go: (st, a) => heal(st, a, a, 6) } },
 };
@@ -1002,7 +1006,7 @@ function useItem(st, i, id, x) {
   const before = snapStats(st), hp0 = x ? x.health : 0;
   switch (id) {
     case "dragons-blood": x.guardLeft += 3; break;
-    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); } break; }
+    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); revived(st, x); } break; }
     case "gingerbread": heal(st, src, x, 2); break;
     case "golden-apple": heal(st, src, x, 3); x.poison = 0; break;
     case "mead-of-heorot": heroes(st, i).forEach((h) => heal(st, src, h, 2)); break;
@@ -1088,9 +1092,9 @@ function playRound(st, plans) {
     st.sides[i].flags.rumpelPicked.push(pick);
     const o = ords.find((x) => x.actor && x.actor.uid === pick && !x.auto);
     const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
-    ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
-    if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); applyHealthLoss(st, rum, tgt, 2, {}); }
-    else { log(st, `Rumpelstiltskin guesses wrong.`); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
+    const guessed = () => ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
+    if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); guessed(); applyHealthLoss(st, rum, tgt, 2, {}); }
+    else { log(st, `Rumpelstiltskin guesses wrong.`); guessed(); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
   }
   for (const c of allCards(st)) c.flags.acted = false;
   ev(st, { t: "phase", name: "resolve" });
@@ -1529,7 +1533,9 @@ function suggest() {
 // Plays a round back from the engine's event stream, so every change on the board is shown with
 // its cause: a melee card lunges and thumps, a ranged card shoots, magic sends a beam, items fly
 // in and burst. Sounds are synthesised here with Web Audio: there are no sound files to license.
-// Built into play/index.html by scripts/build-play.mjs.
+// Shared by the playtest table (play/index.html) and the prototype (game/index.html). Each page makes
+// its own player with makeFX(adapter); the adapter says where the page's cards are. See the bottom of
+// this file for the adapter's fields.
 
 const PREFS = (() => {
   const read = (k, d) => { try { const v = localStorage.getItem("cf-" + k); return v == null ? d : JSON.parse(v); } catch { return d; } };
@@ -1617,14 +1623,15 @@ const SND = (() => {
 })();
 
 // ---------- animation ----------
-const FX = (() => {
-  let speed = PREFS.read("speed", "normal");      // normal | fast | off
+function makeFX(A) {
+  let ownSpeed = PREFS.read("speed", "normal");   // normal | fast | off, when the page has no speed setting of its own
+  const speedNow = () => (A.speed ? A.speed() : ownSpeed);
   let skip = false;
   const layer = document.createElement("div"); layer.className = "fx-layer"; layer.setAttribute("aria-hidden", "true");
   document.body.appendChild(layer);
   const live = document.createElement("div"); live.className = "fx-live"; live.setAttribute("aria-live", "polite");
   document.body.appendChild(live);
-  const k = () => (speed === "fast" ? 0.45 : 1);
+  const k = () => (speedNow() === "fast" ? 0.45 : 1);
   const D = (ms) => Math.max(1, ms * k());
   const wait = (ms) => (skip ? Promise.resolve() : new Promise((r) => setTimeout(r, D(ms))));
   const anim = (el, frames, ms, opts = {}) => {
@@ -1632,10 +1639,10 @@ const FX = (() => {
     const a = el.animate(frames, { duration: D(ms), easing: "ease-out", fill: "forwards", ...opts });
     return a.finished.catch(() => {});
   };
-  const cardEl = (uid) => uid == null ? null : document.querySelector(`#app .card[data-uid="${uid}"]`);
-  const slotEl = (side, slot) => document.querySelector(`#app [data-side="${side}"][data-slot="${slot}"]`);
+  const cardEl = (uid) => uid == null ? null : A.cardEl(uid);
+  const slotEl = (side, slot) => A.slotEl(side, slot);
   const centre = (el) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height }; };
-  const card = (uid) => (uid == null ? null : findAny(uid));
+  const card = (uid) => (uid == null ? null : A.card(uid));
   let itemPos = null, nightShown = false, raised = null, actor = null;
 
   function spawn(cls, x, y, html = "") {
@@ -1649,11 +1656,11 @@ const FX = (() => {
       { transform: "translate(-50%,-160%) scale(1)", opacity: 1, offset: 0.7 }, { transform: "translate(-50%,-210%) scale(.95)", opacity: 0 }], 1000);
     d.remove();
   }
-  function say(text) { live.textContent = text; }
+  function say(text) { if (A.announce !== false) live.textContent = text; }
   function setHp(uid, hp) {
     const el = cardEl(uid); if (!el) return;
     const s = el.querySelector(".hp"); if (!s) return;
-    s.textContent = `${hp}/${el.dataset.max || "?"}`;
+    if (A.setHp) A.setHp(s, hp, el); else s.textContent = `${hp}/${el.dataset.max || "?"}`;
     s.classList.remove("hp-pop"); void s.offsetWidth; s.classList.add("hp-pop");
   }
   async function shake(el, strong) {
@@ -1780,7 +1787,7 @@ const FX = (() => {
   }
   async function onHit(e) {
     const t = cardEl(e.tgt), style = hitStyle(e), from = sourcePoint(e), srcEl = e.item ? null : cardEl(e.src);
-    say(`${card(e.src)?.name || (e.item ? DATA.items[e.item]?.name : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
+    say(`${card(e.src)?.name || (e.item ? A.itemName?.(e.item) || "" : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
     if (style === "melee" && srcEl && t && srcEl !== t) {
       const beast = card(e.src)?.aspect === "Beast" || card(e.src)?.id === "mere-beast";
       return lunge(srcEl, t, () => impact(e, t, { silent: true }), beast);
@@ -1804,7 +1811,7 @@ const FX = (() => {
   }
   async function nightfall() {
     SND.play("night"); say("Nightfall");
-    const board = document.querySelector("#app .board"); if (!board) return;
+    const board = A.boardEl(); if (!board) return;
     board.classList.add("fx-night"); await wait(900);
   }
 
@@ -1819,18 +1826,17 @@ const FX = (() => {
   };
   let itemCard = null;
   // Load the item paintings early so they are ready when an item flies in.
-  try { for (const a of Object.values(DATA.itemArt || {})) { const im = new Image(); im.src = a.file; } } catch {}
+  try { for (const src of A.itemImages ? A.itemImages() : []) { const im = new Image(); im.src = src; } } catch {}
   function clearItem() { if (itemCard) { const c = itemCard; itemCard = null; anim(c, [{ opacity: 1 }, { opacity: 0 }], 200).then(() => c.remove()); } itemPos = null; }
   async function onItem(e) {
     clearItem(); actor = null;
-    const board = document.querySelector("#app .board"); if (!board) return;
-    const br = board.getBoundingClientRect(), mid = document.querySelector("#app .board .mid");
+    const board = A.boardEl(); if (!board) return;
+    const br = board.getBoundingClientRect(), mid = A.midEl ? A.midEl() : null;
     const cx = br.left + br.width / 2, cy = mid ? centre(mid).y : br.top + br.height / 2;
-    const art = DATA.itemArt?.[e.item], fx = ITEM_FX[e.item] || { color: "#fff", shape: "dot", sound: "pop" };
-    say(`${NAMES[e.side]} uses ${e.name}`);
+    const fx = ITEM_FX[e.item] || { color: "#fff", shape: "dot", sound: "pop" };
+    say(`${A.sideName(e.side)} uses ${e.name}`);
     if (skip) return;
-    const [x, y, w, h] = art ? art.crop : [0, 0, 1, 1];
-    const bg = art ? `background-image:url('${art.file}');background-size:${100 / w}% ${100 / h}%;background-position:${w >= 1 ? 0 : 100 * x / (1 - w)}% ${h >= 1 ? 0 : 100 * y / (1 - h)}%` : "";
+    const bg = A.itemArt ? A.itemArt(e.item) : "";
     const c = spawn("fx-item fx-item-" + (e.side ? "red" : "blue"), cx, cy, `<div class="fx-item-art" style="${bg}"></div><div class="fx-item-name">${esc(e.name)}</div>`);
     itemCard = c;
     const fromY = e.side ? -br.height * 0.6 : br.height * 0.6;
@@ -1879,7 +1885,7 @@ const FX = (() => {
     const el = cardEl(e.uid); if (!el) return;
     raised = el; el.classList.add("fx-acting"); actor = e.uid;
     say(`${card(e.uid)?.name}: ${e.name}`);
-    if (!e.auto || speed !== "fast") {
+    if (A.actTags !== false && (!e.auto || speedNow() !== "fast")) {
       const tag = spawn("fx-tag" + (e.auto ? " fx-tag-auto" : ""), 0, 0, esc(e.auto ? card(e.uid)?.name || e.name : e.name));
       const p = centre(el); tag.style.left = p.x + "px"; tag.style.top = (p.y - p.h / 2 - 4) + "px";
       anim(tag, [{ transform: "translate(-50%,-80%)", opacity: 0 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.15 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.8 }, { transform: "translate(-50%,-120%)", opacity: 0 }], e.auto ? 900 : 1400).then(() => tag.remove());
@@ -1918,8 +1924,8 @@ const FX = (() => {
     }
     burst(p, summon ? "#bfb5a5" : "#fff3c0", 14, 50);
     el.getAnimations().forEach((a) => a.cancel());
-    el.classList.remove("fx-fallen", "empty"); el.classList.add("card", e.side ? "red" : "blue");
-    el.innerHTML = `<span class="nm">${esc(e.name)}</span><span class="st"><span class="hp">${e.hp}</span> health</span>`;
+    el.classList.remove("fx-fallen");
+    if (A.fillSlot) A.fillSlot(el, e);
     await anim(el, [{ transform: "scale(.6)", opacity: 0 }, { transform: "scale(1.06)", opacity: 1, offset: 0.7 }, { transform: "scale(1)", opacity: 1 }], 500);
     await floatText(el, summon ? "Summoned" : "Revived", "fx-gold fx-small");
   }
@@ -1978,12 +1984,12 @@ const FX = (() => {
   async function onOver(e) {
     clearItem(); if (raised) raised.classList.remove("fx-acting");
     SND.play(e.winner < 0 ? "lose" : "win");
-    say(e.winner < 0 ? "A draw" : `${NAMES[e.winner]} wins`);
+    say(e.winner < 0 ? "A draw" : `${A.sideName(e.winner)} wins`);
     await wait(700);
   }
   async function onPhase(e) {
     actor = null;
-    const mid = document.querySelector("#app .board .mid"); if (!mid) return;
+    const mid = A.midEl ? A.midEl() : null; if (!mid) return;
     const text = e.name === "upkeep" ? "End of round: poison, Nightfall and Crown passives" : "Items first, then cards in Speed order";
     mid.textContent = text; mid.classList.remove("fx-phase"); void mid.offsetWidth; mid.classList.add("fx-phase");
     await wait(e.name === "upkeep" ? 250 : 350);
@@ -2004,10 +2010,10 @@ const FX = (() => {
   };
 
   async function play(events) {
-    skip = speed === "off";
-    nightShown = !!document.querySelector("#app .board.fx-night");
-    raised = null; itemPos = null;
-    const board = document.querySelector("#app .board");
+    skip = speedNow() === "off";
+    nightShown = !!A.boardEl()?.classList.contains("fx-night");
+    raised = null; itemPos = null; actor = null;
+    const board = A.boardEl();
     if (board && !skip) board.scrollIntoView({ block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
     // Pause briefly between steps so each cause and effect can be read.
     const gap = { act: 0, hit: 120, heal: 80, death: 160, item: 120, phase: 0 };
@@ -2024,11 +2030,40 @@ const FX = (() => {
   return {
     play,
     skipNow() { skip = true; layer.replaceChildren(); },
-    get speed() { return speed; },
-    setSpeed(v) { speed = v; PREFS.write("speed", v); },
+    get skipping() { return skip; },
+    get speed() { return speedNow(); },
+    setSpeed(v) { ownSpeed = v; PREFS.write("speed", v); },
   };
-})();
+}
+// The adapter a page passes to makeFX:
+//   cardEl(uid), slotEl(side, slot), boardEl(), midEl()?   where the page's elements are
+//   card(uid)                                                 the engine's card (name, id, aspect)
+//   sideName(i)                                               "Blue"/"Red", or "You"/"The enemy"
+//   setHp(el, hp, cardEl)?                                    writes a health number (default "hp/max")
+//   itemArt(id)? itemImages()?                                CSS for an item's painting, and files to preload
+//   fillSlot(el, event)?                                      draws a revived card into an empty slot
+//   speed()?                                                  "normal" | "fast" | "off" if the page owns the setting
+//   announce, actTags                                         false to leave announcements or action tags to the page
 
+const FX = makeFX({
+  cardEl: (uid) => document.querySelector(`#app .card[data-uid="${uid}"]`),
+  slotEl: (side, slot) => document.querySelector(`#app [data-side="${side}"][data-slot="${slot}"]`),
+  boardEl: () => document.querySelector("#app .board"),
+  midEl: () => document.querySelector("#app .board .mid"),
+  card: (uid) => findAny(uid),
+  sideName: (i) => NAMES[i],
+  itemName: (id) => DATA.items[id]?.name,
+  itemImages: () => Object.values(DATA.itemArt || {}).map((a) => a.file),
+  itemArt: (id) => {
+    const art = DATA.itemArt?.[id]; if (!art) return "";
+    const [x, y, w, h] = art.crop;
+    return `background-image:url('${art.file}');background-size:${100 / w}% ${100 / h}%;background-position:${w >= 1 ? 0 : 100 * x / (1 - w)}% ${h >= 1 ? 0 : 100 * y / (1 - h)}%`;
+  },
+  fillSlot: (el, e) => {
+    el.classList.remove("empty"); el.classList.add("card", e.side ? "red" : "blue");
+    el.innerHTML = `<span class="nm">${esc(e.name)}</span><span class="st"><span class="hp">${e.hp}</span> health</span>`;
+  },
+});
 function render() { if (S.screen === "setup") renderSetup(); else renderFight(); }
 document.getElementById("skip-fx").addEventListener("click", () => FX.skipNow());
 

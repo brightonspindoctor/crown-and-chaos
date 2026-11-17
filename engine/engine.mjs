@@ -143,7 +143,9 @@ const itemName = (st, id) => st.data.items[id]?.name || id;
 export function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.onLog(msg); }
 // Events: a structured record of what happened, in order, so a screen can animate it.
 // Every event has t (its type) and r (the round). Card references are uids.
-export function ev(st, e) { (st.events ||= []).push({ r: st.round, ...e }); }
+// Each event carries n, the number of log lines written before it. An event explains the log line just
+// before it, except phase, skip and a front-rank card's act, which open what follows.
+export function ev(st, e) { (st.events ||= []).push({ r: st.round, n: st.log.length, ...e }); }
 const uidOf = (c) => (c && c.uid != null ? c.uid : null);
 const styleOf = (opts) => opts.spell ? "spell" : opts.ranged ? "ranged" : opts.attack ? "melee" : "effect";
 // Gains in Guard and Poison, and some changes to Health, are made in many places, so they are found
@@ -483,10 +485,10 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
     }
   }
   t.health -= amt;
+  log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, dmg: amt, hp: Math.max(0, t.health),
     style: opts._style || (opts.nightfall ? "night" : src?.name === "Poison" ? "poison" : "effect"),
     guarded: opts._guarded || 0, saved: opts._saved || 0 });
-  log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
   if (t.health <= 0) kill(st, t, src);
   return amt;
@@ -553,8 +555,8 @@ function stop(st, target, why) {
   if (crownIs(st, target.side, "the-tin-soldier") && target.kind === "hero") { log(st, `${target.name} can't be stopped (Tin Soldier).`); return false; }
   if (target.stoppedRound === st.round - 1) { log(st, `${target.name} was stopped last round, so it can't be stopped again.`); return false; }
   target.stopNow = true; target.stoppedRound = st.round;
-  ev(st, { t: "stop", tgt: target.uid, why });
   log(st, `${target.name} is stopped (${why}).`);
+  ev(st, { t: "stop", tgt: target.uid, why });
   return true;
 }
 
@@ -628,7 +630,7 @@ export function upkeep(st) {
         side.flags.tuckReturns = side.flags.tuckReturns || 0;
         if (side.flags.tuckReturns < 3 && !isNight(st) && !noCheating(st)) {
           const dead = side.grave.find((c) => c.kind === "front" && !at(st, i, c.slot));
-          if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); }
+          if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); revived(st, dead); }
         }
         break;
       }
@@ -655,8 +657,9 @@ function revive(st, c, health) {
   side.grave = side.grave.filter((x) => x.uid !== c.uid);
   side.slots[c.slot] = c;
   if (crownIs(st, c.side, "gwydion")) { c.maxHealth += 2; c.health += 2; c.atkPerm += 1; }
-  ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 }
+// The revive event goes after the log line that explains it.
+const revived = (st, c) => ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 
 // ---------- win check ----------
 export function checkWin(st) {
@@ -685,7 +688,7 @@ export const ACTIONS = {
     "Mortar ride": { t: "enemyNotCrown", go: (st, a, x) => { log(st, `Baba Yaga rides her mortar onto ${x.name}.`); kill(st, x, a); a.health += 2; } } },
   "beowulf": { "Arm-wrench": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.atkPerm -= 2; } } },
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
-  "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); } } },
+  "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
     "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
@@ -762,7 +765,7 @@ export const ACTIONS = {
   "victor-frankenstein": { "Reanimate": { t: "deadTalemate", go: (st, a, x) => {
     if (noCheating(st)) return;
     const slot = [2, 3].find((s) => !at(st, a.side, s)); if (!slot) return;
-    x.slot = slot; revive(st, x, 3); log(st, `Victor reanimates ${x.name}.`);
+    x.slot = slot; revive(st, x, 3); log(st, `Victor reanimates ${x.name}.`); revived(st, x);
   } } },
   "zmey-gorynych": { "Heads grow back": { t: "none", go: (st, a) => heal(st, a, a, 6) } },
 };
@@ -871,7 +874,7 @@ function useItem(st, i, id, x) {
   const before = snapStats(st), hp0 = x ? x.health : 0;
   switch (id) {
     case "dragons-blood": x.guardLeft += 3; break;
-    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); } break; }
+    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); revived(st, x); } break; }
     case "gingerbread": heal(st, src, x, 2); break;
     case "golden-apple": heal(st, src, x, 3); x.poison = 0; break;
     case "mead-of-heorot": heroes(st, i).forEach((h) => heal(st, src, h, 2)); break;
@@ -957,9 +960,9 @@ export function playRound(st, plans) {
     st.sides[i].flags.rumpelPicked.push(pick);
     const o = ords.find((x) => x.actor && x.actor.uid === pick && !x.auto);
     const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
-    ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
-    if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); applyHealthLoss(st, rum, tgt, 2, {}); }
-    else { log(st, `Rumpelstiltskin guesses wrong.`); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
+    const guessed = () => ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
+    if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); guessed(); applyHealthLoss(st, rum, tgt, 2, {}); }
+    else { log(st, `Rumpelstiltskin guesses wrong.`); guessed(); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
   }
   for (const c of allCards(st)) c.flags.acted = false;
   ev(st, { t: "phase", name: "resolve" });

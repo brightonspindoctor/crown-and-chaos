@@ -2,7 +2,9 @@
 // Plays a round back from the engine's event stream, so every change on the board is shown with
 // its cause: a melee card lunges and thumps, a ranged card shoots, magic sends a beam, items fly
 // in and burst. Sounds are synthesised here with Web Audio: there are no sound files to license.
-// Built into play/index.html by scripts/build-play.mjs.
+// Shared by the playtest table (play/index.html) and the prototype (game/index.html). Each page makes
+// its own player with makeFX(adapter); the adapter says where the page's cards are. See the bottom of
+// this file for the adapter's fields.
 
 const PREFS = (() => {
   const read = (k, d) => { try { const v = localStorage.getItem("cf-" + k); return v == null ? d : JSON.parse(v); } catch { return d; } };
@@ -90,14 +92,15 @@ const SND = (() => {
 })();
 
 // ---------- animation ----------
-const FX = (() => {
-  let speed = PREFS.read("speed", "normal");      // normal | fast | off
+function makeFX(A) {
+  let ownSpeed = PREFS.read("speed", "normal");   // normal | fast | off, when the page has no speed setting of its own
+  const speedNow = () => (A.speed ? A.speed() : ownSpeed);
   let skip = false;
   const layer = document.createElement("div"); layer.className = "fx-layer"; layer.setAttribute("aria-hidden", "true");
   document.body.appendChild(layer);
   const live = document.createElement("div"); live.className = "fx-live"; live.setAttribute("aria-live", "polite");
   document.body.appendChild(live);
-  const k = () => (speed === "fast" ? 0.45 : 1);
+  const k = () => (speedNow() === "fast" ? 0.45 : 1);
   const D = (ms) => Math.max(1, ms * k());
   const wait = (ms) => (skip ? Promise.resolve() : new Promise((r) => setTimeout(r, D(ms))));
   const anim = (el, frames, ms, opts = {}) => {
@@ -105,10 +108,10 @@ const FX = (() => {
     const a = el.animate(frames, { duration: D(ms), easing: "ease-out", fill: "forwards", ...opts });
     return a.finished.catch(() => {});
   };
-  const cardEl = (uid) => uid == null ? null : document.querySelector(`#app .card[data-uid="${uid}"]`);
-  const slotEl = (side, slot) => document.querySelector(`#app [data-side="${side}"][data-slot="${slot}"]`);
+  const cardEl = (uid) => uid == null ? null : A.cardEl(uid);
+  const slotEl = (side, slot) => A.slotEl(side, slot);
   const centre = (el) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height }; };
-  const card = (uid) => (uid == null ? null : findAny(uid));
+  const card = (uid) => (uid == null ? null : A.card(uid));
   let itemPos = null, nightShown = false, raised = null, actor = null;
 
   function spawn(cls, x, y, html = "") {
@@ -122,11 +125,11 @@ const FX = (() => {
       { transform: "translate(-50%,-160%) scale(1)", opacity: 1, offset: 0.7 }, { transform: "translate(-50%,-210%) scale(.95)", opacity: 0 }], 1000);
     d.remove();
   }
-  function say(text) { live.textContent = text; }
+  function say(text) { if (A.announce !== false) live.textContent = text; }
   function setHp(uid, hp) {
     const el = cardEl(uid); if (!el) return;
     const s = el.querySelector(".hp"); if (!s) return;
-    s.textContent = `${hp}/${el.dataset.max || "?"}`;
+    if (A.setHp) A.setHp(s, hp, el); else s.textContent = `${hp}/${el.dataset.max || "?"}`;
     s.classList.remove("hp-pop"); void s.offsetWidth; s.classList.add("hp-pop");
   }
   async function shake(el, strong) {
@@ -253,7 +256,7 @@ const FX = (() => {
   }
   async function onHit(e) {
     const t = cardEl(e.tgt), style = hitStyle(e), from = sourcePoint(e), srcEl = e.item ? null : cardEl(e.src);
-    say(`${card(e.src)?.name || (e.item ? DATA.items[e.item]?.name : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
+    say(`${card(e.src)?.name || (e.item ? A.itemName?.(e.item) || "" : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
     if (style === "melee" && srcEl && t && srcEl !== t) {
       const beast = card(e.src)?.aspect === "Beast" || card(e.src)?.id === "mere-beast";
       return lunge(srcEl, t, () => impact(e, t, { silent: true }), beast);
@@ -277,7 +280,7 @@ const FX = (() => {
   }
   async function nightfall() {
     SND.play("night"); say("Nightfall");
-    const board = document.querySelector("#app .board"); if (!board) return;
+    const board = A.boardEl(); if (!board) return;
     board.classList.add("fx-night"); await wait(900);
   }
 
@@ -292,18 +295,17 @@ const FX = (() => {
   };
   let itemCard = null;
   // Load the item paintings early so they are ready when an item flies in.
-  try { for (const a of Object.values(DATA.itemArt || {})) { const im = new Image(); im.src = a.file; } } catch {}
+  try { for (const src of A.itemImages ? A.itemImages() : []) { const im = new Image(); im.src = src; } } catch {}
   function clearItem() { if (itemCard) { const c = itemCard; itemCard = null; anim(c, [{ opacity: 1 }, { opacity: 0 }], 200).then(() => c.remove()); } itemPos = null; }
   async function onItem(e) {
     clearItem(); actor = null;
-    const board = document.querySelector("#app .board"); if (!board) return;
-    const br = board.getBoundingClientRect(), mid = document.querySelector("#app .board .mid");
+    const board = A.boardEl(); if (!board) return;
+    const br = board.getBoundingClientRect(), mid = A.midEl ? A.midEl() : null;
     const cx = br.left + br.width / 2, cy = mid ? centre(mid).y : br.top + br.height / 2;
-    const art = DATA.itemArt?.[e.item], fx = ITEM_FX[e.item] || { color: "#fff", shape: "dot", sound: "pop" };
-    say(`${NAMES[e.side]} uses ${e.name}`);
+    const fx = ITEM_FX[e.item] || { color: "#fff", shape: "dot", sound: "pop" };
+    say(`${A.sideName(e.side)} uses ${e.name}`);
     if (skip) return;
-    const [x, y, w, h] = art ? art.crop : [0, 0, 1, 1];
-    const bg = art ? `background-image:url('${art.file}');background-size:${100 / w}% ${100 / h}%;background-position:${w >= 1 ? 0 : 100 * x / (1 - w)}% ${h >= 1 ? 0 : 100 * y / (1 - h)}%` : "";
+    const bg = A.itemArt ? A.itemArt(e.item) : "";
     const c = spawn("fx-item fx-item-" + (e.side ? "red" : "blue"), cx, cy, `<div class="fx-item-art" style="${bg}"></div><div class="fx-item-name">${esc(e.name)}</div>`);
     itemCard = c;
     const fromY = e.side ? -br.height * 0.6 : br.height * 0.6;
@@ -352,7 +354,7 @@ const FX = (() => {
     const el = cardEl(e.uid); if (!el) return;
     raised = el; el.classList.add("fx-acting"); actor = e.uid;
     say(`${card(e.uid)?.name}: ${e.name}`);
-    if (!e.auto || speed !== "fast") {
+    if (A.actTags !== false && (!e.auto || speedNow() !== "fast")) {
       const tag = spawn("fx-tag" + (e.auto ? " fx-tag-auto" : ""), 0, 0, esc(e.auto ? card(e.uid)?.name || e.name : e.name));
       const p = centre(el); tag.style.left = p.x + "px"; tag.style.top = (p.y - p.h / 2 - 4) + "px";
       anim(tag, [{ transform: "translate(-50%,-80%)", opacity: 0 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.15 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.8 }, { transform: "translate(-50%,-120%)", opacity: 0 }], e.auto ? 900 : 1400).then(() => tag.remove());
@@ -391,8 +393,8 @@ const FX = (() => {
     }
     burst(p, summon ? "#bfb5a5" : "#fff3c0", 14, 50);
     el.getAnimations().forEach((a) => a.cancel());
-    el.classList.remove("fx-fallen", "empty"); el.classList.add("card", e.side ? "red" : "blue");
-    el.innerHTML = `<span class="nm">${esc(e.name)}</span><span class="st"><span class="hp">${e.hp}</span> health</span>`;
+    el.classList.remove("fx-fallen");
+    if (A.fillSlot) A.fillSlot(el, e);
     await anim(el, [{ transform: "scale(.6)", opacity: 0 }, { transform: "scale(1.06)", opacity: 1, offset: 0.7 }, { transform: "scale(1)", opacity: 1 }], 500);
     await floatText(el, summon ? "Summoned" : "Revived", "fx-gold fx-small");
   }
@@ -451,12 +453,12 @@ const FX = (() => {
   async function onOver(e) {
     clearItem(); if (raised) raised.classList.remove("fx-acting");
     SND.play(e.winner < 0 ? "lose" : "win");
-    say(e.winner < 0 ? "A draw" : `${NAMES[e.winner]} wins`);
+    say(e.winner < 0 ? "A draw" : `${A.sideName(e.winner)} wins`);
     await wait(700);
   }
   async function onPhase(e) {
     actor = null;
-    const mid = document.querySelector("#app .board .mid"); if (!mid) return;
+    const mid = A.midEl ? A.midEl() : null; if (!mid) return;
     const text = e.name === "upkeep" ? "End of round: poison, Nightfall and Crown passives" : "Items first, then cards in Speed order";
     mid.textContent = text; mid.classList.remove("fx-phase"); void mid.offsetWidth; mid.classList.add("fx-phase");
     await wait(e.name === "upkeep" ? 250 : 350);
@@ -477,10 +479,10 @@ const FX = (() => {
   };
 
   async function play(events) {
-    skip = speed === "off";
-    nightShown = !!document.querySelector("#app .board.fx-night");
-    raised = null; itemPos = null;
-    const board = document.querySelector("#app .board");
+    skip = speedNow() === "off";
+    nightShown = !!A.boardEl()?.classList.contains("fx-night");
+    raised = null; itemPos = null; actor = null;
+    const board = A.boardEl();
     if (board && !skip) board.scrollIntoView({ block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
     // Pause briefly between steps so each cause and effect can be read.
     const gap = { act: 0, hit: 120, heal: 80, death: 160, item: 120, phase: 0 };
@@ -497,7 +499,17 @@ const FX = (() => {
   return {
     play,
     skipNow() { skip = true; layer.replaceChildren(); },
-    get speed() { return speed; },
-    setSpeed(v) { speed = v; PREFS.write("speed", v); },
+    get skipping() { return skip; },
+    get speed() { return speedNow(); },
+    setSpeed(v) { ownSpeed = v; PREFS.write("speed", v); },
   };
-})();
+}
+// The adapter a page passes to makeFX:
+//   cardEl(uid), slotEl(side, slot), boardEl(), midEl()?   where the page's elements are
+//   card(uid)                                                 the engine's card (name, id, aspect)
+//   sideName(i)                                               "Blue"/"Red", or "You"/"The enemy"
+//   setHp(el, hp, cardEl)?                                    writes a health number (default "hp/max")
+//   itemArt(id)? itemImages()?                                CSS for an item's painting, and files to preload
+//   fillSlot(el, event)?                                      draws a revived card into an empty slot
+//   speed()?                                                  "normal" | "fast" | "off" if the page owns the setting
+//   announce, actTags                                         false to leave announcements or action tags to the page

@@ -74,7 +74,7 @@ To download art, run the **Fetch art** workflow from the Actions tab. It also ru
 | `sim/run.mjs` | Plays bot-vs-bot fights between random legal line-ups and writes `sim/results.md`. Run `node sim/run.mjs 100000` |
 | `sim/checks.mjs` | Small rule checks. Run `node sim/checks.mjs` |
 | `play/index.html` | A two-player page for one device, or one player against a bot. Rebuild it with `node scripts/build-play.mjs` after changing cards or the engine |
-| `play/fx.js` | The animations and sounds that play each round back on the playtest table. See `design/animations.md` |
+| `play/fx.js`, `play/fx.css` | The animations and sounds that play each round back, shared by the prototype and the playtest table. See `design/animations.md` |
 | `sim/events-check.mjs` | Plays 1,500 random fights and fails if the events the animations use ever disagree with the real state |
 
 Card numbers are read from the JSON files, but each card's effect is coded by hand in the engine, so a change to a card's text needs the matching change in `engine/engine.mjs`.

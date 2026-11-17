@@ -9,6 +9,16 @@ const frontIds = Object.keys(data.front).filter((f) => f !== "the-needle");
 const itemIds = Object.keys(data.items);
 const KNOWN = new Set(["phase", "act", "item", "hit", "heal", "miss", "redirect", "death", "revive", "swap",
   "stop", "freeze", "skip", "wasted", "guardUp", "attackUp", "poison", "over", "hp", "appear"]);
+// The log line each kind of event must follow.
+const PAIRS = {
+  hit: (e) => (e.dmg > 0 && !e.survived ? / deals \d+ to / : null),
+  stop: () => / is stopped /,
+  revive: () => / back on | rises | reanimates | uses /,
+  act: (e) => (e.auto ? null : / uses | guesses /),
+  item: () => /(Blue|Red) uses /,
+  freeze: () => / is frozen\./,
+  over: () => / wins\.| a draw\.|Round limit/,
+};
 const rng = makeRng(11);
 const counts = {};
 let fights = 0, rounds = 0;
@@ -35,6 +45,9 @@ for (let k = 0; k < 1500; k++) {
       if ("hp" in e && e.tgt != null) lastHp.set(e.tgt, e.hp);
       if (e.t === "revive" || e.t === "appear") lastHp.set(e.uid, e.hp);
       if (e.t === "death") lastHp.set(e.uid, 0);
+      // An event explains the log line just before it, so a page can show it with that line.
+      const line = st.log[e.n - 1] || "", want = PAIRS[e.t]?.(e);
+      if (want && !want.test(line)) fail(`fight ${k + 1}: ${e.t} event after the line "${line}"\n${JSON.stringify(e)}`);
     }
     // Every living card whose health was reported must have that health now. Upkeep can change
     // health only through hit and heal, which are reported too.

@@ -44,6 +44,14 @@ h1, h2, h3, p { margin: 0; }
 #head .menu { font: 600 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 0 10px 10px; white-space: nowrap; }
 #head .menu:hover { color: var(--ink); }
 
+/* ---------- animation layer (play/fx.css), with this page's names for the colours it uses ---------- */
+:root { --gold: var(--gold-leaf); --body: var(--serif); --felt: var(--surface); --panel: var(--raised); --red: var(--vermilion); }
+/*FXCSS*/
+.mid.fx-phase { justify-content: center; height: 10px; font: italic 13px/1 var(--serif); color: var(--ink); white-space: nowrap; text-shadow: 0 1px 3px #000; }
+.mid.fx-phase::before { display: none; }
+#table.fx-night::before { background: linear-gradient(rgba(8,12,30,.84), rgba(6,8,20,.92)); }
+.card.slot.fx-revived { border: 1px solid var(--gold-leaf); background: #1c130c; color: var(--ink); align-items: center; justify-content: center; font: 600 .8em/1.2 var(--display); text-align: center; }
+
 /* ---------- the table ---------- */
 #table { flex: 1; min-height: 0; position: relative; background: #0c0805 center / cover no-repeat; }
 #table::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(23,17,12,.72), rgba(23,17,12,.82)); transition: background 1.2s; }
@@ -674,34 +682,69 @@ function scriptedFoe() {
   return { orders: [{ uid: a.uid, index: a.actions.findIndex((x) => x.name === f.act), target: at(f.t), target2: at(f.t2) }], items: [] };
 }
 
+// ---------- animations and sounds (play/fx.js) ----------
+/*FX*/
+let FXP = null;
+const SPEAKER_SVG = (on) => `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>${on ? `<path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>` : `<path d="M17 9l5 6M22 9l-5 6"/>`}</svg>`;
+const soundButton = () => `<button class="btn quiet" data-act="sound" aria-pressed="${!SND.muted}" title="Sound" aria-label="Sound ${SND.muted ? "off" : "on"}">${SPEAKER_SVG(!SND.muted)}</button>`;
+const fxSpeed = () => (G.motion === false ? "off" : G.fast ? "fast" : "normal");
+function fx() {
+  return FXP ||= makeFX({
+    cardEl: (uid) => document.querySelector(`#board .card[data-uid="${uid}"]`),
+    slotEl: (side, slot) => document.querySelector(`#board [data-side="${side}"][data-slot="${slot}"]`),
+    boardEl: () => el("table"),
+    midEl: () => document.querySelector("#board .mid"),
+    card: (uid) => byUid(uid),
+    sideName: (i) => (i ? "The enemy" : "You"),
+    itemName: (id) => DATA.items[id]?.name,
+    setHp: (s, hp) => { s.textContent = hp; },
+    itemImages: () => Object.keys(DATA.items).filter((id) => ART[id]).map((id) => `img/${id}.jpg`),
+    itemArt: (id) => (ART[id] ? `background-image:url('img/${id}.jpg');background-size:cover;background-position:center` : ""),
+    fillSlot: (slot, e) => { slot.classList.add("fx-revived"); slot.textContent = short(e.name); },
+    speed: fxSpeed,
+    announce: false, // the caption under the board is already read out
+  });
+}
+
 // ---------- playing a round back ----------
 function lock() {
   if (S.phase !== "plan" || S.pick) return;
   const g = step();
   if (S.guided && (!g || !g.lock)) return nudge();
-  const st = S.st, before = snap(st), raw = [];
+  const st = S.st, before = snap(st), raw = [], from = (st.events || []).length;
   const foePlan = S.guided ? scriptedFoe() : E.botPlan(st, 1);
-  st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st) });
+  st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st), n: st.log.length });
   E.playRound(st, [S.plan, foePlan]);
   st.onLog = null;
-  S.frames = buildFrames(raw, before);
+  S.frames = buildFrames(raw, before, (st.events || []).slice(from));
+  SND.unlock();
   S.plan = emptyPlan(); U.sheet = null; S.phase = "play"; S.fi = -1;
   nextFrame();
 }
 const isNightLine = (f) => f && /^Nightfall deals/.test(f.text);
-function buildFrames(raw, before) {
-  const out = []; let lines = [], last = before, lastSig = sig(before);
+// Each event goes with the frame of the log line it explains (see ev in the engine): the line just
+// before it, or for the events that open an action, the line just after.
+const OPENS = (e) => e.t === "phase" || e.t === "skip" || (e.t === "act" && e.auto);
+function buildFrames(raw, before, events = []) {
+  const out = [], frameOf = []; let lines = [], last = before, lastSig = sig(before);
   raw.forEach((f, k) => {
+    frameOf[k] = out.length;
     if (/ wins\.$| a draw\.$/.test(f.text)) return;
     lines.push(f.text);
     const sg = sig(f.snap), nxt = raw[k + 1];
     if (isNightLine(f) && isNightLine(nxt)) return;
     if (sg !== lastSig || !nxt || nxt.acting !== f.acting) {
       const actor = f.acting ? inSnap(last, f.acting) || inSnap(f.snap, f.acting) : null;
-      out.push({ text: tidy(lines, actor), acting: f.acting, snap: f.snap, prev: last, auto: !!actor && actor.kind === "front" });
+      out.push({ text: tidy(lines, actor), acting: f.acting, snap: f.snap, prev: last, auto: !!actor && actor.kind === "front", events: [] });
       lines = []; last = f.snap; lastSig = sg;
     }
   });
+  if (!out.length) return out;
+  const rawAt = new Map(raw.map((f, k) => [f.n, k]));
+  for (const e of events) {
+    const k = rawAt.get(OPENS(e) ? e.n + 1 : e.n);
+    out[Math.min(k == null ? (e.n < (raw[0]?.n ?? 0) ? 0 : out.length - 1) : frameOf[k], out.length - 1)].events.push(e);
+  }
   return out;
 }
 // Turns the engine's log lines into a sentence or two about what just happened.
@@ -737,16 +780,32 @@ function tidy(lines, actor) {
   if (uses) return numbers ? `${cap(who)} uses ${uses.act}: ${fx.join(" ")}` : `${cap(who)} uses ${uses.act}${uses.on ? ` on ${the(uses.on)}` : ""}. ${fx.join(" ")}`.trim();
   return numbers && who ? `${cap(who)}: ${fx.join(" ")}` : fx.join(" ");
 }
-function nextFrame() {
+// Shows one frame: the caption goes up over the board as it was, the events play out on it, then the
+// board is redrawn as it is now and the caption stays long enough to read.
+async function nextFrame() {
   S.fi += 1;
   const f = S.frames[S.fi];
   if (!f) return endPlayback();
-  S.view = f.snap; S.prev = f.prev; S.caption = f.text; S.acting = f.acting;
+  const token = S.token, read = Math.min(1800, 600 + f.text.length * 12) / (G.fast ? 2 : 1);
+  const animate = f.events.length > 0 && fxSpeed() !== "off";
+  S.caption = f.text; S.acting = f.acting;
+  let spent = 0;
+  if (animate) {
+    S.view = f.prev; S.prev = null; S.quiet = true; S.animating = true; render();
+    const t0 = performance.now();
+    try { await fx().play(f.events); } catch (err) { console.error(err); }
+    S.animating = false;
+    if (token !== S.token) return;
+    spent = performance.now() - t0;
+  }
+  S.view = f.snap; S.prev = f.prev; S.quiet = animate;
   render();
-  S.timer = setTimeout(nextFrame, Math.min(1800, 600 + f.text.length * 12) / (G.fast ? 2 : 1));
+  S.timer = setTimeout(nextFrame, animate ? Math.max(G.fast ? 250 : 450, read - spent) : read);
 }
 function endPlayback() {
   clearTimeout(S.timer);
+  S.token = (S.token || 0) + 1; S.quiet = false;
+  if (S.animating) { fx().skipNow(); S.animating = false; }
   const st = S.st;
   Object.assign(S, { view: snap(st), prev: null, caption: "", acting: null, frames: [], phase: st.over ? "over" : "plan" });
   if (S.guided) {
@@ -817,7 +876,7 @@ function battleCard(c, v, opts = {}) {
     if (S.acting === c.uid) cls.push("acting");
     const p = S.prev && inSnap(S.prev, c.uid);
     const now = opts.fallen ? { health: 0, guard: 0 } : c;
-    if (p) {
+    if (p && !S.quiet) {
       const d = now.health - p.health;
       if (d < 0) { cls.push("hit"); floats = `<span class="float dmg">−${-d}</span>`; }
       else if (d > 0) floats = `<span class="float heal">+${d}</span>`;
@@ -840,7 +899,7 @@ function battleCard(c, v, opts = {}) {
   const mark = S.plan && (S.plan.hunt === c.uid ? "Marked" : S.plan.rumpel === c.uid ? "Named" : "");
   const overlay = order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Stopped</span>` : mark ? `<span class="badge">${mark}</span>`
     : S.phase === "play" && S.acting === c.uid && c.kind !== "hero" ? `<span class="order">On its own</span>` : c.poison ? `<span class="badge">Poison ${c.poison}</span>` : "";
-  return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown,
+  return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}" data-side="${side}" data-slot="${c.slot}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown,
     atk: c.atk, ranged: c.ranged, guard: c.guard, hp: opts.fallen ? 0 : c.health, hurt: c.health < c.maxHealth, overlay, floats,
     label: `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}${c.kind === "hero" ? `, Speed ${c.spd}` : ", acts on its own"}` });
 }
@@ -849,7 +908,7 @@ function slotHtml(v, side, slot) {
   if (c) return battleCard(c, v);
   const gone = S.phase === "play" && S.prev && S.prev.sides[side].slots[slot];
   if (gone && !inSnap(v, gone.uid)) return battleCard(gone, S.prev, { fallen: true });
-  return `<div class="card slot" aria-hidden="true"></div>`;
+  return `<div class="card slot" aria-hidden="true" data-side="${side}" data-slot="${slot}"></div>`;
 }
 
 // The full card, as it is printed: used when a pack is opened and in the collection.
@@ -888,7 +947,7 @@ function renderBattle() {
     <button class="menu" data-act="menu">Menu</button>`;
   const table = el("table");
   table.style.backgroundImage = `url(img/${b.id}.jpg)`;
-  table.classList.toggle("night", night);
+  table.classList.toggle("night", night); table.classList.toggle("fx-night", night);
   const sideHtml = (i) => `<section class="side ${i ? "foe" : "me"}" aria-label="${i ? "Enemy cards" : "Your cards"}">
     ${[[1], [2, 3], [4, 5, 6]].map((r) => `<div class="rank">${r.map((s) => slotHtml(v, i, s)).join("")}</div>`).join("")}</section>`;
   el("board").innerHTML = `${sideHtml(1)}<div class="mid"></div>${sideHtml(0)}`;
@@ -902,7 +961,7 @@ function renderBattle() {
   if (S.phase === "play") {
     const f = S.frames[S.fi];
     who = `Round ${f?.prev.round ?? v.round}${f && f.auto ? " · Front rank, acting on its own" : ""}`; text = esc(S.caption);
-    button = `<button class="btn quiet" data-act="speed" aria-pressed="${!!G.fast}" title="Playback speed" aria-label="Playback speed ${G.fast ? "fast" : "normal"}">${G.fast ? "×2" : "×1"}</button><button class="btn quiet" data-act="skip">Skip</button>`;
+    button = `${soundButton()}<button class="btn quiet" data-act="speed" aria-pressed="${!!G.fast}" title="Playback speed" aria-label="Playback speed ${G.fast ? "fast" : "normal"}">${G.fast ? "×2" : "×1"}</button><button class="btn quiet" data-act="skip">Skip</button>`;
   } else if (g) {
     who = "Tutorial"; text = g.say;
     if (g.next) button = `<button class="btn focus" data-act="next">Continue</button>`;
@@ -1145,6 +1204,8 @@ function overHtml() {
   if (o.type === "menu") {
     return `<div class="panel"><p class="eyebrow">Crown &amp; Fable</p><h1>${esc(S.board.name)}</h1>
       <div class="btns"><button class="btn" data-act="resume">Back to the fight</button>
+      <button class="btn quiet" data-act="sound" aria-pressed="${!SND.muted}">Sound: ${SND.muted ? "off" : "on"}</button>
+      <button class="btn quiet" data-act="motion" aria-pressed="${G.motion !== false}">Card animations: ${G.motion === false ? "off" : "on"}</button>
       ${S.kind === "tutorial" ? `<button class="btn quiet" data-act="tutorial">Restart the tutorial</button><button class="btn quiet" data-act="leave">Leave the tutorial</button>`
         : `<button class="btn quiet" data-act="concede">Concede this fight</button>`}</div>
       ${S.kind === "tutorial" ? "" : `<p class="credit">Conceding counts as a defeat. Cards already lost stay lost.</p>`}</div>`;
@@ -1203,6 +1264,7 @@ document.addEventListener("click", (e) => {
   const t = e.target.closest("[data-act],[data-go],[data-tab]");
   if (!t) { if (e.target.id === "sheet" && !step()) { U.sheet = U.sheet && U.sheet.back ? U.sheet.back : null; render(); } return; }
   if (t.disabled) return;
+  if (S.animating && !["skip", "speed", "sound", "menu"].includes(t.dataset.act)) return;
   if (t.dataset.go) return go(t.dataset.go);
   if (t.dataset.tab) { U.tab = t.dataset.tab; return render(); }
   const act = t.dataset.act, d = t.dataset;
@@ -1216,7 +1278,9 @@ document.addEventListener("click", (e) => {
     case "lock": lock(); break;
     case "next": { const g = step(); if (g && g.next) { advance(); render(); } break; }
     case "skip": endPlayback(); break;
-    case "speed": G.fast = !G.fast; save(); clearTimeout(S.timer); S.timer = setTimeout(nextFrame, 250); render(); break;
+    case "speed": G.fast = !G.fast; save(); if (!S.animating) { clearTimeout(S.timer); S.timer = setTimeout(nextFrame, 250); } render(); break;
+    case "sound": SND.setMuted(!SND.muted); if (!SND.muted) SND.play("ping"); render(); break;
+    case "motion": G.motion = G.motion === false; save(); render(); break;
     case "night": if (!step() && !S.pick) { U.sheet = { type: "night" }; render(); } break;
     case "night-ok": G.nightSeen = true; save(); U.over = null; render(); break;
     case "close": U.sheet = null; render(); break;

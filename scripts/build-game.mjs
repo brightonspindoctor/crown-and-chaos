@@ -1,5 +1,5 @@
 // Builds game/index.html: the playable prototype (tutorial, first pack, collection, line-up, fights, shop),
-// with the engine, every reviewed card and the painting credits inlined. Images are read from game/img/.
+// with the engine, every reviewed card, the painting credits and the animation player (play/fx.js) inlined. Images are read from game/img/.
 // Run with: python3 scripts/crop-game-art.py && node scripts/build-game.mjs
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { loadData } from "../engine/load-data.mjs";
@@ -26,6 +26,8 @@ const engine = readFileSync(root + "engine/engine.mjs", "utf8").replace(/^export
 const json = (x) => JSON.stringify(x).replace(/</g, "\\u003c");
 const html = readFileSync(root + "game/template.html", "utf8")
   .replace("/*DATA*/", () => json(data)).replace("/*ART*/", () => json(art)).replace("/*BOARDS*/", () => json(boards))
-  .replace("/*ENGINE*/", () => engine);
+  .replace("/*ENGINE*/", () => engine)
+  .replace("/*FXCSS*/", () => readFileSync(root + "play/fx.css", "utf8"))
+  .replace("/*FX*/", () => readFileSync(root + "play/fx.js", "utf8"));
 writeFileSync(root + "game/index.html", html);
 console.log(`game/index.html written (${(html.length / 1024).toFixed(0)} KB)`);

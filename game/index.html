@@ -44,6 +44,67 @@ h1, h2, h3, p { margin: 0; }
 #head .menu { font: 600 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 0 10px 10px; white-space: nowrap; }
 #head .menu:hover { color: var(--ink); }
 
+/* ---------- animation layer (play/fx.css), with this page's names for the colours it uses ---------- */
+:root { --gold: var(--gold-leaf); --body: var(--serif); --felt: var(--surface); --panel: var(--raised); --red: var(--vermilion); }
+/* Animation layer, shared by the playtest table and the prototype (see play/fx.js). */
+.fx-layer { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
+.fx-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.fx { position: fixed; pointer-events: none; will-change: transform, opacity; }
+.card { position: relative; transition: box-shadow .15s; }
+.card.fx-front { z-index: 25; }
+.card.fx-acting { box-shadow: 0 0 0 3px var(--gold), 0 0 18px color-mix(in srgb, var(--gold) 70%, transparent); translate: 0 -3px; z-index: 22; }
+.card.fx-hurt { background: color-mix(in srgb, #e04a2f 30%, var(--panel)); }
+.card.fx-healed { box-shadow: 0 0 0 3px #6fcf73, 0 0 20px #8ee08a; }
+.card.fx-strike { box-shadow: 0 0 0 3px #e04a2f; }
+.card.fx-fallen { opacity: .28; filter: grayscale(1); }
+.card.fx-fallen .nm { text-decoration: line-through; }
+.card.fx-stopped::after, .card.fx-frozen::after { content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none; }
+.card.fx-stopped::after { background: repeating-linear-gradient(135deg, transparent 0 7px, rgba(120,120,120,.35) 7px 10px); }
+.card.fx-frozen::after { background: linear-gradient(160deg, rgba(190,230,255,.65), rgba(140,200,255,.25)); box-shadow: inset 0 0 12px #bfe6ff; }
+.hp-pop { display: inline-block; animation: hp-pop .45s ease-out; }
+@keyframes hp-pop { 0% { transform: scale(1.6); color: var(--gold); } 100% { transform: scale(1); } }
+.board.fx-night { background: radial-gradient(ellipse at 50% 50%, rgba(30,30,70,.18), rgba(10,10,40,.38)); border-radius: 8px; }
+.mid.fx-phase { animation: phase .5s ease-out; color: var(--ink); }
+@keyframes phase { 0% { background: color-mix(in srgb, var(--gold) 35%, transparent); } 100% { background: transparent; } }
+.fx-text { font: 700 22px/1 var(--body); white-space: nowrap; text-shadow: 0 2px 0 rgba(0,0,0,.55), 0 0 6px rgba(0,0,0,.4); z-index: 30; }
+.fx-text.fx-small { font-size: 14px; }
+.fx-text.fx-big { font-size: 30px; }
+.fx-dmg { color: #ff5a3c; } .fx-heal { color: #6fe07a; } .fx-guard { color: #9cc4f0; } .fx-gold { color: #ffd45c; }
+.fx-miss { color: #e8ecdf; font-style: italic; } .fx-stop { color: #d0d0d0; } .fx-frost { color: #bfe6ff; } .fx-poison { color: #8fd14f; }
+.fx-sleep { color: #e8dcc0; font-size: 16px; letter-spacing: .2em; }
+.fx-tag { font: 700 13px/1 var(--body); background: var(--ink); color: var(--felt); padding: 5px 9px; border-radius: 99px; white-space: nowrap; z-index: 31; box-shadow: 0 2px 6px rgba(0,0,0,.35); }
+.fx-tag.fx-tag-auto { font-weight: 400; font-size: 12px; opacity: .9; }
+.fx-p { width: 7px; height: 7px; border-radius: 50%; }
+.fx-p.fx-drop { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+.fx-p.fx-crumb { border-radius: 2px; width: 6px; height: 5px; }
+.fx-p.fx-thread { width: 14px; height: 2px; border-radius: 1px; }
+.fx-p.fx-bubble { width: 9px; height: 9px; background: rgba(120,200,80,.55) !important; border: 1px solid #8fd14f; }
+.fx-slash { width: 3px; height: 54px; background: linear-gradient(transparent, #fff, #ff6a4a, transparent); border-radius: 2px; }
+.fx-arrow { width: 44px; height: 10px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.fx-arrow svg { display: block; overflow: visible; }
+.fx-beam { height: 8px; transform-origin: 0 50%; border-radius: 4px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 40%, transparent), var(--c) 30%, #fff 50%, var(--c) 70%, color-mix(in srgb, var(--c) 60%, transparent));
+  box-shadow: 0 0 14px var(--c), 0 0 4px #fff; }
+.fx-beam.fx-wave { height: 14px; border-radius: 50%; background: repeating-linear-gradient(90deg, var(--c) 0 12px, #e6ffff 12px 16px); opacity: .9; }
+.fx-orb { width: 22px; height: 22px; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(#fff, var(--c) 55%, transparent 70%); box-shadow: 0 0 18px var(--c); }
+.fx-shield svg { display: block; filter: drop-shadow(0 0 6px #9cc4f0); }
+.fx-sword svg { display: block; filter: drop-shadow(0 0 6px #fff); }
+.fx-pillar { width: 70px; height: 150px; transform-origin: 50% 100%; background: linear-gradient(transparent, rgba(255,240,180,.85), transparent); filter: blur(2px); }
+.fx-pillar.fx-smoke { background: radial-gradient(ellipse at 50% 70%, rgba(200,195,185,.8), transparent 70%); }
+.fx-item { width: 116px; transform-style: preserve-3d; background: #2a1712; border: 2px solid #c9a24a; border-radius: 8px; padding: 4px; box-shadow: 0 8px 24px rgba(0,0,0,.55); z-index: 28; }
+.fx-item.fx-item-red { border-color: var(--red); }
+.fx-item-art { height: 68px; border-radius: 4px; background: #5a3c22 center/cover; }
+.fx-item-name { font: 700 12px/1.2 var(--body); color: #f1e6cc; text-align: center; padding: 4px 0 1px; }
+.fx-item.fx-glint .fx-item-art { position: relative; overflow: hidden; }
+.fx-item.fx-glint .fx-item-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); animation: glint .5s ease-out; }
+@keyframes glint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }
+
+.mid.fx-phase { justify-content: center; height: 10px; font: italic 13px/1 var(--serif); color: var(--ink); white-space: nowrap; text-shadow: 0 1px 3px #000; }
+.mid.fx-phase::before { display: none; }
+#table.fx-night::before { background: linear-gradient(rgba(8,12,30,.84), rgba(6,8,20,.92)); }
+.card.slot.fx-revived { border: 1px solid var(--gold-leaf); background: #1c130c; color: var(--ink); align-items: center; justify-content: center; font: 600 .8em/1.2 var(--display); text-align: center; }
+
 /* ---------- the table ---------- */
 #table { flex: 1; min-height: 0; position: relative; background: #0c0805 center / cover no-repeat; }
 #table::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(23,17,12,.72), rgba(23,17,12,.82)); transition: background 1.2s; }
@@ -475,7 +536,9 @@ const itemName = (st, id) => st.data.items[id]?.name || id;
 function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.onLog(msg); }
 // Events: a structured record of what happened, in order, so a screen can animate it.
 // Every event has t (its type) and r (the round). Card references are uids.
-function ev(st, e) { (st.events ||= []).push({ r: st.round, ...e }); }
+// Each event carries n, the number of log lines written before it. An event explains the log line just
+// before it, except phase, skip and a front-rank card's act, which open what follows.
+function ev(st, e) { (st.events ||= []).push({ r: st.round, n: st.log.length, ...e }); }
 const uidOf = (c) => (c && c.uid != null ? c.uid : null);
 const styleOf = (opts) => opts.spell ? "spell" : opts.ranged ? "ranged" : opts.attack ? "melee" : "effect";
 // Gains in Guard and Poison, and some changes to Health, are made in many places, so they are found
@@ -815,10 +878,10 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
     }
   }
   t.health -= amt;
+  log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, dmg: amt, hp: Math.max(0, t.health),
     style: opts._style || (opts.nightfall ? "night" : src?.name === "Poison" ? "poison" : "effect"),
     guarded: opts._guarded || 0, saved: opts._saved || 0 });
-  log(st, `${src ? src.name : "Nightfall"} deals ${amt} to ${sideName(side)} ${t.name}${t.health <= 0 ? " — it dies" : ""}.`);
   if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
   if (t.health <= 0) kill(st, t, src);
   return amt;
@@ -885,8 +948,8 @@ function stop(st, target, why) {
   if (crownIs(st, target.side, "the-tin-soldier") && target.kind === "hero") { log(st, `${target.name} can't be stopped (Tin Soldier).`); return false; }
   if (target.stoppedRound === st.round - 1) { log(st, `${target.name} was stopped last round, so it can't be stopped again.`); return false; }
   target.stopNow = true; target.stoppedRound = st.round;
-  ev(st, { t: "stop", tgt: target.uid, why });
   log(st, `${target.name} is stopped (${why}).`);
+  ev(st, { t: "stop", tgt: target.uid, why });
   return true;
 }
 
@@ -960,7 +1023,7 @@ function upkeep(st) {
         side.flags.tuckReturns = side.flags.tuckReturns || 0;
         if (side.flags.tuckReturns < 3 && !isNight(st) && !noCheating(st)) {
           const dead = side.grave.find((c) => c.kind === "front" && !at(st, i, c.slot));
-          if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); }
+          if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); revived(st, dead); }
         }
         break;
       }
@@ -987,8 +1050,9 @@ function revive(st, c, health) {
   side.grave = side.grave.filter((x) => x.uid !== c.uid);
   side.slots[c.slot] = c;
   if (crownIs(st, c.side, "gwydion")) { c.maxHealth += 2; c.health += 2; c.atkPerm += 1; }
-  ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 }
+// The revive event goes after the log line that explains it.
+const revived = (st, c) => ev(st, { t: "revive", uid: c.uid, side: c.side, slot: c.slot, name: c.name, hp: c.health });
 
 // ---------- win check ----------
 function checkWin(st) {
@@ -1017,7 +1081,7 @@ const ACTIONS = {
     "Mortar ride": { t: "enemyNotCrown", go: (st, a, x) => { log(st, `Baba Yaga rides her mortar onto ${x.name}.`); kill(st, x, a); a.health += 2; } } },
   "beowulf": { "Arm-wrench": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.atkPerm -= 2; } } },
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
-  "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); } } },
+  "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
     "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
@@ -1094,7 +1158,7 @@ const ACTIONS = {
   "victor-frankenstein": { "Reanimate": { t: "deadTalemate", go: (st, a, x) => {
     if (noCheating(st)) return;
     const slot = [2, 3].find((s) => !at(st, a.side, s)); if (!slot) return;
-    x.slot = slot; revive(st, x, 3); log(st, `Victor reanimates ${x.name}.`);
+    x.slot = slot; revive(st, x, 3); log(st, `Victor reanimates ${x.name}.`); revived(st, x);
   } } },
   "zmey-gorynych": { "Heads grow back": { t: "none", go: (st, a) => heal(st, a, a, 6) } },
 };
@@ -1203,7 +1267,7 @@ function useItem(st, i, id, x) {
   const before = snapStats(st), hp0 = x ? x.health : 0;
   switch (id) {
     case "dragons-blood": x.guardLeft += 3; break;
-    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); } break; }
+    case "draught-of-the-cauldron": { if (noCheating(st)) break; const slot = [2, 3].find((s) => !at(st, i, s)); if (slot) { x.slot = slot; revive(st, x, 1); revived(st, x); } break; }
     case "gingerbread": heal(st, src, x, 2); break;
     case "golden-apple": heal(st, src, x, 3); x.poison = 0; break;
     case "mead-of-heorot": heroes(st, i).forEach((h) => heal(st, src, h, 2)); break;
@@ -1289,9 +1353,9 @@ function playRound(st, plans) {
     st.sides[i].flags.rumpelPicked.push(pick);
     const o = ords.find((x) => x.actor && x.actor.uid === pick && !x.auto);
     const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
-    ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
-    if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); applyHealthLoss(st, rum, tgt, 2, {}); }
-    else { log(st, `Rumpelstiltskin guesses wrong.`); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
+    const guessed = () => ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
+    if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); guessed(); applyHealthLoss(st, rum, tgt, 2, {}); }
+    else { log(st, `Rumpelstiltskin guesses wrong.`); guessed(); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 4, {}); }
   }
   for (const c of allCards(st)) c.flags.acted = false;
   ev(st, { t: "phase", name: "resolve" });
@@ -1830,34 +1894,584 @@ function scriptedFoe() {
   return { orders: [{ uid: a.uid, index: a.actions.findIndex((x) => x.name === f.act), target: at(f.t), target2: at(f.t2) }], items: [] };
 }
 
+// ---------- animations and sounds (play/fx.js) ----------
+// ---------- animation and sound ----------
+// Plays a round back from the engine's event stream, so every change on the board is shown with
+// its cause: a melee card lunges and thumps, a ranged card shoots, magic sends a beam, items fly
+// in and burst. Sounds are synthesised here with Web Audio: there are no sound files to license.
+// Shared by the playtest table (play/index.html) and the prototype (game/index.html). Each page makes
+// its own player with makeFX(adapter); the adapter says where the page's cards are. See the bottom of
+// this file for the adapter's fields.
+
+const PREFS = (() => {
+  const read = (k, d) => { try { const v = localStorage.getItem("cf-" + k); return v == null ? d : JSON.parse(v); } catch { return d; } };
+  const write = (k, v) => { try { localStorage.setItem("cf-" + k, JSON.stringify(v)); } catch {} };
+  return { read, write };
+})();
+const reducedMotion = (() => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { return false; } })();
+
+// ---------- sound ----------
+const SND = (() => {
+  let ctx = null, master = null, noiseBuf = null;
+  let muted = PREFS.read("muted", false);
+  function ready() {
+    if (muted) return null;
+    try {
+      if (!ctx) {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        master = ctx.createGain(); master.gain.value = 0.55;
+        const comp = ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
+        noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 1.5, ctx.sampleRate);
+        const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      }
+      if (ctx.state === "suspended") ctx.resume();
+      return ctx;
+    } catch { return null; }
+  }
+  // A shaped tone: type, start and end pitch, length, volume, delay.
+  function tone(type, f0, f1, dur, vol = 0.5, at = 0, filter) {
+    const c = ready(); if (!c) return;
+    const t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(Math.max(20, f1), t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + Math.min(0.015, dur / 4)); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    let node = o;
+    if (filter) { const f = c.createBiquadFilter(); f.type = filter[0]; f.frequency.value = filter[1]; node.connect(f); node = f; }
+    node.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.05);
+  }
+  // Filtered noise: filter type, start and end frequency, length, volume, delay.
+  function noise(type, f0, f1, dur, vol = 0.4, at = 0, q = 1) {
+    const c = ready(); if (!c) return;
+    const t = c.currentTime + at, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf; f.type = type; f.Q.value = q;
+    f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(Math.max(20, f1), t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + Math.min(0.01, dur / 4)); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    s.connect(f); f.connect(g); g.connect(master); s.start(t, Math.random() * 0.5); s.stop(t + dur + 0.05);
+  }
+  const notes = (type, freqs, step, dur, vol, at = 0) => freqs.forEach((f, k) => tone(type, f, f * 1.001, dur, vol, at + k * step));
+  const S = {
+    thump() { tone("sine", 150, 42, 0.22, 0.9); noise("lowpass", 900, 120, 0.09, 0.55); },
+    claw() { noise("bandpass", 4200, 900, 0.16, 0.5, 0, 2); noise("bandpass", 3800, 800, 0.14, 0.4, 0.05, 2); tone("sine", 120, 50, 0.15, 0.5); },
+    draw() { noise("bandpass", 600, 1400, 0.12, 0.12, 0, 3); },
+    arrow() { noise("bandpass", 1600, 5200, 0.3, 0.22, 0, 4); },
+    thunk() { tone("triangle", 240, 90, 0.09, 0.6); noise("lowpass", 2500, 300, 0.05, 0.4); },
+    bolt() { noise("bandpass", 900, 2600, 0.18, 0.25, 0, 3); },
+    beam() { tone("sawtooth", 260, 820, 0.38, 0.16, 0, ["lowpass", 1800]); tone("sine", 620, 1860, 0.38, 0.18); tone("sine", 930, 2790, 0.3, 0.08, 0.04); },
+    zap() { noise("highpass", 3000, 7000, 0.12, 0.3); tone("square", 900, 160, 0.14, 0.12, 0, ["lowpass", 2400]); },
+    wave() { noise("lowpass", 400, 2200, 0.45, 0.35, 0, 0.7); tone("sine", 220, 440, 0.4, 0.12); },
+    splash() { noise("lowpass", 3000, 300, 0.35, 0.45); },
+    spark() { noise("highpass", 5000, 2000, 0.08, 0.2); },
+    heal() { notes("sine", [1047, 1319, 1568], 0.07, 0.35, 0.16); notes("sine", [2093], 0.0, 0.5, 0.05, 0.2); },
+    clang() { [523, 1187, 1690, 2410, 3130].forEach((f, k) => tone("sine", f, f * 0.995, 0.7 - k * 0.1, 0.18 / (k + 1) + 0.04)); noise("bandpass", 3000, 2000, 0.05, 0.25, 0, 2); },
+    ping() { tone("sine", 1568, 1560, 0.45, 0.22); tone("sine", 2349, 2340, 0.35, 0.1, 0.02); },
+    shing() { noise("highpass", 4000, 9000, 0.3, 0.18); tone("sine", 2637, 2600, 0.5, 0.12, 0.05); },
+    death() { tone("sawtooth", 220, 48, 0.75, 0.25, 0, ["lowpass", 900]); noise("lowpass", 700, 80, 0.4, 0.45); tone("sine", 90, 40, 0.5, 0.6, 0.05); },
+    rattle() { for (let k = 0; k < 7; k++) noise("highpass", 3500, 3000, 0.035, 0.28, k * 0.045 + Math.random() * 0.02, 3); },
+    frost() { for (let k = 0; k < 6; k++) noise("highpass", 7000, 5000, 0.03, 0.2, k * 0.04 + Math.random() * 0.02, 2); tone("sine", 2000, 3200, 0.5, 0.06); },
+    bubble() { for (let k = 0; k < 5; k++) { const f = 280 + Math.random() * 420; tone("sine", f, f * 1.8, 0.07, 0.22, k * 0.06); } },
+    whoosh() { noise("bandpass", 500, 1900, 0.32, 0.22, 0, 1.5); },
+    pop() { tone("sine", 520, 1250, 0.07, 0.35); },
+    card() { noise("bandpass", 1200, 3200, 0.16, 0.15, 0, 2); tone("sine", 880, 1320, 0.1, 0.08, 0.06); },
+    revive() { notes("triangle", [523, 659, 784, 1047], 0.09, 0.4, 0.2); },
+    summon() { noise("lowpass", 300, 2600, 0.5, 0.3); notes("triangle", [392, 587], 0.12, 0.35, 0.15, 0.2); },
+    miss() { noise("bandpass", 2600, 500, 0.2, 0.22, 0, 2); },
+    dud() { tone("triangle", 180, 120, 0.14, 0.25); },
+    tick() { tone("sine", 1400, 1400, 0.04, 0.12); },
+    night() { tone("sine", 55, 52, 1.6, 0.45); tone("sine", 58, 55, 1.6, 0.35); noise("lowpass", 200, 80, 1.4, 0.2); },
+    win() { notes("triangle", [392, 523, 659, 784], 0.13, 0.5, 0.25); notes("triangle", [1047], 0, 0.9, 0.18, 0.55); },
+    lose() { notes("triangle", [392, 349, 311, 262], 0.18, 0.55, 0.22); },
+  };
+  return {
+    play(name) { try { S[name]?.(); } catch {} },
+    get muted() { return muted; },
+    setMuted(v) { muted = v; PREFS.write("muted", v); if (!v) ready(); },
+    unlock() { ready(); },
+  };
+})();
+
+// ---------- animation ----------
+function makeFX(A) {
+  let ownSpeed = PREFS.read("speed", "normal");   // normal | fast | off, when the page has no speed setting of its own
+  const speedNow = () => (A.speed ? A.speed() : ownSpeed);
+  let skip = false;
+  const layer = document.createElement("div"); layer.className = "fx-layer"; layer.setAttribute("aria-hidden", "true");
+  document.body.appendChild(layer);
+  const live = document.createElement("div"); live.className = "fx-live"; live.setAttribute("aria-live", "polite");
+  document.body.appendChild(live);
+  const k = () => (speedNow() === "fast" ? 0.45 : 1);
+  const D = (ms) => Math.max(1, ms * k());
+  const wait = (ms) => (skip ? Promise.resolve() : new Promise((r) => setTimeout(r, D(ms))));
+  const anim = (el, frames, ms, opts = {}) => {
+    if (skip || !el) return Promise.resolve();
+    const a = el.animate(frames, { duration: D(ms), easing: "ease-out", fill: "forwards", ...opts });
+    return a.finished.catch(() => {});
+  };
+  const cardEl = (uid) => uid == null ? null : A.cardEl(uid);
+  const slotEl = (side, slot) => A.slotEl(side, slot);
+  const centre = (el) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height }; };
+  const card = (uid) => (uid == null ? null : A.card(uid));
+  let itemPos = null, nightShown = false, raised = null, actor = null;
+
+  function spawn(cls, x, y, html = "") {
+    const d = document.createElement("div"); d.className = "fx " + cls; d.innerHTML = html;
+    d.style.left = x + "px"; d.style.top = y + "px"; layer.appendChild(d); return d;
+  }
+  async function floatText(at, text, cls) {
+    if (skip || !at) return;
+    const p = centre(at), d = spawn("fx-text " + cls, p.x, p.y - 6, text);
+    await anim(d, [{ transform: "translate(-50%,-50%) scale(.6)", opacity: 0 }, { transform: "translate(-50%,-90%) scale(1.15)", opacity: 1, offset: 0.2 },
+      { transform: "translate(-50%,-160%) scale(1)", opacity: 1, offset: 0.7 }, { transform: "translate(-50%,-210%) scale(.95)", opacity: 0 }], 1000);
+    d.remove();
+  }
+  function say(text) { if (A.announce !== false) live.textContent = text; }
+  function setHp(uid, hp) {
+    const el = cardEl(uid); if (!el) return;
+    const s = el.querySelector(".hp"); if (!s) return;
+    if (A.setHp) A.setHp(s, hp, el); else s.textContent = `${hp}/${el.dataset.max || "?"}`;
+    s.classList.remove("hp-pop"); void s.offsetWidth; s.classList.add("hp-pop");
+  }
+  async function shake(el, strong) {
+    if (!el) return;
+    const m = strong ? 9 : 5;
+    el.classList.add("fx-hurt");
+    await anim(el, [{ transform: "translateX(0)" }, { transform: `translateX(${-m}px) rotate(-1.5deg)` }, { transform: `translateX(${m}px) rotate(1.5deg)` },
+      { transform: `translateX(${-m / 2}px)` }, { transform: "translateX(0)" }], 320, { fill: "none" });
+    el.classList.remove("fx-hurt");
+  }
+  async function glow(el, cls, ms = 600) {
+    if (!el || skip) return;
+    el.classList.add(cls); await wait(ms); el.classList.remove(cls);
+  }
+  function burst(p, color, n = 10, spread = 46, shape = "dot") {
+    if (skip || !p) return;
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, r = spread * (0.5 + Math.random() * 0.7);
+      const d = spawn("fx-p fx-" + shape, p.x, p.y); d.style.background = color;
+      anim(d, [{ transform: "translate(-50%,-50%) scale(1)", opacity: 1 },
+        { transform: `translate(calc(-50% + ${Math.cos(a) * r}px), calc(-50% + ${Math.sin(a) * r + (shape === "drop" ? 18 : 0)}px)) scale(.3)`, opacity: 0 }],
+        500 + Math.random() * 300).then(() => d.remove());
+    }
+  }
+  // Small lights travel from one point to another (heals, buffs, item effects).
+  async function motes(from, to, color, n = 6) {
+    if (skip || !from || !to) return;
+    const ps = [];
+    for (let i = 0; i < n; i++) {
+      const d = spawn("fx-p fx-dot", from.x, from.y); d.style.background = color; d.style.boxShadow = `0 0 8px ${color}`;
+      const mx = (from.x + to.x) / 2 + (Math.random() - 0.5) * 80, my = Math.min(from.y, to.y) - 30 - Math.random() * 40;
+      const frames = [];
+      for (let t = 0; t <= 1.0001; t += 0.1) {
+        const x = (1 - t) ** 2 * from.x + 2 * (1 - t) * t * mx + t * t * to.x, y = (1 - t) ** 2 * from.y + 2 * (1 - t) * t * my + t * t * to.y;
+        frames.push({ transform: `translate(${x - from.x - 3}px, ${y - from.y - 3}px)`, opacity: t > 0.9 ? 0.2 : 1 });
+      }
+      ps.push(anim(d, frames, 520, { delay: D(i * 45), easing: "ease-in-out" }).then(() => d.remove()));
+    }
+    await Promise.all(ps);
+  }
+
+  // ---------- attacks ----------
+  async function lunge(a, b, impact, beast) {
+    if (!a || !b || reducedMotion || skip) { await glow(a, "fx-strike", 160); await impact(); return; }
+    const pa = centre(a), pb = centre(b), dx = (pb.x - pa.x) * 0.7, dy = (pb.y - pa.y) * 0.7;
+    a.classList.add("fx-front");
+    await anim(a, [{ transform: "translate(0,0) scale(1)" }, { transform: `translate(${-dx * 0.08}px,${-dy * 0.08}px) scale(1.04)`, offset: 0.35 },
+      { transform: `translate(${dx}px,${dy}px) scale(1.1) rotate(${dx > 0 ? 4 : -4}deg)` }], 300, { easing: "cubic-bezier(.55,0,.9,.55)" });
+    SND.play(beast ? "claw" : "thump");
+    if (beast) slash(pb);
+    const imp = impact();
+    await anim(a, [{ transform: `translate(${dx}px,${dy}px) scale(1.1)` }, { transform: "translate(0,0) scale(1)" }], 320, { easing: "cubic-bezier(.2,.8,.3,1)" });
+    a.classList.remove("fx-front"); a.getAnimations().forEach((x) => x.cancel());
+    await imp;
+  }
+  function slash(p) {
+    if (skip) return;
+    for (let i = 0; i < 3; i++) {
+      const d = spawn("fx-slash", p.x + (i - 1) * 12, p.y);
+      anim(d, [{ transform: "translate(-50%,-50%) rotate(35deg) scaleY(0)", opacity: 1 }, { transform: "translate(-50%,-50%) rotate(35deg) scaleY(1)", opacity: 1, offset: 0.4 },
+        { transform: "translate(-50%,-50%) rotate(35deg) scaleY(1)", opacity: 0 }], 420, { delay: D(i * 40) }).then(() => d.remove());
+    }
+  }
+  async function shoot(from, b, kind) {
+    const pb = centre(b);
+    if (!from || reducedMotion || skip) return;
+    const dist = Math.hypot(pb.x - from.x, pb.y - from.y), bolt = kind === "bolt";
+    SND.play("draw"); await wait(90); SND.play(bolt ? "bolt" : "arrow");
+    const d = spawn("fx-arrow" + (bolt ? " fx-bolt" : ""), from.x, from.y,
+      `<svg viewBox="0 0 44 10" width="${bolt ? 30 : 44}" height="10"><line x1="2" y1="5" x2="34" y2="5" stroke="#6b4a20" stroke-width="${bolt ? 3 : 2}"/><path d="M34 1 L44 5 L34 9 Z" fill="#c9cfd6"/>${bolt ? "" : '<path d="M2 5 L-3 1 M2 5 L-3 9 M6 5 L1 1 M6 5 L1 9" stroke="#b33" stroke-width="1.5"/>'}</svg>`);
+    const lift = bolt ? 0 : Math.min(70, dist * 0.22), frames = [];
+    for (let t = 0; t <= 1.0001; t += 0.08) {
+      const x = from.x + (pb.x - from.x) * t, y = from.y + (pb.y - from.y) * t - lift * 4 * t * (1 - t);
+      const dydt = (pb.y - from.y) - lift * 4 * (1 - 2 * t), ang = Math.atan2(dydt, pb.x - from.x) * 180 / Math.PI;
+      frames.push({ transform: `translate(${x - from.x}px, ${y - from.y}px) translate(-50%,-50%) rotate(${ang}deg)` });
+    }
+    await anim(d, frames, Math.max(260, dist * (bolt ? 0.55 : 0.8)), { easing: "linear" });
+    d.remove(); SND.play("thunk");
+  }
+  async function beam(from, b, color, kind) {
+    const pb = centre(b);
+    if (!from || skip) return;
+    SND.play(kind === "wave" ? "wave" : "beam");
+    const dist = Math.hypot(pb.x - from.x, pb.y - from.y), ang = Math.atan2(pb.y - from.y, pb.x - from.x) * 180 / Math.PI;
+    const d = spawn("fx-beam" + (kind === "wave" ? " fx-wave" : ""), from.x, from.y);
+    d.style.width = dist + "px"; d.style.setProperty("--c", color); d.style.transform = `translateY(-50%) rotate(${ang}deg)`;
+    const orb = spawn("fx-orb", from.x, from.y); orb.style.setProperty("--c", color);
+    await anim(d, [{ clipPath: "inset(0 100% 0 0)", opacity: 1 }, { clipPath: "inset(0 0 0 0)", opacity: 1 }], 220, { easing: "ease-in" });
+    SND.play(kind === "wave" ? "splash" : "zap"); burst(pb, color, 12, 40);
+    await anim(d, [{ opacity: 1, filter: "brightness(1.6)" }, { opacity: 0.85, filter: "brightness(1)" }, { opacity: 0 }], 360);
+    d.remove(); orb.remove();
+  }
+
+  // Where a hit comes from: a card, or the item being used.
+  function sourcePoint(e) {
+    if (e.item && itemPos) return itemPos;
+    const el = cardEl(e.src); return el ? centre(el) : null;
+  }
+  function hitStyle(e) {
+    const s = card(e.src);
+    if (e.item === "skull-lantern") return "flame";
+    if (e.style === "spell") return s?.id === "the-little-mermaid" ? "wave" : "beam";
+    if (e.style === "ranged") return s?.aspect === "Witch" ? "beam" : s?.id === "crossbowman" ? "bolt" : "arrow";
+    return e.style;
+  }
+  async function impact(e, tgtEl, opts = {}) {
+    const p = tgtEl ? centre(tgtEl) : null;
+    if (e.shielded) { SND.play("clang"); shieldPop(p); await floatText(tgtEl, "Shielded", "fx-guard"); return; }
+    if (e.dmg === 0) { SND.play("clang"); shieldPop(p); await floatText(tgtEl, e.saved ? `St George blocks ${e.saved}` : "Blocked", "fx-guard"); return; }
+    if (!opts.silent) SND.play(e.style === "poison" ? "bubble" : e.style === "night" ? "dud" : "thump");
+    if (e.guarded) { SND.play("clang"); floatText(tgtEl, `−${e.guarded} Guard`, "fx-guard fx-small"); }
+    if (e.saved) floatText(tgtEl, `St George blocks ${e.saved}`, "fx-guard fx-small");
+    setHp(e.tgt, e.hp);
+    burst(p, e.style === "poison" ? "#5fae3a" : "#e04a2f", e.dmg >= 5 ? 14 : 8, 36);
+    const sh = shake(tgtEl, e.dmg >= 5);
+    await Promise.all([sh, floatText(tgtEl, `−${e.dmg}`, "fx-dmg" + (e.dmg >= 5 ? " fx-big" : "")),
+      e.survived ? floatText(tgtEl, "Survives!", "fx-gold fx-small") : null]);
+  }
+  function shieldPop(p) {
+    if (!p || skip) return;
+    const d = spawn("fx-shield", p.x, p.y, '<svg viewBox="0 0 24 28" width="44" height="52"><path d="M12 1 L23 5 V13 C23 20 18 25 12 27 C6 25 1 20 1 13 V5 Z" fill="rgba(90,140,200,.35)" stroke="#9cc4f0" stroke-width="2"/></svg>');
+    anim(d, [{ transform: "translate(-50%,-50%) scale(.4)", opacity: 0 }, { transform: "translate(-50%,-50%) scale(1.15)", opacity: 1, offset: 0.3 },
+      { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }], 700).then(() => d.remove());
+  }
+  async function onHit(e) {
+    const t = cardEl(e.tgt), style = hitStyle(e), from = sourcePoint(e), srcEl = e.item ? null : cardEl(e.src);
+    say(`${card(e.src)?.name || (e.item ? A.itemName?.(e.item) || "" : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
+    if (style === "melee" && srcEl && t && srcEl !== t) {
+      const beast = card(e.src)?.aspect === "Beast" || card(e.src)?.id === "mere-beast";
+      return lunge(srcEl, t, () => impact(e, t, { silent: true }), beast);
+    }
+    if ((style === "arrow" || style === "bolt") && from && t) { await shoot(from, t, style); return impact(e, t, { silent: true }); }
+    if ((style === "beam" || style === "wave") && from && t) { await beam(from, t, style === "wave" ? "#4fc3c8" : "#a77bff", style); return impact(e, t, { silent: true }); }
+    if (style === "flame" && from && t) { await beam(from, t, "#7dff6a", "beam"); return impact(e, t, { silent: true }); }
+    if (style === "poison") { bubbles(t); return impact(e, t); }
+    if (style === "night") { if (!nightShown) { nightShown = true; await nightfall(); } return impact(e, t); }
+    if (style === "effect" && srcEl && t && srcEl !== t) { await motes(centre(srcEl), centre(t), "#ff7a5c", 4); SND.play("spark"); }
+    return impact(e, t);
+  }
+  function bubbles(t) {
+    if (!t || skip) return;
+    const p = centre(t);
+    for (let i = 0; i < 7; i++) {
+      const d = spawn("fx-p fx-bubble", p.x + (Math.random() - 0.5) * p.w * 0.6, p.y + p.h * 0.3);
+      anim(d, [{ transform: "translate(-50%,-50%) scale(.4)", opacity: 0.9 }, { transform: `translate(-50%, ${-40 - Math.random() * 40}px) scale(1.2)`, opacity: 0 }],
+        700 + Math.random() * 300, { delay: D(i * 60) }).then(() => d.remove());
+    }
+  }
+  async function nightfall() {
+    SND.play("night"); say("Nightfall");
+    const board = A.boardEl(); if (!board) return;
+    board.classList.add("fx-night"); await wait(900);
+  }
+
+  // ---------- items ----------
+  const ITEM_FX = {
+    "golden-apple": { color: "#ffd24a", shape: "dot", sound: "heal" }, "gingerbread": { color: "#b06a2c", shape: "crumb", sound: "pop" },
+    "water-of-life": { color: "#6fd0ff", shape: "drop", sound: "splash" }, "mead-of-heorot": { color: "#f2b941", shape: "dot", sound: "heal" },
+    "mead-of-poetry": { color: "#ffe28a", shape: "dot", sound: "ping" }, "poisoned-apple": { color: "#4f8f2a", shape: "drop", sound: "bubble" },
+    "skull-lantern": { color: "#7dff6a", shape: "dot", sound: "zap" }, "spindle": { color: "#e8dcc0", shape: "thread", sound: "rattle" },
+    "the-giants-sword": { color: "#d8dee6", shape: "dot", sound: "shing" }, "dragons-blood": { color: "#c3261e", shape: "drop", sound: "clang" },
+    "draught-of-the-cauldron": { color: "#9be3a8", shape: "dot", sound: "revive" },
+  };
+  let itemCard = null;
+  // Load the item paintings early so they are ready when an item flies in.
+  try { for (const src of A.itemImages ? A.itemImages() : []) { const im = new Image(); im.src = src; } } catch {}
+  function clearItem() { if (itemCard) { const c = itemCard; itemCard = null; anim(c, [{ opacity: 1 }, { opacity: 0 }], 200).then(() => c.remove()); } itemPos = null; }
+  async function onItem(e) {
+    clearItem(); actor = null;
+    const board = A.boardEl(); if (!board) return;
+    const br = board.getBoundingClientRect(), mid = A.midEl ? A.midEl() : null;
+    const cx = br.left + br.width / 2, cy = mid ? centre(mid).y : br.top + br.height / 2;
+    const fx = ITEM_FX[e.item] || { color: "#fff", shape: "dot", sound: "pop" };
+    say(`${A.sideName(e.side)} uses ${e.name}`);
+    if (skip) return;
+    const bg = A.itemArt ? A.itemArt(e.item) : "";
+    const c = spawn("fx-item fx-item-" + (e.side ? "red" : "blue"), cx, cy, `<div class="fx-item-art" style="${bg}"></div><div class="fx-item-name">${esc(e.name)}</div>`);
+    itemCard = c;
+    const fromY = e.side ? -br.height * 0.6 : br.height * 0.6;
+    SND.play("card");
+    await anim(c, [{ transform: `translate(-50%, calc(-50% + ${fromY}px)) rotateY(90deg) scale(.6)`, opacity: 0 },
+      { transform: "translate(-50%,-50%) rotateY(0) scale(1.08)", opacity: 1, offset: 0.7 }, { transform: "translate(-50%,-50%) scale(1)", opacity: 1 }], 520, { easing: "cubic-bezier(.2,.8,.3,1)" });
+    c.classList.add("fx-glint"); await wait(380);
+    itemPos = { x: cx, y: cy };
+    const t = cardEl(e.tgt);
+    if (t) {
+      const pt = centre(t);
+      // Effects that land on a card: the item flies to it and bursts there.
+      if (e.item !== "skull-lantern") {
+        SND.play("whoosh");
+        await anim(c, [{ transform: "translate(-50%,-50%) scale(1)", opacity: 1 }, { transform: `translate(calc(-50% + ${pt.x - cx}px), calc(-50% + ${pt.y - cy}px)) scale(.35)`, opacity: 0.9 }], 380, { easing: "ease-in" });
+        c.remove(); itemCard = null; itemPos = pt;
+        SND.play(fx.sound); burst(pt, fx.color, 16, 50, fx.shape);
+        if (e.item === "spindle") spindle(pt);
+        if (e.item === "the-giants-sword") swordDrop(pt);
+      }
+    } else {
+      // No target: the item bursts where it is (Mead of Poetry, Mead of Heorot, the Cauldron).
+      SND.play(fx.sound); burst(itemPos, fx.color, 20, 70, fx.shape);
+      if (e.item === "mead-of-poetry") floatTextAt(itemPos, "+2 action points", "fx-gold");
+      await anim(c, [{ transform: "translate(-50%,-50%) scale(1)", opacity: 1 }, { transform: "translate(-50%,-50%) scale(1.25)", opacity: 0 }], 500);
+      c.remove(); itemCard = null;
+    }
+  }
+  function floatTextAt(p, text, cls) {
+    const d = spawn("fx-text " + cls, p.x, p.y, text);
+    anim(d, [{ transform: "translate(-50%,-50%)", opacity: 0 }, { transform: "translate(-50%,-120%)", opacity: 1, offset: 0.25 }, { transform: "translate(-50%,-220%)", opacity: 0 }], 1100).then(() => d.remove());
+  }
+  function spindle(p) {
+    const d = spawn("fx-text fx-sleep", p.x + 20, p.y - 10, "z z z");
+    anim(d, [{ transform: "translate(-50%,-50%)", opacity: 0 }, { transform: "translate(-20%,-140%)", opacity: 1, offset: 0.4 }, { transform: "translate(10%,-220%)", opacity: 0 }], 1200).then(() => d.remove());
+  }
+  function swordDrop(p) {
+    const d = spawn("fx-sword", p.x, p.y, '<svg viewBox="0 0 12 60" width="14" height="64"><path d="M6 0 L9 40 H3 Z" fill="#dfe5ec" stroke="#8a95a3"/><rect x="0" y="40" width="12" height="3" fill="#b8913e"/><rect x="4.5" y="43" width="3" height="12" fill="#5a3c22"/></svg>');
+    anim(d, [{ transform: "translate(-50%,-180%) rotate(180deg)", opacity: 0 }, { transform: "translate(-50%,-60%) rotate(180deg)", opacity: 1, offset: 0.5 }, { transform: "translate(-50%,-60%) rotate(180deg)", opacity: 0 }], 900).then(() => d.remove());
+  }
+
+  // ---------- everything else ----------
+  async function onAct(e) {
+    clearItem();
+    if (raised) raised.classList.remove("fx-acting");
+    const el = cardEl(e.uid); if (!el) return;
+    raised = el; el.classList.add("fx-acting"); actor = e.uid;
+    say(`${card(e.uid)?.name}: ${e.name}`);
+    if (A.actTags !== false && (!e.auto || speedNow() !== "fast")) {
+      const tag = spawn("fx-tag" + (e.auto ? " fx-tag-auto" : ""), 0, 0, esc(e.auto ? card(e.uid)?.name || e.name : e.name));
+      const p = centre(el); tag.style.left = p.x + "px"; tag.style.top = (p.y - p.h / 2 - 4) + "px";
+      anim(tag, [{ transform: "translate(-50%,-80%)", opacity: 0 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.15 }, { transform: "translate(-50%,-100%)", opacity: 1, offset: 0.8 }, { transform: "translate(-50%,-120%)", opacity: 0 }], e.auto ? 900 : 1400).then(() => tag.remove());
+    }
+    SND.play("tick");
+    await wait(e.auto ? 140 : 320);
+  }
+  async function onHeal(e) {
+    const t = cardEl(e.tgt), from = e.item ? itemPos : (e.src != null && e.src !== e.tgt ? (cardEl(e.src) ? centre(cardEl(e.src)) : null) : null);
+    say(`${card(e.tgt)?.name} heals ${e.amt}`);
+    if (from && t) await motes(from, centre(t), "#8ee08a", 6);
+    SND.play("heal"); setHp(e.tgt, e.hp);
+    if (t) burst(centre(t), "#a8f0a0", 8, 30);
+    await Promise.all([glow(t, "fx-healed", 500), floatText(t, `+${e.amt}`, "fx-heal")]);
+  }
+  async function onDeath(e) {
+    const el = cardEl(e.uid); if (!el) return;
+    say(`${card(e.uid)?.name} falls`);
+    SND.play("death");
+    if (raised === el) raised = null;
+    el.classList.remove("fx-acting");
+    burst(centre(el), "#5b4a3a", 18, 60);
+    await anim(el, [{ filter: "grayscale(0) brightness(1)", transform: "rotate(0) translateY(0)", opacity: 1 },
+      { filter: "grayscale(1) brightness(1.6)", transform: "rotate(-3deg) translateY(-4px)", opacity: 1, offset: 0.2 },
+      { filter: "grayscale(1) brightness(.6)", transform: "rotate(6deg) translateY(10px) scale(.92)", opacity: 0.28 }], 700, { easing: "ease-in" });
+    el.classList.add("fx-fallen");
+  }
+  async function onRevive(e, summon) {
+    const el = slotEl(e.side, e.slot); if (!el) return;
+    say(`${e.name} ${summon ? "appears" : "rises"}`);
+    SND.play(summon ? "summon" : "revive");
+    const p = centre(el);
+    if (!skip) {
+      const col = spawn("fx-pillar" + (summon ? " fx-smoke" : ""), p.x, p.y);
+      anim(col, [{ transform: "translate(-50%,-50%) scaleY(0)", opacity: 0 }, { transform: "translate(-50%,-50%) scaleY(1)", opacity: 1, offset: 0.4 }, { transform: "translate(-50%,-50%) scaleY(1)", opacity: 0 }], 900).then(() => col.remove());
+    }
+    burst(p, summon ? "#bfb5a5" : "#fff3c0", 14, 50);
+    el.getAnimations().forEach((a) => a.cancel());
+    el.classList.remove("fx-fallen");
+    if (A.fillSlot) A.fillSlot(el, e);
+    await anim(el, [{ transform: "scale(.6)", opacity: 0 }, { transform: "scale(1.06)", opacity: 1, offset: 0.7 }, { transform: "scale(1)", opacity: 1 }], 500);
+    await floatText(el, summon ? "Summoned" : "Revived", "fx-gold fx-small");
+  }
+  async function onSwap(e) {
+    const a = cardEl(e.a), b = cardEl(e.b); if (!a || !b) return;
+    say("The Dragon swaps places to save its Crown");
+    SND.play("whoosh");
+    const pa = centre(a), pb = centre(b);
+    await Promise.all([
+      anim(a, [{ transform: "translate(0,0)" }, { transform: `translate(${pb.x - pa.x}px,${pb.y - pa.y}px)` }], 520, { easing: "ease-in-out" }),
+      anim(b, [{ transform: "translate(0,0)" }, { transform: `translate(${pa.x - pb.x}px,${pa.y - pb.y}px)` }], 520, { easing: "ease-in-out" }),
+    ]);
+    await floatText(b, "Swaps in!", "fx-gold");
+  }
+  async function onRedirect(e) {
+    const to = cardEl(e.to), from = cardEl(e.from); if (!to || !from) return;
+    say(`${card(e.to)?.name} takes the blow meant for ${card(e.from)?.name}`);
+    SND.play("whoosh");
+    if (!reducedMotion && !skip) {
+      const pt = centre(to), pf = centre(from), dx = (pf.x - pt.x) * 0.45, dy = (pf.y - pt.y) * 0.45;
+      to.classList.add("fx-front");
+      await anim(to, [{ transform: "translate(0,0)" }, { transform: `translate(${dx}px,${dy}px) scale(1.06)` }], 220, { easing: "ease-out" });
+      floatText(to, "Intercepts!", "fx-gold fx-small");
+      await wait(160);
+      anim(to, [{ transform: `translate(${dx}px,${dy}px) scale(1.06)` }, { transform: "translate(0,0)" }], 320).then(() => { to.classList.remove("fx-front"); to.getAnimations().forEach((x) => x.cancel()); });
+    } else await floatText(to, "Intercepts!", "fx-gold fx-small");
+  }
+  async function onMiss(e) {
+    const t = cardEl(e.tgt), s = cardEl(e.src);
+    say(`${card(e.src)?.name} misses`);
+    SND.play("miss");
+    if (t && !reducedMotion) anim(t, [{ transform: "translateX(0)" }, { transform: "translateX(18px)", offset: 0.4 }, { transform: "translateX(0)" }], 500, { fill: "none" });
+    if (s) glow(s, "fx-strike", 200);
+    await floatText(t, "Miss!", "fx-miss");
+  }
+  // Status effects show their cause: a beam or lights from the card acting, or from the item.
+  async function status(e, text, cls, sound, extra, cause) {
+    const t = cardEl(e.tgt ?? e.uid);
+    const srcUid = e.src ?? actor, srcEl = srcUid != null && srcUid !== (e.tgt ?? e.uid) ? cardEl(srcUid) : null;
+    const from = e.item ? null : srcEl ? centre(srcEl) : null;
+    if (cause && from && t) {
+      if (cause === "beam") await beam(from, t, cls.includes("frost") ? "#bfe6ff" : "#c9b8ff", "beam");
+      else await motes(from, centre(t), cause, 5);
+    }
+    SND.play(sound);
+    if (extra) extra(t);
+    await floatText(t, text, cls);
+  }
+  async function onGuardUp(e) {
+    const s = e.src ?? actor;
+    const t = cardEl(e.tgt), from = e.item ? itemPos : (s != null && s !== e.tgt && cardEl(s) ? centre(cardEl(s)) : null);
+    if (from && t) await motes(from, centre(t), "#8fb8ee", 4);
+    SND.play("ping"); if (t) shieldPop(centre(t));
+    await floatText(t, `+${e.amt} Guard`, "fx-guard");
+  }
+  async function onOver(e) {
+    clearItem(); if (raised) raised.classList.remove("fx-acting");
+    SND.play(e.winner < 0 ? "lose" : "win");
+    say(e.winner < 0 ? "A draw" : `${A.sideName(e.winner)} wins`);
+    await wait(700);
+  }
+  async function onPhase(e) {
+    actor = null;
+    const mid = A.midEl ? A.midEl() : null; if (!mid) return;
+    const text = e.name === "upkeep" ? "End of round: poison, Nightfall and Crown passives" : "Items first, then cards in Speed order";
+    mid.textContent = text; mid.classList.remove("fx-phase"); void mid.offsetWidth; mid.classList.add("fx-phase");
+    await wait(e.name === "upkeep" ? 250 : 350);
+  }
+
+  const HANDLERS = {
+    phase: onPhase, act: onAct, item: onItem, hit: onHit, heal: onHeal, death: onDeath,
+    revive: (e) => onRevive(e, false), appear: (e) => onRevive(e, true), swap: onSwap, redirect: onRedirect, miss: onMiss,
+    stop: (e) => status(e, "Stopped", "fx-stop", "rattle", (t) => t && t.classList.add("fx-stopped"), "beam"),
+    freeze: (e) => status(e, "Frozen", "fx-frost", "frost", (t) => t && t.classList.add("fx-frozen"), "beam"),
+    skip: (e) => status(e, e.why === "frozen" ? "Frozen: skips" : e.why === "cancelled" ? "Cancelled" : "Stopped: skips", "fx-stop fx-small", "dud"),
+    wasted: (e) => status(e, "Wasted: no target", "fx-stop fx-small", "dud"),
+    guardUp: onGuardUp,
+    attackUp: (e) => status(e, `+${e.amt} Attack`, "fx-gold", "shing", null, "#ffd45c"),
+    poison: (e) => status(e, `+${e.amt} Poison`, "fx-poison", "bubble", bubbles, "#8fd14f"),
+    hp: (e) => e.delta > 0 ? onHeal({ ...e, amt: e.delta }) : impact({ ...e, dmg: -e.delta, style: "effect" }, cardEl(e.tgt)),
+    over: onOver,
+  };
+
+  async function play(events) {
+    skip = speedNow() === "off";
+    nightShown = !!A.boardEl()?.classList.contains("fx-night");
+    raised = null; itemPos = null; actor = null;
+    const board = A.boardEl();
+    if (board && !skip) board.scrollIntoView({ block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
+    // Pause briefly between steps so each cause and effect can be read.
+    const gap = { act: 0, hit: 120, heal: 80, death: 160, item: 120, phase: 0 };
+    for (const e of events) {
+      const h = HANDLERS[e.t];
+      if (h) { try { await h(e); } catch (err) { console.warn("fx", e, err); } }
+      await wait(gap[e.t] ?? 60);
+    }
+    clearItem();
+    if (raised) raised.classList.remove("fx-acting");
+    layer.replaceChildren();
+    skip = false;
+  }
+  return {
+    play,
+    skipNow() { skip = true; layer.replaceChildren(); },
+    get skipping() { return skip; },
+    get speed() { return speedNow(); },
+    setSpeed(v) { ownSpeed = v; PREFS.write("speed", v); },
+  };
+}
+// The adapter a page passes to makeFX:
+//   cardEl(uid), slotEl(side, slot), boardEl(), midEl()?   where the page's elements are
+//   card(uid)                                                 the engine's card (name, id, aspect)
+//   sideName(i)                                               "Blue"/"Red", or "You"/"The enemy"
+//   setHp(el, hp, cardEl)?                                    writes a health number (default "hp/max")
+//   itemArt(id)? itemImages()?                                CSS for an item's painting, and files to preload
+//   fillSlot(el, event)?                                      draws a revived card into an empty slot
+//   speed()?                                                  "normal" | "fast" | "off" if the page owns the setting
+//   announce, actTags                                         false to leave announcements or action tags to the page
+
+let FXP = null;
+const SPEAKER_SVG = (on) => `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>${on ? `<path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>` : `<path d="M17 9l5 6M22 9l-5 6"/>`}</svg>`;
+const soundButton = () => `<button class="btn quiet" data-act="sound" aria-pressed="${!SND.muted}" title="Sound" aria-label="Sound ${SND.muted ? "off" : "on"}">${SPEAKER_SVG(!SND.muted)}</button>`;
+const fxSpeed = () => (G.motion === false ? "off" : G.fast ? "fast" : "normal");
+function fx() {
+  return FXP ||= makeFX({
+    cardEl: (uid) => document.querySelector(`#board .card[data-uid="${uid}"]`),
+    slotEl: (side, slot) => document.querySelector(`#board [data-side="${side}"][data-slot="${slot}"]`),
+    boardEl: () => el("table"),
+    midEl: () => document.querySelector("#board .mid"),
+    card: (uid) => byUid(uid),
+    sideName: (i) => (i ? "The enemy" : "You"),
+    itemName: (id) => DATA.items[id]?.name,
+    setHp: (s, hp) => { s.textContent = hp; },
+    itemImages: () => Object.keys(DATA.items).filter((id) => ART[id]).map((id) => `img/${id}.jpg`),
+    itemArt: (id) => (ART[id] ? `background-image:url('img/${id}.jpg');background-size:cover;background-position:center` : ""),
+    fillSlot: (slot, e) => { slot.classList.add("fx-revived"); slot.textContent = short(e.name); },
+    speed: fxSpeed,
+    announce: false, // the caption under the board is already read out
+  });
+}
+
 // ---------- playing a round back ----------
 function lock() {
   if (S.phase !== "plan" || S.pick) return;
   const g = step();
   if (S.guided && (!g || !g.lock)) return nudge();
-  const st = S.st, before = snap(st), raw = [];
+  const st = S.st, before = snap(st), raw = [], from = (st.events || []).length;
   const foePlan = S.guided ? scriptedFoe() : E.botPlan(st, 1);
-  st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st) });
+  st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st), n: st.log.length });
   E.playRound(st, [S.plan, foePlan]);
   st.onLog = null;
-  S.frames = buildFrames(raw, before);
+  S.frames = buildFrames(raw, before, (st.events || []).slice(from));
+  SND.unlock();
   S.plan = emptyPlan(); U.sheet = null; S.phase = "play"; S.fi = -1;
   nextFrame();
 }
 const isNightLine = (f) => f && /^Nightfall deals/.test(f.text);
-function buildFrames(raw, before) {
-  const out = []; let lines = [], last = before, lastSig = sig(before);
+// Each event goes with the frame of the log line it explains (see ev in the engine): the line just
+// before it, or for the events that open an action, the line just after.
+const OPENS = (e) => e.t === "phase" || e.t === "skip" || (e.t === "act" && e.auto);
+function buildFrames(raw, before, events = []) {
+  const out = [], frameOf = []; let lines = [], last = before, lastSig = sig(before);
   raw.forEach((f, k) => {
+    frameOf[k] = out.length;
     if (/ wins\.$| a draw\.$/.test(f.text)) return;
     lines.push(f.text);
     const sg = sig(f.snap), nxt = raw[k + 1];
     if (isNightLine(f) && isNightLine(nxt)) return;
     if (sg !== lastSig || !nxt || nxt.acting !== f.acting) {
       const actor = f.acting ? inSnap(last, f.acting) || inSnap(f.snap, f.acting) : null;
-      out.push({ text: tidy(lines, actor), acting: f.acting, snap: f.snap, prev: last, auto: !!actor && actor.kind === "front" });
+      out.push({ text: tidy(lines, actor), acting: f.acting, snap: f.snap, prev: last, auto: !!actor && actor.kind === "front", events: [] });
       lines = []; last = f.snap; lastSig = sg;
     }
   });
+  if (!out.length) return out;
+  const rawAt = new Map(raw.map((f, k) => [f.n, k]));
+  for (const e of events) {
+    const k = rawAt.get(OPENS(e) ? e.n + 1 : e.n);
+    out[Math.min(k == null ? (e.n < (raw[0]?.n ?? 0) ? 0 : out.length - 1) : frameOf[k], out.length - 1)].events.push(e);
+  }
   return out;
 }
 // Turns the engine's log lines into a sentence or two about what just happened.
@@ -1893,16 +2507,32 @@ function tidy(lines, actor) {
   if (uses) return numbers ? `${cap(who)} uses ${uses.act}: ${fx.join(" ")}` : `${cap(who)} uses ${uses.act}${uses.on ? ` on ${the(uses.on)}` : ""}. ${fx.join(" ")}`.trim();
   return numbers && who ? `${cap(who)}: ${fx.join(" ")}` : fx.join(" ");
 }
-function nextFrame() {
+// Shows one frame: the caption goes up over the board as it was, the events play out on it, then the
+// board is redrawn as it is now and the caption stays long enough to read.
+async function nextFrame() {
   S.fi += 1;
   const f = S.frames[S.fi];
   if (!f) return endPlayback();
-  S.view = f.snap; S.prev = f.prev; S.caption = f.text; S.acting = f.acting;
+  const token = S.token, read = Math.min(1800, 600 + f.text.length * 12) / (G.fast ? 2 : 1);
+  const animate = f.events.length > 0 && fxSpeed() !== "off";
+  S.caption = f.text; S.acting = f.acting;
+  let spent = 0;
+  if (animate) {
+    S.view = f.prev; S.prev = null; S.quiet = true; S.animating = true; render();
+    const t0 = performance.now();
+    try { await fx().play(f.events); } catch (err) { console.error(err); }
+    S.animating = false;
+    if (token !== S.token) return;
+    spent = performance.now() - t0;
+  }
+  S.view = f.snap; S.prev = f.prev; S.quiet = animate;
   render();
-  S.timer = setTimeout(nextFrame, Math.min(1800, 600 + f.text.length * 12) / (G.fast ? 2 : 1));
+  S.timer = setTimeout(nextFrame, animate ? Math.max(G.fast ? 250 : 450, read - spent) : read);
 }
 function endPlayback() {
   clearTimeout(S.timer);
+  S.token = (S.token || 0) + 1; S.quiet = false;
+  if (S.animating) { fx().skipNow(); S.animating = false; }
   const st = S.st;
   Object.assign(S, { view: snap(st), prev: null, caption: "", acting: null, frames: [], phase: st.over ? "over" : "plan" });
   if (S.guided) {
@@ -1973,7 +2603,7 @@ function battleCard(c, v, opts = {}) {
     if (S.acting === c.uid) cls.push("acting");
     const p = S.prev && inSnap(S.prev, c.uid);
     const now = opts.fallen ? { health: 0, guard: 0 } : c;
-    if (p) {
+    if (p && !S.quiet) {
       const d = now.health - p.health;
       if (d < 0) { cls.push("hit"); floats = `<span class="float dmg">−${-d}</span>`; }
       else if (d > 0) floats = `<span class="float heal">+${d}</span>`;
@@ -1996,7 +2626,7 @@ function battleCard(c, v, opts = {}) {
   const mark = S.plan && (S.plan.hunt === c.uid ? "Marked" : S.plan.rumpel === c.uid ? "Named" : "");
   const overlay = order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Stopped</span>` : mark ? `<span class="badge">${mark}</span>`
     : S.phase === "play" && S.acting === c.uid && c.kind !== "hero" ? `<span class="order">On its own</span>` : c.poison ? `<span class="badge">Poison ${c.poison}</span>` : "";
-  return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown,
+  return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}" data-side="${side}" data-slot="${c.slot}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown,
     atk: c.atk, ranged: c.ranged, guard: c.guard, hp: opts.fallen ? 0 : c.health, hurt: c.health < c.maxHealth, overlay, floats,
     label: `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}${c.kind === "hero" ? `, Speed ${c.spd}` : ", acts on its own"}` });
 }
@@ -2005,7 +2635,7 @@ function slotHtml(v, side, slot) {
   if (c) return battleCard(c, v);
   const gone = S.phase === "play" && S.prev && S.prev.sides[side].slots[slot];
   if (gone && !inSnap(v, gone.uid)) return battleCard(gone, S.prev, { fallen: true });
-  return `<div class="card slot" aria-hidden="true"></div>`;
+  return `<div class="card slot" aria-hidden="true" data-side="${side}" data-slot="${slot}"></div>`;
 }
 
 // The full card, as it is printed: used when a pack is opened and in the collection.
@@ -2044,7 +2674,7 @@ function renderBattle() {
     <button class="menu" data-act="menu">Menu</button>`;
   const table = el("table");
   table.style.backgroundImage = `url(img/${b.id}.jpg)`;
-  table.classList.toggle("night", night);
+  table.classList.toggle("night", night); table.classList.toggle("fx-night", night);
   const sideHtml = (i) => `<section class="side ${i ? "foe" : "me"}" aria-label="${i ? "Enemy cards" : "Your cards"}">
     ${[[1], [2, 3], [4, 5, 6]].map((r) => `<div class="rank">${r.map((s) => slotHtml(v, i, s)).join("")}</div>`).join("")}</section>`;
   el("board").innerHTML = `${sideHtml(1)}<div class="mid"></div>${sideHtml(0)}`;
@@ -2058,7 +2688,7 @@ function renderBattle() {
   if (S.phase === "play") {
     const f = S.frames[S.fi];
     who = `Round ${f?.prev.round ?? v.round}${f && f.auto ? " · Front rank, acting on its own" : ""}`; text = esc(S.caption);
-    button = `<button class="btn quiet" data-act="speed" aria-pressed="${!!G.fast}" title="Playback speed" aria-label="Playback speed ${G.fast ? "fast" : "normal"}">${G.fast ? "×2" : "×1"}</button><button class="btn quiet" data-act="skip">Skip</button>`;
+    button = `${soundButton()}<button class="btn quiet" data-act="speed" aria-pressed="${!!G.fast}" title="Playback speed" aria-label="Playback speed ${G.fast ? "fast" : "normal"}">${G.fast ? "×2" : "×1"}</button><button class="btn quiet" data-act="skip">Skip</button>`;
   } else if (g) {
     who = "Tutorial"; text = g.say;
     if (g.next) button = `<button class="btn focus" data-act="next">Continue</button>`;
@@ -2301,6 +2931,8 @@ function overHtml() {
   if (o.type === "menu") {
     return `<div class="panel"><p class="eyebrow">Crown &amp; Fable</p><h1>${esc(S.board.name)}</h1>
       <div class="btns"><button class="btn" data-act="resume">Back to the fight</button>
+      <button class="btn quiet" data-act="sound" aria-pressed="${!SND.muted}">Sound: ${SND.muted ? "off" : "on"}</button>
+      <button class="btn quiet" data-act="motion" aria-pressed="${G.motion !== false}">Card animations: ${G.motion === false ? "off" : "on"}</button>
       ${S.kind === "tutorial" ? `<button class="btn quiet" data-act="tutorial">Restart the tutorial</button><button class="btn quiet" data-act="leave">Leave the tutorial</button>`
         : `<button class="btn quiet" data-act="concede">Concede this fight</button>`}</div>
       ${S.kind === "tutorial" ? "" : `<p class="credit">Conceding counts as a defeat. Cards already lost stay lost.</p>`}</div>`;
@@ -2359,6 +2991,7 @@ document.addEventListener("click", (e) => {
   const t = e.target.closest("[data-act],[data-go],[data-tab]");
   if (!t) { if (e.target.id === "sheet" && !step()) { U.sheet = U.sheet && U.sheet.back ? U.sheet.back : null; render(); } return; }
   if (t.disabled) return;
+  if (S.animating && !["skip", "speed", "sound", "menu"].includes(t.dataset.act)) return;
   if (t.dataset.go) return go(t.dataset.go);
   if (t.dataset.tab) { U.tab = t.dataset.tab; return render(); }
   const act = t.dataset.act, d = t.dataset;
@@ -2372,7 +3005,9 @@ document.addEventListener("click", (e) => {
     case "lock": lock(); break;
     case "next": { const g = step(); if (g && g.next) { advance(); render(); } break; }
     case "skip": endPlayback(); break;
-    case "speed": G.fast = !G.fast; save(); clearTimeout(S.timer); S.timer = setTimeout(nextFrame, 250); render(); break;
+    case "speed": G.fast = !G.fast; save(); if (!S.animating) { clearTimeout(S.timer); S.timer = setTimeout(nextFrame, 250); } render(); break;
+    case "sound": SND.setMuted(!SND.muted); if (!SND.muted) SND.play("ping"); render(); break;
+    case "motion": G.motion = G.motion === false; save(); render(); break;
     case "night": if (!step() && !S.pick) { U.sheet = { type: "night" }; render(); } break;
     case "night-ok": G.nightSeen = true; save(); U.over = null; render(); break;
     case "close": U.sheet = null; render(); break;

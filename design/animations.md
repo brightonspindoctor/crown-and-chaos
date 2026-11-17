@@ -2,7 +2,9 @@
 
 Every change on the board is animated together with its cause, so a player can always see why something happened. The rules engine records each effect as an event (`st.events`). Screens play those events back in order and never work out effects for themselves, so an animation can't show something the rules didn't do. `sim/events-check.mjs` plays 1,500 random fights and fails if the events and the real state ever disagree.
 
-The playtest table (`play/index.html`, code in `play/fx.js`) is the first screen to use this.
+Two screens use this: the prototype (`game/index.html`, the tutorial and fights) and the playtest table (`play/index.html`). Both share one player, `play/fx.js` with its styles in `play/fx.css`. Each page makes its own copy with `makeFX(adapter)`, where the adapter says where that page keeps its cards (see the end of `play/fx.js`).
+
+In the prototype, each caption under the board is shown first. Its events then play out on the board as it was, and the board is redrawn as it is now. Every event carries `n`, the number of log lines written before it. An event explains the log line just before it, except `phase`, `skip` and a front-rank card's `act`, which open what follows. That is how the prototype puts each animation with its caption, and `sim/events-check.mjs` checks the pairing. The ×1/×2 button sets the animation speed, Skip stops it, the speaker button mutes the sounds, and the Menu has switches for sound and for card animations.
 
 ## How a round plays out
 

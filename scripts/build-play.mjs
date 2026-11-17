@@ -22,6 +22,7 @@ const engine = readFileSync(root + "engine/engine.mjs", "utf8").replace(/^export
 const html = readFileSync(root + "play/template.html", "utf8")
   .replace("/*DATA*/", () => JSON.stringify(slim).replace(/</g, "\\u003c"))
   .replace("/*ENGINE*/", () => engine)
-  .replace("/*FX*/", () => readFileSync(root + "play/fx.js", "utf8"));
+  .replace("/*FX*/", () => readFileSync(root + "play/fx.js", "utf8"))
+  .replace("/*FXCSS*/", () => readFileSync(root + "play/fx.css", "utf8"));
 writeFileSync(root + "play/index.html", html);
 console.log(`play/index.html written (${(html.length / 1024).toFixed(0)} KB)`);
