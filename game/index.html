@@ -270,6 +270,7 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .meter { min-width: 150px; text-align: right; font: 600 12px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border-radius: 6px; padding: 4px; }
 .meter b { font-size: 20px; color: var(--ink); }
 .meter.over b { color: #ff8f73; }
+.meter .spare { display: block; margin-top: 6px; font: italic 400 13px/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--gold-text); }
 .meter .track { height: 6px; border-radius: 3px; background: var(--line); margin-top: 6px; overflow: hidden; }
 .meter .track i { display: block; height: 100%; background: var(--gold-leaf); }
 .meter.over .track i { background: var(--vermilion); }
@@ -1779,12 +1780,25 @@ function begin(kind, lineups, opts = {}) {
   render();
 }
 const startTutorial = () => begin("tutorial", TUTORIAL_LINEUPS, { seed: TUTORIAL_SEED });
-function startFight() {
+// Empty slots in a legal line-up: listed before a fight so nobody walks in short by accident.
+function gaps(lu) {
+  const n = (arr) => arr.filter((x) => !x).length;
+  const out = [], h = n(lu.heroes), f = n(hasKoschei(lu) ? lu.front.slice(0, 2) : lu.front), i = n(lu.items);
+  const spareItems = Object.entries(G.items).reduce((sum, [id, k]) => sum + Math.max(0, k - usedIn(lu, id)), 0);
+  if (h) out.push(`${h} empty hero slot${h > 1 ? "s" : ""}: ${h === 2 ? "only your Crown will fight, and an enemy can reach it straight away" : "your Crown can be attacked hand to hand once the other hero falls"}.`);
+  if (f) out.push(`${f} empty front-rank slot${f > 1 ? "s" : ""}. Villagers are free, cost 1 Renown and never run out.`);
+  if (i) out.push(`${i} empty item slot${i > 1 ? "s" : ""}${spareItems ? "" : ", but you have no spare items"}.`);
+  return out;
+}
+function startFight(force) {
   prune();
-  if (issues(G.lineup).length) { U.screen = "formation"; return render(); }
+  if (issues(G.lineup).length) { U.screen = "formation"; U.over = null; return render(); }
+  const gap = gaps(G.lineup);
+  if (gap.length && !force) { U.over = { type: "gaps", gaps: gap }; return render(); }
   const lu = G.lineup, foe = randomFoe();
   const mine = { crown: lu.crown, heroes: lu.heroes.filter(Boolean), front: lu.front.map((f) => f || null), items: lu.items.filter(Boolean) };
   begin("fight", [mine, foe], { foeName: `${short(DATA.heroes[foe.crown].name)}'s company` });
+  S.renown = renownOf(lu);
 }
 
 // ---------- the guide ----------
@@ -2554,7 +2568,11 @@ function finishFight() {
     U.over = { type: "tutorial-end", winner: w, first }; return;
   }
   const mine = S.lineups[0], lines = [];
-  if (w === 0) { lines.push(["Victory", PAY.win]); G.wins++; G.crowns++; }
+  if (w === 0) {
+    lines.push(["Victory", PAY.win]); G.wins++; G.crowns++;
+    const spare = RENOWN_CAP - (S.renown ?? RENOWN_CAP); // 1 gold for each point of Renown left unspent, only on a win
+    if (spare > 0) lines.push([`Won with ${spare} Renown to spare`, spare]);
+  }
   else {
     lines.push([w === 1 ? "Defeat" : "A draw", PAY.loss]); if (w === 1) G.losses++; else G.draws++;
     const foeCrown = E.crownCard(st, 1);
@@ -2856,7 +2874,7 @@ function collectionHtml() {
     <p class="lede">${U.tab === "hero" ? "Heroes are yours to keep and come only from packs." : U.tab === "front" ? "A front-rank card that dies in a fight is gone for good. Villagers are free and never run out." : "Items are single use: one that is used in a fight leaves your collection."}</p></div>`;
 }
 const TIPS = [
-  { say: "Every card has a Renown cost, shown when you choose it for a slot. Your whole line-up may cost at most 50 Renown, so you can't simply field all your strongest cards.", focus: "meter" },
+  { say: "Every card has a Renown cost, shown when you choose it for a slot. Your whole line-up may cost at most 50 Renown, so you can't simply field all your strongest cards. Win with Renown to spare and you earn 1 gold for each unspent point.", focus: "meter" },
   { say: "The hero in the bottom slot wears the Crown. Only that hero's Crown passive is switched on, and if they fall you lose. Any hero can wear it, so each of yours plays differently there.", focus: "crown" },
   { say: "Bonds work in any slot. Heroes from the same tale or realm strengthen each other, so St George, the Dragon and the Princess are at their best together.", focus: "bonds" },
   { say: "Front-rank cards act on their own. One that dies in a fight is gone for good; survivors come back. Villagers are free and never run out.", focus: "front" },
@@ -2878,7 +2896,7 @@ function formationHtml() {
     ${hs.map((h) => `<p class="rule"><b>Bond · ${esc(h.name)}</b>${esc(h.bond.text)}</p>`).join("")}
     <div class="tags">${tally("tale")}${tally("realm")}</div>` : `<p class="rule off">Choose your heroes to see their Crown passive and Bonds here.</p>`;
   return `<div class="wrap"><div class="bar"><h1>Line-up</h1>
-      <div class="meter${r > RENOWN_CAP ? " over" : ""}${f === "meter" ? " focus" : ""}" role="img" aria-label="${r} of ${RENOWN_CAP} Renown used">Renown <b>${r}</b> / ${RENOWN_CAP}<div class="track"><i style="width:${Math.min(100, (r / RENOWN_CAP) * 100)}%"></i></div></div></div>
+      <div class="meter${r > RENOWN_CAP ? " over" : ""}${f === "meter" ? " focus" : ""}" role="img" aria-label="${r} of ${RENOWN_CAP} Renown used">Renown <b>${r}</b> / ${RENOWN_CAP}<div class="track"><i style="width:${Math.min(100, (r / RENOWN_CAP) * 100)}%"></i></div>${r < RENOWN_CAP ? `<span class="spare">+${RENOWN_CAP - r} gold if you win</span>` : ""}</div></div>
     ${tip ? `<div class="tip" aria-live="polite"><p>${tip.say}</p><button class="btn" data-act="tip">${G.tip === TIPS.length - 1 ? "Got it" : "Next"}</button></div>` : ""}
     <div class="form"><div class="wrap" style="padding:0;gap:10px">
       <p class="rowlabel">Front rank · acts on its own</p>
@@ -2937,6 +2955,12 @@ function overHtml() {
       ${S.kind === "tutorial" ? `<button class="btn quiet" data-act="tutorial">Restart the tutorial</button><button class="btn quiet" data-act="leave">Leave the tutorial</button>`
         : `<button class="btn quiet" data-act="concede">Concede this fight</button>`}</div>
       ${S.kind === "tutorial" ? "" : `<p class="credit">Conceding counts as a defeat. Cards already lost stay lost.</p>`}</div>`;
+  }
+  if (o.type === "gaps") {
+    return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">Before you fight</p><h1 style="text-align:center">Check your line-up</h1>
+      <ul>${o.gaps.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
+      <p style="font-size:15.5px;color:var(--muted)">Unspent Renown pays 1 gold a point if you win, so a lean line-up can be a choice.</p>
+      <div class="btns"><button class="btn" data-go="formation">Back to my line-up</button><button class="btn quiet" data-act="fight-anyway">Fight anyway</button></div></div>`;
   }
   if (o.type === "night") {
     return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">Round ${E.NIGHTFALL_ROUND}</p><h1 style="text-align:center">Night falls</h1>${NIGHT_RULES}
@@ -3034,6 +3058,7 @@ document.addEventListener("click", (e) => {
     case "autofill": autoFill(); save(); render(); break;
     case "clear": G.lineup = emptyLineup(); save(); render(); break;
     case "fight": U.over = null; startFight(); break;
+    case "fight-anyway": U.over = null; startFight(true); break;
     case "buy": buy(d.id); break;
     case "buy-pack": if (G.gold >= PRICES.pack) { G.gold -= PRICES.pack; openPack(fablePack(), { title: "Fable pack" }); render(); } break;
     case "reset": if (U.confirmReset) { G = fresh(); save(); U.confirmReset = false; go("home"); } else { U.confirmReset = true; render(); } break;
