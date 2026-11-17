@@ -1,6 +1,19 @@
 {
-  "ranAt": "2026-11-16T09:09:46.824Z",
-  "fetched": [],
+  "ranAt": "2026-11-17T15:53:16.257Z",
+  "fetched": [
+    {
+      "id": "rumpelstiltskin",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20E.%20Rogers%2C%20Rumpelstiltzchen.jpg",
+      "bytes": 285427
+    },
+    {
+      "id": "rumpelstiltskin-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Walther%20Caspari%20-%20Rumpelstilzchen%2C%20c.%201905.jpg",
+      "bytes": 165011
+    }
+  ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -22,7 +35,7 @@
     "the-wolf",
     "red-riding-hood-painting",
     "the-huntsman",
-    "rumpelstiltskin",
+    "rumpelstiltskin-variant-3",
     "gretel",
     "baba-yaga",
     "koschei",
@@ -115,6 +128,7 @@
     }
   ],
   "notCleared": [
+    "rumpelstiltskin-anderson",
     "gwydion-blodeuwedd-plate",
     "vasilisa-the-wise-variant-2",
     "gwydion-variant",
