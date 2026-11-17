@@ -41,6 +41,11 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const a = card(st, 1, "king-arthur");
   ok("Arthur's Guard bond is reversed (2 - 1 = 1)", E.guardOf(st, a) === 1, E.guardOf(st, a));
   const st2 = game(lu("king-arthur", ["bran-the-blessed", "renfield"]), lu("the-dragon"));
+  st2.round = 1;
+  ok("Arthur's Round Table is off in round 1", E.attackOf(st2, card(st2, 0, "renfield")) === 2, E.attackOf(st2, card(st2, 0, "renfield")));
+  st2.round = 8;
+  ok("Arthur's Round Table is off from nightfall", E.attackOf(st2, card(st2, 0, "renfield")) === 2, E.attackOf(st2, card(st2, 0, "renfield")));
+  st2.round = 3;
   ok("Under Arthur, Bran counts every hero as Cymru (+2) and Albion (+1)", E.guardOf(st2, card(st2, 0, "bran-the-blessed")) === 3, E.guardOf(st2, card(st2, 0, "bran-the-blessed")));
   ok("Under Arthur, Renfield counts every hero as Gothic", E.attackOf(st2, card(st2, 0, "renfield")) === 4);
 }

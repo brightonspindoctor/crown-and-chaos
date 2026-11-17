@@ -8,7 +8,7 @@
   "tags": [],
   "stats": {
     "health": 9,
-    "attack": 3,
+    "attack": 2,
     "ranged": true,
     "guard": 0,
     "speed": 5
@@ -32,7 +32,7 @@
     {
       "name": "Split the Arrow",
       "ap": 2,
-      "text": "A Ranged attack for 5 on any enemy card."
+      "text": "A Ranged attack for 4 on any enemy card."
     }
   ],
   "art": "robin-hood",

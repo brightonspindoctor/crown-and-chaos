@@ -194,7 +194,8 @@ function neighbours(st, c) {
 }
 
 // For bonds: realm/tale checks bend under King Arthur's crown.
-function arthur(st, i) { return crownIs(st, i, "king-arthur"); }
+// The Round Table works from round 3 until nightfall.
+function arthur(st, i) { return crownIs(st, i, "king-arthur") && st.round >= 3 && !isNight(st); }
 function isRealm(st, c, realm) { return c.realm === realm || (arthur(st, c.side) && c.kind === "hero"); }
 function isTale(st, c, tale) { return c.tale === tale || (arthur(st, c.side) && c.kind === "hero"); }
 function otherHeroes(st, c, pred = () => true) { return heroes(st, c.side).filter((h) => h.uid !== c.uid && pred(h)); }
@@ -381,9 +382,9 @@ export function damage(st, src, target, amount, opts = {}) {
   let amt = amount, saved = 0, guarded = 0;
   if (atk && src) {
     const s = src.side, f = bondFactor(st, s);
-    if (crownIs(st, s, "gretel") && t.aspect === "Witch") amt += 2;
+    if (crownIs(st, s, "gretel") && ["Witch", "Beast", "Slayer"].includes(t.aspect)) amt += 2;
     if (crownIs(st, s, "the-wolf") && injured(t)) amt += 1;
-    if (crownIs(st, s, "the-huntsman") && st.marks[`hunt${s}`] === t.uid) amt += 2;
+    if (crownIs(st, s, "the-huntsman") && st.marks[`hunt${s}`] === t.uid) amt += 1;
     if (st.marks[`wanted${s}`] === t.uid) amt += 1;
     if (f && heroes(st, s).some((h) => h.id === "the-dragon") && t.aspect === "Slayer") amt += f;
     if (src.flags.giantSword === st.round) { amt += 3; opts = { ...opts, ignoreGuard: true }; src.flags.giantSword = -1; }
@@ -398,10 +399,10 @@ export function damage(st, src, target, amount, opts = {}) {
     }
   }
   amt = Math.max(0, amt);
-  if (atk && crownIs(st, t.side, "maid-marian")) amt = Math.min(5, amt);
+  if (atk && crownIs(st, t.side, "maid-marian")) amt = Math.min(4, amt);
   if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
     st.sides[t.side].flags.georgeRound = st.round;
-    const blocked = Math.min(5, amt);
+    const blocked = Math.min(3, amt);
     amt -= blocked; saved = blocked;
     if (blocked) log(st, `St George blocks ${blocked} damage to ${t.name}.`);
   }
@@ -732,7 +733,7 @@ export const ACTIONS = {
   "renfield": { "The master is at hand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.guardCrownRound = st.round; } },
     "Betrayal": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 6, { ignoreGuard: true }); a.guardLeft = 0; a.noGuard = true; a.health = Math.min(a.health, 1); log(st, "Renfield's betrayal leaves him on 1 Health."); } } },
   "rhiannon": { "The unhurried pace": { t: "enemyHero", go: (st, a, x) => { x.flags.speedOneRound = st.round; } } },
-  "robin-hood": { "Split the Arrow": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 5, { ranged: true }) } },
+  "robin-hood": { "Split the Arrow": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 4, { ranged: true }) } },
   "rumpelstiltskin": { "Straw into gold": { t: "none", go: (st, a) => { const side = st.sides[a.side]; const it = side.usedItems.pop(); if (it) { side.items.push(it); log(st, `Rumpelstiltskin spins back ${itemName(st, it)}.`); } } } },
   "sheriff-of-nottingham": { "Wanted": { t: "enemyAny", go: (st, a, x) => { st.marks[`wanted${a.side}`] = x.uid; log(st, `${x.name} is Wanted.`); } },
     "Break their spirit": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.noGuard = true; x.guardLeft = 0; } } },
@@ -1100,7 +1101,8 @@ function valueOf(st, a, act, x) {
     case "Skull fire": return dmgValue(3, x);
     case "Mortar ride": return x ? (x.kind === "hero" ? 10 + x.health / 2 : 4 + x.health / 2) : 0;
     case "Excalibur": return dmgValue(5 + (x?.guardLeft || 0), x);
-    case "Champion's charge": case "Lance Charge": case "Split the Arrow": return dmgValue(5, x);
+    case "Champion's charge": case "Lance Charge": return dmgValue(5, x);
+    case "Split the Arrow": return dmgValue(4, x);
     case "Fair fight": return dmgValue(4, x) + (x && !x.flags.acted ? attackOf(st, x) : 0);
     case "Arm-wrench": return dmgValue(attackOf(st, a), x) + 4;
     case "Bite": return dmgValue(attackOf(st, a), x) * 1.4;
