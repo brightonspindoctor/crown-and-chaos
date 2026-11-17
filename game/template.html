@@ -123,6 +123,9 @@ h1, h2, h3, p { margin: 0; }
 .chip { flex: none; white-space: nowrap; font-size: 13px; line-height: 1.2; border: 1px solid var(--line); border-radius: 99px; padding: 2px 4px 2px 9px; display: inline-flex; align-items: center; gap: 4px; background: var(--surface); min-height: 26px; }
 .chip button { width: 22px; height: 22px; border-radius: 50%; color: var(--muted); font-size: 15px; line-height: 1; }
 button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--gold-text); }
+.chip.crowned { border-color: var(--gold-leaf); color: var(--gold-text); padding-left: 7px; background: #1c1a24; }
+.chip.crowned svg { width: 14px; height: 14px; fill: var(--gold-leaf); flex: none; }
+.chip .ml { width: auto; height: auto; border-radius: 0; color: inherit; font-size: inherit; padding: 2px; }
 .ctl { flex: none; display: flex; align-items: center; gap: 10px; height: 40px; }
 .ap { display: flex; align-items: center; gap: 4px; }
 .ap span { font: 600 10px/1 var(--display); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; margin-right: 3px; }
@@ -681,12 +684,29 @@ function useItem() {
   if (g) advance();
   render();
 }
+// Crown passives that ask you to pick an enemy hero each round while planning (free: no action points).
 function markInfo() {
   const crown = E.crownCard(S.st, 0); if (!crown) return null;
   const foes = E.heroes(S.st, 1);
-  if (crown.id === "the-huntsman") return { key: "hunt", label: "Huntsman's mark", name: "The Huntsman's mark", cards: foes };
-  if (crown.id === "rumpelstiltskin") { const used = S.st.sides[0].flags.rumpelPicked || []; return { key: "rumpel", label: "Guess a name", name: "Rumpelstiltskin's guess", cards: foes.filter((h) => !used.includes(h.uid)) }; }
+  if (crown.id === "the-huntsman") return { key: "hunt", uid: crown.uid, who: "The Huntsman", label: "Mark a hero", name: "The Huntsman's mark", cards: foes,
+    pick: "Tap the enemy hero to mark. Your attacks on it deal +2 this round, and a Beast can't heal.",
+    how: "Free each round, no action points. Mark one enemy hero: your attacks on it deal +2 damage this round, and if it is a Beast it can't heal." };
+  if (crown.id === "rumpelstiltskin") {
+    const used = S.st.sides[0].flags.rumpelPicked || [];
+    return { key: "rumpel", uid: crown.uid, who: "Rumpelstiltskin", label: "Guess a name", name: "Rumpelstiltskin's guess", cards: foes.filter((h) => !used.includes(h.uid)),
+      used: used.map((u) => byUid(u)?.name).filter(Boolean),
+      pick: "Tap the enemy hero you think will act. Right: its action is cancelled and it takes 2. Wrong: Rumpelstiltskin takes 4.",
+      how: "Free each round, no action points. Name the enemy hero you think will act this round. If you're right, its action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 4. Each enemy hero can be named once a fight." };
+  }
   return null;
+}
+function markBox(mk) {
+  const chosen = S.plan[mk.key] && byUid(S.plan[mk.key]);
+  return `<div class="box"><h2>Crown passive · your choice this round</h2><p class="rule">${esc(mk.how)}</p>
+    ${mk.used && mk.used.length ? `<p class="rule off">Already named: ${mk.used.map((n) => esc(short(n))).join(", ")}.</p>` : ""}
+    ${mk.cards.length ? `<p class="rule"><b>This round</b>${chosen ? esc(chosen.name) : "Nobody yet"}</p>
+      <div class="row"><button class="btn" data-act="mark">${chosen ? "Change" : esc(mk.label)}</button>${chosen ? `<button class="btn quiet" data-act="unmark">Clear</button>` : ""}</div>`
+      : `<p class="rule off">Every enemy hero has already been named.</p>`}</div>`;
 }
 function scriptedFoe() {
   const f = TUTORIAL[S.r].foe, a = live(1, f.slot);
@@ -989,10 +1009,16 @@ function renderBattle() {
   } else if (S.phase === "plan") {
     who = S.foeName ? `Your plan · against ${esc(S.foeName)}` : "Your plan";
     const dusk = v.round === E.NIGHTFALL_ROUND - 1 ? " Night falls next round: healing stops and every card starts taking damage." : night ? ` It is night: nothing heals, and every card takes ${v.round - E.NIGHTFALL_ROUND + 2} damage when the next round starts.` : "";
-    text = S.pick ? `Choose a target for ${esc(S.pick.name2 || S.pick.name)}.`
+    const mkNow = markInfo();
+    text = S.pick && S.pick.kind === "mark" ? esc(mkNow ? mkNow.pick : "")
+      : S.pick ? `Choose a target for ${esc(S.pick.name2 || S.pick.name)}.`
       : (ap > 0 ? (S.plan.orders.length || S.plan.items.length ? "Give another order, or lock in." : "Tap one of your heroes to give it an order. Tap any card to read it.") : "No action points left. Lock in your plan.") + dusk;
-    const mk = markInfo(), arr = [];
-    if (mk && mk.cards.length && !S.pick) arr.push(`<button class="chip" data-act="mark">${esc(mk.label)}: ${S.plan[mk.key] ? esc(short(byUid(S.plan[mk.key]).name)) : "nobody"}</button>`);
+    const mk = mkNow, arr = [];
+    if (mk && mk.cards.length && !S.pick) {
+      const chosen = S.plan[mk.key];
+      arr.push(`<span class="chip crowned">${CROWN_SVG}<button data-act="mark" class="ml">${esc(mk.label)}: ${chosen ? esc(short(byUid(chosen).name)) : "nobody"}</button>${chosen ? `<button data-act="unmark" aria-label="Clear ${esc(mk.name)}">×</button>` : ""}</span>`);
+      if (!chosen && !S.plan.orders.length && !S.plan.items.length) text = `Give your heroes orders. ${esc(mk.who)}'s Crown also gives a free choice: tap ${esc(mk.label)} below.`;
+    }
     S.plan.items.forEach((it, k) => arr.push(`<span class="chip">${esc(it.name)}${it.tname ? ` → ${esc(short(it.tname))}` : ""}<button data-act="del-item" data-k="${k}" aria-label="Remove ${esc(it.name)}">×</button></span>`));
     S.plan.orders.forEach((o, k) => arr.push(`<span class="chip">${esc(short(byUid(o.uid).name))}: ${esc(o.name)}${o.tname ? ` → ${esc(short(o.tname))}` : ""}<button data-act="del-order" data-k="${k}" aria-label="Remove ${esc(o.name)}">×</button></span>`));
     chips = arr.join("");
@@ -1030,8 +1056,10 @@ function cardSheet(sh) {
       }).join("")}</div>`;
     }
   }
+  const mk0 = mine && crown && S.phase === "plan" && !g ? markInfo() : null;
+  const mineMark = mk0 && mk0.uid === c.uid ? mk0 : null;
   const rules = hero
-    ? `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>
+    ? `${mineMark ? "" : `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>`}
        <p class="rule"><b>Bond · works in any slot</b>${esc(def.bond?.text || "None")}</p>`
     : `<p class="rule"><b>Front rank · acts on its own every round, at Speed ${E.speedOf(st, c)}</b>${esc(c.auto || "")}</p>`;
   return `<div class="sheet" role="dialog" aria-label="${esc(c.name)}">
@@ -1042,7 +1070,7 @@ function cardSheet(sh) {
         <p class="nums"><span>Health <b>${c.health}/${c.maxHealth}</b></span><span>Attack <b>${E.attackOf(st, c)}</b></span><span>Guard <b>${E.guardOf(st, c)}</b></span>${hero ? `<span>Speed <b>${E.speedOf(st, c)}</b></span>` : ""}</p>
         <p class="credit">${creditOf(c.id)}</p></div>
       ${g ? "" : `<button class="x" data-act="close" aria-label="Close">×</button>`}</div>
-    ${acts}${rules}</div>`;
+    ${mineMark ? markBox(mineMark) : ""}${acts}${rules}</div>`;
 }
 function itemSheet(sh) {
   const d = DATA.items[sh.id], g = step(), inFight = U.screen === "battle";
@@ -1301,7 +1329,8 @@ document.addEventListener("click", (e) => {
     case "item": tapItem(d.id); break;
     case "use-item": useItem(); break;
     case "target": completePick(+d.uid); render(); break;
-    case "mark": { const m = markInfo(); beginPick({ kind: "mark", key: m.key, name: m.name }, m.cards); render(); break; }
+    case "mark": { const m = markInfo(); U.sheet = null; beginPick({ kind: "mark", key: m.key, name: m.name }, m.cards); render(); break; }
+    case "unmark": { const m = markInfo(); if (m) S.plan[m.key] = null; render(); break; }
     case "lock": lock(); break;
     case "next": { const g = step(); if (g && g.next) { advance(); render(); } break; }
     case "skip": endPlayback(); break;
