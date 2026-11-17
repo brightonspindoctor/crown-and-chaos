@@ -568,6 +568,33 @@
       "cards": [
         "rumpelstiltskin"
       ],
+      "artist": "J. E. Rogers",
+      "artistDied": 1896,
+      "title": "Rumpelstiltzchen",
+      "date": "1870",
+      "publication": "The Fairy Book, Dinah Mulock Craik (Macmillan, London, 1870)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:J._E._Rogers,_Rumpelstiltzchen.jpg"
+      },
+      "licence": "Public domain worldwide (published 1870; artist died 1896)",
+      "status": "cleared",
+      "commonsFile": "J. E. Rogers, Rumpelstiltzchen.jpg",
+      "notes": "Colour chromolithograph. Only 663 px wide, so the card crop is small.",
+      "size": [663, 977],
+      "crops": {
+        "rumpelstiltskin": {
+          "window": [0.06, 0.34, 0.8, 0.3193],
+          "full": [0.055, 0.33, 0.62, 0.589]
+        }
+      }
+    },
+    {
+      "id": "rumpelstiltskin-variant-3",
+      "use": "variant",
+      "cards": [
+        "rumpelstiltskin"
+      ],
       "artist": "Arthur Rackham",
       "artistDied": 1939,
       "title": "Rumpelstiltskin",
@@ -581,14 +608,62 @@
       "licence": "Public domain in the US and UK",
       "status": "cleared",
       "commonsFile": "Grimm-Rackham-202.jpg",
-      "notes": "Downloaded image is a Rackham line drawing, not the colour fire plate. Review before use.",
+      "notes": "Rackham's 1909 line drawing. Was the main card picture until November 2026, when it was replaced by a colour picture.",
       "size": [663, 1235],
       "crops": {
         "rumpelstiltskin": {
           "window": [0.0, 0.0621, 1.0, 0.3158],
           "full": [0.0, 0.0442, 1.0, 0.7516]
         }
+      },
+      "variant": 3
+    },
+    {
+      "id": "rumpelstiltskin-variant",
+      "use": "variant",
+      "cards": [
+        "rumpelstiltskin"
+      ],
+      "variant": 2,
+      "artist": "Walther Caspari",
+      "artistDied": 1913,
+      "title": "Rumpelstilzchen",
+      "date": "c. 1905",
+      "publication": "Colour lithograph plate, R. Voigtländer Verlag, Leipzig (printed by C. Wolf & Sohn, Munich)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Walther_Caspari_-_Rumpelstilzchen,_c._1905.jpg"
+      },
+      "licence": "Public domain worldwide (published c. 1905; artist died 1913)",
+      "status": "cleared",
+      "commonsFile": "Walther Caspari - Rumpelstilzchen, c. 1905.jpg",
+      "size": [1000, 994],
+      "crops": {
+        "rumpelstiltskin": {
+          "window": [0.29, 0.22, 0.66, 0.3906],
+          "full": [0.34, 0.055, 0.61, 0.8592]
+        }
       }
+    },
+    {
+      "id": "rumpelstiltskin-anderson",
+      "use": "variant",
+      "cards": [
+        "rumpelstiltskin"
+      ],
+      "artist": "Anne Anderson",
+      "artistDied": 1952,
+      "title": "Rumplestiltskin",
+      "date": "1922 or 1935",
+      "publication": "Old, Old Fairy Tales (Whitman, Racine, 1935); possibly earlier in Grimm's Fairy Tales (Collins, c. 1922)",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Rumplestiltskin_-_Anne_Anderson.jpg"
+      },
+      "licence": "Public domain in the UK (artist died 1952); US status unproven",
+      "status": "to-confirm",
+      "commonsFile": "Rumplestiltskin - Anne Anderson.jpg",
+      "notes": "The best colour picture of him dancing by the fire. Commons and Bowling Green State University list it in Old, Old Fairy Tales (Whitman, USA, 1935), which could still be in US copyright. Wikipedia credits it to Collins' Grimm's Fairy Tales (1922), which would make it public domain in the US, but no scan of that book has been found to prove the plate is in it. Commons also gives the wrong death year (1930). Only 600 px wide."
     },
     {
       "id": "gretel",
