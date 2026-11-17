@@ -739,8 +739,7 @@ export const ACTIONS = {
     "Break their spirit": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.noGuard = true; x.guardLeft = 0; } } },
   "st-george": { "Lance Charge": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 3, { ignoreGuard: true }) },
     "Shield Brother": { t: "adjacentAllyHero", go: (st, a, x) => { x.flags.shieldRound = st.round; } } },
-  "the-bride": { "Strike": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, attackOf(st, a), { ranged: true }) },
-    "Completion": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 99)) } },
+  "the-bride": { "Completion": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
   "the-creature": { "Rampage": { t: "enemyMelee", go: (st, a, x) => { const ns = neighbours(st, x); hit(st, a, x, 3); ns.forEach((n) => hit(st, a, n, 3)); } },
     "The Pyre": { t: "none", go: (st, a) => { cards(st, 1 - a.side).forEach((c) => damage(st, a, c, 6, { attack: true })); damage(st, null, a, 8, { trueDamage: true }); } } },
   "the-dragon": { "Fire Breath": { t: "none", go: (st, a) => { for (const x of fireTargets(st, a)) hit(st, a, x, 2, { ranged: true }); } },
@@ -1111,7 +1110,7 @@ function valueOf(st, a, act, x) {
     case "Bite": return dmgValue(attackOf(st, a), x) * 1.4;
     case "Hex": return dmgValue(3 + 1, x);
     case "Sea magic": return a.health > 3 ? dmgValue(attackOf(st, a), x) - 0.5 : 0;
-    case "Strike": case "Stones in the belly": return dmgValue(attackOf(st, a), x) + (name === "Stones in the belly" ? 2 : 0);
+    case "Stones in the belly": return dmgValue(attackOf(st, a), x) + 2;
     case "Quarterstaff": return dmgValue(4, x) + 1;
     case "Rampage": return dmgValue(3, x) + 3 * neighbours(st, x).length * 0.8;
     case "Tail Sweep": return dmgValue(2, x) + 1.5;
@@ -1143,7 +1142,7 @@ function valueOf(st, a, act, x) {
     case "Cake and wine": return isNight(st) ? 0 : Math.min(missing(x), 4) * 1.1;
     case "Ale and bread": return isNight(st) ? 0 : heroes(st, a.side).reduce((s, h) => s + Math.min(missing(h), 2), 0);
     case "Saved from the wreck": return isNight(st) ? 0 : heroes(st, a.side).reduce((s, h) => s + Math.min(missing(h), 4), 0) - 3;
-    case "Completion": return isNight(st) ? 0 : heroes(st, a.side).reduce((s, h) => s + missing(h), 0) - 6;
+    case "Completion": return isNight(st) ? 0 : heroes(st, a.side).reduce((s, h) => s + Math.min(missing(h), 4), 0) - 4;
     case "Heads grow back": return isNight(st) ? 0 : Math.min(missing(a), 6) - 1;
     case "Mend": return isNight(st) ? 0 : neighbours(st, a).reduce((s, n) => s + Math.min(missing(n), 1), 0);
     case "Blood transfusion": return isNight(st) ? 0 : heroes(st, a.side).some((h) => h.uid !== a.uid && missing(h) >= 3) && a.health > 5 ? 2 : 0;

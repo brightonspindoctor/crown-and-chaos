@@ -29,14 +29,9 @@
       "text": "Standard attack: damage equal to Attack."
     },
     {
-      "name": "Strike",
-      "ap": 1,
-      "text": "A Ranged attack on any single enemy."
-    },
-    {
       "name": "Completion",
       "ap": 4,
-      "text": "Heal every one of your heroes to full.",
+      "text": "Heal each of your heroes 4.",
       "usesPerFight": 1
     }
   ],
