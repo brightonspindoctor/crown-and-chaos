@@ -203,10 +203,11 @@ function isTale(st, c, tale) { return c.tale === tale || (arthur(st, c.side) && 
 function otherHeroes(st, c, pred = () => true) { return heroes(st, c.side).filter((h) => h.uid !== c.uid && pred(h)); }
 function countRealm(st, c, realm) { return otherHeroes(st, c, (h) => isRealm(st, h, realm)).length; }
 
-// Bond strength for a side: 1 normally, 0 if the enemy crown is Morgan, -1 if it is the Little Mermaid.
+// Bond strength for a side: 1 normally, 0 if the enemy crown is Morgan and she holds the Fate token,
+// -1 if it is the Little Mermaid.
 function bondFactor(st, i) {
   const foe = 1 - i;
-  if (crownIs(st, foe, "morgan-le-fay")) return 0;
+  if (crownIs(st, foe, "morgan-le-fay") && st.fate === foe) return 0;
   if (crownIs(st, foe, "the-little-mermaid")) return -1;
   return 1;
 }

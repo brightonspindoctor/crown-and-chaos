@@ -10,43 +10,43 @@ The bots are simple: each round they pick the actions worth most per action poin
 | | Win rate | Fights |
 |---|---|---|
 | baba-yaga | 65.3% | 4392 |
-| little-john | 62.9% | 2984 |
 | robin-hood | 62.8% | 3068 |
-| morgan-le-fay | 61.4% | 3125 |
-| the-dragon | 60.8% | 3001 |
-| st-george | 60.7% | 3128 |
-| the-huntsman | 60.3% | 2984 |
-| merlin | 59.4% | 3075 |
+| little-john | 62.8% | 2984 |
+| the-dragon | 61.0% | 3001 |
+| st-george | 60.6% | 3128 |
+| the-huntsman | 60.5% | 2984 |
+| merlin | 59.6% | 3075 |
+| morgan-le-fay | 59.3% | 3125 |
 | bran-the-blessed | 57.6% | 3068 |
 | blodeuwedd | 55.9% | 3105 |
 | victor-frankenstein | 55.5% | 3158 |
-| koschei | 55.3% | 3090 |
+| koschei | 55.4% | 3090 |
 | grendels-mother | 54.3% | 4202 |
-| van-helsing | 53.9% | 3035 |
+| van-helsing | 54.0% | 3035 |
+| friar-tuck | 53.0% | 2974 |
 | the-bride | 52.9% | 3028 |
-| friar-tuck | 52.8% | 2974 |
 | gwydion | 51.2% | 3007 |
 | maid-marian | 50.1% | 3055 |
 | the-tin-soldier | 49.7% | 3074 |
-| grendel | 49.1% | 4227 |
-| king-arthur | 48.6% | 3009 |
-| sheriff-of-nottingham | 48.1% | 3082 |
-| the-wolf | 47.5% | 3107 |
-| the-princess | 47.4% | 3048 |
-| rhiannon | 46.6% | 3041 |
-| red-riding-hood | 45.7% | 3011 |
-| the-creature | 44.5% | 3026 |
+| grendel | 49.2% | 4227 |
+| king-arthur | 48.7% | 3009 |
+| sheriff-of-nottingham | 48.2% | 3082 |
+| the-wolf | 47.6% | 3107 |
+| the-princess | 47.5% | 3048 |
+| rhiannon | 46.7% | 3041 |
+| red-riding-hood | 45.9% | 3011 |
+| the-creature | 44.7% | 3026 |
 | zmey-gorynych | 44.4% | 3117 |
-| the-little-mermaid | 43.0% | 3101 |
+| the-little-mermaid | 43.1% | 3101 |
 | the-snow-queen | 43.0% | 3081 |
-| guinevere | 41.3% | 3046 |
+| guinevere | 41.4% | 3046 |
 | lancelot | 40.4% | 3108 |
-| beowulf | 40.0% | 3057 |
+| beowulf | 39.9% | 3057 |
 | vasilisa-the-wise | 37.9% | 3107 |
-| dracula | 36.7% | 3105 |
-| renfield | 36.3% | 3051 |
+| dracula | 36.8% | 3105 |
+| renfield | 36.4% | 3051 |
 | rumpelstiltskin | 36.1% | 3103 |
-| gretel | 33.1% | 3020 |
+| gretel | 33.2% | 3020 |
 
 ### Heroes in slots 2–3 (not the Crown), best first
 
@@ -55,38 +55,38 @@ The bots are simple: each round they pick the actions worth most per action poin
 | lancelot | 69.3% | 5806 |
 | the-creature | 65.4% | 5610 |
 | the-wolf | 63.4% | 5729 |
-| little-john | 61.3% | 5693 |
+| little-john | 61.4% | 5693 |
 | maid-marian | 61.0% | 6052 |
-| morgan-le-fay | 60.0% | 5748 |
-| the-bride | 59.6% | 5980 |
+| morgan-le-fay | 60.1% | 5748 |
 | the-dragon | 59.6% | 6018 |
-| van-helsing | 57.8% | 5620 |
+| the-bride | 59.5% | 5980 |
+| van-helsing | 57.9% | 5620 |
 | dracula | 57.2% | 5609 |
-| gretel | 56.9% | 5909 |
+| gretel | 57.0% | 5909 |
 | the-huntsman | 56.0% | 5692 |
 | rhiannon | 55.9% | 5870 |
 | merlin | 55.0% | 5992 |
-| bran-the-blessed | 54.6% | 5843 |
-| king-arthur | 54.4% | 5837 |
+| bran-the-blessed | 54.7% | 5843 |
+| king-arthur | 54.5% | 5837 |
 | st-george | 54.0% | 5589 |
-| koschei | 52.5% | 5654 |
-| beowulf | 51.9% | 5672 |
-| sheriff-of-nottingham | 51.7% | 5767 |
+| koschei | 52.4% | 5654 |
+| sheriff-of-nottingham | 51.9% | 5767 |
+| beowulf | 51.8% | 5672 |
 | gwydion | 51.3% | 5913 |
 | renfield | 50.9% | 5747 |
 | grendel | 49.1% | 7948 |
-| the-little-mermaid | 48.6% | 5736 |
-| guinevere | 47.5% | 5939 |
-| red-riding-hood | 47.1% | 5939 |
+| the-little-mermaid | 48.5% | 5736 |
+| guinevere | 47.6% | 5939 |
+| red-riding-hood | 47.0% | 5939 |
 | the-princess | 46.7% | 5902 |
 | robin-hood | 46.7% | 5679 |
-| vasilisa-the-wise | 46.5% | 6046 |
 | grendels-mother | 46.4% | 7973 |
+| vasilisa-the-wise | 46.4% | 6046 |
 | blodeuwedd | 45.6% | 5744 |
-| zmey-gorynych | 45.3% | 5598 |
-| rumpelstiltskin | 45.1% | 5701 |
-| the-tin-soldier | 42.4% | 5966 |
-| friar-tuck | 42.2% | 6043 |
+| zmey-gorynych | 45.2% | 5598 |
+| rumpelstiltskin | 45.2% | 5701 |
+| the-tin-soldier | 42.3% | 5966 |
+| friar-tuck | 42.3% | 6043 |
 | victor-frankenstein | 38.1% | 5703 |
 | the-snow-queen | 37.3% | 5745 |
 
@@ -96,41 +96,41 @@ The bots are simple: each round they pick the actions worth most per action poin
 |---|---|---|
 | baba-yaga | 65.3% | 4392 |
 | little-john | 61.9% | 8677 |
-| morgan-le-fay | 60.5% | 8873 |
-| the-dragon | 60.0% | 9019 |
+| the-dragon | 60.1% | 9019 |
+| morgan-le-fay | 59.8% | 8873 |
 | lancelot | 59.2% | 8914 |
-| the-creature | 58.1% | 8636 |
-| the-wolf | 57.8% | 8836 |
+| the-creature | 58.2% | 8636 |
+| the-wolf | 57.9% | 8836 |
 | the-huntsman | 57.5% | 8676 |
-| the-bride | 57.4% | 9008 |
 | maid-marian | 57.4% | 9107 |
-| merlin | 56.5% | 9067 |
-| van-helsing | 56.4% | 8655 |
+| the-bride | 57.3% | 9008 |
+| merlin | 56.6% | 9067 |
+| van-helsing | 56.5% | 8655 |
 | st-george | 56.4% | 8717 |
-| bran-the-blessed | 55.6% | 8911 |
+| bran-the-blessed | 55.7% | 8911 |
 | koschei | 53.5% | 8744 |
 | rhiannon | 52.8% | 8911 |
-| king-arthur | 52.4% | 8846 |
+| king-arthur | 52.5% | 8846 |
 | robin-hood | 52.3% | 8747 |
 | gwydion | 51.3% | 8920 |
-| sheriff-of-nottingham | 50.5% | 8849 |
-| dracula | 49.9% | 8714 |
+| sheriff-of-nottingham | 50.6% | 8849 |
+| dracula | 50.0% | 8714 |
 | blodeuwedd | 49.2% | 8849 |
 | grendel | 49.1% | 12175 |
 | grendels-mother | 49.1% | 12175 |
 | gretel | 48.9% | 8929 |
 | beowulf | 47.7% | 8729 |
-| the-princess | 46.9% | 8950 |
-| the-little-mermaid | 46.6% | 8837 |
+| the-princess | 47.0% | 8950 |
 | red-riding-hood | 46.6% | 8950 |
-| renfield | 45.8% | 8798 |
-| friar-tuck | 45.7% | 9017 |
-| guinevere | 45.4% | 8985 |
-| zmey-gorynych | 45.0% | 8715 |
+| the-little-mermaid | 46.6% | 8837 |
+| renfield | 45.9% | 8798 |
+| friar-tuck | 45.8% | 9017 |
+| guinevere | 45.5% | 8985 |
+| zmey-gorynych | 44.9% | 8715 |
 | the-tin-soldier | 44.9% | 9040 |
 | victor-frankenstein | 44.3% | 8861 |
-| vasilisa-the-wise | 43.6% | 9153 |
-| rumpelstiltskin | 41.9% | 8804 |
+| vasilisa-the-wise | 43.5% | 9153 |
+| rumpelstiltskin | 42.0% | 8804 |
 | the-snow-queen | 39.3% | 8826 |
 
 ### Strongest Crown + partner pairs
@@ -142,25 +142,25 @@ The bots are simple: each round they pick the actions worth most per action poin
 | merlin (crown) + little-john | 84.4% | 163 |
 | koschei (crown) + lancelot | 84.3% | 172 |
 | victor-frankenstein (crown) + the-creature | 83.1% | 160 |
-| the-dragon (crown) + little-john | 81.5% | 165 |
+| the-dragon (crown) + little-john | 81.8% | 165 |
 | robin-hood (crown) + the-creature | 81.4% | 159 |
-| the-dragon (crown) + lancelot | 80.2% | 172 |
-| victor-frankenstein (crown) + lancelot | 80.1% | 161 |
-| morgan-le-fay (crown) + little-john | 79.9% | 157 |
-| morgan-le-fay (crown) + sheriff-of-nottingham | 79.2% | 178 |
+| the-dragon (crown) + lancelot | 80.8% | 172 |
+| merlin (crown) + king-arthur | 79.9% | 169 |
+| victor-frankenstein (crown) + lancelot | 79.8% | 161 |
 | bran-the-blessed (crown) + lancelot | 79.1% | 179 |
-| st-george (crown) + little-john | 79.0% | 155 |
-| morgan-le-fay (crown) + the-bride | 78.8% | 170 |
-| sheriff-of-nottingham (crown) + lancelot | 78.8% | 165 |
-| merlin (crown) + king-arthur | 78.7% | 169 |
-| little-john (crown) + the-wolf | 78.6% | 180 |
+| morgan-le-fay (crown) + little-john | 79.0% | 157 |
+| little-john (crown) + the-wolf | 78.9% | 180 |
+| st-george (crown) + little-john | 78.7% | 155 |
+| the-huntsman (crown) + gretel | 78.6% | 152 |
+| sheriff-of-nottingham (crown) + lancelot | 78.5% | 165 |
 | the-princess (crown) + little-john | 78.0% | 150 |
-| the-huntsman (crown) + gretel | 78.0% | 152 |
+| the-huntsman (crown) + red-riding-hood | 78.0% | 150 |
 | st-george (crown) + lancelot | 77.9% | 170 |
 | baba-yaga (crown) + the-dragon | 77.8% | 293 |
-| the-huntsman (crown) + red-riding-hood | 77.3% | 150 |
+| maid-marian (crown) + little-john | 77.5% | 171 |
 | little-john (crown) + lancelot | 77.3% | 152 |
-| maid-marian (crown) + little-john | 77.2% | 171 |
+| merlin (crown) + sheriff-of-nottingham | 77.1% | 157 |
+| morgan-le-fay (crown) + sheriff-of-nottingham | 77.0% | 178 |
 | friar-tuck (crown) + little-john | 76.8% | 151 |
 
 ### Weakest Crown + partner pairs
@@ -168,12 +168,12 @@ The bots are simple: each round they pick the actions worth most per action poin
 | | Win rate | Fights |
 |---|---|---|
 | rumpelstiltskin (crown) + the-snow-queen | 24.4% | 168 |
+| king-arthur (crown) + friar-tuck | 24.2% | 161 |
 | lancelot (crown) + friar-tuck | 23.9% | 157 |
 | the-snow-queen (crown) + victor-frankenstein | 23.8% | 183 |
 | gretel (crown) + the-tin-soldier | 23.7% | 171 |
 | gretel (crown) + victor-frankenstein | 23.7% | 186 |
 | vasilisa-the-wise (crown) + the-snow-queen | 23.0% | 161 |
-| king-arthur (crown) + friar-tuck | 22.7% | 161 |
 | beowulf (crown) + victor-frankenstein | 22.2% | 151 |
 | dracula (crown) + the-tin-soldier | 22.1% | 188 |
 | renfield (crown) + the-tin-soldier | 19.7% | 155 |
@@ -184,10 +184,10 @@ The bots are simple: each round they pick the actions worth most per action poin
 
 | | Win rate | Fights |
 |---|---|---|
-| robin-hood (crown) + grendel + grendels-mother | 78.9% | 109 |
 | grendels-mother (crown) + grendel + lancelot | 78.6% | 103 |
+| robin-hood (crown) + grendel + grendels-mother | 78.4% | 109 |
 | grendel (crown) + grendels-mother + lancelot | 78.2% | 119 |
-| grendels-mother (crown) + grendel + king-arthur | 75.9% | 108 |
+| grendels-mother (crown) + grendel + king-arthur | 76.9% | 108 |
 | grendels-mother (crown) + grendel + sheriff-of-nottingham | 73.8% | 103 |
 | grendels-mother (crown) + bran-the-blessed + grendel | 72.9% | 107 |
 | grendel (crown) + grendels-mother + the-creature | 72.5% | 91 |
@@ -196,24 +196,24 @@ The bots are simple: each round they pick the actions worth most per action poin
 | grendels-mother (crown) + grendel + the-tin-soldier | 70.4% | 115 |
 | grendels-mother (crown) + grendel + the-creature | 70.4% | 98 |
 | grendels-mother (crown) + grendel + koschei | 70.4% | 113 |
-| grendel (crown) + grendels-mother + maid-marian | 69.7% | 127 |
+| grendel (crown) + grendels-mother + maid-marian | 70.1% | 127 |
+| grendels-mother (crown) + grendel + st-george | 68.4% | 117 |
 | grendels-mother (crown) + grendel + zmey-gorynych | 68.1% | 113 |
-| grendels-mother (crown) + grendel + little-john | 68.1% | 105 |
 
 ### Items
 
 | | Win rate | Fights |
 |---|---|---|
-| gingerbread | 54.2% | 27861 |
+| gingerbread | 54.3% | 27861 |
 | poisoned-apple | 50.0% | 9446 |
 | skull-lantern | 48.0% | 9375 |
 | golden-apple | 47.9% | 9361 |
-| mead-of-heorot | 45.3% | 9537 |
-| dragons-blood | 45.3% | 9351 |
+| mead-of-heorot | 45.5% | 9537 |
+| dragons-blood | 45.2% | 9351 |
 | mead-of-poetry | 43.3% | 9235 |
-| spindle | 43.0% | 7059 |
+| spindle | 42.9% | 7059 |
 | the-giants-sword | 40.9% | 7268 |
-| water-of-life | 40.7% | 5501 |
+| water-of-life | 40.6% | 5501 |
 | draught-of-the-cauldron | 38.6% | 5382 |
 
 ### Front-rank cards
@@ -229,7 +229,7 @@ The bots are simple: each round they pick the actions worth most per action poin
 | grandmother | 46.7% | 33549 |
 | crossbowman | 46.4% | 29884 |
 | monk | 46.3% | 29454 |
-| longbowman | 45.0% | 29784 |
+| longbowman | 44.9% | 29784 |
 
 ### Engine assumptions
 
