@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crown & Fable Playtest Table</title>
+<title>Crown & Chaos Playtest Table</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -140,7 +140,7 @@ function randomLineup() {
   return { crown: hs[0], heroes: [hs[1] || "", hs[2] || ""], front, items };
 }
 function renderSetup() {
-  app.innerHTML = `<h1>Crown &amp; Fable playtest table</h1>
+  app.innerHTML = `<h1>Crown &amp; Chaos playtest table</h1>
     <p class="muted">Build two line-ups and play them against each other on one device, or against a simple bot. Tap any card during a fight to read it or change its numbers.</p>
     ${setupSide(0)}${setupSide(1)}
     <section class="panel"><div class="row">
@@ -238,7 +238,7 @@ function renderFight() {
       <div class="row"><button class="small" data-act="start">Restart this fight</button><button class="small" data-act="setup">Change line-ups</button></div>
       ${fxControls()}</section>`;
   }
-  app.innerHTML = `<h1>Crown &amp; Fable playtest table</h1>${boardHtml()}${controls}${logHtml()}${sheetHtml()}`;
+  app.innerHTML = `<h1>Crown &amp; Chaos playtest table</h1>${boardHtml()}${controls}${logHtml()}${sheetHtml()}`;
 }
 
 // ---------- the card sheet ----------

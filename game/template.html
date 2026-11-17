@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crown & Fable: Prototype</title>
+<title>Crown & Chaos: Prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* Crown & Fable playable prototype. Colours and type come from the Crown & Fable design system (Gallery theme).
+/* Crown & Chaos playable prototype. Colours and type come from the Crown & Chaos design system (Gallery theme).
    Battle on a phone: enemy pyramid on top, yours below. On desktop: yours on the left, the enemy's on the right. */
 :root {
   --surface: #17110c; --raised: #221912; --ink: #efe4cc; --muted: #b9a68c; --line: #3a2c20;
@@ -198,7 +198,14 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .crowns svg { width: 20px; height: 20px; fill: var(--gold-leaf); }
 .gold::before { content: ""; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f1dc9a, var(--gold-leaf) 60%, var(--gold-shade)); box-shadow: inset 0 0 0 1px var(--gold-shade); }
 .lede { font-size: 17px; line-height: 1.35; color: var(--muted); text-wrap: pretty; }
-.hero-screen { min-height: 100%; display: grid; place-items: center; padding: 24px 18px; background: linear-gradient(rgba(23,17,12,.72), rgba(23,17,12,.93)), url(img/board-st-george.jpg) center / cover no-repeat; }
+.hero-screen { min-height: 100%; display: grid; place-items: center; padding: 24px 18px; background: linear-gradient(rgba(23,17,12,.7), rgba(23,17,12,.92)), url(img/cover.jpg) center 30% / cover no-repeat; }
+.cover-screen { min-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 0 18px; background: #120d09; }
+.cover { display: block; width: 100%; max-width: 560px; max-height: calc(100dvh - 54px - 200px); object-fit: contain; object-position: 50% 0; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+.cover-side { width: 100%; max-width: 440px; padding: 0 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.cover-side .lede { color: var(--ink); }
+.cover-side .meta { display: flex; gap: 18px; align-items: center; justify-content: center; color: var(--muted); font-style: italic; }
+.cover-side .btns { margin-top: 0; }
+.cover-side .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 14px; }
 .title { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; max-width: 440px; width: 100%; }
 .title > svg { width: 60px; height: 60px; fill: var(--gold-leaf); }
 .title h1 { font: 600 40px/1.05 var(--display); letter-spacing: .06em; color: var(--gold-text); text-transform: uppercase; }
@@ -315,6 +322,9 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
   #nav { order: -1; border-top: 0; border-bottom: 1px solid var(--gold-shade); justify-content: center; }
   #nav button { flex: 0 0 150px; font-size: 12px; } #nav button.on { box-shadow: inset 0 -2px 0 var(--gold-leaf); }
   .title h1 { font-size: 56px; }
+  .cover-screen { flex-direction: row; justify-content: center; align-items: center; gap: 40px; padding: 24px; min-height: 100%; background: radial-gradient(ellipse at 35% 50%, #2a1d14, #120d09 70%); }
+  .cover { width: auto; height: calc(100dvh - 54px - 48px); max-height: 900px; max-width: none; border: 2px solid var(--gold-shade); border-radius: 6px; }
+  .cover-side { width: 360px; padding: 0; }
   .form { display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start; }
   .pyr { --cw: 132px; } .beltrow { --cw: 96px; }
   .grid { --cw: 128px; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
@@ -1110,23 +1120,21 @@ function renderPage() {
   el("nav").hidden = !showNav;
   el("nav").innerHTML = NAV.map(([k, label]) => `<button data-go="${k}" class="${U.screen === k ? "on" : ""}"${U.screen === k ? ' aria-current="page"' : ""}>${label}</button>`).join("");
 }
+// The front of the game: the cover art carries the title, with the controls beside it (desktop) or under it (phone).
+const coverHtml = (inner) => `<div class="cover-screen"><img class="cover" src="img/cover.jpg" alt="Crown &amp; Chaos: Red Riding Hood, crowned, with the wolf at her feet and a castle behind"><div class="cover-side">${inner}</div></div>`;
 function homeHtml() {
   if (!G.packOpened) {
-    return `<div class="hero-screen"><div class="title">${CROWN_SVG}<h1>Crown <span>&amp;</span> Fable</h1>
-      <p class="lede">Heroes of folklore, painted by the old masters. Protect your Crown; take theirs.</p>
+    return coverHtml(`<p class="lede">Heroes of folklore, painted by the old masters. Protect your Crown; take theirs.</p>
       <div class="btns"><button class="btn big" data-act="tutorial">${G.tutorialDone ? "Replay the tutorial" : "Begin the tutorial"}</button>
       ${G.tutorialDone ? `<button class="btn big quiet" data-go="ready">Open your first pack</button>` : ""}</div>
-      ${G.tutorialDone ? "" : `<button class="link" data-go="ready">Skip the tutorial</button>`}</div></div>`;
+      ${G.tutorialDone ? "" : `<button class="link" data-go="ready">Skip the tutorial</button>`}`);
   }
   const bad = issues(G.lineup).length;
-  return `<div class="hero-screen"><div class="title">${CROWN_SVG}<h1>Crown <span>&amp;</span> Fable</h1>
+  return coverHtml(`
     <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
-    <div class="btns"><button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button>
-      <button class="btn big quiet" data-go="formation">Line-up</button>
-      <button class="btn big quiet" data-go="shop">Shop</button>
-      <button class="btn big quiet" data-act="tutorial">Replay the tutorial</button></div>
-    <p class="credit">Fights are against the computer for now. Your progress is saved in this browser only.</p>
-    <button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div></div>`;
+    <div class="btns"><button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button></div>
+    <div class="links"><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
+    <p class="credit">Fights are against the computer for now. Your progress is saved in this browser only.</p>`);
 }
 function readyHtml() {
   return `<div class="hero-screen"><div class="title">${CROWN_SVG}<p class="eyebrow">Your first Fable pack</p><h1 style="text-transform:none;letter-spacing:.03em">Are you ready?</h1>
@@ -1250,7 +1258,7 @@ function detailSheet(sh) {
 function overHtml() {
   const o = U.over; if (!o) return "";
   if (o.type === "menu") {
-    return `<div class="panel"><p class="eyebrow">Crown &amp; Fable</p><h1>${esc(S.board.name)}</h1>
+    return `<div class="panel"><p class="eyebrow">Crown &amp; Chaos</p><h1>${esc(S.board.name)}</h1>
       <div class="btns"><button class="btn" data-act="resume">Back to the fight</button>
       <button class="btn quiet" data-act="sound" aria-pressed="${!SND.muted}">Sound: ${SND.muted ? "off" : "on"}</button>
       <button class="btn quiet" data-act="motion" aria-pressed="${G.motion !== false}">Card animations: ${G.motion === false ? "off" : "on"}</button>

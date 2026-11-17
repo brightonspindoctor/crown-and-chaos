@@ -1,6 +1,8 @@
-# Crown & Fable
+# Crown & Chaos
 
-A 1-vs-1 digital card battler built from European folklore. Every card is earned by playing, never bought, and every painting on a card is in the public domain.
+A 1-vs-1 digital card battler built from European folklore. Previously called Crown & Fable; the repository keeps its old name.
+
+Every card is earned by playing, never bought, and every painting on a card is in the public domain.
 
 The design reasoning lives in the design doc; this repository holds the data the game reads.
 
@@ -88,3 +90,7 @@ Card numbers are read from the JSON files, but each card's effect is coded by ha
 | `game/index.html` | The built page. Rebuild with `node scripts/build-game.mjs` |
 
 Progress (gold, cards, line-up) is saved in the player's browser only. The page runs on the same engine as everything else: the engine calls `st.onLog` after every log line and sets `st.acting`, which is how the page replays a round card by card.
+
+## Cover art
+
+`design/cover-art.jpg` is the front of the game (shown on the home screen as `game/img/cover.jpg`): Red Riding Hood, crowned, with the wolf at her feet. It is new artwork, not a public-domain painting, so the art manifest's checks don't cover it. **To do:** record who made it and the licence it is used under before it ships.

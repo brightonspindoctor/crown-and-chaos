@@ -1,4 +1,4 @@
-// Crown & Fable rules engine.
+// Crown & Chaos rules engine.
 // Shared by the simulator (Node) and the playable page (browser). No dependencies.
 //
 // Board: each side has slots 1–6. Slot 1 is the Crown, slots 2–3 are heroes,
