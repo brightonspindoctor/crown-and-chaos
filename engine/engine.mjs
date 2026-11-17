@@ -283,8 +283,6 @@ export function speedOf(st, c) {
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
-  // Vampire court: while Dracula's side holds the Fate token, its heroes have +1 Speed.
-  if (crownIs(st, i, "dracula") && st.fate === i && c.kind === "hero") s += 1;
   // Hard frost: in rounds when the Snow Queen's side holds the Fate token, every enemy card has -2 Speed.
   if (crownIs(st, 1 - i, "the-snow-queen") && st.fate === 1 - i) s -= 2;
   return Math.max(1, s);
@@ -707,7 +705,7 @@ export const ACTIONS = {
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
   "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
-    "Bite": { t: "enemyAny", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a), { ranged: true }); heal(st, a, a, d); } },
+    "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
       kill(st, x, a);
       const slot = [4, 5, 6].find((s) => !at(st, a.side, s));

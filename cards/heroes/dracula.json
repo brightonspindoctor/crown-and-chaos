@@ -9,7 +9,7 @@
   "stats": {
     "health": 12,
     "attack": 3,
-    "ranged": false,
+    "ranged": true,
     "guard": 0,
     "speed": 3
   },
@@ -17,7 +17,7 @@
   "renown": 14,
   "crownPassive": {
     "name": "Vampire court",
-    "text": "All your heroes heal 1 whenever their attacks damage a card. In rounds when you hold the Fate token, they heal 2 instead and have +1 Speed."
+    "text": "All your heroes heal 1 whenever their attacks damage a card, or 2 in rounds when you hold the Fate token."
   },
   "bond": {
     "name": "Master",
@@ -27,12 +27,12 @@
     {
       "name": "Claw",
       "ap": 1,
-      "text": "Standard attack on the closest enemy."
+      "text": "Standard ranged attack on any enemy card."
     },
     {
       "name": "Bite",
       "ap": 2,
-      "text": "A Ranged attack on any enemy card, then heal equal to the damage dealt."
+      "text": "A melee attack on the closest enemy, then heal equal to the damage dealt."
     },
     {
       "name": "Turn",
