@@ -30,11 +30,11 @@
     {
       "name": "Lance Charge",
       "ap": 2,
-      "text": "Deal 5 to the closest enemy."
+      "text": "Deal 3 to the closest enemy, ignoring Guard."
     },
     {
       "name": "Shield Brother",
-      "ap": 1,
+      "ap": 2,
       "text": "An adjacent hero takes no damage this round."
     }
   ],

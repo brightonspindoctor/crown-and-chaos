@@ -17,7 +17,7 @@
   "renown": 13,
   "crownPassive": {
     "name": "Hard frost",
-    "text": "In every round that you hold the Fate token, all enemy front-rank cards are frozen and skip their automatic actions."
+    "text": "In every round that you hold the Fate token, all enemy cards have -2 Speed (never below 1)."
   },
   "bond": {
     "name": "Eventyr kin",

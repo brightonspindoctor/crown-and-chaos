@@ -7,7 +7,7 @@
   "aspect": "Sovereign",
   "tags": [],
   "stats": {
-    "health": 12,
+    "health": 10,
     "attack": 3,
     "ranged": false,
     "guard": 2,
@@ -31,7 +31,8 @@
     {
       "name": "Excalibur",
       "ap": 2,
-      "text": "Attack for 5, ignoring Guard."
+      "text": "Attack for 5, ignoring Guard. Once per fight.",
+      "usesPerFight": 1
     }
   ],
   "art": "king-arthur",

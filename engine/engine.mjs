@@ -270,6 +270,8 @@ export function speedOf(st, c) {
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
+  // Hard frost: in rounds when the Snow Queen's side holds the Fate token, every enemy card has -2 Speed.
+  if (crownIs(st, 1 - i, "the-snow-queen") && st.fate === 1 - i) s -= 2;
   return Math.max(1, s);
 }
 
@@ -620,12 +622,6 @@ export function upkeep(st) {
         if (fr) damage(st, crown, fr, 2, {});
         break;
       }
-      case "the-snow-queen": {
-        // Hard frost: in rounds when she holds the Fate token, every enemy front-rank card is frozen.
-        if (st.fate !== i || crownIs(st, foe, "the-tin-soldier")) break;
-        for (const fr of cards(st, foe).filter((c) => c.kind === "front")) { fr.flags.frozenRound = st.round; log(st, `${fr.name} is frozen.`); ev(st, { t: "freeze", tgt: fr.uid }); }
-        break;
-      }
       case "friar-tuck": {
         const side = st.sides[i];
         side.flags.tuckReturns = side.flags.tuckReturns || 0;
@@ -734,11 +730,11 @@ export const ACTIONS = {
   "renfield": { "The master is at hand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.guardCrownRound = st.round; } },
     "Betrayal": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 6, { ignoreGuard: true }); a.guardLeft = 0; a.noGuard = true; a.health = Math.min(a.health, 1); log(st, "Renfield's betrayal leaves him on 1 Health."); } } },
   "rhiannon": { "The unhurried pace": { t: "enemyHero", go: (st, a, x) => { x.flags.speedOneRound = st.round; } } },
-  "robin-hood": { "Split the Arrow": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 4, { ranged: true }) } },
+  "robin-hood": { "Split the Arrow": { t: "enemyAny", go: (st, a, x) => { const other = cards(st, 1 - a.side).filter((c) => c.uid !== x.uid); const y = other.length ? other[st.rng.int(other.length)] : null; hit(st, a, x, 2, { ranged: true }); if (y && !y.dead) hit(st, a, y, 2, { ranged: true }); } } },
   "rumpelstiltskin": { "Straw into gold": { t: "none", go: (st, a) => { const side = st.sides[a.side]; const it = side.usedItems.pop(); if (it) { side.items.push(it); log(st, `Rumpelstiltskin spins back ${itemName(st, it)}.`); } } } },
   "sheriff-of-nottingham": { "Wanted": { t: "enemyAny", go: (st, a, x) => { st.marks[`wanted${a.side}`] = x.uid; log(st, `${x.name} is Wanted.`); } },
     "Break their spirit": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.noGuard = true; x.guardLeft = 0; } } },
-  "st-george": { "Lance Charge": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5) },
+  "st-george": { "Lance Charge": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 3, { ignoreGuard: true }) },
     "Shield Brother": { t: "adjacentAllyHero", go: (st, a, x) => { x.flags.shieldRound = st.round; } } },
   "the-bride": { "Strike": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, attackOf(st, a), { ranged: true }) },
     "Completion": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 99)) } },
@@ -1102,8 +1098,9 @@ function valueOf(st, a, act, x) {
     case "Skull fire": return dmgValue(3, x);
     case "Mortar ride": return x ? (x.kind === "hero" ? 10 + x.health / 2 : 4 + x.health / 2) : 0;
     case "Excalibur": return dmgValue(5 + (x?.guardLeft || 0), x);
-    case "Champion's charge": case "Lance Charge": return dmgValue(5, x);
-    case "Split the Arrow": return dmgValue(4, x);
+    case "Champion's charge": return dmgValue(5, x);
+    case "Lance Charge": return dmgValue(3 + (x?.guardLeft || 0), x);
+    case "Split the Arrow": return dmgValue(2, x) + (cards(st, 1 - a.side).length > 1 ? 1.5 : 0);
     case "Fair fight": return dmgValue(4, x) + (x && !x.flags.acted ? attackOf(st, x) : 0);
     case "Arm-wrench": return dmgValue(attackOf(st, a), x) + 4;
     case "Bite": return dmgValue(attackOf(st, a), x) * 1.4;
