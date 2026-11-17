@@ -1,0 +1,52 @@
+{
+  "hero": "the-princess",
+  "personality": "Calm and commanding, not a damsel. She walked to the lake herself.",
+  "voice": "Again.",
+  "cards": [
+    {
+      "id": "the-princess-1",
+      "n": 1,
+      "title": "The Lot Falls",
+      "text": "In time the lot fell on the king's only daughter. The king offered the people all his gold and half his kingdom if they would spare her. They refused him: their own children had gone to the lake, and his would go too. He was given eight days. Then he dressed her as a bride, kissed her, and let her go.",
+      "playNote": "Her Crown passive: she keeps her people standing.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-princess-2",
+      "n": 2,
+      "title": "Ride On, Stranger",
+      "text": "She stood at the lake alone and saw a knight ride up. He asked why she was weeping. Her first words to him were not a plea for rescue but a warning: go your way, fair young man, so that you do not die as well. Only when he would not leave did she tell him why she was there.",
+      "playNote": "Mend: she looks after those beside her before herself.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-princess-3",
+      "n": 3,
+      "title": "The Leash",
+      "text": "When the dragon lay wounded, George told her to bind her girdle round its neck and not be afraid. She did it. Then she, not the knight, led the beast through the gates of Silene, and the thing that had eaten the city's children walked behind her as gently as a dog.",
+      "playNote": "Girdle Leash: an enemy Beast can't act this round.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

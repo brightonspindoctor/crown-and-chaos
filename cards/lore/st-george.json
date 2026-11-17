@@ -1,0 +1,52 @@
+{
+  "hero": "st-george",
+  "personality": "Dutiful, tired and courteous. He fights to protect, not for glory.",
+  "voice": "Stand behind me.",
+  "cards": [
+    {
+      "id": "st-george-1",
+      "n": 1,
+      "title": "The Road to Silene",
+      "text": "A knight of Cappadocia rides alone into Libya and finds the city of Silene living in terror. Beside its walls lies a lake as wide as a sea, and in it a dragon whose breath has poisoned the whole country. The people have bought their safety the only way they know: by feeding it. George has no quarrel with this city. He stops anyway.",
+      "playNote": "His Crown passive: he takes the blow meant for others.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "st-george-2",
+      "n": 2,
+      "title": "The Lakeside",
+      "text": "At the water's edge he finds a king's daughter standing alone, dressed for her own funeral. She tells him to ride on, fair young man, before he dies with her. He does not ride on. He gets down from his horse, tells her not to be afraid, and waits beside her for the thing in the lake.",
+      "playNote": "Shield Brother: an adjacent hero takes no damage.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "st-george-3",
+      "n": 3,
+      "title": "The Lance",
+      "text": "The dragon comes up out of the lake. George makes the sign of the cross, sets his spear and rides at it so hard that he drives it to the ground, badly wounded. Then he does something no one expects. He does not finish it. He turns to the princess and asks for her girdle.",
+      "playNote": "Lance Charge, and his Bond: a Beast's death turns his Guard to Attack.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

@@ -35,6 +35,18 @@ for (const { file, data: h } of readDir("cards/heroes")) {
   else if (!art.has(h.art)) errors.push(`${file}: art "${h.art}" is not in the manifest`);
 }
 
+const heroIds = new Set(readDir("cards/heroes").map((x) => x.data.id));
+for (const { file, data: l } of readDir("cards/lore")) {
+  if (!file.endsWith(`/${l.hero}.json`)) errors.push(`${file}: file name doesn't match hero "${l.hero}"`);
+  if (!heroIds.has(l.hero)) errors.push(`${file}: no hero "${l.hero}"`);
+  if (!Array.isArray(l.cards) || l.cards.length > 3) errors.push(`${file}: a hero has at most 3 lore cards`);
+  for (const c of l.cards ?? []) {
+    if (c.id !== `${l.hero}-${c.n}`) errors.push(`${file}: lore id "${c.id}" should be "${l.hero}-${c.n}"`);
+    for (const k of ["title", "text"]) if (!c[k]) errors.push(`${file}: lore ${c.id} missing ${k}`);
+    if (!c.source?.work || !c.source?.url) errors.push(`${file}: lore ${c.id} must name its public-domain source`);
+  }
+}
+
 for (const i of manifest.images) {
   if (i.status === "open") continue;
   for (const k of ["artist", "title", "licence"]) if (!i[k]) errors.push(`art ${i.id}: missing ${k}`);

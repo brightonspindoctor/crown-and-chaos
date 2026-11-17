@@ -1,0 +1,52 @@
+{
+  "hero": "the-dragon",
+  "personality": "Ancient, hungry, and then tamed. Its loyalty is grudging but complete.",
+  "voice": "Something must burn.",
+  "cards": [
+    {
+      "id": "the-dragon-1",
+      "n": 1,
+      "title": "The Poisoned Lake",
+      "text": "Long before any knight came, the dragon lived in the lake beside Silene. When it came near the walls its breath alone was enough: the air turned foul and people died without being touched. The citizens armed themselves and went out against it, and fled. After that, no one went out at all.",
+      "playNote": "Fire Breath: it burns two cards at random.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-dragon-2",
+      "n": 2,
+      "title": "Two Sheep a Day",
+      "text": "To keep it from the walls, the city fed it two sheep every day. When the sheep ran short they gave it one sheep and one person. When the sheep ran out entirely, they drew lots among the children, and no family was spared, rich or poor. This is the bargain the dragon understood: something must be given.",
+      "playNote": "Its Bond: your heroes deal more damage to Slayers.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "the-dragon-3",
+      "n": 3,
+      "title": "The Girdle",
+      "text": "With the princess's girdle tied round its neck, the wounded dragon got up and followed her into Silene like a meek dog on a leash. The city that had fed it fled in panic at the sight. But the beast did not turn on them. It had been bound, and something in it now belonged to the one who held the girdle.",
+      "playNote": "Its Crown passive: it throws itself in front of a dying ally.",
+      "source": {
+        "work": "The Golden Legend",
+        "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
+        "edition": "Temple Classics, ed. F. S. Ellis, 1900",
+        "chapter": "Of S. George, Martyr",
+        "url": "https://sourcebooks.web.fordham.edu/basis/goldenlegend/GL-vol3-george.asp",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

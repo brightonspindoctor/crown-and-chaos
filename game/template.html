@@ -221,7 +221,9 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .title .lede { color: var(--ink); }
 .title .meta { display: flex; gap: 18px; align-items: center; justify-content: center; margin-top: 4px; color: var(--muted); font-style: italic; }
 .link { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; padding: 8px; }
-.tabs { display: flex; gap: 6px; }
+.tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { flex: none; }
 .tabs button { padding: 8px 14px; border-radius: 99px; border: 1px solid var(--line); font: 600 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .tabs button.on { border-color: var(--gold-leaf); color: var(--gold-text); }
 .grid { --cw: 108px; display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 16px 12px; padding-top: 6px; }
@@ -230,6 +232,79 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .box { background: var(--raised); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
 .box h2 { font: 600 13px/1.2 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-text); }
 .box.focus { animation: glow 1.1s ease-in-out infinite alternate; }
+
+/* ---------- the Library ---------- */
+.filter { align-self: flex-start; display: flex; gap: 8px; align-items: center; font: 600 10px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.filter select { font: 15px var(--serif); color: var(--ink); background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+.libsec { display: flex; flex-direction: column; gap: 10px; }
+.sechead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.sechead h2 { font: 600 14px/1.2 var(--display); letter-spacing: .08em; color: var(--gold-text); }
+.prog { font-style: italic; color: var(--muted); white-space: nowrap; font-size: 14.5px; }
+.credit a { color: var(--gold-text); }
+/* lore cards: parchment, the hero's painting above the title */
+.loregrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.lore { display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 6px 6px 10px; border-radius: 8px; background: var(--paper); color: var(--card-ink); border: 2px solid var(--gold-shade); box-shadow: 0 2px 8px rgba(20,13,8,.5); }
+.lore-art { display: block; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #0c0805; }
+.lore-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; filter: sepia(.25); }
+.lore-n { font: 600 10px/1.2 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--card-muted); padding: 2px 2px 0; }
+.lore b { font: 600 15px/1.2 var(--display); letter-spacing: .02em; padding: 0 2px; }
+.locked { background: none !important; border: 1px dashed rgba(185,166,140,.35) !important; box-shadow: none !important; color: var(--muted) !important; cursor: default; }
+.locked .lore-art, .arttile.locked .pic { display: grid; place-items: center; background: rgba(23,17,12,.6); }
+.locked .lore-art i, .locked .pic i { font: 600 26px/1 var(--display); color: rgba(185,166,140,.4); font-style: normal; }
+.locked .lore-n { color: var(--muted); }
+.locked b { font-weight: 500; }
+.lore-sheet .lore-pic { aspect-ratio: 16 / 8; border-radius: 6px; overflow: hidden; border: 2px solid var(--gold-leaf); }
+.lore-sheet .lore-pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.lore-text { font-size: 18px; line-height: 1.45; text-wrap: pretty; }
+.lore-text::first-letter { font: 600 2.6em/.9 var(--display); float: left; margin: 4px 8px 0 0; color: var(--gold-text); }
+.lore-voice { font: italic 17px/1.3 var(--serif); color: var(--gold-text); }
+.lore-voice span { display: block; font-size: 14.5px; color: var(--muted); margin-top: 2px; }
+.lore-sheet .row .btn { font-size: 13px; }
+/* variants */
+.artrow { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+.arttile { position: relative; display: flex; flex-direction: column; gap: 3px; text-align: left; padding: 5px 5px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); }
+.arttile .pic { display: block; aspect-ratio: 1 / 1; border-radius: 4px; overflow: hidden; background: #0c0805; }
+.arttile .pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.arttile b { font: 600 13px/1.2 var(--display); letter-spacing: .03em; padding: 2px 2px 0; }
+.arttile > i { font-size: 13px; line-height: 1.15; color: var(--muted); padding: 0 2px; }
+.arttile.on { border: 2px solid var(--gold-leaf); box-shadow: 0 0 0 1px var(--gold-shade), 0 4px 14px rgba(20,13,8,.6); }
+.arttile em { position: absolute; top: 9px; left: 9px; font: 700 9.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: #2a1d14; background: var(--gold-leaf); border-radius: 99px; padding: 4px 7px; }
+/* crowns */
+.crownicon { display: block; }
+.box.wearing { flex-direction: row; align-items: center; gap: 14px; }
+.box.wearing > svg { width: 64px; height: 64px; flex: none; }
+.box.wearing p { color: var(--muted); }
+.crowngrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 12px; }
+.crowntile { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--raised); text-align: center; }
+.crowntile svg { width: 56px; height: 56px; }
+.crowntile b { font: 600 13px/1.2 var(--display); letter-spacing: .03em; }
+.crowntile i { font-size: 13px; color: var(--muted); }
+.crowntile.on { border: 2px solid var(--gold-leaf); }
+.crowntile.on i { color: var(--gold-text); }
+.crowntile.locked svg { filter: brightness(0) invert(.35); opacity: .45; }
+.crownopt svg { grid-row: 1 / 3; width: 44px; height: 44px; justify-self: center; }
+#head .wear { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--gold-shade); background: var(--raised); margin-left: auto; flex: none; }
+#head .wear svg { width: 20px; height: 20px; }
+/* pack: gold, lore and crown cards, and their tiles in the pack summary */
+.fc.lorecard { background: linear-gradient(145deg, #e8d9b4, #cdb98a); border-color: var(--gold-shade); }
+.fc.lorecard .fc-top { background: var(--umber); }
+.fc.lorecard .fc-art img { filter: sepia(.25); }
+.fc.lorecard .fc-body span:first-child { font-size: 14.5px; line-height: 1.32; }
+.fc.crowncard { background: linear-gradient(160deg, #2b4a86, var(--ultramarine) 55%, #13254a); border-color: var(--gold-shade); }
+.crownstage { display: grid; place-items: center; padding: 26px 0; }
+.crownstage svg { width: 60%; height: auto; filter: drop-shadow(0 6px 10px rgba(0,0,0,.6)); }
+.fc.goldcard { align-items: center; justify-content: center; gap: 10px; padding: 40px 12px; background: radial-gradient(circle at 50% 35%, #4a3a20, #2a1d12); border-color: var(--gold-shade); color: var(--ink); }
+.fc.goldcard b { font: 700 32px/1 var(--display); color: var(--gold-text); }
+.fc.goldcard span { font-style: italic; color: var(--muted); }
+.goldcoin { display: block; width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f1dc9a, var(--gold-leaf) 60%, var(--gold-shade)); box-shadow: inset 0 0 0 3px var(--gold-shade), 0 6px 14px rgba(0,0,0,.6); }
+.extras { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+.xt { display: flex; flex-direction: column; gap: 3px; padding: 5px 5px 8px; border-radius: 8px; border: 1px solid var(--gold-shade); background: var(--raised); text-align: left; }
+.xt .xpic { display: grid; place-items: center; aspect-ratio: 1 / 1; border-radius: 4px; overflow: hidden; background: #0c0805; }
+.xt .xpic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.xt .xpic svg { width: 60%; height: 60%; }
+.xt .goldcoin { width: 50%; height: 50%; }
+.xt b { font: 600 13px/1.2 var(--display); }
+.xt i { font-size: 13px; color: var(--muted); }
 
 /* line-up */
 .meter { min-width: 150px; text-align: right; font: 600 12px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border-radius: 6px; padding: 4px; }
@@ -360,6 +435,8 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 const DATA = /*DATA*/;
 const ART = /*ART*/;
 const BOARDS = /*BOARDS*/;
+const VARIANTS = /*VARIANTS*/;
+const LORE = /*LORE*/;
 const E = (() => { /*ENGINE*/
   return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND };
 })();
@@ -452,7 +529,8 @@ const PRICES = { pack: 50, front: 20, Common: 40, Rare: 100, Legendary: 250 };
 const PAY = { win: 30, loss: 15, bonus: 5 };
 const RENOWN_CAP = 50, BELT = 3, START_GOLD = 50;
 const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", "", ""] });
-const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), crowns: 0, wins: 0, losses: 0, draws: 0, dry: 0, tip: 0 });
+const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), crowns: 0, wins: 0, losses: 0, draws: 0, dry: 0, tip: 0,
+  lore: [], variants: [], art: {}, ownCrowns: ["gold"], wearing: "gold" });
 function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); return Object.assign(fresh(), g); } } catch (e) {} return fresh(); }
 function save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) {} }
 let G = load();
@@ -477,12 +555,30 @@ function firstPack() {
   const others = Object.values(DATA.heroes).filter((h) => h.realm !== "Albion" && h.id !== "baba-yaga" && !PAIR.includes(h.id));
   return [...front, ...STARTER_ITEMS, "the-princess", "the-dragon", "st-george", pick(others).id];
 }
-// A Fable pack: 4 front-rank cards and 2 items; about 1 pack in 5 swaps an item for a hero.
+// A Fable pack: 4 front-rank cards and 2 better cards; about 1 pack in 5 swaps a better card for a hero.
+// Better cards (design doc odds): common item 45%, rare 15%, legendary 3%, gold 15%, lore 10%, variant 7%, crown 5%.
+// Lore and variants are only drawn for cards you own and haven't collected; when none are left, the draw becomes gold.
+// Gold, lore, variants and crowns travel as tokens such as "gold:25", "lore:st-george-1", "var:<key>", "crown:iron".
+const tok = (t) => { const i = String(t).indexOf(":"); return i < 0 ? null : { kind: t.slice(0, i), val: t.slice(i + 1) }; };
+const loreFree = (taken) => LORE_CARDS.filter((c) => owned(c.hero) > 0 && !G.lore.includes(c.id) && !taken.includes(`lore:${c.id}`));
+const variantFree = (taken) => Object.values(VARIANTS).flat().filter((v) => owned(v.card) > 0 && !G.variants.includes(v.key) && !taken.includes(`var:${v.key}`));
+const goldCard = () => { const r = Math.random(); return `gold:${r < 0.75 ? 10 : r < 0.95 ? 25 : 100}`; };
+function betterCard(taken) {
+  const r = Math.random() * 100;
+  const item = (rar) => pick(Object.values(DATA.items).filter((x) => x.rarity === rar)).id;
+  if (r < 45) return item("Common");
+  if (r < 60) return item("Rare");
+  if (r < 63) return item("Legendary");
+  if (r < 78) return goldCard();
+  if (r < 88) { const l = loreFree(taken); return l.length ? `lore:${pick(l).id}` : goldCard(); }
+  if (r < 95) { const v = variantFree(taken); return v.length ? `var:${pick(v).key}` : goldCard(); }
+  return `crown:${pick(CROWNS.filter((c) => c.price)).id}`;
+}
 function fablePack() {
   const pool = [...CORE_FRONT, ...CORE_FRONT, "grandmother", "geat-thane", "mere-beast"];
   const cards = [0, 1, 2, 3].map(() => pick(pool));
-  const item = () => { const r = Math.random(), rar = r < 0.05 ? "Legendary" : r < 0.3 ? "Rare" : "Common"; return pick(Object.values(DATA.items).filter((x) => x.rarity === rar)).id; };
-  const better = [item(), item()];
+  const better = [];
+  better.push(betterCard(better)); better.push(betterCard(better));
   G.dry += 1;
   if (G.dry >= 5 || Math.random() < 0.2) {
     const can = Object.values(DATA.heroes).filter((h) => owned(h.id) < 3);
@@ -547,7 +643,7 @@ function randomFoe() {
 // =====================================================================================
 // State
 // =====================================================================================
-const U = { screen: "home", tab: "hero", sheet: null, over: null, pack: null, confirmReset: false };
+const U = { screen: "home", tab: "hero", realm: "", sheet: null, over: null, pack: null, confirmReset: false };
 const S = { kind: null, guided: false, st: null, phase: "plan", r: 0, i: 0, post: false, plan: null, pick: null, board: null, foeName: "", lineups: null,
   view: null, prev: null, frames: [], fi: 0, caption: "", acting: null, timer: null, nudge: false };
 const el = (id) => document.getElementById(id);
@@ -557,8 +653,31 @@ const emptyPlan = () => ({ orders: [], items: [], hunt: null, rumpel: null });
 const CROWN_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18l1.5-10-5.5 4-5-7-5 7-5.5-4zM3 19.5h18V21H3z"/></svg>`;
 const SWORD_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 2.5 6 10M4.5 8.5l3 3M5 11l-2.5 2.5"/></svg>`;
 const BOW_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2c6 0 11 5 11 11M3 2l11 11M2 14 9 7M9 7H6.5M9 7v2.5"/></svg>`;
-const img = (id) => (ART[id] ? `<img src="img/${id}.jpg" alt="" decoding="sync">` : "");
-const creditOf = (id) => { const a = ART[id]; return a ? `${esc(a.artist)}, <i>${esc(a.title)}</i>, ${esc(a.date)}` : ""; };
+// Artwork. A card shows its own painting unless the player has chosen a variant they own; enemy cards always show their own.
+const variantOf = (key) => (VARIANTS[key.split("--")[1]] || []).find((v) => v.key === key);
+const artKey = (id, mine = true) => { const k = mine && G.art[id]; return k && G.variants.includes(k) && variantOf(k) ? k : ""; };
+const artSrc = (id, mine = true, key) => { const k = key ?? artKey(id, mine); return k ? `img/v/${k}.jpg` : `img/${id}.jpg`; };
+const img = (id, mine = true, key) => (ART[id] ? `<img src="${artSrc(id, mine, key)}" alt="" decoding="sync">` : "");
+const artInfo = (id, mine = true, key) => { const k = key ?? artKey(id, mine); return k ? variantOf(k) : ART[id]; };
+const creditOf = (id, mine = true, key) => { const a = artInfo(id, mine, key); return a ? `${esc(a.artist)}, <i>${esc(a.title)}</i>, ${esc(a.date)}${a.from ? `. ${esc(a.from)}` : ""}` : ""; };
+
+// Cosmetic crowns: worn on the player's icon, no effect on play. The Gold Crown is everyone's first.
+const CROWNS = [
+  { id: "gold", name: "Gold Crown", price: 0, svg: `<path fill="#c9a24a" d="M3 18h18l1.5-10-5.5 4-5-7-5 7-5.5-4zM3 19.5h18V21H3z"/>` },
+  { id: "iron", name: "Iron Crown", price: 2000, svg: `<path fill="#9a9a9a" d="M3 21h18v-5H3zM3.5 15h3.5V9H3.5zM10.25 15h3.5V6h-3.5zM17 15h3.5V9H17z"/><path fill="#5d5d5d" d="M3 17.5h18v1H3z"/>` },
+  { id: "flowers", name: "Flower Crown", price: 2000, svg: `<path fill="#5d8a4a" d="M2.5 19.5h19v-3h-19z"/><circle cx="6" cy="13.5" r="3" fill="#e7a4b8"/><circle cx="12" cy="11.5" r="3.4" fill="#f2d16b"/><circle cx="18" cy="13.5" r="3" fill="#e7a4b8"/><circle cx="6" cy="13.5" r="1" fill="#8a4a3a"/><circle cx="12" cy="11.5" r="1.1" fill="#8a4a3a"/><circle cx="18" cy="13.5" r="1" fill="#8a4a3a"/>` },
+  { id: "antlers", name: "Crown of Antlers", price: 3000, svg: `<path fill="#8a6440" d="M4 21h16v-4H4z"/><path fill="none" stroke="#c9a77a" stroke-width="1.8" stroke-linecap="round" d="M8 17V9L4.5 4.5M8 11.5 4 9.5M8 9.5l2.5-4.5M16 17V9l3.5-4.5M16 11.5l4-2M16 9.5 13.5 5"/>` },
+  { id: "ice", name: "Crown of Ice", price: 4000, svg: `<path fill="#bfe3f2" d="M3 20h18l-2-4 1-10-3.5 6.5L14 3.5 12 11 10 3.5 7.5 12.5 4 6l1 10z"/><path fill="#7fb6cf" d="M3 20h18v1.5H3z"/>` },
+  { id: "sun", name: "Sun Crown", price: 4000, svg: `<path fill="#e8b33a" d="M4 21h16v-4H4zM12 3l1.8 13h-3.6zM5.5 6.5l4 9.5H6.8zM18.5 6.5 17.2 16h-2.7zM2.5 11.5 6 16H3.5zM21.5 11.5 20.5 16H18z"/>` },
+  { id: "skull", name: "Skull Crown", price: 5000, svg: `<path fill="#5a4a3a" d="M3 21h18v-4H3z"/><g fill="#e8e0cc"><circle cx="6.5" cy="13" r="3"/><circle cx="12" cy="10.5" r="3.4"/><circle cx="17.5" cy="13" r="3"/><path d="M5 15h3v2H5zM10.3 13h3.4v2.6h-3.4zM16 15h3v2h-3z"/></g><g fill="#2a1d14"><circle cx="5.5" cy="12.8" r=".8"/><circle cx="7.5" cy="12.8" r=".8"/><circle cx="10.9" cy="10.3" r=".9"/><circle cx="13.1" cy="10.3" r=".9"/><circle cx="16.5" cy="12.8" r=".8"/><circle cx="18.5" cy="12.8" r=".8"/></g>` },
+];
+const crownById = Object.fromEntries(CROWNS.map((c) => [c.id, c]));
+const crownSvg = (id, label) => `<svg class="crownicon" viewBox="0 0 24 24"${label ? ` role="img" aria-label="${esc(label)}"` : ' aria-hidden="true"'}>${(crownById[id] || CROWNS[0]).svg}</svg>`;
+
+// Lore: up to 3 cards per hero, only ever drawn for heroes the player owns.
+const LORE_CARDS = Object.values(LORE).flatMap((l) => l.cards.map((c) => ({ ...c, hero: l.hero })));
+const loreById = Object.fromEntries(LORE_CARDS.map((c) => [c.id, c]));
+const ROMAN = ["", "I", "II", "III"];
 
 function live(side, slot) { const c = S.st.sides[side].slots[slot]; return c && !c.dead && !c.removed ? c : null; }
 function byUid(uid) { for (const sd of S.st.sides) { for (const c of [...Object.values(sd.slots), ...sd.grave]) if (c && c.uid === uid) return c; } return null; }
@@ -911,7 +1030,7 @@ function cardShell(o) {
     ${o.kind === "hero" ? `<span class="seal" title="Speed">${o.spd}</span>` : o.kind === "front" ? `<span class="seal" title="Speed ${o.spd}. Acts on its own">${o.spd}</span>` : ""}
     ${o.crown ? `<span class="crownmark" title="Wears the Crown">${CROWN_SVG}</span>` : o.count ? `<span class="count">${o.count}</span>` : ""}
     <span class="nm">${esc(short(o.name))}</span>
-    <span class="art">${img(o.id)}${o.overlay || ""}</span>
+    <span class="art">${img(o.id, !o.theirs)}${o.overlay || ""}</span>
     <span class="stats">${o.kind === "item" ? `<em>${esc(o.rarity)} item</em>` : `<span class="atk">${o.ranged ? BOW_SVG : SWORD_SVG}${o.atk}</span>
       ${o.guard > 0 ? `<span class="grd" title="Guard"><b>${o.guard}</b></span>` : ""}
       <span class="hp${o.hurt ? " hurt" : ""}" title="Health">${o.hp}</span>`}</span>
@@ -957,7 +1076,7 @@ function battleCard(c, v, opts = {}) {
   const mark = S.plan && (S.plan.hunt === c.uid ? "Marked" : S.plan.rumpel === c.uid ? "Named" : "");
   const overlay = order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Stopped</span>` : mark ? `<span class="badge">${mark}</span>`
     : S.phase === "play" && S.acting === c.uid && c.kind !== "hero" ? `<span class="order">On its own</span>` : c.poison ? `<span class="badge">Poison ${c.poison}</span>` : "";
-  return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}" data-side="${side}" data-slot="${c.slot}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown,
+  return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}" data-side="${side}" data-slot="${c.slot}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown, theirs: !mine,
     atk: c.atk, ranged: c.ranged, guard: c.guard, hp: opts.fallen ? 0 : c.health, hurt: c.health < c.maxHealth, overlay, floats,
     label: `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}, Speed ${c.spd}${c.kind === "hero" ? "" : ", acts on its own"}` });
 }
@@ -970,8 +1089,8 @@ function slotHtml(v, side, slot) {
 }
 
 // The full card, as it is printed: used when a pack is opened and in the collection.
-function fullCard(id) {
-  const d = defOf(id), kind = kindOf(id), a = ART[id];
+function fullCard(id, o = {}) {
+  const d = defOf(id), kind = kindOf(id), a = artInfo(id, true, o.key), v = o.key && variantOf(o.key);
   const pips = (n) => '<i class="pip on"></i>'.repeat(n);
   let body = "", foot = "";
   if (kind === "hero") {
@@ -989,8 +1108,8 @@ function fullCard(id) {
   }
   return `<div class="fc ${kind}">
     <div class="fc-top">${kind === "hero" ? `<span class="s" title="Speed">${d.stats.speed}</span>` : kind === "front" ? `<span class="s" title="Speed">${d.speed}</span>` : ""}<b>${esc(d.name)}</b>${d.renown != null ? `<span class="r" title="Renown">${d.renown}</span>` : ""}</div>
-    <div class="fc-art">${img(id)}</div>
-    ${kind === "hero" ? `<div class="fc-plaque">${esc(d.tale)} · ${esc(d.realm)}</div>` : d.tale ? `<div class="fc-plaque">${esc(d.tale)}</div>` : ""}
+    <div class="fc-art">${img(id, true, o.key)}</div>
+    ${v ? `<div class="fc-plaque">Variant artwork · ${esc(short(d.name))} ${v.n}</div>` : kind === "hero" ? `<div class="fc-plaque">${esc(d.tale)} · ${esc(d.realm)}</div>` : d.tale ? `<div class="fc-plaque">${esc(d.tale)}</div>` : ""}
     <div class="fc-body">${body}</div>
     <div class="fc-foot">${foot}<i>${a ? `${esc(a.artist)}<br>${esc(a.date)}` : ""}</i></div></div>`;
 }
@@ -1002,7 +1121,7 @@ function renderBattle() {
   const v = S.view, g = step(), b = S.board, night = v.round >= E.NIGHTFALL_ROUND;
   el("head").innerHTML = `<button class="round${g && g.focus === "night" ? " focus" : ""}" data-act="night" aria-label="Round ${v.round}. ${night ? "It is night" : `Night falls in round ${E.NIGHTFALL_ROUND}`}. Read about Nightfall">Round ${v.round}<i class="${night ? "now" : ""}">${night ? "Night: no healing ⓘ" : `Night falls in round ${E.NIGHTFALL_ROUND} ⓘ`}</i></button>
     <span class="place"><b>${esc(b.name)}</b><i>${esc(b.artist)}, ${esc(b.title)}, ${esc(b.date)}</i></span>
-    <button class="menu" data-act="menu">Menu</button>`;
+    <span class="wear" title="Your crown: ${esc(crownById[G.wearing]?.name || "Gold Crown")}">${crownSvg(G.wearing, `You wear the ${crownById[G.wearing]?.name || "Gold Crown"}`)}</span><button class="menu" data-act="menu">Menu</button>`;
   const table = el("table");
   table.style.backgroundImage = `url(img/${b.id}.jpg)`;
   table.classList.toggle("night", night); table.classList.toggle("fx-night", night);
@@ -1082,11 +1201,11 @@ function cardSheet(sh) {
     : `<p class="rule"><b>Front rank · acts on its own every round, at Speed ${E.speedOf(st, c)}</b>${esc(c.auto || "")}</p>`;
   return `<div class="sheet" role="dialog" aria-label="${esc(c.name)}">
     ${g && g.action ? `<p class="hint">${g.say}</p>` : ""}
-    <div class="top">${ART[c.id] ? `<img class="pic" src="img/${c.id}.jpg" alt="">` : ""}
+    <div class="top">${ART[c.id] ? `<img class="pic" src="${artSrc(c.id, mine)}" alt="">` : ""}
       <div><h2>${esc(c.name)}</h2>
         <p class="kind">${mine ? "Yours" : "Enemy"} · ${hero ? `${esc(def.aspect)} of ${esc(def.realm)}${c.ranged ? " · ranged" : ""}` : "front rank"}</p>
         <p class="nums"><span>Health <b>${c.health}/${c.maxHealth}</b></span><span>Attack <b>${E.attackOf(st, c)}</b></span><span>Guard <b>${E.guardOf(st, c)}</b></span>${hero ? `<span>Speed <b>${E.speedOf(st, c)}</b></span>` : ""}</p>
-        <p class="credit">${creditOf(c.id)}</p></div>
+        <p class="credit">${creditOf(c.id, mine)}</p></div>
       ${g ? "" : `<button class="x" data-act="close" aria-label="Close">×</button>`}</div>
     ${mineMark ? markBox(mineMark) : ""}${acts}${rules}</div>`;
 }
@@ -1112,13 +1231,13 @@ function nightSheet() {
 }
 function targetSheet(sh) {
   return `<div class="sheet" role="dialog" aria-label="Choose a target"><div class="top"><h2>${esc(sh.pick.name)}</h2><button class="x" data-act="close" aria-label="Close">×</button></div>
-    <div class="options">${sh.cards.map((t) => `<button class="opt" data-act="target" data-uid="${t.uid}">${img(t.id) || "<span></span>"}<strong>${esc(t.name)}</strong><small>${t.dead ? "Fallen" : `${t.health} of ${t.maxHealth} Health`}</small></button>`).join("")}</div></div>`;
+    <div class="options">${sh.cards.map((t) => `<button class="opt" data-act="target" data-uid="${t.uid}">${img(t.id, t.side === 0) || "<span></span>"}<strong>${esc(t.name)}</strong><small>${t.dead ? "Fallen" : `${t.health} of ${t.maxHealth} Health`}</small></button>`).join("")}</div></div>`;
 }
 
 // =====================================================================================
 // Drawing: the pages outside the battle
 // =====================================================================================
-const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Cards"], ["shop", "Shop"]];
+const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Library"], ["shop", "Shop"]];
 function renderPage() {
   const v = el("view"), keep = U.kept === U.screen ? v.scrollTop : 0;
   const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml }[U.screen];
@@ -1150,9 +1269,19 @@ function readyHtml() {
     <div class="btns"><button class="btn big" data-act="open-first">Yes</button></div></div></div>`;
 }
 const packArt = (label) => `<span class="packart">${CROWN_SVG}<b>FABLES</b><i>${label}</i></span>`;
+// Puts a pack's cards in the collection. A crown you already own becomes 20 gold.
+function claim(t) {
+  const k = tok(t);
+  if (!k) { give(t); return ""; }
+  if (k.kind === "gold") G.gold += +k.val;
+  else if (k.kind === "lore") { if (!G.lore.includes(k.val)) G.lore.push(k.val); }
+  else if (k.kind === "var") { if (!G.variants.includes(k.val)) G.variants.push(k.val); }
+  else if (k.kind === "crown") { if (G.ownCrowns.includes(k.val)) { G.gold += 20; return "dup"; } G.ownCrowns.push(k.val); }
+  return "";
+}
 function openPack(cards, opts) {
-  cards.forEach((id) => give(id));
-  U.pack = { cards, i: -1, ...opts };
+  const dup = cards.map(claim);
+  U.pack = { cards, dup, i: -1, ...opts };
   U.screen = "pack"; save();
 }
 function packHtml() {
@@ -1161,6 +1290,14 @@ function packHtml() {
     return `<div class="opening"><p class="eyebrow">${esc(p.title)}</p>
       <button data-act="pack-next" aria-label="Open the pack">${packArt(`${n} cards`)}</button>
       <p class="lede">Tap the pack to open it.</p></div>`;
+  }
+  if (p.i < n && tok(p.cards[p.i])) {
+    const t = tok(p.cards[p.i]), dup = p.dup && p.dup[p.i];
+    const label = { gold: "Gold", lore: "A lore card", var: "A variant artwork", crown: dup ? "A crown you already own" : "A crown" }[t.kind];
+    return `<div class="opening"><p class="eyebrow">Card ${p.i + 1} of ${n} · ${esc(label)}</p>
+      <button class="reveal${t.kind === "gold" ? "" : " star"}" data-act="pack-next" aria-label="${esc(label)}. Next card">${tokenFace(p.cards[p.i], dup)}</button>
+      <div class="stack" aria-hidden="true">${p.cards.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
+      <div class="row" style="width:min(310px,84vw)"><button class="btn" data-act="pack-next">${p.i === n - 1 ? "See them all" : "Next card"}</button>${p.i < n - 2 ? `<button class="btn quiet" data-act="pack-all">Reveal all</button>` : ""}</div></div>`;
   }
   if (p.i < n) {
     const id = p.cards[p.i], kind = kindOf(id), d = defOf(id), star = kind === "hero" || d.rarity === "Legendary";
@@ -1172,24 +1309,142 @@ function packHtml() {
       <div class="stack" aria-hidden="true">${p.cards.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
       <div class="row" style="width:min(310px,84vw)"><button class="btn" data-act="pack-next">${p.i === n - 1 ? "See them all" : "Next card"}</button>${p.i < n - 2 ? `<button class="btn quiet" data-act="pack-all">Reveal all</button>` : ""}</div></div>`;
   }
-  const counts = {}; p.cards.forEach((id) => (counts[id] = (counts[id] || 0) + 1));
+  const counts = {}; p.cards.filter((id) => !tok(id)).forEach((id) => (counts[id] = (counts[id] || 0) + 1));
   const group = (kind) => Object.keys(counts).filter((id) => kindOf(id) === kind);
+  const extras = p.cards.map((t, k) => [t, p.dup && p.dup[k]]).filter(([t]) => tok(t));
   const section = (kind, label) => { const ids = group(kind); return ids.length ? `<p class="rowlabel" style="text-align:left">${label}</p>
     <div class="grid">${ids.map((id) => staticCard(id, { attrs: `data-act="detail" data-id="${id}"`, count: counts[id] > 1 ? `×${counts[id]}` : "" })).join("")}</div>` : ""; };
   return `<div class="wrap"><div class="bar"><h1>${esc(p.title)}</h1><span class="eyebrow">${n} cards</span></div>
-    ${section("hero", "Heroes")}${section("item", "Items · for your tool belt")}${section("front", "Front rank · acts on its own")}
+    ${section("hero", "Heroes")}${extras.length ? `<p class="rowlabel" style="text-align:left">For your Library</p><div class="extras">${extras.map(([t, dup]) => tokenTile(t, dup)).join("")}</div>` : ""}${section("item", "Items · for your tool belt")}${section("front", "Front rank · acts on its own")}
     <p class="lede">Tap any card to read it.</p>
     <div class="row"><button class="btn big" data-go="${p.first ? "formation" : "shop"}">${p.first ? "Build your line-up" : "Back to the shop"}</button>${p.first ? "" : `<button class="btn big quiet" data-go="formation">Line-up</button>`}</div></div>`;
 }
+// ---------- the Library: every card, lore card, variant and crown the player owns ----------
+const LIB_TABS = [["hero", "Heroes"], ["front", "Front rank"], ["item", "Items"], ["lore", "Lore"], ["variant", "Variants"], ["crown", "Crowns"]];
+const byName = (a, b) => (defOf(a).realm || "").localeCompare(defOf(b).realm || "") || defOf(a).name.localeCompare(defOf(b).name);
+const listOf = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+const realmOk = (id) => !U.realm || defOf(id).realm === U.realm;
+// A realm filter, shown when the cards on a tab come from more than one realm.
+function realmFilter(ids) {
+  const realms = [...new Set(ids.map((id) => defOf(id).realm).filter(Boolean))].sort();
+  if (!realms.includes(U.realm)) U.realm = "";
+  if (realms.length < 2) return "";
+  return `<label class="filter">Realm <select data-filter aria-label="Show one realm">${["", ...realms].map((r) => `<option value="${esc(r)}"${U.realm === r ? " selected" : ""}>${r ? esc(r) : "All realms"}</option>`).join("")}</select></label>`;
+}
 function collectionHtml() {
-  const tabs = [["hero", "Heroes"], ["front", "Front rank"], ["item", "Items"]];
-  const src = { hero: G.heroes, front: { villager: Infinity, ...G.front }, item: G.items }[U.tab];
-  const ids = Object.keys(src).sort((a, b) => (defOf(a).realm || "").localeCompare(defOf(b).realm || "") || defOf(a).name.localeCompare(defOf(b).name));
+  if (!LIB_TABS.some(([k]) => k === U.tab)) U.tab = "hero";
   const total = Object.values(G.heroes).reduce((a, b) => a + b, 0) + Object.values(G.front).reduce((a, b) => a + b, 0) + Object.values(G.items).reduce((a, b) => a + b, 0);
-  return `<div class="wrap"><div class="bar"><h1>Your cards</h1><span style="display:flex;gap:14px;align-items:center">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="eyebrow">${total} cards</span></span></div>
-    <div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${U.tab === k}" class="${U.tab === k ? "on" : ""}" data-tab="${k}">${l}</button>`).join("")}</div>
-    ${ids.length ? `<div class="grid">${ids.map((id) => staticCard(id, { attrs: `data-act="detail" data-id="${id}"`, count: id === "villager" ? "∞" : src[id] > 1 ? `×${src[id]}` : "" })).join("")}</div>` : `<p class="empty">None yet. Items come in Fable packs and from the shop.</p>`}
-    <p class="lede">${U.tab === "hero" ? "Heroes are yours to keep and come only from packs." : U.tab === "front" ? "A front-rank card that dies in a fight is gone for good. Villagers are free and never run out." : "Items are single use: one that is used in a fight leaves your collection."}</p></div>`;
+  const body = { hero: libCards, front: libCards, item: libCards, lore: libLore, variant: libVariants, crown: libCrowns }[U.tab]();
+  return `<div class="wrap"><div class="bar"><h1>Library</h1><span style="display:flex;gap:14px;align-items:center"><span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span><span class="eyebrow">${total} cards</span></span></div>
+    <div class="tabs" role="tablist">${LIB_TABS.map(([k, l]) => `<button role="tab" aria-selected="${U.tab === k}" class="${U.tab === k ? "on" : ""}" data-tab="${k}">${l}</button>`).join("")}</div>
+    ${body}</div>`;
+}
+function libCards() {
+  const src = { hero: G.heroes, front: { villager: Infinity, ...G.front }, item: G.items }[U.tab];
+  let ids = Object.keys(src).sort(byName);
+  const filter = U.tab === "hero" ? realmFilter(ids) : "";
+  if (U.tab === "hero") ids = ids.filter(realmOk);
+  return `${filter}${ids.length ? `<div class="grid">${ids.map((id) => staticCard(id, { attrs: `data-act="detail" data-id="${id}"`, count: id === "villager" ? "∞" : src[id] > 1 ? `×${src[id]}` : "" })).join("")}</div>` : `<p class="empty">None yet. Items come in Fable packs and from the shop.</p>`}
+    <p class="lede">${U.tab === "hero" ? "Heroes are yours to keep and come only from packs. Tap one to read it, its lore and its artworks." : U.tab === "front" ? "A front-rank card that dies in a fight is gone for good. Villagers are free and never run out." : "Items are single use: one that is used in a fight leaves your collection."}</p>`;
+}
+
+// Lore: grouped by tale, with the cards still to find shown as outlines. Heroes you don't own stay hidden.
+function loreTile(c) {
+  const h = DATA.heroes[c.hero];
+  return `<button class="lore" data-act="lore" data-id="${c.id}" aria-label="Lore: ${esc(c.title)}, ${esc(h.name)} ${c.n}"><span class="lore-art">${img(c.hero)}</span><span class="lore-n">${esc(short(h.name))} · ${ROMAN[c.n]}</span><b>${esc(c.title)}</b></button>`;
+}
+function lockedLore(c) {
+  const h = DATA.heroes[c.hero];
+  return `<div class="lore locked" role="img" aria-label="${esc(h.name)} lore card ${c.n}, not yet found"><span class="lore-art"><i>?</i></span><span class="lore-n">${esc(short(h.name))} · ${ROMAN[c.n]}</span><b>Not yet found</b></div>`;
+}
+function libLore() {
+  const mine = Object.keys(G.heroes).filter((id) => owned(id) > 0).sort(byName);
+  const filter = realmFilter(mine), hs = mine.filter(realmOk);
+  const tales = {};
+  hs.filter((id) => LORE[id]).forEach((id) => (tales[DATA.heroes[id].tale] ??= []).push(id));
+  const sections = Object.entries(tales).map(([tale, ids]) => {
+    const cards = ids.flatMap((id) => LORE[id].cards.map((c) => loreById[c.id]));
+    const got = cards.filter((c) => G.lore.includes(c.id)).length;
+    return `<section class="libsec"><div class="sechead"><h2>${esc(tale)}</h2><span class="prog">Lore ${got} of ${cards.length}</span></div>
+      <div class="loregrid">${cards.map((c) => (G.lore.includes(c.id) ? loreTile(c) : lockedLore(c))).join("")}</div></section>`;
+  }).join("");
+  const waiting = hs.filter((id) => !LORE[id]).map((id) => esc(short(DATA.heroes[id].name)));
+  return `${filter}<p class="lede">Each hero has up to three lore cards that tell their tale from the old sources. They come in Fable packs, only for heroes you own, and never change play.</p>
+    ${sections || `<p class="empty">None of your heroes has lore to find yet.</p>`}
+    ${waiting.length ? `<p class="credit">Tales still being written for ${listOf(waiting)}.</p>` : ""}`;
+}
+function loreSheet(sh) {
+  const c = loreById[sh.id], h = DATA.heroes[c.hero], L = LORE[c.hero];
+  const mineCards = L.cards.filter((x) => G.lore.includes(x.id)), k = mineCards.findIndex((x) => x.id === c.id);
+  const prev = mineCards[k - 1], next = mineCards[k + 1], s = c.source;
+  return `<div class="sheet lore-sheet" role="dialog" aria-label="${esc(c.title)}">
+    <div class="top"><div style="flex:1"><p class="kind">Lore · ${esc(h.name)} · ${c.n} of ${L.cards.length}</p><h2>${esc(c.title)}</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div>
+    <div class="lore-pic">${img(c.hero)}</div>
+    <p class="lore-text">${esc(c.text)}</p>
+    ${c.playNote ? `<p class="rule"><b>In play</b>${esc(c.playNote)}</p>` : ""}
+    <p class="lore-voice">“${esc(L.voice)}”<span>${esc(L.personality)}</span></p>
+    <p class="credit">Retold from <i>${esc(s.work)}</i>, ${esc(s.author)} (${esc(s.edition)}), “${esc(s.chapter)}”. ${esc(s.licence)}. <a href="${esc(s.url)}" target="_blank" rel="noopener">Read the original</a>.<br>Painting: ${creditOf(c.hero)}.</p>
+    ${prev || next ? `<div class="row">${prev ? `<button class="btn quiet" data-act="lore" data-id="${prev.id}">‹ ${esc(prev.title)}</button>` : ""}${next ? `<button class="btn quiet" data-act="lore" data-id="${next.id}">${esc(next.title)} ›</button>` : ""}</div>` : ""}</div>`;
+}
+
+// Variants: every painting of each card you own. Choose the one it shows in battle; opponents see your choice.
+function artTile(id, v) {
+  const name = short(defOf(id).name), have = !v.key || G.variants.includes(v.key), on = artKey(id) === v.key;
+  const full = `${v.artist}, ${v.title}, ${v.date}${v.from ? `. ${v.from}` : ""}`;
+  if (!have) return `<div class="arttile locked" role="img" aria-label="${esc(name)} ${v.n}, not yet found"><span class="pic"><i>?</i></span><b>${esc(name)} ${v.n}</b><i>Not yet found</i></div>`;
+  return `<button class="arttile${on ? " on" : ""}" data-act="wear-art" data-card="${id}" data-key="${v.key}" aria-pressed="${on}" title="${esc(full)}" aria-label="${esc(name)} ${v.n}: ${esc(full)}${on ? ". Shown in battle" : ". Show this in battle"}">
+    <span class="pic">${img(id, true, v.key)}</span><b>${esc(name)} ${v.n}</b><i>${esc(v.artist)}, ${esc(v.date)}</i>${on ? `<em>In battle</em>` : ""}</button>`;
+}
+function libVariants() {
+  const order = { hero: 0, front: 1, item: 2 };
+  let ids = Object.keys(VARIANTS).filter((id) => defOf(id) && owned(id) > 0).sort((a, b) => order[kindOf(a)] - order[kindOf(b)] || byName(a, b));
+  const filter = realmFilter(ids);
+  ids = ids.filter(realmOk);
+  const sections = ids.map((id) => {
+    const vs = VARIANTS[id], got = vs.filter((v) => G.variants.includes(v.key)).length;
+    return `<section class="libsec"><div class="sechead"><h2>${esc(defOf(id).name)}</h2><span class="prog">Artwork ${got + 1} of ${vs.length + 1}</span></div>
+      <div class="artrow">${[{ key: "", n: 1, ...ART[id] }, ...vs].map((v) => artTile(id, v)).join("")}</div></section>`;
+  }).join("");
+  return `${filter}<p class="lede">Variants are other public-domain paintings of cards you own. Tap one you've found to show it in battle; your opponent sees your choice. They never change play.</p>
+    ${sections || `<p class="empty">None of your cards has another painting to find yet.</p>`}`;
+}
+
+// Crowns: cosmetic, worn on your icon in battle.
+function libCrowns() {
+  const w = crownById[G.wearing] || CROWNS[0];
+  return `<div class="box wearing">${crownSvg(w.id)}<div><h2>You wear the ${esc(w.name)}</h2><p>It shows on your icon in battle. Crowns change nothing in play.</p></div></div>
+    <div class="crowngrid">${CROWNS.map((c) => {
+      const have = G.ownCrowns.includes(c.id), on = G.wearing === c.id;
+      return have ? `<button class="crowntile${on ? " on" : ""}" data-act="wear-crown" data-id="${c.id}" aria-pressed="${on}">${crownSvg(c.id)}<b>${esc(c.name)}</b><i>${on ? "Wearing" : "Tap to wear"}</i></button>`
+        : `<div class="crowntile locked">${crownSvg(c.id)}<b>${esc(c.name)}</b><i>Packs or the shop</i></div>`;
+    }).join("")}</div>
+    <p class="lede">Crowns come from Fable packs and the shop. A crown you already own becomes 20 gold.</p>`;
+}
+
+// Pack cards that aren't heroes, front rank or items: gold, lore, variants and crowns.
+function tokenFace(t, dup) {
+  const k = tok(t);
+  if (k.kind === "var") { const v = variantOf(k.val); return fullCard(v.card, { key: v.key }); }
+  if (k.kind === "lore") {
+    const c = loreById[k.val], h = DATA.heroes[c.hero];
+    return `<div class="fc lorecard"><div class="fc-top"><b>${esc(c.title)}</b><span class="r">${ROMAN[c.n]}</span></div><div class="fc-art">${img(c.hero)}</div>
+      <div class="fc-plaque">Lore · ${esc(h.name)} · ${c.n} of ${LORE[c.hero].cards.length}</div>
+      <div class="fc-body"><span>${esc(c.text)}</span><span class="ty">Retold from ${esc(c.source.work)}. Read it again in your Library.</span></div></div>`;
+  }
+  if (k.kind === "crown") {
+    const c = crownById[k.val];
+    return `<div class="fc crowncard"><div class="fc-top"><b>${esc(c.name)}</b></div><div class="crownstage">${crownSvg(c.id)}</div>
+      <div class="fc-body"><span>${dup ? "You already own this crown, so it becomes 20 gold." : "A cosmetic crown for your icon in battle. Choose which one you wear in the Library."}</span></div></div>`;
+  }
+  return `<div class="fc goldcard"><span class="goldcoin" aria-hidden="true"></span><b>${esc(k.val)} gold</b><span>Spend it in the shop.</span></div>`;
+}
+function tokenTile(t, dup) {
+  const k = tok(t);
+  if (k.kind === "gold") return `<div class="xt"><span class="xpic coinpic"><span class="goldcoin" aria-hidden="true"></span></span><b>${esc(k.val)} gold</b><i>Gold</i></div>`;
+  if (k.kind === "lore") { const c = loreById[k.val]; return `<button class="xt" data-act="lore" data-id="${c.id}"><span class="xpic">${img(c.hero)}</span><b>${esc(c.title)}</b><i>Lore · ${esc(short(DATA.heroes[c.hero].name))}</i></button>`; }
+  if (k.kind === "var") { const v = variantOf(k.val); return `<div class="xt"><span class="xpic">${img(v.card, true, v.key)}</span><b>${esc(short(defOf(v.card).name))} ${v.n}</b><i>Variant · ${esc(v.artist)}</i></div>`; }
+  const c = crownById[k.val];
+  return `<div class="xt"><span class="xpic crownpic">${crownSvg(c.id)}</span><b>${esc(c.name)}</b><i>${dup ? "Already yours: 20 gold" : "Crown"}</i></div>`;
 }
 const TIPS = [
   { say: "Every card has a Renown cost, shown when you choose it for a slot. Your whole line-up may cost at most 50 Renown, so you can't simply field all your strongest cards. Win with Renown to spare and you earn 1 gold for each unspent point.", focus: "meter" },
@@ -1252,14 +1507,23 @@ function shopHtml() {
   const its = Object.values(DATA.items).sort((a, b) => PRICES[a.rarity] - PRICES[b.rarity] || a.name.localeCompare(b.name)).map((d) => `<button class="opt" data-act="buy" data-id="${d.id}"${can(PRICES[d.rarity])}>${img(d.id)}<strong>${esc(d.name)}</strong><small>${esc(d.rarity)}. You have ${owned(d.id)}. ${esc(d.effect)}</small><span class="cost">${PRICES[d.rarity]} gold</span></button>`).join("");
   return `<div class="wrap"><div class="bar"><h1>Shop</h1><span class="gold" aria-label="${G.gold} gold">${G.gold}</span></div>
     <div class="box"><div class="shop-pack">${packArt("6 cards")}<div style="display:flex;flex-direction:column;gap:8px;flex:1">
-      <h2>Fable pack</h2><p>Four front-rank cards and two items. About one pack in five holds a hero in place of an item.</p>
+      <h2>Fable pack</h2><p>Four front-rank cards and two better cards: mostly items, sometimes gold, a lore card, a variant painting or a crown. About one pack in five holds a hero.</p>
       <button class="btn" data-act="buy-pack"${can(PRICES.pack)}>Buy for ${PRICES.pack} gold</button></div></div></div>
     <p class="lede">Gold comes only from fighting. Heroes come only from packs.</p>
     <div class="box"><h2>A front-rank card of your choice</h2><div class="options">${fr}</div></div>
-    <div class="box"><h2>Items</h2><div class="options">${its}</div></div></div>`;
+    <div class="box"><h2>Items</h2><div class="options">${its}</div></div>
+    <div class="box"><h2>Crowns</h2><p>Worn on your icon in battle. They change nothing in play.</p><div class="options">${CROWNS.filter((c) => c.price).map((c) => {
+      const have = G.ownCrowns.includes(c.id);
+      return `<button class="opt crownopt" data-act="buy-crown" data-id="${c.id}"${have || G.gold < c.price ? " disabled" : ""}>${crownSvg(c.id)}<strong>${esc(c.name)}</strong><small>${have ? "Already yours. Wear it from the Library." : "Also found in Fable packs."}</small><span class="cost">${have ? "Owned" : `${c.price.toLocaleString("en-GB")} gold`}</span></button>`;
+    }).join("")}</div></div></div>`;
 }
 function detailSheet(sh) {
-  return `<div class="sheet" role="dialog" aria-label="${esc(defOf(sh.id).name)}" style="align-items:center"><div class="top" style="width:100%"><p class="credit" style="flex:1;margin:0">${creditOf(sh.id)}</p><button class="x" data-act="close-detail" aria-label="Close">×</button></div>${fullCard(sh.id)}</div>`;
+  const id = sh.id, lore = (LORE[id]?.cards || []), got = lore.filter((c) => G.lore.includes(c.id)).length;
+  const vs = VARIANTS[id] || [], vgot = vs.filter((v) => G.variants.includes(v.key)).length;
+  const links = U.screen === "collection" && owned(id) > 0 && (lore.length || vs.length) ? `<div class="row" style="width:min(310px,84vw)">
+    ${lore.length ? `<button class="btn quiet" data-act="lib-tab" data-tab2="lore">Lore ${got} of ${lore.length}</button>` : ""}
+    ${vs.length ? `<button class="btn quiet" data-act="lib-tab" data-tab2="variant">Artwork ${vgot + 1} of ${vs.length + 1}</button>` : ""}</div>` : "";
+  return `<div class="sheet" role="dialog" aria-label="${esc(defOf(id).name)}" style="align-items:center"><div class="top" style="width:100%"><p class="credit" style="flex:1;margin:0">${creditOf(id)}</p><button class="x" data-act="close-detail" aria-label="Close">×</button></div>${fullCard(id)}${links}</div>`;
 }
 
 // ---------- panels ----------
@@ -1301,7 +1565,7 @@ function overHtml() {
 }
 function sheetHtml() {
   const sh = U.sheet; if (!sh) return "";
-  return { card: cardSheet, item: itemSheet, targets: targetSheet, picker: pickerSheet, detail: detailSheet, night: nightSheet }[sh.type](sh);
+  return { card: cardSheet, item: itemSheet, targets: targetSheet, picker: pickerSheet, detail: detailSheet, night: nightSheet, lore: loreSheet }[sh.type](sh);
 }
 function render() {
   const battle = U.screen === "battle";
@@ -1337,7 +1601,7 @@ document.addEventListener("click", (e) => {
   if (t.disabled) return;
   if (S.animating && !["skip", "speed", "sound", "menu"].includes(t.dataset.act)) return;
   if (t.dataset.go) return go(t.dataset.go);
-  if (t.dataset.tab) { U.tab = t.dataset.tab; return render(); }
+  if (t.dataset.tab) { U.tab = t.dataset.tab; U.kept = null; return render(); }
   const act = t.dataset.act, d = t.dataset;
   switch (act) {
     case "card": tapCard(+d.uid); break;
@@ -1379,10 +1643,16 @@ document.addEventListener("click", (e) => {
     case "fight": U.over = null; startFight(); break;
     case "fight-anyway": U.over = null; startFight(true); break;
     case "buy": buy(d.id); break;
+    case "buy-crown": { const c = crownById[d.id]; if (c && c.price && G.gold >= c.price && !G.ownCrowns.includes(c.id)) { G.gold -= c.price; G.ownCrowns.push(c.id); save(); render(); } break; }
+    case "lore": U.sheet = { type: "lore", id: d.id }; render(); break;
+    case "wear-crown": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); } U.sheet = null; render(); break;
+    case "wear-art": if (!d.key || G.variants.includes(d.key)) { if (d.key) G.art[d.card] = d.key; else delete G.art[d.card]; save(); } render(); break;
+    case "lib-tab": U.tab = d.tab2; U.sheet = null; U.kept = null; render(); break;
     case "buy-pack": if (G.gold >= PRICES.pack) { G.gold -= PRICES.pack; openPack(fablePack(), { title: "Fable pack" }); render(); } break;
     case "reset": if (U.confirmReset) { G = fresh(); save(); U.confirmReset = false; go("home"); } else { U.confirmReset = true; render(); } break;
   }
 });
+document.addEventListener("change", (e) => { if (e.target.dataset.filter != null) { U.realm = e.target.value; render(); } });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && U.sheet && !step()) { U.sheet = U.sheet.back || null; render(); } });
 if (G.tutorialDone && !G.packOpened) U.screen = "ready";
 render();
