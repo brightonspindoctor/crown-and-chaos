@@ -1,125 +1,185 @@
 {
- "ranAt": "2026-11-17T15:50:44.012Z",
+ "ranAt": "2026-11-17T16:41:19.877Z",
  "files": [],
  "searches": {},
  "categories": {},
  "iaSearch": {
-  "creator:(Anderson, Anne) AND title:(Grimm)": [],
-  "title:(Grimm's fairy tales) AND (Anne Anderson) AND date:[1915 TO 1930]": [],
-  "title:(Old, Old Fairy Tales)": [
+  "title:(fairy book) AND creator:(Craik) AND date:[1869 TO 1875]": [
    {
-    "id": "oldrofairytalesicr",
-    "title": "Old Romanian Fairy Tales at the ICR New York",
-    "creator": "RTVNY",
-    "date": "2014-04-12"
+    "id": "fairybookbestpo00rogegoog",
+    "title": "The Fairy Book: The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Dinah Maria Craik,  J . E. Rogers",
+    "date": "1870",
+    "publisher": "Macmillan",
+    "pages": "416",
+    "rights": "NOT_IN_COPYRIGHT"
+   }
+  ],
+  "title:(\"The fairy book\") AND (Craik OR Mulock)": [
+   {
+    "id": "fairybook00crai",
+    "title": "The fairy book;",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "date": "1922",
+    "publisher": "New York, London, Harper and brothers",
+    "pages": "428",
+    "rights": "The Library of Congress is unaware of any copyright restrictions for this item."
    },
    {
-    "id": "primaryreader_1605_librivox",
-    "title": "A Primary Reader: Old-time Stories, Fairy Tales and Myths Retold by Children",
-    "creator": "E. Louise Smythe",
-    "date": "2016-05-20"
-   },
-   {
-    "id": "oldworldnewworld0000unse_s4k8",
-    "title": "Old world and new world fairy tales",
-    "creator": "amabel williams-ellis",
-    "date": "1966",
-    "publisher": "Blackie",
-    "pages": "394"
-   },
-   {
-    "id": "bwb_Y0-DAN-447",
-    "title": "Time for Fairy Tales old and new",
-    "creator": "John Averill, Wade Ray, Seymour Rosofsky, Debi Sussman, Hal Kearney",
-    "date": "1952",
-    "publisher": "Scott, Foresman and Company",
-    "pages": "430"
-   },
-   {
-    "id": "fairytalesinpsyc0000fran",
-    "title": "Fairy tales in psychotherapy : the creative use of old and new tales",
-    "creator": "Franzke, Erich",
-    "date": "1989",
-    "publisher": "Toronto ; Lewiston, N.Y. : H. Huber",
-    "pages": "154"
-   },
-   {
-    "id": "yedghe688ztkqfadnmqyzqtxsmh5lt4rppxz4br3",
-    "title": "#211 - Old Fairy Tales are Terrifying! (and other such nonsense)",
-    "creator": "wellRED podcast",
-    "date": "2021-03-10"
-   },
-   {
-    "id": "timeforfairytale0000mayh_x2o3",
-    "title": "time for fairy tales old and new",
-    "creator": "may hill arbutnot",
-    "date": "1952",
-    "publisher": "scott, foresman and company",
-    "pages": "428"
-   },
-   {
-    "id": "micro_IA41153536_0817",
-    "title": "Alte Marchen?--alter Hut. Neue Marchen!--neuer Hut? 3 Moderne Marchen bearbeitet als Horspiele, mit Aufgaben und Ubungen (Old Fairy Tales?--Old Hat. New Fairy Tales!--New Hat? Three Modern Fairy Tales Presented in a Radio Play, with Activities and Drills).",
-    "creator": [
-     "Kage, Michael",
-     "Alberta Dept. of Education, Edmonton."
-    ],
-    "date": "1991-07-00",
-    "pages": "70"
-   },
-   {
-    "id": "oldoldfairytales00valerich",
-    "title": "The old old fairy tales",
-    "creator": "Valentine, L. (Laura), d. 1899",
-    "date": "[1902]",
-    "publisher": "New York, A.L. Burt",
-    "pages": "400",
+    "id": "fairybook00craigoog",
+    "title": "The Fairy Book",
+    "creator": "Dinah Maria Craik ,  Mrs Craik",
+    "date": "1863",
+    "publisher": "Grosset & Dunlap",
+    "pages": "397",
     "rights": "NOT_IN_COPYRIGHT"
    },
    {
-    "id": "bwb_P9-DBH-369",
-    "title": "Old french fairy tales",
-    "creator": "Comfesse de segur",
-    "date": "1920",
-    "publisher": "The penn publishing company",
-    "pages": "322"
+    "id": "fairybookbestpo00craigoog",
+    "title": "The Fairy Book: The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Dinah Maria Mulock Craik",
+    "date": "1886",
+    "publisher": "Macmillan and Co.",
+    "pages": "417",
+    "rights": "NOT_IN_COPYRIGHT"
    },
    {
-    "id": "oldoldfairytales_1707_librivox",
-    "title": "The Old Old Fairy Tales",
-    "creator": "Laura Valentine",
-    "date": "2017-07-30"
+    "id": "fairybook_1309_librivox",
+    "title": "The Fairy Book",
+    "creator": "Dinah Maria Mulock Craik",
+    "date": "2013-09-23"
    },
    {
-    "id": "salmagundimr",
-    "title": "Old Romanian Fairy Tales by Mirela Roznoveanu at Salmagundi",
-    "creator": "Romanian voice TV"
+    "id": "fairybookbestpo00rogegoog",
+    "title": "The Fairy Book: The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Dinah Maria Craik,  J . E. Rogers",
+    "date": "1870",
+    "publisher": "Macmillan",
+    "pages": "416",
+    "rights": "NOT_IN_COPYRIGHT"
    },
    {
-    "id": "fairyelves0000unse",
-    "title": "Fairy elves : a dictionary of the little people with some old tales and verses about them",
-    "creator": "Palmer, Robin, 1911-",
-    "date": "1964",
-    "publisher": "New York : Henry Z. Walck",
-    "pages": "106"
+    "id": "fairybookbestpop00crai",
+    "title": "The fairy book; the best popular fairy stories, selected and rendered anew",
+    "creator": "Craik, Dinah Maria Mulock, Mrs., 1826-1887",
+    "date": "[c1922]",
+    "publisher": "New York and London : Harper and Brothers",
+    "pages": "434",
+    "rights": "NOT_IN_COPYRIGHT"
    },
    {
-    "id": "fairygoldbookofo0000cjos",
-    "title": "Fairy-Gold. A Book of Old English Fairy Tales",
-    "creator": "Cjosen By Ernest Rhys",
-    "date": "1906-01-01",
-    "publisher": "J.M. Dent & Co.",
-    "pages": "334"
+    "id": "bigbookofclassic0000crai",
+    "title": "The big book of classic fairy stories : 'the fairy book' ",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "date": "1987",
+    "publisher": "New York : Portland House",
+    "pages": "434"
    },
    {
-    "id": "fairygoldbookofo0000erne",
-    "title": "Fairy Gold a Book of Old English Fairy Tales Chosen",
-    "creator": "Ernest Rhys",
-    "date": "1913",
-    "pages": "334"
+    "id": "fairybook0000crai",
+    "title": "The fairy book",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "date": "1979",
+    "publisher": "New York : Mayflower Books",
+    "pages": "282"
+   },
+   {
+    "id": "fairybookbestpop00crai02",
+    "title": "The fairy book : the best popular fairy stories",
+    "creator": [
+     "Craik, Dinah Maria Mulock, 1826-1887",
+     "Goble, Warwick, ill"
+    ],
+    "date": "c1913",
+    "publisher": "London : Macmillan",
+    "pages": "534",
+    "rights": "NOT_IN_COPYRIGHT"
+   },
+   {
+    "id": "fairybookbestpop0000unse",
+    "title": "The Fairy Book The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Mrs. Craik",
+    "date": "1887",
+    "pages": "586"
+   },
+   {
+    "id": "fairybookbestpop00crai_0",
+    "title": "The fairy book; the best popular fairy stories, selected and rendered anew",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "date": "1898",
+    "publisher": "New York, Boston, T.Y. Crowell & co",
+    "pages": "422",
+    "rights": "The Library of Congress is unaware of any copyright restrictions for this item."
+   },
+   {
+    "id": "thefairybook19734gut",
+    "title": "The Fairy Book: The Best Popular Stories Selected and Rendered Anew",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "rights": "NOT_IN_COPYRIGHT"
    }
   ],
-  "title:(Anne Anderson picture book)": [],
-  "title:(fairy tales of Grimm and Andersen) AND Anderson": []
+  "title:(fairy book best popular fairy stories)": [
+   {
+    "id": "fairybookbestpo00rogegoog",
+    "title": "The Fairy Book: The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Dinah Maria Craik,  J . E. Rogers",
+    "date": "1870",
+    "publisher": "Macmillan",
+    "pages": "416",
+    "rights": "NOT_IN_COPYRIGHT"
+   },
+   {
+    "id": "fairybookbestpop00crai",
+    "title": "The fairy book; the best popular fairy stories, selected and rendered anew",
+    "creator": "Craik, Dinah Maria Mulock, Mrs., 1826-1887",
+    "date": "[c1922]",
+    "publisher": "New York and London : Harper and Brothers",
+    "pages": "434",
+    "rights": "NOT_IN_COPYRIGHT"
+   },
+   {
+    "id": "fairybookbestpop00crai_0",
+    "title": "The fairy book; the best popular fairy stories, selected and rendered anew",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "date": "1898",
+    "publisher": "New York, Boston, T.Y. Crowell & co",
+    "pages": "422",
+    "rights": "The Library of Congress is unaware of any copyright restrictions for this item."
+   },
+   {
+    "id": "fairybookbestpo00craigoog",
+    "title": "The Fairy Book: The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Dinah Maria Mulock Craik",
+    "date": "1886",
+    "publisher": "Macmillan and Co.",
+    "pages": "417",
+    "rights": "NOT_IN_COPYRIGHT"
+   },
+   {
+    "id": "fairybookbestpop00crai02",
+    "title": "The fairy book : the best popular fairy stories",
+    "creator": [
+     "Craik, Dinah Maria Mulock, 1826-1887",
+     "Goble, Warwick, ill"
+    ],
+    "date": "c1913",
+    "publisher": "London : Macmillan",
+    "pages": "534",
+    "rights": "NOT_IN_COPYRIGHT"
+   },
+   {
+    "id": "fairybookbestpop0000unse",
+    "title": "The Fairy Book The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Mrs. Craik",
+    "date": "1887",
+    "pages": "586"
+   },
+   {
+    "id": "thefairybook19734gut",
+    "title": "The Fairy Book: The Best Popular Stories Selected and Rendered Anew",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "rights": "NOT_IN_COPYRIGHT"
+   }
+  ]
  }
 }
