@@ -404,7 +404,7 @@ export function damage(st, src, target, amount, opts = {}) {
   if (atk && crownIs(st, t.side, "maid-marian")) amt = Math.ceil(amt / 2);
   if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
     st.sides[t.side].flags.georgeRound = st.round;
-    const blocked = Math.min(3, amt);
+    const blocked = Math.min(2, amt);
     amt -= blocked; saved = blocked;
     if (blocked) log(st, `St George blocks ${blocked} damage to ${t.name}.`);
   }
