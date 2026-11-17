@@ -17,7 +17,7 @@
   "renown": 12,
   "crownPassive": {
     "name": "Steadfast",
-    "text": "None of your heroes can be moved, frozen or stopped from acting. Poison still works on them."
+    "text": "None of your heroes can be moved, frozen or stopped from acting, and Poison has no effect on them."
   },
   "bond": {
     "name": "Eventyr kin",
@@ -32,7 +32,7 @@
     {
       "name": "Steadfast stand",
       "ap": 2,
-      "text": "Until the next round, he has +2 Guard and takes the first attack aimed at any hero next to him."
+      "text": "Until the next round, he has +2 Guard and takes the first attack aimed at any of your other heroes."
     }
   ],
   "art": "the-tin-soldier",

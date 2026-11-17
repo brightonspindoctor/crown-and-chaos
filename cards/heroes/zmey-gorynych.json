@@ -19,7 +19,7 @@
   "renown": 15,
   "crownPassive": {
     "name": "Three heads",
-    "text": "His attack becomes three separate attacks of 1 damage each, at three random enemy cards in range. If fewer than three are in range, a card can be hit more than once."
+    "text": "His attack becomes three separate attacks of 1 damage each, at three random enemy cards anywhere on the board. If there are fewer than three, a card can be hit more than once."
   },
   "bond": {
     "name": "Rus' kin",

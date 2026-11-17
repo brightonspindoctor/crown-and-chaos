@@ -12,7 +12,8 @@
   "vulnerableTo": "Slayer",
   "renown": null,
   "crownPassive": {
-    "text": "Venom: his attacks apply Poison 1."
+    "text": "Venom: his attacks apply Poison 1.",
+    "name": "Venom"
   },
   "bond": null,
   "actions": [],

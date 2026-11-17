@@ -262,6 +262,9 @@ export function guardOf(st, c) {
   if (crownIs(st, i, "little-john") && c.kind === "hero" && c.realm === "Albion") g += 1;
   if (crownIs(st, i, "merlin") && c.kind === "front") g += 1;
   if (c.id === "the-bride" && crownIs(st, i, "the-bride") && gothicBeast(st, c)) g += 1;
+  // Gwydion's Bond: your front rank has +1 Guard for each of your Cymru heroes that has died.
+  if (c.kind === "front" && f && heroes(st, i).some((h) => h.id === "gwydion"))
+    g += f * st.sides[i].grave.filter((d) => d.kind === "hero" && isRealm(st, d, "Cymru")).length;
   // Dread: the Creature as Crown takes 1 Guard from every enemy hero.
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") g -= 1;
   return Math.max(0, g);
@@ -283,6 +286,8 @@ export function speedOf(st, c) {
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
+  // The Wolf's Shortcut: +1 Speed to your heroes for 3 rounds.
+  if (c.kind === "hero" && (st.sides[i].flags.shortcutUntil || 0) >= st.round) s += 1;
   // Hard frost: in rounds when the Snow Queen's side holds the Fate token, every enemy card has -2 Speed.
   if (crownIs(st, 1 - i, "the-snow-queen") && st.fate === 1 - i) s -= 2;
   return Math.max(1, s);
@@ -302,6 +307,7 @@ function applyStartingHealth(st) {
         if (c.id === "koschei") bonus += f * countRealm(st, c, "Rus'");
         if (c.id === "gretel") bonus += f * countRealm(st, c, "Märchen");
       }
+      if (c.kind === "hero" && crownIs(st, i, "guinevere")) bonus += 1;
       if (bonus) {
         c.maxHealth = Math.max(1, c.maxHealth + bonus);
         c.health = Math.max(1, Math.min(c.maxHealth, c.health + bonus));
@@ -409,7 +415,6 @@ export function damage(st, src, target, amount, opts = {}) {
     const f = bondFactor(st, src.side);
     if (f) {
       if (src.id === "merlin" && otherHeroes(st, src, (h) => isRealm(st, h, "Albion")).length) amt += f;
-      if (src.id === "gwydion") amt += f * countRealm(st, src, "Cymru");
       // Morgan's Bond: +1 to her Spells while you field King Arthur.
       if (src.id === "morgan-le-fay" && heroes(st, src.side).some((h) => h.id === "king-arthur")) amt += f;
     }
@@ -440,9 +445,9 @@ function redirect(st, src, t, opts) {
     const ren = heroes(st, side).find((h) => h.flags.guardCrownRound === st.round && h.uid !== t.uid);
     if (ren) { ren.flags.guardCrownRound = -1; log(st, `${ren.name} takes the hit meant for the crown.`); return ren; }
   }
-  // Tin Soldier: takes the first attack aimed at a hero next to him.
+  // Tin Soldier: takes the first attack aimed at any other of your heroes.
   if (t.kind === "hero") {
-    const tin = neighbours(st, t).find((n) => n.id === "the-tin-soldier" && n.flags.steadfastRound >= st.round - 1 && n.flags.steadfastUsed !== st.round);
+    const tin = heroes(st, side).find((n) => n.uid !== t.uid && n.id === "the-tin-soldier" && n.flags.steadfastRound >= st.round - 1 && n.flags.steadfastUsed !== st.round);
     if (tin) { tin.flags.steadfastUsed = st.round; log(st, `The Tin Soldier steps in front of ${t.name}.`); return tin; }
   }
   // Little John's bond: first attack each round on another Albion hero.
@@ -618,6 +623,8 @@ export function upkeep(st) {
     for (const c of allCards(st)) applyHealthLoss(st, null, c, n, { nightfall: true });
   }
   // Poison halves after each tick (rounded down), so it ends after it deals 1.
+  // Steadfast: Poison doesn't work on heroes under a Tin Soldier Crown.
+  for (const c of allCards(st)) if (c.poison > 0 && c.kind === "hero" && crownIs(st, c.side, "the-tin-soldier")) c.poison = 0;
   for (const c of allCards(st)) if (c.poison > 0) { const p = c.poison; c.poison = Math.floor(p / 2); applyHealthLoss(st, { name: "Poison", side: -1 }, c, p, {}); }
   // Crown passives at upkeep
   for (const i of [0, 1]) {
@@ -701,11 +708,12 @@ export const ACTIONS = {
   "baba-yaga": { "Pestle": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5) },
     "Skull fire": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 3, { ranged: true }) },
     "Mortar ride": { t: "enemyNotCrown", go: (st, a, x) => { log(st, `Baba Yaga rides her mortar onto ${x.name}.`); kill(st, x, a); a.health += 2; } } },
-  "beowulf": { "Arm-wrench": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.atkPerm -= 2; } } },
+  "beowulf": { "Arm-wrench": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.atkPerm -= 2; } },
+    "Axe throw": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, attackOf(st, a), { ranged: true }) } },
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
   "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
-    "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d + (d > 0 && st.fate === a.side ? 1 : 0)); } },
+    "Bite": { t: "enemyHero23", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d + (d > 0 && st.fate === a.side ? 1 : 0)); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
       kill(st, x, a);
       const slot = [4, 5, 6].find((s) => !at(st, a.side, s));
@@ -737,7 +745,7 @@ export const ACTIONS = {
       side.slots[other] = x; side.slots[x.slot] = y && !y.dead ? y : null; if (y && !y.dead) y.slot = x.slot; x.slot = other;
     }
   } } },
-  "lancelot": { "Champion's charge": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5) } },
+  "lancelot": { "Champion's charge": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 5); const ec = crownCard(st, 1 - a.side); if (ec && !ec.dead && ec.uid !== x.uid) applyHealthLoss(st, a, ec, 1, {}); } } },
   "little-john": { "Quarterstaff": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 4); const n = neighbours(st, x)[0]; if (n) hit(st, a, n, 1); } } },
   "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
   "merlin": { "Hex": { t: "enemyAny", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
@@ -766,7 +774,8 @@ export const ACTIONS = {
     "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => { (a.flags.leashed ||= []).push(x.uid); stop(st, x, "Girdle Leash"); } } },
   "the-snow-queen": { "Shard of the mirror": { t: "enemyHero", go: (st, a, x) => { x.flags.shardRound = st.round; } } },
   "the-tin-soldier": { "Steadfast stand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.steadfastRound = st.round; } } },
-  "the-wolf": { "Swallow whole": { t: "enemyWolf", go: (st, a, x) => {
+  "the-wolf": { "Shortcut": { t: "none", go: (st, a) => { st.sides[a.side].flags.shortcutUntil = st.round + 2; log(st, "The Wolf knows a shortcut: your heroes have +1 Speed for 3 rounds."); } },
+    "Swallow whole": { t: "enemyWolf", go: (st, a, x) => {
     x.removed = true; st.sides[x.side].slots[x.slot] = null; st.sides[x.side].swallowed.push({ by: a.uid, card: x });
     log(st, `The Wolf swallows ${x.name} whole.`);
   } } },
@@ -802,11 +811,11 @@ function hit(st, a, x, amount, opts = {}) {
 function standardAttack(st, a, x) {
   if (a.id === "zmey-gorynych" && crownIs(st, a.side, "zmey-gorynych")) {
     const per = 1 + Math.max(0, bondFactor(st, a.side)) * countRealm(st, a, "Rus'");
-    for (let k = 0; k < 3; k++) {
-      const pool = meleeTargets(st, a);
-      if (!pool.length) break;
-      hit(st, a, st.rng.pick(pool), per);
-    }
+    // Three heads: three random enemy cards anywhere, different cards while there are enough.
+    const pool = cards(st, 1 - a.side).slice(), picks = [];
+    while (picks.length < 3 && pool.length) picks.push(pool.splice(st.rng.int(pool.length), 1)[0]);
+    while (picks.length && picks.length < 3) picks.push(st.rng.pick(picks));
+    for (const x of picks) if (!x.dead) hit(st, a, x, per);
     return;
   }
   hit(st, a, x, attackOf(st, a), { ranged: a.ranged });
@@ -1123,7 +1132,9 @@ function valueOf(st, a, act, x) {
     case "Skull fire": return dmgValue(3, x);
     case "Mortar ride": return x ? (x.kind === "hero" ? 10 + x.health / 2 : 4 + x.health / 2) : 0;
     case "Excalibur": return dmgValue(5 + (x?.guardLeft || 0), x);
-    case "Champion's charge": return dmgValue(5, x);
+    case "Champion's charge": return dmgValue(5, x) + (crownCard(st, 1 - a.side) ? 1.5 : 0);
+    case "Axe throw": return dmgValue(attackOf(st, a), x);
+    case "Shortcut": return (st.sides[a.side].flags.shortcutUntil || 0) >= st.round ? 0 : 1.2 * heroes(st, a.side).length;
     case "Lance Charge": return dmgValue(3 + (x?.guardLeft || 0), x);
     case "Split the Arrow": return dmgValue(2, x) + (cards(st, 1 - a.side).length > 1 ? 1.5 : 0);
     case "Fair fight": return dmgValue(4, x) + (x && !x.flags.acted ? attackOf(st, x) : 0);

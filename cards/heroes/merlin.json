@@ -20,7 +20,8 @@
     "text": "Your front-rank cards have +1 Guard."
   },
   "bond": {
-    "text": "While any other Albion hero of yours lives, Merlin's Spells deal +1."
+    "text": "While any other Albion hero of yours lives, Merlin's Spells deal +1.",
+    "name": "Counsel to kings"
   },
   "actions": [
     {

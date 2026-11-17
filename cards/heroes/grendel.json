@@ -20,7 +20,8 @@
     "text": "At upkeep, deal 2 damage to the enemy front-rank card with the lowest health."
   },
   "bond": {
-    "text": "While a Grendel's Mother on your side lives, he heals 1 at upkeep."
+    "text": "While a Grendel's Mother on your side lives, he heals 1 at upkeep.",
+    "name": "His mother's mere"
   },
   "actions": [
     {

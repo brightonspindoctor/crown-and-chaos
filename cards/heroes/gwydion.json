@@ -20,8 +20,8 @@
     "text": "Your summoned cards arrive with +2 health and +1 Attack."
   },
   "bond": {
-    "name": "Cymru kin",
-    "text": "His Spells deal +1 for each other Cymru hero you field."
+    "name": "Mourning in Gwynedd",
+    "text": "Your front-rank cards have +1 Guard for each of your Cymru heroes that has died."
   },
   "actions": [
     {

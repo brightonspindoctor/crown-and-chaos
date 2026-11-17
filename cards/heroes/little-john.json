@@ -16,7 +16,8 @@
   "vulnerableTo": "Trickster",
   "renown": 15,
   "crownPassive": {
-    "text": "Your Albion heroes have +1 Guard."
+    "text": "Your Albion heroes have +1 Guard.",
+    "name": "Sherwood stands firm"
   },
   "bond": {
     "name": "Big man of Sherwood",

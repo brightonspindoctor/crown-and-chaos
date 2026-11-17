@@ -10,7 +10,7 @@
     "health": 7,
     "attack": 2,
     "ranged": false,
-    "guard": 0,
+    "guard": 1,
     "speed": 3
   },
   "vulnerableTo": "Beast",
@@ -20,7 +20,8 @@
     "text": "At upkeep, heal 2 to your most injured card."
   },
   "bond": {
-    "text": "While one of your Slayers lives, the first time she would die each fight she survives on 3 Health."
+    "text": "While one of your Slayers lives, the first time she would die each fight she survives on 3 Health.",
+    "name": "Saved from the wolf"
   },
   "actions": [
     {

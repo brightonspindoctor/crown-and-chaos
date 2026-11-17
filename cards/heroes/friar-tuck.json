@@ -20,7 +20,8 @@
     "text": "At upkeep, return one of your dead front-rank cards to its slot on 1 health. 2 returns per fight."
   },
   "bond": {
-    "text": "+1 Guard for each other Albion hero you field."
+    "text": "+1 Guard for each other Albion hero you field.",
+    "name": "Fellowship of the greenwood"
   },
   "actions": [
     {

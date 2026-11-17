@@ -8,7 +8,7 @@
   "tags": [],
   "stats": {
     "health": 11,
-    "attack": 4,
+    "attack": 3,
     "ranged": false,
     "guard": 1,
     "speed": 3
@@ -20,7 +20,8 @@
     "text": "When he attacks, the enemy Crown also takes 1 damage, at most once a round. No effect against a side with no Crown."
   },
   "bond": {
-    "text": "Your Albion heroes have +1 Health. While you field a Sovereign and no Healer, Lancelot has +2 Attack."
+    "text": "Your Albion heroes have +1 Health. While you field a Sovereign and no Healer, Lancelot has +2 Attack.",
+    "name": "Sworn to the king"
   },
   "actions": [
     {
@@ -31,7 +32,7 @@
     {
       "name": "Champion's charge",
       "ap": 2,
-      "text": "Attack for 5."
+      "text": "Attack for 5. The enemy Crown also takes 1 damage."
     }
   ],
   "art": "lancelot",

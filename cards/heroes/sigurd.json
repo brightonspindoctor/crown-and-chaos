@@ -10,10 +10,12 @@
   "vulnerableTo": "Sovereign",
   "renown": null,
   "crownPassive": {
-    "text": "His attacks ignore Guard."
+    "text": "His attacks ignore Guard.",
+    "name": "Gram's edge"
   },
   "bond": {
-    "text": "After any Dragon dies he sees the enemy plan before he makes his own."
+    "text": "After any Dragon dies he sees the enemy plan before he makes his own.",
+    "name": "The dragon's heart"
   },
   "actions": [],
   "art": "sigurd",

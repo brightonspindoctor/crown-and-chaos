@@ -20,7 +20,8 @@
     "text": "You start the fight with the Fate token (unless the enemy Crown is Renfield). In rounds when you hold it, enemy Bonds don't work."
   },
   "bond": {
-    "text": "While you field King Arthur, her Spells deal +1, but Arthur has -1 Speed and -1 Attack."
+    "text": "While you field King Arthur, her Spells deal +1, but Arthur has -1 Speed and -1 Attack.",
+    "name": "Sister to the king"
   },
   "actions": [
     {

@@ -17,10 +17,11 @@
   "renown": 12,
   "crownPassive": {
     "name": "The Queen's peace",
-    "text": "Enemy attacks that hit several cards hit only their first target."
+    "text": "Your heroes start the fight with +1 Health, and enemy attacks that hit several cards hit only their first target."
   },
   "bond": {
-    "text": "Your healing effects restore +1 for each Albion hero you field."
+    "text": "Your healing effects restore +1 for each Albion hero you field.",
+    "name": "Queen of Camelot"
   },
   "actions": [
     {

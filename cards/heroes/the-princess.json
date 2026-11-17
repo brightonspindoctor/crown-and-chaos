@@ -16,10 +16,12 @@
   "vulnerableTo": "Beast",
   "renown": 10,
   "crownPassive": {
-    "text": "At upkeep, heal 1 to one of your cards, chosen at random."
+    "text": "At upkeep, heal 1 to one of your cards, chosen at random.",
+    "name": "Blessing of Silene"
   },
   "bond": {
-    "text": "Her heals restore +1 for each other Albion hero you field."
+    "text": "Her heals restore +1 for each other Albion hero you field.",
+    "name": "Royal grace"
   },
   "actions": [
     {

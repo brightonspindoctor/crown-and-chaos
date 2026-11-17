@@ -20,7 +20,8 @@
     "text": "Your heroes take 2 less damage from Ranged attacks."
   },
   "bond": {
-    "text": "When a Grendel on your side dies, she gains +3 Attack and Speed 3 for the rest of the fight."
+    "text": "When a Grendel on your side dies, she gains +3 Attack and Speed 3 for the rest of the fight.",
+    "name": "A mother's vengeance"
   },
   "actions": [
     {

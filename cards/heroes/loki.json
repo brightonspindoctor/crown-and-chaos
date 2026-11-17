@@ -10,7 +10,8 @@
   "vulnerableTo": "Guardian",
   "renown": null,
   "crownPassive": {
-    "text": "Swap two adjacent enemy cards at upkeep."
+    "text": "Swap two adjacent enemy cards at upkeep.",
+    "name": "Mischief"
   },
   "bond": null,
   "actions": [],

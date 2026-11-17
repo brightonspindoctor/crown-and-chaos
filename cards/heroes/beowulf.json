@@ -7,7 +7,7 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 10,
+    "health": 11,
     "attack": 3,
     "ranged": false,
     "guard": 1,
@@ -20,7 +20,8 @@
     "text": "All your heroes' attacks ignore Guard."
   },
   "bond": {
-    "text": "When any Beast dies, on either side, he gains +1 Attack for the rest of the fight."
+    "text": "When any Beast dies, on either side, he gains +1 Attack for the rest of the fight.",
+    "name": "Monster-slayer"
   },
   "actions": [
     {
@@ -33,6 +34,11 @@
       "ap": 2,
       "text": "Attack, and the target permanently loses 2 Attack.",
       "usesPerFight": 1
+    },
+    {
+      "name": "Axe throw",
+      "ap": 2,
+      "text": "A Ranged attack on any enemy card, for damage equal to his Attack."
     }
   ],
   "art": "beowulf",

@@ -30,6 +30,11 @@
       "text": "Standard attack: damage equal to Attack."
     },
     {
+      "name": "Shortcut",
+      "ap": 2,
+      "text": "Your heroes have +1 Speed for this round and the next two."
+    },
+    {
       "name": "Swallow whole",
       "ap": 2,
       "text": "Remove the closest enemy front-rank card, or an enemy hero on 3 health or less. It returns on 1 health if he dies. He can't swallow a Crown.",

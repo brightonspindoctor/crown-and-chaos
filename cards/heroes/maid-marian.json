@@ -8,8 +8,8 @@
   "tags": [],
   "stats": {
     "health": 8,
-    "attack": 4,
-    "ranged": false,
+    "attack": 2,
+    "ranged": true,
     "guard": 0,
     "speed": 3
   },
@@ -20,7 +20,8 @@
     "text": "All enemy attacks deal half damage, rounded up."
   },
   "bond": {
-    "text": "The first time another of your Albion heroes dies, she gains +2 Attack and +1 Speed for the rest of the fight."
+    "text": "The first time another of your Albion heroes dies, she gains +2 Attack and +1 Speed for the rest of the fight.",
+    "name": "Avenge the greenwood"
   },
   "actions": [
     {

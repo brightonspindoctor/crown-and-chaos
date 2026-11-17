@@ -16,10 +16,12 @@
   "vulnerableTo": "Trickster",
   "renown": 14,
   "crownPassive": {
-    "text": "Blocks the first 2 damage of the first attack on any of your heroes each round."
+    "text": "Blocks the first 2 damage of the first attack on any of your heroes each round.",
+    "name": "The red-cross shield"
   },
   "bond": {
-    "text": "When one of your Beast heroes dies, St George gives up his own Guard for the rest of the fight and adds it to his Attack. When one of your Healers dies, St George's Attack doubles."
+    "text": "When one of your Beast heroes dies, St George gives up his own Guard for the rest of the fight and adds it to his Attack. When one of your Healers dies, St George's Attack doubles.",
+    "name": "The knight's grief"
   },
   "actions": [
     {
