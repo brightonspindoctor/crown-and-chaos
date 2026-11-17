@@ -5,6 +5,7 @@
   "health": 2,
   "attack": 2,
   "guard": 1,
+  "speed": 2,
   "renown": 3,
   "auto": "Attacks the card opposite.",
   "art": "knight"

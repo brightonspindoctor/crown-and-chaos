@@ -9,7 +9,6 @@
 
 export const NIGHTFALL_ROUND = 8;
 export const ASSUMPTIONS = [
-  "Front-rank cards act at Speed 2.",
   "Items resolve before any card acts that round.",
   "Opposite slots face each other: 4 faces 4, 5 faces 5, 6 faces 6.",
   "Slot 1 counts as next to slots 2 and 3; front-rank slots are next to their row neighbours.",
@@ -75,7 +74,7 @@ function makeFront(def, side, slot) {
     uid: ++UID, id: def.id, kind: "front", side, slot, name: def.name,
     realm: def.realm || null, tale: def.tale || null, aspect: null, ranged: false,
     baseHealth: def.health, maxHealth: def.health, health: def.health,
-    baseAtk: def.attack, baseGuard: def.guard, baseSpeed: FRONT_SPEED,
+    baseAtk: def.attack, baseGuard: def.guard, baseSpeed: def.speed ?? FRONT_SPEED,
     atkPerm: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
     auto: def.auto, actions: [], uses: {},
     guardLeft: 0, roundGuard: 0, poison: 0, dead: false, removed: false,

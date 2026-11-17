@@ -5,6 +5,7 @@
   "health": 2,
   "attack": 0,
   "guard": 0,
+  "speed": 2,
   "renown": 2,
   "tale": "Red Riding Hood",
   "auto": "Heals 1 to the hero behind her.",

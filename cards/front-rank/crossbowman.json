@@ -5,6 +5,7 @@
   "health": 2,
   "attack": 1,
   "guard": 0,
+  "speed": 2,
   "renown": 3,
   "auto": "Shoots an enemy hero in slot 2 or 3, the one on lower health. If there is none, shoots the card opposite.",
   "art": "crossbowman"
