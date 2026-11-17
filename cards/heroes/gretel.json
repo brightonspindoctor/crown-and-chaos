@@ -9,9 +9,9 @@
   "stats": {
     "health": 8,
     "attack": 3,
-    "ranged": false,
-    "guard": 0,
-    "speed": 3
+    "ranged": true,
+    "guard": 1,
+    "speed": 4
   },
   "vulnerableTo": "Beast",
   "renown": 11,

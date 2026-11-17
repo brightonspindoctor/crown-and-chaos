@@ -17,7 +17,7 @@
   "renown": 11,
   "crownPassive": {
     "name": "Her mother's doll",
-    "text": "The first of your heroes to die each fight survives on 1 health instead."
+    "text": "The first of your heroes to die each fight survives on 2 health instead, and one of your dead front-rank cards returns to its slot on 1 health, if there is one."
   },
   "bond": {
     "text": "While another Rus' hero of yours lives, her heals restore +1."

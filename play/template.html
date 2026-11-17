@@ -78,7 +78,7 @@ body.animating #app section.panel button, body.animating #app section.panel sele
 <script>
 const DATA = /*DATA*/;
 const E = (() => { /*ENGINE*/
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, kill, checkWin, ITEM_TARGETS, ASSUMPTIONS, makeRng };
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, kill, checkWin, ITEM_TARGETS, ASSUMPTIONS, makeRng, rumpelChoices, RUMPEL_GUESSES };
 })();
 
 const NAMES = ["Blue", "Red"];
@@ -199,7 +199,7 @@ function crownChoices(i) {
   const foes = E.heroes(st, 1 - i);
   const sel = (key, label, list) => `<label>${label}<select id="pick-${key}" data-pick="${key}"><option value="">Nobody</option>${list.map((h) => `<option value="${h.uid}"${plan[key] === h.uid ? " selected" : ""}>${esc(h.name)}</option>`).join("")}</select></label>`;
   if (crown.id === "the-huntsman") return sel("hunt", "Huntsman's mark this round", foes);
-  if (crown.id === "rumpelstiltskin") { const used = st.sides[i].flags.rumpelPicked || []; return sel("rumpel", "Rumpelstiltskin's guess this round", foes.filter((h) => !used.includes(h.uid))); }
+  if (crown.id === "rumpelstiltskin") return sel("rumpel", `Rumpelstiltskin's guess this round (${E.RUMPEL_GUESSES - (st.sides[i].flags.rumpelGuesses || 0)} left)`, E.rumpelChoices(st, i));
   return "";
 }
 function logHtml() {

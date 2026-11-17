@@ -95,6 +95,10 @@ export function createGame(data, lineups, opts = {}) {
     marks: {},
   };
   lineups.forEach((lu, i) => setupSide(st, i, lu));
+  // Morgan le Fay as Crown starts with the Fate token (an enemy Renfield keeps it instead; two Morgans leave it to chance).
+  const morgan = [0, 1].filter((i) => lineups[i]?.crown === "morgan-le-fay");
+  const renfield = [0, 1].filter((i) => lineups[i]?.crown === "renfield");
+  if (morgan.length === 1 && !renfield.includes(1 - morgan[0])) st.fate = morgan[0];
   // Start-of-fight effects
   for (const side of st.sides) {
     const crown = crownCard(st, side.index);
@@ -279,6 +283,8 @@ export function speedOf(st, c) {
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
+  // Vampire court: while Dracula's side holds the Fate token, its heroes have +1 Speed.
+  if (crownIs(st, i, "dracula") && st.fate === i && c.kind === "hero") s += 1;
   // Hard frost: in rounds when the Snow Queen's side holds the Fate token, every enemy card has -2 Speed.
   if (crownIs(st, 1 - i, "the-snow-queen") && st.fate === 1 - i) s -= 2;
   return Math.max(1, s);
@@ -485,8 +491,11 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
     if (!noCheating(st)) {
       if (crownIs(st, side, "vasilisa-the-wise") && !st.sides[side].flags.vasilisaUsed) {
         st.sides[side].flags.vasilisaUsed = true;
-        t.health = 1; log(st, `${t.name} survives on 1 Health (Vasilisa).`);
-        ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style: opts._style || "effect", dmg: amt, hp: 1, survived: true }); return amt;
+        t.health = 2; log(st, `${t.name} survives on 2 Health (Vasilisa).`);
+        ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style: opts._style || "effect", dmg: amt, hp: 2, survived: true });
+        const back = st.sides[side].grave.find((c) => c.kind === "front" && !at(st, side, c.slot));
+        if (back) { revive(st, back, 1); log(st, `The doll also brings ${back.name} back on 1 Health.`); revived(st, back); }
+        return amt;
       }
       if (t.id === "red-riding-hood" && hasBond(st, t) && !t.flags.survived &&
           otherHeroes(st, t, (h) => h.aspect === "Slayer").length) {
@@ -501,7 +510,7 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
   ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, dmg: amt, hp: Math.max(0, t.health),
     style: opts._style || (opts.nightfall ? "night" : src?.name === "Poison" ? "poison" : "effect"),
     guarded: opts._guarded || 0, saved: opts._saved || 0 });
-  if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
+  if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, st.fate === src.side ? 2 : 1, { flat: true });
   if (t.health <= 0) kill(st, t, src);
   return amt;
 }
@@ -698,7 +707,7 @@ export const ACTIONS = {
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
   "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
-    "Bite": { t: "enemyMelee", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
+    "Bite": { t: "enemyAny", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a), { ranged: true }); heal(st, a, a, d); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
       kill(st, x, a);
       const slot = [4, 5, 6].find((s) => !at(st, a.side, s));
@@ -855,6 +864,13 @@ export function options(st, a) {
 }
 
 // Items are free to use, except against Koschei, whose Crown makes them cost 1 action point.
+// Rumpelstiltskin has 3 guesses a fight. He may name the same hero again, but not two rounds running.
+export const RUMPEL_GUESSES = 3;
+export function rumpelChoices(st, i) {
+  const fl = st.sides[i].flags;
+  if ((fl.rumpelGuesses || 0) >= RUMPEL_GUESSES) return [];
+  return heroes(st, 1 - i).filter((h) => !(fl.rumpelLast && fl.rumpelLast.uid === h.uid && fl.rumpelLast.round === st.round - 1));
+}
 export function itemCost(st, i) { return crownIs(st, 1 - i, "koschei") ? 1 : 0; }
 
 export const ITEM_TARGETS = {
@@ -963,14 +979,14 @@ export function playRound(st, plans) {
     const pick = plans[i]?.rumpel;
     const rum = crownCard(st, i);
     if (!pick || !rum || rum.id !== "rumpelstiltskin" || !crownActive(st, i)) continue;
-    st.sides[i].flags.rumpelPicked = st.sides[i].flags.rumpelPicked || [];
-    if (st.sides[i].flags.rumpelPicked.includes(pick)) continue;
-    st.sides[i].flags.rumpelPicked.push(pick);
+    if (!rumpelChoices(st, i).some((h) => h.uid === pick)) continue;
+    const fl = st.sides[i].flags;
+    fl.rumpelGuesses = (fl.rumpelGuesses || 0) + 1; fl.rumpelLast = { uid: pick, round: st.round };
     const o = ords.find((x) => x.actor && x.actor.uid === pick && !x.auto);
     const tgt = heroes(st, 1 - i).find((h) => h.uid === pick);
     const guessed = () => ev(st, { t: "act", uid: rum.uid, side: i, name: "Guess the name", tgt: uidOf(tgt) });
     if (o) { o.cancelled = true; log(st, `Rumpelstiltskin guesses ${tgt?.name}'s name: its action is cancelled.`); guessed(); applyHealthLoss(st, rum, tgt, 2, {}); }
-    else { log(st, `Rumpelstiltskin guesses wrong.`); guessed(); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 2, {}); }
+    else { log(st, `Rumpelstiltskin guesses wrong.`); guessed(); applyHealthLoss(st, { name: "A wrong guess", side: -1 }, rum, 1, {}); }
   }
   for (const c of allCards(st)) c.flags.acted = false;
   ev(st, { t: "phase", name: "resolve" });
@@ -1080,8 +1096,7 @@ export function botPlan(st, i, rng = st.rng, noise = 0.35) {
   }
   const eh = heroes(st, foe);
   if (eh.length) {
-    const picked = st.sides[i].flags.rumpelPicked || [];
-    const fresh = eh.filter((h) => !picked.includes(h.uid));
+    const fresh = rumpelChoices(st, i);
     if (fresh.length && rng.next() < 0.5) plan.rumpel = rng.pick(fresh).uid;
     plan.hunt = (ec && eh.find((h) => h.uid === ec.uid)) ? ec.uid : rng.pick(eh).uid;
   }

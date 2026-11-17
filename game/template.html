@@ -486,7 +486,7 @@ const BOARDS = /*BOARDS*/;
 const VARIANTS = /*VARIANTS*/;
 const LORE = /*LORE*/;
 const E = (() => { /*ENGINE*/
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND };
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES };
 })();
 
 // =====================================================================================
@@ -998,11 +998,11 @@ function markInfo() {
     pick: "Tap the enemy hero to mark. Your attacks on it deal +2 this round, and a Beast can't heal.",
     how: "Free each round, no action points. Mark one enemy hero: your attacks on it deal +2 damage this round, and if it is a Beast it can't heal." };
   if (crown.id === "rumpelstiltskin") {
-    const used = S.st.sides[0].flags.rumpelPicked || [];
-    return { key: "rumpel", uid: crown.uid, who: "Rumpelstiltskin", label: "Guess a name", name: "Rumpelstiltskin's guess", cards: foes.filter((h) => !used.includes(h.uid)),
-      used: used.map((u) => byUid(u)?.name).filter(Boolean),
-      pick: "Tap the enemy hero you think will act. Right: its action is cancelled and it takes 2. Wrong: Rumpelstiltskin takes 4.",
-      how: "Free each round, no action points. Name the enemy hero you think will act this round. If you're right, its action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 4. Each enemy hero can be named once a fight." };
+    const fl = S.st.sides[0].flags, left = E.RUMPEL_GUESSES - (fl.rumpelGuesses || 0);
+    return { key: "rumpel", uid: crown.uid, who: "Rumpelstiltskin", label: `Guess a name (${left} left)`, name: "Rumpelstiltskin's guess", cards: E.rumpelChoices(S.st, 0),
+      used: fl.rumpelLast && fl.rumpelLast.round === S.st.round - 1 ? [byUid(fl.rumpelLast.uid)?.name].filter(Boolean) : [],
+      pick: "Tap the enemy hero you think will act. Right: its action is cancelled and it takes 2. Wrong: Rumpelstiltskin takes 1.",
+      how: `Free each round, no action points. Name the enemy hero you think will act this round. If you're right, its action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 1. You have 3 guesses a fight (${left} left), and can't name the same hero two rounds running.` };
   }
   return null;
 }
