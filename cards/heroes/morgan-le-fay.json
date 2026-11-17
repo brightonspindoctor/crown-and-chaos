@@ -20,14 +20,9 @@
     "text": "Enemy Bonds don't work."
   },
   "bond": {
-    "text": "Against any Sovereign (Arthur, Koschei, Dracula), her Spells deal +2."
+    "text": "While you field King Arthur, her Spells deal +1, but Arthur has -1 Speed and -1 Attack."
   },
   "actions": [
-    {
-      "name": "Attack",
-      "ap": 1,
-      "text": "Standard attack: damage equal to Attack."
-    },
     {
       "name": "Hex",
       "ap": 2,

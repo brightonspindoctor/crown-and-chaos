@@ -222,6 +222,8 @@ export function attackOf(st, c) {
     if (c.id === "rumpelstiltskin") a += f * countRealm(st, c, "Märchen");
     if (c.id === "the-huntsman") a += f * Math.min(2, countRealm(st, c, "Märchen"));
     if (c.id === "the-tin-soldier") a += f * countRealm(st, c, "Eventyr");
+    // Morgan's Bond also costs your King Arthur 1 Attack.
+    if (c.id === "king-arthur" && heroes(st, c.side).some((h) => h.id === "morgan-le-fay")) a -= f;
     if (c.id === "lancelot") {
       const mine = heroes(st, c.side);
       if (mine.some((h) => h.aspect === "Sovereign") && !mine.some((h) => h.aspect === "Healer")) a += f * 2;
@@ -271,6 +273,8 @@ export function speedOf(st, c) {
       if (src.id === "baba-yaga" && src.uid !== c.uid && c.kind === "hero") s -= f;
     }
     if (c.id === "rhiannon") s += f * countRealm(st, c, "Cymru");
+    // Morgan's Bond also costs your King Arthur 1 Speed.
+    if (c.id === "king-arthur" && heroes(st, i).some((h) => h.id === "morgan-le-fay")) s -= f;
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
@@ -401,7 +405,8 @@ export function damage(st, src, target, amount, opts = {}) {
     if (f) {
       if (src.id === "merlin" && otherHeroes(st, src, (h) => isRealm(st, h, "Albion")).length) amt += f;
       if (src.id === "gwydion") amt += f * countRealm(st, src, "Cymru");
-      if (src.id === "morgan-le-fay" && t.aspect === "Sovereign") amt += 2 * f;
+      // Morgan's Bond: +1 to her Spells while you field King Arthur.
+      if (src.id === "morgan-le-fay" && heroes(st, src.side).some((h) => h.id === "king-arthur")) amt += f;
     }
   }
   amt = Math.max(0, amt);
@@ -594,7 +599,7 @@ export function upkeep(st) {
   if (st.round === NIGHTFALL) {
     for (const c of allCards(st)) if (c.id === "blodeuwedd" && !c.flags.night) {
       c.flags.night = true; c.maxHealth = c.baseHealth * 2; c.health = c.maxHealth; c.baseAtk *= 2;
-      log(st, `Blodeuwedd becomes the owl: 14 Health, Attack 4, Guard 2.`);
+      log(st, `Blodeuwedd becomes the owl: 14 Health, Attack 4.`);
     }
   }
   // Guard refreshes
@@ -630,7 +635,7 @@ export function upkeep(st) {
       case "friar-tuck": {
         const side = st.sides[i];
         side.flags.tuckReturns = side.flags.tuckReturns || 0;
-        if (side.flags.tuckReturns < 3 && !isNight(st) && !noCheating(st)) {
+        if (side.flags.tuckReturns < 2 && !isNight(st) && !noCheating(st)) {
           const dead = side.grave.find((c) => c.kind === "front" && !at(st, i, c.slot));
           if (dead) { revive(st, dead, 1); side.flags.tuckReturns++; log(st, `Friar Tuck brings ${dead.name} back on 1 Health.`); revived(st, dead); }
         }

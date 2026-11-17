@@ -12,8 +12,8 @@
     "health": 7,
     "attack": 2,
     "ranged": false,
-    "guard": 1,
-    "speed": 4
+    "guard": 0,
+    "speed": 3
   },
   "vulnerableTo": "Slayer",
   "renown": 13,
@@ -38,7 +38,7 @@
     }
   ],
   "rules": [
-    "Owl at dusk: at the start of round 8's upkeep, before healing stops and before the first Nightfall damage, she heals to full and her printed Health, Attack and Guard double (14 / 4 / 2). Speed stays 4. Bonus Guard from bonds, passives and actions is not doubled."
+    "Owl at dusk: at the start of round 8's upkeep, before healing stops and before the first Nightfall damage, she heals to full and her printed Health and Attack double (14 / 4). Speed stays 3. Bonus Guard from bonds, passives and actions is not doubled."
   ],
   "art": "blodeuwedd",
   "status": "reviewed",

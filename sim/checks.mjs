@@ -9,17 +9,17 @@ const lu = (crown, heroes = [], front = [], items = []) => ({ crown, heroes, fro
 const card = (st, i, id) => E.cards(st, i).find((c) => c.id === id);
 const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { uid: c.uid, index: c.actions.findIndex((a) => a.name === name), target: tgt ? tgt.uid : null }; };
 
-{ // Guard resets each round and Blodeuwedd takes Cymru Guard in the crown
+{ // Guard resets each round and Blodeuwedd takes her heroes' Guard in the crown
   const st = game(lu("blodeuwedd", ["bran-the-blessed", "gwydion"]), lu("the-dragon"));
   const b = card(st, 0, "blodeuwedd");
-  ok("Blodeuwedd crown Guard is 6 with Bran and Gwydion", b.guardLeft === 6, b.guardLeft);
+  ok("Blodeuwedd crown Guard is 5 with Bran and Gwydion", b.guardLeft === 5, b.guardLeft);
   ok("Bran is left with no Guard", card(st, 0, "bran-the-blessed").guardLeft === 0);
   E.playRound(st, [{ orders: [order(st, 0, "blodeuwedd", "Oak, broom and meadowsweet")] }, { orders: [] }]);
-  ok("Guard doesn't build up next round", b.guardLeft === 6, b.guardLeft);
+  ok("Guard doesn't build up next round", b.guardLeft === 5, b.guardLeft);
   while (st.round < 8 && !st.over) E.playRound(st, [{ orders: [] }, { orders: [] }]);
   ok("At nightfall she has Attack 4", E.attackOf(st, b) === 4, E.attackOf(st, b));
   ok("At nightfall she is on 13 of 14 Health", b.health === 13 && b.maxHealth === 14, [b.health, b.maxHealth]);
-  ok("Her own Guard doubles to 2 (7 with borrowed)", b.guardLeft === 7, b.guardLeft);
+  ok("Her printed Guard is 0, so nightfall leaves her on the borrowed 5", b.guardLeft === 5, b.guardLeft);
 }
 { // Betrayal is melee: it hits the front rank first
   const st = game(lu("dracula", ["renfield"]), lu("merlin", [], ["knight"]));
@@ -39,7 +39,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
 { // Little Mermaid reverses bonds; Arthur spreads them
   const st = game(lu("the-little-mermaid"), lu("lancelot", ["king-arthur", "the-sheriff"].filter((x) => data.heroes[x])));
   const a = card(st, 1, "king-arthur");
-  ok("Arthur's Guard bond is reversed (2 - 1 = 1)", E.guardOf(st, a) === 1, E.guardOf(st, a));
+  ok("Arthur's Guard bond is reversed (1 - 1 = 0)", E.guardOf(st, a) === 0, E.guardOf(st, a));
   const st2 = game(lu("king-arthur", ["bran-the-blessed", "renfield"]), lu("the-dragon"));
   st2.round = 1;
   ok("Arthur's Round Table is off in round 1", E.attackOf(st2, card(st2, 0, "renfield")) === 2, E.attackOf(st2, card(st2, 0, "renfield")));
