@@ -1,13 +1,28 @@
 {
- "ranAt": "2026-11-17T16:42:41.344Z",
+ "ranAt": "2026-11-17T16:46:14.150Z",
  "files": [],
  "searches": {},
  "categories": {},
- "errors": [
-  "IA fairybookbestpo00rogegoog page 419: no image",
-  "IA fairybookbestpo00rogegoog page 418: no image",
-  "IA fairybookbestpo00rogegoog page 416: no image",
-  "IA fairybookbestpo00rogegoog page 417: no image",
-  "IA fairybookbestpo00rogegoog page 420: no image"
- ]
+ "iaSearch": {
+  "identifier:thefairybook19734gut": [
+   {
+    "id": "thefairybook19734gut",
+    "title": "The Fairy Book: The Best Popular Stories Selected and Rendered Anew",
+    "creator": "Craik, Dinah Maria Mulock, 1826-1887",
+    "rights": "NOT_IN_COPYRIGHT"
+   }
+  ],
+  "identifier:fairybookbestpop0000unse": [
+   {
+    "id": "fairybookbestpop0000unse",
+    "title": "The Fairy Book The Best Popular Fairy Stories Selected and Rendered Anew",
+    "creator": "Mrs. Craik",
+    "date": "1887",
+    "pages": "586"
+   }
+  ]
+ },
+ "pageImages": {
+  "https://www.gutenberg.org/files/19734/19734-h/19734-h.htm": []
+ }
 }
