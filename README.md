@@ -1,6 +1,6 @@
 # Crown & Chaos
 
-A 1-vs-1 digital card battler built from European folklore. Previously called Crown & Fable; the repository keeps its old name.
+A 1-vs-1 digital card battler built from European folklore. Previously called Crown & Fable.
 
 Every card is earned by playing, never bought, and every painting on a card is in the public domain.
 
