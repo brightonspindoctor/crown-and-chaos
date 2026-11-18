@@ -3251,6 +3251,72 @@
           "board": [0.0, 0.02, 1.0, 0.9604]
         }
       }
+    },
+    {
+      "id": "circe-variant",
+      "use": "variant",
+      "cards": [
+        "circe"
+      ],
+      "artist": "John William Waterhouse",
+      "artistDied": 1917,
+      "title": "Circe Invidiosa",
+      "date": "1892",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:J._W._Waterhouse_-_Circe_Invidiosa_-_Google_Art_Project.jpg",
+        "original": "Art Gallery of South Australia, Adelaide"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "J._W._Waterhouse_-_Circe_Invidiosa_-_Google_Art_Project.jpg",
+      "maxWidth": 3000,
+      "variant": 2,
+      "notes": "Commons rights check: PD-Art, PD-old-auto-expired."
+    },
+    {
+      "id": "perseus-variant",
+      "use": "variant",
+      "cards": [
+        "perseus"
+      ],
+      "artist": "Edward Burne-Jones",
+      "artistDied": 1898,
+      "title": "The Doom Fulfilled",
+      "date": "1888",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Edward_Burne-Jones_-_Perseus.jpeg",
+        "original": "Staatsgalerie Stuttgart"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Edward_Burne-Jones_-_Perseus.jpeg",
+      "maxWidth": 3000,
+      "variant": 2,
+      "notes": "Commons rights check: PD-Art, PD-old-100. Andromeda (nude) is at the left; crops keep to Perseus and the serpent."
+    },
+    {
+      "id": "the-minotaur-variant",
+      "use": "variant",
+      "cards": [
+        "the-minotaur"
+      ],
+      "artist": "Gustave Doré",
+      "artistDied": 1883,
+      "title": "The Minotaur (Inferno, Canto XII)",
+      "date": "1861",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:DVinfernoMinotaurOnCliff_m.jpg",
+        "original": "Engraving for Dante's Inferno"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "DVinfernoMinotaurOnCliff_m.jpg",
+      "maxWidth": 3000,
+      "variant": 2,
+      "notes": "Commons rights check: PD-old. A scan of Doré's engraving."
     }
   ]
 }

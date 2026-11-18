@@ -9,12 +9,12 @@
   "stats": {
     "health": 10,
     "attack": 2,
-    "ranged": false,
+    "ranged": true,
     "guard": 2,
     "speed": 2
   },
   "vulnerableTo": "Slayer",
-  "renown": 8,
+  "renown": 11,
   "crownPassive": {
     "name": "Athenian tribute",
     "text": "Each time an enemy front-rank card dies, all your heroes heal 1."
@@ -27,7 +27,7 @@
     {
       "name": "Attack",
       "ap": 1,
-      "text": "Standard attack: damage equal to Attack."
+      "text": "Standard Ranged attack: damage equal to Attack, on any enemy card."
     },
     {
       "name": "Royal decree",

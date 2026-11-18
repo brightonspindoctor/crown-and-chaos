@@ -1,0 +1,49 @@
+{
+  "hero": "circe",
+  "personality": "Lovely, amused and dangerous. She sees what people truly are and helps them become it.",
+  "voice": "Come in, and be welcome. Drink.",
+  "cards": [
+    {
+      "id": "circe-1",
+      "n": 1,
+      "title": "Aiaia",
+      "text": "Circe, daughter of the Sun, lived on the island of Aiaia in a stone house deep in the woods. Tame wolves and lions fawned around her door, and she sang as she wove at her great loom. Travellers who found her house were given a warm welcome and a sweet drink.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book X",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody10.htm",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "circe-2",
+      "n": 2,
+      "title": "The Swine",
+      "text": "Odysseus's scouts drank her wine, mixed with a drug that made them forget home. She touched them with her wand and they became pigs, grunting in her sties but still thinking like men. Odysseus came to rescue them carrying a herb called moly from Hermes, so her magic could not touch him. She swore not to harm him and turned his men back again.",
+      "source": {
+        "work": "Tanglewood Tales",
+        "author": "Nathaniel Hawthorne, 1853",
+        "edition": "Ticknor, Reed and Fields, 1853",
+        "url": "https://www.gutenberg.org/ebooks/976",
+        "licence": "Public domain",
+        "chapter": "Circe's Palace"
+      }
+    },
+    {
+      "id": "circe-3",
+      "n": 3,
+      "title": "Counsel",
+      "text": "For a whole year she kept Odysseus and his crew as honoured guests. When he finally asked to leave, she did not stop him. Instead she told him the way ahead: the Sirens' song, the rocks of Scylla and Charybdis, and the cattle of the Sun that must never be touched.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book XII",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody12.htm",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

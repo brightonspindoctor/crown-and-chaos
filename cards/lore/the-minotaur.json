@@ -1,0 +1,49 @@
+{
+  "hero": "the-minotaur",
+  "personality": "Furious, hungry and alone in the dark. Half bull and half man, he belongs to neither world.",
+  "voice": "(A bellow that shakes the walls.)",
+  "cards": [
+    {
+      "id": "the-minotaur-1",
+      "n": 1,
+      "title": "Born a Monster",
+      "text": "The Minotaur was born in the royal house of Crete, with a man's body and a bull's head. King Minos could not kill it and could not bear to see it. He had it shut away in the dark at the heart of the Labyrinth, where it roared and paced alone.",
+      "source": {
+        "work": "Tanglewood Tales",
+        "author": "Nathaniel Hawthorne, 1853",
+        "edition": "Ticknor, Reed and Fields, 1853",
+        "url": "https://www.gutenberg.org/ebooks/976",
+        "licence": "Public domain",
+        "chapter": "The Minotaur"
+      }
+    },
+    {
+      "id": "the-minotaur-2",
+      "n": 2,
+      "title": "Fed on Tribute",
+      "text": "Every few years a black-sailed ship brought fourteen young Athenians to Crete. They were pushed into the maze, and the Minotaur hunted them through its turns. People across the sea grew up fearing the day their names would be chosen.",
+      "source": {
+        "work": "The Heroes, or Greek Fairy Tales for My Children",
+        "author": "Charles Kingsley, 1856",
+        "edition": "Macmillan, 1856",
+        "url": "https://sacred-texts.com/cla/gft/index.htm",
+        "licence": "Public domain",
+        "chapter": "Theseus: How Theseus Slew the Minotaur"
+      }
+    },
+    {
+      "id": "the-minotaur-3",
+      "n": 3,
+      "title": "The Thread",
+      "text": "Prince Theseus sailed with the tribute to put an end to it. Minos's daughter Ariadne gave him a ball of thread to unwind behind him. In the deepest passage he met the beast and fought it with his bare hands and his sword until it fell. Then he followed the thread back into the light.",
+      "source": {
+        "work": "The Heroes, or Greek Fairy Tales for My Children",
+        "author": "Charles Kingsley, 1856",
+        "edition": "Macmillan, 1856",
+        "url": "https://sacred-texts.com/cla/gft/index.htm",
+        "licence": "Public domain",
+        "chapter": "Theseus: How Theseus Slew the Minotaur"
+      }
+    }
+  ]
+}

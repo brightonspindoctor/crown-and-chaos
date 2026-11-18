@@ -1,0 +1,49 @@
+{
+  "hero": "perseus",
+  "personality": "Brave, eager and a little reckless. He makes promises first and works out how to keep them afterwards.",
+  "voice": "Bring me what I swore to bring.",
+  "cards": [
+    {
+      "id": "perseus-1",
+      "n": 1,
+      "title": "Cast Adrift",
+      "text": "His grandfather feared a prophecy and shut the baby Perseus and his mother Danaë in a wooden chest, then set it adrift on the sea. The chest washed up on the island of Seriphos, where a fisherman took them in. Perseus grew up strong there, mending nets and watching over his mother.",
+      "source": {
+        "work": "The Heroes, or Greek Fairy Tales for My Children",
+        "author": "Charles Kingsley, 1856",
+        "edition": "Macmillan, 1856",
+        "url": "https://sacred-texts.com/cla/gft/index.htm",
+        "licence": "Public domain",
+        "chapter": "Perseus: How Perseus and his Mother came to Seriphos"
+      }
+    },
+    {
+      "id": "perseus-2",
+      "n": 2,
+      "title": "The Rash Vow",
+      "text": "Seriphos's king, Polydectes, wanted Danaë for himself and wanted her son out of the way. At his feast, proud young Perseus promised to bring him the Gorgon's head. Help came from the gods: winged sandals, a sharp blade, a bag for the head and a polished shield to look into, never at the Gorgon herself.",
+      "source": {
+        "work": "The Heroes, or Greek Fairy Tales for My Children",
+        "author": "Charles Kingsley, 1856",
+        "edition": "Macmillan, 1856",
+        "url": "https://sacred-texts.com/cla/gft/index.htm",
+        "licence": "Public domain",
+        "chapter": "Perseus: How Perseus Vowed a Rash Vow"
+      }
+    },
+    {
+      "id": "perseus-3",
+      "n": 3,
+      "title": "Home Again",
+      "text": "Flying home with the head, he found Andromeda chained to a rock for a sea monster and freed her. Back on Seriphos, the king and his friends still mocked him. Perseus drew out the Gorgon's head, and they sat at their table as stone. Then he gave the head away, his vow kept.",
+      "source": {
+        "work": "The Heroes, or Greek Fairy Tales for My Children",
+        "author": "Charles Kingsley, 1856",
+        "edition": "Macmillan, 1856",
+        "url": "https://sacred-texts.com/cla/gft/index.htm",
+        "licence": "Public domain",
+        "chapter": "Perseus: How Perseus came Home Again"
+      }
+    }
+  ]
+}

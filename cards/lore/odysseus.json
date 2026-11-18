@@ -1,0 +1,49 @@
+{
+  "hero": "odysseus",
+  "personality": "Clever, patient and proud of it. He would rather trick an enemy than fight one, and he never forgets the road home.",
+  "voice": "My name is Nobody.",
+  "cards": [
+    {
+      "id": "odysseus-1",
+      "n": 1,
+      "title": "The Wooden Horse",
+      "text": "For ten years the Greeks besieged Troy and could not take it. Odysseus had a great wooden horse built and hid the best fighters inside it. The Trojans dragged it through their gates as a prize. That night the Greeks climbed out, and Troy fell to a trick.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book VIII",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody08.htm",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "odysseus-2",
+      "n": 2,
+      "title": "Nobody",
+      "text": "Sailing home, he and his men were trapped in a cave by the Cyclops Polyphemus, who began to eat them. Odysseus made the giant drunk and told him his name was Nobody. Then they blinded him with a burning stake. When the other Cyclopes asked who was hurting him, he roared, \"Nobody!\" and they went away.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book IX",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody09.htm",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "odysseus-3",
+      "n": 3,
+      "title": "The Bow",
+      "text": "Odysseus came home to Ithaca after twenty years, dressed as a beggar. His house was full of men trying to marry his wife Penelope. She set a test: string Odysseus's great bow and shoot through twelve axe heads. None of them could even bend it. The beggar strung it easily, made the shot, and turned the bow on them.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book XXI",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody21.htm",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "polyphemus",
+  "personality": "Huge, lonely and savage. He cares for his sheep more gently than for any person, god or guest.",
+  "voice": "Who are you, stranger? Speak, and I will eat you last.",
+  "cards": [
+    {
+      "id": "polyphemus-1",
+      "n": 1,
+      "title": "The Shepherd Giant",
+      "text": "Polyphemus, son of the sea god Poseidon, was a one-eyed giant. He lived alone in a cave with his sheep and goats, made cheese, and respected no gods and no laws of hospitality. When strangers came to his cave, he rolled a huge stone across the door and ate them two at a time.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book IX",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody09.htm",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "polyphemus-2",
+      "n": 2,
+      "title": "Blinded",
+      "text": "He was promised a gift for eating the stranger called Nobody last. The gift was strong wine, and he drank until he fell asleep. He woke to a burning stake in his eye. In the morning he felt along his rams' backs as they went out, but the men clung beneath the sheep's bellies and slipped out past him.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book IX",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody09.htm",
+        "licence": "Public domain"
+      }
+    },
+    {
+      "id": "polyphemus-3",
+      "n": 3,
+      "title": "The Curse",
+      "text": "From his ship, Odysseus shouted his real name back at him. The blind giant tore off a mountain top and hurled it, and the wave almost carried the ship back to shore. Then Polyphemus prayed to his father Poseidon, and the sea god made sure Odysseus's long journey home was paid for in years.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book IX",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody09.htm",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "medusa",
+  "personality": "Cold, sorrowful and terrible. She was once a beautiful woman, and the curse took everything but her pride.",
+  "voice": "Look at me. Everyone does, once.",
+  "cards": [
+    {
+      "id": "medusa-1",
+      "n": 1,
+      "title": "The Cursed Sister",
+      "text": "Of three Gorgon sisters, Medusa alone could die. She had been beautiful once, but a curse turned her hair to living snakes. Ever after, anyone who looked her in the face became stone. She lived with her sisters at the far edge of the world, among the statues of people who had come to stare.",
+      "source": {
+        "work": "The Heroes, or Greek Fairy Tales for My Children",
+        "author": "Charles Kingsley, 1856",
+        "edition": "Macmillan, 1856",
+        "url": "https://sacred-texts.com/cla/gft/index.htm",
+        "licence": "Public domain",
+        "chapter": "Perseus: How Perseus Slew the Gorgon"
+      }
+    },
+    {
+      "id": "medusa-2",
+      "n": 2,
+      "title": "The Stone Garden",
+      "text": "Around the Gorgons' home stood men and beasts who had met her eyes and turned to stone in mid-stride. The snakes on her head hissed and writhed even while she slept. No hero who came looking for her had ever gone home again.",
+      "source": {
+        "work": "A Wonder-Book for Girls and Boys",
+        "author": "Nathaniel Hawthorne, 1851",
+        "edition": "Ticknor, Reed and Fields, 1851 (Walter Crane edition, 1893)",
+        "url": "https://www.gutenberg.org/ebooks/32242",
+        "licence": "Public domain",
+        "chapter": "The Gorgon's Head"
+      }
+    },
+    {
+      "id": "medusa-3",
+      "n": 3,
+      "title": "The Mirror",
+      "text": "Perseus came on winged sandals while the sisters slept. He watched her only in his polished shield and struck her head off with one blow. Her sisters woke screaming and hunted the sky for him, but he was gone. Even dead, her gaze kept its power, and it turned a king and his court to stone.",
+      "source": {
+        "work": "A Wonder-Book for Girls and Boys",
+        "author": "Nathaniel Hawthorne, 1851",
+        "edition": "Ticknor, Reed and Fields, 1851 (Walter Crane edition, 1893)",
+        "url": "https://www.gutenberg.org/ebooks/32242",
+        "licence": "Public domain",
+        "chapter": "The Gorgon's Head"
+      }
+    }
+  ]
+}

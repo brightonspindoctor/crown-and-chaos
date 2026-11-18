@@ -1,0 +1,49 @@
+{
+  "hero": "king-minos",
+  "personality": "Stern, wealthy and unbending. He rules the sea and expects every city in it to pay.",
+  "voice": "Crete is owed, and Crete will be paid.",
+  "cards": [
+    {
+      "id": "king-minos-1",
+      "n": 1,
+      "title": "The Sea King",
+      "text": "Minos ruled Crete and its great fleets. When his son was killed in Athens, he made war on the city until it agreed to a terrible price. Every few years, Athens must send seven young men and seven young women to Crete, and none of them ever came home.",
+      "source": {
+        "work": "The Heroes, or Greek Fairy Tales for My Children",
+        "author": "Charles Kingsley, 1856",
+        "edition": "Macmillan, 1856",
+        "url": "https://sacred-texts.com/cla/gft/index.htm",
+        "licence": "Public domain",
+        "chapter": "Theseus: How Theseus Slew the Minotaur"
+      }
+    },
+    {
+      "id": "king-minos-2",
+      "n": 2,
+      "title": "The Labyrinth",
+      "text": "Under his palace, his clever craftsman Daedalus built a maze of passages so tangled that no one who entered could find the way out. At its heart lived the Minotaur, and the young people of Athens were sent in to be its food. Minos kept the secret of the maze and was proud of it.",
+      "source": {
+        "work": "Tanglewood Tales",
+        "author": "Nathaniel Hawthorne, 1853",
+        "edition": "Ticknor, Reed and Fields, 1853",
+        "url": "https://www.gutenberg.org/ebooks/976",
+        "licence": "Public domain",
+        "chapter": "The Minotaur"
+      }
+    },
+    {
+      "id": "king-minos-3",
+      "n": 3,
+      "title": "Judge of the Dead",
+      "text": "Minos's laws were so strict that even death did not end his rule. In the House of Hades, Odysseus saw him on his throne, holding a golden sceptre and judging the dead as they gathered round to plead their cases.",
+      "source": {
+        "work": "The Odyssey",
+        "author": "Homer; English prose by Samuel Butler, 1900",
+        "edition": "A. C. Fifield, 1900",
+        "chapter": "Book XI",
+        "url": "https://sacred-texts.com/cla/homer/ody/ody11.htm",
+        "licence": "Public domain"
+      }
+    }
+  ]
+}
