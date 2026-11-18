@@ -9,7 +9,7 @@ The design reasoning lives in the design doc; this repository holds the data the
 ## Play it on your phone
 
 The game is published to GitHub Pages by the **Publish the game** workflow on every push to `main`:
-**https://brightonspindoctor.github.io/crown-and-fable/**
+**https://brightonspindoctor.github.io/crown-and-chaos/**
 
 - **iPhone (Safari):** open the link, tap Share, then **Add to Home Screen**.
 - **Android (Chrome):** open the link, tap the menu, then **Install app** (or **Add to Home screen**).
