@@ -1164,7 +1164,7 @@ function endPlayback() {
 function minus(have, gone) { const left = have.slice(); for (const id of gone) { const k = left.indexOf(id); if (k >= 0) left.splice(k, 1); } return left; }
 function finishFight() {
   const st = S.st, w = st.winner;
-  SND.play(w < 0 ? "draw" : w === 0 ? "win" : "lose");
+  SND.play(w < 0 ? "tie" : w === 0 ? "win" : "lose");
   if (S.kind === "tutorial") {
     const first = w === 0 && !G.tutorialDone; // the tutorial's Crown counts once, the first time it is won
     if (first) { G.crowns++; G.tutorialDone = true; save(); }
