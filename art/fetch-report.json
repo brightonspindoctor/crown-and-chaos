@@ -1,73 +1,6 @@
 {
-  "ranAt": "2026-11-18T12:17:56.833Z",
-  "fetched": [
-    {
-      "id": "perseus",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward_Burne-Jones_-_The_Perseus_Series_-_Study_of_Perseus_in_Armour_for_The_Finding_of_Medusa_-_Google_Art_Project.jpg?width=3000",
-      "bytes": 4267154
-    },
-    {
-      "id": "medusa",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa-Caravaggio_(Uffizi).jpg?width=3000",
-      "bytes": 2570011
-    },
-    {
-      "id": "odysseus",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Draper_Herbert_James_Ulysses_and_the_Sirens.jpg?width=3000",
-      "bytes": 789465
-    },
-    {
-      "id": "polyphemus",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon_Redon_-_Le_Cyclope.jpeg?width=3000",
-      "bytes": 5945618
-    },
-    {
-      "id": "circe",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Circe_Offering_the_Cup_to_Odysseus_(2457_x_4023px_ed.).jpg?width=3000",
-      "bytes": 6115687
-    },
-    {
-      "id": "king-minos",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_13_(Canto_V_-_Minos).jpg?width=3000",
-      "bytes": 5540568
-    },
-    {
-      "id": "the-minotaur",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/George_Frederic_Watts_-_The_Minotaur_-_Google_Art_Project.jpg?width=3000",
-      "bytes": 1976452
-    },
-    {
-      "id": "hoplite",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jacques-Louis_David_-_Leonidas_at_Thermopylae_(detail)_-_WGA6096.jpg?width=3000",
-      "bytes": 104020
-    },
-    {
-      "id": "medusa-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens_Medusa.jpeg?width=3000",
-      "bytes": 2755499
-    },
-    {
-      "id": "odysseus-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_William_Waterhouse_-_Ulysses_and_the_Sirens_-_Google_Art_Project.jpg?width=3000",
-      "bytes": 2191473
-    },
-    {
-      "id": "board-hellas",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Turner_-_Ulysses_deriding_Polyphemus_1829.jpg?width=3200",
-      "bytes": 2214933
-    }
-  ],
+  "ranAt": "2026-11-18T12:22:30.774Z",
+  "fetched": [],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -170,7 +103,18 @@
     "dragons-blood",
     "gingerbread",
     "poisoned-apple-variant",
-    "spindle-variant"
+    "spindle-variant",
+    "perseus",
+    "medusa",
+    "odysseus",
+    "polyphemus",
+    "circe",
+    "king-minos",
+    "the-minotaur",
+    "hoplite",
+    "medusa-variant",
+    "odysseus-variant",
+    "board-hellas"
   ],
   "unresolved": [],
   "failed": [
