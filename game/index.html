@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-title" content="Crown &amp; Chaos">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 /* Crown & Chaos playable prototype. Colours and type come from the Crown & Chaos design system (Gallery theme).
    Battle on a phone: enemy pyramid on top, yours below. On desktop: yours on the left, the enemy's on the right. */
@@ -406,6 +406,74 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .setslider input { width: 100%; accent-color: var(--gold-leaf); height: 28px; }
 .setslider.off { opacity: .5; }
 .box.admin { border-color: var(--vermilion); }
+
+/* gothic level screens and Your court */
+.blackletter { font-family: "UnifrakturMaguntia", var(--display) !important; font-weight: 400 !important; letter-spacing: .01em !important; text-transform: none !important; }
+.panel.gothic { position: relative; overflow: hidden; width: min(420px, 100%); border-radius: 6px 6px 10px 10px; padding: 46px 24px 24px; border: 2px solid var(--gold-leaf);
+  background: radial-gradient(ellipse at 50% -10%, rgba(217,150,70,.28), transparent 55%), radial-gradient(ellipse at 50% 120%, #2a0d0b, transparent 60%), linear-gradient(#1a0f0b, #0d0806);
+  box-shadow: inset 0 0 0 5px #0d0806, inset 0 0 0 6px var(--gold-shade), 0 0 0 1px #000, 0 30px 70px rgba(0,0,0,.85); }
+.panel.gothic > * { position: relative; }
+.panel.gothic h1.blackletter { font-size: 40px; line-height: 1.05; color: #e6c46c; text-shadow: 0 2px 0 #2a0d0b, 0 0 18px rgba(217,150,70,.35); }
+.panel.gothic .eyebrow { color: #d9b763; letter-spacing: .28em; }
+.panel.gothic p { color: #e2d3b4; }
+.gothic .arch, .courthead .arch { position: absolute; left: 10px; right: 10px; top: 8px; width: calc(100% - 20px); height: 56px; }
+.gothic .cb-c, .gbox .cb-c { position: absolute; width: 18px; height: 18px; border: 0 solid var(--gold-leaf); }
+.cb-c.tl { top: 8px; left: 8px; border-top-width: 2px; border-left-width: 2px; }
+.cb-c.tr { top: 8px; right: 8px; border-top-width: 2px; border-right-width: 2px; }
+.cb-c.bl { bottom: 8px; left: 8px; border-bottom-width: 2px; border-left-width: 2px; }
+.cb-c.br { bottom: 8px; right: 8px; border-bottom-width: 2px; border-right-width: 2px; }
+.divider { width: 70%; height: 14px; display: block; margin: 0 auto; }
+.embers { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.embers i { position: absolute; bottom: -6px; width: 3px; height: 3px; border-radius: 50%; background: #f0b45a; box-shadow: 0 0 6px 2px rgba(240,140,60,.6); opacity: 0; animation: ember 3.6s linear infinite; }
+@keyframes ember { 0% { transform: translate(0, 0); opacity: 0 } 15% { opacity: .9 } 100% { transform: translate(14px, -420px); opacity: 0 } }
+.sealstage { position: relative; display: grid; place-items: center; width: 190px; height: 190px; margin: 0 auto; }
+.sealstage::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: repeating-conic-gradient(rgba(217,183,99,.22) 0 7deg, transparent 7deg 15deg); -webkit-mask: radial-gradient(circle, #000 30%, transparent 70%); mask: radial-gradient(circle, #000 30%, transparent 70%); animation: spin 24s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg) } }
+.waxseal { position: relative; width: 140px; height: 140px; display: grid; place-items: center; filter: drop-shadow(0 8px 14px rgba(0,0,0,.7)); animation: stamp .6s cubic-bezier(.2,1.4,.4,1) both; }
+@keyframes stamp { from { transform: scale(1.8) rotate(-12deg); opacity: 0 } }
+.waxseal svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.waxseal b { position: relative; font: 700 40px/1 var(--display); color: #e6c46c; text-shadow: 0 2px 0 #4a120e; letter-spacing: .02em; }
+.waxseal i { position: absolute; bottom: 30px; font: 600 9px/1 var(--display); letter-spacing: .2em; text-transform: uppercase; color: #e2b98a; font-style: normal; }
+.btn.gilt { background: linear-gradient(#e0c06a, var(--gold-leaf) 50%, #a47d32); color: #2a1d14; border: 1px solid #6b4d1e; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 4px 12px rgba(0,0,0,.5); }
+.niche { position: relative; display: grid; place-items: end center; width: 150px; height: 180px; margin: 0 auto; border-radius: 75px 75px 6px 6px; background: radial-gradient(ellipse at 50% 0%, rgba(240,200,120,.35), transparent 65%), #120a08; border: 2px solid var(--gold-shade); box-shadow: inset 0 0 0 4px #120a08, inset 0 0 0 5px rgba(201,162,74,.5); padding-bottom: 12px; }
+.panel.gothic .rep-top span:first-child { color: #e6c46c; }
+.panel.gothic .rep-bar { background: #0b0605; border-color: #8a6424; height: 12px; }
+.panel.gothic .rep-bar i { background: linear-gradient(90deg, #8a6424, #e6c46c, #c9a24a); box-shadow: 0 0 10px rgba(230,196,108,.5); }
+.giftcards .flipper .cardback, .giftcards .fc { width: min(280px, 72vw); }
+.court .courthead { position: relative; text-align: center; padding: 34px 0 6px; }
+.court .courthead h1 { font-size: 46px; color: #e6c46c; text-shadow: 0 2px 0 #2a0d0b; margin: 0; }
+.gbox { position: relative; background: linear-gradient(#1c120d, #120b08); border: 1px solid var(--gold-shade); box-shadow: inset 0 0 0 4px #120b08, inset 0 0 0 5px rgba(201,162,74,.35); }
+.court-me { flex-direction: row; align-items: center; justify-content: center; gap: 18px; padding: 20px; }
+.court-me .niche { width: 130px; height: 160px; margin: 0; }
+.court-id { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.court-id .waxseal { width: 110px; height: 110px; } .court-id .waxseal b { font-size: 32px; } .court-id .waxseal i { bottom: 22px; }
+.hofbox h2 { font-size: 30px; color: #e6c46c; text-align: center; }
+/* card backs */
+.cardback { width: min(310px, 84vw); aspect-ratio: 5 / 7; box-sizing: border-box; border-radius: 14px; padding: 8px; background: repeating-linear-gradient(45deg, #c9a24a 0 4px, #b38c3c 4px 6px); border: 1px solid #8a6424; box-shadow: 0 10px 24px rgba(0,0,0,.6); }
+.cb-in { position: relative; height: 100%; box-sizing: border-box; border-radius: 8px; border: 2px solid #8a6424; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 26px 14px 22px;
+  background: repeating-linear-gradient(45deg, rgba(217,183,99,.07) 0 1px, transparent 1px 14px), repeating-linear-gradient(-45deg, rgba(217,183,99,.07) 0 1px, transparent 1px 14px), radial-gradient(circle at 50% 45%, var(--b1), var(--b2) 78%);
+  box-shadow: inset 0 0 0 7px var(--b2), inset 0 0 0 8px rgba(201,162,74,.6); }
+.cb-in .cb-c { position: absolute; width: 20px; height: 20px; border: 0 solid #c9a24a; }
+.cb-in .cb-c.tl { top: 12px; left: 12px; } .cb-in .cb-c.tr { top: 12px; right: 12px; } .cb-in .cb-c.bl { bottom: 12px; left: 12px; } .cb-in .cb-c.br { bottom: 12px; right: 12px; }
+.cb-name { font: 600 11px/1 var(--display); letter-spacing: .22em; white-space: nowrap; text-transform: uppercase; color: #d9b763; }
+.cb-emb { width: 64%; height: auto; filter: drop-shadow(0 3px 6px rgba(0,0,0,.6)); }
+.cb-realm { font: 600 12px/1 var(--display); letter-spacing: .18em; text-transform: uppercase; color: #2a1d14; background: linear-gradient(#e0c06a, #c9a24a); border: 1px solid #8a6424; border-radius: 3px; padding: 5px 14px; }
+.flipper { position: relative; display: grid; place-items: center; }
+.flipper > .cardback { position: absolute; top: 0; left: 50%; z-index: 2; transform: translateX(-50%); animation: cb-out .38s ease-in .5s forwards; }
+@keyframes cb-out { to { transform: translateX(-50%) perspective(900px) rotateY(90deg) scale(.92); opacity: 0; visibility: hidden; } }
+.reveal .flipper > .fc, .flipper > .fc { animation: flip-in .5s cubic-bezier(.3,.9,.4,1) .88s both; }
+@keyframes flip-in { from { transform: perspective(900px) rotateY(90deg) scale(.9); opacity: 0; } }
+.backgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.backgrid figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.backgrid .cardback { width: 100%; }
+.backgrid .cb-in { padding: 18px 8px 14px; box-shadow: inset 0 0 0 5px var(--b2), inset 0 0 0 6px rgba(201,162,74,.6); }
+.backgrid .cb-in .cb-c { width: 12px; height: 12px; }
+.backgrid .cb-in .cb-c.tl, .backgrid .cb-in .cb-c.tr { top: 8px; } .backgrid .cb-in .cb-c.bl, .backgrid .cb-in .cb-c.br { bottom: 8px; }
+.backgrid .cb-in .cb-c.tl, .backgrid .cb-in .cb-c.bl { left: 8px; } .backgrid .cb-in .cb-c.tr, .backgrid .cb-in .cb-c.br { right: 8px; }
+.backgrid .cb-name { font-size: 7.5px; letter-spacing: .14em; white-space: nowrap; }
+.backgrid .cb-realm { font-size: 9.5px; letter-spacing: .12em; padding: 4px 9px; }
+.backgrid figcaption { font: 600 13px/1.2 var(--display); letter-spacing: .06em; text-align: center; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .flipper > .cardback { display: none; } .flipper > .fc { animation: none; } .embers, .sealstage::before { display: none; } .waxseal { animation: none; } }
 /* crowns */
 .crownicon { display: block; }
 img.crownicon { object-fit: contain; }
@@ -1953,53 +2021,95 @@ function checkLevel() {
   }
   G.levelSeen = to; save();
   U.over = { type: "levelup", from, to, steps, i: 0 };
+  SND.play("levelup");
 }
 function repBar(L) {
   const pct = Math.round(repShare() * 100);
   return `<div class="rep"><div class="rep-top"><span>Reputation</span><span>Level ${L + 1}</span></div>
     <div class="rep-bar" role="progressbar" aria-label="Progress to level ${L + 1}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div></div>`;
 }
-const levelSeal = (L, small) => `<span class="lvseal${small ? " sm" : ""}" aria-label="Level ${L}"><i>Level</i>${L}</span>`;
-function avatar(cls = "") { return `<span class="avatar ${cls}"><span class="avcrown">${crownSvg(G.wearing)}</span><span class="avface">P</span></span>`; }
+const roman = (n) => [[100, "C"], [90, "XC"], [50, "L"], [40, "XL"], [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]].reduce((out, [v, r]) => { while (n >= v) { out += r; n -= v; } return out; }, "");
+// A wax seal with the level in Roman numerals: the gothic stamp on every level screen.
+const SEAL_EDGE = (() => { let d = ""; for (let k = 0; k < 28; k++) { const a = (k / 28) * Math.PI * 2, r = k % 2 ? 46 : 49; d += `${k ? "L" : "M"}${(50 + r * Math.cos(a)).toFixed(1)} ${(50 + r * Math.sin(a)).toFixed(1)}`; } return d + "Z"; })();
+const levelSeal = (L, small) => small
+  ? `<span class="lvseal sm" aria-label="Level ${L}">${L}</span>`
+  : `<span class="waxseal" role="img" aria-label="Level ${L}"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="${SEAL_EDGE}" fill="#6e1f1a"/><circle cx="50" cy="50" r="38" fill="#8a2a22"/><circle cx="50" cy="50" r="38" fill="none" stroke="#4a120e" stroke-width="2"/><circle cx="50" cy="50" r="33" fill="none" stroke="#c9a24a" stroke-width="1.2" stroke-dasharray="1.5 2.5"/></svg><b>${roman(L)}</b><i>Level ${L}</i></span>`;
+function avatar(cls = "", crown = G.wearing) { return `<span class="avatar ${cls}"><span class="avcrown">${crownSvg(crown)}</span><span class="avface">P</span></span>`; }
+const EMBERS = Array.from({ length: 14 }, (_, k) => `<i style="left:${(k * 37) % 100}%;animation-delay:${((k * 0.53) % 3).toFixed(2)}s;animation-duration:${(3 + (k % 4) * 0.7).toFixed(1)}s"></i>`).join("");
+const ARCH = `<svg class="arch" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true"><path d="M2 70 V40 Q2 8 60 4 Q140 0 200 0 Q260 0 340 4 Q398 8 398 40 V70" fill="none" stroke="#c9a24a" stroke-width="2"/><path d="M200 0 V18 M188 10 H212" stroke="#c9a24a" stroke-width="2"/><path d="M40 70 V46 Q40 22 80 18 M360 70 V46 Q360 22 320 18" fill="none" stroke="#8a6424" stroke-width="1.2"/></svg>`;
+const DIVIDER = `<svg class="divider" viewBox="0 0 200 14" aria-hidden="true"><path d="M0 7 H84 M116 7 H200" stroke="#8a6424" stroke-width="1"/><path d="M100 1 L106 7 L100 13 L94 7 Z" fill="#c9a24a"/><circle cx="88" cy="7" r="1.6" fill="#c9a24a"/><circle cx="112" cy="7" r="1.6" fill="#c9a24a"/></svg>`;
+function gothic(inner, cls = "") {
+  return `<div class="panel lvpanel gothic ${cls}"><div class="embers" aria-hidden="true">${EMBERS}</div>${ARCH}<i class="cb-c tl"></i><i class="cb-c tr"></i><i class="cb-c bl"></i><i class="cb-c br"></i>${inner}</div>`;
+}
 function levelUpHtml(o) {
   const st = o.steps[o.i], last = o.i === o.steps.length - 1, L = o.to;
-  const btn = (label) => `<div class="btns"><button class="btn" data-act="lv-next">${label}</button></div>`;
+  const btn = (label) => `<div class="btns"><button class="btn gilt" data-act="lv-next">${label}</button></div>`;
   if (st.kind === "level") {
     const n = o.to - o.from, g = nextGift(L), rest = o.steps.length - 1;
-    return `<div class="panel lvpanel"><p class="eyebrow">${n > 1 ? `Level up × ${n}` : "Level up"}</p>${levelSeal(L)}
-      <h1>${n > 1 ? `Level ${o.from} to ${L}` : "Your reputation grows"}</h1>
-      <p>${n > 1 ? "Your reputation soars." : "Word of your deeds spreads across the realms."}</p>
-      ${repBar(L)}
-      ${rest ? "" : `<p class="credit">A hero ${g % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${g}.</p>`}
-      ${btn(rest ? "Claim your rewards" : "Continue")}</div>`;
+    return gothic(`<p class="eyebrow">${n > 1 ? `${n} levels at once` : "Level up"}</p>
+      <div class="sealstage">${levelSeal(L)}</div>
+      <h1 class="blackletter">${n > 1 ? "Your reputation soars" : "Your reputation grows"}</h1>
+      <p>${n > 1 ? `From Level ${o.from} to Level ${L}. The realms speak of little else.` : "Word of your deeds spreads across the realms."}</p>
+      ${DIVIDER}${repBar(L)}
+      ${rest ? `<p class="credit">Rewards await you.</p>` : `<p class="credit">A hero ${g % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${g}.</p>`}
+      ${btn(rest ? "Claim your rewards" : "Continue")}`, "lv-level");
   }
   if (st.kind === "crown") {
     const c = crownById[st.id];
-    return `<div class="panel lvpanel"><p class="eyebrow">Level ${st.level} · New crown</p>
-      <div class="newcrown">${avatar("big")}</div>
-      <h1>The ${esc(c.name)} is yours</h1><p>Worn on your icon in battle, so every rival sees how far you have come.</p>
-      <div class="btns"><button class="btn" data-act="lv-wear" data-id="${c.id}">Wear it now</button><button class="btn quiet" data-act="lv-next">Keep my current crown</button></div>
-      <p class="credit">Another crown awaits at Level ${st.level + 10}.</p></div>`;
+    return gothic(`<p class="eyebrow">Level ${st.level} · A new crown</p>
+      <div class="niche newcrown">${avatar("big", c.id)}</div>
+      <h1 class="blackletter">The ${esc(c.name)}</h1><p>Worn on your icon in battle, so every rival sees how far you have come.</p>
+      ${DIVIDER}<div class="btns"><button class="btn gilt" data-act="lv-wear" data-id="${c.id}">Wear it now</button><button class="btn quiet" data-act="lv-next">Keep my current crown</button></div>
+      <p class="credit">Another crown awaits at Level ${st.level + 10}.</p>`, "lv-crown");
   }
   if (st.kind === "hero") {
-    return `<div class="panel lvpanel"><p class="eyebrow">Level ${st.level} · Hero gift</p><h1>A hero joins your court</h1>
-      <div class="giftcards">${st.ids.map((id) => fullCard(id)).join("")}</div>
-      <p class="credit">Your next hero gift is at Level ${st.level + 5}.</p>${btn(last ? "Add to my Library" : "Next")}</div>`;
+    return gothic(`<p class="eyebrow">Level ${st.level} · Hero gift</p><h1 class="blackletter">A hero joins your court</h1>
+      <div class="giftcards">${st.ids.map((id) => turnOver(id, fullCard(id))).join("")}</div>
+      <p class="credit">Your next hero gift is at Level ${st.level + 5}.</p>${btn(last ? "Add to my Library" : "Next")}`, "lv-hero");
   }
-  return `<div class="panel lvpanel"><p class="eyebrow">Level ${st.level} · Hero gift</p><h1>You own every hero</h1><p>Three of each, no less. Take 100 gold instead.</p>${btn(last ? "Continue" : "Next")}</div>`;
+  return gothic(`<p class="eyebrow">Level ${st.level} · Hero gift</p><h1 class="blackletter">You own every hero</h1><p>Three of each, no less. Take 100 gold instead.</p>${btn(last ? "Continue" : "Next")}`);
+}
+
+// ---------- card backs ----------
+// A hero's back shows its realm: colours and an emblem drawn for this game. Front-rank cards, items and pack extras
+// share the house back. Backs show as each pack card turns over, and in Settings > Admin > Card backs.
+const BACKS = {
+  "Albion": { b1: "#1f3a6e", b2: "#0e1d3a", emblem: `<circle cx="50.0" cy="32.0" r="15" fill="#b5381f" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="69.02113032590307" cy="45.819660112501055" r="15" fill="#b5381f" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="61.75570504584947" cy="68.18033988749895" r="15" fill="#b5381f" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38.24429495415054" cy="68.18033988749895" r="15" fill="#b5381f" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30.978869674096927" cy="45.819660112501055" r="15" fill="#b5381f" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="55.877852522924734" cy="43.90983005625053" r="9" fill="#efe4cc" stroke="#d9b763" stroke-width="2"/><circle cx="59.510565162951536" cy="55.09016994374947" r="9" fill="#efe4cc" stroke="#d9b763" stroke-width="2"/><circle cx="50.0" cy="62.0" r="9" fill="#efe4cc" stroke="#d9b763" stroke-width="2"/><circle cx="40.489434837048464" cy="55.09016994374947" r="9" fill="#efe4cc" stroke="#d9b763" stroke-width="2"/><circle cx="44.122147477075266" cy="43.90983005625053" r="9" fill="#efe4cc" stroke="#d9b763" stroke-width="2"/><circle cx="50" cy="52" r="6" fill="#d9b763"/>` },
+  "Cymru": { b1: "#1e4a35", b2: "#0b2318", emblem: `<path transform="rotate(0 50 50)" d="M50 50 C50 34 62 22 74 28 C84 33 82 48 72 50 C64 51 62 42 68 40" fill="none" stroke="#d9b763" stroke-width="5" stroke-linecap="round"/><path transform="rotate(120 50 50)" d="M50 50 C50 34 62 22 74 28 C84 33 82 48 72 50 C64 51 62 42 68 40" fill="none" stroke="#d9b763" stroke-width="5" stroke-linecap="round"/><path transform="rotate(240 50 50)" d="M50 50 C50 34 62 22 74 28 C84 33 82 48 72 50 C64 51 62 42 68 40" fill="none" stroke="#d9b763" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="40" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>` },
+  "Gothic": { b1: "#3a1216", b2: "#0b0607", emblem: `<path d="M24 92 V50 Q24 16 50 8 Q76 16 76 50 V92" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="40" r="16" fill="#efe4cc" opacity=".9"/><path d="M50 52 C47 47 43 47 41 52 C35 45 24 44 14 52 C22 54 27 59 29 66 C33 61 38 61 42 64 C44 61 47 61 50 64 C53 61 56 61 58 64 C62 61 67 61 71 66 C73 59 78 54 86 52 C76 44 65 45 59 52 C57 47 53 47 50 52 Z M46 50 L45 45 L48 48 Z M54 50 L55 45 L52 48 Z" fill="#120c0a" stroke="#d9b763" stroke-width="1.6" stroke-linejoin="round"/><path d="M34 92 V74 Q34 66 40 64 M66 92 V74 Q66 66 60 64" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>` },
+  "Rus'": { b1: "#6e1f1a", b2: "#2e0b08", emblem: `<path d="M50 6 V16 M45 10 H55" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M50 16 C36 30 26 40 32 50 C36 56 44 56 50 56 C56 56 64 56 68 50 C74 40 64 30 50 16 Z" fill="#2f5f51" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 18 C46 30 44 44 46 56 M50 18 C54 30 56 44 54 56" fill="none" stroke="#d9b763" stroke-width="1.6"/><rect x="36" y="56" width="28" height="26" fill="#7a1f1a" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 82 V70 Q42 64 46 64 Q50 64 50 70 V82 M50 70 Q50 64 54 64 Q58 64 58 70 V82" fill="none" stroke="#d9b763" stroke-width="1.8"/><path d="M26 82 H74 V90 H26 Z" fill="#d9b763"/>` },
+  "Geatland": { b1: "#4a3a22", b2: "#1c150c", emblem: `<path transform="" d="M46 46 C40 36 34 28 24 22 M38 36 C32 36 26 38 20 36 M34 30 C34 22 32 16 28 10 M30 26 C24 24 18 20 14 14" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path transform="translate(100 0) scale(-1 1)" d="M46 46 C40 36 34 28 24 22 M38 36 C32 36 26 38 20 36 M34 30 C34 22 32 16 28 10 M30 26 C24 24 18 20 14 14" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 54 C42 48 46 44 50 44 C54 44 58 48 58 54 L56 70 C54 78 52 82 50 84 C48 82 46 78 44 70 Z" fill="#6b4a2a" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 52 L34 50 M60 52 L66 50" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="46" cy="56" r="1.6" fill="#d9b763"/><circle cx="54" cy="56" r="1.6" fill="#d9b763"/>` },
+  "Norse": { b1: "#1b2c44", b2: "#0a1220", emblem: `<circle cx="50" cy="50" r="44" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 Q35.0 33.0 20 26" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 Q41.0 31.8 32 14" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 Q50.0 30.0 50 10" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 Q59.0 31.8 68 14" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 Q65.0 33.0 80 26" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 Q32.0 33.6 14 42" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 Q68.0 33.6 86 42" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 62 Q35.0 74 20 82" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 62 Q43.0 74 36 90" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 62 Q57.0 74 64 90" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 62 Q65.0 74 80 82" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 V62" stroke="#d9b763" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="26" r="4" fill="#2f5f51" stroke="#d9b763" stroke-width="1.4"/><circle cx="32" cy="14" r="4" fill="#2f5f51" stroke="#d9b763" stroke-width="1.4"/><circle cx="50" cy="10" r="4" fill="#2f5f51" stroke="#d9b763" stroke-width="1.4"/><circle cx="68" cy="14" r="4" fill="#2f5f51" stroke="#d9b763" stroke-width="1.4"/><circle cx="80" cy="26" r="4" fill="#2f5f51" stroke="#d9b763" stroke-width="1.4"/><circle cx="14" cy="42" r="4" fill="#2f5f51" stroke="#d9b763" stroke-width="1.4"/><circle cx="86" cy="42" r="4" fill="#2f5f51" stroke="#d9b763" stroke-width="1.4"/>` },
+  "Märchen": { b1: "#2f3d1f", b2: "#12180a", emblem: `<g transform="translate(0 6)"><path transform="translate(28 0) scale(0.7) translate(-50 0)" d="M50 14 L36 38 H44 L32 58 H42 L28 80 H72 L58 58 H68 L56 38 H64 Z" fill="#2f5f51" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path transform="translate(28 0) scale(0.7) translate(-50 0)" d="M46 80 V88 H54 V80" fill="#6b4a2a" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path transform="translate(72 0) scale(0.7) translate(-50 0)" d="M50 14 L36 38 H44 L32 58 H42 L28 80 H72 L58 58 H68 L56 38 H64 Z" fill="#2f5f51" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path transform="translate(72 0) scale(0.7) translate(-50 0)" d="M46 80 V88 H54 V80" fill="#6b4a2a" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g><path transform="translate(50 0) scale(1) translate(-50 0)" d="M50 14 L36 38 H44 L32 58 H42 L28 80 H72 L58 58 H68 L56 38 H64 Z" fill="#2f5f51" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path transform="translate(50 0) scale(1) translate(-50 0)" d="M46 80 V88 H54 V80" fill="#6b4a2a" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="24" r="0" /><circle cx="80" cy="16" r="6" fill="#efe4cc" opacity=".85"/>` },
+  "Eventyr": { b1: "#1a4a54", b2: "#0a2228", emblem: `<path d="M14 80 Q26 76 38 80 T62 80 T86 80" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 88 Q32 84 44 88 T68 88" fill="none" stroke="#d9b763" stroke-width="2" opacity=".7"/><path d="M30 72 C30 60 44 56 58 60 C66 62 72 58 70 50 C68 40 60 30 62 22 C64 16 72 16 74 22 L80 24 L73 26 C70 30 74 40 78 50 C82 62 76 74 62 76 L36 76 C32 76 30 75 30 72 Z" fill="#efe4cc" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 66 C44 62 52 64 58 68" fill="none" stroke="#d9b763" stroke-width="1.6"/><circle cx="70" cy="22" r="1.4" fill="#120c0a"/>` },
+  "_": { b1: "#4a3222", b2: "#1c120b", emblem: `<circle cx="50" cy="50" r="40" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="50" r="34" fill="none" stroke="#d9b763" stroke-width="1.2" stroke-dasharray="2 3"/><path d="M24 64 L28 36 L40 50 L50 28 L60 50 L72 36 L76 64 Z" fill="#d9b763" stroke="#8a6424" stroke-width="2" stroke-linejoin="round"/><rect x="24" y="64" width="52" height="8" rx="2" fill="#d9b763" stroke="#8a6424" stroke-width="2"/><circle cx="50" cy="68" r="2.6" fill="#b5381f"/>` },
+};
+function cardBack(id, cls = "") {
+  const realm = id && kindOf(id) === "hero" ? defOf(id).realm : null, b = BACKS[realm] || BACKS._;
+  return `<div class="cardback ${cls}" style="--b1:${b.b1};--b2:${b.b2}" aria-hidden="true"><div class="cb-in"><i class="cb-c tl"></i><i class="cb-c tr"></i><i class="cb-c bl"></i><i class="cb-c br"></i>
+    <span class="cb-name">Crown &amp; Chaos</span><svg class="cb-emb" viewBox="0 0 100 100">${b.emblem}</svg><span class="cb-realm">${esc(realm || "Crown & Chaos")}</span></div></div>`;
+}
+// The card's back first, then it turns over to show the face.
+const turnOver = (backId, face) => `<div class="flipper">${cardBack(backId)}${face}</div>`;
+function backsHtml() {
+  const list = [...Object.keys(BACKS).filter((k) => k !== "_").map((r) => [r, Object.values(DATA.heroes).find((h) => h.realm === r)?.id]), ["Front rank, items and extras", null]];
+  return `<div class="wrap"><div class="bar"><h1>Card backs</h1><span class="eyebrow">Admin</span></div>
+    <p class="lede">Every hero's back shows its realm. Everything else shares the house back.</p>
+    <div class="backgrid">${list.map(([name, id]) => `<figure>${cardBack(id)}<figcaption>${esc(name)}</figcaption></figure>`).join("")}</div></div>`;
 }
 
 // ---------- your court (profile) and the Hall of Fame ----------
 function courtHtml() {
   const L = myLevel(), heroes = Object.values(DATA.heroes).filter((h) => owned(h.id) > 0).length;
   const w = crownById[G.wearing] || CROWNS[0];
-  return `<div class="wrap"><div class="bar"><h1>Your court</h1></div>
-    <div class="box court-me">${avatar("big")}<div><h2>Player One</h2><div class="court-lv">${levelSeal(L, true)}<span>Level ${L}</span></div><p class="credit">Wearing the ${esc(w.name)}</p></div></div>
-    <div class="box">${repBar(L)}<p class="credit">A hero ${nextGift(L) % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${nextGift(L)}.</p></div>
+  return `<div class="wrap court"><div class="courthead">${ARCH}<p class="eyebrow">Player One</p><h1 class="blackletter">Your Court</h1></div>
+    <div class="box gbox court-me"><i class="cb-c tl"></i><i class="cb-c tr"></i><i class="cb-c bl"></i><i class="cb-c br"></i>
+      <div class="niche">${avatar("big")}</div><div class="court-id">${levelSeal(L)}<p class="credit">Wearing the ${esc(w.name)}</p></div></div>
+    <div class="box gbox">${repBar(L)}<p class="credit">A hero ${nextGift(L) % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${nextGift(L)}.</p></div>
     <div class="courtstats"><div><i>Crowns won</i><b>${G.crowns}</b></div><div><i>Heroes</i><b>${heroes}</b></div><div><i>Fights</i><b>${G.wins} won · ${G.losses} lost</b></div></div>
-    <div class="box"><h2>Your crowns</h2><p>Wear any crown you own. New ones are a surprise until you find them.</p><button class="btn quiet" data-act="court-crowns">Choose a crown</button></div>
-    <div class="box"><h2>Hall of Fame</h2>
-      <ol class="hof"><li class="me"><span>1</span>${avatar()}<span>You</span>${levelSeal(L, true)}<b>${G.crowns}</b></li></ol>
+    <div class="box gbox"><h2>Your crowns</h2><p>Wear any crown you own. New ones are a surprise until you find them.</p><button class="btn quiet" data-act="court-crowns">Choose a crown</button></div>
+    <div class="box gbox hofbox"><h2 class="blackletter">Hall of Fame</h2>${DIVIDER}
+      <ol class="hof"><li class="me"><span>I</span>${avatar()}<span>You</span>${levelSeal(L, true)}<b>${G.crowns}</b></li></ol>
       <p class="credit">Ranked by Crowns won. Other players join the Hall once you can fight them. Line-ups are never shown.</p></div>
     <button class="btn quiet" data-go="settings">Settings</button></div>`;
 }
@@ -2024,6 +2134,7 @@ function settingsHtml() {
       ${toggleRow("set-fast", "Fast battles", !!G.fast, "Plays each round back at double speed")}</div>
     ${isAdmin() ? `<div class="box admin"><h2>Admin</h2>
       ${toggleRow("admin-all", "See every card", adminAll(), "Shows every hero, front-rank card, item and crown in the Library, owned or not")}
+      <button class="btn quiet" data-go="backs">See the card backs</button>
       <p class="credit">Only you see this section on this device. Open the game with ?admin=0 to hide it.</p></div>` : ""}
     <p class="credit">Settings are saved on this device.</p></div>`;
 }
@@ -2421,6 +2532,11 @@ const SND = (() => {
       [587, 740, 880, 1175].forEach((f) => horn(f, 0.5, 1.4, 0.11));
       notes("sine", [2349, 2794, 3520], 0.09, 0.6, 0.07, 0.55);
       tone("sine", 120, 45, 0.45, 0.8, 0.5); noise("highpass", 5000, 9000, 0.8, 0.08, 0.5);
+    },
+    levelup() { // two tolls of a deep bell over a low choir
+      [0, 0.9].forEach((at) => { [[1, 0.3], [2.01, 0.12], [2.76, 0.08], [5.4, 0.04]].forEach(([m, v]) => tone("sine", 147 * m, 147 * m, 2.6, v, at)); });
+      [147, 220, 294, 349].forEach((f, k) => { tone("sawtooth", f * 0.997, f, 2.8, 0.035, 0.2 + k * 0.05, ["lowpass", 900]); tone("sawtooth", f * 1.004, f, 2.8, 0.03, 0.2 + k * 0.05, ["lowpass", 900]); });
+      notes("sine", [1175, 1397, 1760], 0.12, 0.8, 0.05, 1.6);
     },
     tie() { // a drawn fight (not the bowstring "draw" above)
       tone("sine", 100, 50, 0.4, 0.6); noise("lowpass", 600, 90, 0.18, 0.35);
@@ -3579,7 +3695,7 @@ function targetSheet(sh) {
 const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Library"], ["shop", "Shop"]];
 function renderPage() {
   const v = el("view"), keep = U.kept === U.screen ? v.scrollTop : 0;
-  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml }[U.screen];
+  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml, backs: backsHtml }[U.screen];
   v.innerHTML = fn();
   v.scrollTop = keep; U.kept = U.screen;
   const showNav = G.packOpened && U.screen !== "pack" && U.screen !== "ready";
@@ -3635,7 +3751,7 @@ function packHtml() {
     const t = tok(p.cards[p.i]), dup = p.dup && p.dup[p.i];
     const label = { gold: "Gold", lore: "A lore card", var: "A variant artwork", crown: dup ? "A crown you already own" : "A crown" }[t.kind];
     return `<div class="opening"><p class="eyebrow">Card ${p.i + 1} of ${n} · ${esc(label)}</p>
-      <button class="reveal${t.kind === "gold" ? "" : " star"}" data-act="pack-next" aria-label="${esc(label)}. Next card">${tokenFace(p.cards[p.i], dup)}</button>
+      <button class="reveal${t.kind === "gold" ? "" : " star"}" data-act="pack-next" aria-label="${esc(label)}. Next card">${turnOver(t.kind === "var" ? variantOf(t.val).card : null, tokenFace(p.cards[p.i], dup))}</button>
       <div class="stack" aria-hidden="true">${p.cards.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
       <div class="row" style="width:min(310px,84vw)"><button class="btn" data-act="pack-next">${p.i === n - 1 ? "See them all" : "Next card"}</button>${p.i < n - 2 ? `<button class="btn quiet" data-act="pack-all">Reveal all</button>` : ""}</div></div>`;
   }
@@ -3645,7 +3761,7 @@ function packHtml() {
     const of = p.cards.filter((x) => x === id).length;
     const label = kind === "hero" ? "A hero" : kind === "front" ? `Front rank · ${d.name}${of > 1 ? ` ${seen + 1} of ${of}` : ""}` : `${d.rarity} item`;
     return `<div class="opening"><p class="eyebrow">Card ${p.i + 1} of ${n} · ${esc(label)}</p>
-      <button class="reveal${star ? " star" : ""}" data-act="pack-next" aria-label="${esc(d.name)}. Next card">${fullCard(id)}</button>
+      <button class="reveal${star ? " star" : ""}" data-act="pack-next" aria-label="${esc(d.name)}. Next card">${turnOver(id, fullCard(id))}</button>
       <div class="stack" aria-hidden="true">${p.cards.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
       <div class="row" style="width:min(310px,84vw)"><button class="btn" data-act="pack-next">${p.i === n - 1 ? "See them all" : "Next card"}</button>${p.i < n - 2 ? `<button class="btn quiet" data-act="pack-all">Reveal all</button>` : ""}</div></div>`;
   }
@@ -3990,7 +4106,7 @@ document.addEventListener("click", (e) => {
     case "set-music": SND.setMusic(!SND.music); render(); break;
     case "set-fast": G.fast = !G.fast; save(); render(); break;
     case "admin-all": PREFS.write("adminAll", !adminAll()); render(); break;
-    case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); } // falls through to the next step
+    case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); SND.play("ping"); } // falls through to the next step
     case "lv-next": { const o = U.over; if (o && o.type === "levelup" && o.i < o.steps.length - 1) o.i += 1; else U.over = null; render(); break; }
     case "court-crowns": U.tab = "crown"; go("collection"); break;
     case "buy-crown": { const c = crownById[d.id]; if (c && c.price && G.gold >= c.price && !G.ownCrowns.includes(c.id)) { spend(c.price); G.ownCrowns.push(c.id); save(); checkLevel(); render(); } break; }
