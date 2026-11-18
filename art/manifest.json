@@ -3148,21 +3148,14 @@
       "date": "1814",
       "source": {
         "name": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Jacques-Louis_David_-_Leonidas_at_Thermopylae_(detail)_-_WGA6096.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Léonidas_aux_Thermopyles_-_Jacques-Louis_David_-_Musée_du_Louvre_Peintures_INV_3690_;_L_3711.jpg",
         "original": "Louvre, Paris"
       },
       "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
       "status": "cleared",
-      "commonsFile": "Jacques-Louis_David_-_Leonidas_at_Thermopylae_(detail)_-_WGA6096.jpg",
-      "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old. Small scan (750px wide); look for a larger one.",
-      "size": [750, 1197],
-      "crops": {
-        "hoplite": {
-          "window": [0.0, 0.08, 1.0, 0.3686],
-          "full": [0.05, 0.02, 0.85, 0.7456]
-        }
-      }
+      "commonsFile": "Léonidas_aux_Thermopyles_-_Jacques-Louis_David_-_Musée_du_Louvre_Peintures_INV_3690_;_L_3711.jpg",
+      "maxWidth": 6000,
+      "notes": "Commons rights check: PD-Art, PD-old. The Louvre's full scan (9655 x 7124); the card crops one hoplite from the left group."
     },
     {
       "id": "medusa-variant",
@@ -3268,11 +3261,11 @@
         "original": "Art Gallery of South Australia, Adelaide"
       },
       "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
-      "status": "cleared",
+      "status": "to-confirm",
       "commonsFile": "J._W._Waterhouse_-_Circe_Invidiosa_-_Google_Art_Project.jpg",
       "maxWidth": 3000,
       "variant": 2,
-      "notes": "Commons rights check: PD-Art, PD-old-auto-expired."
+      "notes": "Rights are clear (PD-Art, PD-old-auto-expired), but not used: no crop keeps her face without her bare chest. Kept on record in case a modest crop is wanted later."
     },
     {
       "id": "perseus-variant",
@@ -3294,7 +3287,14 @@
       "commonsFile": "Edward_Burne-Jones_-_Perseus.jpeg",
       "maxWidth": 3000,
       "variant": 2,
-      "notes": "Commons rights check: PD-Art, PD-old-100. Andromeda (nude) is at the left; crops keep to Perseus and the serpent."
+      "notes": "Commons rights check: PD-Art, PD-old-100. Andromeda (nude) is at the left; crops keep to Perseus and the serpent.",
+      "size": [3700, 4096],
+      "crops": {
+        "perseus": {
+          "window": [0.4, 0.0, 0.6, 0.3188],
+          "full": [0.42, 0.0, 0.55, 0.6956]
+        }
+      }
     },
     {
       "id": "the-minotaur-variant",
@@ -3316,7 +3316,14 @@
       "commonsFile": "DVinfernoMinotaurOnCliff_m.jpg",
       "maxWidth": 3000,
       "variant": 2,
-      "notes": "Commons rights check: PD-old. A scan of Doré's engraving."
+      "notes": "Commons rights check: PD-old. A scan of Doré's engraving.",
+      "size": [1969, 2409],
+      "crops": {
+        "the-minotaur": {
+          "window": [0.3, 0.08, 0.7, 0.3366],
+          "full": [0.33, 0.0, 0.67, 0.7667]
+        }
+      }
     }
   ]
 }
