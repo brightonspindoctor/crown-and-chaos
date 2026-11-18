@@ -420,7 +420,7 @@ export function damage(st, src, target, amount, opts = {}) {
     }
   }
   amt = Math.max(0, amt);
-  if (atk && crownIs(st, t.side, "maid-marian")) amt = Math.ceil(amt / 2);
+  if (atk && crownIs(st, t.side, "maid-marian") && st.fate === t.side) amt = Math.ceil(amt / 2);
   if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
     st.sides[t.side].flags.georgeRound = st.round;
     const blocked = Math.min(2, amt);

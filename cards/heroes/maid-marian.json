@@ -17,7 +17,7 @@
   "renown": 12,
   "crownPassive": {
     "name": "Lady of the greenwood",
-    "text": "All enemy attacks deal half damage, rounded up."
+    "text": "In rounds when you hold the Fate token, all enemy attacks deal half damage, rounded up."
   },
   "bond": {
     "text": "The first time another of your Albion heroes dies, she gains +2 Attack and +1 Speed for the rest of the fight.",

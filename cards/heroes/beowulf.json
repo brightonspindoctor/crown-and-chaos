@@ -38,7 +38,8 @@
     {
       "name": "Axe throw",
       "ap": 2,
-      "text": "A Ranged attack on any enemy card, for damage equal to his Attack."
+      "text": "A Ranged attack on any enemy card, for damage equal to his Attack. Once per fight.",
+      "usesPerFight": 1
     }
   ],
   "art": "beowulf",
