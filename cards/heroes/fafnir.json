@@ -9,14 +9,14 @@
     "Dragon"
   ],
   "stats": {
-    "health": 13,
-    "attack": 3,
+    "health": 9,
+    "attack": 1,
     "ranged": false,
-    "guard": 1,
+    "guard": 0,
     "speed": 1
   },
   "vulnerableTo": "Slayer",
-  "renown": 27,
+  "renown": 14,
   "crownPassive": {
     "name": "Venom",
     "text": "Fafnir's attacks also give 1 Poison."
@@ -33,8 +33,8 @@
     },
     {
       "name": "Deep breath",
-      "ap": 2,
-      "text": "Charge: choose any enemy card. Fafnir draws breath this round. Next round, when he acts, he breathes fire on it for 8, ignoring Guard, and takes no other action. Stop him or kill him first and the fire is lost. Once per fight.",
+      "ap": 3,
+      "text": "Charge: choose any enemy card. Fafnir draws breath this round. Next round, when he acts, he breathes fire on it for 8 (Guard applies) and takes no other action. Stop him or kill him first and the fire is lost. Once per fight.",
       "usesPerFight": 1,
       "charge": true
     }

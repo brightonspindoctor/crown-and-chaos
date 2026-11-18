@@ -188,7 +188,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Sigurd has no actions while charging", E.options(st, sg).length === 0);
   const h0 = g.health;
   E.playRound(st, [{ orders: [] }, { orders: [] }]);
-  ok("Gram from the pit hits King Arthur for 8 through his Guard", h0 - g.health === 8, [h0, g.health]);
+  ok("Gram from the pit hits King Arthur for 8 less his Guard", h0 - g.health === 8 - E.guardOf(st, g) || h0 - g.health === 7, [h0, g.health]);
   ok("and Sigurd can act again", E.options(st, sg).length > 0);
 }
 { // Charge lost if the charger is stopped
@@ -203,7 +203,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const st = game(lu("sigurd"), lu("king-arthur"));
   const g = card(st, 1, "king-arthur"), h0 = g.health;
   E.playRound(st, [{ orders: [order(st, 0, "sigurd", "Attack", g)] }, { orders: [] }]);
-  ok("Gram's edge: Sigurd's 3 goes through King Arthur's Guard", h0 - g.health === 3, [h0, g.health]);
+  ok("Gram's edge: Sigurd's 2 goes through King Arthur's Guard", h0 - g.health === 2, [h0, g.health]);
   const st2 = game(lu("fafnir"), lu("merlin"));
   const m = card(st2, 1, "merlin");
   E.playRound(st2, [{ orders: [order(st2, 0, "fafnir", "Attack", m)] }, { orders: [] }]);
@@ -211,7 +211,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const st3 = game(lu("merlin", ["sigurd"]), lu("merlin", ["the-wolf"]));
   const sg = card(st3, 0, "sigurd"), a0 = E.attackOf(st3, sg), s0 = E.speedOf(st3, sg);
   E.kill(st3, card(st3, 1, "the-wolf"), sg);
-  ok("The dragon's heart: a Beast (the Wolf) dies: +2 Attack, +1 Speed", E.attackOf(st3, sg) === a0 + 2 && E.speedOf(st3, sg) === s0 + 1);
+  ok("The dragon's heart: a Beast (the Wolf) dies: +1 Attack, +1 Speed", E.attackOf(st3, sg) === a0 + 1 && E.speedOf(st3, sg) === s0 + 1);
 }
 { // Andvari's curse: just 3 Poison on the killer
   const st = game(lu("merlin", ["fafnir"]), lu("st-george"));

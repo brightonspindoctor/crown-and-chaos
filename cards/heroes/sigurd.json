@@ -7,21 +7,21 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 10,
-    "attack": 3,
+    "health": 8,
+    "attack": 2,
     "ranged": false,
-    "guard": 1,
-    "speed": 3
+    "guard": 0,
+    "speed": 2
   },
   "vulnerableTo": "Sovereign",
-  "renown": 26,
+  "renown": 13,
   "crownPassive": {
     "name": "Gram's edge",
     "text": "Sigurd's attacks ignore Guard."
   },
   "bond": {
     "name": "The dragon's heart",
-    "text": "When any Beast dies, on either side, Sigurd gains +2 Attack and +1 Speed for the rest of the fight."
+    "text": "When any Beast dies, on either side, Sigurd gains +1 Attack and +1 Speed for the rest of the fight."
   },
   "actions": [
     {
@@ -32,7 +32,7 @@
     {
       "name": "Dig the pit",
       "ap": 3,
-      "text": "Charge: choose an enemy hero. Sigurd spends this round hiding in a pit. Next round, when he acts, he strikes it for 8, ignoring Guard, and takes no other action. Stop him or kill him first and the strike is lost. Once per fight.",
+      "text": "Charge: choose an enemy hero. Sigurd spends this round hiding in a pit. Next round, when he acts, he strikes it for 8 (Guard applies) and takes no other action. Stop him or kill him first and the strike is lost. Once per fight.",
       "usesPerFight": 1,
       "charge": true
     }
