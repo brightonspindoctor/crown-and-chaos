@@ -16,14 +16,14 @@
     "speed": 1
   },
   "vulnerableTo": "Slayer",
-  "renown": 25,
+  "renown": 27,
   "crownPassive": {
     "name": "Venom",
     "text": "Fafnir's attacks also give 1 Poison."
   },
   "bond": {
     "name": "Andvari's curse",
-    "text": "When Fafnir dies, the card that killed him takes 4 and gains 3 Poison (a random enemy hero, if his killer is gone)."
+    "text": "When Fafnir dies, the card that killed him gains 3 Poison (a random enemy hero, if his killer is gone)."
   },
   "actions": [
     {

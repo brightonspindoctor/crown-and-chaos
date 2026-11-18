@@ -26,9 +26,9 @@ export const ASSUMPTIONS = [
   "Royal decree: a second decree before the first runs out doesn't stack.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
   "A charged strike deals 8 and ignores Guard; it ignores reach, since the target was chosen when the charge began.",
-  "Andvari's curse: Fafnir's killer takes the 4 straight to Health (no Guard). If Poison, nightfall or a dead card killed him, a random enemy hero takes it.",
+  "Andvari's curse: if Poison, nightfall or a dead card killed Fafnir, a random enemy hero gets the 3 Poison.",
   "Shape-shifter: if Loki has no other hero, he still survives on 1 Health and stays the Crown.",
-  "Unbound: Loki returns at the second upkeep after his death; if Van Helsing's Crown is out, he doesn't.",
+  "Unbound: Loki returns at the second upkeep after his death (once per fight); if Van Helsing's Crown is out, he doesn't. He takes the Crown back only if he wore it earlier in the fight.",
   "Crown thief does nothing against a No Crown side (Robin Hood) or when the Crown already has the most Health.",
   "The slot-1 rules (shielded only by two heroes; can't melee past its own heroes) apply to whoever is in slot 1, including under Robin's No Crown.",
   "Only the standard Attack can be turned on your own heroes, and only from slot 1.",
@@ -568,6 +568,7 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
       return applyHealthLoss(st, src, dragon, amt, opts);
     }
     // Shape-shifter: a Loki Crown survives his first death on 1 Health and hands the Crown to his highest-Health hero.
+    if (t.id === "loki" && crownIs(st, side, "loki")) t.flags.woreCrown = true;
     if (t.id === "loki" && crownIs(st, side, "loki") && !st.sides[side].flags.lokiShifted && !opts.nightfall && !noCheating(st)) {
       st.sides[side].flags.lokiShifted = true;
       t.health = 1;
@@ -607,6 +608,7 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
 // The Crown moves: the old Crown and the new one swap slots, and the new one becomes the Crown.
 function swapCrown(st, side, heir) {
   const s = st.sides[side], old = crownCard(st, side);
+  if (old && old.id === "loki") old.flags.woreCrown = true;
   if (!old || !heir || old.uid === heir.uid) return false;
   const s1 = old.slot, s2 = heir.slot;
   s.slots[s1] = heir; s.slots[s2] = old; heir.slot = s1; old.slot = s2;
@@ -637,7 +639,7 @@ function onDeath(st, t, src) {
     return;
   }
   if (t.kind !== "hero") return;
-  // Andvari's curse: Fafnir's killer takes 4 and gains 3 Poison.
+  // Andvari's curse: Fafnir's killer gains 3 Poison.
   if (t.id === "fafnir" && bondFactor(st, i) > 0) {
     let k = src && src.uid != null && src.side === 1 - i && !src.dead ? src : null;
     if (!k) { const hs = heroes(st, 1 - i); k = hs.length ? st.rng.pick(hs) : null; }
@@ -645,7 +647,6 @@ function onDeath(st, t, src) {
       log(st, `Andvari's curse falls on ${k.name}.`);
       ev(st, { t: "debuff", kind: "curse", src: t.uid, tgt: k.uid, text: "Andvari's curse" });
       k.poison += 3;
-      applyHealthLoss(st, { name: "Andvari's curse", side: i }, k, 4, {});
     }
   }
   // Unbound: Loki comes back two upkeeps later (not as a fallen Crown: that fight is over).
@@ -677,8 +678,8 @@ function onDeath(st, t, src) {
     for (const h of heroes(st, side)) {
       const mine = side === i;
       if (h.id === "beowulf" && t.aspect === "Beast") h.atkPerm += f;
-      // The dragon's heart: any Dragon's death gives Sigurd +2 Attack and +1 Speed.
-      if (h.id === "sigurd" && (t.tags || []).includes("Dragon")) { h.atkPerm += 2 * f; h.speedPerm += f; log(st, `Sigurd tastes the dragon's heart: +2 Attack, +1 Speed.`); }
+      // The dragon's heart: any Beast's death gives Sigurd +2 Attack and +1 Speed.
+      if (h.id === "sigurd" && t.aspect === "Beast") { h.atkPerm += 2 * f; h.speedPerm += f; log(st, `Sigurd tastes the dragon's heart: +2 Attack, +1 Speed.`); }
       if (!mine) continue;
       if (h.id === "maid-marian" && isRealm(st, t, "Albion") && !h.flags.marianDone) {
         h.flags.marianDone = true; h.atkPerm += 2 * f; h.speedPerm += f;
@@ -759,7 +760,9 @@ export function upkeep(st) {
     for (const c of st.sides[i].grave.slice()) {
       if (c.id !== "loki" || c.flags.returnRound !== st.round || noCheating(st) || at(st, i, c.slot)) continue;
       c.flags.returnRound = null; c.flags.unbound = true;
-      revive(st, c, 4); log(st, `Loki breaks his bonds and returns on 4 Health.`); revived(st, c);
+      revive(st, c, 3); log(st, `Loki breaks his bonds and returns on 3 Health.`); revived(st, c);
+      // He takes back a Crown he wore earlier in the fight.
+      if (c.flags.woreCrown && crownCard(st, i) && crownCard(st, i).uid !== c.uid && !st.sides[i].noCrown) { swapCrown(st, i, c); log(st, `Loki takes the Crown back.`); }
       for (const x of cards(st, 1 - i)) applyHealthLoss(st, c, x, 1, {});
     }
   }

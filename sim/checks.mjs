@@ -208,16 +208,16 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const m = card(st2, 1, "merlin");
   E.playRound(st2, [{ orders: [order(st2, 0, "fafnir", "Attack", m)] }, { orders: [] }]);
   ok("Venom: Merlin is poisoned", st2.log.some((l) => l.includes("Fafnir's venom")));
-  const st3 = game(lu("merlin", ["sigurd"]), lu("the-dragon"));
+  const st3 = game(lu("merlin", ["sigurd"]), lu("merlin", ["the-wolf"]));
   const sg = card(st3, 0, "sigurd"), a0 = E.attackOf(st3, sg), s0 = E.speedOf(st3, sg);
-  E.kill(st3, card(st3, 1, "the-dragon"), sg);
-  ok("The dragon's heart: +2 Attack, +1 Speed", E.attackOf(st3, sg) === a0 + 2 && E.speedOf(st3, sg) === s0 + 1);
+  E.kill(st3, card(st3, 1, "the-wolf"), sg);
+  ok("The dragon's heart: a Beast (the Wolf) dies: +2 Attack, +1 Speed", E.attackOf(st3, sg) === a0 + 2 && E.speedOf(st3, sg) === s0 + 1);
 }
-{ // Andvari's curse
+{ // Andvari's curse: just 3 Poison on the killer
   const st = game(lu("merlin", ["fafnir"]), lu("st-george"));
   const g = card(st, 1, "st-george"), h0 = g.health;
   E.kill(st, card(st, 0, "fafnir"), g);
-  ok("Fafnir's killer takes 4 and 3 Poison", h0 - g.health === 4 && g.poison === 3, [g.health, g.poison]);
+  ok("Fafnir's killer gains 3 Poison and no damage", g.health === h0 && g.poison === 3, [g.health, g.poison]);
 }
 { // Loki: Shape-shifter, Unbound, Crown thief
   const st = game(lu("loki", ["polyphemus"]), lu("merlin"));
@@ -238,8 +238,19 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Unbound: still gone one upkeep later", l2.dead);
   const vs = E.cards(st2, 1).map((c) => [c.uid, c.health]);
   E.playRound(st2, [{ orders: [] }, { orders: [] }]);
-  ok("Unbound: back on 4 Health two upkeeps later", !l2.dead && l2.health === 4, [l2.dead, l2.health]);
+  ok("Unbound: back on 3 Health two upkeeps later", !l2.dead && l2.health === 3, [l2.dead, l2.health]);
   ok("and lashed the enemy for 1", st2.log.filter((l) => l.includes("Loki deals 1")).length >= 1);
+  { // Unbound takes back the Crown he wore
+    const s4 = game(lu("loki", ["polyphemus"]), lu("merlin"));
+    const lk4 = card(s4, 0, "loki"), py4 = card(s4, 0, "polyphemus");
+    lk4.health = 1; E.playRound(s4, [{ orders: [] }, { orders: [order(s4, 1, "merlin", "Hex", lk4)] }]);
+    ok("Shape-shifter passed the Crown to Polyphemus", E.crownCard(s4, 0)?.uid === py4.uid);
+    E.kill(s4, lk4, card(s4, 1, "merlin"));
+    E.playRound(s4, [{ orders: [] }, { orders: [] }]); E.playRound(s4, [{ orders: [] }, { orders: [] }]);
+    ok("Unbound Loki returns and wears the Crown again", !lk4.dead && E.crownCard(s4, 0)?.uid === lk4.uid, [lk4.dead, E.crownCard(s4, 0)?.name]);
+    E.kill(s4, lk4, card(s4, 1, "merlin"));
+    ok("He doesn't come back a second time (the fight is over: he was the Crown)", lk4.dead);
+  }
   const st3 = game(lu("loki"), lu("merlin", ["polyphemus"]));
   E.playRound(st3, [{ orders: [order(st3, 0, "loki", "Crown thief")] }, { orders: [] }]);
   ok("Crown thief: Polyphemus becomes the enemy Crown", E.crownCard(st3, 1).id === "polyphemus" && card(st3, 1, "merlin").slot !== 1);

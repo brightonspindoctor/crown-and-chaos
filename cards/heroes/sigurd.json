@@ -14,14 +14,14 @@
     "speed": 3
   },
   "vulnerableTo": "Sovereign",
-  "renown": 24,
+  "renown": 26,
   "crownPassive": {
     "name": "Gram's edge",
     "text": "Sigurd's attacks ignore Guard."
   },
   "bond": {
     "name": "The dragon's heart",
-    "text": "When any Dragon dies, on either side, Sigurd gains +2 Attack and +1 Speed for the rest of the fight."
+    "text": "When any Beast dies, on either side, Sigurd gains +2 Attack and +1 Speed for the rest of the fight."
   },
   "actions": [
     {

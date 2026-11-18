@@ -70,6 +70,8 @@ label select { color: var(--ink); width: 100%; }
 body.animating .skip-fx { display: block; }
 body.animating #app button, body.animating #app select { pointer-events: none; }
 body.animating #app section.panel button, body.animating #app section.panel select { opacity: .5; }
+.card.charging { animation: chargeGlow 1.1s ease-in-out infinite alternate; }
+@keyframes chargeGlow { from { box-shadow: 0 0 0 2px #ff5a3c, 0 0 10px rgba(255,122,26,.55); } to { box-shadow: 0 0 0 3px #ffb347, 0 0 26px rgba(255,122,26,.95); } }
 </style>
 </head>
 <body>
@@ -177,10 +179,11 @@ function cardHtml(c, i, slot) {
   if (!c) return `<div class="card empty" data-side="${i}" data-slot="${slot}">empty</div>`;
   const crown = E.crownCard(st, i)?.uid === c.uid;
   const planned = S.screen === "plan" && i === S.p && S.plans[i].orders.some((o) => o.uid === c.uid);
-  return `<button class="card ${i ? "red" : "blue"}${crown ? " crown" : ""}${planned ? " planned" : ""}" data-act="card" data-uid="${c.uid}" data-side="${i}" data-slot="${slot}" data-max="${c.maxHealth}">
+  const charging = c.kind === "hero" && !!c.flags.charge;
+  return `<button class="card ${i ? "red" : "blue"}${crown ? " crown" : ""}${planned ? " planned" : ""}${charging ? " charging" : ""}" data-act="card" data-uid="${c.uid}" data-side="${i}" data-slot="${slot}" data-max="${c.maxHealth}">
     <span class="nm">${crown ? "♛ " : ""}${esc(c.name)}</span>
     <span class="st"><span class="hp">${c.health}/${c.maxHealth}</span> health</span>
-    <span class="st">Atk ${E.attackOf(st, c)} · Grd ${c.guardLeft} · Spd ${E.speedOf(st, c)}${c.poison ? " · Poison " + c.poison : ""}</span></button>`;
+    <span class="st">Atk ${E.attackOf(st, c)} · Grd ${c.guardLeft} · Spd ${E.speedOf(st, c)}${c.poison ? " · Poison " + c.poison : ""}${charging ? " · Charging" : ""}</span></button>`;
 }
 function boardHtml() {
   const st = S.st;

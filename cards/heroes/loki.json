@@ -14,14 +14,14 @@
     "speed": 4
   },
   "vulnerableTo": "Guardian",
-  "renown": 23,
+  "renown": 18,
   "crownPassive": {
     "name": "Shape-shifter",
     "text": "The first time Loki would die, he survives on 1 Health and swaps places with your highest-Health other hero, who becomes the Crown."
   },
   "bond": {
     "name": "Unbound",
-    "text": "The first time Loki dies, he returns two upkeeps later on 4 Health, if his slot is empty, and deals 1 to every enemy card."
+    "text": "Once per fight, when Loki dies, he returns two upkeeps later on 3 Health, if his slot is empty, and deals 1 to every enemy card. If he wore the Crown earlier in the fight, he takes it back."
   },
   "actions": [
     {
@@ -32,7 +32,8 @@
     {
       "name": "Mistletoe",
       "ap": 2,
-      "text": "A Ranged attack for 3 on any enemy card, ignoring Guard."
+      "text": "A Ranged attack for 3 on any enemy card, ignoring Guard. Once per fight.",
+      "usesPerFight": 1
     },
     {
       "name": "Crown thief",

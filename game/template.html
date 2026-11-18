@@ -84,6 +84,9 @@ h1, h2, h3, p { margin: 0; }
   background: #2a1c12; border: max(2px, calc(var(--cw) * .028)) solid #5d4330; box-shadow: 0 2px 8px rgba(20,13,8,.55); transition: transform .18s, opacity .25s, filter .25s; }
 .card.hero { background: #1c130c; border-color: var(--gold-leaf); box-shadow: inset 0 0 0 1px var(--gold-shade), 0 2px 8px rgba(20,13,8,.55); }
 .card.item { background: #24120e; border-color: #8a3a2e; }
+.card.charging { animation: chargeGlow 1.1s ease-in-out infinite alternate; }
+@keyframes chargeGlow { from { box-shadow: 0 0 0 2px #ff5a3c, 0 0 10px rgba(255,122,26,.55); } to { box-shadow: 0 0 0 3px #ffb347, 0 0 26px rgba(255,122,26,.95); } }
+@media (prefers-reduced-motion: reduce) { .card.charging { animation: none; box-shadow: 0 0 0 3px #ff5a3c, 0 0 18px rgba(255,122,26,.8); } }
 .card.hidden { align-items: center; justify-content: center; border: 1px solid #8a6424; background: repeating-linear-gradient(45deg, rgba(217,183,99,.08) 0 1px, transparent 1px 10px), radial-gradient(circle at 50% 45%, #9a4a22, #2e1408 80%); }
 .card.hidden span { font: 700 2em/1 var(--display); color: #d9b763; }
 .card.slot { background: none; border: 1px dashed rgba(185,166,140,.2); box-shadow: none; cursor: default; }
@@ -1381,6 +1384,8 @@ function battleCard(c, v, opts = {}) {
     if (order) cls.push("planned");
   }
   if (c.stopped) cls.push("stopped");
+  // A charged attack waiting to go off: the card glows until it strikes.
+  if (c.kind === "hero" && byUid(c.uid)?.flags.charge && !opts.fallen) cls.push("charging");
   const crown = v.sides[side].crown === c.uid;
   const mark = S.plan && (S.plan.hunt === c.uid ? "Marked" : S.plan.rumpel === c.uid ? "Named" : "");
   const overlay = order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Stopped</span>` : mark ? `<span class="badge">${mark}</span>`
