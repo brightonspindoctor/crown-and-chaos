@@ -1,19 +1,6 @@
 {
-  "ranAt": "2026-11-17T15:53:16.257Z",
-  "fetched": [
-    {
-      "id": "rumpelstiltskin",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20E.%20Rogers%2C%20Rumpelstiltzchen.jpg",
-      "bytes": 285427
-    },
-    {
-      "id": "rumpelstiltskin-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Walther%20Caspari%20-%20Rumpelstilzchen%2C%20c.%201905.jpg",
-      "bytes": 165011
-    }
-  ],
+  "ranAt": "2026-11-18T10:24:41.623Z",
+  "fetched": [],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -35,7 +22,9 @@
     "the-wolf",
     "red-riding-hood-painting",
     "the-huntsman",
+    "rumpelstiltskin",
     "rumpelstiltskin-variant-3",
+    "rumpelstiltskin-variant",
     "gretel",
     "baba-yaga",
     "koschei",
