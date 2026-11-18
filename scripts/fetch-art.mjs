@@ -17,7 +17,7 @@ const outDir = join(root, "art/images");
 mkdirSync(outDir, { recursive: true });
 
 const { images } = JSON.parse(readFileSync(join(root, "art/manifest.json"), "utf8"));
-const UA = "CrownAndChaos/0.1 (https://github.com/brightonspindoctor/crown-and-fable)";
+const UA = "CrownAndChaos/0.1 (https://github.com/brightonspindoctor/crown-and-chaos)";
 const get = (url, accept) => fetch(url, { headers: { "User-Agent": UA, ...(accept ? { Accept: accept } : {}) }, redirect: "follow" });
 
 async function fromMet(id) {

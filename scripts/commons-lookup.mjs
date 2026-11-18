@@ -6,7 +6,7 @@ import { join } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
 const asks = JSON.parse(readFileSync(join(root, "art/lookups.json"), "utf8"));
-const UA = "CrownAndChaos/0.1 (https://github.com/brightonspindoctor/crown-and-fable)";
+const UA = "CrownAndChaos/0.1 (https://github.com/brightonspindoctor/crown-and-chaos)";
 const api = async (params) => {
   const url = "https://commons.wikimedia.org/w/api.php?format=json&origin=*&" + new URLSearchParams(params);
   for (let i = 0; i < 4; i++) {
