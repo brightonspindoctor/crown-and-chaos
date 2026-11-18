@@ -8,15 +8,37 @@
   "tags": [
     "Dragon"
   ],
-  "stats": null,
-  "vulnerableTo": "Slayer",
-  "renown": null,
-  "crownPassive": {
-    "text": "Venom: his attacks apply Poison 1.",
-    "name": "Venom"
+  "stats": {
+    "health": 15,
+    "attack": 3,
+    "ranged": false,
+    "guard": 1,
+    "speed": 1
   },
-  "bond": null,
-  "actions": [],
+  "vulnerableTo": "Slayer",
+  "renown": 15,
+  "crownPassive": {
+    "name": "Venom",
+    "text": "Fafnir's attacks also give 2 Poison."
+  },
+  "bond": {
+    "name": "Andvari's curse",
+    "text": "When Fafnir dies, the card that killed him takes 4 and gains 3 Poison (a random enemy hero, if his killer is gone)."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Deep breath",
+      "ap": 2,
+      "text": "Charge: choose any enemy card. Fafnir draws breath this round. Next round, when he acts, he breathes fire on it for 8, ignoring Guard, and takes no other action. Stop him or kill him first and the fire is lost. Once per fight.",
+      "usesPerFight": 1,
+      "charge": true
+    }
+  ],
   "art": "fafnir",
-  "status": "sketch"
+  "status": "reviewed"
 }

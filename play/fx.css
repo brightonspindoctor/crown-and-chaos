@@ -86,6 +86,8 @@
 .fx-plus::before { content: "+"; }
 .card.fx-scorch { filter: sepia(.6) saturate(1.8) brightness(1.15); }
 .card.fx-iced { box-shadow: 0 0 0 3px #bfe6ff, 0 0 18px #bfe6ff; }
+/* Norse */
+.card.fx-charging { box-shadow: 0 0 0 3px #ff5a3c, 0 0 24px #ff7a1a; }
 /* Hellas */
 .card.fx-stone { filter: grayscale(1) contrast(1.1) brightness(.92) sepia(.15); }
 .card.fx-stone::before { content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none; z-index: 2;

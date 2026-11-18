@@ -557,7 +557,7 @@ const BOARDS = /*BOARDS*/;
 const VARIANTS = /*VARIANTS*/;
 const LORE = /*LORE*/;
 const E = (() => { /*ENGINE*/
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, apCost, STOPPERS };
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, apCost, STOPPERS, isCharging };
 })();
 
 // =====================================================================================
@@ -1384,7 +1384,9 @@ function battleCard(c, v, opts = {}) {
   const crown = v.sides[side].crown === c.uid;
   const mark = S.plan && (S.plan.hunt === c.uid ? "Marked" : S.plan.rumpel === c.uid ? "Named" : "");
   const overlay = order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Stopped</span>` : mark ? `<span class="badge">${mark}</span>`
-    : S.phase === "play" && S.acting === c.uid && c.kind !== "hero" ? `<span class="order">On its own</span>` : c.poison ? `<span class="badge">Poison ${c.poison}</span>` : "";
+    : S.phase === "play" && S.acting === c.uid && c.kind !== "hero" ? `<span class="order">On its own</span>`
+    : S.phase === "plan" && c.kind === "hero" && byUid(c.uid) && E.isCharging(S.st, byUid(c.uid)) ? `<span class="badge">Charging</span>`
+    : c.poison ? `<span class="badge">Poison ${c.poison}</span>` : "";
   return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}" data-side="${side}" data-slot="${c.slot}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown, theirs: !mine,
     atk: c.atk, ranged: c.ranged, guard: c.guard, hp: opts.fallen ? 0 : c.health, hurt: c.health < c.maxHealth, overlay, floats,
     label: `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}, Speed ${c.spd}${c.kind === "hero" ? "" : ", acts on its own"}` });
@@ -1504,7 +1506,7 @@ function cardSheet(sh) {
         const spent = a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight;
         const stopBlocked = !o && (a.name === "Girdle Leash" || E.STOPPERS.includes(a.name)) && E.heroes(st, 1).some((h) => !E.canBeStopped(st, h));
         const cost = E.apCost(st, c, a);
-        const why = spent ? "Used up for this fight" : stopBlocked ? "A card stopped last round can't be stopped again" : !o ? "No target in reach" : cost > ap ? "Not enough action points" : "";
+        const why = E.isCharging(st, c) ? `Charging: ${esc(c.flags.charge.name)} strikes this round` : spent ? "Used up for this fight" : stopBlocked ? "A card stopped last round can't be stopped again" : !o ? "No target in reach" : cost > ap ? "Not enough action points" : "";
         const want = g && g.action === a.name, off = why || (g && !want);
         return `<button class="act${want ? " focus" : ""}" data-act="action" data-k="${k}"${off ? " disabled" : ""}>
           <strong>${esc(a.name)}</strong><span class="cost" aria-label="${cost} action point${cost === 1 ? "" : "s"}">${'<i class="pip on"></i>'.repeat(cost)}</span>

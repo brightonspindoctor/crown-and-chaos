@@ -3331,6 +3331,49 @@
           "full": [0.33, 0.0, 0.67, 0.7667]
         }
       }
+    },
+    {
+      "id": "loki",
+      "use": "card",
+      "cards": [
+        "loki"
+      ],
+      "artist": "Mårten Eskil Winge",
+      "artistDied": 1896,
+      "title": "Loke och Sigyn (Loki and Sigyn)",
+      "date": "1863",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Loke_and_Sigyn_(Mårten_Winge)_-_Nationalmuseum_-_18041.tif",
+        "original": "Nationalmuseum, Stockholm"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Loke_and_Sigyn_(Mårten_Winge)_-_Nationalmuseum_-_18041.tif",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: Public domain (Nationalmuseum's own scan; artist died 1896). Loki bound beneath the serpent, Sigyn catching the venom."
+    },
+    {
+      "id": "loki-variant",
+      "use": "variant",
+      "cards": [
+        "loki"
+      ],
+      "artist": "Carl Emil Doepler",
+      "artistDied": 1905,
+      "title": "Loke",
+      "date": "1882",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Loke_by_C._E._Doepler.jpg",
+        "original": "Wilhelm Wägner, Nordisch-germanische Götter und Helden (1882)"
+      },
+      "licence": "Public domain (artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Loke_by_C._E._Doepler.jpg",
+      "maxWidth": 3000,
+      "variant": 2,
+      "notes": "Commons rights check: PD-old. A small scan (855px); a drawing of Loki the trickster."
     }
   ]
 }

@@ -6,18 +6,37 @@
   "tale": "Völsunga saga",
   "aspect": "Slayer",
   "tags": [],
-  "stats": null,
+  "stats": {
+    "health": 10,
+    "attack": 3,
+    "ranged": false,
+    "guard": 1,
+    "speed": 3
+  },
   "vulnerableTo": "Sovereign",
-  "renown": null,
+  "renown": 14,
   "crownPassive": {
-    "text": "His attacks ignore Guard.",
-    "name": "Gram's edge"
+    "name": "Gram's edge",
+    "text": "Sigurd's attacks ignore Guard."
   },
   "bond": {
-    "text": "After any Dragon dies he sees the enemy plan before he makes his own.",
-    "name": "The dragon's heart"
+    "name": "The dragon's heart",
+    "text": "When any Dragon dies, on either side, Sigurd gains +2 Attack and +1 Speed for the rest of the fight."
   },
-  "actions": [],
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Dig the pit",
+      "ap": 3,
+      "text": "Charge: choose an enemy hero. Sigurd spends this round hiding in a pit. Next round, when he acts, he strikes it for 8, ignoring Guard, and takes no other action. Stop him or kill him first and the strike is lost. Once per fight.",
+      "usesPerFight": 1,
+      "charge": true
+    }
+  ],
   "art": "sigurd",
-  "status": "sketch"
+  "status": "reviewed"
 }

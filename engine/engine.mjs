@@ -24,6 +24,12 @@ export const ASSUMPTIONS = [
   "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
+  "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
+  "A charged strike deals 8 and ignores Guard; it ignores reach, since the target was chosen when the charge began.",
+  "Andvari's curse: Fafnir's killer takes the 4 straight to Health (no Guard). If Poison, nightfall or a dead card killed him, a random enemy hero takes it.",
+  "Shape-shifter: if Loki has no other hero, he still survives on 1 Health and stays the Crown.",
+  "Unbound: Loki returns at the second upkeep after his death; if Van Helsing's Crown is out, he doesn't.",
+  "Crown thief does nothing against a No Crown side (Robin Hood) or when the Crown already has the most Health.",
   "The slot-1 rules (shielded only by two heroes; can't melee past its own heroes) apply to whoever is in slot 1, including under Robin's No Crown.",
   "Only the standard Attack can be turned on your own heroes, and only from slot 1.",
   "Front-rank cards in front of the Crown don't stop it attacking; only heroes in slots 2–3 do.",
@@ -67,7 +73,7 @@ function makeHero(def, side, slot) {
   const s = def.stats;
   return {
     uid: ++UID, id: def.id, kind: "hero", side, slot, name: def.name,
-    realm: def.realm, tale: def.tale, aspect: def.aspect, ranged: !!s.ranged,
+    realm: def.realm, tale: def.tale, aspect: def.aspect, ranged: !!s.ranged, tags: def.tags || [],
     baseHealth: s.health, maxHealth: s.health, health: s.health,
     baseAtk: s.attack, baseGuard: s.guard, baseSpeed: s.speed,
     atkPerm: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
@@ -561,6 +567,16 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
       ev(st, { t: "swap", a: t.uid, b: dragon.uid, side });
       return applyHealthLoss(st, src, dragon, amt, opts);
     }
+    // Shape-shifter: a Loki Crown survives his first death on 1 Health and hands the Crown to his highest-Health hero.
+    if (t.id === "loki" && crownIs(st, side, "loki") && !st.sides[side].flags.lokiShifted && !opts.nightfall && !noCheating(st)) {
+      st.sides[side].flags.lokiShifted = true;
+      t.health = 1;
+      log(st, `Loki shifts his shape and slips away on 1 Health.`);
+      ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, style: opts._style || "effect", dmg: amt, hp: 1, survived: true });
+      const heir = heroes(st, side).filter((h) => h.uid !== t.uid).sort((p, q) => q.health - p.health)[0];
+      if (heir) { swapCrown(st, side, heir); log(st, `${heir.name} is left holding the Crown.`); }
+      return amt;
+    }
     if (!noCheating(st)) {
       if (crownIs(st, side, "vasilisa-the-wise") && !st.sides[side].flags.vasilisaUsed) {
         st.sides[side].flags.vasilisaUsed = true;
@@ -588,6 +604,17 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
   return amt;
 }
 
+// The Crown moves: the old Crown and the new one swap slots, and the new one becomes the Crown.
+function swapCrown(st, side, heir) {
+  const s = st.sides[side], old = crownCard(st, side);
+  if (!old || !heir || old.uid === heir.uid) return false;
+  const s1 = old.slot, s2 = heir.slot;
+  s.slots[s1] = heir; s.slots[s2] = old; heir.slot = s1; old.slot = s2;
+  s.crownUid = heir.uid;
+  ev(st, { t: "swap", a: heir.uid, b: old.uid, side });
+  return true;
+}
+
 export function kill(st, t, src) {
   if (t.dead) return;
   t.dead = true; t.health = 0;
@@ -610,6 +637,22 @@ function onDeath(st, t, src) {
     return;
   }
   if (t.kind !== "hero") return;
+  // Andvari's curse: Fafnir's killer takes 4 and gains 3 Poison.
+  if (t.id === "fafnir" && bondFactor(st, i) > 0) {
+    let k = src && src.uid != null && src.side === 1 - i && !src.dead ? src : null;
+    if (!k) { const hs = heroes(st, 1 - i); k = hs.length ? st.rng.pick(hs) : null; }
+    if (k) {
+      log(st, `Andvari's curse falls on ${k.name}.`);
+      ev(st, { t: "debuff", kind: "curse", src: t.uid, tgt: k.uid, text: "Andvari's curse" });
+      k.poison += 3;
+      applyHealthLoss(st, { name: "Andvari's curse", side: i }, k, 4, {});
+    }
+  }
+  // Unbound: Loki comes back two upkeeps later (not as a fallen Crown: that fight is over).
+  if (t.id === "loki" && bondFactor(st, i) > 0 && !t.flags.unboundUsed && st.sides[i].crownUid !== t.uid) {
+    t.flags.unboundUsed = true; t.flags.returnRound = st.round + 2;
+    log(st, `Loki is bound, but not for long.`);
+  }
   // Fed on tribute: when the Minotaur kills an enemy hero, your other Hellas heroes heal 1.
   if (src && src.id === "the-minotaur" && src.side !== i && !src.dead && bondFactor(st, src.side) > 0)
     for (const h of heroes(st, src.side)) if (h.uid !== src.uid && isRealm(st, h, "Hellas")) heal(st, src, h, 1);
@@ -634,6 +677,8 @@ function onDeath(st, t, src) {
     for (const h of heroes(st, side)) {
       const mine = side === i;
       if (h.id === "beowulf" && t.aspect === "Beast") h.atkPerm += f;
+      // The dragon's heart: any Dragon's death gives Sigurd +2 Attack and +1 Speed.
+      if (h.id === "sigurd" && (t.tags || []).includes("Dragon")) { h.atkPerm += 2 * f; h.speedPerm += f; log(st, `Sigurd tastes the dragon's heart: +2 Attack, +1 Speed.`); }
       if (!mine) continue;
       if (h.id === "maid-marian" && isRealm(st, t, "Albion") && !h.flags.marianDone) {
         h.flags.marianDone = true; h.atkPerm += 2 * f; h.speedPerm += f;
@@ -709,6 +754,15 @@ export function upkeep(st) {
   // Steadfast: Poison doesn't work on heroes under a Tin Soldier Crown.
   for (const c of allCards(st)) if (c.poison > 0 && c.kind === "hero" && crownIs(st, c.side, "the-tin-soldier")) c.poison = 0;
   for (const c of allCards(st)) if (c.poison > 0) { const p = c.poison; c.poison = Math.floor(p / 2); applyHealthLoss(st, { name: "Poison", side: -1 }, c, p, {}); }
+  // Unbound: Loki breaks free and lashes every enemy card for 2.
+  for (const i of [0, 1]) {
+    for (const c of st.sides[i].grave.slice()) {
+      if (c.id !== "loki" || c.flags.returnRound !== st.round || noCheating(st) || at(st, i, c.slot)) continue;
+      c.flags.returnRound = null; c.flags.unbound = true;
+      revive(st, c, 4); log(st, `Loki breaks his bonds and returns on 4 Health.`); revived(st, c);
+      for (const x of cards(st, 1 - i)) applyHealthLoss(st, c, x, 2, {});
+    }
+  }
   // Crown passives at upkeep
   for (const i of [0, 1]) {
     const crown = crownCard(st, i);
@@ -863,6 +917,16 @@ export const ACTIONS = {
   "king-minos": { "Royal decree": { t: "none", go: (st, a) => { const fs = st.sides[1 - a.side].flags; if (fs.decreeRound === st.round + 1) return; fs.decreeRound = st.round + 1; log(st, `King Minos decrees: next round, every ${sideName(1 - a.side)} action costs 1 more action point.`); ev(st, { t: "debuff", kind: "decree", src: a.uid, side: 1 - a.side, text: "Next round: +1 AP per action" }); } } },
   "the-minotaur": { "Growl": { t: "none", go: (st, a) => { st.sides[1 - a.side].flags.growlRound = st.round + 1; log(st, `The Minotaur growls: next round, every ${sideName(1 - a.side)} card has -1 Guard and -1 Speed.`); ev(st, { t: "debuff", kind: "growl", src: a.uid, tgts: cards(st, 1 - a.side).map((c) => c.uid), text: "−1 Guard, −1 Speed" }); } },
     "Gore": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
+  "sigurd": { "Dig the pit": { t: "enemyHero", go: (st, a, x) => charge(st, a, x, "Gram from the pit", false) } },
+  "fafnir": { "Deep breath": { t: "enemyAny", go: (st, a, x) => charge(st, a, x, "Dragon fire", true) } },
+  "loki": { "Mistletoe": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 3, { ranged: true, ignoreGuard: true }) },
+    "Crown thief": { t: "none", go: (st, a) => {
+      const foe = 1 - a.side, old = crownCard(st, foe);
+      if (!old || st.sides[foe].noCrown) { log(st, `Loki finds no Crown to steal.`); return; }
+      const heir = heroes(st, foe).filter((h) => h.uid !== old.uid).sort((p, q) => q.health - p.health)[0];
+      if (!heir || heir.health <= old.health) { log(st, `Loki's trick fails: ${old.name} already has the most Health.`); return; }
+      swapCrown(st, foe, heir); log(st, `Loki slips the Crown from ${old.name} to ${heir.name}.`);
+    } } },
   "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
   "merlin": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Enchanted sleep": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Enchanted sleep") } },
@@ -912,11 +976,17 @@ export const ACTIONS = {
 // A standard or named attack. Returns damage dealt.
 function hit(st, a, x, amount, opts = {}) {
   let target = x;
+  // Gram's edge: a Sigurd Crown's attacks ignore Guard.
+  if (a.id === "sigurd" && crownIs(st, a.side, "sigurd")) opts = { ...opts, ignoreGuard: true };
   if (a.flags.shardRound === st.round) {
     const own = neighbours(st, a)[0];
     if (own) { log(st, `${a.name}'s attack turns on ${own.name} (Shard of the mirror).`); target = own; }
   }
   const d = damage(st, a, target, amount, { attack: true, ...opts });
+  // Venom: a Fafnir Crown's attacks also give 2 Poison.
+  if (a.id === "fafnir" && crownIs(st, a.side, "fafnir") && target && !target.dead && d > 0) {
+    target.poison += 2; log(st, `Fafnir's venom: ${target.name} gains 2 Poison.`); ev(st, { t: "poison", src: a.uid, tgt: target.uid, amt: 2 });
+  }
   if (a.id === "lancelot" && crownIs(st, a.side, "lancelot") && a.flags.chipRound !== st.round) {
     const ec = crownCard(st, 1 - a.side);
     if (ec) { a.flags.chipRound = st.round; applyHealthLoss(st, a, ec, 1, {}); }
@@ -937,6 +1007,13 @@ function standardAttack(st, a, x) {
   hit(st, a, x, attackOf(st, a), { ranged: a.ranged });
 }
 
+// Charge: the hero spends this round winding up; next round, at its Speed, it strikes for 8, ignoring Guard.
+function charge(st, a, x, name, ranged) {
+  a.flags.charge = { round: st.round + 1, tgt: x.uid, name, ranged };
+  log(st, `${a.name} charges ${name} at ${x.name}: 8 damage next round.`);
+  ev(st, { t: "debuff", kind: "charge", src: a.uid, tgt: x.uid, text: `${name}: 8 next round` });
+}
+export const isCharging = (st, c) => !!c.flags.charge && c.flags.charge.round === st.round;
 // Actions that stop a hero, so a hero stopped last round isn't offered as a target.
 export const STOPPERS = ["Enchanted sleep", "Petrify", "Medusa's head"];
 // Targets for an action, for the planner and the UI.
@@ -979,6 +1056,7 @@ export function targetsFor(st, a, act) {
 export function options(st, a) {
   const side = st.sides[a.side];
   const out = [];
+  if (isCharging(st, a)) return out;
   a.actions.forEach((act, index) => {
     if (act.usesPerFight && (a.uses[act.name] || 0) >= act.usesPerFight) return;
     if (apCost(st, a, act) > st.sides[a.side].ap) return;
@@ -1090,7 +1168,7 @@ export function playRound(st, plans) {
     const used = new Set();
     for (const o of plan.orders || []) {
       const a = cards(st, i).find((c) => c.uid === o.uid);
-      if (!a || used.has(a.uid)) continue;
+      if (!a || used.has(a.uid) || isCharging(st, a)) continue;
       const act = a.actions[o.index]; if (!act) continue;
       const cost = apCost(st, a, act);
       if (cost > ap) continue;
@@ -1100,6 +1178,8 @@ export function playRound(st, plans) {
     if (crownIs(st, i, "the-huntsman") && plan.hunt) st.marks[`hunt${i}`] = plan.hunt;
     // Front rank acts automatically
     for (const c of cards(st, i).filter((c) => c.kind === "front")) ords.push({ side: i, actor: c, auto: true });
+    // Charged heroes strike automatically
+    for (const c of heroes(st, i)) if (isCharging(st, c)) ords.push({ side: i, actor: c, charge: true });
   }
   // Rumpelstiltskin's guess
   for (const i of [0, 1]) {
@@ -1141,8 +1221,22 @@ export function playRound(st, plans) {
     const o = pending.shift();
     const a = o.actor;
     st.acting = a.uid;
-    if (o.cancelled || a.stopNow) { a.flags.acted = true; ev(st, { t: "skip", uid: a.uid, why: o.cancelled ? "cancelled" : "stopped" }); continue; }
+    if (o.cancelled || a.stopNow) {
+      a.flags.acted = true;
+      if (o.charge) { log(st, `${a.name} loses the charge.`); a.flags.charge = null; }
+      ev(st, { t: "skip", uid: a.uid, why: o.cancelled ? "cancelled" : "stopped" }); continue;
+    }
     a.flags.acted = true;
+    if (o.charge) {
+      const ch = a.flags.charge; a.flags.charge = null;
+      const x = findCard(st, ch.tgt);
+      if (!x) { log(st, `${a.name}'s ${ch.name} is wasted: its target is gone.`); ev(st, { t: "wasted", uid: a.uid, name: ch.name }); continue; }
+      log(st, `${sideName(a.side)} ${a.name} uses ${ch.name} on ${x.name} (charged).`);
+      ev(st, { t: "act", uid: a.uid, side: a.side, name: ch.name, tgt: x.uid });
+      const before = snapStats(st);
+      damage(st, a, x, 8, { attack: true, ignoreGuard: true, ranged: ch.ranged });
+      diffStats(st, before, a); continue;
+    }
     if (o.auto) {
       ev(st, { t: "act", uid: a.uid, side: a.side, auto: true, name: a.name });
       const before = snapStats(st); frontAct(st, a); diffStats(st, before, a); continue;
@@ -1320,6 +1414,13 @@ function valueOf(st, a, act, x) {
     case "Hurl the boulder": return dmgValue(4, x) + (x?.kind === "hero" ? 1 : 0);
     case "Transfigure": return x ? Math.max(0, attackOf(st, x) - 1) * 2 : 0;
     case "Royal decree": return st.sides[foe].flags.decreeRound === st.round + 1 ? 0 : 3 + heroes(st, foe).length;
+    case "Dig the pit": case "Deep breath": return x ? dmgValue(8 + (x.guardLeft || 0), x) * 0.7 + (x.uid === crownCard(st, foe)?.uid ? 3 : 0) : 0;
+    case "Mistletoe": return dmgValue(3 + (x?.guardLeft || 0), x);
+    case "Crown thief": {
+      const old = crownCard(st, foe); if (!old || st.sides[foe].noCrown) return 0;
+      const heir = heroes(st, foe).filter((h) => h.uid !== old.uid).sort((p, q) => q.health - p.health)[0];
+      return heir && heir.health > old.health ? 2.5 : 0;
+    }
     case "Growl": return st.sides[foe].flags.growlRound === st.round + 1 ? 0 : 1 + 0.8 * cards(st, foe).length;
     case "Gore": return dmgValue(5 + (x?.guardLeft || 0), x);
     default: return dmgValue(attackOf(st, a), x);

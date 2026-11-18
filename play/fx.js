@@ -95,6 +95,13 @@ const SND = (() => {
     stone() { tone("triangle", 190, 70, 0.13, 0.65); noise("lowpass", 1600, 200, 0.12, 0.55); },
     wind() { noise("bandpass", 380, 1700, 0.85, 0.38, 0, 3); noise("bandpass", 1700, 480, 0.65, 0.26, 0.3, 3); },
     smash() { tone("sine", 115, 30, 0.38, 1); noise("lowpass", 1300, 70, 0.34, 0.75); },
+    // Norse
+    charge() { tone("sawtooth", 70, 220, 1.0, 0.16, 0, ["lowpass", 900]); tone("sine", 140, 440, 1.0, 0.12); noise("bandpass", 300, 1400, 1.0, 0.12, 0, 2); },
+    gram() { noise("highpass", 3000, 9000, 0.25, 0.3); tone("sine", 2093, 1047, 0.5, 0.18, 0.02); tone("sine", 95, 30, 0.5, 1, 0.08); noise("lowpass", 1400, 60, 0.45, 0.8, 0.08); },
+    roar() { tone("sawtooth", 110, 55, 1.2, 0.3, 0, ["lowpass", 900]); noise("bandpass", 600, 200, 1.2, 0.35, 0, 1.5); },
+    curse() { notes("triangle", [659, 622, 587, 554, 523, 494], 0.12, 0.5, 0.14); noise("highpass", 3000, 1500, 0.8, 0.12, 0.2, 2); tone("sine", 82, 60, 1.2, 0.3, 0.3); },
+    trick() { notes("square", [784, 988, 1175, 988, 1319, 1568], 0.05, 0.14, 0.08); noise("highpass", 5000, 8000, 0.2, 0.12, 0.3); },
+    unbound() { for (let k = 0; k < 6; k++) tone("square", 1800 - k * 120, 900, 0.06, 0.12, k * 0.07, ["bandpass", 2400]); tone("sawtooth", 90, 180, 0.7, 0.22, 0.45, ["lowpass", 900]); notes("triangle", [392, 523, 659, 784], 0.08, 0.4, 0.14); },
     // Hellas
     hiss() { noise("highpass", 4200, 6500, 0.55, 0.22, 0, 1); noise("bandpass", 3200, 2600, 0.45, 0.14, 0.05, 3); for (let k = 0; k < 4; k++) noise("highpass", 6000, 5000, 0.05, 0.12, 0.1 + k * 0.09, 2); },
     petrify() { tone("triangle", 120, 55, 0.7, 0.4); for (let k = 0; k < 10; k++) noise("bandpass", 700 - k * 35, 260, 0.07, 0.42, k * 0.055 + Math.random() * 0.02, 4); noise("lowpass", 900, 90, 0.5, 0.3, 0.45); },
@@ -508,6 +515,21 @@ function makeFX(A) {
         SND.play("petrify"); stoneOver(t); setTimeout(() => t.classList.remove("fx-stone"), D(900));
         return floatText(t, "Stony gaze: −1 Speed", "fx-stoneTxt fx-small");
       }
+      case "charge": {
+        const t = tgts[0];
+        SND.play("charge");
+        if (src) { glow(src, "fx-charging", 1200); if (!skip && !reducedMotion) anim(src, [{ transform: "scale(1)" }, { transform: "scale(1.07)", offset: 0.5 }, { transform: "scale(1)" }], 900, { fill: "none" }); }
+        if (t) { ring(centre(t), "#ff5a3c", 1.3); setTimeout(() => ring(centre(t), "#ff5a3c", 0.9), D(250)); }
+        return floatText(t || src, e.text, "fx-dmg fx-small");
+      }
+      case "curse": {
+        const t = tgts[0]; if (!t) return;
+        const from = sp || centre(t);
+        SND.play("curse");
+        await motes(from, centre(t), "#ffd45c", 10);
+        ring(centre(t), "#6b3fa0", 1.4); bubbles(t);
+        return floatText(t, "Andvari's curse", "fx-poison");
+      }
       case "slow": { const t = tgts[0]; if (!t) return; SND.play("dud"); return floatText(t, "−1 Speed next round", "fx-stoneTxt fx-small"); }
       case "transfig": {
         const t = tgts[0]; if (!t) return;
@@ -628,7 +650,7 @@ function makeFX(A) {
     "Pestle": "smash", "Arm-wrench": "smash", "Break their spirit": "smash",
     "Bite": "bite", "Claw": "claws", "Tail Sweep": "sweep", "Rampage": "sweep", "Quarterstaff": "sweep",
     "Whirlwind": "whirl", "Split the Arrow": "goldarrow", "Stones in the belly": "stone",
-    "Hurl the boulder": "boulder", "Gore": "gore",
+    "Hurl the boulder": "boulder", "Gore": "gore", "Gram from the pit": "gram", "Dragon fire": "dragonfire", "Mistletoe": "mistletoe",
   };
   const CARD_FX = { "berserker": "sweep", "the-snow-queen": "ice", "gwydion": "hex", "the-bride": "lightning", "baba-yaga": "fire" };
   let actNow = null, pyreLit = false, lastBite = null, reflected = null;
@@ -683,6 +705,15 @@ function makeFX(A) {
       case "claws": if (melee) return lunge(srcEl, t, () => impact(e, t, { silent: true, color: "#b01010" }), true);
         break;
       case "sweep": if (melee) return lunge(srcEl, t, async () => { SND.play("swoosh"); sweep(tp, srcEl && card(e.src)?.aspect === "Beast" ? "#ffcf9a" : "#ffffff"); await impact(e, t, { silent: true }); }, "none");
+        break;
+      case "gram": return lunge(srcEl || t, t, async () => { SND.play("gram"); flash("#dfe9ff", 0.3); sweep(tp, "#dfe9ff"); setTimeout(() => sweep({ x: tp.x - 12, y: tp.y + 12 }, "#9fc0ff"), D(90)); quake(10); ring(tp, "#9fc0ff", 1.8); await impact(e, t, { silent: true, color: "#b01010" }); }, "none", 0.95);
+      case "dragonfire": {
+        SND.play("roar"); if (srcEl) ring(centre(srcEl), "#ff7a1a", 1.6);
+        if (from) { SND.play("fire"); await stream(from, tp, "fire"); }
+        SND.play("ignite"); engulf(t, "fire"); quake(9); flash("#ff8a2a", 0.25);
+        return impact(e, t, { silent: true, color: "#ff8a2a" });
+      }
+      case "mistletoe": if (from) { SND.play("whoosh"); await throwAt(from, tp, `<svg viewBox="0 0 40 10" width="40" height="10"><line x1="2" y1="5" x2="32" y2="5" stroke="#7a9a4a" stroke-width="2.5"/><path d="M32 1 L40 5 L32 9 Z" fill="#cfe8a0"/><circle cx="10" cy="3" r="1.6" fill="#f4f4e8"/><circle cx="16" cy="7" r="1.6" fill="#f4f4e8"/></svg>`, { aim: true, lift: 10, speed: 0.6 }); return impact(e, t, { color: "#cfe8a0" }); }
         break;
       case "boulder": if (from) { SND.play("whoosh"); await throwAt(from, tp, BOULDER, { spin: 400, lift: 120, speed: 0.9 }); SND.play("boulder"); quake(10); ring(tp, "#9a8f82", 1.6); burst(tp, "#7a7168", 16, 60); burst(tp, "#c8b89a", 10, 40, "crumb"); return impact(e, t, { silent: true, color: "#9a8f82" }); }
         break;
@@ -835,8 +866,10 @@ function makeFX(A) {
   }
   async function onRevive(e, summon) {
     const el = slotEl(e.side, e.slot); if (!el) return;
-    say(`${e.name} ${summon ? "appears" : "rises"}`);
-    SND.play(summon ? "summon" : "revive");
+    const unbound = !summon && card(e.uid)?.id === "loki";
+    say(unbound ? "Loki breaks his bonds" : `${e.name} ${summon ? "appears" : "rises"}`);
+    SND.play(unbound ? "unbound" : summon ? "summon" : "revive");
+    if (unbound && !skip) { quake(6); ring(centre(el), "#7be08a", 2.2); }
     const p = centre(el);
     if (!skip) {
       const col = spawn("fx-pillar" + (summon ? " fx-smoke" : ""), p.x, p.y);
@@ -847,18 +880,19 @@ function makeFX(A) {
     el.classList.remove("fx-fallen");
     if (A.fillSlot) A.fillSlot(el, e);
     await anim(el, [{ transform: "scale(.6)", opacity: 0 }, { transform: "scale(1.06)", opacity: 1, offset: 0.7 }, { transform: "scale(1)", opacity: 1 }], 500);
-    await floatText(el, summon ? "Summoned" : "Revived", "fx-gold fx-small");
+    await floatText(el, unbound ? "Unbound!" : summon ? "Summoned" : "Revived", "fx-gold fx-small");
   }
   async function onSwap(e) {
     const a = cardEl(e.a), b = cardEl(e.b); if (!a || !b) return;
-    say("The Dragon swaps places to save its Crown");
-    SND.play("whoosh");
+    const loki = actNow?.name === "Crown thief" || card(e.b)?.id === "loki";
+    if (loki) { say(actNow?.name === "Crown thief" ? "Loki steals the Crown away" : "Loki shifts his shape and leaves the Crown behind"); SND.play("trick"); runes(centre(b), "#7be08a"); }
+    else { say("The Dragon swaps places to save its Crown"); SND.play("whoosh"); }
     const pa = centre(a), pb = centre(b);
     await Promise.all([
       anim(a, [{ transform: "translate(0,0)" }, { transform: `translate(${pb.x - pa.x}px,${pb.y - pa.y}px)` }], 520, { easing: "ease-in-out" }),
       anim(b, [{ transform: "translate(0,0)" }, { transform: `translate(${pa.x - pb.x}px,${pa.y - pb.y}px)` }], 520, { easing: "ease-in-out" }),
     ]);
-    await floatText(b, "Swaps in!", "fx-gold");
+    await floatText(loki ? a : b, loki ? "The Crown moves!" : "Swaps in!", "fx-gold");
   }
   async function onRedirect(e) {
     const to = cardEl(e.to), from = cardEl(e.from); if (!to || !from) return;

@@ -78,7 +78,7 @@ body.animating #app section.panel button, body.animating #app section.panel sele
 <script>
 const DATA = /*DATA*/;
 const E = (() => { /*ENGINE*/
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, kill, checkWin, ITEM_TARGETS, ASSUMPTIONS, makeRng, rumpelChoices, RUMPEL_GUESSES, apCost, isHidden };
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, kill, checkWin, ITEM_TARGETS, ASSUMPTIONS, makeRng, rumpelChoices, RUMPEL_GUESSES, apCost, isHidden, isCharging };
 })();
 
 const NAMES = ["Blue", "Red"];
@@ -267,7 +267,7 @@ function sheetHtml() {
     const ap = apLeft(S.p), opts = E.options(st, c);
     acts = `<div class="acts">${c.actions.map((a, k) => {
       const o = opts.find((x) => x.index === k);
-      const why = !o ? (a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight ? "used up" : "no target") : E.apCost(S.st, c, a) > ap ? "not enough AP" : "";
+      const why = E.isCharging(S.st, c) ? `charging: ${c.flags.charge.name} strikes this round` : !o ? (a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight ? "used up" : "no target") : E.apCost(S.st, c, a) > ap ? "not enough AP" : "";
       return `<button data-act="action" data-k="${k}"${why ? " disabled" : ""}><strong>${esc(a.name)}</strong> · ${E.apCost(S.st, c, a)} AP${a.usesPerFight ? ` · ${a.usesPerFight} per fight` : ""}${why ? ` · ${why}` : ""}<br><span class="muted">${esc(a.text)}</span></button>`;
     }).join("")}</div>`;
   } else if (mine) acts = `<p class="muted">This hero already has an action this round. Remove it from the plan to choose another.</p>`;

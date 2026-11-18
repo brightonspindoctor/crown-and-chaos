@@ -179,5 +179,70 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const g = E.cards(st, 0).filter((c) => c.id === "hoplite").sort((a, b) => a.slot - b.slot).map((c) => c.guardLeft);
   ok("Hoplites have Guard 2, 3, 2", g.join() === "2,3,2", g);
 }
+
+// ---------- Norse ----------
+{ // Charge: Sigurd digs the pit, is busy next round, then strikes for 8 ignoring Guard
+  const st = game(lu("merlin", ["sigurd"]), lu("merlin", ["king-arthur"]));
+  const sg = card(st, 0, "sigurd"), g = card(st, 1, "king-arthur");
+  E.playRound(st, [{ orders: [order(st, 0, "sigurd", "Dig the pit", g)] }, { orders: [] }]);
+  ok("Sigurd has no actions while charging", E.options(st, sg).length === 0);
+  const h0 = g.health;
+  E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  ok("Gram from the pit hits King Arthur for 8 through his Guard", h0 - g.health === 8, [h0, g.health]);
+  ok("and Sigurd can act again", E.options(st, sg).length > 0);
+}
+{ // Charge lost if the charger is stopped
+  const st = game(lu("fafnir"), lu("merlin"));
+  const f = card(st, 0, "fafnir"), m = card(st, 1, "merlin");
+  E.playRound(st, [{ orders: [order(st, 0, "fafnir", "Deep breath", m)] }, { orders: [] }]);
+  const m0 = m.health;
+  E.playRound(st, [{ orders: [] }, { orders: [order(st, 1, "merlin", "Enchanted sleep", f)] }]);
+  ok("Merlin's sleep stops the Dragon fire", m.health === m0 && st.log.some((l) => l.includes("loses the charge")), [m0, m.health]);
+}
+{ // Gram's edge, Venom, Dragon's heart
+  const st = game(lu("sigurd"), lu("king-arthur"));
+  const g = card(st, 1, "king-arthur"), h0 = g.health;
+  E.playRound(st, [{ orders: [order(st, 0, "sigurd", "Attack", g)] }, { orders: [] }]);
+  ok("Gram's edge: Sigurd's 3 goes through King Arthur's Guard", h0 - g.health === 3, [h0, g.health]);
+  const st2 = game(lu("fafnir"), lu("merlin"));
+  const m = card(st2, 1, "merlin");
+  E.playRound(st2, [{ orders: [order(st2, 0, "fafnir", "Attack", m)] }, { orders: [] }]);
+  ok("Venom: Merlin is poisoned", st2.log.some((l) => l.includes("Fafnir's venom")));
+  const st3 = game(lu("merlin", ["sigurd"]), lu("the-dragon"));
+  const sg = card(st3, 0, "sigurd"), a0 = E.attackOf(st3, sg), s0 = E.speedOf(st3, sg);
+  E.kill(st3, card(st3, 1, "the-dragon"), sg);
+  ok("The dragon's heart: +2 Attack, +1 Speed", E.attackOf(st3, sg) === a0 + 2 && E.speedOf(st3, sg) === s0 + 1);
+}
+{ // Andvari's curse
+  const st = game(lu("merlin", ["fafnir"]), lu("st-george"));
+  const g = card(st, 1, "st-george"), h0 = g.health;
+  E.kill(st, card(st, 0, "fafnir"), g);
+  ok("Fafnir's killer takes 4 and 3 Poison", h0 - g.health === 4 && g.poison === 3, [g.health, g.poison]);
+}
+{ // Loki: Shape-shifter, Unbound, Crown thief
+  const st = game(lu("loki", ["polyphemus"]), lu("merlin"));
+  const lk = card(st, 0, "loki"), py = card(st, 0, "polyphemus");
+  E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  const r = st.round;
+  E.kill; // keep
+  // A big hit through applyHealthLoss path: use a Spell
+  const m = card(st, 1, "merlin");
+  lk.health = 2;
+  E.playRound(st, [{ orders: [] }, { orders: [order(st, 1, "merlin", "Hex", lk)] }]);
+  ok("Shape-shifter: Loki lives on 1 and Polyphemus holds the Crown", lk.health === 1 && E.crownCard(st, 0).uid === py.uid, [lk.health, E.crownCard(st, 0)?.name]);
+  const st2 = game(lu("merlin", ["loki"], ["knight", "knight"]), lu("the-dragon", [], ["villager", "villager"]));
+  const l2 = card(st2, 0, "loki");
+  E.kill(st2, l2, card(st2, 1, "the-dragon"));
+  const died = st2.round;
+  E.playRound(st2, [{ orders: [] }, { orders: [] }]);
+  ok("Unbound: still gone one upkeep later", l2.dead);
+  const vs = E.cards(st2, 1).map((c) => [c.uid, c.health]);
+  E.playRound(st2, [{ orders: [] }, { orders: [] }]);
+  ok("Unbound: back on 4 Health two upkeeps later", !l2.dead && l2.health === 4, [l2.dead, l2.health]);
+  ok("and lashed the enemy for 2", st2.log.filter((l) => l.includes("Loki deals 2")).length >= 1);
+  const st3 = game(lu("loki"), lu("merlin", ["polyphemus"]));
+  E.playRound(st3, [{ orders: [order(st3, 0, "loki", "Crown thief")] }, { orders: [] }]);
+  ok("Crown thief: Polyphemus becomes the enemy Crown", E.crownCard(st3, 1).id === "polyphemus" && card(st3, 1, "merlin").slot !== 1);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);
