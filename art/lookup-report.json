@@ -1,6 +1,1634 @@
 {
- "ranAt": "2026-11-17T16:48:54.936Z",
+ "ranAt": "2026-11-18T12:08:30.374Z",
  "files": [],
- "searches": {},
- "categories": {}
+ "searches": {
+  "Caravaggio Medusa Uffizi": [
+   {
+    "file": "Medusa-Caravaggio (Uffizi).jpg",
+    "width": 3425,
+    "height": 3543,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Caravaggio",
+    "date": "circa 1598 date QS:P571,+1598-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "Self-scanned",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Caravaggio - Medusa Uffizi - High quality.jpg",
+    "width": 3600,
+    "height": 3605,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Caravaggio",
+    "date": "2018-05-22",
+    "credit": "Caravaggio",
+    "description": "Caravaggio - Medusa Uffizi post-restoration - High quality",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Medusa by Caravaggio-Uffizi.jpg",
+    "width": 2274,
+    "height": 2268,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Yair Haklai",
+    "date": "2019-04-21 12:47:45",
+    "credit": "Own work",
+    "description": "Medusa by Caravaggio",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Galleria degli Uffizi, Sala E4 'Caravaggio, la Medusa' a gennaio 2023 -FG1.jpg",
+    "width": 5620,
+    "height": 3746,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Fabrizio Garrisi",
+    "date": "2023-01-26 14:13:38",
+    "credit": "Own work",
+    "description": "Galleria degli Uffizi, Sala E4 'Caravaggio, la Medusa' a gennaio 2023",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Galleria degli Uffizi, Sala E4 'Caravaggio, la Medusa' a gennaio 2023 -FG2.jpg",
+    "width": 4932,
+    "height": 3288,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Fabrizio Garrisi",
+    "date": "2023-01-26 14:15:40",
+    "credit": "Own work",
+    "description": "Galleria degli Uffizi, Sala E4 'Caravaggio, la Medusa' a gennaio 2023",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "License template tag"
+    ]
+   }
+  ],
+  "Burne-Jones Perseus Medusa": [
+   {
+    "file": "Edward Burne-Jones - The Perseus Series - Study of Perseus in Armour for The Finding of Medusa - Google Art Project.jpg",
+    "width": 4823,
+    "height": 6881,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Edward Burne-Jones",
+    "date": "1881 date QS:P571,+1881-00-00T00:00:00Z/9",
+    "credit": "qQHS8p2_JAfIoQ at Google Cultural Institute , zoom level maximum",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-1923",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "The Escape of Perseus - Edward Burne-Jones, 1875-1888.jpg",
+    "width": 575,
+    "height": 643,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Edward Burne-Jones",
+    "date": "between 1875 and 1888 date QS:P571,+1850-00-00T00:00:00Z/7,P1319,+1875-00-00T00:00:00Z/9,P1326,+1888-00-00T00:00:00Z/9",
+    "credit": "Staatsgalerie Stuttgart, 1875-1888",
+    "description": "The Escape of Perseus",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Edward Burne-Jones - The Death of Medusa II, 1881-1882.jpg",
+    "width": 901,
+    "height": 1000,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Edward Burne-Jones",
+    "date": "between 1881 and 1882 date QS:P571,+1881-00-00T00:00:00Z/8,P1319,+1881-00-00T00:00:00Z/9,P1326,+1882-00-00T00:00:00Z/9",
+    "credit": "[1]",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Edward Burne-Jones - The Death of Medusa I, 1882.jpg",
+    "width": 938,
+    "height": 1000,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Edward Burne-Jones",
+    "date": "1882",
+    "credit": "[1]",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Edward Burne-Jones - Study of Armour - Perseus in 'The Finding of Medusa'.jpg",
+    "width": 531,
+    "height": 760,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Edward Burne-Jones",
+    "date": "before 1880 date QS:P571,+1880-00-00T00:00:00Z/7,P1326,+1880-00-00T00:00:00Z/9",
+    "credit": "http://data.fitzmuseum.cam.ac.uk/id/object/26056",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Waterhouse Ulysses and the Sirens": [
+   {
+    "file": "John William Waterhouse - Ulysses and the Sirens (1891).jpg",
+    "width": 1296,
+    "height": 641,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891 date QS:P571,+1891-00-00T00:00:00Z/9",
+    "credit": "The Art History Archive [1] item provenance: [2] image: [3]",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-auto",
+     "PD-old-auto/core",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "JOHN WILLIAM WATERHOUSE - Ulises y las Sirenas (National Gallery of Victoria, Melbourne, 1891. Óleo sobre lienzo, 100.6 x 202 cm).jpg",
+    "width": 11006,
+    "height": 5397,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891 date QS:P571,+1891-00-00T00:00:00Z/9",
+    "credit": "Google Art Project : Home – pic Maximum resolution.",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "WATERHOUSE - Ulises y las Sirenas (National Gallery of Victoria, Melbourne, 1891. Óleo sobre lienzo, 100.6 x 202 cm).jpg",
+    "width": 11001,
+    "height": 5386,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891 date QS:P571,+1891-00-00T00:00:00Z/9",
+    "credit": "Google Art Project: Home - pic Maximum resolution.",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "John William Waterhouse - Ulysses and the Sirens - Google Art Project.jpg",
+    "width": 11009,
+    "height": 5400,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891 date QS:P571,+1891-00-00T00:00:00Z/9",
+    "credit": "qQH6ni1OHjyz9A at Google Cultural Institute maximum zoom level",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Odilon Redon Cyclops": [
+   {
+    "file": "Redon.cyclops.jpg",
+    "width": 814,
+    "height": 1033,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Odilon Redon",
+    "date": "circa 1914 date QS:P571,+1914-00-00T00:00:00Z/9,P1480,Q5727902 [ 2 ] , circa between 1898 and 1900 date QS:P571,+1500-00-00T00:00:00Z/6,P1319,+1898-00-00T00:00:00Z/9,P1326,+1900-00-00T00:00:00Z/9 [ 1 ]",
+    "credit": "User:Cactus.man",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "1914 Redon Zyklop anagoria.JPG",
+    "width": 3064,
+    "height": 3824,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Odilon Redon",
+    "date": "circa 1914 date QS:P571,+1914-00-00T00:00:00Z/9,P1480,Q5727902 [ 2 ] , circa between 1898 and 1900 date QS:P571,+1500-00-00T00:00:00Z/6,P1319,+1898-00-00T00:00:00Z/9,P1326,+1900-00-00T00:00:00Z/9 [ 1 ]",
+    "credit": "Anagoria",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Odilon Redon, Le Polype difforme flottait sur les rivages, sorte de cyclope souriant et hideux (Thedeformed polyp floated on the shores, a sort of smiling and hideous Cyclops, 1883, NGA 40258.jpg",
+    "width": 3288,
+    "height": 3621,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Odilon Redon",
+    "date": "1883 date QS:P571,+1883-00-00T00:00:00Z/9",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art . Please see the Gallery's Open Access Policy .",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "CC0",
+     "Cc-zero",
+     "Fallback",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Odilon Redon - Le Cyclope.jpeg",
+    "width": 3543,
+    "height": 4439,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Odilon Redon",
+    "date": "circa 1914 date QS:P571,+1914-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "https://www.artsy.net/artwork/odilon-redon-le-cyclope-the-cyclops",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Odilon Redon - The Cyclops, c. 1914.jpg",
+    "width": 2846,
+    "height": 3579,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Odilon Redon",
+    "date": "circa 1914 date QS:P571,+1914-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "https://artsandculture.google.com/asset/the-cyclops-odilon-redon-1840-1916/mAFMK3NTXaN_RQ?hl=en",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-70-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Waterhouse Circe Offering the Cup to Ulysses": [
+   {
+    "file": "Circe Offering the Cup to Odysseus.jpg",
+    "width": 800,
+    "height": 1344,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891",
+    "credit": "en:Image:Circe_Offering_the_Cup_to_Odysseus.jpg http://moontale.egloos.com/865206",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "WATERHOUSE - Ulises y las Sirenas (National Gallery of Victoria, Melbourne, 1891. Óleo sobre lienzo, 100.6 x 202 cm).jpg",
+    "width": 11001,
+    "height": 5386,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891 date QS:P571,+1891-00-00T00:00:00Z/9",
+    "credit": "Google Art Project: Home - pic Maximum resolution.",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Waterhouse, Circe, sketch.jpg",
+    "width": 780,
+    "height": 1116,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891",
+    "credit": "https://collections.vam.ac.uk/item/O155150/sketchbook-waterhouse-john-william/",
+    "description": "Sketch for Circe",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Emacs-circe.jpg",
+    "width": 200,
+    "height": 277,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Jorgen Schäfer",
+    "date": "2015-07-27",
+    "credit": "https://github.com/jorgenschaefer/circe/blob/master/images/circe.jpg",
+    "description": "Logo of Circe, an IRC client for Emacs . Scan directly taken from an old original artwork.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Circe Offering the Cup to Odysseus (2457 x 4023px ed.).jpg",
+    "width": 2457,
+    "height": 4023,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "John William Waterhouse",
+    "date": "1891",
+    "credit": "File:Circe Offering the Cup to Odysseus.jpg#File history Direct link User:Jan Arkesteijn did not provide a source at the time of the original upload. A version of the painting available at https://www.artrenewal.org/artworks/circe-offering-",
+    "description": "Circe oil on canvas 148 x 92 cm 1891",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Doré Inferno Minos": [
+   {
+    "file": "Inferno Canto 5 line 4 Minos.jpg",
+    "width": 989,
+    "height": 785,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Gustave Doré",
+    "date": "1860s",
+    "credit": "http://gutenberg.kk.dk/8/7/8/8781/8781-h/8781-h.htm",
+    "description": "Minos stands in judgement in Dante 's Inferno Canto 5 line 4 as drawn by Gustave Doré 1861-1865. The caption reads:There Minos stands. Canto V., line 4.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Gustave Doré - Dante Alighieri - Inferno - Plate 13 (Canto V - Minos).jpg",
+    "width": 2826,
+    "height": 2314,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Gustave Doré",
+    "date": "Originally 1857",
+    "credit": "Dante's Divine Comedy: Hell - Purgatory - Paradise. Illustrations by Gustave Doré, Translation by Henry W. Longfellow, Published by Arcturus Books, 2007.",
+    "description": "Gustave Doré's illustration to Dante's Inferno. Plate XIII: Canto V: Minos judges the sinners. \"There standeth Minos horribly, and snarls; Examins the transgressions at the entrance; Judges, and sends according to he girds them.\" (Longfello",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "The Vision of Hell, by Gustave Doré.jpg",
+    "width": 3307,
+    "height": 2837,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Gustave Doré",
+    "date": "circa 1890 date QS:P,+1890-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "Bonhams",
+    "description": "The Vision of Hell c.1890",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Là Minos siège terrible et grondant.png",
+    "width": 865,
+    "height": 683,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Gustave Doré",
+    "date": "1861",
+    "credit": "La Divine Comédie - l'Enfer de Dante",
+    "description": "Dessin de Gustave Doré, gravure sur bois de Gaston Monvoisin dans La Divine Comédie - l'Enfer de Dante (édition de 1861)",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-70-1923",
+     "PD-old-70-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   }
+  ],
+  "Watts The Minotaur Tate": [
+   {
+    "file": "USS Minotaur (ARL-15) at anchor, circa in 1945.jpg",
+    "width": 349,
+    "height": 450,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "U.S. Navy",
+    "date": "circa 1945 date QS:P,+1945-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "U.S. Navy photo [1] from Navsource.org",
+    "description": "The U.S. Navy landing craft repair ship USS Minotaur (ARL-15) at anchor, circa in 1945.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-USGov-Military-Navy",
+     "PD-USGov-Military-Navy/en",
+     "PD-USGov-Military-Navy/layout"
+    ]
+   },
+   {
+    "file": "George Frederic Watts - The Minotaur - Google Art Project.jpg",
+    "width": 1693,
+    "height": 2112,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "George Frederic Watts",
+    "date": "1885 date QS:P571,+1885-00-00T00:00:00Z/9",
+    "credit": "Google Arts &amp; Culture — vQE8NbrgEE9saQ Tate Images ( http://www.tate-images.com/results.asp?image=N01634&amp;wwwflag=3&amp;imagepos=1 )",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-copyright-notice",
+     "PD-Art-copyright-notice-Tate-Britain",
+     "PD-Art-copyright-notice/en",
+     "PD-Art-copyright-notice/lang",
+     "PD-Art-copyright-notice/layout",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Minotaur I rocket.jpg",
+    "width": 2400,
+    "height": 1600,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "NASA/Wallops Flight Facility",
+    "date": "2011-06",
+    "credit": "http://www.nasa.gov/centers/wallops/news/release-11-18.html ( image link )",
+    "description": "A Minotaur I rocket sits on the pad at Wallops Island, Va., waiting to loft the ORS-1 satellite for the Operationally Responsive Space Office.",
+    "restrictions": "",
+    "licenceTags": [
+     "License template tag",
+     "PD-Layout",
+     "PD-USGov-NASA",
+     "PD-USGov-NASA/en",
+     "PD-USGov-NASA/layout"
+    ]
+   },
+   {
+    "file": "Star Lore Of All Ages (1911), 0215, The Minotaur.png",
+    "width": 1515,
+    "height": 1887,
+    "mime": "image/png",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "",
+    "date": "before 1911 date QS:P,+1911-00-00T00:00:00Z/7,P1326,+1911-00-00T00:00:00Z/9",
+    "credit": "This image has been extracted from another file",
+    "description": "The Minotaur. Painting by George Frederick Watts. Reproduced in Star Lore of the Ages",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Theseus and the Minotaur 1843 bronze by Antoine-Louis Barye (IMGP2666r2e).jpg",
+    "width": 1365,
+    "height": 1809,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Alexey V. Kurochkin",
+    "date": "2022-12-25 13:18:54",
+    "credit": "Own work",
+    "description": "Theseus and the Minotaur, 1843, bronze, by Antoine-Louis Barye (24 September 1795 – 25 June 1875), Pushkin State Museum of Fine Arts, collection of Nikolai Mosolov",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   }
+  ],
+  "David Leonidas at Thermopylae": [
+   {
+    "file": "Jacques-Louis David, \"Leonidas at Thermophylae\" (detail).jpg",
+    "width": 600,
+    "height": 480,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Jacques-Louis David",
+    "date": "1813 date QS:P571,+1813-00-00T00:00:00Z/9",
+    "credit": "https://www.louvre.fr/en/oeuvre-notices/leonidas-thermopyla",
+    "description": "detail",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Jacques-Louis David - Leonidas at Thermopylae - WGA6095.jpg",
+    "width": 1300,
+    "height": 953,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Jacques-Louis David",
+    "date": "1814",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"d/david_j/4/414david\"",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-two-auto",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Jacques-Louis David - Leonidas at Thermopylae (detail) - WGA6096.jpg",
+    "width": 750,
+    "height": 1197,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Jacques-Louis David",
+    "date": "1814 date QS:P571,+1814-00-00T00:00:00Z/9",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"d/david_j/4/415david\"",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Leonidas at Thermopylae MET DP213754.jpg",
+    "width": 3914,
+    "height": 2901,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Jacques-Louis David",
+    "date": "circa 1814 date QS:P571,+1814-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art . See the Image and Data Resources Open Access Policy",
+    "description": "Drawing; Drawings",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Leonidas at Thermopylae, 1814, by Jacques-Louis David, depicting Sparta's King Leonidas before the Battle of Thermopylae. (11606613584).jpg",
+    "width": 2530,
+    "height": 2060,
+    "mime": "image/jpeg",
+    "licence": "CC BY 2.0",
+    "usage": "Creative Commons Attribution 2.0",
+    "copyrighted": "True",
+    "artist": "Ken and Nyetta",
+    "date": "2013-12-28 17:30",
+    "credit": "Leonidas at Thermopylae, 1814, by Jacques-Louis David, depicting Sparta's King Leonidas before the Battle of Thermopylae.",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-2.0",
+     "Cc-by-layout",
+     "License template tag"
+    ]
+   }
+  ],
+  "Turner Ulysses Deriding Polyphemus": [
+   {
+    "file": "Joseph Mallord William Turner - Ulysses Deriding Polyphemus - WGA23185.jpg",
+    "width": 1208,
+    "height": 770,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "J. M. W. Turner",
+    "date": "1829 date QS:P571,+1829-00-00T00:00:00Z/9",
+    "credit": "Web Gallery of Art : Image Info about artwork wga QS:P11807,\"t/turner/2/209turne\"",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Turner - Ulysses deriding Polyphemus 1829.jpg",
+    "width": 6493,
+    "height": 4226,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "J. M. W. Turner",
+    "date": "1829 date QS:P571,+1829-00-00T00:00:00Z/9",
+    "credit": "[1]",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Joseph Mallord William Turner (1775-1851) - Sketch for 'Ulysses Deriding Polyphemus' - N02958 - National Gallery.jpg",
+    "width": 1200,
+    "height": 801,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "J. M. W. Turner",
+    "date": "between 1827 and 1828 date QS:P,+1827-00-00T00:00:00Z/8,P1319,+1827-00-00T00:00:00Z/9,P1326,+1828-00-00T00:00:00Z/9",
+    "credit": "Art UK",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "London National Gallery Turner Ulysses deriding Polyphemus.jpg",
+    "width": 3646,
+    "height": 2365,
+    "mime": "image/jpeg",
+    "licence": "CC BY-SA 4.0",
+    "usage": "Creative Commons Attribution-Share Alike 4.0",
+    "copyrighted": "True",
+    "artist": "Ad Meskens You are free to use this picture for any purpose as long as you credit its author, Ad Meskens . Example: © Ad Meskens / Wikimedia Commons If you use this work outside of the Wikimedia projects, a message or a copy is very much ap",
+    "date": "2019-09-22 10:50:29",
+    "credit": "Own work",
+    "description": "Odyseus spot met Polyphemus van J.M.W. Turner in de National Gallery, Londen.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "(Barcelona) Sketch for 'Ulysses Deriding Polyphemus' - C1827-8 - William Turner - Tate Britain.jpg",
+    "width": 6947,
+    "height": 4656,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Didier Descouens",
+    "date": "Taken on 23 August 2022",
+    "credit": "Own work",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-by-sa-4.0",
+     "Cc-by-sa-layout",
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   }
+  ],
+  "Draper Ulysses and the Sirens": [
+   {
+    "file": "Draper Herbert James Ulysses and the Sirens.jpg",
+    "width": 1589,
+    "height": 1311,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Herbert James Draper",
+    "date": "circa 1909 date QS:P571,+1909-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "1. Art Renewal Center 2. Unknown source Unknown source 3. Bridgeman Art Library : Object 96235",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Ulysses and the Sirens by H.J. Draper.jpg",
+    "width": 800,
+    "height": 540,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Herbert James Draper",
+    "date": "circa 1909 date QS:P571,+1909-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "jigboxx.com",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-two-auto",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Herbert James Draper, Ulysses and the Sirens, 1909.jpg",
+    "width": 1600,
+    "height": 1343,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Herbert James Draper",
+    "date": "circa 1909 date QS:P571,+1909-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "blogspot.com",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Herbert James Draper - Ulysses and the Sirens (1910).jpg",
+    "width": 944,
+    "height": 736,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Herbert James Draper",
+    "date": "circa 1910 date QS:P571,+1910-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "Art UK",
+    "description": "Odysseus and the sirens",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Herbert-James-Draper-Ulysses-and-the-Sirens.jpg",
+    "width": 1454,
+    "height": 1200,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Multiple Artists",
+    "date": "1679-01-18",
+    "credit": "http://DE.most-famous-paintings.com/MostFamousPaintings.nsf/A?Open&amp;A=9GENRL",
+    "description": "Ulysses and the sirens; Herbert James Draper",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "License template tag"
+    ]
+   }
+  ],
+  "Rubens Head of Medusa": [
+   {
+    "file": "Rubens Medusa.jpeg",
+    "width": 3815,
+    "height": 2195,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Peter Paul Rubens",
+    "date": "1618",
+    "credit": "1. Kunsthistorisches Museum Wien, Bilddatenbank . 2. Unknown source Unknown source 3. GalleriX",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Peter Paul Rubens - The Head of Medusa - WGA20300.jpg",
+    "width": 1751,
+    "height": 953,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Peter Paul Rubens / Attributed to Frans Snyders",
+    "date": "between circa 1617 and circa 1618 date QS:P571,+1617-00-00T00:00:00Z/8,P1319,+1617-00-00T00:00:00Z/9,P1326,+1618-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "1. Web Gallery of Art : Image Info about artwork wga QS:P11807,\"r/rubens/22mythol/29mythol\" 2. Kunsthistorisches Museum Wien, Bilddatenbank .",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Oberhausen - Gasometer - Der schöne Schein - The Head of Medusa (Rubens) 02 ies.jpg",
+    "width": 5616,
+    "height": 3744,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Frank Vincentz",
+    "date": "2015-10-31 15:01:00",
+    "credit": "Own work",
+    "description": "The Head of Medusa by Peter Paul Rubens, \"Der schöne Schein\" exhibition of replicas of well-known artwork in the Gasometer in Oberhausen",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Oberhausen - Gasometer - Der schöne Schein - The Head of Medusa (Rubens) 03 ies.jpg",
+    "width": 5616,
+    "height": 3744,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Frank Vincentz",
+    "date": "2015-10-31 15:01:11",
+    "credit": "Own work",
+    "description": "The Head of Medusa by Peter Paul Rubens, \"Der schöne Schein\" exhibition of replicas of well-known artwork in the Gasometer in Oberhausen",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Oberhausen - Gasometer - Der schöne Schein - The Head of Medusa (Rubens) 05 ies.jpg",
+    "width": 5616,
+    "height": 3745,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Frank Vincentz",
+    "date": "2015-10-31 15:02:11",
+    "credit": "Own work",
+    "description": "The Head of Medusa by Peter Paul Rubens, \"Der schöne Schein\" exhibition of replicas of well-known artwork in the Gasometer in Oberhausen",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   }
+  ],
+  "Cellini Perseus with the head of Medusa painting": []
+ },
+ "categories": {},
+ "peek": [
+  {
+   "file": "Medusa-Caravaggio (Uffizi).jpg",
+   "saved": "00.jpg"
+  },
+  {
+   "file": "Caravaggio - Medusa Uffizi - High quality.jpg",
+   "saved": "01.jpg"
+  },
+  {
+   "file": "Medusa by Caravaggio-Uffizi.jpg",
+   "saved": "02.jpg"
+  },
+  {
+   "file": "Galleria degli Uffizi, Sala E4 'Caravaggio, la Medusa' a gennaio 2023 -FG1.jpg",
+   "saved": "03.jpg"
+  },
+  {
+   "file": "Galleria degli Uffizi, Sala E4 'Caravaggio, la Medusa' a gennaio 2023 -FG2.jpg",
+   "saved": "04.jpg"
+  },
+  {
+   "file": "Edward Burne-Jones - The Perseus Series - Study of Perseus in Armour for The Finding of Medusa - Google Art Project.jpg",
+   "saved": "05.jpg"
+  },
+  {
+   "file": "The Escape of Perseus - Edward Burne-Jones, 1875-1888.jpg",
+   "saved": "06.jpg"
+  },
+  {
+   "file": "Edward Burne-Jones - The Death of Medusa II, 1881-1882.jpg",
+   "saved": "07.jpg"
+  },
+  {
+   "file": "Edward Burne-Jones - The Death of Medusa I, 1882.jpg",
+   "saved": "08.jpg"
+  },
+  {
+   "file": "Edward Burne-Jones - Study of Armour - Perseus in 'The Finding of Medusa'.jpg",
+   "saved": "09.jpg"
+  },
+  {
+   "file": "John William Waterhouse - Ulysses and the Sirens (1891).jpg",
+   "saved": "10.jpg"
+  },
+  {
+   "file": "JOHN WILLIAM WATERHOUSE - Ulises y las Sirenas (National Gallery of Victoria, Melbourne, 1891. Óleo sobre lienzo, 100.6 x 202 cm).jpg",
+   "saved": "11.jpg"
+  },
+  {
+   "file": "WATERHOUSE - Ulises y las Sirenas (National Gallery of Victoria, Melbourne, 1891. Óleo sobre lienzo, 100.6 x 202 cm).jpg",
+   "saved": "12.jpg"
+  },
+  {
+   "file": "John William Waterhouse - Ulysses and the Sirens - Google Art Project.jpg",
+   "saved": "13.jpg"
+  },
+  {
+   "file": "Redon.cyclops.jpg",
+   "saved": "14.jpg"
+  },
+  {
+   "file": "1914 Redon Zyklop anagoria.JPG",
+   "saved": "15.jpg"
+  },
+  {
+   "file": "Odilon Redon, Le Polype difforme flottait sur les rivages, sorte de cyclope souriant et hideux (Thedeformed polyp floated on the shores, a sort of smiling and hideous Cyclops, 1883, NGA 40258.jpg",
+   "saved": "16.jpg"
+  },
+  {
+   "file": "Odilon Redon - Le Cyclope.jpeg",
+   "saved": "17.jpg"
+  },
+  {
+   "file": "Odilon Redon - The Cyclops, c. 1914.jpg",
+   "saved": "18.jpg"
+  },
+  {
+   "file": "Circe Offering the Cup to Odysseus.jpg",
+   "saved": "19.jpg"
+  },
+  {
+   "file": "WATERHOUSE - Ulises y las Sirenas (National Gallery of Victoria, Melbourne, 1891. Óleo sobre lienzo, 100.6 x 202 cm).jpg",
+   "saved": "20.jpg"
+  },
+  {
+   "file": "Waterhouse, Circe, sketch.jpg",
+   "saved": "21.jpg"
+  },
+  {
+   "file": "Emacs-circe.jpg",
+   "saved": "22.jpg"
+  },
+  {
+   "file": "Circe Offering the Cup to Odysseus (2457 x 4023px ed.).jpg",
+   "saved": "23.jpg"
+  },
+  {
+   "file": "Inferno Canto 5 line 4 Minos.jpg",
+   "saved": "24.jpg"
+  },
+  {
+   "file": "Gustave Doré - Dante Alighieri - Inferno - Plate 13 (Canto V - Minos).jpg",
+   "saved": "25.jpg"
+  },
+  {
+   "file": "The Vision of Hell, by Gustave Doré.jpg",
+   "saved": "26.jpg"
+  },
+  {
+   "file": "Là Minos siège terrible et grondant.png",
+   "saved": "27.jpg"
+  },
+  {
+   "file": "USS Minotaur (ARL-15) at anchor, circa in 1945.jpg",
+   "saved": "28.jpg"
+  },
+  {
+   "file": "George Frederic Watts - The Minotaur - Google Art Project.jpg",
+   "saved": "29.jpg"
+  },
+  {
+   "file": "Minotaur I rocket.jpg",
+   "saved": "30.jpg"
+  },
+  {
+   "file": "Star Lore Of All Ages (1911), 0215, The Minotaur.png",
+   "saved": "31.jpg"
+  },
+  {
+   "file": "Theseus and the Minotaur 1843 bronze by Antoine-Louis Barye (IMGP2666r2e).jpg",
+   "saved": "32.jpg"
+  },
+  {
+   "file": "Jacques-Louis David, \"Leonidas at Thermophylae\" (detail).jpg",
+   "saved": "33.jpg"
+  },
+  {
+   "file": "Jacques-Louis David - Leonidas at Thermopylae - WGA6095.jpg",
+   "saved": "34.jpg"
+  },
+  {
+   "file": "Jacques-Louis David - Leonidas at Thermopylae (detail) - WGA6096.jpg",
+   "saved": "35.jpg"
+  },
+  {
+   "file": "Leonidas at Thermopylae MET DP213754.jpg",
+   "saved": "36.jpg"
+  },
+  {
+   "file": "Leonidas at Thermopylae, 1814, by Jacques-Louis David, depicting Sparta's King Leonidas before the Battle of Thermopylae. (11606613584).jpg",
+   "saved": "37.jpg"
+  },
+  {
+   "file": "Joseph Mallord William Turner - Ulysses Deriding Polyphemus - WGA23185.jpg",
+   "saved": "38.jpg"
+  },
+  {
+   "file": "Turner - Ulysses deriding Polyphemus 1829.jpg",
+   "saved": "39.jpg"
+  },
+  {
+   "file": "Joseph Mallord William Turner (1775-1851) - Sketch for 'Ulysses Deriding Polyphemus' - N02958 - National Gallery.jpg",
+   "saved": "40.jpg"
+  },
+  {
+   "file": "London National Gallery Turner Ulysses deriding Polyphemus.jpg",
+   "saved": "41.jpg"
+  },
+  {
+   "file": "(Barcelona) Sketch for 'Ulysses Deriding Polyphemus' - C1827-8 - William Turner - Tate Britain.jpg",
+   "saved": "42.jpg"
+  },
+  {
+   "file": "Draper Herbert James Ulysses and the Sirens.jpg",
+   "saved": "43.jpg"
+  },
+  {
+   "file": "Ulysses and the Sirens by H.J. Draper.jpg",
+   "saved": "44.jpg"
+  },
+  {
+   "file": "Herbert James Draper, Ulysses and the Sirens, 1909.jpg",
+   "saved": "45.jpg"
+  },
+  {
+   "file": "Herbert James Draper - Ulysses and the Sirens (1910).jpg",
+   "saved": "46.jpg"
+  },
+  {
+   "file": "Herbert-James-Draper-Ulysses-and-the-Sirens.jpg",
+   "saved": "47.jpg"
+  },
+  {
+   "file": "Rubens Medusa.jpeg",
+   "saved": "48.jpg"
+  },
+  {
+   "file": "Peter Paul Rubens - The Head of Medusa - WGA20300.jpg",
+   "saved": "49.jpg"
+  },
+  {
+   "file": "Oberhausen - Gasometer - Der schöne Schein - The Head of Medusa (Rubens) 02 ies.jpg",
+   "saved": "50.jpg"
+  },
+  {
+   "file": "Oberhausen - Gasometer - Der schöne Schein - The Head of Medusa (Rubens) 03 ies.jpg",
+   "saved": "51.jpg"
+  },
+  {
+   "file": "Oberhausen - Gasometer - Der schöne Schein - The Head of Medusa (Rubens) 05 ies.jpg",
+   "saved": "52.jpg"
+  }
+ ]
 }
