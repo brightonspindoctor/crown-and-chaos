@@ -1,6 +1,25 @@
 {
-  "ranAt": "2026-11-18T12:22:30.774Z",
-  "fetched": [],
+  "ranAt": "2026-11-18T14:28:33.550Z",
+  "fetched": [
+    {
+      "id": "circe-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/J._W._Waterhouse_-_Circe_Invidiosa_-_Google_Art_Project.jpg?width=3000",
+      "bytes": 3289400
+    },
+    {
+      "id": "perseus-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward_Burne-Jones_-_Perseus.jpeg?width=3000",
+      "bytes": 4544508
+    },
+    {
+      "id": "the-minotaur-variant",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/DVinfernoMinotaurOnCliff_m.jpg?width=3000",
+      "bytes": 1821791
+    }
+  ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
