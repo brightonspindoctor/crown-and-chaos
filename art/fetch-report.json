@@ -1,13 +1,6 @@
 {
-  "ranAt": "2026-11-18T14:32:04.650Z",
-  "fetched": [
-    {
-      "id": "hoplite",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/L%C3%A9onidas_aux_Thermopyles_-_Jacques-Louis_David_-_Mus%C3%A9e_du_Louvre_Peintures_INV_3690_%3B_L_3711.jpg?width=6000",
-      "bytes": 3141226
-    }
-  ],
+  "ranAt": "2026-11-18T14:35:23.222Z",
+  "fetched": [],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -118,6 +111,7 @@
     "circe",
     "king-minos",
     "the-minotaur",
+    "hoplite",
     "medusa-variant",
     "odysseus-variant",
     "board-hellas",
