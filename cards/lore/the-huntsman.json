@@ -6,9 +6,8 @@
     {
       "id": "the-huntsman-1",
       "n": 1,
-      "title": "The Snoring",
-      "text": "He was passing the old woman's cottage when he heard snoring far louder than an old woman could make. Worried she was ill, he went in, and there in her bed lay the wolf he had been hunting for years. He had long sought him, and now he had found him.",
-      "playNote": "His Crown passive: mark one enemy hero each round; your attacks on it hit harder.",
+      "title": "Years on the Trail",
+      "text": "He knew every path in the wood, and for years he had tracked one old wolf that always slipped away. One day, passing the old woman's cottage, he heard snoring far louder than any grandmother could make. Worried that she was ill, he went in. There in her bed lay the wolf. He had long sought him, and now he had found him.",
       "source": {
         "work": "Grimm's Household Tales",
         "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
@@ -22,8 +21,7 @@
       "id": "the-huntsman-2",
       "n": 2,
       "title": "Scissors, Not a Shot",
-      "text": "He raised his gun, then stopped. The wolf might have swallowed the grandmother, and she might still be saved. So he did not fire. He took a pair of scissors and began, very carefully, to cut open the sleeping wolf's stomach. After a few snips he saw the red cap shining.",
-      "playNote": "A Slayer by trade: while he lives, Red Riding Hood can survive her first death.",
+      "text": "He raised his gun, then lowered it. The wolf might have swallowed the grandmother, and she might still be saved. So he took a pair of scissors and carefully cut open the sleeping wolf's belly. After a few snips he saw a red cap shining, and a little girl sprang out, and then the grandmother after her, weak but alive.",
       "source": {
         "work": "Grimm's Household Tales",
         "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
@@ -36,9 +34,8 @@
     {
       "id": "the-huntsman-3",
       "n": 3,
-      "title": "Stones in the Belly",
-      "text": "Red-Cap fetched great stones, and together they filled the wolf's belly with them. When he woke and tried to run away, the stones were so heavy that he sank down and fell dead. The huntsman skinned him and went home with the pelt, the grandmother ate the cake and drank the wine, and all three were glad.",
-      "playNote": "Stones in the belly: the target's Speed drops to 1 for the rest of the fight. His Bond: stronger alongside his tale-mates.",
+      "title": "Home With the Pelt",
+      "text": "The girl fetched great stones, and they filled the wolf's belly with them. When he woke and tried to escape, he fell down dead. The huntsman skinned the old enemy he had chased for so long and went home with the pelt, while the grandmother ate the cake and drank the wine, and all three of them were glad.",
       "source": {
         "work": "Grimm's Household Tales",
         "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",

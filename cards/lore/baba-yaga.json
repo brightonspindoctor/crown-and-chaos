@@ -6,9 +6,8 @@
     {
       "id": "baba-yaga-1",
       "n": 1,
-      "title": "The House of Bones",
-      "text": "Deep in the forest stands a house fenced with human bones. A skull sits on every stake, and at night their eyes burn so bright that the clearing is lit like noon. The bolts on the gate are hands, and the lock is a mouth full of teeth. Everyone who comes here works for her or is eaten, and the more she eats, the stronger she grows.",
-      "playNote": "No maximum Health, and +2 Health for every kill.",
+      "title": "The Old Woman of the Forest",
+      "text": "Deep in the forest stands her house, fenced with human bones, with a skull on every stake. At night the skulls' eyes burn and light the clearing like noon. Three riders serve her: a white one who brings the bright day, a red one who is the sun, and a black one who is the dark night. She is older than any of them, and she eats those who displease her.",
       "source": {
         "work": "Vasilísa the Fair",
         "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
@@ -21,9 +20,8 @@
     {
       "id": "baba-yaga-2",
       "n": 2,
-      "title": "Mortar and Pestle",
-      "text": "She does not walk. The trees creak and the leaves rattle, and out of the forest she comes riding in an iron mortar, driving it on with the pestle and sweeping her tracks away behind her with a broom. Whatever is in her path when she lands is simply gone.",
-      "playNote": "Mortar ride: move to any adjacent space and kill what is there, friend or foe.",
+      "title": "The Girl Who Came for Fire",
+      "text": "One night a merchant's daughter, Vasilisa, came to her gate. Her cruel stepmother had sent her to fetch fire from Baba Yaga, hoping she would never return. The witch came home riding her mortar, steering with her pestle. She agreed to give the girl fire if she worked for it, and set her impossible tasks. If one was left undone, she would eat her.",
       "source": {
         "work": "Vasilísa the Fair",
         "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
@@ -36,9 +34,8 @@
     {
       "id": "baba-yaga-3",
       "n": 3,
-      "title": "The Skull Lantern",
-      "text": "She set the girl three impossible tasks and found them all done. When she heard a mother's blessing had helped, she would not keep a blessed girl in her house. She sent her home with fire, as was asked: a skull on a stick with burning eyes. That night its stare followed the cruel stepmother and her daughters wherever they hid, until there was nothing left of them but ash.",
-      "playNote": "Skull fire: a ranged blast on any card.",
+      "title": "The Blessing",
+      "text": "Every task was done. The witch asked how, and Vasilisa said her dead mother's blessing helped her. Baba Yaga would not keep a blessed girl in her house, so she sent her home with what she had come for: a skull with burning eyes. That night its stare burned the stepmother and her daughters to ashes. Baba Yaga stayed in her forest, and is there still.",
       "source": {
         "work": "Vasilísa the Fair",
         "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",

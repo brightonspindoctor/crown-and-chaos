@@ -6,9 +6,8 @@
     {
       "id": "the-dragon-1",
       "n": 1,
-      "title": "The Poisoned Lake",
-      "text": "Long before any knight came, the dragon lived in the lake beside Silene. When it came near the walls its breath alone was enough: the air turned foul and people died without being touched. The citizens armed themselves and went out against it, and fled. After that, no one went out at all.",
-      "playNote": "Fire Breath: it burns two cards at random.",
+      "title": "The Thing in the Lake",
+      "text": "No one in Silene knew where it came from. One day there was simply a dragon in the great lake outside the walls, as wide as a sea. When it came near the city its breath poisoned the air, and people died without being touched. The citizens armed themselves and marched out against it. They were beaten back, and after that they did not go out again.",
       "source": {
         "work": "The Golden Legend",
         "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
@@ -21,9 +20,8 @@
     {
       "id": "the-dragon-2",
       "n": 2,
-      "title": "Two Sheep a Day",
-      "text": "To keep it from the walls, the city fed it two sheep every day. When the sheep ran short they gave it one sheep and one person. When the sheep ran out entirely, they drew lots among the children, and no family was spared, rich or poor. This is the bargain the dragon understood: something must be given.",
-      "playNote": "Its Bond: your heroes deal more damage to Slayers.",
+      "title": "The Tribute",
+      "text": "To keep it from the walls, the city fed it two sheep every day. When the sheep grew few, they gave it one sheep and one person. When the sheep ran out, they drew lots among the children, and no family, rich or poor, was spared. For years the dragon lay in its lake and waited to be fed, until the day the lot fell on the king's own daughter.",
       "source": {
         "work": "The Golden Legend",
         "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",
@@ -36,9 +34,8 @@
     {
       "id": "the-dragon-3",
       "n": 3,
-      "title": "The Girdle",
-      "text": "With the princess's girdle tied round its neck, the wounded dragon got up and followed her into Silene like a meek dog on a leash. The city that had fed it fled in panic at the sight. But the beast did not turn on them. It had been bound, and something in it now belonged to the one who held the girdle.",
-      "playNote": "Its Crown passive: it throws itself in front of a dying ally.",
+      "title": "Led on a Girdle",
+      "text": "A stranger's spear brought it down at the lakeside. Wounded and tied with the princess's girdle, the dragon followed her into Silene as meekly as a dog, while the people who had fed it fled in terror. In the city square the knight killed it. It was so huge that it took four teams of oxen to drag its body out beyond the walls.",
       "source": {
         "work": "The Golden Legend",
         "author": "Jacobus de Voragine, c. 1260; English by William Caxton, 1483",

@@ -1560,7 +1560,6 @@ function loreSheet(sh) {
     <div class="top"><div style="flex:1"><p class="kind">Lore · ${esc(h.name)} · ${c.n} of ${L.cards.length}</p><h2>${esc(c.title)}</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div>
     <div class="lore-pic">${img(c.hero)}</div>
     <p class="lore-text">${esc(c.text)}</p>
-    ${c.playNote ? `<p class="rule"><b>In play</b>${esc(c.playNote)}</p>` : ""}
     <p class="lore-voice">“${esc(L.voice)}”<span>${esc(L.personality)}</span></p>
     <p class="credit">Retold from <i>${esc(s.work)}</i>, ${esc(s.author)} (${esc(s.edition)}), “${esc(s.chapter)}”. ${esc(s.licence)}. <a href="${esc(s.url)}" target="_blank" rel="noopener">Read the original</a>.<br>Painting: ${creditOf(c.hero)}.</p>
     ${prev || next ? `<div class="row">${prev ? `<button class="btn quiet" data-act="lore" data-id="${prev.id}">‹ ${esc(prev.title)}</button>` : ""}${next ? `<button class="btn quiet" data-act="lore" data-id="${next.id}">${esc(next.title)} ›</button>` : ""}</div>` : ""}</div>`;

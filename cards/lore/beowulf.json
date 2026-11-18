@@ -6,9 +6,8 @@
     {
       "id": "beowulf-1",
       "n": 1,
-      "title": "Twelve Winters",
-      "text": "For twelve winters a monster came by night to Heorot, the king's great hall, and carried off men as they slept. No Dane could stop it. Then a young Geat crossed the sea with fourteen companions. He had the strength of thirty men in his grip, he said, and since the beast used no sword, neither would he.",
-      "playNote": "Arm-wrench: his bare-handed attack.",
+      "title": "Ecgtheow's Son",
+      "text": "Beowulf was a Geat, the son of Ecgtheow and the nephew of King Hygelac. As a boy he was thought slow, but he grew into the strongest man of his age, with the grip of thirty men. As a young man he swam a race against Breca for days and nights in the open sea, and killed nine sea-monsters that dragged him to the bottom.",
       "source": {
         "work": "Beowulf",
         "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
@@ -21,9 +20,8 @@
     {
       "id": "beowulf-2",
       "n": 2,
-      "title": "The Arm Under the Roof",
-      "text": "Grendel came. Beowulf caught his hand and would not let go, and the hall shook as they fought. The monster tore itself free only by leaving its whole arm behind, torn off at the shoulder, and fled to the fens to die. The Geats hung that arm high under the roof of Heorot for every Dane to see.",
-      "playNote": "Arm-wrench: the target loses 2 Attack for good.",
+      "title": "Heorot",
+      "text": "For twelve winters a monster called Grendel had raided the Danish king's hall, Heorot. Beowulf crossed the sea with fourteen companions and fought Grendel bare-handed, tearing off his arm. The next night Grendel's mother came for revenge, and Beowulf followed her down into her lake and killed her with a giants' sword he found on her wall. He went home loaded with gifts.",
       "source": {
         "work": "Beowulf",
         "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
@@ -36,9 +34,8 @@
     {
       "id": "beowulf-3",
       "n": 3,
-      "title": "The Giants' Sword",
-      "text": "Grendel's mother came for revenge, and Beowulf followed her down into the mere. His borrowed sword, Hrunting, glanced off her as if she were stone. On the wall of her hall hung an ancient blade forged by giants, too heavy for any other man. He swung it and cut through her, and its blade melted away in the monsters' blood.",
-      "playNote": "His Crown passive: your attacks ignore Guard. His Bond: every Beast that dies makes him stronger.",
+      "title": "Fifty Winters",
+      "text": "In time Beowulf became king of the Geats and ruled them well for fifty winters. When he was old, a thief stole a cup from a dragon's hoard and the dragon burned his country. Beowulf went out against it with an iron shield. His men ran, all but young Wiglaf. Together they killed the dragon, but its venom killed the king. They buried him in a great mound on a headland, where sailors could see it from the sea.",
       "source": {
         "work": "Beowulf",
         "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",

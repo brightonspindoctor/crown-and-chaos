@@ -6,9 +6,8 @@
     {
       "id": "the-wolf-1",
       "n": 1,
-      "title": "Good-day, Little Red-Cap",
-      "text": "He met her as she entered the wood and asked so pleasantly where she was going. She didn't know what a wicked creature he was, so she told him. He walked beside her and thought: what a tender young creature, a nice plump mouthful. Look at the pretty flowers, he said, and she left the path.",
-      "playNote": "His Crown passive: your attacks deal +1 to cards that are already hurt.",
+      "title": "The Old Sinner",
+      "text": "He was an old wolf of the wood, and the huntsman had been after him for years. He never fought what he could talk into his jaws. When a girl in a red cap came along the path one morning, he greeted her politely, walked beside her, and thought what a tender mouthful she would make.",
       "source": {
         "work": "Grimm's Household Tales",
         "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
@@ -21,9 +20,8 @@
     {
       "id": "the-wolf-2",
       "n": 2,
-      "title": "Grandmother's Cap",
-      "text": "He ran ahead to the cottage, knocked, and spoke in the girl's voice. Then he swallowed the old woman, put on her clothes and her nightcap, lay down in her bed and drew the curtains. When the girl came in she saw only her grandmother, strangely changed, with very large ears, eyes, hands and mouth.",
-      "playNote": "His Bond: while another Märchen hero lives, Ranged attacks can't target him.",
+      "title": "What Big Teeth",
+      "text": "He told her to look at the flowers and ran ahead to her grandmother's cottage. He spoke at the door in the girl's voice, swallowed the old woman, put on her nightcap and got into her bed. When the girl arrived she saw how large her grandmother's ears and eyes and hands had grown, and then her mouth. With one bound he swallowed her too.",
       "source": {
         "work": "Grimm's Household Tales",
         "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
@@ -36,9 +34,8 @@
     {
       "id": "the-wolf-3",
       "n": 3,
-      "title": "Swallowed Whole",
-      "text": "With one bound he was out of the bed and swallowed Red-Cap too, then lay down and fell into a deep sleep, snoring loudly. He never chewed. That was his mistake: when the huntsman cut him open, everyone he had eaten came out alive.",
-      "playNote": "Swallow whole: remove a card, but it comes back if he dies.",
+      "title": "Stones",
+      "text": "Full and pleased with himself, he lay down in the bed and snored. He never woke while the huntsman cut him open and the two of them came out alive. They filled his belly with great stones instead. When he woke and tried to run, the stones were so heavy that he fell down dead. The huntsman went home with his skin.",
       "source": {
         "work": "Grimm's Household Tales",
         "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
