@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Sovereign",
-  "renown": 12,
+  "renown": 13,
   "crownPassive": {
     "name": "Cannot be caught",
     "text": "The first attack on her each round from a slower card misses."

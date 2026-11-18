@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Beast",
-  "renown": 10,
+  "renown": 12,
   "crownPassive": {
     "text": "At upkeep, heal 1 to one of your cards, chosen at random.",
     "name": "Blessing of Silene"

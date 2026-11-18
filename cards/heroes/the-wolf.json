@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Slayer",
-  "renown": 13,
+  "renown": 16,
   "crownPassive": {
     "name": "Big teeth",
     "text": "Your heroes' attacks deal +1 damage to injured cards."

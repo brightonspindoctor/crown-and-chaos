@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Sovereign",
-  "renown": 12,
+  "renown": 13,
   "crownPassive": {
     "name": "The master's servant",
     "text": "You keep the Fate token all fight. If both crowns are Renfield, this cancels out and the token changes hands each round as normal."

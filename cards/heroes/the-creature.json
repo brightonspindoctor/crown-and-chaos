@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Slayer",
-  "renown": 16,
+  "renown": 15,
   "crownPassive": {
     "name": "Dread",
     "text": "Enemy heroes have -1 Speed (never below 1) and -1 Guard (never below 0)."

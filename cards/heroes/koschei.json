@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Trickster",
-  "renown": 13,
+  "renown": 14,
   "crownPassive": {
     "name": "Thief of treasures",
     "text": "Your opponent's items cost 1 action point instead of being free."

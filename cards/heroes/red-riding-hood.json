@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Beast",
-  "renown": 10,
+  "renown": 12,
   "crownPassive": {
     "name": "The basket",
     "text": "At upkeep, heal 2 to your most injured card."

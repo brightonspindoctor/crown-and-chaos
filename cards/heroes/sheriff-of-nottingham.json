@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Trickster",
-  "renown": 15,
+  "renown": 13,
   "crownPassive": {
     "name": "Taxed",
     "text": "At the start of the fight, take one item at random from your opponent's belt into a third item slot of yours. If they brought no items, nothing happens."

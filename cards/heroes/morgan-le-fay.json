@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Slayer",
-  "renown": 13,
+  "renown": 16,
   "crownPassive": {
     "name": "Enchantress",
     "text": "You start the fight with the Fate token (unless the enemy Crown is Renfield). In rounds when you hold it, enemy Bonds don't work."

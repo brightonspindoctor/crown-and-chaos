@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Trickster",
-  "renown": 14,
+  "renown": 16,
   "crownPassive": {
     "name": "First knight",
     "text": "When he attacks, the enemy Crown also takes 1 damage, at most once a round. No effect against a side with no Crown."
