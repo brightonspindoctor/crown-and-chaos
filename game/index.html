@@ -1888,13 +1888,13 @@ function firstPack() {
   return [...front, ...STARTER_ITEMS, "the-princess", "the-dragon", "st-george", pick(others).id];
 }
 // A Fable pack: 4 front-rank cards and 2 better cards; about 1 pack in 5 swaps a better card for a hero.
-// Better cards: common item 45%, rare 15%, legendary 3%, gold 20%, lore 10%, hero variant 7%. Packs never hold crowns:
-// crowns come from the shop and from levels. Lore and variant paintings are only drawn for heroes you own and
+// Better cards: common item 45%, rare 15%, legendary 3%, gold 20%, lore 10%, variant painting 7%. Packs never hold crowns:
+// crowns come from the shop and from levels. Lore and variant paintings are only drawn for cards you own and
 // haven't collected; when none are left, the draw becomes gold.
 // Gold, lore, variants and crowns travel as tokens such as "gold:25", "lore:st-george-1", "var:<key>", "crown:iron".
 const tok = (t) => { const i = String(t).indexOf(":"); return i < 0 ? null : { kind: t.slice(0, i), val: t.slice(i + 1) }; };
 const loreFree = (taken) => LORE_CARDS.filter((c) => owned(c.hero) > 0 && !G.lore.includes(c.id) && !taken.includes(`lore:${c.id}`));
-const variantFree = (taken) => Object.values(VARIANTS).flat().filter((v) => DATA.heroes[v.card] && owned(v.card) > 0 && !G.variants.includes(v.key) && !taken.includes(`var:${v.key}`));
+const variantFree = (taken) => Object.values(VARIANTS).flat().filter((v) => owned(v.card) > 0 && !G.variants.includes(v.key) && !taken.includes(`var:${v.key}`));
 const goldCard = () => { const r = Math.random(); return `gold:${r < 0.75 ? 10 : r < 0.95 ? 25 : 100}`; };
 function betterCard(taken) {
   const r = Math.random() * 100;
@@ -3848,7 +3848,7 @@ function shopHtml() {
   const its = Object.values(DATA.items).sort((a, b) => PRICES[a.rarity] - PRICES[b.rarity] || a.name.localeCompare(b.name)).map((d) => `<button class="opt" data-act="buy" data-id="${d.id}"${can(PRICES[d.rarity])}>${img(d.id)}<strong>${esc(d.name)}</strong><small>${esc(d.rarity)}. You have ${owned(d.id)}. ${esc(d.effect)}</small><span class="cost">${PRICES[d.rarity]} gold</span></button>`).join("");
   return `<div class="wrap"><div class="bar"><h1>Shop</h1><span class="gold" aria-label="${G.gold} gold">${G.gold}</span></div>
     <div class="box"><div class="shop-pack">${packArt("6 cards")}<div style="display:flex;flex-direction:column;gap:8px;flex:1">
-      <h2>Fable pack</h2><p>Four front-rank cards and two better cards: mostly items, sometimes gold, a lore card or a new painting of a hero you own. About one pack in five holds a hero.</p>
+      <h2>Fable pack</h2><p>Four front-rank cards and two better cards: mostly items, sometimes gold, a lore card or a new painting of a card you own. About one pack in five holds a hero.</p>
       <button class="btn" data-act="buy-pack"${can(PRICES.pack)}>Buy for ${PRICES.pack} gold</button></div></div></div>
     <p class="lede">Gold comes only from fighting. Heroes come only from packs.</p>
     <div class="box"><h2>A front-rank card of your choice</h2><div class="options">${fr}</div></div>
