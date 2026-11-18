@@ -3692,11 +3692,11 @@ function libCards() {
 // Lore: grouped by tale, with the cards still to find shown as outlines. Heroes you don't own stay hidden.
 function loreTile(c) {
   const h = DATA.heroes[c.hero];
-  return `<button class="lore" data-act="lore" data-id="${c.id}" aria-label="Lore: ${esc(c.title)}, ${esc(h.name)} ${c.n}"><span class="lore-art">${img(c.hero)}</span><span class="lore-n">${esc(short(h.name))} · ${ROMAN[c.n]}</span><b>${esc(c.title)}</b></button>`;
+  return `<button class="lore" data-act="lore" data-id="${c.id}" aria-label="Lore: ${esc(c.title)}, ${esc(h.name)} ${c.n}"><span class="lore-art">${img(c.hero)}</span><span class="lore-n">${esc(short(h.name))} · ${ROMAN[c.n]} of ${ROMAN[LORE[c.hero].cards.length]}</span><b>${esc(c.title)}</b></button>`;
 }
 function lockedLore(c) {
   const h = DATA.heroes[c.hero];
-  return `<div class="lore locked" role="img" aria-label="${esc(h.name)} lore card ${c.n}, not yet found"><span class="lore-art"><i>?</i></span><span class="lore-n">${esc(short(h.name))} · ${ROMAN[c.n]}</span><b>Not yet found</b></div>`;
+  return `<div class="lore locked" role="img" aria-label="${esc(h.name)} lore card ${c.n}, not yet found"><span class="lore-art"><i>?</i></span><span class="lore-n">${esc(short(h.name))} · ${ROMAN[c.n]} of ${ROMAN[LORE[c.hero].cards.length]}</span><b>Not yet found</b></div>`;
 }
 function libLore() {
   const mine = Object.keys(G.heroes).filter((id) => owned(id) > 0).sort(byName);
@@ -3719,7 +3719,7 @@ function loreSheet(sh) {
   const mineCards = L.cards.filter((x) => G.lore.includes(x.id)), k = mineCards.findIndex((x) => x.id === c.id);
   const prev = mineCards[k - 1], next = mineCards[k + 1], s = c.source;
   return `<div class="sheet lore-sheet" role="dialog" aria-label="${esc(c.title)}">
-    <div class="top"><div style="flex:1"><p class="kind">Lore · ${esc(h.name)} · ${c.n} of ${L.cards.length}</p><h2>${esc(c.title)}</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div>
+    <div class="top"><div style="flex:1"><p class="kind">Lore · ${esc(h.name)} · ${ROMAN[c.n]} of ${ROMAN[L.cards.length]}</p><h2>${esc(c.title)}</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div>
     <div class="lore-pic">${img(c.hero)}</div>
     <p class="lore-text">${esc(c.text)}</p>
     <p class="lore-voice">“${esc(L.voice)}”<span>${esc(L.personality)}</span></p>
@@ -3768,7 +3768,7 @@ function tokenFace(t, dup) {
   if (k.kind === "lore") {
     const c = loreById[k.val], h = DATA.heroes[c.hero];
     return `<div class="fc lorecard"><div class="fc-top"><b>${esc(c.title)}</b><span class="r">${ROMAN[c.n]}</span></div><div class="fc-art">${img(c.hero)}</div>
-      <div class="fc-plaque">Lore · ${esc(h.name)} · ${c.n} of ${LORE[c.hero].cards.length}</div>
+      <div class="fc-plaque">Lore · ${esc(h.name)} · ${ROMAN[c.n]} of ${ROMAN[LORE[c.hero].cards.length]}</div>
       <div class="fc-body"><span>${esc(c.text)}</span><span class="ty">Retold from ${esc(c.source.work)}. Read it again in your Library.</span></div></div>`;
   }
   if (k.kind === "crown") {
