@@ -78,7 +78,7 @@ body.animating #app section.panel button, body.animating #app section.panel sele
 <script>
 const DATA = /*DATA*/;
 const E = (() => { /*ENGINE*/
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, kill, checkWin, ITEM_TARGETS, ASSUMPTIONS, makeRng, rumpelChoices, RUMPEL_GUESSES };
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, kill, checkWin, ITEM_TARGETS, ASSUMPTIONS, makeRng, rumpelChoices, RUMPEL_GUESSES, apCost, isHidden };
 })();
 
 const NAMES = ["Blue", "Red"];
@@ -259,8 +259,8 @@ function sheetHtml() {
     const ap = apLeft(S.p), opts = E.options(st, c);
     acts = `<div class="acts">${c.actions.map((a, k) => {
       const o = opts.find((x) => x.index === k);
-      const why = !o ? (a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight ? "used up" : "no target") : a.ap > ap ? "not enough AP" : "";
-      return `<button data-act="action" data-k="${k}"${why ? " disabled" : ""}><strong>${esc(a.name)}</strong> · ${a.ap} AP${a.usesPerFight ? ` · ${a.usesPerFight} per fight` : ""}${why ? ` · ${why}` : ""}<br><span class="muted">${esc(a.text)}</span></button>`;
+      const why = !o ? (a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight ? "used up" : "no target") : E.apCost(S.st, c, a) > ap ? "not enough AP" : "";
+      return `<button data-act="action" data-k="${k}"${why ? " disabled" : ""}><strong>${esc(a.name)}</strong> · ${E.apCost(S.st, c, a)} AP${a.usesPerFight ? ` · ${a.usesPerFight} per fight` : ""}${why ? ` · ${why}` : ""}<br><span class="muted">${esc(a.text)}</span></button>`;
     }).join("")}</div>`;
   } else if (mine) acts = `<p class="muted">This hero already has an action this round. Remove it from the plan to choose another.</p>`;
   const texts = c.kind === "hero"
@@ -275,7 +275,7 @@ function sheetHtml() {
 }
 function addOrder(c, k, target, target2) {
   const a = c.actions[k];
-  S.plans[S.p].orders.push({ uid: c.uid, index: k, target: target ? target.uid : null, target2: target2 ? target2.uid : null, ap: a.ap, name: a.name });
+  S.plans[S.p].orders.push({ uid: c.uid, index: k, target: target ? target.uid : null, target2: target2 ? target2.uid : null, ap: E.apCost(S.st, c, a), name: a.name });
   S.sheet = null;
 }
 function chooseAction(c, k) {
@@ -314,7 +314,7 @@ async function lock() {
 }
 function suggest() {
   const plan = E.botPlan(S.st, S.p), st = S.st;
-  plan.orders = plan.orders.map((o) => { const c = findAny(o.uid), a = c.actions[o.index]; return { ...o, ap: a.ap, name: a.name }; });
+  plan.orders = plan.orders.map((o) => { const c = findAny(o.uid), a = c.actions[o.index]; return { ...o, ap: E.apCost(S.st, c, a), name: a.name }; });
   S.plans[S.p] = plan;
 }
 /*FX*/

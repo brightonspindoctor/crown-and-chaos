@@ -2960,7 +2960,14 @@
       "status": "cleared",
       "commonsFile": "Edward_Burne-Jones_-_The_Perseus_Series_-_Study_of_Perseus_in_Armour_for_The_Finding_of_Medusa_-_Google_Art_Project.jpg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old-100. Study for the Perseus Series."
+      "notes": "Commons rights check: PD-Art, PD-old-100. Study for the Perseus Series.",
+      "size": [3840, 5479],
+      "crops": {
+        "perseus": {
+          "window": [0.035, 0.03, 0.75, 0.3092],
+          "full": [0.045, 0.0, 0.9, 0.8831]
+        }
+      }
     },
     {
       "id": "medusa",
@@ -2981,7 +2988,14 @@
       "status": "cleared",
       "commonsFile": "Medusa-Caravaggio_(Uffizi).jpg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old."
+      "notes": "Commons rights check: PD-Art, PD-old.",
+      "size": [3425, 3543],
+      "crops": {
+        "medusa": {
+          "window": [0.19, 0.33, 0.62, 0.3526],
+          "full": [0.275, 0.36, 0.45, 0.609]
+        }
+      }
     },
     {
       "id": "odysseus",
@@ -3002,7 +3016,14 @@
       "status": "cleared",
       "commonsFile": "Draper_Herbert_James_Ulysses_and_the_Sirens.jpg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old-auto-1923."
+      "notes": "Commons rights check: PD-Art, PD-old-auto-1923.",
+      "size": [1589, 1311],
+      "crops": {
+        "odysseus": {
+          "window": [0.0, 0.0, 0.55, 0.3921],
+          "full": [0.02, 0.0, 0.42, 0.7127]
+        }
+      }
     },
     {
       "id": "polyphemus",
@@ -3023,7 +3044,14 @@
       "status": "cleared",
       "commonsFile": "Odilon_Redon_-_Le_Cyclope.jpeg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old."
+      "notes": "Commons rights check: PD-Art, PD-old.",
+      "size": [3543, 4439],
+      "crops": {
+        "polyphemus": {
+          "window": [0.1, 0.06, 0.6, 0.2817],
+          "full": [0.15, 0.0, 0.5, 0.5587]
+        }
+      }
     },
     {
       "id": "circe",
@@ -3044,7 +3072,14 @@
       "status": "cleared",
       "commonsFile": "Circe_Offering_the_Cup_to_Odysseus_(2457_x_4023px_ed.).jpg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old."
+      "notes": "Commons rights check: PD-Art, PD-old.",
+      "size": [2457, 4023],
+      "crops": {
+        "circe": {
+          "window": [0.05, 0.04, 0.9, 0.3233],
+          "full": [0.025, 0.03, 0.95, 0.8123]
+        }
+      }
     },
     {
       "id": "king-minos",
@@ -3064,7 +3099,14 @@
       "status": "cleared",
       "commonsFile": "Gustave_Doré_-_Dante_Alighieri_-_Inferno_-_Plate_13_(Canto_V_-_Minos).jpg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old. Doré's engraving for Dante's Inferno, where Minos judges the dead; the same King of Crete."
+      "notes": "Commons rights check: PD-Art, PD-old. Doré's engraving for Dante's Inferno, where Minos judges the dead; the same King of Crete.",
+      "size": [2826, 2314],
+      "crops": {
+        "king-minos": {
+          "window": [0.4, 0.08, 0.6, 0.431],
+          "full": [0.53, 0.05, 0.45, 0.7694]
+        }
+      }
     },
     {
       "id": "the-minotaur",
@@ -3085,7 +3127,14 @@
       "status": "cleared",
       "commonsFile": "George_Frederic_Watts_-_The_Minotaur_-_Google_Art_Project.jpg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old-auto; Tate's copyright notice on Commons is for its photograph, which is a faithful 2D copy."
+      "notes": "Commons rights check: PD-Art, PD-old-auto; Tate's copyright notice on Commons is for its photograph, which is a faithful 2D copy.",
+      "size": [1693, 2112],
+      "crops": {
+        "the-minotaur": {
+          "window": [0.0, 0.15, 1.0, 0.4715],
+          "full": [0.0, 0.0, 0.89, 0.9988]
+        }
+      }
     },
     {
       "id": "hoplite",
@@ -3106,7 +3155,14 @@
       "status": "cleared",
       "commonsFile": "Jacques-Louis_David_-_Leonidas_at_Thermopylae_(detail)_-_WGA6096.jpg",
       "maxWidth": 3000,
-      "notes": "Commons rights check: PD-Art, PD-old. Small scan (750px wide); look for a larger one."
+      "notes": "Commons rights check: PD-Art, PD-old. Small scan (750px wide); look for a larger one.",
+      "size": [750, 1197],
+      "crops": {
+        "hoplite": {
+          "window": [0.0, 0.08, 1.0, 0.3686],
+          "full": [0.05, 0.02, 0.85, 0.7456]
+        }
+      }
     },
     {
       "id": "medusa-variant",
@@ -3128,7 +3184,14 @@
       "commonsFile": "Rubens_Medusa.jpeg",
       "maxWidth": 3000,
       "variant": 2,
-      "notes": "Commons rights check: PD-Art, PD-old-100."
+      "notes": "Commons rights check: PD-Art, PD-old-100.",
+      "size": [3815, 2195],
+      "crops": {
+        "medusa": {
+          "window": [0.38, 0.2, 0.6, 0.6134],
+          "full": [0.55, 0.08, 0.35, 0.8516]
+        }
+      }
     },
     {
       "id": "odysseus-variant",
@@ -3150,7 +3213,14 @@
       "commonsFile": "John_William_Waterhouse_-_Ulysses_and_the_Sirens_-_Google_Art_Project.jpg",
       "maxWidth": 3000,
       "variant": 2,
-      "notes": "Commons rights check: PD-Art, PD-old-auto-1923."
+      "notes": "Commons rights check: PD-Art, PD-old-auto-1923.",
+      "size": [3840, 1884],
+      "crops": {
+        "odysseus": {
+          "window": [0.45, 0.12, 0.5, 0.5995],
+          "full": [0.57, 0.05, 0.32, 0.9131]
+        }
+      }
     },
     {
       "id": "board-hellas",
@@ -3174,7 +3244,13 @@
         "Perseus",
         "The Odyssey",
         "The Labyrinth"
-      ]
+      ],
+      "size": [3840, 2499],
+      "crops": {
+        "board": {
+          "board": [0.0, 0.02, 1.0, 0.9604]
+        }
+      }
     }
   ]
 }
