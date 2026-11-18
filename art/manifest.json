@@ -3155,7 +3155,14 @@
       "status": "cleared",
       "commonsFile": "Léonidas_aux_Thermopyles_-_Jacques-Louis_David_-_Musée_du_Louvre_Peintures_INV_3690_;_L_3711.jpg",
       "maxWidth": 6000,
-      "notes": "Commons rights check: PD-Art, PD-old. The Louvre's full scan (9655 x 7124); the card crops one hoplite from the left group."
+      "notes": "Commons rights check: PD-Art, PD-old. The Louvre's full scan (9655 x 7124); the card crops one hoplite from the left group.",
+      "size": [3840, 2833],
+      "crops": {
+        "hoplite": {
+          "window": [0.0, 0.43, 0.27, 0.2153],
+          "full": [0.0, 0.41, 0.2, 0.3795]
+        }
+      }
     },
     {
       "id": "medusa-variant",

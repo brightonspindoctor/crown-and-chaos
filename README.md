@@ -26,7 +26,7 @@ The icon is drawn in `game/icons/icon.svg`. To change it, replace that file and 
 | `cards/heroes/` | One JSON file per hero: realm, tale, Aspect, stats, Vulnerability (switched off for now; kept in the data), Renown, Crown passive, Bond, actions and art |
 | `cards/front-rank/` | Front-rank cards, including set cards such as the Grandmother and Koschei's Needle |
 | `cards/items/` | Single-use items |
-| `cards/lore/` | Lore cards, one file per hero: up to 3 retellings of the hero's tale, each naming its public-domain source. They never affect play. So far: St George, the Dragon, the Princess, Baba Yaga, Beowulf, Red Riding Hood, the Wolf and the Huntsman |
+| `cards/lore/` | Lore cards, one file per hero: up to 3 retellings of the hero's tale, each naming its public-domain source. They never affect play. So far: St George, the Dragon, the Princess, Baba Yaga, Beowulf, Red Riding Hood, the Wolf, the Huntsman, and the Hellas set (Perseus, Medusa, Odysseus, Polyphemus, Circe, King Minos and the Minotaur) |
 | `art/manifest.json` | Every image: artist, title, date, source and why it's public domain |
 | `art/images/` | Downloaded images (filled by the Fetch art workflow) |
 | `CREDITS.md` | Art credits, generated from the manifest |
