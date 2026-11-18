@@ -86,4 +86,13 @@
 .fx-plus::before { content: "+"; }
 .card.fx-scorch { filter: sepia(.6) saturate(1.8) brightness(1.15); }
 .card.fx-iced { box-shadow: 0 0 0 3px #bfe6ff, 0 0 18px #bfe6ff; }
+/* Hellas */
+.card.fx-stone { filter: grayscale(1) contrast(1.1) brightness(.92) sepia(.15); }
+.card.fx-stone::before { content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none; z-index: 2;
+  background: linear-gradient(115deg, transparent 30%, rgba(40,35,30,.55) 31%, transparent 33%), linear-gradient(60deg, transparent 55%, rgba(40,35,30,.5) 56%, transparent 58%), linear-gradient(170deg, transparent 70%, rgba(40,35,30,.45) 71%, transparent 73%), rgba(150,140,128,.25); }
+.card.fx-mirror { box-shadow: 0 0 0 3px #e8f0ff, 0 0 22px #cfe0ff; }
+.card.fx-swine { filter: hue-rotate(-30deg) saturate(1.6) brightness(1.1); }
+.fx-pink { width: 18px; height: 18px; background: radial-gradient(rgba(255,160,210,.85), transparent 70%); }
+.fx-seal svg { display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,.6)); }
+.fx-stoneTxt { color: #cfc7b8; } .fx-pinkTxt { color: #ff9ae0; } .fx-silver { color: #eef4ff; text-shadow: 0 0 8px #9fc0ff, 0 2px 0 rgba(0,0,0,.55); }
 @media (prefers-reduced-motion: reduce) { .card.fx-acting { translate: none; } .hp-pop { animation: none; } }

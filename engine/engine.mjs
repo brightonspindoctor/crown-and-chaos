@@ -459,6 +459,7 @@ export function damage(st, src, target, amount, opts = {}) {
   // Stony gaze: a melee attack on a Medusa Crown costs the attacking hero 1 Speed for the fight.
   if (atk && !opts.ranged && !opts.spell && t.id === "medusa" && crownIs(st, t.side, "medusa") && src?.kind === "hero" && src.side !== t.side && !src.flags.gazed) {
     src.flags.gazed = true; src.speedPerm -= 1; log(st, `${src.name} meets Medusa's gaze and slows (-1 Speed).`);
+    ev(st, { t: "debuff", kind: "gaze", src: t.uid, tgt: src.uid, text: "−1 Speed" });
   }
   // Misses and immunities
   if (atk && t.id === "rhiannon" && crownIs(st, t.side, "rhiannon") && src && speedOf(st, src) < speedOf(st, t) &&
@@ -733,7 +734,7 @@ export function upkeep(st) {
         if (st.fate !== i) break;
         const fr = cards(st, foe).filter((c) => c.kind === "front");
         for (const c of fr) c.flags.swineRound = st.round;
-        if (fr.length) log(st, `Circe turns ${sideName(foe)}'s front rank into swine: 0 Attack this round.`);
+        if (fr.length) { log(st, `Circe turns ${sideName(foe)}'s front rank into swine: 0 Attack this round.`); ev(st, { t: "debuff", kind: "swine", src: crown.uid, tgts: fr.map((c) => c.uid), text: "Swine: 0 Attack" }); }
         break;
       }
       case "friar-tuck": {
@@ -856,11 +857,11 @@ export const ACTIONS = {
     } },
     "Petrify": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Petrify") } },
   "odysseus": { "Nobody": { t: "none", go: (st, a) => log(st, `"My name is Nobody," says Odysseus.`) } },
-  "polyphemus": { "Hurl the boulder": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, 4, { ranged: true }); if (!x.dead && x.kind === "hero") { x.flags.slowRound = st.round + 1; log(st, `${x.name} is slowed next round.`); } } } },
+  "polyphemus": { "Hurl the boulder": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, 4, { ranged: true }); if (!x.dead && x.kind === "hero") { x.flags.slowRound = st.round + 1; log(st, `${x.name} is slowed next round.`); ev(st, { t: "debuff", kind: "slow", src: a.uid, tgt: x.uid, text: "−1 Speed next round" }); } } } },
   "circe": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
-    "Transfigure": { t: "enemyHero", go: (st, a, x) => { x.flags.transfigUntil = st.round + 1; log(st, `Circe transfigures ${x.name}: Attack 1 this round and next.`); } } },
-  "king-minos": { "Royal decree": { t: "none", go: (st, a) => { const fs = st.sides[1 - a.side].flags; if (fs.decreeRound === st.round + 1) return; fs.decreeRound = st.round + 1; log(st, `King Minos decrees: next round, every ${sideName(1 - a.side)} action costs 1 more action point.`); } } },
-  "the-minotaur": { "Growl": { t: "none", go: (st, a) => { st.sides[1 - a.side].flags.growlRound = st.round + 1; log(st, `The Minotaur growls: next round, every ${sideName(1 - a.side)} card has -1 Guard and -1 Speed.`); } },
+    "Transfigure": { t: "enemyHero", go: (st, a, x) => { x.flags.transfigUntil = st.round + 1; log(st, `Circe transfigures ${x.name}: Attack 1 this round and next.`); ev(st, { t: "debuff", kind: "transfig", src: a.uid, tgt: x.uid, text: "Attack 1" }); } } },
+  "king-minos": { "Royal decree": { t: "none", go: (st, a) => { const fs = st.sides[1 - a.side].flags; if (fs.decreeRound === st.round + 1) return; fs.decreeRound = st.round + 1; log(st, `King Minos decrees: next round, every ${sideName(1 - a.side)} action costs 1 more action point.`); ev(st, { t: "debuff", kind: "decree", src: a.uid, side: 1 - a.side, text: "Next round: +1 AP per action" }); } } },
+  "the-minotaur": { "Growl": { t: "none", go: (st, a) => { st.sides[1 - a.side].flags.growlRound = st.round + 1; log(st, `The Minotaur growls: next round, every ${sideName(1 - a.side)} card has -1 Guard and -1 Speed.`); ev(st, { t: "debuff", kind: "growl", src: a.uid, tgts: cards(st, 1 - a.side).map((c) => c.uid), text: "−1 Guard, −1 Speed" }); } },
     "Gore": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
   "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
   "merlin": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },

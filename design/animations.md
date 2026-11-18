@@ -82,6 +82,18 @@ Some actions and heroes have their own effect in place of the plain lunge, arrow
 | Stones in the belly | The Huntsman | A tumbling stone on an arc | Whoosh and crack |
 | Girdle Leash | The Princess | Gold lights travel to the Beast, then golden cords loop round it and pull tight: "Leashed" | Rattle |
 | Enchanted sleep | Merlin | A violet beam, then drifting mist and "z z z": "Asleep" | Ice crackle |
+| Petrify, Medusa's head | Medusa, Perseus | A yellow-green gaze beam; the card turns to grey, cracked stone in a puff of dust: "Petrified" / "Turned to stone" | Rising gaze tone, grinding stone |
+| Stony gaze | Medusa as Crown | Her gaze beam back at the hero that struck her, a flash of stone: "Stony gaze: −1 Speed" | Grinding stone |
+| Serpent hair | Medusa | A snake darts across to each card, jaws snap and green poison drips | Hiss, crunch |
+| Mirrored shield | Perseus | A silver shield and glow when chosen; when struck, a white flash, "Reflected!" and a silver beam back at the attacker | Glassy chime; a ringing ricochet |
+| Nobody | Odysseus | He fades almost to nothing when chosen; the attack passes through him: "Nobody!" | Whisper |
+| Hurl the boulder | Polyphemus | He heaves, a great rock tumbles on a high arc, a dust ring and a big board shake; "−1 Speed next round" | Heave, then a crashing rock-fall |
+| Hex, Transfigure | Circe | Pink runes; for Transfigure, pink lights to the target, which puffs pink: "Transfigured: Attack 1" | Shimmer; a pig's grunt |
+| Aiaia (Circe's Crown) | Circe | Pink puffs over each enemy front-rank card: "Swine" | Grunt |
+| Royal decree | King Minos | A red wax seal with a gold crown stamps down by the enemy's ranks: "Royal decree: +1 AP per action next round" | A three-note horn call and a stamp |
+| Athenian tribute | King Minos | His heals travel as gold lights | Chime |
+| Growl | The Minotaur | Three red shockwaves roll out from him, the board shakes and every enemy card trembles: "−1 Guard −1 Speed" | A long low growl |
+| Gore | The Minotaur | A long charge, two bone-white horn sweeps, a red ring and a board shake | Bellow and smash |
 
 Every other melee hit now shows a sword streak at the moment of impact. Any hit for 5 or more shakes the board and sends out a ring. Heals send up green crosses, and the Monk's heal adds a gold halo. A falling card gives off rising ash, and a falling hero shakes the board. Poison runs down the card in green drips. When night falls the moon rises and stars come out over the board, and night damage sends up shadow wisps.
 
@@ -137,4 +149,5 @@ Every event has `t` (its type) and `r` (the round). Cards are referred to by `ui
 | `guardUp`, `attackUp`, `poison` | `src`, `item`, `tgt`, `amt` | A stat is raised |
 | `stop`, `freeze`, `skip`, `wasted` | `tgt` or `uid` | Lost actions |
 | `death`, `revive`, `appear` | `uid`, `side`, `slot` | Cards leave or join the board |
+| `debuff` | `kind`, `src`, `tgt` or `tgts`, `side`, `text` | A stat lowered without damage. `kind` is `gaze`, `slow`, `transfig`, `swine`, `growl` or `decree` |
 | `over` | `winner` | The fight ends |

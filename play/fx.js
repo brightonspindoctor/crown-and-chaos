@@ -95,6 +95,20 @@ const SND = (() => {
     stone() { tone("triangle", 190, 70, 0.13, 0.65); noise("lowpass", 1600, 200, 0.12, 0.55); },
     wind() { noise("bandpass", 380, 1700, 0.85, 0.38, 0, 3); noise("bandpass", 1700, 480, 0.65, 0.26, 0.3, 3); },
     smash() { tone("sine", 115, 30, 0.38, 1); noise("lowpass", 1300, 70, 0.34, 0.75); },
+    // Hellas
+    hiss() { noise("highpass", 4200, 6500, 0.55, 0.22, 0, 1); noise("bandpass", 3200, 2600, 0.45, 0.14, 0.05, 3); for (let k = 0; k < 4; k++) noise("highpass", 6000, 5000, 0.05, 0.12, 0.1 + k * 0.09, 2); },
+    petrify() { tone("triangle", 120, 55, 0.7, 0.4); for (let k = 0; k < 10; k++) noise("bandpass", 700 - k * 35, 260, 0.07, 0.42, k * 0.055 + Math.random() * 0.02, 4); noise("lowpass", 900, 90, 0.5, 0.3, 0.45); },
+    gaze() { tone("sine", 330, 990, 0.45, 0.14); tone("sawtooth", 165, 495, 0.45, 0.08, 0, ["lowpass", 1400]); noise("highpass", 3000, 6000, 0.25, 0.1, 0.2); },
+    boulder() { noise("lowpass", 1200, 60, 0.7, 0.85); tone("sine", 85, 24, 0.75, 1); tone("triangle", 160, 50, 0.3, 0.4, 0.02); for (let k = 0; k < 6; k++) noise("bandpass", 1600, 500, 0.06, 0.3, 0.12 + k * 0.07, 2); },
+    heave() { noise("lowpass", 300, 900, 0.35, 0.3); tone("sawtooth", 90, 70, 0.35, 0.12, 0, ["lowpass", 400]); },
+    growl() { tone("sawtooth", 78, 58, 1.1, 0.3, 0, ["lowpass", 520]); tone("sawtooth", 117, 86, 1.1, 0.18, 0.04, ["lowpass", 700]); tone("square", 52, 44, 1.1, 0.12, 0, ["lowpass", 260]);
+      for (let k = 0; k < 12; k++) noise("bandpass", 380, 220, 0.08, 0.32, k * 0.085, 3); },
+    bellow() { tone("sawtooth", 98, 70, 0.5, 0.26, 0, ["lowpass", 650]); noise("bandpass", 420, 200, 0.45, 0.3, 0, 2); },
+    grunt() { [0, 0.2].forEach((at) => { tone("square", 190, 120, 0.13, 0.22, at, ["lowpass", 900]); noise("bandpass", 650, 380, 0.12, 0.28, at, 3); }); },
+    mirror() { notes("sine", [1760, 2217, 2637, 3520], 0.045, 0.6, 0.09); noise("highpass", 5000, 9000, 0.35, 0.12, 0.05); },
+    reflect() { tone("sine", 2637, 1319, 0.3, 0.2); noise("highpass", 4000, 8000, 0.2, 0.25); [523, 1187, 1690].forEach((f, k) => tone("sine", f, f, 0.6 - k * 0.12, 0.12)); },
+    whisper() { noise("bandpass", 1900, 800, 0.7, 0.16, 0, 2); noise("bandpass", 1200, 2200, 0.5, 0.1, 0.25, 2); tone("sine", 392, 370, 0.8, 0.05, 0.1); },
+    decree() { horn(392, 0, 0.22); horn(523, 0.2, 0.22); horn(659, 0.4, 0.6); tone("sine", 110, 40, 0.3, 0.8, 0.95); noise("lowpass", 900, 90, 0.18, 0.5, 0.95); },
     night() { tone("sine", 55, 52, 1.6, 0.45); tone("sine", 58, 55, 1.6, 0.35); noise("lowpass", 200, 80, 1.4, 0.2); },
     // Results and the call to battle: war drums, a horn, and a fanfare, a stalemate or a lament.
     battle() {
@@ -452,6 +466,76 @@ function makeFX(A) {
     for (let i = 0; i < 7; i++) puff("fx-p fx-drop fx-glowdot", { x: r.left + rnd(0.15, 0.85) * r.width, y: r.top + r.height * 0.2 }, 0, r.height * rnd(0.4, 0.7), rnd(700, 1000), { delay: rnd(0, 300), s0: 1, s1: 0.7, color: "#7fd04a", ease: "ease-in" });
   }
 
+  // ---------- Hellas ----------
+  // A card turned to stone: grey and cracked, with stone dust.
+  function stoneOver(el) {
+    if (!el) return;
+    el.classList.add("fx-stone");
+    if (skip) return;
+    const r = el.getBoundingClientRect(), p = centre(el);
+    for (let i = 0; i < 14; i++) puff("fx-p fx-ash", { x: r.left + rnd(0.1, 0.9) * r.width, y: r.top + rnd(0.2, 0.9) * r.height }, rnd(-18, 18), rnd(10, 40), rnd(600, 900), { delay: rnd(0, 300), s0: 1.2, s1: 0.5 });
+    ring(p, "#b8b0a2", 1.1);
+  }
+  // A serpent darts from Medusa to a card.
+  const SNAKE = `<svg viewBox="0 0 46 14" width="46" height="14"><path d="M2 7 C8 1 12 13 18 7 S28 1 34 7" fill="none" stroke="#5f9a3a" stroke-width="4" stroke-linecap="round"/><path d="M33 3 L44 7 L33 11 Z" fill="#4c7f2c"/><circle cx="39" cy="6" r="1" fill="#ffe14a"/></svg>`;
+  // A great rock heaved over the board.
+  const BOULDER = `<svg viewBox="0 0 40 34" width="70" height="60"><path d="M5 12 L15 3 L30 4 L38 14 L35 27 L22 33 L8 30 L2 21 Z" fill="#7a7168" stroke="#3e3832" stroke-width="2"/><path d="M12 12 L20 9 M24 18 L30 15 M10 22 L17 24" stroke="#a49a8e" stroke-width="2"/></svg>`;
+  // Pink puffs and a grunt: a card becomes a swine.
+  function swinePuff(el) {
+    if (!el || skip) return;
+    const p = centre(el);
+    for (let i = 0; i < 10; i++) puff("fx-p fx-pink", p, rnd(-40, 40), -rnd(10, 50), rnd(600, 900), { delay: rnd(0, 200), s0: 0.8, s1: 2.6, o0: 0.85 });
+    el.classList.add("fx-swine"); setTimeout(() => el.classList.remove("fx-swine"), D(1100));
+  }
+  // A wax seal stamps down in the middle of the enemy's side (Royal decree).
+  async function sealStamp(side) {
+    const board = A.boardEl(); if (!board || skip) return;
+    // Over the middle of that side's ranks: its hero row, else the board's centre.
+    const anchor = slotEl(side, 2) || slotEl(side, 5), br = board.getBoundingClientRect();
+    const y = anchor ? centre(anchor).y : br.top + br.height / 2;
+    const d = spawn("fx-seal", br.left + br.width / 2, y, `<svg viewBox="0 0 60 60" width="84" height="84"><circle cx="30" cy="30" r="27" fill="#8e1c1c" stroke="#5a0e0e" stroke-width="3"/><circle cx="30" cy="30" r="20" fill="none" stroke="#d9b763" stroke-width="1.5"/><path d="M18 36 L20 22 L26 29 L30 18 L34 29 L40 22 L42 36 Z" fill="#d9b763"/></svg>`);
+    await anim(d, [{ transform: "translate(-50%,-50%) scale(2.4) rotate(-20deg)", opacity: 0 }, { transform: "translate(-50%,-50%) scale(1) rotate(0)", opacity: 1, offset: 0.4 }, { transform: "translate(-50%,-50%) scale(1)", opacity: 1, offset: 0.8 }, { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }], 1200, { easing: "cubic-bezier(.5,0,.8,.6)" }).then(() => d.remove());
+  }
+  // Every Hellas effect that changes a stat without damage arrives as a "debuff" event.
+  async function onDebuff(e) {
+    const src = cardEl(e.src), sp = src ? centre(src) : null;
+    const tgts = (e.tgts || (e.tgt != null ? [e.tgt] : [])).map(cardEl).filter(Boolean);
+    say(e.text);
+    switch (e.kind) {
+      case "gaze": {
+        const t = tgts[0]; if (!t) return;
+        if (sp) await beam(sp, t, "#c6ff6a", "beam");
+        SND.play("petrify"); stoneOver(t); setTimeout(() => t.classList.remove("fx-stone"), D(900));
+        return floatText(t, "Stony gaze: −1 Speed", "fx-stoneTxt fx-small");
+      }
+      case "slow": { const t = tgts[0]; if (!t) return; SND.play("dud"); return floatText(t, "−1 Speed next round", "fx-stoneTxt fx-small"); }
+      case "transfig": {
+        const t = tgts[0]; if (!t) return;
+        if (sp) { runes(sp, "#ff7ad9"); await motes(sp, centre(t), "#ff9ae0", 8); }
+        SND.play("grunt"); swinePuff(t);
+        return floatText(t, "Transfigured: Attack 1", "fx-pinkTxt");
+      }
+      case "swine": {
+        if (src) runes(sp, "#ff7ad9");
+        SND.play("grunt"); tgts.forEach(swinePuff);
+        await Promise.all(tgts.map((t) => floatText(t, "Swine", "fx-pinkTxt fx-small")));
+        return;
+      }
+      case "growl": {
+        SND.play("growl");
+        if (sp) { for (let i = 0; i < 3; i++) setTimeout(() => ring(sp, "#c0392b", 1.6 + i * 0.7), D(i * 160)); }
+        quake(7); if (src) shake(src, true);
+        await Promise.all(tgts.map((t, i) => wait(i * 40).then(() => Promise.all([shake(t, false), floatText(t, "−1 Guard −1 Speed", "fx-dmg fx-small")]))));
+        return;
+      }
+      case "decree": {
+        SND.play("decree"); await sealStamp(e.side);
+        const board = A.boardEl(); if (board) floatTextAt(centre(board), "Royal decree: +1 AP per action next round", "fx-gold");
+        return wait(500);
+      }
+    }
+  }
+
   // ---------- attacks ----------
   async function lunge(a, b, impact, beast, reach = 0.7) {
     if (!a || !b || reducedMotion || skip) { await glow(a, "fx-strike", 160); await impact(); return; }
@@ -544,9 +628,10 @@ function makeFX(A) {
     "Pestle": "smash", "Arm-wrench": "smash", "Break their spirit": "smash",
     "Bite": "bite", "Claw": "claws", "Tail Sweep": "sweep", "Rampage": "sweep", "Quarterstaff": "sweep",
     "Whirlwind": "whirl", "Split the Arrow": "goldarrow", "Stones in the belly": "stone",
+    "Hurl the boulder": "boulder", "Gore": "gore",
   };
   const CARD_FX = { "berserker": "sweep", "the-snow-queen": "ice", "gwydion": "hex", "the-bride": "lightning", "baba-yaga": "fire" };
-  let actNow = null, pyreLit = false, lastBite = null;
+  let actNow = null, pyreLit = false, lastBite = null, reflected = null;
   function themeOf(e) {
     if (e.item === "skull-lantern") return "lantern";
     if (e.item || e.style === "poison" || e.style === "night" || reducedMotion) return null;
@@ -571,7 +656,7 @@ function makeFX(A) {
       case "oven": if (melee) return lunge(srcEl, t, async () => { SND.play("ignite"); engulf(t, "fire"); await impact(e, t, { silent: true, color: "#ff8a2a" }); });
         break;
       case "hex": {
-        const c = actNow?.id === "gwydion" ? "#7be08a" : actNow?.id === "morgan-le-fay" ? "#d36bff" : "#9a86ff";
+        const c = actNow?.id === "gwydion" ? "#7be08a" : actNow?.id === "morgan-le-fay" ? "#d36bff" : actNow?.id === "circe" ? "#ff7ad9" : "#9a86ff";
         if (from) { runes(from, c); await wait(180); await beam(from, t, c, "beam"); }
         runes(tp, c); return impact(e, t, { silent: true, color: c });
       }
@@ -599,12 +684,20 @@ function makeFX(A) {
         break;
       case "sweep": if (melee) return lunge(srcEl, t, async () => { SND.play("swoosh"); sweep(tp, srcEl && card(e.src)?.aspect === "Beast" ? "#ffcf9a" : "#ffffff"); await impact(e, t, { silent: true }); }, "none");
         break;
+      case "boulder": if (from) { SND.play("whoosh"); await throwAt(from, tp, BOULDER, { spin: 400, lift: 120, speed: 0.9 }); SND.play("boulder"); quake(10); ring(tp, "#9a8f82", 1.6); burst(tp, "#7a7168", 16, 60); burst(tp, "#c8b89a", 10, 40, "crumb"); return impact(e, t, { silent: true, color: "#9a8f82" }); }
+        break;
+      case "gore": if (melee) return lunge(srcEl, t, async () => { SND.play("bellow"); SND.play("smash"); sweep(tp, "#efe4cc"); setTimeout(() => sweep({ x: tp.x + 14, y: tp.y + 10 }, "#efe4cc"), D(90)); quake(8); ring(tp, "#c0392b", 1.2); await impact(e, t, { silent: true, color: "#b01010" }); }, "none", 0.92);
+        break;
       case "whirl": whirl(t); if (!reducedMotion) anim(t, [{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], 650, { fill: "none", easing: "ease-in-out" }); await wait(450); return impact(e, t, { silent: true, color: "#dfe8f0" });
     }
     return null;
   }
   async function onHit(e) {
     const t = cardEl(e.tgt), style = hitStyle(e), from = sourcePoint(e), srcEl = e.item ? null : cardEl(e.src);
+    // The attack bounces off Perseus's mirrored shield and comes back at the attacker.
+    if (reflected && e.src === reflected.by && e.tgt === reflected.back && srcEl && t && !reducedMotion) {
+      reflected = null; await beam(centre(srcEl), t, "#e8f0ff", "beam"); return impact(e, t, { silent: true, color: "#e8f0ff" });
+    }
     say(`${card(e.src)?.name || (e.item ? A.itemName?.(e.item) || "" : "")} hits ${card(e.tgt)?.name} for ${e.dmg}`);
     const theme = t ? themeOf(e) : null;
     if (theme) { const done = await themedHit(theme, e, t, from, srcEl).then((v) => v === null ? null : true); if (done) return; }
@@ -713,12 +806,16 @@ function makeFX(A) {
     }
     SND.play("tick");
     await wait(e.auto ? 140 : 320);
+    if (skip) return;
+    if (e.name === "Mirrored shield") { SND.play("mirror"); shieldPop(centre(el)); glow(el, "fx-mirror", 700); await floatText(el, "Mirrored shield", "fx-silver fx-small"); }
+    else if (e.name === "Nobody") { SND.play("whisper"); if (!reducedMotion) anim(el, [{ opacity: 1 }, { opacity: 0.3, offset: 0.5 }, { opacity: 1 }], 700, { fill: "none" }); await floatText(el, "\"My name is Nobody\"", "fx-miss fx-small"); }
+    else if (e.name === "Hurl the boulder") { SND.play("heave"); if (!reducedMotion) await anim(el, [{ transform: "translateY(0)" }, { transform: "translateY(-10px) scale(1.06)" }, { transform: "translateY(0)" }], 300, { fill: "none" }); }
   }
   async function onHeal(e) {
     const t = cardEl(e.tgt), from = e.item ? itemPos : (e.src != null && e.src !== e.tgt ? (cardEl(e.src) ? centre(cardEl(e.src)) : null) : null);
     say(`${card(e.tgt)?.name} heals ${e.amt}`);
     if (lastBite && t && actNow && e.tgt === actNow.uid) { await motes(lastBite, centre(t), "#c41818", 8); lastBite = null; }
-    else if (from && t) await motes(from, centre(t), "#8ee08a", 6);
+    else if (from && t) await motes(from, centre(t), card(e.src)?.id === "king-minos" ? "#ffd45c" : "#8ee08a", 6);
     SND.play("heal"); setHp(e.tgt, e.hp);
     if (t) { burst(centre(t), "#a8f0a0", 8, 30); sparkles(t, "#8ee08a"); if (card(e.src)?.id === "monk") ring(centre(t), "#ffe08a", 0.8); }
     await Promise.all([glow(t, "fx-healed", 500), floatText(t, `+${e.amt}`, "fx-heal")]);
@@ -765,6 +862,12 @@ function makeFX(A) {
   }
   async function onRedirect(e) {
     const to = cardEl(e.to), from = cardEl(e.from); if (!to || !from) return;
+    if (e.to === e.src) { // Mirrored shield
+      say("Perseus's mirrored shield reflects the attack");
+      reflected = { by: e.from, back: e.to };
+      SND.play("reflect"); shieldPop(centre(from)); flash("#e8f0ff", 0.25); glow(from, "fx-mirror", 500);
+      return floatText(from, "Reflected!", "fx-silver");
+    }
     say(`${card(e.to)?.name} takes the blow meant for ${card(e.from)?.name}`);
     SND.play("whoosh");
     if (!reducedMotion && !skip) {
@@ -779,6 +882,11 @@ function makeFX(A) {
   async function onMiss(e) {
     const t = cardEl(e.tgt), s = cardEl(e.src);
     say(`${card(e.src)?.name} misses`);
+    if (card(e.tgt)?.id === "odysseus") { // "Nobody" is there
+      SND.play("whisper");
+      if (t && !reducedMotion) anim(t, [{ opacity: 1, filter: "blur(0)" }, { opacity: 0.25, filter: "blur(2px)", offset: 0.35 }, { opacity: 1, filter: "blur(0)" }], 700, { fill: "none" });
+      return floatText(t, "Nobody!", "fx-miss");
+    }
     SND.play("miss");
     if (t && !reducedMotion) anim(t, [{ transform: "translateX(0)" }, { transform: "translateX(18px)", offset: 0.4 }, { transform: "translateX(0)" }], 500, { fill: "none" });
     if (s) glow(s, "fx-strike", 200);
@@ -808,6 +916,11 @@ function makeFX(A) {
       if (src && src !== t) await beam(centre(src), t, "#b9a2ff", "beam");
       SND.play("frost"); sleepMist(t); t.classList.add("fx-stopped");
       return floatText(t, "Asleep", "fx-frost");
+    }
+    if (t && (name === "Petrify" || name === "Medusa's head")) {
+      if (src && src !== t) { SND.play("gaze"); await beam(centre(src), t, "#c6ff6a", "beam"); }
+      SND.play("petrify"); stoneOver(t); quake(4);
+      return floatText(t, name === "Petrify" ? "Petrified" : "Turned to stone", "fx-stoneTxt");
     }
     return status(e, "Stopped", "fx-stop", "rattle", (x) => x && x.classList.add("fx-stopped"), "beam");
   }
@@ -842,7 +955,15 @@ function makeFX(A) {
     wasted: (e) => status(e, "Wasted: no target", "fx-stop fx-small", "dud"),
     guardUp: onGuardUp,
     attackUp: (e) => status(e, `+${e.amt} Attack`, "fx-gold", "shing", null, "#ffd45c"),
-    poison: (e) => status(e, `+${e.amt} Poison`, "fx-poison", "bubble", (t) => { bubbles(t); drips(t); }, "#8fd14f"),
+    poison: async (e) => {
+      const t = cardEl(e.tgt), s = actNow && actNow.name === "Serpent hair" && !e.item ? cardEl(actNow.uid) : null;
+      if (s && t && !reducedMotion && !skip) {
+        SND.play("hiss"); await throwAt(centre(s), centre(t), SNAKE, { aim: true, lift: 30, speed: 0.5 });
+        SND.play("crunch"); bite(centre(t)); bubbles(t); drips(t); return floatText(t, `+${e.amt} Poison`, "fx-poison");
+      }
+      return status(e, `+${e.amt} Poison`, "fx-poison", "bubble", (x) => { bubbles(x); drips(x); }, "#8fd14f");
+    },
+    debuff: onDebuff,
     hp: (e) => e.delta > 0 ? onHeal({ ...e, amt: e.delta }) : impact({ ...e, dmg: -e.delta, style: "effect" }, cardEl(e.tgt)),
     over: onOver,
   };

@@ -8,7 +8,7 @@ const heroIds = Object.keys(data.heroes);
 const frontIds = Object.keys(data.front).filter((f) => f !== "the-needle");
 const itemIds = Object.keys(data.items);
 const KNOWN = new Set(["phase", "act", "item", "hit", "heal", "miss", "redirect", "death", "revive", "swap",
-  "stop", "freeze", "skip", "wasted", "guardUp", "attackUp", "poison", "over", "hp", "appear"]);
+  "stop", "freeze", "skip", "wasted", "guardUp", "attackUp", "poison", "over", "hp", "appear", "debuff"]);
 // The log line each kind of event must follow.
 const PAIRS = {
   hit: (e) => (e.dmg > 0 && !e.survived ? / deals \d+ to / : null),
