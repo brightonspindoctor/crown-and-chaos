@@ -1,20 +1,177 @@
 {
- "ranAt": "2026-11-18T14:27:58.184Z",
+ "ranAt": "2026-11-18T16:57:39.119Z",
  "files": [],
  "searches": {
-  "Léonidas aux Thermopyles David": [
+  "Winge Loke och Sigyn": [
    {
-    "file": "Etude d'ensemble pour Léonidas aux Thermopyles.png",
-    "width": 919,
-    "height": 686,
-    "mime": "image/png",
+    "file": "Loke och Sigyn.jpg",
+    "width": 1844,
+    "height": 2284,
+    "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Jacques-Louis David",
-    "date": "1814 date QS:P571,+1814-00-00T00:00:00Z/9",
-    "credit": "louvre.fr",
+    "artist": "Mårten Eskil Winge (1825-1896) and Gunnar Forssell (1859-1903) as described above. Photograph by User:Haukurth .",
+    "date": "Painting created in 1863. Xylograph created in 1887, [ 1 ] published in 1893.",
+    "credit": "The image is found on page 158 of Fredrik Sander's 1893 edition of the Poetic Edda; Edda Sämund den vises : skaldeverk af fornnordiska myt- och hjältesånger om de götiska eller germaniska folkens gamla gudatro, sagominnen och vandringar / ö",
+    "description": "This wood engraving is based on a painting by Mårten Eskil Winge. It shows the Norse mythological figures Loki and Sigyn. Loki is bound and Sigyn holds a cup above his head to protect him from the venom dripping from the snake above. In the",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Loke och Sigun - Mårten Eskil Winge.jpg",
+    "width": 1894,
+    "height": 2389,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Mårten Eskil Winge",
+    "date": "1865",
+    "credit": "Litografiskt allehanda , femte årgången. Sigfrid Flodins förlag, 1865",
+    "description": "Litografi efter Loke och Sigun av Mårten Eskil Winge.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-100-1923",
+     "PD-old-100-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Loke och Sigyn repaired.jpg",
+    "width": 590,
+    "height": 750,
+    "mime": "image/jpeg",
+    "licence": "CC0",
+    "usage": "Creative Commons Zero, Public Domain Dedication",
+    "copyrighted": "True",
+    "artist": "Unknown author Unknown author",
+    "date": "2014-03-04 12:37:34",
+    "credit": "wiki commons",
+    "description": "this is the same file as Loke och Sigyn which has become corrupt.",
+    "restrictions": "",
+    "licenceTags": [
+     "CC-Layout",
+     "Cc-zero",
+     "License template tag"
+    ]
+   },
+   {
+    "file": "Loke and Sigyn (Mårten Winge) - Nationalmuseum - 18041.tif",
+    "width": 2752,
+    "height": 3485,
+    "mime": "image/tiff",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Mårten Eskil Winge",
+    "date": "1863 date QS:P571,+1863-00-00T00:00:00Z/9",
+    "credit": "Nationalmuseum",
     "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "Licensed-PD-Art",
+     "Licensed-PD-Art/en",
+     "Licensed-PD-Art/layout",
+     "PD-Layout",
+     "PD-Nationalmuseum Stockholm",
+     "PD-Nationalmuseum Stockholm/i18n/en",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-auto",
+     "PD-old-auto/core",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Loke och Sigyn Mårten Eskil Winge.jpg",
+    "width": 1964,
+    "height": 2559,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Mårten Eskil Winge",
+    "date": "",
+    "credit": "Svenskt konstnärslexikon",
+    "description": "Loke och Sigyn skapad av Mårten Eskil Winge, avfotograferad bild från Allhems Svenskt konstnärslexikon.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Art",
+     "PD-Art-100",
+     "PD-Art-old-100",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-100",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   }
+  ],
+  "Loki painting 19th century": [
+   {
+    "file": "Anton Azbe - Zamorka.jpg",
+    "width": 1126,
+    "height": 1600,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Anton Ažbe",
+    "date": "1895 date QS:P571,+1895-00-00T00:00:00Z/9",
+    "credit": "This image is available from the National Gallery of Slovenia website under the reference number NGS0001 .",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Fallback",
+     "License template tag",
+     "PD-Art",
+     "PD-Art/en",
+     "PD-Art/layout",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-art-category",
+     "PD-art-category/core",
+     "PD-old-X-expired",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Anton Ažbe 1890 Man in a bow tie.jpg",
+    "width": 1800,
+    "height": 2466,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Anton Ažbe",
+    "date": "circa 1890 date QS:P571,+1890-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "В. И. Барановский, И. Б. Хлебников. Антон Ажбе и художники России. М., 2001. ISBN 9619093607",
+    "description": "Painted on the reverse of the Bavarian man",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
@@ -32,74 +189,47 @@
     ]
    },
    {
-    "file": "Léonidas aux Thermopyles D’après le tableau de David.jpg",
-    "width": 800,
-    "height": 643,
+    "file": "Anton Ažbe 1886 Avtoportret.jpg",
+    "width": 1416,
+    "height": 1800,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "René Puaux",
-    "date": "19 th century date QS:P,+1850-00-00T00:00:00Z/7",
-    "credit": "http://eng.travelogues.gr/collection.php?view=52",
+    "artist": "Anton Ažbe",
+    "date": "1886 date QS:P571,+1886-00-00T00:00:00Z/9",
+    "credit": "This image is available from the National Gallery of Slovenia website under the reference number ZDS2004008 .",
     "description": "",
     "restrictions": "",
     "licenceTags": [
      "Cc-pd-mark-footer",
-     "License template tag",
-     "PD-1996",
-     "PD-1996-text",
-     "PD-1996-text/country",
-     "PD-1996-text/i18n/en",
-     "PD-1996/en",
-     "PD-1996/layout",
-     "PD-Layout",
-     "PD-old",
-     "PD-old-text",
-     "PD-old-warning-text"
-    ]
-   },
-   {
-    "file": "David (atelier de) - Léonidas aux Thermopyles, RF2064.jpg",
-    "width": 758,
-    "height": 582,
-    "mime": "image/jpeg",
-    "licence": "Public domain",
-    "usage": "Public domain",
-    "copyrighted": "False",
-    "artist": "Jacques-Louis David",
-    "date": "19 th century date QS:P,+1850-00-00T00:00:00Z/7",
-    "credit": "https://www.photo.rmn.fr/archive/07-519157-2C6NU0CMBVKL.html",
-    "description": "",
-    "restrictions": "",
-    "licenceTags": [
-     "Cc-pd-mark-footer",
+     "Copyright-tag-still-required",
+     "Copyright-tag-still-required/i18n/en",
+     "Fallback",
      "License template tag",
      "PD-Art",
      "PD-Art/en",
      "PD-Art/layout",
      "PD-Layout",
      "PD-US-expired-text",
-     "PD-art",
      "PD-art-category",
      "PD-art-category/core",
-     "PD-old-100-1923",
-     "PD-old-100-expired",
      "PD-old-X-expired",
+     "PD-old-auto-expired",
      "PD-old-text"
     ]
    },
    {
-    "file": "David - Léonidas aux Thermopyles, INV 26080, Recto.jpg",
-    "width": 768,
-    "height": 574,
+    "file": "Ludvik Grilc - Brizinški mestni glavar v Škofji Loki.jpg",
+    "width": 844,
+    "height": 1214,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Jacques-Louis David",
-    "date": "",
-    "credit": "http://arts-graphiques.louvre.fr/detail/artistes/1/747-DAVID-Jacques-Louis",
+    "artist": "Ludvik Grilc",
+    "date": "second half of 19 th century date QS:P571,+1850-00-00T00:00:00Z/7",
+    "credit": "This image is available from the Digital Library of Slovenia under the reference number 2MP2ZOX3 This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing for more ",
     "description": "",
     "restrictions": "",
     "licenceTags": [
@@ -109,25 +239,24 @@
      "PD-Art/en",
      "PD-Art/layout",
      "PD-Layout",
-     "PD-art",
      "PD-art-category",
      "PD-art-category/core",
-     "PD-old",
+     "PD-old-100",
      "PD-old-text",
      "PD-old-warning-text"
     ]
    },
    {
-    "file": "Léonidas aux Thermopyles - Jacques-Louis David - Musée du Louvre Peintures INV 3690 ; L 3711.jpg",
-    "width": 9655,
-    "height": 7124,
+    "file": "Anton Ažbe - Glava starca.jpg",
+    "width": 836,
+    "height": 1056,
     "mime": "image/jpeg",
     "licence": "Public domain",
     "usage": "Public domain",
     "copyrighted": "False",
-    "artist": "Jacques-Louis David",
-    "date": "1814",
-    "credit": "photo Shonagon 2025-03-15",
+    "artist": "Anton Ažbe",
+    "date": "by 1905 date QS:P571,+1905-00-00T00:00:00Z/7,P1326,+1905-00-00T00:00:00Z/9",
+    "credit": "https://www.ng-slo.si/si/register_works?p=2",
     "description": "",
     "restrictions": "",
     "licenceTags": [
@@ -140,80 +269,357 @@
      "PD-US-expired-text",
      "PD-art-category",
      "PD-art-category/core",
-     "PD-old-100-expired",
      "PD-old-X-expired",
+     "PD-old-auto-expired",
      "PD-old-text"
     ]
    }
   ],
-  "Jacques-Louis David Léonidas Louvre haute résolution": [],
-  "Spartan hoplite painting": [
+  "Loki bound Sigyn painting": [
    {
-    "file": "Greek athletic sports and festivals (1910) (14790120263).jpg",
-    "width": 1646,
-    "height": 2364,
+    "file": "Loke och Sigyn.jpg",
+    "width": 1844,
+    "height": 2284,
     "mime": "image/jpeg",
-    "licence": "No restrictions",
-    "usage": "No known copyright restrictions",
-    "copyrighted": "True",
-    "artist": "Internet Archive Book Images",
-    "date": "1910",
-    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14790120263/ Source book page: https://archive.org/stream/greekathleticspo00gard/greekathleticspo00gard#page/n316/mode/1up",
-    "description": "Identifier : greekathleticspo00gard ( find matches ) Title : Greek athletic sports and festivals Year : 1910 ( 1910s ) Authors : Gardiner, E. Norman (Edward Norman), 1864-1930 Subjects : Athletics Sports Olympics Fasts and feasts Publisher ",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Mårten Eskil Winge (1825-1896) and Gunnar Forssell (1859-1903) as described above. Photograph by User:Haukurth .",
+    "date": "Painting created in 1863. Xylograph created in 1887, [ 1 ] published in 1893.",
+    "credit": "The image is found on page 158 of Fredrik Sander's 1893 edition of the Poetic Edda; Edda Sämund den vises : skaldeverk af fornnordiska myt- och hjältesånger om de götiska eller germaniska folkens gamla gudatro, sagominnen och vandringar / ö",
+    "description": "This wood engraving is based on a painting by Mårten Eskil Winge. It shows the Norse mythological figures Loki and Sigyn. Loki is bound and Sigyn holds a cup above his head to protect him from the venom dripping from the snake above. In the",
     "restrictions": "",
     "licenceTags": [
-     "License template tag"
-    ]
-   },
-   {
-    "file": "Greek athletic sports and festivals (1910) (14790120263) (cropped).jpg",
-    "width": 815,
-    "height": 806,
-    "mime": "image/jpeg",
-    "licence": "No restrictions",
-    "usage": "No known copyright restrictions",
-    "copyrighted": "True",
-    "artist": "Internet Archive Book Images",
-    "date": "1910",
-    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14790120263/ Source book page: https://archive.org/stream/greekathleticspo00gard/greekathleticspo00gard#page/n316/mode/1up",
-    "description": "Identifier : greekathleticspo00gard ( find matches ) Title : Greek athletic sports and festivals Year : 1910 ( 1910s ) Authors : Gardiner, E. Norman (Edward Norman), 1864-1930 Subjects : Athletics Sports Olympics Fasts and feasts Publisher ",
-    "restrictions": "",
-    "licenceTags": [
-     "License template tag"
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
     ]
    }
   ],
-  "Greek warrior helmet shield painting 1880": []
+  "Loki Doepler": [
+   {
+    "file": "Thor bei Skrymir.jpg",
+    "width": 1827,
+    "height": 1494,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Emil Doepler",
+    "date": "Published ca. 1905",
+    "credit": "Doepler, Emil. ca. 1905. Walhall, die Götterwelt der Germanen . Martin Oldenbourg, Berlin. Page 31. Photographed and cropped by User:Haukurth .",
+    "description": "Thor bei Skrymir . Thor crawls out of Skrýmir's glove and sees Skrýmir.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Lokis Gezücht.jpg",
+    "width": 1959,
+    "height": 1458,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Emil Doepler",
+    "date": "Published circa 1905 date QS:P571,+1905-00-00T00:00:00Z/9,P1480,Q5727902",
+    "credit": "Walhall, die Götterwelt der Germanen . Martin Oldenbourg, Berlin. Page 43.",
+    "description": "Lokis Gezücht . Loki's brood; Hel, Fenrir and Jörmungandr. The figure in the background is presumably Angrboða.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Loke, Fenriswolf und Midgardschlange.jpg",
+    "width": 747,
+    "height": 971,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Carl Emil Doepler (1824-1905)",
+    "date": "published 1882",
+    "credit": "Wägner, Wilhelm. 1882. Nordisch-germanische Götter und Helden . Otto Spamer, Leipzig &amp; Berlin. Page 253.",
+    "description": "Loke, Fenriswolf und Midgardschlange . Loki takes fatherly care of Fenrir and Jörmungandr. The female figure in the cave is presumably Hel though perhaps Angrboða is not out of the question.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Loke by C. E. Doepler.jpg",
+    "width": 855,
+    "height": 864,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Carl Emil Doepler (1824-1905)",
+    "date": "Published in 1882.",
+    "credit": "Wägner, Wilhelm. 1882. Nordisch-germanische Götter und Helden . Otto Spamer, Leipzig &amp; Berlin. Page 255.",
+    "description": "Loke . Loki. Apparently walking by a fire or a lava field or some such.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   },
+   {
+    "file": "Baldr's death by Doepler.jpg",
+    "width": 836,
+    "height": 1014,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Carl Emil Doepler (1824-1905)",
+    "date": "published 1882",
+    "credit": "Wägner, Wilhelm. 1882. Nordisch-germanische Götter und Helden . Otto Spamer, Leipzig &amp; Berlin. Page 289.",
+    "description": "Guided by Loki, Höðr shoots the mistletoe at Baldr.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-old",
+     "PD-old-text",
+     "PD-old-warning-text"
+    ]
+   }
+  ],
+  "Loki Arthur Rackham": [
+   {
+    "file": "Ring12.jpg",
+    "width": 598,
+    "height": 860,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Arthur Rackham",
+    "date": "1910 date QS:P571,+1910-00-00T00:00:00Z/9",
+    "credit": "http://www.artpassions.net/cgi-bin/rackham.pl?../galleries/rackham/ring/ring12.jpg Originally the image was published in the following book: Wagner, Richard (translated by Margaret Amour) (1910). The Rhinegold and the Valkyrie . London:Will",
+    "description": "",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "Fallback",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-70-1923",
+     "PD-old-70-expired",
+     "PD-old-X-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Once again the buzzing fly came in at the window (1901) by Arthur Rackham.jpg",
+    "width": 2424,
+    "height": 3337,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Arthur Rackham",
+    "date": "1901",
+    "credit": "Page 121 of Rackham, Arthur (ed.) (1907). \" The Land of Enchantment \" Illustrated by Arthur Rackham. Cassell and Company.",
+    "description": "\"Once again the buzzing fly came in at the window\" by Arthur Rackham. As described in Skáldskaparmál , Loki, in the shape of a fly, disturbs the dwarf Brokkr who is working the bellows while his brother Eitri is making the hammer Mjölnir.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "He raised his hammer with a mighty swing (1901) by Arthur Rackham.jpg",
+    "width": 2474,
+    "height": 3336,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Arthur Rackham",
+    "date": "1901",
+    "credit": "Page 129 of Rackham, Arthur (ed.) (1907). \" The Land of Enchantment \" Illustrated by Arthur Rackham. Cassell and Company.",
+    "description": "\"He raised his hammer with a mighty swing\" by Arthur Rackham. As described in Gylfaginning , Thor raises him hammer at the jötunn Skrymir.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "There broke forth a wailing and a lamentation.jpg",
+    "width": 2424,
+    "height": 3336,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Arthur Rackham",
+    "date": "1901",
+    "credit": "Page 137 of Rackham, Arthur (ed.) (1907). \" The Land of Enchantment \" Illustrated by Arthur Rackham. Cassell and Company.",
+    "description": "\"There broke forth a wailing and a lamentation\" by Arthur Rackham. A scene from the death of Baldr. Baldr lies dead on the ground, and the blind Höðr is in the foreground with Loki behind him.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   },
+   {
+    "file": "Held a cup to catch the venomous drops (1901) by Arthur Rackham.jpg",
+    "width": 2419,
+    "height": 3342,
+    "mime": "image/jpeg",
+    "licence": "Public domain",
+    "usage": "Public domain",
+    "copyrighted": "False",
+    "artist": "Arthur Rackham",
+    "date": "1901",
+    "credit": "Page 141 of Rackham, Arthur (ed.) (1907). \" The Land of Enchantment \" Illustrated by Arthur Rackham. Cassell and Company.",
+    "description": "\"Held a cup to catch the venomous drops\" by Arthur Rackham. Sigyn and Loki.",
+    "restrictions": "",
+    "licenceTags": [
+     "Cc-pd-mark-footer",
+     "License template tag",
+     "PD-Layout",
+     "PD-US-expired-text",
+     "PD-old-X-expired",
+     "PD-old-auto-1923",
+     "PD-old-auto-expired",
+     "PD-old-text"
+    ]
+   }
+  ]
  },
  "categories": {},
  "peek": [
   {
-   "file": "Etude d'ensemble pour Léonidas aux Thermopyles.png",
+   "file": "Loke och Sigyn.jpg",
    "saved": "00.jpg"
   },
   {
-   "file": "Léonidas aux Thermopyles D’après le tableau de David.jpg",
+   "file": "Loke och Sigun - Mårten Eskil Winge.jpg",
    "saved": "01.jpg"
   },
   {
-   "file": "David (atelier de) - Léonidas aux Thermopyles, RF2064.jpg",
+   "file": "Loke och Sigyn repaired.jpg",
    "saved": "02.jpg"
   },
   {
-   "file": "David - Léonidas aux Thermopyles, INV 26080, Recto.jpg",
+   "file": "Loke and Sigyn (Mårten Winge) - Nationalmuseum - 18041.tif",
    "saved": "03.jpg"
   },
   {
-   "file": "Léonidas aux Thermopyles - Jacques-Louis David - Musée du Louvre Peintures INV 3690 ; L 3711.jpg",
+   "file": "Loke och Sigyn Mårten Eskil Winge.jpg",
    "saved": "04.jpg"
   },
   {
-   "file": "Greek athletic sports and festivals (1910) (14790120263).jpg",
+   "file": "Anton Azbe - Zamorka.jpg",
    "saved": "05.jpg"
   },
   {
-   "file": "Greek athletic sports and festivals (1910) (14790120263) (cropped).jpg",
+   "file": "Anton Ažbe 1890 Man in a bow tie.jpg",
    "saved": "06.jpg"
+  },
+  {
+   "file": "Anton Ažbe 1886 Avtoportret.jpg",
+   "saved": "07.jpg"
+  },
+  {
+   "file": "Ludvik Grilc - Brizinški mestni glavar v Škofji Loki.jpg",
+   "saved": "08.jpg"
+  },
+  {
+   "file": "Anton Ažbe - Glava starca.jpg",
+   "saved": "09.jpg"
+  },
+  {
+   "file": "Loke och Sigyn.jpg",
+   "saved": "10.jpg"
+  },
+  {
+   "file": "Thor bei Skrymir.jpg",
+   "saved": "11.jpg"
+  },
+  {
+   "file": "Lokis Gezücht.jpg",
+   "saved": "12.jpg"
+  },
+  {
+   "file": "Loke, Fenriswolf und Midgardschlange.jpg",
+   "saved": "13.jpg"
+  },
+  {
+   "file": "Loke by C. E. Doepler.jpg",
+   "saved": "14.jpg"
+  },
+  {
+   "file": "Baldr's death by Doepler.jpg",
+   "saved": "15.jpg"
+  },
+  {
+   "file": "Ring12.jpg",
+   "saved": "16.jpg"
+  },
+  {
+   "file": "Once again the buzzing fly came in at the window (1901) by Arthur Rackham.jpg",
+   "saved": "17.jpg"
+  },
+  {
+   "file": "He raised his hammer with a mighty swing (1901) by Arthur Rackham.jpg",
+   "saved": "18.jpg"
+  },
+  {
+   "file": "There broke forth a wailing and a lamentation.jpg",
+   "saved": "19.jpg"
+  },
+  {
+   "file": "Held a cup to catch the venomous drops (1901) by Arthur Rackham.jpg",
+   "saved": "20.jpg"
   }
  ]
 }
