@@ -454,6 +454,8 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .niche { position: relative; display: grid; place-items: end center; width: 150px; height: 180px; margin: 0 auto; border-radius: 75px 75px 6px 6px; background: radial-gradient(ellipse at 50% 0%, rgba(240,200,120,.35), transparent 65%), #120a08; border: 2px solid var(--gold-shade); box-shadow: inset 0 0 0 4px #120a08, inset 0 0 0 5px rgba(201,162,74,.5); padding-bottom: 12px; }
 .panel.gothic .rep-top span:first-child { color: #e6c46c; }
 .panel.gothic .rep-bar { background: #0b0605; border-color: #8a6424; height: 12px; }
+.rep-bar i { transition: width .8s cubic-bezier(.45,.05,.3,1); }
+.waxseal.restamp { animation: stamp .45s cubic-bezier(.2,1.4,.4,1) both; }
 .panel.gothic .rep-bar i { background: linear-gradient(90deg, #8a6424, #e6c46c, #c9a24a); box-shadow: 0 0 10px rgba(230,196,108,.5); }
 .giftcards .flipper .cardback, .giftcards .fc { width: min(280px, 72vw); }
 .court .courthead { position: relative; text-align: center; padding: 34px 0 6px; }
@@ -2192,7 +2194,7 @@ const RENOWN_CAP = 50, BELT = 2, START_GOLD = 50;
 const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", ""] });
 const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), crowns: 0, wins: 0, losses: 0, draws: 0, dry: 0, tip: 0,
   lore: [], variants: [], art: {}, ownCrowns: ["gold"], wearing: "gold", spent: 0, levelSeen: 1 });
-function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); if (g.lineup?.items) g.lineup.items = g.lineup.items.slice(0, BELT); const out = Object.assign(fresh(), g); if (g.levelSeen == null) out.levelSeen = levelOf(repPoints(out)); return out; } } catch (e) {} return fresh(); }
+function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); if (g.lineup?.items) g.lineup.items = g.lineup.items.slice(0, BELT); const out = Object.assign(fresh(), g); if (g.levelSeen == null) out.levelSeen = levelOf(repPoints(out)); if (g.repSeen == null) out.repSeen = repPoints(out); return out; } } catch (e) {} return fresh(); }
 function save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) {} }
 let G = load();
 
@@ -2262,7 +2264,7 @@ function levelOf(pts) { return Math.max(1, Math.floor((1 + Math.sqrt(1 + pts / 6
 const levelStart = (L) => 25 * L * (L - 1);
 const myLevel = () => levelOf(repPoints(G));
 function repShare() { const pts = repPoints(G), L = levelOf(pts); return Math.min(1, (pts - levelStart(L)) / (levelStart(L + 1) - levelStart(L))); }
-const nextGift = (L) => Math.ceil((L + 1) / 5) * 5;
+const nextCrownLevel = (L) => Math.ceil((L + 1) / 10) * 10;
 function giftHero() {
   const can = Object.values(DATA.heroes).filter((h) => owned(h.id) < 3).map((h) => h.id);
   if (!can.length) { G.gold += 100; return null; }
@@ -2273,21 +2275,52 @@ function giftHero() {
 // Called whenever the player is back on a menu screen: shows any levels gained since last time, then their gifts.
 function checkLevel() {
   if (!G.packOpened || U.over) return;
-  const to = myLevel(), from = G.levelSeen || 1;
-  if (to <= from) return;
+  const pts = repPoints(G), to = levelOf(pts), from = G.levelSeen || 1;
+  // Where the Reputation bar stood when the player last saw it, so the level-up can fill it from there.
+  const before = Math.max(levelStart(from), Math.min(G.repSeen == null ? levelStart(from) : G.repSeen, levelStart(from + 1)));
+  if (to <= from) { if (G.repSeen !== pts) { G.repSeen = pts; save(); } return; }
   const steps = [{ kind: "level" }];
   for (let L = from + 1; L <= to; L++) {
     if (L % 10 === 0) { const c = CROWNS.find((x) => x.level === L); if (c && !G.ownCrowns.includes(c.id)) { G.ownCrowns.push(c.id); steps.push({ kind: "crown", id: c.id, level: L }); } }
     if (L % 5 === 0) { const got = giftHero(); steps.push(got ? { kind: "hero", ids: got, level: L } : { kind: "gold", level: L }); }
   }
-  G.levelSeen = to; save();
-  U.over = { type: "levelup", from, to, steps, i: 0 };
+  G.levelSeen = to; G.repSeen = pts; save();
+  const startShare = (before - levelStart(from)) / (levelStart(from + 1) - levelStart(from));
+  U.over = { type: "levelup", from, to, steps, i: 0, anim: { L: from, share: startShare, end: repShare(), done: false } };
   SND.play("levelup");
 }
-function repBar(L) {
-  const pct = Math.round(repShare() * 100);
-  return `<div class="rep"><div class="rep-top"><span>Reputation</span><span>Level ${L + 1}</span></div>
+function repBar(L, share = repShare(), anim = false) {
+  const pct = Math.round(share * 100), id = anim ? ' id="lvbar"' : "";
+  return `<div class="rep"${id}><div class="rep-top"><span>Reputation</span><span class="rep-next">Level ${L + 1}</span></div>
     <div class="rep-bar" role="progressbar" aria-label="Progress to level ${L + 1}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div></div>`;
+}
+// The level-up screen fills the Reputation bar from where it was, once for every level gained: the seal
+// stamps each new level as the bar fills, then the bar settles where the player now stands.
+function runLevelAnim() {
+  const o = U.over; if (!o || o.type !== "levelup" || o.i !== 0 || !o.anim || o.anim.done || o.anim.running) return;
+  const a = o.anim; a.running = true;
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const n = o.to - o.from, ms = reduce ? 0 : n > 6 ? 260 : n > 2 ? 480 : 800;
+  const dom = () => ({ box: document.getElementById("lvbar"), seal: document.querySelector("#over .waxseal") });
+  const paint = (share, instant) => {
+    const { box } = dom(); if (!box) return;
+    const bar = box.querySelector(".rep-bar i"); bar.style.transitionDuration = instant ? "0ms" : `${ms}ms`; bar.style.width = `${Math.round(share * 100)}%`;
+    box.querySelector(".rep-next").textContent = `Level ${a.L + 1}`;
+    box.querySelector(".rep-bar").setAttribute("aria-valuenow", Math.round(share * 100));
+  };
+  const stamp = () => {
+    const { seal } = dom(); if (!seal) return;
+    seal.querySelector("b").textContent = roman(a.L); seal.querySelector("i").textContent = `Level ${a.L}`;
+    seal.setAttribute("aria-label", `Level ${a.L}`); seal.classList.remove("restamp"); void seal.offsetWidth; seal.classList.add("restamp");
+  };
+  const step = () => {
+    if (U.over !== o) return;
+    if (a.L < o.to) {
+      a.share = 1; paint(1);
+      setTimeout(() => { if (U.over !== o) return; a.L += 1; a.share = 0; stamp(); SND.play(a.L === o.to ? "ping" : "tick"); paint(0, true); setTimeout(step, reduce ? 0 : 140); }, ms + 60);
+    } else { a.share = a.end; paint(a.end); a.done = true; a.running = false; }
+  };
+  setTimeout(step, reduce ? 0 : 700);
 }
 const roman = (n) => [[100, "C"], [90, "XC"], [50, "L"], [40, "XL"], [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]].reduce((out, [v, r]) => { while (n >= v) { out += r; n -= v; } return out; }, "");
 // A wax seal with the level in Roman numerals: the gothic stamp on every level screen.
@@ -2306,13 +2339,13 @@ function levelUpHtml(o) {
   const st = o.steps[o.i], last = o.i === o.steps.length - 1, L = o.to;
   const btn = (label) => `<div class="btns"><button class="btn gilt" data-act="lv-next">${label}</button></div>`;
   if (st.kind === "level") {
-    const n = o.to - o.from, g = nextGift(L), rest = o.steps.length - 1;
+    const n = o.to - o.from, rest = o.steps.length - 1, a = o.anim || { L, share: repShare() }, shown = a.done ? L : a.L, c = nextCrownLevel(L);
     return gothic(`<p class="eyebrow">${n > 1 ? `${n} levels at once` : "Level up"}</p>
-      <div class="sealstage">${levelSeal(L)}</div>
+      <div class="sealstage">${levelSeal(shown)}</div>
       <h1 class="blackletter">${n > 1 ? "Your reputation soars" : "Your reputation grows"}</h1>
       <p>${n > 1 ? `From Level ${o.from} to Level ${L}. The realms speak of little else.` : "Word of your deeds spreads across the realms."}</p>
-      ${DIVIDER}${repBar(L)}
-      ${rest ? `<p class="credit">Rewards await you.</p>` : `<p class="credit">A hero ${g % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${g}.</p>`}
+      ${DIVIDER}${repBar(shown, a.done ? repShare() : a.share, true)}
+      ${rest ? `<p class="credit">Rewards await you.</p>` : `<p class="credit">A new crown awaits at Level ${c}.</p>`}
       ${btn(rest ? "Claim your rewards" : "Continue")}`, "lv-level");
   }
   if (st.kind === "crown") {
@@ -2326,7 +2359,7 @@ function levelUpHtml(o) {
   if (st.kind === "hero") {
     return gothic(`<p class="eyebrow">Level ${st.level} · Hero gift</p><h1 class="blackletter">A hero joins your court</h1>
       <div class="giftcards">${st.ids.map((id) => turnOver(id, fullCard(id))).join("")}</div>
-      <p class="credit">Your next hero gift is at Level ${st.level + 5}.</p>${btn(last ? "Add to my Library" : "Next")}`, "lv-hero");
+      ${btn(last ? "Add to my Library" : "Next")}`, "lv-hero");
   }
   return gothic(`<p class="eyebrow">Level ${st.level} · Hero gift</p><h1 class="blackletter">You own every hero</h1><p>Three of each, no less. Take 100 gold instead.</p>${btn(last ? "Continue" : "Next")}`);
 }
@@ -2367,7 +2400,7 @@ function courtHtml() {
   return `<div class="wrap court"><div class="courthead">${ARCH}<p class="eyebrow">Player One</p><h1 class="blackletter">Your Court</h1></div>
     <div class="box gbox court-me"><i class="cb-c tl"></i><i class="cb-c tr"></i><i class="cb-c bl"></i><i class="cb-c br"></i>
       <div class="niche">${avatar("big")}</div><div class="court-id">${levelSeal(L)}<p class="credit">Wearing the ${esc(w.name)}</p></div></div>
-    <div class="box gbox">${repBar(L)}<p class="credit">A hero ${nextGift(L) % 10 === 0 ? "and a new crown await" : "awaits"} at Level ${nextGift(L)}.</p></div>
+    <div class="box gbox">${repBar(L)}<p class="credit">A new crown awaits at Level ${nextCrownLevel(L)}.</p></div>
     <div class="courtstats"><div><i>Crowns won</i><b>${G.crowns}</b></div><div><i>Heroes</i><b>${heroes}</b></div><div><i>Fights</i><b>${G.wins} won · ${G.losses} lost</b></div></div>
     <div class="box gbox"><h2>Your crowns</h2><p>Wear any crown you own. New ones are a surprise until you find them.</p><button class="btn quiet" data-act="court-crowns">Choose a crown</button></div>
     <div class="box gbox hofbox"><h2 class="blackletter">Hall of Fame</h2>${DIVIDER}
@@ -4480,6 +4513,7 @@ function render() {
   if (battle) renderBattle(); else renderPage();
   el("sheet").innerHTML = sheetHtml();
   el("over").innerHTML = overHtml();
+  runLevelAnim();
 }
 
 // =====================================================================================
