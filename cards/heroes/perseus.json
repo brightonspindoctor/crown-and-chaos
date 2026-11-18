@@ -1,0 +1,47 @@
+{
+  "id": "perseus",
+  "name": "Perseus",
+  "type": "hero",
+  "realm": "Hellas",
+  "tale": "Perseus",
+  "aspect": "Slayer",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 2,
+    "ranged": false,
+    "guard": 1,
+    "speed": 3
+  },
+  "vulnerableTo": "Witch",
+  "renown": 11,
+  "crownPassive": {
+    "name": "Winged sandals",
+    "text": "In round 1, all your heroes have +1 Speed."
+  },
+  "bond": {
+    "name": "Gorgon's bane",
+    "text": "+1 Attack for each Beast on the board, on either side."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Mirrored shield",
+      "ap": 2,
+      "text": "The first attack aimed at Perseus this round is reflected: the attacker takes the damage instead. Not Speed dependent: if chosen, it is up before anyone acts. Once per fight.",
+      "usesPerFight": 1
+    },
+    {
+      "name": "Medusa's head",
+      "ap": 3,
+      "text": "An enemy hero is turned to stone: it takes no actions this round and has +2 Guard. Like every stopping effect, it can't stop the same hero two rounds running. Once per fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "perseus",
+  "status": "draft"
+}

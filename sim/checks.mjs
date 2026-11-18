@@ -79,5 +79,90 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   for (let k = 0; k < 4; k++) E.playRound(st, [{ orders: [] }, { orders: [] }]);
   ok("Poison 4 deals 4, 2, 1 and stops", h0 - d.health === 7 && d.poison === 0, [h0 - d.health, d.poison]);
 }
+
+// ---------- Hellas ----------
+{ // Perseus: Gorgon's bane counts Beasts on both sides; Mirrored shield reflects the first attack
+  const st = game(lu("perseus", ["polyphemus"]), lu("the-minotaur"));
+  const p = card(st, 0, "perseus");
+  ok("Perseus has 2 + 2 Beasts = Attack 4", E.attackOf(st, p) === 4, E.attackOf(st, p));
+  const st2 = game(lu("perseus"), lu("the-wolf"));
+  const p2 = card(st2, 0, "perseus"), w = card(st2, 1, "the-wolf"), w0 = w.health, p0 = p2.health;
+  E.playRound(st2, [{ orders: [order(st2, 0, "perseus", "Mirrored shield")] }, { orders: [order(st2, 1, "the-wolf", "Attack", p2)] }]);
+  ok("The Wolf's bite bounces back off the shield", p2.health === p0 && w.health === w0 - 4, [p2.health, w.health, w0]);
+}
+{ // Winged sandals: +1 Speed to your heroes in round 1 only
+  const st = game(lu("perseus", ["circe"]), lu("merlin"));
+  const c = card(st, 0, "circe");
+  ok("Circe is Speed 4 in round 1 under Perseus", E.speedOf(st, c) === 4, E.speedOf(st, c));
+  E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  ok("and Speed 3 after", E.speedOf(st, c) === 3, E.speedOf(st, c));
+}
+{ // Medusa: Serpent hair poisons two enemies; Stony gaze slows melee attackers
+  const st = game(lu("medusa"), lu("merlin", [], ["knight", "knight"]));
+  E.playRound(st, [{ orders: [order(st, 0, "medusa", "Serpent hair")] }, { orders: [] }]);
+  ok("Serpent hair poisoned two cards", st.log.filter((l) => l.includes("serpents bite")).length === 2);
+  const st2 = game(lu("medusa"), lu("st-george"));
+  const g = card(st2, 1, "st-george"), s0 = E.speedOf(st2, g);
+  E.playRound(st2, [{ orders: [] }, { orders: [order(st2, 1, "st-george", "Attack", card(st2, 0, "medusa"))] }]);
+  ok("St George loses 1 Speed for hitting Medusa", E.speedOf(st2, g) === s0 - 1, [s0, E.speedOf(st2, g)]);
+}
+{ // Odysseus: the wooden horse hides his side in round 1; Men of Ithaca fills empty front slots; Nobody
+  const st = game(lu("odysseus", ["circe"]), lu("merlin"));
+  ok("Circe is hidden in round 1", E.isHidden(st, card(st, 0, "circe")) && !E.isHidden(st, card(st, 0, "odysseus")));
+  ok("Two Hellas heroes fill two empty front slots with Villagers", E.cards(st, 0).filter((c) => c.id === "villager").length === 2);
+  E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  ok("Nothing is hidden in round 2", !E.isHidden(st, card(st, 0, "circe")));
+  const st2 = game(lu("odysseus"), lu("robin-hood"));
+  const o = card(st2, 0, "odysseus"), r = card(st2, 1, "robin-hood"), o0 = o.health, r0 = r.health;
+  E.playRound(st2, [{ orders: [order(st2, 0, "odysseus", "Nobody")] }, { orders: [order(st2, 1, "robin-hood", "Attack", o)] }]);
+  ok("Nobody: Robin's arrow misses even though Robin is faster, and Robin takes 1", o.health === o0 && st2.log.some((l) => l.includes("Odysseus deals 1 to Red Robin Hood")), [o.health, r.health]);
+}
+{ // Polyphemus: Crown buffs the front rank; Bond turns against Tricksters; the boulder slows
+  const st = game(lu("polyphemus", ["circe"], ["knight"]), lu("merlin"));
+  const k = card(st, 0, "knight");
+  ok("Shepherd of the cave: Knight on 4 Health and 2 Guard", k.health === 4 && k.guardLeft === 2, [k.health, k.guardLeft]);
+  ok("Son of Poseidon: Attack 5 with Circe", E.attackOf(st, card(st, 0, "polyphemus")) === 5);
+  const st2 = game(lu("polyphemus", ["circe"]), lu("robin-hood"));
+  ok("Attack 3 against an enemy Trickster", E.attackOf(st2, card(st2, 0, "polyphemus")) === 3);
+  const st3 = game(lu("polyphemus"), lu("merlin"));
+  const m = card(st3, 1, "merlin");
+  E.playRound(st3, [{ orders: [order(st3, 0, "polyphemus", "Hurl the boulder", m)] }, { orders: [] }]);
+  ok("The boulder slows Merlin next round", E.speedOf(st3, m) === 2, E.speedOf(st3, m));
+}
+{ // Circe: swine when holding the Fate token; Guests of Aiaia
+  const st = game(lu("circe", ["perseus"]), lu("merlin", [], ["knight", "knight"]), 3);
+  for (let k = 0; k < 2; k++) {
+    const kn = card(st, 1, "knight");
+    ok(`Round ${st.round}: enemy Knights are ${st.fate === 0 ? "swine (0 Attack)" : "normal"}`, (E.attackOf(st, kn) === 0) === (st.fate === 0));
+    E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  }
+  ok("Guests of Aiaia: Perseus has 2 Guard", E.guardOf(st, card(st, 0, "perseus")) === 2);
+}
+{ // King Minos: tribute heals, Lord of the Labyrinth heals Beasts 3, Royal decree raises costs
+  const st = game(lu("king-minos", ["the-minotaur"]), lu("merlin", [], ["villager"]));
+  const mn = card(st, 0, "king-minos"), mt = card(st, 0, "the-minotaur");
+  mn.health -= 4; mt.health -= 5;
+  E.kill(st, card(st, 1, "villager"), mt);
+  ok("Minos heals 1 and the Minotaur heals 1 + 3", mn.maxHealth - mn.health === 3 && mt.maxHealth - mt.health === 1, [mn.health, mt.health]);
+  const st2 = game(lu("king-minos"), lu("merlin"));
+  E.playRound(st2, [{ orders: [order(st2, 0, "king-minos", "Royal decree")] }, { orders: [] }]);
+  const me = card(st2, 1, "merlin"), hex = me.actions.find((a) => a.name === "Hex");
+  ok("Next round Merlin's Hex costs 3", E.apCost(st2, me, hex) === 3, E.apCost(st2, me, hex));
+  E.playRound(st2, [{ orders: [] }, { orders: [] }]);
+  ok("and 2 again the round after", E.apCost(st2, me, hex) === 2);
+}
+{ // The Minotaur: the Labyrinth blocks Ranged attacks on slots 2–3 but not Spells
+  const st = game(lu("the-minotaur", ["circe", "perseus"]), lu("robin-hood", ["merlin"]));
+  const rb = card(st, 1, "robin-hood"), mer = card(st, 1, "merlin");
+  const shots = E.targetsFor(st, rb, rb.actions[0]).map((c) => c.id);
+  ok("Robin can only shoot the Minotaur", shots.length === 1 && shots[0] === "the-minotaur", shots);
+  const hexes = E.targetsFor(st, mer, mer.actions.find((a) => a.name === "Hex")).map((c) => c.id);
+  ok("Merlin's Hex still reaches Circe", hexes.includes("circe"), hexes);
+}
+{ // Hoplite phalanx
+  const st = game(lu("the-dragon", [], ["hoplite", "hoplite", "hoplite"]), lu("merlin"));
+  const g = E.cards(st, 0).filter((c) => c.id === "hoplite").sort((a, b) => a.slot - b.slot).map((c) => c.guardLeft);
+  ok("Hoplites have Guard 2, 3, 2", g.join() === "2,3,2", g);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

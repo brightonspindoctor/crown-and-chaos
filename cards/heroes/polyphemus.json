@@ -1,0 +1,42 @@
+{
+  "id": "polyphemus",
+  "name": "Polyphemus",
+  "type": "hero",
+  "realm": "Hellas",
+  "tale": "The Odyssey",
+  "aspect": "Beast",
+  "tags": [],
+  "stats": {
+    "health": 15,
+    "attack": 4,
+    "ranged": false,
+    "guard": 0,
+    "speed": 1
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 17,
+  "crownPassive": {
+    "name": "Shepherd of the cave",
+    "text": "Your front-rank cards have +2 Health and +1 Guard."
+  },
+  "bond": {
+    "name": "Son of Poseidon",
+    "text": "+1 Attack while another Hellas hero of yours lives. While an enemy Trickster is on the board, -1 Attack instead."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Hurl the boulder",
+      "ap": 3,
+      "text": "A Ranged attack for 4 on any enemy card. A hero it hits has -1 Speed next round. Once per fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "polyphemus",
+  "status": "draft",
+  "notes": "The Cyclops of the Odyssey."
+}

@@ -1,0 +1,40 @@
+{
+  "id": "the-minotaur",
+  "name": "The Minotaur",
+  "type": "hero",
+  "realm": "Hellas",
+  "tale": "The Labyrinth",
+  "aspect": "Beast",
+  "tags": [],
+  "stats": {
+    "health": 14,
+    "attack": 4,
+    "ranged": false,
+    "guard": 0,
+    "speed": 2
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 15,
+  "crownPassive": {
+    "name": "The Labyrinth",
+    "text": "Enemy Ranged attacks can't target your heroes in slots 2 and 3."
+  },
+  "bond": {
+    "name": "Fed on tribute",
+    "text": "Each time the Minotaur kills a hero, your other Hellas heroes heal 1."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Gore",
+      "ap": 3,
+      "text": "Deal 5 to the closest enemy, ignoring Guard."
+    }
+  ],
+  "art": "the-minotaur",
+  "status": "draft"
+}

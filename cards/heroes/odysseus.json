@@ -1,0 +1,41 @@
+{
+  "id": "odysseus",
+  "name": "Odysseus",
+  "type": "hero",
+  "realm": "Hellas",
+  "tale": "The Odyssey",
+  "aspect": "Trickster",
+  "tags": [],
+  "stats": {
+    "health": 9,
+    "attack": 2,
+    "ranged": true,
+    "guard": 0,
+    "speed": 4
+  },
+  "vulnerableTo": "Beast",
+  "renown": 15,
+  "crownPassive": {
+    "name": "The wooden horse",
+    "text": "In round 1, all your cards except Odysseus are hidden from the enemy."
+  },
+  "bond": {
+    "name": "Men of Ithaca",
+    "text": "When one of your front-rank slots is empty at upkeep, a Villager fills it. Once per fight for each Hellas hero you field."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard Ranged attack: damage equal to Attack, on any enemy card."
+    },
+    {
+      "name": "Nobody",
+      "ap": 2,
+      "text": "The first attack aimed at Odysseus this round misses, and the attacker takes 1 damage. Not Speed dependent: if chosen, it is up before anyone acts. Once per fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "odysseus",
+  "status": "draft"
+}

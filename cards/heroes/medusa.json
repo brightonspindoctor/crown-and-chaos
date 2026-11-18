@@ -1,0 +1,46 @@
+{
+  "id": "medusa",
+  "name": "Medusa",
+  "type": "hero",
+  "realm": "Hellas",
+  "tale": "Perseus",
+  "aspect": "Beast",
+  "tags": [],
+  "stats": {
+    "health": 10,
+    "attack": 2,
+    "ranged": false,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 16,
+  "crownPassive": {
+    "name": "Stony gaze",
+    "text": "Any enemy hero that hits Medusa with a melee attack loses 1 Speed for the rest of the fight."
+  },
+  "bond": {
+    "name": "Gorgon sisters",
+    "text": "+1 Guard for each of your Hellas heroes that has died."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Serpent hair",
+      "ap": 2,
+      "text": "Two random enemy cards each gain 2 Poison."
+    },
+    {
+      "name": "Petrify",
+      "ap": 2,
+      "text": "An enemy hero takes no actions this round. Like every stopping effect, it can't stop the same hero two rounds running. Once per fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "medusa",
+  "status": "draft"
+}

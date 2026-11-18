@@ -1,0 +1,40 @@
+{
+  "id": "king-minos",
+  "name": "King Minos",
+  "type": "hero",
+  "realm": "Hellas",
+  "tale": "The Labyrinth",
+  "aspect": "Sovereign",
+  "tags": [],
+  "stats": {
+    "health": 10,
+    "attack": 2,
+    "ranged": false,
+    "guard": 1,
+    "speed": 2
+  },
+  "vulnerableTo": "Slayer",
+  "renown": 8,
+  "crownPassive": {
+    "name": "Athenian tribute",
+    "text": "Each time an enemy front-rank card dies, all your heroes heal 1."
+  },
+  "bond": {
+    "name": "Lord of the Labyrinth",
+    "text": "Each time an enemy front-rank card dies, each of your Beast heroes heals 3."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Royal decree",
+      "ap": 2,
+      "text": "Next round, every enemy action costs 1 more action point."
+    }
+  ],
+  "art": "king-minos",
+  "status": "draft"
+}

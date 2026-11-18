@@ -1,0 +1,13 @@
+{
+  "type": "front-rank",
+  "id": "hoplite",
+  "name": "Hoplite",
+  "health": 2,
+  "attack": 1,
+  "guard": 1,
+  "speed": 2,
+  "renown": 3,
+  "realm": "Hellas",
+  "auto": "Attacks the card opposite. Phalanx: +1 Guard for each Hoplite next to it.",
+  "art": "hoplite"
+}

@@ -17,6 +17,13 @@ export const ASSUMPTIONS = [
   "A Thrall made by Dracula's Turn has 3 Health and the victim's Attack, and attacks the card opposite.",
   "Merlin's Enchanted sleep stops the hero for this round only, because no hero can be stopped two rounds running.",
   "Fights that pass round 20 are draws.",
+  "Mirrored shield and Nobody are not Speed dependent: if chosen (and not stopped or cancelled), they are up before anyone acts that round.",
+  "Mirrored shield reflects the attack's damage before Guard; the attacker's own Guard then applies.",
+  "The wooden horse hides only from the enemy's view; the computer opponent plans blind against hidden cards in round 1.",
+  "Men of Ithaca counts every Hellas hero fielded at the start, Odysseus included; Villagers are placed at upkeep.",
+  "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
+  "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
+  "Royal decree: a second decree before the first runs out doesn't stack.",
   "The slot-1 rules (shielded only by two heroes; can't melee past its own heroes) apply to whoever is in slot 1, including under Robin's No Crown.",
   "Only the standard Attack can be turned on your own heroes, and only from slot 1.",
   "Front-rank cards in front of the Crown don't stop it attacking; only heroes in slots 2–3 do.",
@@ -105,6 +112,11 @@ export function createGame(data, lineups, opts = {}) {
     if (crown?.id === "robin-hood") side.noCrown = true;
   }
   applyStartingHealth(st);
+  // Men of Ithaca: one Villager per Hellas hero fielded, if Odysseus is fielded.
+  for (const side of st.sides) {
+    if (heroes(st, side.index).some((h) => h.id === "odysseus"))
+      side.flags.ithacaLeft = heroes(st, side.index).filter((h) => h.realm === "Hellas").length;
+  }
   for (const side of st.sides) {
     const crown = crownCard(st, side.index);
     if (crown && crownActive(st, side.index) && crown.id === "sheriff-of-nottingham") {
@@ -235,7 +247,19 @@ export function attackOf(st, c) {
     }
   }
   if (c.id === "the-bride" && crownIs(st, c.side, "the-bride") && gothicBeast(st, c)) a += 1;
+  if (c.kind === "hero" && f) {
+    // Gorgon's bane: +1 Attack for each Beast on the board, either side.
+    if (c.id === "perseus") a += f * allCards(st).filter((x) => x.kind === "hero" && x.aspect === "Beast").length;
+    // Son of Poseidon: +1 with another Hellas hero alive; -1 instead while an enemy Trickster lives.
+    if (c.id === "polyphemus") {
+      if (heroes(st, 1 - c.side).some((h) => h.aspect === "Trickster")) a -= f;
+      else if (countRealm(st, c, "Hellas") > 0) a += f;
+    }
+  }
   a = a * c.atkMult;
+  // Transfigure: Attack becomes 1. Aiaia: front-rank swine have 0 Attack.
+  if (c.flags.transfigUntil >= st.round) a = Math.min(a, 1);
+  if (c.flags.swineRound === st.round) a = 0;
   return Math.max(0, a);
 }
 function gothicBeast(st, c) { return otherHeroes(st, c, (h) => h.aspect === "Beast" && isRealm(st, h, "Gothic")).length > 0; }
@@ -265,6 +289,15 @@ export function guardOf(st, c) {
   // Gwydion's Bond: your front rank has +1 Guard for each of your Cymru heroes that has died.
   if (c.kind === "front" && f && heroes(st, i).some((h) => h.id === "gwydion"))
     g += f * st.sides[i].grave.filter((d) => d.kind === "hero" && isRealm(st, d, "Cymru")).length;
+  if (f) {
+    // Gorgon sisters: Medusa has +1 Guard for each of your Hellas heroes that has died.
+    if (c.id === "medusa") g += f * st.sides[i].grave.filter((d) => d.kind === "hero" && isRealm(st, d, "Hellas")).length;
+    // Guests of Aiaia: Circe gives your other Hellas heroes +1 Guard.
+    if (c.kind === "hero" && c.id !== "circe" && isRealm(st, c, "Hellas") && heroes(st, i).some((h) => h.id === "circe")) g += f;
+  }
+  if (c.kind === "front" && crownIs(st, i, "polyphemus")) g += 1;
+  // Phalanx: a Hoplite has +1 Guard for each Hoplite next to it.
+  if (c.id === "hoplite") g += neighbours(st, c).filter((n) => n.id === "hoplite").length;
   // Dread: the Creature as Crown takes 1 Guard from every enemy hero.
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") g -= 1;
   return Math.max(0, g);
@@ -286,6 +319,10 @@ export function speedOf(st, c) {
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
+  // Winged sandals: your heroes have +1 Speed in round 1.
+  if (c.kind === "hero" && st.round === 1 && crownIs(st, i, "perseus")) s += 1;
+  // Hurl the boulder: -1 Speed in the round after the hit.
+  if (c.flags.slowRound === st.round) s -= 1;
   // The Wolf's Shortcut: +1 Speed to your heroes for 3 rounds.
   if (c.kind === "hero" && (st.sides[i].flags.shortcutUntil || 0) >= st.round) s += 1;
   // Hard frost: in rounds when the Snow Queen's side holds the Fate token, every enemy card has -2 Speed.
@@ -308,6 +345,7 @@ function applyStartingHealth(st) {
         if (c.id === "gretel") bonus += f * countRealm(st, c, "Märchen");
       }
       if (c.kind === "hero" && crownIs(st, i, "guinevere")) bonus += 1;
+      if (c.kind === "front" && crownIs(st, i, "polyphemus")) bonus += 2;
       if (bonus) {
         c.maxHealth = Math.max(1, c.maxHealth + bonus);
         c.health = Math.max(1, Math.min(c.maxHealth, c.health + bonus));
@@ -372,11 +410,17 @@ export function meleeTargets(st, attacker) {
   if (crownIs(st, attacker.side, "bran-the-blessed") && rows[1]) out = out.concat(rows[1]);
   return out;
 }
-export function rangedTargets(st, attacker) {
+export function rangedTargets(st, attacker, opts = {}) {
   const foe = 1 - attacker.side;
   return cards(st, foe).filter((c) => !(c.id === "the-wolf" && hasBond(st, c) &&
-    otherHeroes(st, c, (h) => isRealm(st, h, "Märchen")).length > 0));
+    otherHeroes(st, c, (h) => isRealm(st, h, "Märchen")).length > 0) && (opts.spell || !inLabyrinth(st, c)));
 }
+// The Labyrinth: enemy Ranged attacks can't reach the Minotaur's side's heroes in slots 2 and 3.
+export function inLabyrinth(st, c) { return c.kind === "hero" && (c.slot === 2 || c.slot === 3) && crownIs(st, c.side, "the-minotaur"); }
+// The wooden horse: in round 1, every card under an Odysseus Crown except Odysseus is hidden from the enemy.
+export function isHidden(st, c) { return !!c && st.round === 1 && c.id !== "odysseus" && crownIs(st, c.side, "odysseus"); }
+// Royal decree makes every action cost 1 more action point.
+export function apCost(st, c, act) { return act.ap + (st.sides[c.side].flags.decreeRound === st.round ? 1 : 0); }
 function reachable(st, attacker, ranged) { return ranged ? rangedTargets(st, attacker) : meleeTargets(st, attacker); }
 
 // ---------- damage ----------
@@ -391,6 +435,25 @@ export function damage(st, src, target, amount, opts = {}) {
   if (!t) return 0;
   if (t !== target) ev(st, { t: "redirect", src: uidOf(src), from: target.uid, to: t.uid });
   const style = styleOf(opts);
+  // Nobody: the first attack aimed at Odysseus this round misses, and the attacker takes 1.
+  if (atk && t.flags.nobodyRound === st.round) {
+    t.flags.nobodyRound = -1;
+    log(st, `${src ? src.name + "'s" : "The"} attack on Odysseus misses: "Nobody" is there.`);
+    ev(st, { t: "miss", src: uidOf(src), tgt: t.uid, style });
+    if (src && src.uid != null && !src.dead) applyHealthLoss(st, t, src, 1, {});
+    return 0;
+  }
+  // Mirrored shield: the first attack aimed at Perseus this round goes back to the attacker.
+  if (atk && t.flags.reflectRound === st.round && src && src.uid != null && !src.dead) {
+    t.flags.reflectRound = -1;
+    log(st, `Perseus's mirrored shield turns ${src.name}'s attack back on it.`);
+    ev(st, { t: "redirect", src: uidOf(src), from: t.uid, to: src.uid });
+    return damage(st, t, src, amount, {});
+  }
+  // Stony gaze: a melee attack on a Medusa Crown costs the attacking hero 1 Speed for the fight.
+  if (atk && !opts.ranged && !opts.spell && t.id === "medusa" && crownIs(st, t.side, "medusa") && src?.kind === "hero" && src.side !== t.side) {
+    src.speedPerm -= 1; log(st, `${src.name} meets Medusa's gaze and slows (-1 Speed).`);
+  }
   // Misses and immunities
   if (atk && t.id === "rhiannon" && crownIs(st, t.side, "rhiannon") && src && speedOf(st, src) < speedOf(st, t) &&
       t.flags.missRound !== st.round) {
@@ -529,7 +592,20 @@ export function kill(st, t, src) {
 
 function onDeath(st, t, src) {
   const i = t.side;
+  if (t.kind === "front") {
+    const s = 1 - i;
+    // Athenian tribute: each enemy front-rank death heals your heroes 1.
+    const minos = crownIs(st, s, "king-minos") ? crownCard(st, s) : null;
+    if (minos) for (const h of heroes(st, s)) heal(st, minos, h, 1);
+    // Lord of the Labyrinth: each enemy front-rank death heals your Beast heroes 3.
+    const lord = heroes(st, s).find((h) => h.id === "king-minos");
+    if (lord && bondFactor(st, s) > 0) for (const h of heroes(st, s)) if (h.aspect === "Beast") heal(st, lord, h, 3);
+    return;
+  }
   if (t.kind !== "hero") return;
+  // Fed on tribute: when the Minotaur kills an enemy hero, your other Hellas heroes heal 1.
+  if (src && src.id === "the-minotaur" && src.side !== i && !src.dead && bondFactor(st, src.side) > 0)
+    for (const h of heroes(st, src.side)) if (h.uid !== src.uid && isRealm(st, h, "Hellas")) heal(st, src, h, 1);
   // Released from the Wolf
   if (t.id === "the-wolf") {
     for (const s of st.sides) {
@@ -586,7 +662,7 @@ function stop(st, target, why) {
 
 // Fire Breath: two different enemy cards, chosen at random when it resolves (one if only one is left).
 function fireTargets(st, a) {
-  const pool = cards(st, 1 - a.side).slice(), out = [];
+  const pool = cards(st, 1 - a.side).filter((c) => !inLabyrinth(st, c)), out = [];
   while (out.length < 2 && pool.length) out.push(pool.splice(st.rng.int(pool.length), 1)[0]);
   return out;
 }
@@ -647,6 +723,13 @@ export function upkeep(st) {
         if (fr) damage(st, crown, fr, 2, {});
         break;
       }
+      case "circe": {
+        if (st.fate !== i) break;
+        const fr = cards(st, foe).filter((c) => c.kind === "front");
+        for (const c of fr) c.flags.swineRound = st.round;
+        if (fr.length) log(st, `Circe turns ${sideName(foe)}'s front rank into swine: 0 Attack this round.`);
+        break;
+      }
       case "friar-tuck": {
         const side = st.sides[i];
         side.flags.tuckReturns = side.flags.tuckReturns || 0;
@@ -667,6 +750,19 @@ export function upkeep(st) {
         for (const c of heroes(st, i)) if (c.uid === h.uid || isRealm(st, c, "Gothic")) heal(st, h, c, 2 * f > 0 ? 2 : 0, { flat: f < 0 });
       }
       if (h.id === "grendel" && heroes(st, i).some((x) => x.id === "grendels-mother")) heal(st, h, h, f > 0 ? 1 : 0);
+    }
+  }
+  // Men of Ithaca: Villagers fill empty front-rank slots while uses last.
+  for (const i of [0, 1]) {
+    const side = st.sides[i];
+    if (!(side.flags.ithacaLeft > 0) || !heroes(st, i).some((h) => h.id === "odysseus") || bondFactor(st, i) <= 0) continue;
+    for (const slot of [4, 5, 6]) {
+      if (side.flags.ithacaLeft <= 0 || at(st, i, slot)) continue;
+      const v = makeFront(st.data.front.villager, i, slot);
+      if (crownIs(st, i, "polyphemus")) { v.maxHealth += 2; v.health += 2; }
+      v.guardLeft = guardOf(st, v);
+      side.slots[slot] = v; side.flags.ithacaLeft--;
+      log(st, `A man of Ithaca steps into ${sideName(i)}'s front rank.`);
     }
   }
   diffStats(st, upkeepBefore, null);
@@ -747,16 +843,28 @@ export const ACTIONS = {
   } } },
   "lancelot": { "Champion's charge": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 5); const ec = crownCard(st, 1 - a.side); if (ec && !ec.dead && ec.uid !== x.uid) applyHealthLoss(st, a, ec, 1, {}); } } },
   "little-john": { "Quarterstaff": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 4); const n = neighbours(st, x)[0]; if (n) hit(st, a, n, 1); } } },
+  "perseus": { "Mirrored shield": { t: "none", go: (st, a) => log(st, "Perseus holds up his mirrored shield.") },
+    "Medusa's head": { t: "enemyHero", go: (st, a, x) => { if (stop(st, x, "turned to stone")) { x.guardLeft += 2; log(st, `${x.name} is stone: +2 Guard this round.`); } } } },
+  "medusa": { "Serpent hair": { t: "none", go: (st, a) => {
+      for (const x of fireTargets(st, a)) { x.poison += 2; log(st, `Medusa's serpents bite ${x.name}: 2 Poison.`); }
+    } },
+    "Petrify": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Petrify") } },
+  "odysseus": { "Nobody": { t: "none", go: (st, a) => log(st, `"My name is Nobody," says Odysseus.`) } },
+  "polyphemus": { "Hurl the boulder": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, 4, { ranged: true }); if (!x.dead && x.kind === "hero") { x.flags.slowRound = st.round + 1; log(st, `${x.name} is slowed next round.`); } } } },
+  "circe": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+    "Transfigure": { t: "enemyHero", go: (st, a, x) => { x.flags.transfigUntil = st.round + 1; log(st, `Circe transfigures ${x.name}: Attack 1 this round and next.`); } } },
+  "king-minos": { "Royal decree": { t: "none", go: (st, a) => { const fs = st.sides[1 - a.side].flags; if (fs.decreeRound === st.round + 1) return; fs.decreeRound = st.round + 1; log(st, `King Minos decrees: next round, every ${sideName(1 - a.side)} action costs 1 more action point.`); } } },
+  "the-minotaur": { "Gore": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
   "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
-  "merlin": { "Hex": { t: "enemyAny", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+  "merlin": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Enchanted sleep": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Enchanted sleep") } },
-  "morgan-le-fay": { "Hex": { t: "enemyAny", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+  "morgan-le-fay": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Stolen scabbard": { t: "enemyHero", go: (st, a, x) => { x.noGuard = true; x.guardLeft = 0; x.noHeal = true; log(st, `${x.name} loses its Guard and healing.`); } } },
   "red-riding-hood": { "Cake and wine": { t: "ally", go: (st, a, x) => heal(st, a, x, 4) } },
   "renfield": { "The master is at hand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.guardCrownRound = st.round; } },
     "Betrayal": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, 6, { ignoreGuard: true }); a.guardLeft = 0; a.noGuard = true; a.health = Math.min(a.health, 1); log(st, "Renfield's betrayal leaves him on 1 Health."); } } },
   "rhiannon": { "The unhurried pace": { t: "enemyHero", go: (st, a, x) => { x.flags.speedOneRound = st.round; } } },
-  "robin-hood": { "Split the Arrow": { t: "enemyAny", go: (st, a, x) => { const other = cards(st, 1 - a.side).filter((c) => c.uid !== x.uid); const y = other.length ? other[st.rng.int(other.length)] : null; hit(st, a, x, 2, { ranged: true }); if (y && !y.dead) hit(st, a, y, 2, { ranged: true }); } } },
+  "robin-hood": { "Split the Arrow": { t: "enemyAny", go: (st, a, x) => { const other = cards(st, 1 - a.side).filter((c) => c.uid !== x.uid && !inLabyrinth(st, c)); const y = other.length ? other[st.rng.int(other.length)] : null; hit(st, a, x, 2, { ranged: true }); if (y && !y.dead) hit(st, a, y, 2, { ranged: true }); } } },
   "rumpelstiltskin": { "Straw into gold": { t: "none", go: (st, a) => { const side = st.sides[a.side]; const it = side.usedItems.pop(); if (it) { side.items.push(it); log(st, `Rumpelstiltskin spins back ${itemName(st, it)}.`); } } } },
   "sheriff-of-nottingham": { "Wanted": { t: "enemyAny", go: (st, a, x) => { st.marks[`wanted${a.side}`] = x.uid; log(st, `${x.name} is Wanted.`); } },
     "Break their spirit": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.noGuard = true; x.guardLeft = 0; } } },
@@ -768,7 +876,7 @@ export const ACTIONS = {
   "the-dragon": { "Fire Breath": { t: "none", go: (st, a) => { for (const x of fireTargets(st, a)) hit(st, a, x, 2, { ranged: true }); } },
     "Tail Sweep": { t: "enemyMelee", go: (st, a, x) => { const n = neighbours(st, x)[0]; hit(st, a, x, 2); if (n) hit(st, a, n, 2); } } },
   "the-huntsman": { "Stones in the belly": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, attackOf(st, a), { ranged: true }); if (!x.dead) x.speedFixed = 1; } } },
-  "the-little-mermaid": { "Sea magic": { t: "enemyAny", go: (st, a, x) => { damage(st, a, x, attackOf(st, a), { spell: true, attack: true, ranged: true }); applyHealthLoss(st, { name: "The knives", side: -1 }, a, 1, {}); } },
+  "the-little-mermaid": { "Sea magic": { t: "enemySpell", go: (st, a, x) => { damage(st, a, x, attackOf(st, a), { spell: true, attack: true, ranged: true }); applyHealthLoss(st, { name: "The knives", side: -1 }, a, 1, {}); } },
     "Saved from the wreck": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
   "the-princess": { "Mend": { t: "none", go: (st, a) => neighbours(st, a).forEach((n) => heal(st, a, n, 1)) },
     "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => { (a.flags.leashed ||= []).push(x.uid); stop(st, x, "Girdle Leash"); } } },
@@ -821,6 +929,8 @@ function standardAttack(st, a, x) {
   hit(st, a, x, attackOf(st, a), { ranged: a.ranged });
 }
 
+// Actions that stop a hero, so a hero stopped last round isn't offered as a target.
+export const STOPPERS = ["Enchanted sleep", "Petrify", "Medusa's head"];
 // Targets for an action, for the planner and the UI.
 export function targetsFor(st, a, act) {
   const foe = 1 - a.side;
@@ -836,7 +946,8 @@ export function targetsFor(st, a, act) {
     case "emptyFront": return [4, 5, 6].some((x) => !at(st, a.side, x)) ? [null] : [];
     case "enemyMelee": return meleeTargets(st, a);
     case "enemyAny": case "enemyAny2": return rangedTargets(st, a);
-    case "enemyHero": return act.name === "Enchanted sleep" ? eh.filter((c) => canBeStopped(st, c)) : eh;
+    case "enemySpell": return rangedTargets(st, a, { spell: true });
+    case "enemyHero": return STOPPERS.includes(act.name) ? eh.filter((c) => canBeStopped(st, c)) : eh;
     case "enemyHeroMelee": { const m = meleeTargets(st, a).filter((c) => c.kind === "hero"); return m.length ? m : []; }
     case "enemyHeroNotCrown": return eh.filter((c) => c.uid !== st.sides[foe].crownUid);
     case "enemyHero23": return eh.filter((c) => c.slot === 2 || c.slot === 3);
@@ -862,7 +973,7 @@ export function options(st, a) {
   const out = [];
   a.actions.forEach((act, index) => {
     if (act.usesPerFight && (a.uses[act.name] || 0) >= act.usesPerFight) return;
-    if (act.ap > 4) return;
+    if (apCost(st, a, act) > st.sides[a.side].ap) return;
     const targets = targetsFor(st, a, act);
     if (!targets.length) return;
     out.push({ index, action: act, targets });
@@ -929,7 +1040,7 @@ function frontAct(st, c) {
   switch (c.id) {
     case "berserker": { const x = opposite(); if (!x) return; const n = neighbours(st, x)[0]; damage(st, c, x, a, { attack: true }); if (n) damage(st, c, n, a, { attack: true }); return; }
     case "crossbowman": {
-      const hs = heroes(st, foe).filter((h) => h.slot === 2 || h.slot === 3).sort((p, q) => p.health - q.health);
+      const hs = heroes(st, foe).filter((h) => (h.slot === 2 || h.slot === 3) && !inLabyrinth(st, h)).sort((p, q) => p.health - q.health);
       const x = hs[0] || opposite(); if (x) damage(st, c, x, a, { attack: true, ranged: true }); return;
     }
     case "longbowman": {
@@ -973,8 +1084,9 @@ export function playRound(st, plans) {
       const a = cards(st, i).find((c) => c.uid === o.uid);
       if (!a || used.has(a.uid)) continue;
       const act = a.actions[o.index]; if (!act) continue;
-      if (act.ap > ap) continue;
-      ap -= act.ap; used.add(a.uid);
+      const cost = apCost(st, a, act);
+      if (cost > ap) continue;
+      ap -= cost; used.add(a.uid);
       ords.push({ side: i, actor: a, index: o.index, target: o.target, target2: o.target2 });
     }
     if (crownIs(st, i, "the-huntsman") && plan.hunt) st.marks[`hunt${i}`] = plan.hunt;
@@ -1004,6 +1116,13 @@ export function playRound(st, plans) {
       : (o.target ? findCard(st, o.target) : null);
     if (ITEM_TARGETS[o.item] !== "none" && !tgt) continue; // no valid target: the item isn't spent
     useItem(st, o.side, o.item, tgt);
+  }
+  // Mirrored shield and Nobody aren't Speed dependent: once chosen, they're up before anyone acts.
+  for (const o of ords) {
+    if (o.item || o.auto || o.cancelled || !o.actor || o.actor.stopNow || o.actor.dead) continue;
+    const nm = o.actor.actions[o.index]?.name;
+    if (o.actor.id === "perseus" && nm === "Mirrored shield") o.actor.flags.reflectRound = st.round;
+    if (o.actor.id === "odysseus" && nm === "Nobody") o.actor.flags.nobodyRound = st.round;
   }
   let pending = ords.filter((o) => !o.item);
   while (pending.length && !st.over) {
@@ -1063,10 +1182,11 @@ export function botPlan(st, i, rng = st.rng, noise = 0.35) {
   for (const a of heroes(st, i)) {
     for (const o of options(st, a)) {
       for (const x of o.targets) {
-        const v = valueOf(st, a, o.action, x);
+        // Hidden cards (the wooden horse) can't be judged: the bot guesses.
+        const v = x && x.side === foe && isHidden(st, x) ? 1 + 3 * rng.next() : valueOf(st, a, o.action, x);
         if (v <= 0) continue;
-        const t2 = null;
-        cand.push({ a, index: o.index, ap: o.action.ap, x, t2, v: (v / Math.max(1, o.action.ap)) * (1 + noise * (rng.next() - 0.5)) });
+        const t2 = null, cost = apCost(st, a, o.action);
+        cand.push({ a, index: o.index, ap: cost, x, t2, v: (v / Math.max(1, cost)) * (1 + noise * (rng.next() - 0.5)) });
       }
     }
   }
@@ -1181,6 +1301,18 @@ function valueOf(st, a, act, x) {
     case "Reanimate": case "Cauldron of rebirth": return x ? 8 : 0;
     case "Straw into gold": return st.sides[a.side].usedItems.length ? 3 : 0;
     case "Gnaw": return 0;
+    case "Mirrored shield": {
+      const threat = heroes(st, foe).reduce((s, h) => s + attackOf(st, h), 0);
+      return a.health <= a.maxHealth * 0.7 || (crownCard(st, a.side)?.uid === a.uid) ? Math.min(6, threat / 2) : 1;
+    }
+    case "Nobody": return a.health <= a.maxHealth * 0.6 ? 4 : 1;
+    case "Medusa's head": return x && x.stoppedRound !== st.round - 1 ? attackOf(st, x) * 1.5 + 1 : 0;
+    case "Petrify": return x && x.stoppedRound !== st.round - 1 ? attackOf(st, x) * 1.5 + 1 : 0;
+    case "Serpent hair": return Math.min(2, cards(st, foe).length) * 2.6;
+    case "Hurl the boulder": return dmgValue(4, x) + (x?.kind === "hero" ? 1 : 0);
+    case "Transfigure": return x ? Math.max(0, attackOf(st, x) - 1) * 2 : 0;
+    case "Royal decree": return st.sides[foe].flags.decreeRound === st.round + 1 ? 0 : 3 + heroes(st, foe).length;
+    case "Gore": return dmgValue(5 + (x?.guardLeft || 0), x);
     default: return dmgValue(attackOf(st, a), x);
   }
 }

@@ -2941,6 +2941,240 @@
       "status": "to-confirm",
       "commonsFile": "Siegfried_badet_im_Drachenblut_(Schindler).jpg",
       "notes": "The exact scene, but its first publication date is unknown, so its US status isn't proven. The figure is nude; crop to head and shoulders if it is ever cleared."
+    },
+    {
+      "id": "perseus",
+      "use": "card",
+      "cards": [
+        "perseus"
+      ],
+      "artist": "Edward Burne-Jones",
+      "artistDied": 1898,
+      "title": "Study of Perseus in Armour for The Finding of Medusa",
+      "date": "1881",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Edward_Burne-Jones_-_The_Perseus_Series_-_Study_of_Perseus_in_Armour_for_The_Finding_of_Medusa_-_Google_Art_Project.jpg"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Edward_Burne-Jones_-_The_Perseus_Series_-_Study_of_Perseus_in_Armour_for_The_Finding_of_Medusa_-_Google_Art_Project.jpg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old-100. Study for the Perseus Series."
+    },
+    {
+      "id": "medusa",
+      "use": "card",
+      "cards": [
+        "medusa"
+      ],
+      "artist": "Caravaggio",
+      "artistDied": 1610,
+      "title": "Medusa",
+      "date": "c. 1597",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Medusa-Caravaggio_(Uffizi).jpg",
+        "original": "Uffizi Gallery, Florence"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Medusa-Caravaggio_(Uffizi).jpg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old."
+    },
+    {
+      "id": "odysseus",
+      "use": "card",
+      "cards": [
+        "odysseus"
+      ],
+      "artist": "Herbert James Draper",
+      "artistDied": 1920,
+      "title": "Ulysses and the Sirens",
+      "date": "1909",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Draper_Herbert_James_Ulysses_and_the_Sirens.jpg",
+        "original": "Ferens Art Gallery, Hull"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Draper_Herbert_James_Ulysses_and_the_Sirens.jpg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old-auto-1923."
+    },
+    {
+      "id": "polyphemus",
+      "use": "card",
+      "cards": [
+        "polyphemus"
+      ],
+      "artist": "Odilon Redon",
+      "artistDied": 1916,
+      "title": "The Cyclops",
+      "date": "c. 1914",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Odilon_Redon_-_Le_Cyclope.jpeg",
+        "original": "Kröller-Müller Museum, Otterlo"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Odilon_Redon_-_Le_Cyclope.jpeg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old."
+    },
+    {
+      "id": "circe",
+      "use": "card",
+      "cards": [
+        "circe"
+      ],
+      "artist": "John William Waterhouse",
+      "artistDied": 1917,
+      "title": "Circe Offering the Cup to Ulysses",
+      "date": "1891",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Circe_Offering_the_Cup_to_Odysseus_(2457_x_4023px_ed.).jpg",
+        "original": "Gallery Oldham"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Circe_Offering_the_Cup_to_Odysseus_(2457_x_4023px_ed.).jpg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old."
+    },
+    {
+      "id": "king-minos",
+      "use": "card",
+      "cards": [
+        "king-minos"
+      ],
+      "artist": "Gustave Doré",
+      "artistDied": 1883,
+      "title": "Minos (Inferno, Canto V)",
+      "date": "1861",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Gustave_Doré_-_Dante_Alighieri_-_Inferno_-_Plate_13_(Canto_V_-_Minos).jpg"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Gustave_Doré_-_Dante_Alighieri_-_Inferno_-_Plate_13_(Canto_V_-_Minos).jpg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old. Doré's engraving for Dante's Inferno, where Minos judges the dead; the same King of Crete."
+    },
+    {
+      "id": "the-minotaur",
+      "use": "card",
+      "cards": [
+        "the-minotaur"
+      ],
+      "artist": "George Frederic Watts",
+      "artistDied": 1904,
+      "title": "The Minotaur",
+      "date": "1885",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:George_Frederic_Watts_-_The_Minotaur_-_Google_Art_Project.jpg",
+        "original": "Tate Britain"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "George_Frederic_Watts_-_The_Minotaur_-_Google_Art_Project.jpg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old-auto; Tate's copyright notice on Commons is for its photograph, which is a faithful 2D copy."
+    },
+    {
+      "id": "hoplite",
+      "use": "card",
+      "cards": [
+        "hoplite"
+      ],
+      "artist": "Jacques-Louis David",
+      "artistDied": 1825,
+      "title": "Leonidas at Thermopylae (detail)",
+      "date": "1814",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Jacques-Louis_David_-_Leonidas_at_Thermopylae_(detail)_-_WGA6096.jpg",
+        "original": "Louvre, Paris"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Jacques-Louis_David_-_Leonidas_at_Thermopylae_(detail)_-_WGA6096.jpg",
+      "maxWidth": 3000,
+      "notes": "Commons rights check: PD-Art, PD-old. Small scan (750px wide); look for a larger one."
+    },
+    {
+      "id": "medusa-variant",
+      "use": "variant",
+      "cards": [
+        "medusa"
+      ],
+      "artist": "Peter Paul Rubens",
+      "artistDied": 1640,
+      "title": "The Head of Medusa",
+      "date": "c. 1618",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Rubens_Medusa.jpeg",
+        "original": "Kunsthistorisches Museum, Vienna"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Rubens_Medusa.jpeg",
+      "maxWidth": 3000,
+      "variant": 2,
+      "notes": "Commons rights check: PD-Art, PD-old-100."
+    },
+    {
+      "id": "odysseus-variant",
+      "use": "variant",
+      "cards": [
+        "odysseus"
+      ],
+      "artist": "John William Waterhouse",
+      "artistDied": 1917,
+      "title": "Ulysses and the Sirens",
+      "date": "1891",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:John_William_Waterhouse_-_Ulysses_and_the_Sirens_-_Google_Art_Project.jpg",
+        "original": "National Gallery of Victoria, Melbourne"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "John_William_Waterhouse_-_Ulysses_and_the_Sirens_-_Google_Art_Project.jpg",
+      "maxWidth": 3000,
+      "variant": 2,
+      "notes": "Commons rights check: PD-Art, PD-old-auto-1923."
+    },
+    {
+      "id": "board-hellas",
+      "use": "board",
+      "board": "The Wine-Dark Sea",
+      "artist": "J. M. W. Turner",
+      "artistDied": 1851,
+      "title": "Ulysses Deriding Polyphemus",
+      "date": "1829",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Turner_-_Ulysses_deriding_Polyphemus_1829.jpg",
+        "original": "National Gallery, London"
+      },
+      "licence": "Public domain (PD-Art: faithful photograph of a 2D work whose artist died more than 70 years ago)",
+      "status": "cleared",
+      "commonsFile": "Turner_-_Ulysses_deriding_Polyphemus_1829.jpg",
+      "maxWidth": 3200,
+      "notes": "Commons rights check: PD-Art, PD-old. Shared by every Hellas tale.",
+      "tales": [
+        "Perseus",
+        "The Odyssey",
+        "The Labyrinth"
+      ]
     }
   ]
 }

@@ -15,7 +15,7 @@ const manifest = JSON.parse(readFileSync(join(root, "art/manifest.json"), "utf8"
 const art = new Map(manifest.images.map((i) => [i.id, i]));
 
 const ASPECTS = ["Guardian", "Slayer", "Healer", "Trickster", "Witch", "Beast", "Sovereign"];
-const REALMS = ["Albion", "Cymru", "Rus'", "Norse", "Geatland", "Märchen", "Eventyr", "Gothic"];
+const REALMS = ["Albion", "Cymru", "Rus'", "Norse", "Geatland", "Märchen", "Eventyr", "Gothic", "Hellas"];
 
 for (const { file, data: h } of readDir("cards/heroes")) {
   if (!file.endsWith(`/${h.id}.json`)) errors.push(`${file}: file name doesn't match id "${h.id}"`);

@@ -1,0 +1,46 @@
+{
+  "id": "circe",
+  "name": "Circe",
+  "type": "hero",
+  "realm": "Hellas",
+  "tale": "The Odyssey",
+  "aspect": "Witch",
+  "tags": [],
+  "stats": {
+    "health": 8,
+    "attack": 1,
+    "ranged": false,
+    "guard": 0,
+    "speed": 3
+  },
+  "vulnerableTo": "Trickster",
+  "renown": 10,
+  "crownPassive": {
+    "name": "Aiaia",
+    "text": "In rounds when you hold the Fate token, every enemy front-rank card is turned into a swine at upkeep and has 0 Attack that round."
+  },
+  "bond": {
+    "name": "Guests of Aiaia",
+    "text": "Your other Hellas heroes have +1 Guard."
+  },
+  "actions": [
+    {
+      "name": "Attack",
+      "ap": 1,
+      "text": "Standard attack: damage equal to Attack."
+    },
+    {
+      "name": "Hex",
+      "ap": 2,
+      "text": "A Spell for 2 on any enemy card, ignoring Guard."
+    },
+    {
+      "name": "Transfigure",
+      "ap": 2,
+      "text": "An enemy hero's Attack becomes 1 for this round and next. Once per fight.",
+      "usesPerFight": 1
+    }
+  ],
+  "art": "circe",
+  "status": "draft"
+}
