@@ -1589,6 +1589,14 @@ function startFight() {
   S.st = E.createGame(DATA, S.lineups.map(clean), { seed: S.seed });
   S.plans = [emptyPlan(), emptyPlan()]; S.p = 0; S.screen = "plan"; S.sheet = null; S.logFrom = 0; S.fullLog = false;
   render();
+  // Circe's opening move: with the Crown and the Fate token in round 1, she turns the enemy front rank into swine.
+  const sw = (S.st.events || []).find((x) => x.r === 1 && x.t === "debuff" && x.kind === "swine");
+  if (sw) {
+    const st = S.st, circe = findAny(sw.src);
+    S.animating = true; document.body.classList.add("animating");
+    setTimeout(() => FX.play([{ t: "act", r: 1, uid: sw.src, side: circe.side, name: "Aiaia" }, sw])
+      .finally(() => { S.animating = false; document.body.classList.remove("animating"); if (S.st === st) render(); }), 400);
+  }
 }
 function apLeft(i) {
   const st = S.st, plan = S.plans[i];

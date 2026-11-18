@@ -89,7 +89,7 @@ Some actions and heroes have their own effect in place of the plain lunge, arrow
 | Nobody | Odysseus | He fades almost to nothing when chosen; the attack passes through him: "Nobody!" | Whisper |
 | Hurl the boulder | Polyphemus | He heaves, a great rock tumbles on a high arc, a dust ring and a big board shake; "−1 Speed next round" | Heave, then a crashing rock-fall |
 | Hex, Transfigure | Circe | Pink runes; for Transfigure, pink lights to the target, which puffs pink: "Transfigured: Attack 1" | Shimmer; a pig's grunt |
-| Aiaia (Circe's Crown) | Circe | Pink puffs over each enemy front-rank card: "Swine" | Grunt |
+| Aiaia (Circe's Crown) | Circe | Pink puffs over each enemy front-rank card: "Swine". When she holds the Fate token in round 1, this is the fight's opening move: the board shows the front rank's real Attack, then Circe lifts with an "Aiaia" tag and casts it before the first plan | Grunt |
 | Royal decree | King Minos | A red wax seal with a gold crown stamps down by the enemy's ranks: "Royal decree: +1 AP per action next round" | A three-note horn call and a stamp |
 | Athenian tribute | King Minos | His heals travel as gold lights | Chime |
 | Growl | The Minotaur | Three red shockwaves roll out from him, the board shakes and every enemy card trembles: "−1 Guard −1 Speed" | A long low growl |

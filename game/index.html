@@ -2429,6 +2429,23 @@ function begin(kind, lineups, opts = {}) {
   Object.assign(U, { screen: "battle", sheet: null, over: null });
   render();
   SND.play("battle");
+  opening(st);
+}
+// Circe's opening move: if she wears the Crown and holds the Fate token in round 1, the fight opens with her
+// turning the enemy's front rank into swine. The engine has already done it; this shows it happening.
+function opening(st) {
+  const e = (st.events || []).find((x) => x.r === 1 && x.t === "debuff" && x.kind === "swine");
+  if (!e) return;
+  const circe = byUid(e.src), mine = circe.side === 0;
+  const pigs = e.tgts.map(byUid).filter(Boolean);
+  pigs.forEach((c) => { c.flags.swineRound = -1; });
+  const before = snap(st);
+  pigs.forEach((c) => { c.flags.swineRound = st.round; });
+  S.frames = [{ text: `${mine ? "Your" : "The enemy"} Circe holds the Fate token, so she opens the fight: ${mine ? "the enemy's" : "your"} front rank are turned into swine, with 0 Attack this round.`,
+    acting: circe.uid, snap: snap(st), prev: before, auto: false, events: [{ t: "act", r: 1, uid: circe.uid, side: circe.side, name: "Aiaia" }, e] }];
+  // Show the board as it was before the spell, with no Lock in button, until the opening plays.
+  S.phase = "play"; S.fi = -1; S.view = before; S.caption = ""; render();
+  setTimeout(() => { if (S.st === st && S.phase === "play") nextFrame(); }, 1600 / (G.fast ? 2 : 1));
 }
 const startTutorial = () => begin("tutorial", TUTORIAL_LINEUPS, { seed: TUTORIAL_SEED });
 // Empty slots in a legal line-up: listed before a fight so nobody walks in short by accident.
