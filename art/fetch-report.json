@@ -1,19 +1,6 @@
 {
-  "ranAt": "2026-11-18T17:03:55.048Z",
-  "fetched": [
-    {
-      "id": "loki",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Loke_and_Sigyn_(M%C3%A5rten_Winge)_-_Nationalmuseum_-_18041.tif?width=3000",
-      "bytes": 730613
-    },
-    {
-      "id": "loki-variant",
-      "via": "commonsFile",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Loke_by_C._E._Doepler.jpg?width=3000",
-      "bytes": 503458
-    }
-  ],
+  "ranAt": "2026-11-18T17:11:57.913Z",
+  "fetched": [],
   "alreadyHad": [
     "st-george",
     "the-dragon",
@@ -129,7 +116,9 @@
     "odysseus-variant",
     "board-hellas",
     "perseus-variant",
-    "the-minotaur-variant"
+    "the-minotaur-variant",
+    "loki",
+    "loki-variant"
   ],
   "unresolved": [],
   "failed": [
