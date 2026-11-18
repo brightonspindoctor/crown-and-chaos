@@ -17,7 +17,7 @@
   "renown": 16,
   "crownPassive": {
     "name": "Stony gaze",
-    "text": "Any enemy hero that hits Medusa with a melee attack loses 1 Speed for the rest of the fight."
+    "text": "An enemy hero that hits Medusa with a melee attack loses 1 Speed for the rest of the fight. Each hero can only be slowed this way once."
   },
   "bond": {
     "name": "Gorgon sisters",

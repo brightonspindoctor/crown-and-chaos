@@ -296,6 +296,10 @@ export function guardOf(st, c) {
     if (c.kind === "hero" && c.id !== "circe" && isRealm(st, c, "Hellas") && heroes(st, i).some((h) => h.id === "circe")) g += f;
   }
   if (c.kind === "front" && crownIs(st, i, "polyphemus")) g += 1;
+  // Winged sandals: your heroes have +1 Guard in rounds you hold the Fate token.
+  if (c.kind === "hero" && st.fate === i && crownIs(st, i, "perseus")) g += 1;
+  // Growl: -1 Guard to every enemy card in the round after the Minotaur growls.
+  if (st.sides[i].flags.growlRound === st.round) g -= 1;
   // Phalanx: a Hoplite has +1 Guard for each Hoplite next to it.
   if (c.id === "hoplite") g += neighbours(st, c).filter((n) => n.id === "hoplite").length;
   // Dread: the Creature as Crown takes 1 Guard from every enemy hero.
@@ -319,8 +323,10 @@ export function speedOf(st, c) {
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
-  // Winged sandals: your heroes have +1 Speed in round 1.
-  if (c.kind === "hero" && st.round === 1 && crownIs(st, i, "perseus")) s += 1;
+  // Winged sandals: your heroes have +1 Speed in rounds you don't hold the Fate token.
+  if (c.kind === "hero" && st.fate !== i && crownIs(st, i, "perseus")) s += 1;
+  // Growl: -1 Speed to every enemy card in the round after the Minotaur growls.
+  if (st.sides[i].flags.growlRound === st.round) s -= 1;
   // Hurl the boulder: -1 Speed in the round after the hit.
   if (c.flags.slowRound === st.round) s -= 1;
   // The Wolf's Shortcut: +1 Speed to your heroes for 3 rounds.
@@ -451,8 +457,8 @@ export function damage(st, src, target, amount, opts = {}) {
     return damage(st, t, src, amount, {});
   }
   // Stony gaze: a melee attack on a Medusa Crown costs the attacking hero 1 Speed for the fight.
-  if (atk && !opts.ranged && !opts.spell && t.id === "medusa" && crownIs(st, t.side, "medusa") && src?.kind === "hero" && src.side !== t.side) {
-    src.speedPerm -= 1; log(st, `${src.name} meets Medusa's gaze and slows (-1 Speed).`);
+  if (atk && !opts.ranged && !opts.spell && t.id === "medusa" && crownIs(st, t.side, "medusa") && src?.kind === "hero" && src.side !== t.side && !src.flags.gazed) {
+    src.flags.gazed = true; src.speedPerm -= 1; log(st, `${src.name} meets Medusa's gaze and slows (-1 Speed).`);
   }
   // Misses and immunities
   if (atk && t.id === "rhiannon" && crownIs(st, t.side, "rhiannon") && src && speedOf(st, src) < speedOf(st, t) &&
@@ -854,7 +860,8 @@ export const ACTIONS = {
   "circe": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Transfigure": { t: "enemyHero", go: (st, a, x) => { x.flags.transfigUntil = st.round + 1; log(st, `Circe transfigures ${x.name}: Attack 1 this round and next.`); } } },
   "king-minos": { "Royal decree": { t: "none", go: (st, a) => { const fs = st.sides[1 - a.side].flags; if (fs.decreeRound === st.round + 1) return; fs.decreeRound = st.round + 1; log(st, `King Minos decrees: next round, every ${sideName(1 - a.side)} action costs 1 more action point.`); } } },
-  "the-minotaur": { "Gore": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
+  "the-minotaur": { "Growl": { t: "none", go: (st, a) => { st.sides[1 - a.side].flags.growlRound = st.round + 1; log(st, `The Minotaur growls: next round, every ${sideName(1 - a.side)} card has -1 Guard and -1 Speed.`); } },
+    "Gore": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
   "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
   "merlin": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Enchanted sleep": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Enchanted sleep") } },
@@ -1312,6 +1319,7 @@ function valueOf(st, a, act, x) {
     case "Hurl the boulder": return dmgValue(4, x) + (x?.kind === "hero" ? 1 : 0);
     case "Transfigure": return x ? Math.max(0, attackOf(st, x) - 1) * 2 : 0;
     case "Royal decree": return st.sides[foe].flags.decreeRound === st.round + 1 ? 0 : 3 + heroes(st, foe).length;
+    case "Growl": return st.sides[foe].flags.growlRound === st.round + 1 ? 0 : 1 + 0.8 * cards(st, foe).length;
     case "Gore": return dmgValue(5 + (x?.guardLeft || 0), x);
     default: return dmgValue(attackOf(st, a), x);
   }

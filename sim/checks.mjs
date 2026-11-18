@@ -90,12 +90,27 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st2, [{ orders: [order(st2, 0, "perseus", "Mirrored shield")] }, { orders: [order(st2, 1, "the-wolf", "Attack", p2)] }]);
   ok("The Wolf's bite bounces back off the shield", p2.health === p0 && w.health === w0 - 4, [p2.health, w.health, w0]);
 }
-{ // Winged sandals: +1 Speed to your heroes in round 1 only
+{ // Winged sandals: +1 Guard with the Fate token, +1 Speed without
   const st = game(lu("perseus", ["circe"]), lu("merlin"));
-  const c = card(st, 0, "circe");
-  ok("Circe is Speed 4 in round 1 under Perseus", E.speedOf(st, c) === 4, E.speedOf(st, c));
+  for (let k = 0; k < 2; k++) {
+    const c = card(st, 0, "circe"), fate = st.fate === 0;
+    ok(`Round ${st.round}: Circe has ${fate ? "Guard 1, Speed 3" : "Guard 0, Speed 4"}`, E.guardOf(st, c) === (fate ? 1 : 0) && E.speedOf(st, c) === (fate ? 3 : 4), [E.guardOf(st, c), E.speedOf(st, c)]);
+    E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  }
+}
+{ // Growl: enemies -1 Guard and -1 Speed next round only
+  const st = game(lu("the-minotaur"), lu("st-george"));
+  const g = card(st, 1, "st-george"), g0 = E.guardOf(st, g), s0 = E.speedOf(st, g);
+  E.playRound(st, [{ orders: [order(st, 0, "the-minotaur", "Growl")] }, { orders: [] }]);
+  ok("Next round St George has -1 Guard and -1 Speed", E.guardOf(st, g) === g0 - 1 && E.speedOf(st, g) === s0 - 1, [E.guardOf(st, g), E.speedOf(st, g)]);
   E.playRound(st, [{ orders: [] }, { orders: [] }]);
-  ok("and Speed 3 after", E.speedOf(st, c) === 3, E.speedOf(st, c));
+  ok("and is back to normal after", E.guardOf(st, g) === g0 && E.speedOf(st, g) === s0);
+}
+{ // Stony gaze slows each hero only once
+  const st = game(lu("medusa"), lu("st-george"));
+  const g = card(st, 1, "st-george"), s0 = E.speedOf(st, g);
+  for (let k = 0; k < 2; k++) E.playRound(st, [{ orders: [] }, { orders: [order(st, 1, "st-george", "Attack", card(st, 0, "medusa"))] }]);
+  ok("St George hit Medusa twice but lost only 1 Speed", E.speedOf(st, g) === s0 - 1, [s0, E.speedOf(st, g)]);
 }
 { // Medusa: Serpent hair poisons two enemies; Stony gaze slows melee attackers
   const st = game(lu("medusa"), lu("merlin", [], ["knight", "knight"]));

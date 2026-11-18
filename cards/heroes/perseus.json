@@ -17,7 +17,7 @@
   "renown": 11,
   "crownPassive": {
     "name": "Winged sandals",
-    "text": "In round 1, all your heroes have +1 Speed."
+    "text": "Your heroes have +1 Guard in rounds you hold the Fate token, and +1 Speed in rounds you don't."
   },
   "bond": {
     "name": "Gorgon's bane",

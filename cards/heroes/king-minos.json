@@ -10,7 +10,7 @@
     "health": 10,
     "attack": 2,
     "ranged": false,
-    "guard": 1,
+    "guard": 2,
     "speed": 2
   },
   "vulnerableTo": "Slayer",

@@ -30,6 +30,11 @@
       "text": "Standard attack: damage equal to Attack."
     },
     {
+      "name": "Growl",
+      "ap": 2,
+      "text": "Next round, every enemy card has -1 Guard and -1 Speed."
+    },
+    {
       "name": "Gore",
       "ap": 3,
       "text": "Deal 5 to the closest enemy, ignoring Guard."
