@@ -109,6 +109,11 @@ const SND = (() => {
       notes("sine", [2349, 2794, 3520], 0.09, 0.6, 0.07, 0.55);
       tone("sine", 120, 45, 0.45, 0.8, 0.5); noise("highpass", 5000, 9000, 0.8, 0.08, 0.5);
     },
+    levelup() { // two tolls of a deep bell over a low choir
+      [0, 0.9].forEach((at) => { [[1, 0.3], [2.01, 0.12], [2.76, 0.08], [5.4, 0.04]].forEach(([m, v]) => tone("sine", 147 * m, 147 * m, 2.6, v, at)); });
+      [147, 220, 294, 349].forEach((f, k) => { tone("sawtooth", f * 0.997, f, 2.8, 0.035, 0.2 + k * 0.05, ["lowpass", 900]); tone("sawtooth", f * 1.004, f, 2.8, 0.03, 0.2 + k * 0.05, ["lowpass", 900]); });
+      notes("sine", [1175, 1397, 1760], 0.12, 0.8, 0.05, 1.6);
+    },
     tie() { // a drawn fight (not the bowstring "draw" above)
       tone("sine", 100, 50, 0.4, 0.6); noise("lowpass", 600, 90, 0.18, 0.35);
       horn(440, 0.1, 0.38); horn(392, 0.5, 1.3, 0.14); horn(587, 0.5, 1.3, 0.1);
