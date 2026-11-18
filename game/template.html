@@ -876,6 +876,7 @@ function begin(kind, lineups, opts = {}) {
     board: BOARDS[crown.tale], foeName: opts.foeName || "", view: snap(st), prev: null, frames: [], fi: 0, caption: "", acting: null });
   Object.assign(U, { screen: "battle", sheet: null, over: null });
   render();
+  SND.play("battle");
 }
 const startTutorial = () => begin("tutorial", TUTORIAL_LINEUPS, { seed: TUTORIAL_SEED });
 // Empty slots in a legal line-up: listed before a fight so nobody walks in short by accident.
@@ -1042,6 +1043,7 @@ function fx() {
     fillSlot: (slot, e) => { slot.classList.add("fx-revived"); slot.textContent = short(e.name); },
     speed: fxSpeed,
     announce: false, // the caption under the board is already read out
+    resultSounds: false, // finishFight plays win, lose or draw from the player's side
   });
 }
 
@@ -1162,6 +1164,7 @@ function endPlayback() {
 function minus(have, gone) { const left = have.slice(); for (const id of gone) { const k = left.indexOf(id); if (k >= 0) left.splice(k, 1); } return left; }
 function finishFight() {
   const st = S.st, w = st.winner;
+  SND.play(w < 0 ? "draw" : w === 0 ? "win" : "lose");
   if (S.kind === "tutorial") {
     const first = w === 0 && !G.tutorialDone; // the tutorial's Crown counts once, the first time it is won
     if (first) { G.crowns++; G.tutorialDone = true; save(); }

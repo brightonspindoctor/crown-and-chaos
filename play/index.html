@@ -1657,6 +1657,8 @@ const SND = (() => {
     s.connect(f); f.connect(g); g.connect(master); s.start(t, Math.random() * 0.5); s.stop(t + dur + 0.05);
   }
   const notes = (type, freqs, step, dur, vol, at = 0) => freqs.forEach((f, k) => tone(type, f, f * 1.001, dur, vol, at + k * step));
+  // A brass-like horn note: a filtered sawtooth with a sine underneath.
+  const horn = (f, at, dur, vol = 0.18) => { tone("sawtooth", f * 0.985, f, dur, vol, at, ["lowpass", 1500]); tone("sine", f, f, dur, vol * 0.7, at); };
   const S = {
     thump() { tone("sine", 150, 42, 0.22, 0.9); noise("lowpass", 900, 120, 0.09, 0.55); },
     claw() { noise("bandpass", 4200, 900, 0.16, 0.5, 0, 2); noise("bandpass", 3800, 800, 0.14, 0.4, 0.05, 2); tone("sine", 120, 50, 0.15, 0.5); },
@@ -1696,8 +1698,29 @@ const SND = (() => {
     wind() { noise("bandpass", 380, 1700, 0.85, 0.38, 0, 3); noise("bandpass", 1700, 480, 0.65, 0.26, 0.3, 3); },
     smash() { tone("sine", 115, 30, 0.38, 1); noise("lowpass", 1300, 70, 0.34, 0.75); },
     night() { tone("sine", 55, 52, 1.6, 0.45); tone("sine", 58, 55, 1.6, 0.35); noise("lowpass", 200, 80, 1.4, 0.2); },
-    win() { notes("triangle", [392, 523, 659, 784], 0.13, 0.5, 0.25); notes("triangle", [1047], 0, 0.9, 0.18, 0.55); },
-    lose() { notes("triangle", [392, 349, 311, 262], 0.18, 0.55, 0.22); },
+    // Results and the call to battle: war drums, a horn, and a fanfare, a stalemate or a lament.
+    battle() {
+      [0, 0.2, 0.4].forEach((at, k) => { tone("sine", 120, 42, 0.32, k === 2 ? 1 : 0.75, at); noise("lowpass", 800, 90, 0.16, 0.45, at); });
+      horn(294, 0.62, 0.32); horn(440, 0.92, 0.32); horn(587, 1.22, 0.9);
+      noise("highpass", 5000, 8000, 0.5, 0.06, 1.22);
+    },
+    win() {
+      tone("sine", 110, 40, 0.4, 0.9); noise("lowpass", 900, 90, 0.2, 0.45);
+      [587, 740, 880].forEach((f, k) => horn(f, 0.08 + k * 0.13, 0.26));
+      [587, 740, 880, 1175].forEach((f) => horn(f, 0.5, 1.4, 0.11));
+      notes("sine", [2349, 2794, 3520], 0.09, 0.6, 0.07, 0.55);
+      tone("sine", 120, 45, 0.45, 0.8, 0.5); noise("highpass", 5000, 9000, 0.8, 0.08, 0.5);
+    },
+    draw() {
+      tone("sine", 100, 50, 0.4, 0.6); noise("lowpass", 600, 90, 0.18, 0.35);
+      horn(440, 0.1, 0.38); horn(392, 0.5, 1.3, 0.14); horn(587, 0.5, 1.3, 0.1);
+      tone("sine", 196, 196, 1.6, 0.12, 0.5);
+    },
+    lose() {
+      tone("sine", 73, 73, 2.2, 0.28); tone("sine", 110, 109, 2.2, 0.1);
+      [294, 262, 233, 220].forEach((f, k) => horn(f, 0.1 + k * 0.32, k === 3 ? 1.4 : 0.36, 0.15));
+      tone("sine", 90, 35, 0.7, 0.9, 1.15); noise("lowpass", 500, 60, 0.5, 0.4, 1.15);
+    },
   };
   // ---------- music ----------
   // A quiet, endless tune made on the spot: a low drone under a plucked, lute-like line that wanders
@@ -2394,7 +2417,8 @@ function makeFX(A) {
   }
   async function onOver(e) {
     clearItem(); if (raised) raised.classList.remove("fx-acting");
-    SND.play(e.winner < 0 ? "lose" : "win");
+    // A page that knows whose side the player is on plays the result sound itself, when it shows the result.
+    if (A.resultSounds !== false) SND.play(e.winner < 0 ? "draw" : "win");
     say(e.winner < 0 ? "A draw" : `${A.sideName(e.winner)} wins`);
     await wait(700);
   }
