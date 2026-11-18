@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Sovereign",
-  "renown": 14,
+  "renown": 16,
   "crownPassive": {
     "name": "Guess my name",
     "text": "You have 3 guesses a fight. Each round, while planning, you may secretly name one enemy hero, but not the same hero two rounds running. If it planned an action, the action is cancelled and it takes 2 damage. If it planned nothing, Rumpelstiltskin takes 1 damage."

@@ -14,7 +14,7 @@
     "speed": 5
   },
   "vulnerableTo": "Guardian",
-  "renown": 17,
+  "renown": 18,
   "crownPassive": {
     "name": "No Crown",
     "text": "You have no Crown this fight, and the enemy wins only by killing all your heroes."

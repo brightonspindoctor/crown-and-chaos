@@ -7,14 +7,14 @@
   "aspect": "Witch",
   "tags": [],
   "stats": {
-    "health": 10,
-    "attack": 2,
+    "health": 11,
+    "attack": 3,
     "ranged": false,
     "guard": 1,
-    "speed": 2
+    "speed": 3
   },
   "vulnerableTo": "Healer",
-  "renown": 5,
+  "renown": 15,
   "crownPassive": {
     "name": "Hard frost",
     "text": "In every round that you hold the Fate token, all enemy cards have -2 Speed (never below 1)."
@@ -33,7 +33,7 @@
       "name": "Shard of the mirror",
       "ap": 2,
       "text": "This round, an enemy hero's attack hits one of its own adjacent cards instead.",
-      "usesPerFight": 1
+      "usesPerFight": 2
     }
   ],
   "art": "the-snow-queen",

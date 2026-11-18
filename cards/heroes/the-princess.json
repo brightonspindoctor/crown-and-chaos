@@ -7,14 +7,14 @@
   "aspect": "Healer",
   "tags": [],
   "stats": {
-    "health": 8,
+    "health": 10,
     "attack": 2,
     "ranged": true,
     "guard": 0,
     "speed": 3
   },
   "vulnerableTo": "Beast",
-  "renown": 9,
+  "renown": 14,
   "crownPassive": {
     "text": "At upkeep, heal 1 to one of your cards, chosen at random.",
     "name": "Blessing of Silene"

@@ -7,14 +7,14 @@
   "aspect": "Healer",
   "tags": [],
   "stats": {
-    "health": 9,
-    "attack": 2,
+    "health": 10,
+    "attack": 3,
     "ranged": false,
     "guard": 0,
     "speed": 3
   },
   "vulnerableTo": "Witch",
-  "renown": 9,
+  "renown": 14,
   "crownPassive": {
     "name": "Her mother's doll",
     "text": "The first of your heroes to die each fight survives on 2 health instead, and one of your dead front-rank cards returns to its slot on 1 health, if there is one."

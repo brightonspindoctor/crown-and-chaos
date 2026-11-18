@@ -1,7 +1,7 @@
 # Simulator results
 
-100000 bot-vs-bot fights between random legal line-ups (50 Renown), seed 34.
-Average fight: 5.8 rounds. Draws: 7.0%. Fights reaching Nightfall (round 8): 29.3%.
+120000 bot-vs-bot fights between random legal line-ups (50 Renown), seed 101.
+Average fight: 5.5 rounds. Draws: 7.0%. Fights reaching Nightfall (round 8): 23.8%.
 
 The bots are simple: each round they pick the actions worth most per action point. They don't plan ahead or read the opponent, so treat these as flags to playtest, not verdicts. A draw counts as half a win.
 
@@ -9,258 +9,258 @@ The bots are simple: each round they pick the actions worth most per action poin
 
 | | Win rate | Fights |
 |---|---|---|
-| king-minos | 67.1% | 4472 |
-| victor-frankenstein | 64.6% | 4679 |
-| robin-hood | 63.0% | 3808 |
-| the-tin-soldier | 59.8% | 4678 |
-| grendels-mother | 59.4% | 5039 |
-| polyphemus | 57.8% | 3509 |
-| friar-tuck | 57.7% | 4902 |
-| rumpelstiltskin | 56.1% | 4017 |
-| the-huntsman | 55.7% | 3598 |
-| loki | 55.3% | 3992 |
-| blodeuwedd | 55.1% | 4447 |
-| the-snow-queen | 54.2% | 5924 |
-| koschei | 53.7% | 3858 |
-| st-george | 53.4% | 3748 |
-| zmey-gorynych | 53.3% | 4462 |
-| baba-yaga | 53.2% | 4287 |
-| little-john | 53.1% | 3501 |
-| medusa | 52.9% | 4311 |
-| the-dragon | 52.3% | 3784 |
-| grendel | 52.1% | 4993 |
-| guinevere | 51.2% | 4528 |
-| bran-the-blessed | 50.9% | 3810 |
-| king-arthur | 50.8% | 3787 |
-| sheriff-of-nottingham | 50.5% | 4244 |
-| van-helsing | 50.2% | 3993 |
-| maid-marian | 50.0% | 4124 |
-| gretel | 49.5% | 3439 |
-| red-riding-hood | 49.3% | 4544 |
-| the-little-mermaid | 49.0% | 3499 |
-| morgan-le-fay | 48.7% | 3609 |
-| beowulf | 48.3% | 4157 |
-| renfield | 47.7% | 4384 |
-| vasilisa-the-wise | 47.6% | 4582 |
-| merlin | 47.4% | 4123 |
-| dracula | 46.7% | 3495 |
-| perseus | 45.8% | 4334 |
-| rhiannon | 45.3% | 4215 |
-| odysseus | 45.2% | 3900 |
-| fafnir | 43.0% | 4095 |
-| the-princess | 41.6% | 4617 |
-| the-wolf | 41.0% | 3671 |
-| gwydion | 41.0% | 4641 |
-| sigurd | 40.0% | 4205 |
-| the-bride | 39.4% | 3865 |
-| circe | 39.2% | 5231 |
-| the-creature | 37.2% | 3485 |
-| the-minotaur | 35.5% | 3971 |
-| lancelot | 28.2% | 3443 |
+| king-minos | 66.4% | 6038 |
+| victor-frankenstein | 64.0% | 6294 |
+| robin-hood | 61.5% | 4129 |
+| the-tin-soldier | 58.1% | 4991 |
+| grendels-mother | 57.2% | 6547 |
+| st-george | 57.2% | 4605 |
+| loki | 56.5% | 4612 |
+| zmey-gorynych | 55.8% | 6164 |
+| polyphemus | 55.7% | 4281 |
+| bran-the-blessed | 55.5% | 4445 |
+| grendel | 55.3% | 6444 |
+| koschei | 54.9% | 4638 |
+| rumpelstiltskin | 54.8% | 4636 |
+| blodeuwedd | 54.7% | 4337 |
+| medusa | 53.8% | 4796 |
+| friar-tuck | 53.4% | 4931 |
+| the-snow-queen | 53.4% | 4878 |
+| red-riding-hood | 53.2% | 4209 |
+| gwydion | 52.2% | 4960 |
+| the-dragon | 52.2% | 4293 |
+| little-john | 51.9% | 4076 |
+| renfield | 51.9% | 5297 |
+| the-princess | 51.3% | 5293 |
+| beowulf | 51.0% | 5787 |
+| circe | 50.4% | 6153 |
+| guinevere | 50.4% | 4997 |
+| vasilisa-the-wise | 49.6% | 5258 |
+| sheriff-of-nottingham | 49.1% | 5361 |
+| rhiannon | 48.8% | 5285 |
+| maid-marian | 48.5% | 5298 |
+| king-arthur | 48.2% | 4262 |
+| baba-yaga | 48.1% | 5440 |
+| the-huntsman | 48.0% | 5376 |
+| merlin | 47.9% | 4804 |
+| gretel | 47.4% | 4190 |
+| perseus | 47.2% | 6191 |
+| odysseus | 46.0% | 4337 |
+| morgan-le-fay | 45.9% | 4578 |
+| dracula | 44.1% | 4082 |
+| the-little-mermaid | 42.4% | 5169 |
+| fafnir | 40.7% | 5277 |
+| van-helsing | 40.4% | 4945 |
+| the-wolf | 40.1% | 4639 |
+| sigurd | 39.4% | 5326 |
+| the-bride | 38.4% | 4613 |
+| the-creature | 37.8% | 4201 |
+| the-minotaur | 35.8% | 4801 |
+| lancelot | 22.7% | 4736 |
 
 ### Heroes in slots 2–3 (not the Crown), best first
 
 | | Win rate | Fights |
 |---|---|---|
-| lancelot | 65.3% | 6121 |
-| the-minotaur | 60.0% | 7459 |
-| the-bride | 58.8% | 7142 |
-| the-little-mermaid | 58.8% | 6019 |
-| the-creature | 58.7% | 6128 |
-| morgan-le-fay | 57.6% | 6558 |
-| the-wolf | 57.6% | 6705 |
-| fafnir | 57.5% | 7444 |
-| sigurd | 57.4% | 7698 |
-| van-helsing | 56.5% | 6995 |
-| dracula | 55.6% | 6361 |
-| king-arthur | 55.6% | 6936 |
-| merlin | 54.3% | 7571 |
-| odysseus | 54.3% | 7170 |
-| circe | 53.8% | 9840 |
-| gwydion | 53.7% | 8697 |
-| beowulf | 53.7% | 7749 |
-| sheriff-of-nottingham | 53.2% | 7769 |
-| rhiannon | 53.0% | 7880 |
-| renfield | 52.9% | 8153 |
-| perseus | 52.9% | 8074 |
-| gretel | 52.9% | 5865 |
-| grendel | 52.5% | 9355 |
-| the-huntsman | 52.2% | 6469 |
-| the-dragon | 52.1% | 7010 |
-| the-princess | 51.8% | 8601 |
-| st-george | 51.5% | 6955 |
-| loki | 51.4% | 7568 |
-| koschei | 51.0% | 7334 |
-| maid-marian | 50.9% | 7922 |
-| little-john | 50.5% | 5859 |
-| rumpelstiltskin | 50.5% | 7355 |
-| guinevere | 49.8% | 8386 |
-| zmey-gorynych | 49.6% | 8042 |
-| red-riding-hood | 49.5% | 8434 |
-| vasilisa-the-wise | 49.2% | 8935 |
-| medusa | 49.2% | 7914 |
-| bran-the-blessed | 49.1% | 7382 |
-| the-snow-queen | 49.0% | 15732 |
-| grendels-mother | 48.6% | 9309 |
-| polyphemus | 48.5% | 6393 |
-| blodeuwedd | 48.1% | 8390 |
-| friar-tuck | 46.4% | 9393 |
-| robin-hood | 46.2% | 6892 |
-| victor-frankenstein | 45.2% | 8735 |
-| king-minos | 44.8% | 8283 |
-| the-tin-soldier | 43.3% | 8688 |
+| lancelot | 67.9% | 9143 |
+| the-creature | 61.0% | 7861 |
+| the-minotaur | 58.8% | 9036 |
+| the-bride | 58.8% | 8527 |
+| fafnir | 57.7% | 9904 |
+| the-wolf | 57.5% | 8397 |
+| sigurd | 57.1% | 9913 |
+| morgan-le-fay | 56.4% | 8537 |
+| the-huntsman | 56.3% | 9720 |
+| van-helsing | 56.0% | 9083 |
+| odysseus | 55.8% | 7890 |
+| dracula | 55.6% | 7203 |
+| the-little-mermaid | 55.3% | 9668 |
+| circe | 55.3% | 13164 |
+| beowulf | 53.9% | 10814 |
+| perseus | 53.6% | 13227 |
+| gretel | 53.0% | 7116 |
+| vasilisa-the-wise | 52.8% | 9822 |
+| merlin | 52.8% | 9053 |
+| guinevere | 52.1% | 9058 |
+| gwydion | 51.7% | 9092 |
+| rhiannon | 51.5% | 9646 |
+| king-arthur | 51.5% | 7791 |
+| polyphemus | 50.7% | 7936 |
+| renfield | 50.6% | 9851 |
+| the-dragon | 50.6% | 7896 |
+| blodeuwedd | 50.5% | 7984 |
+| zmey-gorynych | 50.5% | 13026 |
+| loki | 50.5% | 8561 |
+| maid-marian | 50.3% | 9792 |
+| the-snow-queen | 50.3% | 9141 |
+| little-john | 50.1% | 7320 |
+| sheriff-of-nottingham | 50.1% | 9656 |
+| medusa | 50.1% | 8938 |
+| friar-tuck | 49.9% | 9218 |
+| grendel | 49.6% | 12393 |
+| the-princess | 49.4% | 9732 |
+| st-george | 49.0% | 8300 |
+| koschei | 48.7% | 8611 |
+| bran-the-blessed | 48.6% | 8516 |
+| grendels-mother | 48.5% | 12290 |
+| red-riding-hood | 48.0% | 7943 |
+| the-tin-soldier | 46.9% | 9028 |
+| rumpelstiltskin | 46.8% | 8413 |
+| robin-hood | 43.4% | 7127 |
+| victor-frankenstein | 42.9% | 12949 |
+| king-minos | 42.8% | 10908 |
 
 ### Heroes in any slot, best first
 
 | | Win rate | Fights |
 |---|---|---|
-| the-little-mermaid | 55.2% | 9518 |
-| morgan-le-fay | 54.4% | 10167 |
-| van-helsing | 54.2% | 10988 |
-| king-arthur | 53.9% | 10723 |
-| the-huntsman | 53.4% | 10067 |
-| baba-yaga | 53.2% | 4287 |
-| loki | 52.8% | 11560 |
-| king-minos | 52.6% | 12755 |
-| dracula | 52.5% | 9856 |
-| rumpelstiltskin | 52.4% | 11372 |
-| grendel | 52.4% | 14348 |
-| grendels-mother | 52.4% | 14348 |
-| fafnir | 52.4% | 11539 |
-| sheriff-of-nottingham | 52.2% | 12013 |
-| the-dragon | 52.2% | 10794 |
-| st-george | 52.2% | 10703 |
-| robin-hood | 52.1% | 10700 |
-| the-bride | 52.0% | 11007 |
-| koschei | 51.9% | 11192 |
-| victor-frankenstein | 51.9% | 13414 |
-| lancelot | 51.9% | 9564 |
-| merlin | 51.9% | 11694 |
-| beowulf | 51.8% | 11906 |
-| polyphemus | 51.8% | 9902 |
-| the-wolf | 51.7% | 10376 |
-| gretel | 51.6% | 9304 |
-| the-minotaur | 51.5% | 11430 |
-| little-john | 51.5% | 9360 |
-| sigurd | 51.3% | 11903 |
-| odysseus | 51.1% | 11070 |
-| renfield | 51.1% | 12537 |
-| the-creature | 50.9% | 9613 |
-| zmey-gorynych | 50.9% | 12504 |
-| maid-marian | 50.6% | 12046 |
-| blodeuwedd | 50.5% | 12837 |
-| medusa | 50.5% | 12225 |
-| the-snow-queen | 50.4% | 21656 |
-| perseus | 50.4% | 12408 |
-| guinevere | 50.3% | 12914 |
-| rhiannon | 50.3% | 12095 |
-| friar-tuck | 50.3% | 14295 |
-| bran-the-blessed | 49.7% | 11192 |
-| red-riding-hood | 49.4% | 12978 |
-| gwydion | 49.3% | 13338 |
-| the-tin-soldier | 49.1% | 13366 |
-| circe | 48.7% | 15071 |
-| vasilisa-the-wise | 48.7% | 13517 |
-| the-princess | 48.2% | 13218 |
+| circe | 53.7% | 19317 |
+| the-huntsman | 53.3% | 15096 |
+| the-creature | 52.9% | 12062 |
+| beowulf | 52.9% | 16601 |
+| morgan-le-fay | 52.7% | 13115 |
+| loki | 52.6% | 13173 |
+| lancelot | 52.5% | 13879 |
+| polyphemus | 52.5% | 12217 |
+| odysseus | 52.3% | 12227 |
+| zmey-gorynych | 52.2% | 19190 |
+| blodeuwedd | 52.0% | 12321 |
+| st-george | 51.9% | 12905 |
+| gwydion | 51.9% | 14052 |
+| fafnir | 51.8% | 15181 |
+| vasilisa-the-wise | 51.7% | 15080 |
+| the-bride | 51.6% | 13140 |
+| grendels-mother | 51.6% | 18837 |
+| grendel | 51.6% | 18837 |
+| perseus | 51.5% | 19418 |
+| guinevere | 51.5% | 14055 |
+| dracula | 51.4% | 11285 |
+| medusa | 51.4% | 13734 |
+| the-snow-queen | 51.4% | 14019 |
+| the-wolf | 51.3% | 13036 |
+| king-minos | 51.2% | 16946 |
+| the-dragon | 51.2% | 12189 |
+| friar-tuck | 51.1% | 14149 |
+| merlin | 51.1% | 13857 |
+| renfield | 51.1% | 15148 |
+| bran-the-blessed | 51.0% | 12961 |
+| gretel | 50.9% | 11306 |
+| the-tin-soldier | 50.9% | 14019 |
+| sigurd | 50.9% | 15239 |
+| koschei | 50.9% | 13249 |
+| the-minotaur | 50.8% | 13837 |
+| the-little-mermaid | 50.8% | 14837 |
+| little-john | 50.8% | 11396 |
+| rhiannon | 50.5% | 14931 |
+| van-helsing | 50.5% | 14028 |
+| king-arthur | 50.3% | 12053 |
+| the-princess | 50.1% | 15025 |
+| robin-hood | 50.0% | 11256 |
+| victor-frankenstein | 49.8% | 19243 |
+| red-riding-hood | 49.8% | 12152 |
+| sheriff-of-nottingham | 49.8% | 15017 |
+| maid-marian | 49.7% | 15090 |
+| rumpelstiltskin | 49.6% | 13049 |
+| baba-yaga | 48.1% | 5440 |
 
 ### Strongest Crown + partner pairs
 
 | | Win rate | Fights |
 |---|---|---|
-| victor-frankenstein (crown) + the-creature | 92.5% | 221 |
-| king-minos (crown) + lancelot | 89.8% | 172 |
-| friar-tuck (crown) + lancelot | 84.7% | 232 |
-| friar-tuck (crown) + little-john | 83.8% | 225 |
-| king-minos (crown) + the-creature | 83.0% | 165 |
-| victor-frankenstein (crown) + lancelot | 82.9% | 217 |
-| king-minos (crown) + polyphemus | 82.6% | 192 |
-| red-riding-hood (crown) + lancelot | 81.9% | 210 |
-| victor-frankenstein (crown) + van-helsing | 81.1% | 212 |
-| the-tin-soldier (crown) + lancelot | 80.4% | 207 |
-| king-minos (crown) + the-wolf | 78.5% | 193 |
-| king-minos (crown) + the-minotaur | 78.3% | 182 |
-| polyphemus (crown) + circe | 78.3% | 251 |
-| king-minos (crown) + the-dragon | 78.3% | 214 |
-| king-minos (crown) + morgan-le-fay | 78.1% | 180 |
-| victor-frankenstein (crown) + the-bride | 78.0% | 214 |
-| the-tin-soldier (crown) + dracula | 77.8% | 218 |
-| king-minos (crown) + fafnir | 77.6% | 194 |
-| blodeuwedd (crown) + lancelot | 76.8% | 190 |
-| victor-frankenstein (crown) + fafnir | 76.5% | 164 |
-| victor-frankenstein (crown) + morgan-le-fay | 76.1% | 176 |
-| the-tin-soldier (crown) + the-creature | 76.0% | 194 |
-| king-minos (crown) + dracula | 75.9% | 176 |
-| the-huntsman (crown) + red-riding-hood | 75.8% | 180 |
-| victor-frankenstein (crown) + dracula | 75.3% | 186 |
+| victor-frankenstein (crown) + the-creature | 88.5% | 326 |
+| grendel (crown) + lancelot | 85.4% | 154 |
+| friar-tuck (crown) + lancelot | 83.4% | 229 |
+| king-minos (crown) + the-minotaur | 81.9% | 240 |
+| st-george (crown) + lancelot | 81.3% | 208 |
+| red-riding-hood (crown) + lancelot | 80.4% | 156 |
+| king-minos (crown) + morgan-le-fay | 79.9% | 298 |
+| king-minos (crown) + the-creature | 79.9% | 283 |
+| medusa (crown) + odysseus | 79.8% | 161 |
+| victor-frankenstein (crown) + the-bride | 79.8% | 260 |
+| grendel (crown) + the-creature | 79.6% | 157 |
+| king-minos (crown) + lancelot | 79.3% | 241 |
+| victor-frankenstein (crown) + lancelot | 78.9% | 235 |
+| king-minos (crown) + odysseus | 78.8% | 281 |
+| the-princess (crown) + little-john | 78.8% | 177 |
+| king-minos (crown) + polyphemus | 78.7% | 289 |
+| rumpelstiltskin (crown) + the-huntsman | 78.7% | 223 |
+| the-tin-soldier (crown) + lancelot | 78.5% | 244 |
+| guinevere (crown) + lancelot | 78.4% | 222 |
+| bran-the-blessed (crown) + gwydion | 78.2% | 193 |
+| gwydion (crown) + blodeuwedd | 78.1% | 171 |
+| bran-the-blessed (crown) + lancelot | 77.8% | 189 |
+| the-snow-queen (crown) + the-minotaur | 76.7% | 206 |
+| rumpelstiltskin (crown) + lancelot | 76.0% | 177 |
+| king-minos (crown) + the-snow-queen | 75.9% | 257 |
 
 ### Weakest Crown + partner pairs
 
 | | Win rate | Fights |
 |---|---|---|
-| lancelot (crown) + king-minos | 27.7% | 179 |
-| the-minotaur (crown) + robin-hood | 27.3% | 161 |
-| lancelot (crown) + the-snow-queen | 26.5% | 522 |
-| lancelot (crown) + blodeuwedd | 26.1% | 163 |
-| gwydion (crown) + victor-frankenstein | 25.7% | 183 |
-| the-minotaur (crown) + victor-frankenstein | 25.0% | 202 |
-| the-minotaur (crown) + the-tin-soldier | 25.0% | 202 |
-| lancelot (crown) + victor-frankenstein | 23.3% | 227 |
-| the-creature (crown) + the-tin-soldier | 23.1% | 212 |
-| lancelot (crown) + friar-tuck | 22.7% | 225 |
-| lancelot (crown) + guinevere | 20.5% | 178 |
-| lancelot (crown) + the-tin-soldier | 19.2% | 206 |
+| lancelot (crown) + perseus | 19.3% | 218 |
+| lancelot (crown) + polyphemus | 18.8% | 184 |
+| lancelot (crown) + zmey-gorynych | 18.5% | 200 |
+| lancelot (crown) + medusa | 18.4% | 223 |
+| lancelot (crown) + the-dragon | 18.1% | 152 |
+| lancelot (crown) + victor-frankenstein | 18.1% | 227 |
+| lancelot (crown) + loki | 17.9% | 190 |
+| lancelot (crown) + red-riding-hood | 17.9% | 151 |
+| lancelot (crown) + the-snow-queen | 17.4% | 235 |
+| lancelot (crown) + king-minos | 16.9% | 216 |
+| lancelot (crown) + blodeuwedd | 16.7% | 150 |
+| lancelot (crown) + rumpelstiltskin | 15.4% | 172 |
 
 ### Strongest three-hero line-ups seen at least 40 times
 
 | | Win rate | Fights |
 |---|---|---|
-| grendels-mother (crown) + grendel + king-arthur | 82.6% | 112 |
-| the-huntsman (crown) + gretel + the-snow-queen | 81.6% | 49 |
-| the-snow-queen (crown) + dracula + the-creature | 80.0% | 40 |
-| morgan-le-fay (crown) + little-john + the-snow-queen | 79.6% | 71 |
-| grendels-mother (crown) + grendel + victor-frankenstein | 79.6% | 137 |
-| grendels-mother (crown) + grendel + the-tin-soldier | 78.7% | 127 |
-| robin-hood (crown) + grendel + grendels-mother | 78.6% | 145 |
-| little-john (crown) + morgan-le-fay + the-snow-queen | 78.6% | 42 |
-| grendels-mother (crown) + grendel + king-minos | 77.3% | 130 |
-| grendels-mother (crown) + grendel + zmey-gorynych | 77.0% | 122 |
-| blodeuwedd (crown) + grendel + grendels-mother | 76.9% | 119 |
-| grendel (crown) + grendels-mother + perseus | 76.5% | 100 |
-| grendel (crown) + grendels-mother + the-minotaur | 76.2% | 107 |
-| the-snow-queen (crown) + polyphemus + the-creature | 75.4% | 61 |
-| grendels-mother (crown) + grendel + the-minotaur | 75.2% | 131 |
+| grendel (crown) + grendels-mother + lancelot | 85.4% | 154 |
+| grendels-mother (crown) + grendel + perseus | 81.0% | 142 |
+| grendel (crown) + grendels-mother + the-minotaur | 80.3% | 127 |
+| grendels-mother (crown) + grendel + zmey-gorynych | 79.9% | 139 |
+| grendel (crown) + grendels-mother + the-creature | 79.6% | 157 |
+| grendels-mother (crown) + grendel + king-arthur | 79.3% | 128 |
+| grendel (crown) + grendels-mother + perseus | 77.3% | 143 |
+| grendels-mother (crown) + grendel + the-tin-soldier | 76.8% | 136 |
+| grendels-mother (crown) + grendel + king-minos | 75.5% | 145 |
+| grendel (crown) + beowulf + grendels-mother | 75.2% | 135 |
+| grendels-mother (crown) + beowulf + grendel | 73.5% | 130 |
+| grendels-mother (crown) + grendel + st-george | 72.8% | 114 |
+| grendels-mother (crown) + grendel + sheriff-of-nottingham | 72.5% | 140 |
+| grendels-mother (crown) + grendel + victor-frankenstein | 72.5% | 140 |
+| grendel (crown) + bran-the-blessed + grendels-mother | 71.3% | 150 |
 
 ### Items
 
 | | Win rate | Fights |
 |---|---|---|
-| gingerbread | 54.2% | 30649 |
-| poisoned-apple | 47.3% | 11710 |
-| golden-apple | 46.2% | 11610 |
-| skull-lantern | 46.2% | 11636 |
-| mead-of-heorot | 43.9% | 11566 |
-| dragons-blood | 43.7% | 11602 |
-| water-of-life | 42.7% | 8370 |
-| mead-of-poetry | 42.1% | 11709 |
-| spindle | 41.5% | 9738 |
-| the-giants-sword | 40.0% | 9928 |
-| draught-of-the-cauldron | 38.5% | 8382 |
+| gingerbread | 49.4% | 19464 |
+| poisoned-apple | 35.0% | 5412 |
+| golden-apple | 33.1% | 5357 |
+| skull-lantern | 32.1% | 5397 |
+| water-of-life | 31.2% | 4501 |
+| dragons-blood | 29.4% | 5415 |
+| mead-of-poetry | 28.4% | 5280 |
+| mead-of-heorot | 28.4% | 5331 |
+| the-giants-sword | 26.9% | 4700 |
+| spindle | 26.7% | 4706 |
+| draught-of-the-cauldron | 23.9% | 4602 |
 
 ### Front-rank cards
 
 | | Win rate | Fights |
 |---|---|---|
-| leshy | 53.5% | 32123 |
-| villager | 52.2% | 110021 |
-| geat-thane | 51.6% | 51332 |
-| berserker | 51.4% | 31934 |
-| knight | 50.9% | 35891 |
-| hoplite | 48.7% | 35840 |
-| mere-beast | 48.6% | 35897 |
-| grandmother | 47.9% | 51086 |
-| monk | 45.7% | 35577 |
-| crossbowman | 45.3% | 35481 |
-| longbowman | 43.9% | 35749 |
+| villager | 53.0% | 193032 |
+| geat-thane | 51.8% | 59810 |
+| grandmother | 48.9% | 60152 |
+| leshy | 47.2% | 19631 |
+| knight | 47.0% | 26489 |
+| mere-beast | 45.5% | 26894 |
+| hoplite | 44.7% | 26622 |
+| berserker | 44.1% | 19599 |
+| crossbowman | 41.9% | 26704 |
+| monk | 41.9% | 26600 |
+| longbowman | 39.5% | 26697 |
 
 ### Engine assumptions
 

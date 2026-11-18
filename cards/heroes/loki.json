@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Guardian",
-  "renown": 14,
+  "renown": 16,
   "crownPassive": {
     "name": "Shape-shifter",
     "text": "The first time Loki would die, he survives on 1 Health and swaps places with your highest-Health other hero, who becomes the Crown."

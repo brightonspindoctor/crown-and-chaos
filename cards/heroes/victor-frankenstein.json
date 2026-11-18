@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Beast",
-  "renown": 9,
+  "renown": 12,
   "crownPassive": {
     "name": "Galvanism",
     "text": "At the start of each round, you gain 1 extra action point for each of your other heroes still alive."

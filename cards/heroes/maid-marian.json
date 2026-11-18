@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Witch",
-  "renown": 12,
+  "renown": 14,
   "crownPassive": {
     "name": "Lady of the greenwood",
     "text": "In rounds when you hold the Fate token, all enemy attacks deal half damage, rounded up."

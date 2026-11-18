@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Slayer",
-  "renown": 10,
+  "renown": 13,
   "crownPassive": {
     "name": "Athenian tribute",
     "text": "Each time an enemy front-rank card dies, all your heroes heal 1."

@@ -7,14 +7,14 @@
   "aspect": "Beast",
   "tags": [],
   "stats": {
-    "health": 10,
+    "health": 11,
     "attack": 2,
     "ranged": false,
     "guard": 0,
-    "speed": 2
+    "speed": 3
   },
   "vulnerableTo": "Slayer",
-  "renown": 12,
+  "renown": 15,
   "crownPassive": {
     "name": "Stony gaze",
     "text": "An enemy hero that hits Medusa with a melee attack loses 1 Speed for the rest of the fight. Each hero can only be slowed this way once."

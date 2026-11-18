@@ -7,14 +7,14 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 9,
+    "health": 8,
     "attack": 3,
     "ranged": true,
     "guard": 0,
     "speed": 2
   },
   "vulnerableTo": "Witch",
-  "renown": 17,
+  "renown": 15,
   "crownPassive": {
     "name": "Garlic and the Host",
     "text": "All healing, on both sides, is reduced by 1. No card can come back from death or cheat it: returns, revivals and 'survives on X health' effects don't work."

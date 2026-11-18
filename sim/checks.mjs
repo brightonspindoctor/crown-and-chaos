@@ -17,8 +17,8 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st, [{ orders: [order(st, 0, "blodeuwedd", "Oak, broom and meadowsweet")] }, { orders: [] }]);
   ok("Guard doesn't build up next round", b.guardLeft === 5, b.guardLeft);
   while (st.round < 8 && !st.over) E.playRound(st, [{ orders: [] }, { orders: [] }]);
-  ok("At nightfall she has Attack 4", E.attackOf(st, b) === 4, E.attackOf(st, b));
-  ok("At nightfall she is on 13 of 14 Health", b.health === 13 && b.maxHealth === 14, [b.health, b.maxHealth]);
+  ok("At nightfall she has Attack 6", E.attackOf(st, b) === 6, E.attackOf(st, b));
+  ok("At nightfall she is on 15 of 16 Health", b.health === 15 && b.maxHealth === 16, [b.health, b.maxHealth]);
   ok("Her printed Guard is 0, so nightfall leaves her on the borrowed 5", b.guardLeft === 5, b.guardLeft);
 }
 { // Betrayal is melee: it hits the front rank first

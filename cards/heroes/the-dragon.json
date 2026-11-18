@@ -9,7 +9,7 @@
     "Dragon"
   ],
   "stats": {
-    "health": 12,
+    "health": 11,
     "attack": 4,
     "ranged": false,
     "guard": 0,

@@ -8,13 +8,13 @@
   "tags": [],
   "stats": {
     "health": 10,
-    "attack": 2,
+    "attack": 3,
     "ranged": false,
     "guard": 0,
-    "speed": 2
+    "speed": 3
   },
   "vulnerableTo": "Beast",
-  "renown": 8,
+  "renown": 15,
   "crownPassive": {
     "name": "Sanctuary",
     "text": "At upkeep, return one of your dead front-rank cards to its slot on 1 health. 2 returns per fight."

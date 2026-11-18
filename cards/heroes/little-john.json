@@ -7,14 +7,14 @@
   "aspect": "Guardian",
   "tags": [],
   "stats": {
-    "health": 16,
-    "attack": 4,
+    "health": 14,
+    "attack": 3,
     "ranged": false,
     "guard": 1,
     "speed": 1
   },
   "vulnerableTo": "Trickster",
-  "renown": 23,
+  "renown": 18,
   "crownPassive": {
     "text": "Your Albion heroes have +1 Guard.",
     "name": "Sherwood stands firm"

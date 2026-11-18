@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Beast",
-  "renown": 16,
+  "renown": 17,
   "crownPassive": {
     "name": "The wooden horse",
     "text": "In round 1, all your cards except Odysseus are hidden from the enemy."
