@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Witch",
-  "renown": 15,
+  "renown": 16,
   "crownPassive": {
     "name": "Unfinished",
     "text": "While you field a Gothic Beast, she has +1 Guard and +1 Attack."

@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Beast",
-  "renown": 11,
+  "renown": 8,
   "crownPassive": {
     "name": "Sanctuary",
     "text": "At upkeep, return one of your dead front-rank cards to its slot on 1 health. 2 returns per fight."

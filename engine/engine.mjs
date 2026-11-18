@@ -754,13 +754,13 @@ export function upkeep(st) {
   // Steadfast: Poison doesn't work on heroes under a Tin Soldier Crown.
   for (const c of allCards(st)) if (c.poison > 0 && c.kind === "hero" && crownIs(st, c.side, "the-tin-soldier")) c.poison = 0;
   for (const c of allCards(st)) if (c.poison > 0) { const p = c.poison; c.poison = Math.floor(p / 2); applyHealthLoss(st, { name: "Poison", side: -1 }, c, p, {}); }
-  // Unbound: Loki breaks free and lashes every enemy card for 2.
+  // Unbound: Loki breaks free and lashes every enemy card for 1.
   for (const i of [0, 1]) {
     for (const c of st.sides[i].grave.slice()) {
       if (c.id !== "loki" || c.flags.returnRound !== st.round || noCheating(st) || at(st, i, c.slot)) continue;
       c.flags.returnRound = null; c.flags.unbound = true;
       revive(st, c, 4); log(st, `Loki breaks his bonds and returns on 4 Health.`); revived(st, c);
-      for (const x of cards(st, 1 - i)) applyHealthLoss(st, c, x, 2, {});
+      for (const x of cards(st, 1 - i)) applyHealthLoss(st, c, x, 1, {});
     }
   }
   // Crown passives at upkeep
@@ -983,9 +983,9 @@ function hit(st, a, x, amount, opts = {}) {
     if (own) { log(st, `${a.name}'s attack turns on ${own.name} (Shard of the mirror).`); target = own; }
   }
   const d = damage(st, a, target, amount, { attack: true, ...opts });
-  // Venom: a Fafnir Crown's attacks also give 2 Poison.
+  // Venom: a Fafnir Crown's attacks also give 1 Poison.
   if (a.id === "fafnir" && crownIs(st, a.side, "fafnir") && target && !target.dead && d > 0) {
-    target.poison += 2; log(st, `Fafnir's venom: ${target.name} gains 2 Poison.`); ev(st, { t: "poison", src: a.uid, tgt: target.uid, amt: 2 });
+    target.poison += 1; log(st, `Fafnir's venom: ${target.name} gains 1 Poison.`); ev(st, { t: "poison", src: a.uid, tgt: target.uid, amt: 1 });
   }
   if (a.id === "lancelot" && crownIs(st, a.side, "lancelot") && a.flags.chipRound !== st.round) {
     const ec = crownCard(st, 1 - a.side);

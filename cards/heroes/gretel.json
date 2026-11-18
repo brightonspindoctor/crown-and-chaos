@@ -14,7 +14,7 @@
     "speed": 4
   },
   "vulnerableTo": "Beast",
-  "renown": 18,
+  "renown": 22,
   "crownPassive": {
     "name": "Witch-hunter",
     "text": "All your heroes deal +2 damage to Beasts, Witches and Slayers."

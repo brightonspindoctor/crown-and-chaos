@@ -9,17 +9,17 @@
     "Dragon"
   ],
   "stats": {
-    "health": 15,
+    "health": 13,
     "attack": 3,
     "ranged": false,
     "guard": 1,
     "speed": 1
   },
   "vulnerableTo": "Slayer",
-  "renown": 15,
+  "renown": 25,
   "crownPassive": {
     "name": "Venom",
-    "text": "Fafnir's attacks also give 2 Poison."
+    "text": "Fafnir's attacks also give 1 Poison."
   },
   "bond": {
     "name": "Andvari's curse",

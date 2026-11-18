@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Healer",
-  "renown": 10,
+  "renown": 5,
   "crownPassive": {
     "name": "Hard frost",
     "text": "In every round that you hold the Fate token, all enemy cards have -2 Speed (never below 1)."

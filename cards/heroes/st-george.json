@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Trickster",
-  "renown": 14,
+  "renown": 17,
   "crownPassive": {
     "text": "Blocks the first 2 damage of the first attack on any of your heroes each round.",
     "name": "The red-cross shield"

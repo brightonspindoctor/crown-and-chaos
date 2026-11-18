@@ -239,7 +239,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const vs = E.cards(st2, 1).map((c) => [c.uid, c.health]);
   E.playRound(st2, [{ orders: [] }, { orders: [] }]);
   ok("Unbound: back on 4 Health two upkeeps later", !l2.dead && l2.health === 4, [l2.dead, l2.health]);
-  ok("and lashed the enemy for 2", st2.log.filter((l) => l.includes("Loki deals 2")).length >= 1);
+  ok("and lashed the enemy for 1", st2.log.filter((l) => l.includes("Loki deals 1")).length >= 1);
   const st3 = game(lu("loki"), lu("merlin", ["polyphemus"]));
   E.playRound(st3, [{ orders: [order(st3, 0, "loki", "Crown thief")] }, { orders: [] }]);
   ok("Crown thief: Polyphemus becomes the enemy Crown", E.crownCard(st3, 1).id === "polyphemus" && card(st3, 1, "merlin").slot !== 1);

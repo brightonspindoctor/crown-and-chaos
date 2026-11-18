@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Sovereign",
-  "renown": 13,
+  "renown": 9,
   "crownPassive": {
     "name": "Shaper of flesh",
     "text": "Your summoned cards arrive with +2 health and +1 Attack."

@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Trickster",
-  "renown": 10,
+  "renown": 7,
   "crownPassive": {
     "name": "Aiaia",
     "text": "In rounds when you hold the Fate token, every enemy front-rank card is turned into a swine at upkeep and has 0 Attack that round."

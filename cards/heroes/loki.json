@@ -7,21 +7,21 @@
   "aspect": "Trickster",
   "tags": [],
   "stats": {
-    "health": 8,
+    "health": 7,
     "attack": 2,
     "ranged": true,
     "guard": 0,
     "speed": 4
   },
   "vulnerableTo": "Guardian",
-  "renown": 12,
+  "renown": 23,
   "crownPassive": {
     "name": "Shape-shifter",
     "text": "The first time Loki would die, he survives on 1 Health and swaps places with your highest-Health other hero, who becomes the Crown."
   },
   "bond": {
     "name": "Unbound",
-    "text": "The first time Loki dies, he returns two upkeeps later on 4 Health, if his slot is empty, and deals 2 to every enemy card."
+    "text": "The first time Loki dies, he returns two upkeeps later on 4 Health, if his slot is empty, and deals 1 to every enemy card."
   },
   "actions": [
     {

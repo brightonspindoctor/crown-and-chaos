@@ -3351,7 +3351,14 @@
       "status": "cleared",
       "commonsFile": "Loke_and_Sigyn_(Mårten_Winge)_-_Nationalmuseum_-_18041.tif",
       "maxWidth": 3000,
-      "notes": "Commons rights check: Public domain (Nationalmuseum's own scan; artist died 1896). Loki bound beneath the serpent, Sigyn catching the venom."
+      "notes": "Commons rights check: Public domain (Nationalmuseum's own scan; artist died 1896). Loki bound beneath the serpent, Sigyn catching the venom.",
+      "size": [1920, 2431],
+      "crops": {
+        "loki": {
+          "window": [0.35, 0.33, 0.65, 0.302],
+          "full": [0.42, 0.27, 0.58, 0.6413]
+        }
+      }
     },
     {
       "id": "loki-variant",
@@ -3373,7 +3380,14 @@
       "commonsFile": "Loke_by_C._E._Doepler.jpg",
       "maxWidth": 3000,
       "variant": 2,
-      "notes": "Commons rights check: PD-old. A small scan (855px); a drawing of Loki the trickster."
+      "notes": "Commons rights check: PD-old. A small scan (855px); a drawing of Loki the trickster.",
+      "size": [855, 864],
+      "crops": {
+        "loki": {
+          "window": [0.1, 0.08, 0.8, 0.4657],
+          "full": [0.22, 0.08, 0.55, 0.762]
+        }
+      }
     }
   ]
 }

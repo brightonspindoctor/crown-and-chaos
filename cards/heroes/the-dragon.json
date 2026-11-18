@@ -16,7 +16,7 @@
     "speed": 1
   },
   "vulnerableTo": "Slayer",
-  "renown": 16,
+  "renown": 17,
   "crownPassive": {
     "text": "When another of your heroes is about to die, he automatically swaps slots with it and takes the hit, even if it kills him. The saved hero becomes the Crown.",
     "name": "Wings over Silene"
