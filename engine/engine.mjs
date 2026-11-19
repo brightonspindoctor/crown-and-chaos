@@ -115,6 +115,7 @@ export function createGame(data, lineups, opts = {}) {
   // Quests: one side may hold the Fate token all fight, and night may never fall.
   if (opts.fate != null) { st.fixedFate = opts.fate; st.fate = opts.fate; }
   if (opts.noNight) st.noNight = true;
+  if (opts.maxRounds) st.maxRounds = opts.maxRounds;
   // Start-of-fight effects
   for (const side of st.sides) {
     const crown = crownCard(st, side.index);
@@ -887,7 +888,7 @@ export function checkWin(st) {
   if (lost[0] && lost[1]) { st.over = true; st.winner = -1; log(st, "Both crowns fall: a draw."); ev(st, { t: "over", winner: st.winner }); }
   else if (lost[0]) { st.over = true; st.winner = 1; log(st, "Red wins."); ev(st, { t: "over", winner: st.winner }); }
   else if (lost[1]) { st.over = true; st.winner = 0; log(st, "Blue wins."); ev(st, { t: "over", winner: st.winner }); }
-  else if (st.round >= MAX_ROUNDS) { st.over = true; st.winner = -1; log(st, "Round limit reached: a draw."); ev(st, { t: "over", winner: st.winner }); }
+  else if (st.round >= (st.maxRounds || MAX_ROUNDS)) { st.over = true; st.winner = -1; log(st, "Round limit reached: a draw."); ev(st, { t: "over", winner: st.winner }); }
   return st.over;
 }
 
@@ -1484,7 +1485,8 @@ export function botFight(data, lineups, seed) {
 // No Hoplites: with no nightfall, a Phalanx can hold out until the round limit.
 export const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, "geat-thane": 4, "mere-beast": 3 };
 // In every quest fight the player holds the Fate token throughout and night never falls.
-export const QUEST_RULES = { fate: 0, noNight: true };
+// A quest fight still at a stand-off after round 12 is a draw, which loses the quest.
+export const QUEST_RULES = { fate: 0, noNight: true, maxRounds: 12 };
 // The three foes of a quest: a warband of one front-rank card, two cheap heroes alone, and a final company of three
 // heroes from one realm under a strong Crown (or Baba Yaga alone), with no front rank, fought blind.
 export function questPlan(data, rng) {

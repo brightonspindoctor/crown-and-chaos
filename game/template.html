@@ -1766,7 +1766,7 @@ function fullCard(id, o = {}) {
 // =====================================================================================
 function renderBattle() {
   const v = S.view, g = step(), b = S.board, noNight = !!S.st.noNight, night = !noNight && v.round >= E.NIGHTFALL_ROUND;
-  el("head").innerHTML = `<button class="round${g && g.focus === "night" ? " focus" : ""}" data-act="night" aria-label="Round ${v.round}. ${noNight ? "No nightfall on a quest" : night ? "It is night" : `Night falls in round ${E.NIGHTFALL_ROUND}`}. Read about Nightfall">Round ${v.round}<i class="${night ? "now" : ""}">${noNight ? "A quest: no nightfall" : night ? "Night: no healing ⓘ" : `Night falls in round ${E.NIGHTFALL_ROUND} ⓘ`}</i></button>
+  el("head").innerHTML = `<button class="round${g && g.focus === "night" ? " focus" : ""}" data-act="night" aria-label="Round ${v.round}. ${noNight ? `A quest: no nightfall, and the fight ends as a draw after round ${S.st.maxRounds}` : night ? "It is night" : `Night falls in round ${E.NIGHTFALL_ROUND}`}. Read about Nightfall">Round ${v.round}<i class="${night ? "now" : ""}">${noNight ? `No nightfall · ends after round ${S.st.maxRounds}` : night ? "Night: no healing ⓘ" : `Night falls in round ${E.NIGHTFALL_ROUND} ⓘ`}</i></button>
     <span class="place"><b>${esc(b.name)}</b><i>${esc(b.artist)}, ${esc(b.title)}, ${esc(b.date)}</i></span>
     <span class="wear" title="Your crown: ${esc(crownById[G.wearing]?.name || "Gold Crown")}">${crownSvg(G.wearing, `You wear the ${crownById[G.wearing]?.name || "Gold Crown"}`)}</span><button class="menu" data-act="menu">Menu</button>`;
   const table = el("table");
@@ -2216,7 +2216,7 @@ function overHtml() {
     return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">A quest</p><h1 style="text-align:center">${esc(t.title)}</h1>
       <p class="questtale">${esc(t.open)}</p>
       <ol class="queststeps">${[0, 1, 2].map((k) => `<li>${esc(questStep(q, k).text)}</li>`).join("")}</ol>
-      <p style="font-size:15.5px;color:var(--muted)">Your company stays as it is from fight to fight: cards that fall are gone for good, and nobody heals. You hold the Fate token in every quest fight, and night never falls. Win all three for ${QUEST_REWARD} gold. Lose any fight and the quest ends with nothing. Quests don't count towards the Hall of Fame. You can set out on ${QUESTS_PER_DAY} quests a day; this is quest ${questsToday() + 1} of ${QUESTS_PER_DAY} today.</p>
+      <p style="font-size:15.5px;color:var(--muted)">Your company stays as it is from fight to fight: cards that fall are gone for good, and nobody heals. You hold the Fate token in every quest fight, and night never falls, but a fight still standing after round ${E.QUEST_RULES.maxRounds} is a draw, and a draw ends the quest. Win all three for ${QUEST_REWARD} gold. Lose any fight and the quest ends with nothing. Quests don't count towards the Hall of Fame. You can set out on ${QUESTS_PER_DAY} quests a day; this is quest ${questsToday() + 1} of ${QUESTS_PER_DAY} today.</p>
       <div class="btns"><button class="btn" data-act="quest-go">Set out</button><button class="btn quiet" data-act="quest-cancel">Not now</button></div></div>`;
   }
   if (o.type === "quest-between") {
