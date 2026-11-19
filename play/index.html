@@ -337,7 +337,7 @@ function setupSide(st, i, lu) {
   // A warband (quests): the same front-rank card in every slot, and no Crown.
   if (lu.troops) {
     for (let k = 1; k <= (lu.troopCount || 6); k++) side.slots[k] = makeFront(F(lu.troops), i, k);
-    side.troops = true; side.noCrown = true; side.crownUid = null;
+    side.troops = true; side.allMustFall = true; side.noCrown = true; side.crownUid = null;
     return;
   }
   if (crownId) side.slots[1] = makeHero(H(crownId), i, 1);
@@ -351,6 +351,8 @@ function setupSide(st, i, lu) {
   // A blind fight (quests): this side's cards are hidden from the other side, and can't be targeted, until each
   // one first acts on a card of the other side.
   if (lu.blind) side.blind = true;
+  // A company with no Crown (quests): no Crown passive, and it is beaten only when every card has fallen.
+  if (lu.noCrown) { side.noCrown = true; side.allMustFall = true; }
   if (lu.ap != null) side.baseAp = lu.ap;
   if (lu.revealRound != null) side.revealRound = lu.revealRound;
   side.startUids = Object.values(side.slots).map((c) => c.uid);
@@ -1062,7 +1064,7 @@ function checkWin(st) {
   if (st.over) return true;
   const lost = [0, 1].map((i) => {
     const side = st.sides[i];
-    if (side.troops) return cards(st, i).length === 0;
+    if (side.allMustFall) return cards(st, i).length === 0;
     if (side.noCrown) return heroes(st, i).length === 0;
     const crown = Object.values(side.slots).find((c) => c && c.uid === side.crownUid);
     return !crown || crown.dead;
@@ -1669,13 +1671,14 @@ const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, "
 // In every quest fight the player holds the Fate token throughout and night never falls.
 // A quest fight still at a stand-off after round 20 is a draw, which loses the quest.
 const QUEST_RULES = { fate: 0, noNight: true, maxRounds: 20 };
-// The three foes of a quest: a warband of one front-rank card, two cheap heroes alone, and a final company of three
+// The three foes of a quest: a warband of one front-rank card, two cheap heroes with no Crown (both must fall), and
+// a final company of three
 // heroes from one realm under a strong Crown (or Baba Yaga alone), with no front rank, fought blind.
 function questPlan(data, rng) {
   const H = Object.values(data.heroes), banned = ["baba-yaga", "grendel", "grendels-mother"];
   const troops = rng.pick(Object.keys(QUEST_TROOPS));
   const cheap = rng.shuffle(H.filter((h) => !banned.includes(h.id) && h.renown <= 13));
-  const easy = { crown: cheap[0].id, heroes: [cheap[1].id], front: [], items: [] };
+  const easy = { crown: cheap[0].id, heroes: [cheap[1].id], front: [], items: [], noCrown: true };
   let final;
   if (rng.next() < 0.2) final = { crown: "baba-yaga", heroes: [], front: [], items: [], blind: true, revealRound: 3 };
   else {

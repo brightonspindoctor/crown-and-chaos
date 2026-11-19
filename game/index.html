@@ -578,6 +578,10 @@ img.crownicon { object-fit: contain; }
 .shop-pack { display: flex; gap: 16px; align-items: center; }
 .packart { width: 96px; aspect-ratio: 5 / 7; flex: none; border-radius: 8px; border: 2px solid var(--gold-leaf); background: linear-gradient(160deg, #2b4a86, var(--ultramarine) 55%, #13254a); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; box-shadow: inset 0 0 0 1px var(--gold-shade), 0 8px 20px rgba(0,0,0,.5); }
 .packart svg { width: 42%; fill: var(--gold-leaf); }
+.packart.golden { background: linear-gradient(160deg, #f3d98a, #c9a24a 50%, #8a6424); border-color: #fff1c4; }
+.packart.golden svg { fill: #4a2f0c; } .packart.golden b { color: #3a240a; } .packart.golden i { color: #3a240a; }
+.reveal { position: relative; }
+.reveal .times { position: absolute; top: -10px; right: -10px; min-width: 52px; padding: 6px 10px; border-radius: 999px; background: var(--gold-leaf); color: #2a1a08; font: 700 20px/1 var(--display); box-shadow: 0 4px 12px rgba(0,0,0,.5); z-index: 3; }
 .packart b { font: 700 13px/1 var(--display); letter-spacing: .2em; color: var(--gold-text); }
 .packart i { font-size: 11px; color: var(--ink); }
 
@@ -834,7 +838,7 @@ function setupSide(st, i, lu) {
   // A warband (quests): the same front-rank card in every slot, and no Crown.
   if (lu.troops) {
     for (let k = 1; k <= (lu.troopCount || 6); k++) side.slots[k] = makeFront(F(lu.troops), i, k);
-    side.troops = true; side.noCrown = true; side.crownUid = null;
+    side.troops = true; side.allMustFall = true; side.noCrown = true; side.crownUid = null;
     return;
   }
   if (crownId) side.slots[1] = makeHero(H(crownId), i, 1);
@@ -848,6 +852,8 @@ function setupSide(st, i, lu) {
   // A blind fight (quests): this side's cards are hidden from the other side, and can't be targeted, until each
   // one first acts on a card of the other side.
   if (lu.blind) side.blind = true;
+  // A company with no Crown (quests): no Crown passive, and it is beaten only when every card has fallen.
+  if (lu.noCrown) { side.noCrown = true; side.allMustFall = true; }
   if (lu.ap != null) side.baseAp = lu.ap;
   if (lu.revealRound != null) side.revealRound = lu.revealRound;
   side.startUids = Object.values(side.slots).map((c) => c.uid);
@@ -1559,7 +1565,7 @@ function checkWin(st) {
   if (st.over) return true;
   const lost = [0, 1].map((i) => {
     const side = st.sides[i];
-    if (side.troops) return cards(st, i).length === 0;
+    if (side.allMustFall) return cards(st, i).length === 0;
     if (side.noCrown) return heroes(st, i).length === 0;
     const crown = Object.values(side.slots).find((c) => c && c.uid === side.crownUid);
     return !crown || crown.dead;
@@ -2166,13 +2172,14 @@ const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, "
 // In every quest fight the player holds the Fate token throughout and night never falls.
 // A quest fight still at a stand-off after round 20 is a draw, which loses the quest.
 const QUEST_RULES = { fate: 0, noNight: true, maxRounds: 20 };
-// The three foes of a quest: a warband of one front-rank card, two cheap heroes alone, and a final company of three
+// The three foes of a quest: a warband of one front-rank card, two cheap heroes with no Crown (both must fall), and
+// a final company of three
 // heroes from one realm under a strong Crown (or Baba Yaga alone), with no front rank, fought blind.
 function questPlan(data, rng) {
   const H = Object.values(data.heroes), banned = ["baba-yaga", "grendel", "grendels-mother"];
   const troops = rng.pick(Object.keys(QUEST_TROOPS));
   const cheap = rng.shuffle(H.filter((h) => !banned.includes(h.id) && h.renown <= 13));
-  const easy = { crown: cheap[0].id, heroes: [cheap[1].id], front: [], items: [] };
+  const easy = { crown: cheap[0].id, heroes: [cheap[1].id], front: [], items: [], noCrown: true };
   let final;
   if (rng.next() < 0.2) final = { crown: "baba-yaga", heroes: [], front: [], items: [], blind: true, revealRound: 3 };
   else {
@@ -2393,6 +2400,22 @@ const levelStart = (L) => 25 * L * (L - 1);
 const myLevel = () => levelOf(repPoints(G));
 function repShare() { const pts = repPoints(G), L = levelOf(pts); return Math.min(1, (pts - levelStart(L)) / (levelStart(L + 1) - levelStart(L))); }
 const nextCrownLevel = (L) => Math.ceil((L + 1) / 10) * 10;
+// A Golden Fable pack, given every 5th level: three front-rank cards of the higher Renown, two Rare or Legendary
+// items, and a hero (one you don't own yet if there is one; Grendel and his Mother come together).
+function goldenPack() {
+  const strong = Object.values(DATA.front).filter((f) => f.renown >= 3 && f.id !== "the-needle").map((f) => f.id);
+  const front = [0, 1, 2].map(() => pick(strong));
+  const items = [0, 1].map(() => pick(Object.values(DATA.items).filter((x) => x.rarity === (Math.random() < 0.25 ? "Legendary" : "Rare"))).id);
+  const all = Object.values(DATA.heroes).map((h) => h.id), fresh = all.filter((id) => !owned(id)), can = all.filter((id) => owned(id) < 3);
+  const h = (fresh.length ? pick(fresh) : can.length ? pick(can) : null);
+  const heroes = !h ? ["gold:100"] : PAIR.includes(h) ? PAIR.slice() : [h];
+  return [...front, ...items, ...heroes];
+}
+function openGolden() {
+  if (!(G.goldenPacks > 0)) return;
+  G.goldenPacks -= 1;
+  openPack(goldenPack(), { title: "Golden Fable pack", golden: true });
+}
 function giftHero() {
   const can = Object.values(DATA.heroes).filter((h) => owned(h.id) < 3).map((h) => h.id);
   if (!can.length) { G.gold += 100; return null; }
@@ -2410,7 +2433,7 @@ function checkLevel() {
   const steps = [{ kind: "level" }];
   for (let L = from + 1; L <= to; L++) {
     if (L % 10 === 0) { const c = CROWNS.find((x) => x.level === L); if (c && !G.ownCrowns.includes(c.id)) { G.ownCrowns.push(c.id); steps.push({ kind: "crown", id: c.id, level: L }); } }
-    if (L % 5 === 0) { const got = giftHero(); steps.push(got ? { kind: "hero", ids: got, level: L } : { kind: "gold", level: L }); }
+    if (L % 5 === 0) { G.goldenPacks = (G.goldenPacks || 0) + 1; steps.push({ kind: "golden", level: L }); }
   }
   G.levelSeen = to; G.repSeen = pts; save();
   const startShare = (before - levelStart(from)) / (levelStart(from + 1) - levelStart(from));
@@ -2484,6 +2507,12 @@ function levelUpHtml(o) {
       <h1 class="blackletter">The ${esc(c.name)}</h1><p>Worn on your icon in battle, so every rival sees how far you have come.</p>
       ${DIVIDER}<div class="btns"><button class="btn gilt" data-act="lv-wear" data-id="${c.id}">Wear it now</button><button class="btn quiet" data-act="lv-next">Keep my current crown</button></div>
       <p class="credit">Another crown awaits at Level ${st.level + 10}.</p>`, "lv-crown");
+  }
+  if (st.kind === "golden") {
+    return gothic(`<p class="eyebrow">Level ${st.level} · A gift</p><h1 class="blackletter">A Golden Fable pack</h1>
+      <div class="sealstage">${packArt("6 cards", true)}</div>
+      <p>Three strong front-rank cards, two fine items, and a hero, every time.</p>
+      ${btn(last ? "Open it" : "Next")}`, "lv-golden");
   }
   if (st.kind === "hero") {
     return gothic(`<p class="eyebrow">Level ${st.level} · Hero gift</p><h1 class="blackletter">A hero joins your court</h1>
@@ -2587,7 +2616,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-19-322e503";
+const BUILD = "2026-11-19-f0e2922";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -4577,6 +4606,7 @@ function homeHtml() {
   return coverHtml(`
     <button class="me-chip" data-go="court" aria-label="Your court: Level ${myLevel()}">${avatar()}<span><b>Your court</b><i>Level ${myLevel()}</i></span></button>
     <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
+    ${G.goldenPacks > 0 ? `<div class="btns"><button class="btn big gilt" data-act="open-golden">Open your Golden Fable pack${G.goldenPacks > 1 ? `s (${G.goldenPacks})` : ""}</button></div>` : ""}
     <div class="btns">${G.quest
       ? `<button class="btn big" data-act="quest-resume">Continue your quest</button><button class="link" data-act="quest-abandon">Abandon the quest</button>`
       : `<button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button>${bad ? "" : questsToday() >= QUESTS_PER_DAY ? `<button class="btn big quiet" disabled>No more quests today</button>` : `<button class="btn big quiet" data-act="quest-new">Go on a quest <small>${QUESTS_PER_DAY - questsToday()} left today</small></button>`}`}</div>
@@ -4588,7 +4618,7 @@ function readyHtml() {
     <p class="lede">Your first cards are waiting: a front rank, items for your tool belt, and heroes to lead them.</p>
     <div class="btns"><button class="btn big" data-act="open-first">Yes</button></div></div></div>`;
 }
-const packArt = (label) => `<span class="packart">${CROWN_SVG}<b>FABLES</b><i>${label}</i></span>`;
+const packArt = (label, golden) => `<span class="packart${golden ? " golden" : ""}">${CROWN_SVG}<b>FABLES</b><i>${label}</i></span>`;
 // Puts a pack's cards in the collection. A crown you already own becomes 20 gold.
 function claim(t) {
   const k = tok(t);
@@ -4601,32 +4631,33 @@ function claim(t) {
 }
 function openPack(cards, opts) {
   const dup = cards.map(claim);
-  U.pack = { cards, dup, i: -1, ...opts };
+  // Identical cards are revealed once, as "×3", rather than one at a time.
+  const show = [];
+  cards.forEach((card, k) => { const same = !tok(card) && show.find((x) => x.card === card); if (same) same.n += 1; else show.push({ card, n: 1, dup: dup[k] }); });
+  U.pack = { cards, dup, show, i: -1, ...opts };
   U.screen = "pack"; save();
 }
 function packHtml() {
-  const p = U.pack, n = p.cards.length;
+  const p = U.pack, show = p.show || p.cards.map((card, k) => ({ card, n: 1, dup: p.dup && p.dup[k] })), n = show.length;
   if (p.i < 0) {
     return `<div class="opening"><p class="eyebrow">${esc(p.title)}</p>
-      <button data-act="pack-next" aria-label="Open the pack">${packArt(`${n} cards`)}</button>
+      <button data-act="pack-next" aria-label="Open the pack">${packArt(`${p.cards.length} cards`, p.golden)}</button>
       <p class="lede">Tap the pack to open it.</p></div>`;
   }
-  if (p.i < n && tok(p.cards[p.i])) {
-    const t = tok(p.cards[p.i]), dup = p.dup && p.dup[p.i];
+  if (p.i < n && tok(show[p.i].card)) {
+    const t = tok(show[p.i].card), dup = show[p.i].dup;
     const label = { gold: "Gold", lore: "A lore card", var: "A variant artwork", crown: dup ? "A crown you already own" : "A crown" }[t.kind];
     return `<div class="opening"><p class="eyebrow">Card ${p.i + 1} of ${n} · ${esc(label)}</p>
-      <button class="reveal${t.kind === "gold" ? "" : " star"}" data-act="pack-next" aria-label="${esc(label)}. Next card">${turnOver(t.kind === "var" ? variantOf(t.val).card : null, tokenFace(p.cards[p.i], dup))}</button>
-      <div class="stack" aria-hidden="true">${p.cards.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
+      <button class="reveal${t.kind === "gold" ? "" : " star"}" data-act="pack-next" aria-label="${esc(label)}. Next card">${turnOver(t.kind === "var" ? variantOf(t.val).card : null, tokenFace(show[p.i].card, dup))}</button>
+      <div class="stack" aria-hidden="true">${show.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
       <div class="row" style="width:min(310px,84vw)"><button class="btn" data-act="pack-next">${p.i === n - 1 ? "See them all" : "Next card"}</button>${p.i < n - 2 ? `<button class="btn quiet" data-act="pack-all">Reveal all</button>` : ""}</div></div>`;
   }
   if (p.i < n) {
-    const id = p.cards[p.i], kind = kindOf(id), d = defOf(id), star = kind === "hero" || d.rarity === "Legendary";
-    const seen = p.cards.slice(0, p.i).filter((x) => x === id).length;
-    const of = p.cards.filter((x) => x === id).length;
-    const label = kind === "hero" ? "A hero" : kind === "front" ? `Front rank · ${d.name}${of > 1 ? ` ${seen + 1} of ${of}` : ""}` : `${d.rarity} item`;
+    const id = show[p.i].card, times = show[p.i].n, kind = kindOf(id), d = defOf(id), star = kind === "hero" || d.rarity === "Legendary";
+    const label = kind === "hero" ? "A hero" : kind === "front" ? `Front rank · ${d.name}` : `${d.rarity} item`;
     return `<div class="opening"><p class="eyebrow">Card ${p.i + 1} of ${n} · ${esc(label)}</p>
-      <button class="reveal${star ? " star" : ""}" data-act="pack-next" aria-label="${esc(d.name)}. Next card">${turnOver(id, fullCard(id))}</button>
-      <div class="stack" aria-hidden="true">${p.cards.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
+      <button class="reveal${star ? " star" : ""}" data-act="pack-next" aria-label="${esc(d.name)}${times > 1 ? `, ${times} copies` : ""}. Next card">${turnOver(id, fullCard(id))}${times > 1 ? `<span class="times">×${times}</span>` : ""}</button>
+      <div class="stack" aria-hidden="true">${show.map((_, k) => `<i class="${k <= p.i ? "done" : ""}"></i>`).join("")}</div>
       <div class="row" style="width:min(310px,84vw)"><button class="btn" data-act="pack-next">${p.i === n - 1 ? "See them all" : "Next card"}</button>${p.i < n - 2 ? `<button class="btn quiet" data-act="pack-all">Reveal all</button>` : ""}</div></div>`;
   }
   const counts = {}; p.cards.filter((id) => !tok(id)).forEach((id) => (counts[id] = (counts[id] || 0) + 1));
@@ -4637,7 +4668,7 @@ function packHtml() {
   return `<div class="wrap"><div class="bar"><h1>${esc(p.title)}</h1><span class="eyebrow">${n} cards</span></div>
     ${section("hero", "Heroes")}${extras.length ? `<p class="rowlabel" style="text-align:left">For your Library</p><div class="extras">${extras.map(([t, dup]) => tokenTile(t, dup)).join("")}</div>` : ""}${section("item", "Items · for your tool belt")}${section("front", "Front rank · acts on its own")}
     <p class="lede">Tap any card to read it.</p>
-    <div class="row"><button class="btn big" data-go="${p.first ? "formation" : "shop"}">${p.first ? "Build your line-up" : "Back to the shop"}</button>${p.first ? "" : `<button class="btn big quiet" data-go="formation">Line-up</button>`}</div></div>`;
+    <div class="row">${G.goldenPacks > 0 && !p.first ? `<button class="btn big gilt" data-act="open-golden">Open your next Golden Fable pack</button>` : ""}<button class="btn big${G.goldenPacks > 0 && !p.first ? " quiet" : ""}" data-go="${p.first ? "formation" : p.golden ? "home" : "shop"}">${p.first ? "Build your line-up" : p.golden ? "Home" : "Back to the shop"}</button>${p.first ? "" : `<button class="btn big quiet" data-go="formation">Line-up</button>`}</div></div>`;
 }
 // ---------- the Library: every card, lore card, variant and crown the player owns ----------
 const LIB_TABS = [["hero", "Heroes"], ["front", "Front rank"], ["item", "Items"], ["lore", "Lore"], ["variant", "Variants"], ["crown", "Crowns"]];
@@ -4990,7 +5021,7 @@ document.addEventListener("click", (e) => {
     case "open-first": G.packOpened = true; G.tutorialDone = true; G.gold += START_GOLD; U.over = null;
       openPack(firstPack(), { title: "Your first Fable pack", first: true }); render(); break;
     case "pack-next": U.pack.i += 1; render(); break;
-    case "pack-all": U.pack.i = U.pack.cards.length; render(); break;
+    case "pack-all": U.pack.i = (U.pack.show || U.pack.cards).length; render(); break;
     case "detail": U.sheet = { type: "detail", id: d.id, back: U.sheet && U.sheet.type === "picker" ? U.sheet : null }; render(); break;
     case "slot": U.sheet = { type: "picker", slot: d.slot }; render(); break;
     case "choose": chooseForSlot(d.id); break;
@@ -5005,7 +5036,8 @@ document.addEventListener("click", (e) => {
     case "set-fast": G.fast = !G.fast; save(); render(); break;
     case "admin-all": PREFS.write("adminAll", !adminAll()); render(); break;
     case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); SND.play("ping"); syncPlayer(); } // falls through to the next step
-    case "lv-next": { const o = U.over; if (o && o.type === "levelup" && o.i < o.steps.length - 1) o.i += 1; else U.over = null; render(); break; }
+    case "lv-next": { const o = U.over; if (o && o.type === "levelup" && o.i < o.steps.length - 1) o.i += 1; else { U.over = null; if (G.goldenPacks > 0) openGolden(); } render(); break; }
+    case "open-golden": U.over = null; openGolden(); render(); break;
     case "court-crowns": U.tab = "crown"; go("collection"); break;
     case "buy-crown": { const c = crownById[d.id]; if (c && c.price && G.gold >= c.price && !G.ownCrowns.includes(c.id)) { spend(c.price); G.ownCrowns.push(c.id); save(); checkLevel(); render(); } break; }
     case "lore": U.sheet = { type: "lore", id: d.id }; render(); break;

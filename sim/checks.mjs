@@ -267,6 +267,14 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.cards(st, 1)[0].dead = true;
   ok("Beaten once the last Knight falls", E.checkWin(st) && st.winner === 0, st.winner);
 }
+{ // Quests: a company with no Crown is beaten only when every card has fallen
+  const st = game(lu("st-george", ["the-dragon"]), { crown: "perseus", heroes: ["medusa"], front: [], items: [], noCrown: true });
+  ok("A no-Crown company has no Crown", E.crownCard(st, 1) === null);
+  const pe = card(st, 1, "perseus"); E.kill(st, pe, null);
+  ok("Losing the hero in slot 1 doesn't beat it", !E.checkWin(st));
+  E.kill(st, card(st, 1, "medusa"), null);
+  ok("Beaten once both heroes fall", E.checkWin(st) && st.winner === 0, st.winner);
+}
 { // Quests: blind fights. Hidden cards can't be targeted until they act on you; all show themselves in the reveal round.
   const st = game(lu("st-george", ["the-princess"]), { crown: "the-wolf", heroes: ["the-huntsman"], front: [], items: [], blind: true, revealRound: 3 });
   const g = card(st, 0, "st-george"), w = card(st, 1, "the-wolf");
