@@ -99,7 +99,7 @@ Card numbers are read from the JSON files, but each card's effect is coded by ha
 
 | Path | What it is |
 |---|---|
-| `game/template.html` | The prototype: the scripted tutorial fight ("The Field at Silene"), "Are you ready?", the 20-card first pack, your collection, line-up building within 50 Renown, fights against the computer that pay gold, and the shop. The `TUTORIAL` list near the top holds every tutorial step and the Dragon's fixed moves |
+| `game/template.html` | The prototype: the scripted tutorial fight ("The Field at Silene"), "Are you ready?", the 23-card first pack, your collection, line-up building within 50 Renown, fights against the computer that pay gold, and the shop. The `TUTORIAL` list near the top holds every tutorial step and the Dragon's fixed moves |
 | `game/img/` | Every card's painting and every battle board, cropped from `art/images/` using the crops in the manifest. Rebuild with `python3 scripts/crop-game-art.py` |
 | `game/index.html` | The built page. Rebuild with `node scripts/build-game.mjs` |
 

@@ -658,7 +658,7 @@ const TUTORIAL = [
 // =====================================================================================
 const SAVE_KEY = "crown-and-fable-save-1";
 const CORE_FRONT = ["knight", "crossbowman", "longbowman", "leshy", "monk", "berserker"];
-const STARTER_ITEMS = ["gingerbread", "golden-apple", "dragons-blood"];
+const STARTER_ITEMS = ["gingerbread", "golden-apple", "dragons-blood", "poisoned-apple"];
 const PRICES = { pack: 50, front: 20, Common: 40, Rare: 100, Legendary: 250 };
 const PAY = { win: 30, loss: 15, bonus: 5 };
 const RENOWN_CAP = 50, BELT = 2, START_GOLD = 50;
@@ -679,15 +679,33 @@ const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const shuffle = (arr) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const PAIR = ["grendel", "grendels-mother"];
 
-// The first pack, revealed in this order: the front rank grouped by type (one of each of the six, with two random
-// types topped up to six copies), three common items, then the whole St George set and one hero from another
-// realm (never Baba Yaga or the Grendel pair).
+// The first pack: 23 cards, revealed in this order. Ten front-rank cards grouped by type (one of each of the six, with
+// two random types topped up to three copies), the four common items, six heroes, then three lore cards.
+// The heroes are the St George set (St George, the Dragon, the Princess) and three heroes from one other realm,
+// never Baba Yaga or the Grendel pair, that fit in one line-up together, so a new player has two sets of bonds to
+// find. The lore cards are the first lore card of each of the St George set.
+const STARTER_LORE = ["st-george-1", "the-dragon-1", "the-princess-1"];
+function starterTrio() {
+  const byRealm = {};
+  for (const h of Object.values(DATA.heroes)) {
+    if (h.realm === "Albion" || h.id === "baba-yaga" || PAIR.includes(h.id)) continue;
+    (byRealm[h.realm] ||= []).push(h);
+  }
+  const realms = shuffle(Object.keys(byRealm).filter((r) => byRealm[r].length >= 3));
+  for (const r of realms) {
+    for (let k = 0; k < 40; k++) {
+      const trio = shuffle(byRealm[r]).slice(0, 3);
+      if (trio.reduce((s, h) => s + h.renown, 0) <= RENOWN_CAP - 3) return trio.map((h) => h.id);
+    }
+  }
+  return shuffle(Object.values(DATA.heroes).filter((h) => h.realm !== "Albion" && h.id !== "baba-yaga" && !PAIR.includes(h.id))).slice(0, 3).map((h) => h.id);
+}
 function firstPack() {
   const [a, b] = shuffle(CORE_FRONT);
-  const front = CORE_FRONT.flatMap((id) => Array(id === a || id === b ? 6 : 1).fill(id))
+  const front = CORE_FRONT.flatMap((id) => Array(id === a || id === b ? 3 : 1).fill(id))
     .sort((x, y) => (x === a || x === b) - (y === a || y === b));
-  const others = Object.values(DATA.heroes).filter((h) => h.realm !== "Albion" && h.id !== "baba-yaga" && !PAIR.includes(h.id));
-  return [...front, ...STARTER_ITEMS, "the-princess", "the-dragon", "st-george", pick(others).id];
+  const lore = STARTER_LORE.filter((id) => LORE_CARDS.some((c) => c.id === id)).map((id) => `lore:${id}`);
+  return [...front, ...STARTER_ITEMS, "the-princess", "the-dragon", "st-george", ...starterTrio(), ...lore];
 }
 // A Fable pack: 4 front-rank cards and 2 better cards; about 1 pack in 5 swaps a better card for a hero.
 // Better cards: common item 45%, rare 15%, legendary 3%, gold 20%, lore 10%, variant painting 7%. Packs never hold crowns:
