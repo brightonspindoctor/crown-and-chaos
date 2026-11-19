@@ -2586,7 +2586,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-19-e41db36";
+const BUILD = "2026-11-19-dec1328";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -4886,11 +4886,11 @@ function overHtml() {
       <div class="btns"><button class="btn" data-act="close-over">Continue</button></div></div>`;
   }
   if (o.type === "quest-intro") {
-    const q = G.quest, t = questTale(q);
-    return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">A quest</p><h1 style="text-align:center">${esc(t.title)}</h1>
+    const t = questTale(G.quest);
+    return `<div class="panel"><p class="eyebrow">A quest</p><h1>${esc(t.title)}</h1>
       <p class="questtale">${esc(t.open)}</p>
-      <ol class="queststeps">${[0, 1, 2].map((k) => `<li>${esc(questStep(q, k).text)}</li>`).join("")}</ol>
-      <p style="font-size:15.5px;color:var(--muted)">Your company stays as it is from fight to fight: cards that fall are gone for good, and nobody heals. You hold the Fate token in every quest fight, and night never falls, but a fight still standing after round ${E.QUEST_RULES.maxRounds} is a draw, and a draw ends the quest. Win all three for ${QUEST_REWARD} gold. Lose any fight and the quest ends with nothing. Quests don't count towards the Hall of Fame. You can set out on ${QUESTS_PER_DAY} quests a day; this is quest ${questsToday() + 1} of ${QUESTS_PER_DAY} today.</p>
+      <p>Three fights lie ahead.</p>
+      <div class="ledger"><div class="tot"><span>Reward</span><b>${QUEST_REWARD} gold</b></div></div>
       <div class="btns"><button class="btn" data-act="quest-go">Set out</button><button class="btn quiet" data-act="quest-cancel">Not now</button></div></div>`;
   }
   if (o.type === "quest-between") {
@@ -4898,7 +4898,7 @@ function overHtml() {
     const lost = [...(o.lostFront || []), ...(o.usedItems || [])];
     return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">A quest · fight ${q.stage} of 3 won</p><h1 style="text-align:center">You march on</h1>
       ${lost.length ? `<p>Lost on the way: ${esc(names(lost))}.</p>` : ""}${questCompany(q)}
-      <p class="questtale">${esc(questStep(q, q.stage).text)}</p>
+      <p>${q.stage === 2 ? "The final fight lies ahead." : "One more fight before the last."}</p>
       <div class="btns"><button class="btn" data-act="quest-go">Fight on</button><button class="btn quiet" data-act="quest-abandon">Abandon the quest</button></div></div>`;
   }
   if (o.type === "quest-end") {
