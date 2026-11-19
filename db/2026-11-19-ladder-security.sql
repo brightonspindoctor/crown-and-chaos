@@ -10,3 +10,6 @@
 -- - log_fight stores at most 60 fights per IP an hour (more are quietly dropped) and counts linked fights.
 -- - rate_hits keeps a salted hash of the caller's IP address, never the address, for a day.
 -- - Helper functions (rate_ok, level_cap, name_problem, clean_ids) can't be called through the API.
+--
+-- Migration fights_kind_quest (19 November 2026): fights.kind also allows 'quest', and log_fight stores it.
+-- The hero_results view still counts only 'computer' fights, so quests don't skew the balance numbers.

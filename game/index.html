@@ -374,6 +374,10 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .arttile > i { font-size: 13px; line-height: 1.15; color: var(--muted); padding: 0 2px; }
 .arttile.on { border: 2px solid var(--gold-leaf); box-shadow: 0 0 0 1px var(--gold-shade), 0 4px 14px rgba(20,13,8,.6); }
 .arttile em { position: absolute; top: 9px; left: 9px; font: 700 9.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: #2a1d14; background: var(--gold-leaf); border-radius: 99px; padding: 4px 7px; }
+/* quests */
+.questtale { font: italic 18px/1.4 var(--serif); color: var(--gold-text); text-wrap: pretty; }
+.queststeps { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 16px; line-height: 1.35; }
+.questco { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 15.5px; }
 /* levels, your court, Hall of Fame */
 .lvseal { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 112px; height: 112px; border-radius: 50%; background: var(--gold-leaf); box-shadow: inset 0 0 0 4px var(--gold-leaf), inset 0 0 0 6px var(--gold-shade), 0 10px 24px rgba(20,13,8,.45); color: #2a1d14; font: 700 50px/1 var(--display); }
 .lvseal i { font: 700 10px/1.2 var(--display); letter-spacing: .18em; text-transform: uppercase; font-style: normal; }
@@ -822,6 +826,12 @@ function setupSide(st, i, lu) {
     heroes[heroes.indexOf("baba-yaga")] = crownId;
     crownId = "baba-yaga";
   }
+  // A warband (quests): the same front-rank card in every slot, and no Crown.
+  if (lu.troops) {
+    for (let k = 1; k <= (lu.troopCount || 6); k++) side.slots[k] = makeFront(F(lu.troops), i, k);
+    side.troops = true; side.noCrown = true; side.crownUid = null;
+    return;
+  }
   if (crownId) side.slots[1] = makeHero(H(crownId), i, 1);
   heroes.forEach((id, k) => { if (id) side.slots[2 + k] = makeHero(H(id), i, 2 + k); });
   const front = (lu.front || []).slice(0, 3);
@@ -830,6 +840,12 @@ function setupSide(st, i, lu) {
   if (hasKoschei) side.slots[6] = makeFront(F("the-needle"), i, 6);
   side.items = (lu.items || []).filter(Boolean).slice(0, TOOL_BELT);
   side.crownUid = side.slots[1]?.uid ?? null;
+  // A blind fight (quests): this side's cards are hidden from the other side, and can't be targeted, until each
+  // one first acts on a card of the other side.
+  if (lu.blind) side.blind = true;
+  if (lu.ap != null) side.baseAp = lu.ap;
+  if (lu.revealRound != null) side.revealRound = lu.revealRound;
+  side.startUids = Object.values(side.slots).map((c) => c.uid);
 }
 
 // ---------- small helpers ----------
@@ -841,7 +857,16 @@ function log(st, msg) { st.log.push(`R${st.round}: ${msg}`); if (st.onLog) st.on
 // Every event has t (its type) and r (the round). Card references are uids.
 // Each event carries n, the number of log lines written before it. An event explains the log line just
 // before it, except phase, skip and a front-rank card's act, which open what follows.
-function ev(st, e) { (st.events ||= []).push({ r: st.round, n: st.log.length, ...e }); }
+function ev(st, e) {
+  (st.events ||= []).push({ r: st.round, n: st.log.length, ...e });
+  // A hidden card shows itself the first time it acts on a card of the other side.
+  if (e.t === "reveal" || !(st.sides[0].blind || st.sides[1].blind)) return;
+  const srcUid = e.src ?? (e.t === "act" ? e.uid : null);
+  const src = srcUid != null ? findCard(st, srcUid) : null;
+  if (!src || !st.sides[src.side].blind || src.flags.seen) return;
+  const tg = [e.tgt, ...(e.tgts || [])].filter((u) => u != null).map((u) => findCard(st, u)).filter(Boolean);
+  if (tg.some((t) => t.side !== src.side)) { src.flags.seen = true; log(st, `${src.name} is revealed.`); ev(st, { t: "reveal", uid: src.uid }); }
+}
 const uidOf = (c) => (c && c.uid != null ? c.uid : null);
 const styleOf = (opts) => opts.spell ? "spell" : opts.ranged ? "ranged" : opts.attack ? "melee" : "effect";
 // Gains in Guard and Poison, and some changes to Health, are made in many places, so they are found
@@ -1103,7 +1128,10 @@ function rangedTargets(st, attacker, opts = {}) {
 // The Labyrinth: enemy Ranged attacks can't reach the Minotaur's side's heroes in slots 2 and 3.
 function inLabyrinth(st, c) { return c.kind === "hero" && (c.slot === 2 || c.slot === 3) && crownIs(st, c.side, "the-minotaur"); }
 // The wooden horse: in round 1, every card under an Odysseus Crown except Odysseus is hidden from the enemy.
-function isHidden(st, c) { return !!c && st.round === 1 && c.id !== "odysseus" && crownIs(st, c.side, "odysseus"); }
+function isHidden(st, c) { return isBlind(st, c) || (!!c && st.round === 1 && c.id !== "odysseus" && crownIs(st, c.side, "odysseus")); }
+// A card on a blind side that hasn't yet shown itself: the other side can't see it or target it.
+function isBlind(st, c) { return !!c && !!st.sides[c.side]?.blind && !c.flags.seen; }
+const visibleTo = (st, side, list) => list.filter((c) => !c || c.side === side || !isBlind(st, c));
 // Royal decree makes every action cost 1 more action point.
 function apCost(st, c, act) { return act.ap + (st.sides[c.side].flags.decreeRound === st.round ? 1 : 0); }
 function reachable(st, attacker, ranged) { return ranged ? rangedTargets(st, attacker) : meleeTargets(st, attacker); }
@@ -1402,12 +1430,15 @@ function upkeep(st) {
   const upkeepBefore = snapStats(st);
   st.round += 1;
   st.marks = {};
+  // A blind side can't hide for ever: from its reveal round, every card still hidden shows itself.
+  for (const side of st.sides) if (side.blind && side.revealRound != null && st.round >= side.revealRound)
+    for (const c of cards(st, side.index)) if (!c.flags.seen) { c.flags.seen = true; log(st, `${c.name} is revealed.`); ev(st, { t: "reveal", uid: c.uid }); }
   // Fate token
   const ren0 = crownIs(st, 0, "renfield"), ren1 = crownIs(st, 1, "renfield");
   if (ren0 && !ren1) st.fate = 0; else if (ren1 && !ren0) st.fate = 1; else if (st.round > 1) st.fate = 1 - st.fate;
   for (const i of [0, 1]) {
     // Galvanism: +1 action point for each of Victor's other living heroes, counted at upkeep.
-    st.sides[i].ap = BASE_AP + (crownIs(st, i, "victor-frankenstein") ? heroes(st, i).filter((h) => h.id !== "victor-frankenstein").length : 0);
+    st.sides[i].ap = (st.sides[i].baseAp ?? BASE_AP) + (crownIs(st, i, "victor-frankenstein") ? heroes(st, i).filter((h) => h.id !== "victor-frankenstein").length : 0);
     st.sides[i].flags.itemApExtra = 0;
   }
   // Blodeuwedd's change at nightfall comes first
@@ -1521,6 +1552,7 @@ function checkWin(st) {
   if (st.over) return true;
   const lost = [0, 1].map((i) => {
     const side = st.sides[i];
+    if (side.troops) return cards(st, i).length === 0;
     if (side.noCrown) return heroes(st, i).length === 0;
     const crown = Object.values(side.slots).find((c) => c && c.uid === side.crownUid);
     return !crown || crown.dead;
@@ -1694,7 +1726,8 @@ const isCharging = (st, c) => !!c.flags.charge && c.flags.charge.round === st.ro
 // Actions that stop a hero, so a hero stopped last round isn't offered as a target.
 const STOPPERS = ["Enchanted sleep", "Petrify", "Medusa's head"];
 // Targets for an action, for the planner and the UI.
-function targetsFor(st, a, act) {
+function targetsFor(st, a, act) { return visibleTo(st, a.side, targetsForAll(st, a, act)); }
+function targetsForAll(st, a, act) {
   const foe = 1 - a.side;
   const spec = ACTIONS[a.id]?.[act.name];
   const type = spec?.t ?? (a.ranged || act.text.includes("Ranged") ? "enemyAny" : "enemyMelee");
@@ -1750,7 +1783,7 @@ const RUMPEL_GUESSES = 3;
 function rumpelChoices(st, i) {
   const fl = st.sides[i].flags;
   if ((fl.rumpelGuesses || 0) >= RUMPEL_GUESSES) return [];
-  return heroes(st, 1 - i).filter((h) => !(fl.rumpelLast && fl.rumpelLast.uid === h.uid && fl.rumpelLast.round === st.round - 1));
+  return visibleTo(st, i, heroes(st, 1 - i)).filter((h) => !(fl.rumpelLast && fl.rumpelLast.uid === h.uid && fl.rumpelLast.round === st.round - 1));
 }
 function itemCost(st, i) { return crownIs(st, 1 - i, "koschei") ? 1 : 0; }
 
@@ -1759,7 +1792,8 @@ const ITEM_TARGETS = {
   "mead-of-heorot": "none", "mead-of-poetry": "none", "poisoned-apple": "enemyHero", "skull-lantern": "enemyHero",
   "spindle": "enemyHero", "the-giants-sword": "allyHero", "water-of-life": "allyHero",
 };
-function itemTargets(st, i, id) {
+function itemTargets(st, i, id) { return visibleTo(st, i, itemTargetsAll(st, i, id)); }
+function itemTargetsAll(st, i, id) {
   switch (ITEM_TARGETS[id]) {
     case "none": return [null];
     case "allyHero": return heroes(st, i);
@@ -1798,16 +1832,18 @@ function useItem(st, i, id, x) {
 function frontAct(st, c) {
   if (c.flags.frozenRound === st.round) { log(st, `${c.name} is frozen and skips its action.`); ev(st, { t: "skip", uid: c.uid, why: "frozen" }); return; }
   const foe = 1 - c.side;
-  const opposite = () => at(st, foe, c.slot) || st.rng.pick(closestRow(st, c.side));
+  const seen = (x) => (x && !isBlind(st, x) ? x : null);
+  const near = () => { const r = visibleTo(st, c.side, closestRow(st, c.side)); return r.length ? st.rng.pick(r) : null; };
+  const opposite = () => (c.slot >= 4 ? seen(at(st, foe, c.slot)) : null) || near();
   const a = attackOf(st, c);
   switch (c.id) {
     case "berserker": { const x = opposite(); if (!x) return; const n = neighbours(st, x)[0]; damage(st, c, x, a, { attack: true }); if (n) damage(st, c, n, a, { attack: true }); return; }
     case "crossbowman": {
       const hs = heroes(st, foe).filter((h) => (h.slot === 2 || h.slot === 3) && !inLabyrinth(st, h)).sort((p, q) => p.health - q.health);
-      const x = hs[0] || opposite(); if (x) damage(st, c, x, a, { attack: true, ranged: true }); return;
+      const x = visibleTo(st, c.side, hs)[0] || opposite(); if (x) damage(st, c, x, a, { attack: true, ranged: true }); return;
     }
     case "longbowman": {
-      const x = crownCard(st, foe) || at(st, foe, 1) || st.rng.pick(closestRow(st, c.side));
+      const x = seen(crownCard(st, foe)) || seen(at(st, foe, 1)) || near();
       if (x) damage(st, c, x, a, { attack: true, ranged: true }); return;
     }
     case "grandmother": {
@@ -2112,7 +2148,61 @@ function botFight(data, lineups, seed) {
   return st;
 }
 
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, apCost, STOPPERS, isCharging };
+// =====================================================================================
+// Quests: three fights in a row with one company. What a side has lost (front-rank cards, items, Health)
+// carries from one fight to the next.
+// =====================================================================================
+// How many of each front-rank card make up a warband, set so each warband is won about 9 times in 10 and costs
+// a company roughly a sixth of its Health.
+const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, hoplite: 3, "geat-thane": 4, "mere-beast": 3 };
+// The three foes of a quest: a warband of one front-rank card, an easy company, and a final company of three
+// heroes from one realm under a strong Crown (or Baba Yaga alone), with no front rank, fought blind.
+function questPlan(data, rng) {
+  const H = Object.values(data.heroes), banned = ["baba-yaga", "grendel", "grendels-mother"];
+  const troops = rng.pick(Object.keys(QUEST_TROOPS));
+  const cheap = rng.pick(H.filter((h) => !banned.includes(h.id) && h.renown <= 13));
+  const easy = { crown: cheap.id, heroes: [], front: ["villager", "villager"], items: [] };
+  let final;
+  if (rng.next() < 0.2) final = { crown: "baba-yaga", heroes: [], front: [], items: [], blind: true, revealRound: 3 };
+  else {
+    const byRealm = {};
+    // Koschei always brings the Needle, which would be hidden and so could never be destroyed; Robin Hood wears
+    // no Crown, so every hidden hero would have to fall. Neither suits a blind fight.
+    for (const h of H) if (!banned.includes(h.id) && h.id !== "koschei" && h.realm !== "Geatland") (byRealm[h.realm] ||= []).push(h);
+    const realm = rng.pick(Object.keys(byRealm).filter((r) => byRealm[r].length >= 3));
+    const top = byRealm[realm].slice().sort((a, b) => b.renown - a.renown);
+    const crown = rng.pick(top.filter((h) => h.id !== "robin-hood").slice(0, 2));
+    const rest = rng.shuffle(top.filter((h) => h.id !== crown.id)).slice(0, 2);
+    final = { crown: crown.id, heroes: rest.map((h) => h.id), front: [], items: [], blind: true, ap: 2, revealRound: 3 };
+  }
+  return { fights: [{ kind: "warband", lineup: { troops, troopCount: QUEST_TROOPS[troops], front: [], items: [] } }, { kind: "easy", lineup: easy }, { kind: "final", lineup: final }] };
+}
+// After a fight: the company that marches on, and the Health each card carries. Only cards that started the fight
+// count (summoned cards stay behind); the hero wearing the Crown at the end leads the next fight.
+function carryOver(st, i, lu) {
+  const side = st.sides[i], start = new Set(side.startUids || []);
+  const alive = Object.values(side.slots).filter((c) => c && !c.dead && !c.removed && start.has(c.uid));
+  const hs = alive.filter((c) => c.kind === "hero").sort((a, b) => a.slot - b.slot);
+  const crown = crownCard(st, i);
+  const lead = crown && start.has(crown.uid) ? crown : hs[0];
+  const health = { hero: {}, front: [null, null, null] };
+  hs.forEach((c) => { health.hero[c.id] = c.health; });
+  const front = [0, 1, 2].map((k) => { const c = alive.find((x) => x.slot === 4 + k && x.kind === "front"); if (c) health.front[k] = c.health; return c ? c.id : null; });
+  const left = side.items.slice(), items = [];
+  for (const id of lu.items || []) { const k = left.indexOf(id); if (k >= 0) { items.push(id); left.splice(k, 1); } }
+  return { lineup: { crown: lead ? lead.id : null, heroes: hs.filter((c) => c !== lead).map((c) => c.id), front, items }, health };
+}
+function applyCarry(st, i, health) {
+  for (const c of Object.values(st.sides[i].slots)) {
+    if (!c) continue;
+    const h = c.kind === "hero" ? health.hero[c.id] : c.slot >= 4 ? health.front[c.slot - 4] : null;
+    if (h == null) continue;
+    c.health = Math.max(1, h);
+    if (c.health > c.maxHealth) c.maxHealth = c.health;
+  }
+}
+
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, isBlind, apCost, STOPPERS, isCharging, questPlan, carryOver, applyCarry };
 })();
 
 // =====================================================================================
@@ -2486,14 +2576,14 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-19-a517dd4";
+const BUILD = "2026-11-19-2e76ec2";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
   const me = lineupIds(S.lineups[0]), foe = lineupIds(S.lineups[1]);
   const renownOfIds = (x) => [x.crown, ...x.heroes].reduce((t, id) => t + (DATA.heroes[id]?.renown || 0), 0) + x.front.reduce((t, id) => t + (DATA.front[id]?.renown || 0), 0) + x.items.reduce((t, id) => t + (DATA.items[id]?.renown || 0), 0);
   G.fightQueue = (G.fightQueue || []).concat([{
-    p_level: myLevel(), p_result: w === 0 ? "win" : w === 1 ? "loss" : "draw", p_rounds: st.round, p_easy: !!S.easy, p_kind: S.kind === "tutorial" ? "tutorial" : "computer",
+    p_level: myLevel(), p_result: w === 0 ? "win" : w === 1 ? "loss" : "draw", p_rounds: st.round, p_easy: !!S.easy, p_kind: S.kind === "tutorial" ? "tutorial" : S.kind === "quest" ? "quest" : "computer",
     p_my_crown: me.crown, p_my_heroes: me.heroes, p_my_front: me.front, p_my_items: me.items, p_my_renown: renownOfIds(me),
     p_foe_crown: foe.crown, p_foe_heroes: foe.heroes, p_foe_front: foe.front, p_foe_items: foe.items, p_foe_renown: renownOfIds(foe),
     p_crown_fell: w === 0 ? "theirs" : w === 1 ? "mine" : "both", p_version: BUILD,
@@ -2543,7 +2633,7 @@ function courtHtml() {
     <div class="box gbox court-me"><i class="cb-c tl"></i><i class="cb-c tr"></i><i class="cb-c bl"></i><i class="cb-c br"></i>
       <div class="niche">${avatar("big")}</div><div class="court-id">${levelSeal(L)}<p class="credit">Wearing the ${esc(w.name)}</p></div></div>
     <div class="box gbox">${repBar(L)}<p class="credit">A new crown awaits at Level ${nextCrownLevel(L)}.</p></div>
-    <div class="courtstats"><div><i>Crowns won</i><b>${G.crowns}</b></div><div><i>Heroes</i><b>${heroes}</b></div><div><i>Fights</i><b>${G.wins} won · ${G.losses} lost</b></div></div>
+    <div class="courtstats"><div><i>Crowns won</i><b>${G.crowns}</b></div><div><i>Quests completed</i><b>${(G.questsDone || []).length}</b></div><div><i>Heroes</i><b>${heroes}</b></div><div><i>Fights</i><b>${G.wins} won · ${G.losses} lost</b></div></div>
     <div class="box gbox"><h2>Your crowns</h2><p>Wear any crown you own. New ones are a surprise until you find them.</p><button class="btn quiet" data-act="court-crowns">Choose a crown</button></div>
     <div class="box gbox hofbox"><h2 class="blackletter">Hall of Fame</h2>${DIVIDER}
       <p>${G.player ? `You are on the level ladder as <b>${esc(G.player.name)}</b>.` : "Claim a name to join the level ladder."}</p>
@@ -2714,7 +2804,7 @@ function live(side, slot) { const c = S.st.sides[side].slots[slot]; return c && 
 function byUid(uid) { for (const sd of S.st.sides) { for (const c of [...Object.values(sd.slots), ...sd.grave]) if (c && c.uid === uid) return c; } return null; }
 function viewOf(st, c) {
   return { uid: c.uid, id: c.id, name: c.name, kind: c.kind, side: c.side, slot: c.slot, health: c.health, maxHealth: c.maxHealth,
-    guard: c.guardLeft, atk: E.attackOf(st, c), spd: E.speedOf(st, c), ranged: c.ranged, stopped: !!c.stopNow, poison: c.poison };
+    guard: c.guardLeft, atk: E.attackOf(st, c), spd: E.speedOf(st, c), ranged: c.ranged, stopped: !!c.stopNow, poison: c.poison, blind: E.isBlind(st, c) };
 }
 function snap(st) {
   return { round: st.round, fate: st.fate, sides: st.sides.map((sd, i) => {
@@ -2733,6 +2823,7 @@ function begin(kind, lineups, opts = {}) {
   clearTimeout(S.timer);
   const st = E.createGame(DATA, lineups, { seed: opts.seed ?? (Date.now() % 1000000) + 1 });
   if (kind === "tutorial") st.fate = 0;
+  if (opts.carry) E.applyCarry(st, 0, opts.carry);
   const crown = DATA.heroes[lineups[0].crown];
   Object.assign(S, { kind, guided: kind === "tutorial", st, lineups, phase: "plan", r: 0, i: 0, post: false, plan: emptyPlan(), pick: null,
     board: BOARDS[crown.tale], foeName: opts.foeName || "", view: snap(st), prev: null, frames: [], fi: 0, caption: "", acting: null });
@@ -2769,6 +2860,8 @@ function gaps(lu) {
   return out;
 }
 function startFight(force) {
+  // A company on a quest can't also fight elsewhere: finish or abandon the quest first.
+  if (G.quest) { U.screen = "home"; U.over = { type: G.quest.began ? "quest-between" : "quest-intro" }; return render(); }
   prune();
   if (issues(G.lineup).length) { U.screen = "formation"; U.over = null; return render(); }
   const gap = gaps(G.lineup);
@@ -2875,7 +2968,7 @@ function useItem() {
 // Crown passives that ask you to pick an enemy hero each round while planning (free: no action points).
 function markInfo() {
   const crown = E.crownCard(S.st, 0); if (!crown) return null;
-  const foes = E.heroes(S.st, 1);
+  const foes = E.heroes(S.st, 1).filter((c) => !E.isBlind(S.st, c));
   if (crown.id === "the-huntsman") return { key: "hunt", uid: crown.uid, who: "The Huntsman", label: "Mark a hero", name: "The Huntsman's mark", cards: foes,
     pick: "Tap the enemy hero to mark. Your attacks on it deal +2 this round, and a Beast can't heal.",
     how: "Free each round, no action points. Mark one enemy hero: your attacks on it deal +2 damage this round, and if it is a Beast it can't heal." };
@@ -3987,6 +4080,15 @@ const isNightLine = (f) => f && /^Nightfall deals/.test(f.text);
 // Each event goes with the frame of the log line it explains (see ev in the engine): the line just
 // before it, or for the events that open an action, the line just after.
 const OPENS = (e) => e.t === "phase" || e.t === "skip" || (e.t === "act" && e.auto);
+// A caption must not give away a hidden enemy: its name becomes "a hidden enemy".
+function unname(text, v) {
+  for (const c of Object.values(v.sides[1].slots)) {
+    if (!c || !c.blind) continue;
+    const n = short(c.name).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    text = text.replace(new RegExp(`(The|the) enemy ${n}`, "g"), (m, t) => (t === "The" ? "A hidden enemy" : "a hidden enemy")).replace(new RegExp(`\\b(the )?${n}\\b`, "g"), "a hidden enemy");
+  }
+  return text;
+}
 function buildFrames(raw, before, events = []) {
   const out = [], frameOf = []; let lines = [], last = before, lastSig = sig(before);
   raw.forEach((f, k) => {
@@ -3997,7 +4099,7 @@ function buildFrames(raw, before, events = []) {
     if (isNightLine(f) && isNightLine(nxt)) return;
     if (sg !== lastSig || !nxt || nxt.acting !== f.acting) {
       const actor = f.acting ? inSnap(last, f.acting) || inSnap(f.snap, f.acting) : null;
-      out.push({ text: tidy(lines, actor), acting: f.acting, snap: f.snap, prev: last, auto: !!actor && actor.kind === "front", events: [] });
+      out.push({ text: unname(tidy(lines, actor), f.snap), acting: f.acting, snap: f.snap, prev: last, auto: !!actor && actor.kind === "front", events: [] });
       lines = []; last = f.snap; lastSig = sg;
     }
   });
@@ -4081,6 +4183,79 @@ function endPlayback() {
   render();
 }
 
+
+// =====================================================================================
+// Quests: three fights in a row with one company, ending in a blind fight against a strong Crown. Cards that fall
+// are gone, and nobody heals between fights. Winning all three pays 100 gold and is recorded as a completed quest;
+// losing any fight ends the quest with nothing. Quest fights don't count towards the Hall of Fame.
+// =====================================================================================
+const QUEST_REWARD = 100;
+const REALM_FROM = { Albion: "from the green hills of Albion", Hellas: "from across the wine-dark sea", Norse: "out of the frozen north",
+  Gothic: "from the castles beyond the forest", "Märchen": "out of the deep woods", Eventyr: "from the cold northern shore",
+  Cymru: "from the mountains of Cymru", "Rus'": "out of the endless forest" };
+const QUEST_TALES = {
+  Beast: { who: "it", title: "The Beast", open: "You hear a beast is tormenting your kingdom", won: "The beast was slain, and all was well… for now.", lost: "The beast still roams your lands." },
+  Sovereign: { who: "he", title: "The Rising King", open: "A powerful king has arisen and marches on your stronghold", won: "The tyrant fell, and your banners flew again… for now.", lost: "The tyrant's banners fly over your walls." },
+  Witch: { who: "she", title: "The Curse", open: "A witch has laid a curse on your lands", won: "The curse was broken, and the wells ran clear… for now.", lost: "The curse still lies on the land." },
+  Trickster: { who: "they", title: "The Thief in the Dark", open: "Someone has been robbing your halls and laughing in the dark", won: "The thief was caught, and the halls fell quiet… for now.", lost: "The laughter still echoes in your halls." },
+  Slayer: { who: "they", title: "The Challenger", open: "A famous champion has sworn to take your crown", won: "The champion lay beaten, and your crown was safe… for now.", lost: "The champion has your measure." },
+  Guardian: { who: "it", title: "The Closed Road", open: "A great guardian holds the only road home", won: "The road was open, and the carts rolled home… for now.", lost: "The road is still closed." },
+  Healer: { who: "they", title: "The Undying", open: "Your enemies won't stay dead: someone keeps healing them", won: "This time they stayed down, and all was well… for now.", lost: "Your enemies are back on their feet." },
+};
+const BABA_TALE = { title: "The Hut in the Forest", open: "A hut on hen's legs has been seen at the edge of the forest. Baba Yaga is hungry.", won: "The hut ran off into the forest on its chicken legs, and all was well… for now.", lost: "Baba Yaga's hut still stalks the forest's edge." };
+function questTale(q) {
+  const f = q.plan.fights[2].lineup, h = DATA.heroes[f.crown];
+  if (f.crown === "baba-yaga") return BABA_TALE;
+  const t = QUEST_TALES[h.aspect] || QUEST_TALES.Sovereign;
+  return { ...t, open: `${t.open}. Word is ${t.who} came ${REALM_FROM[h.realm] || "from a far land"}.` };
+}
+const plural = (n) => (/man$/.test(n) ? n.replace(/man$/, "men") : /s$/.test(n) ? n : `${n}s`);
+function questStep(q, k) {
+  const f = q.plan.fights[k].lineup;
+  if (k === 0) return { name: `a warband of ${plural(DATA.front[f.troops].name)}`, text: `On the road: ${f.troopCount} ${plural(DATA.front[f.troops].name)} bar your way.` };
+  if (k === 1) return { name: `${short(DATA.heroes[f.crown].name)}'s band`, text: `At the crossing: ${DATA.heroes[f.crown].name.replace(/^The /, "the ")} and ${f.front.length} villagers stand in your path.` };
+  const n = 1 + (f.heroes || []).length;
+  return { name: "an unseen enemy", text: `The final fight: ${n === 1 ? "an enemy you can't see" : `${n} enemies you can't see`}, and no front rank. You can't target a hidden enemy until it strikes one of your cards.` };
+}
+function newQuest() {
+  if (issues(G.lineup).length) { U.screen = "formation"; U.over = null; return render(); }
+  const lu = G.lineup, rng = E.makeRng((Date.now() % 1000000000) + Math.floor(Math.random() * 1e6));
+  G.quest = { plan: E.questPlan(DATA, rng), stage: 0, carry: null, began: false,
+    lineup: { crown: lu.crown, heroes: lu.heroes.filter(Boolean), front: lu.front.map((f) => f || null), items: lu.items.filter(Boolean) } };
+  save(); U.over = { type: "quest-intro" }; render();
+}
+function questFight() {
+  const q = G.quest; if (!q) return;
+  q.began = true;
+  begin("quest", [q.lineup, q.plan.fights[q.stage].lineup], { foeName: questStep(q, q.stage).name, carry: q.carry });
+  Object.assign(S, { easy: false, conceded: false, renown: null });
+  saveLive();
+}
+function finishQuestFight(st, w) {
+  const q = G.quest, mine = S.lineups[0];
+  const { lostFront, usedItems } = lossesSoFar(st, mine);
+  [...lostFront, ...usedItems].forEach((id) => take(id));
+  const tale = q ? questTale(q) : BABA_TALE, stage = q ? q.stage : 0;
+  if (!q || w !== 0 || S.conceded) { delete G.quest; prune(); save(); U.over = { type: "quest-end", won: false, stage, tale, lostFront, usedItems }; return; }
+  if (q.stage < 2) {
+    const next = E.carryOver(st, 0, mine);
+    q.lineup = next.lineup; q.carry = next.health; q.stage += 1;
+    prune(); save(); U.over = { type: "quest-between", lostFront, usedItems }; return;
+  }
+  G.gold += QUEST_REWARD;
+  G.questsDone = (G.questsDone || []).concat([{ crown: q.plan.fights[2].lineup.crown, date: new Date().toISOString().slice(0, 10) }]);
+  delete G.quest; prune(); save();
+  U.over = { type: "quest-end", won: true, stage: 3, tale, lostFront, usedItems };
+}
+// The company as it marches on: who is left, and on how much Health.
+function questCompany(q) {
+  const lu = q.lineup, hp = q.carry || { hero: {}, front: [] };
+  const hero = (id, crown) => { const d = DATA.heroes[id], h = hp.hero[id] ?? d.stats.health; return `<li><b>${esc(d.name)}</b>${crown ? " (Crown)" : ""}: ${h} of ${d.stats.health} Health</li>`; };
+  const front = lu.front.map((id, k) => (id ? `<li>${esc(DATA.front[id].name)}: ${hp.front[k] ?? DATA.front[id].health} of ${DATA.front[id].health} Health</li>` : "")).join("");
+  const items = lu.items.length ? `<li>Tool belt: ${esc(lu.items.map((id) => DATA.items[id].name).join(", "))}</li>` : "";
+  return `<ul class="questco">${hero(lu.crown, true)}${lu.heroes.map((id) => hero(id)).join("")}${front || "<li>No front rank left</li>"}${items}</ul>`;
+}
+
 // ---------- after a fight: gold, and what was used up ----------
 function minus(have, gone) { const left = have.slice(); for (const id of gone) { const k = left.indexOf(id); if (k >= 0) left.splice(k, 1); } return left; }
 // What this fight has cost the player so far: front-rank cards that fell (Villagers are free) and items used.
@@ -4093,14 +4268,15 @@ function lossesSoFar(st, mine) {
 // A fight in progress is saved after every round, so closing or reloading the page mid-fight counts as conceding:
 // what was already lost stays lost, and it pays nothing.
 function saveLive() {
-  if (S.kind !== "fight" || !S.st || S.st.over) return;
-  G.live = { ...lossesSoFar(S.st, S.lineups[0]), round: S.st.round, foe: S.foeName }; save();
+  if (!["fight", "quest"].includes(S.kind) || !S.st || S.st.over) return;
+  G.live = { ...lossesSoFar(S.st, S.lineups[0]), round: S.st.round, foe: S.foeName, quest: S.kind === "quest" }; save();
 }
 function abandonedFight() {
   const l = G.live; if (!l) return;
   delete G.live;
   [...(l.lostFront || []), ...(l.usedItems || [])].forEach((id) => take(id));
-  G.losses++; prune(); save();
+  if (l.quest) delete G.quest; else G.losses++;
+  prune(); save();
   U.over = { type: "abandoned", ...l };
 }
 function finishFight() {
@@ -4108,6 +4284,7 @@ function finishFight() {
   delete G.live;
   SND.play(w < 0 ? "tie" : w === 0 ? "win" : "lose");
   logFight(st, w);
+  if (S.kind === "quest") return finishQuestFight(st, w);
   if (S.kind === "tutorial") {
     const first = w === 0 && !G.tutorialDone; // the tutorial's Crown counts once, the first time it is won
     if (first) { G.crowns++; G.tutorialDone = true; save(); }
@@ -4205,10 +4382,10 @@ function battleCard(c, v, opts = {}) {
 // The wooden horse: an enemy Odysseus Crown hides his side's other cards in round 1.
 function hiddenCard(c) {
   const ok = S.phase === "plan" && S.pick && S.pick.targets.includes(c.uid);
-  return `<div class="card hidden${ok ? " can" : S.pick ? " dim" : ""}" data-act="card" data-uid="${c.uid}" data-side="${c.side}" data-slot="${c.slot}" aria-label="A hidden enemy card (the wooden horse)"><span>?</span></div>`;
+  return `<div class="card hidden${ok ? " can" : S.pick ? " dim" : ""}" data-act="card" data-uid="${c.uid}" data-side="${c.side}" data-slot="${c.slot}" aria-label="${c.blind ? "A hidden enemy" : "A hidden enemy card (the wooden horse)"}"><span>?</span></div>`;
 }
 // Hidden while round 1 is being planned; the cards show themselves as the round plays out.
-const hiddenNow = (v, c) => c.side === 1 && S.phase === "plan" && E.isHidden(S.st, byUid(c.uid));
+const hiddenNow = (v, c) => c.side === 1 && (c.blind || (S.phase === "plan" && E.isHidden(S.st, byUid(c.uid))));
 function slotHtml(v, side, slot) {
   const c = v.sides[side].slots[slot];
   if (c && hiddenNow(v, c)) return hiddenCard(c);
@@ -4303,6 +4480,7 @@ function renderBattle() {
 
 function cardSheet(sh) {
   const c = byUid(sh.uid), st = S.st, g = step();
+  if (c && c.side === 1 && E.isBlind(st, c)) return `<h2>A hidden enemy</h2><p class="rule">You can't see who this is, and you can't target it. It shows itself the first time it acts against one of your cards${st.sides[1].revealRound ? `, and every hidden enemy shows itself at the start of round ${st.sides[1].revealRound}` : ""}.</p>`;
   if (c && c.side === 1 && E.isHidden(st, c)) return `<h2>A hidden card</h2><p class="rule">The enemy's Odysseus wears the Crown. The wooden horse hides his side's other cards until round 2.</p>`;
   const hero = c.kind === "hero", def = hero ? DATA.heroes[c.id] : DATA.front[c.id] || {};
   const mine = c.side === 0, crown = E.crownCard(st, c.side)?.uid === c.uid;
@@ -4392,7 +4570,9 @@ function homeHtml() {
   return coverHtml(`
     <button class="me-chip" data-go="court" aria-label="Your court: Level ${myLevel()}">${avatar()}<span><b>Your court</b><i>Level ${myLevel()}</i></span></button>
     <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
-    <div class="btns"><button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button></div>
+    <div class="btns">${G.quest
+      ? `<button class="btn big" data-act="quest-resume">Continue your quest</button><button class="link" data-act="quest-abandon">Abandon the quest</button>`
+      : `<button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button>${bad ? "" : `<button class="btn big quiet" data-act="quest-new">Go on a quest</button>`}`}</div>
     <div class="links"><button class="link" data-go="hall">Hall of Fame</button><button class="link" data-go="settings">Settings</button><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
     <p class="credit">Fights are against the computer for now. Your progress is saved in this browser only.</p>`);
 }
@@ -4688,8 +4868,31 @@ function overHtml() {
     const names = (ids) => { const c = {}; ids.forEach((id) => (c[id] = (c[id] || 0) + 1)); return Object.entries(c).map(([id, n]) => `${defOf(id).name}${n > 1 ? ` × ${n}` : ""}`).join(", "); };
     const lost = [...(o.lostFront || []), ...(o.usedItems || [])];
     return `<div class="panel"><p class="eyebrow">Round ${o.round || 1}${o.foe ? ` · against ${esc(o.foe)}` : ""}</p><h1>Fight abandoned</h1>
-      <p>The game closed in the middle of a fight, so it counts as conceded: no gold${lost.length ? `, and what was already lost stays lost: ${esc(names(lost))}` : ""}.</p>
+      <p>The game closed in the middle of a ${o.quest ? "quest fight, so the quest is lost" : "fight, so it counts as conceded"}: no gold${lost.length ? `, and what was already lost stays lost: ${esc(names(lost))}` : ""}.</p>
       <div class="btns"><button class="btn" data-act="close-over">Continue</button></div></div>`;
+  }
+  if (o.type === "quest-intro") {
+    const q = G.quest, t = questTale(q);
+    return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">A quest</p><h1 style="text-align:center">${esc(t.title)}</h1>
+      <p class="questtale">${esc(t.open)}</p>
+      <ol class="queststeps">${[0, 1, 2].map((k) => `<li>${esc(questStep(q, k).text)}</li>`).join("")}</ol>
+      <p style="font-size:15.5px;color:var(--muted)">Your company stays as it is from fight to fight: cards that fall are gone for good, and nobody heals. Win all three for ${QUEST_REWARD} gold. Lose any fight and the quest ends with nothing. Quests don't count towards the Hall of Fame.</p>
+      <div class="btns"><button class="btn" data-act="quest-go">Set out</button><button class="btn quiet" data-act="quest-cancel">Not now</button></div></div>`;
+  }
+  if (o.type === "quest-between") {
+    const q = G.quest, names = (ids) => ids.map((id) => defOf(id).name).join(", ");
+    const lost = [...(o.lostFront || []), ...(o.usedItems || [])];
+    return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">A quest · fight ${q.stage} of 3 won</p><h1 style="text-align:center">You march on</h1>
+      ${lost.length ? `<p>Lost on the way: ${esc(names(lost))}.</p>` : ""}${questCompany(q)}
+      <p class="questtale">${esc(questStep(q, q.stage).text)}</p>
+      <div class="btns"><button class="btn" data-act="quest-go">Fight on</button><button class="btn quiet" data-act="quest-abandon">Abandon the quest</button></div></div>`;
+  }
+  if (o.type === "quest-end") {
+    const done = (G.questsDone || []).length;
+    return `<div class="panel">${o.won ? CROWN_SVG : ""}<p class="eyebrow">A quest</p><h1>${o.won ? "Quest complete" : "The quest is lost"}</h1>
+      <p class="questtale">${esc(o.won ? o.tale.won : `${o.tale.lost} Gather your company and try again.`)}</p>
+      ${o.won ? `<div class="ledger"><div><span>Quest reward</span><b>+${QUEST_REWARD}</b></div><div class="tot"><span>Your gold</span><b>${G.gold}</b></div><div class="tot"><span>Quests completed</span><b>${done}</b></div></div>` : ""}
+      <div class="btns"><button class="btn" data-go="home">Home</button><button class="btn quiet" data-go="formation">Line-up</button></div></div>`;
   }
   if (o.type === "tutorial-end") {
     if (o.winner !== 0) return `<div class="panel"><p class="eyebrow">Tutorial</p><h1>${o.winner === 1 ? "Defeat" : "A draw"}</h1><p>The Crown fell. Try the tutorial again.</p><div class="btns"><button class="btn" data-act="tutorial">Try again</button></div></div>`;
@@ -4774,6 +4977,11 @@ document.addEventListener("click", (e) => {
     case "resume": U.over = null; render(); break;
     case "concede": U.over = null; concede(); break;
     case "close-over": U.over = null; checkLevel(); render(); break;
+    case "quest-new": newQuest(); break;
+    case "quest-go": U.over = null; questFight(); break;
+    case "quest-cancel": delete G.quest; U.over = null; save(); render(); break;
+    case "quest-resume": U.over = { type: G.quest && G.quest.began ? "quest-between" : "quest-intro" }; render(); break;
+    case "quest-abandon": delete G.quest; U.over = null; U.screen = "home"; save(); render(); break;
     case "leave": go("home"); break;
     case "tutorial": startTutorial(); break;
     case "after-tutorial": G.tutorialDone = true; save(); go(G.packOpened ? "home" : "ready"); break;

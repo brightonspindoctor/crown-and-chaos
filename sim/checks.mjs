@@ -255,5 +255,44 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st3, [{ orders: [order(st3, 0, "loki", "Crown thief")] }, { orders: [] }]);
   ok("Crown thief: Polyphemus becomes the enemy Crown", E.crownCard(st3, 1).id === "polyphemus" && card(st3, 1, "merlin").slot !== 1);
 }
+{ // Quests: a warband has a card in every slot and no Crown, and is beaten only when every card has fallen
+  const st = game(lu("st-george", ["the-dragon"]), { troops: "knight", troopCount: 4, front: [], items: [] });
+  ok("A warband of 4 Knights fills four slots", E.cards(st, 1).length === 4 && E.cards(st, 1).every((c) => c.id === "knight"), E.cards(st, 1).map((c) => c.id));
+  ok("A warband has no Crown", E.crownCard(st, 1) === null);
+  ok("A warband isn't beaten while a card stands", !E.checkWin(st));
+  for (const c of E.cards(st, 1).slice(0, 3)) { c.health = 0; c.dead = true; }
+  ok("Still not beaten with one Knight left", !E.checkWin(st));
+  E.cards(st, 1)[0].dead = true;
+  ok("Beaten once the last Knight falls", E.checkWin(st) && st.winner === 0, st.winner);
+}
+{ // Quests: blind fights. Hidden cards can't be targeted until they act on you; all show themselves in the reveal round.
+  const st = game(lu("st-george", ["the-princess"]), { crown: "the-wolf", heroes: ["the-huntsman"], front: [], items: [], blind: true, revealRound: 3 });
+  const g = card(st, 0, "st-george"), w = card(st, 1, "the-wolf");
+  ok("The enemy starts hidden", E.isBlind(st, w) && E.isHidden(st, w));
+  ok("St George can't target a hidden enemy", E.options(st, g).every((o) => o.targets.every((t) => !t || t.side === 0)), E.options(st, g).map((o) => o.targets.length));
+  ok("A hidden enemy can't be marked by Rumpelstiltskin", E.rumpelChoices(st, 0).length === 0);
+  const hu = card(st, 1, "the-huntsman");
+  E.playRound(st, [{ orders: [] }, { orders: [order(st, 1, "the-huntsman", "Attack", card(st, 0, "the-princess"))] }]);
+  ok("The Huntsman shows himself when he shoots", !E.isBlind(st, hu));
+  ok("The Wolf, who did nothing to you, stays hidden", E.isBlind(st, w));
+  ok("Now the Princess can target the Huntsman", E.options(st, card(st, 0, "the-princess")).some((o) => o.targets.some((t) => t && t.uid === hu.uid)));
+  ok("Round 2: the Wolf is still hidden", st.round === 2 && E.isBlind(st, w), st.round);
+  E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  ok("Round 3: every hidden enemy has shown itself", st.over || (st.round === 3 && !E.isBlind(st, w)), st.round);
+}
+{ // Quests: what a company carries from one fight to the next
+  const mine = lu("st-george", ["the-princess"], ["knight", "monk", "villager"], ["gingerbread", "golden-apple"]);
+  const st = game(mine, lu("merlin"));
+  const g = card(st, 0, "st-george"); g.health = 2;
+  const kn = E.cards(st, 0).find((c) => c.id === "knight"); kn.health = 0; kn.dead = true;
+  st.sides[0].items = ["golden-apple"];
+  const next = E.carryOver(st, 0, mine);
+  ok("Carry: the fallen Knight is gone", next.lineup.front[0] === null && next.lineup.front[1] === "monk", next.lineup.front);
+  ok("Carry: the used Gingerbread is gone", JSON.stringify(next.lineup.items) === '["golden-apple"]', next.lineup.items);
+  ok("Carry: St George keeps the Crown on 2 Health", next.lineup.crown === "st-george" && next.health.hero["st-george"] === 2, next);
+  const st2 = game(next.lineup, lu("merlin"));
+  E.applyCarry(st2, 0, next.health);
+  ok("Carry: the next fight starts with St George on 2 Health", card(st2, 0, "st-george").health === 2, card(st2, 0, "st-george").health);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);
