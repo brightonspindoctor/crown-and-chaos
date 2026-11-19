@@ -931,9 +931,14 @@ function autoFill() {
   for (const id of Object.keys(ic).sort((a, b) => DATA.items[a].renown - DATA.items[b].renown)) { while (ic[id] > 0 && k < BELT && DATA.items[id].renown <= left) { lu.items[k++] = id; left -= DATA.items[id].renown; ic[id]--; } }
   G.lineup = lu;
 }
-function randomFoe() {
+// A helping hand for new players: up to Level 25, after two defeats in a row the computer goes easy until the
+// player wins. An easy computer has a smaller Renown budget (36, so two heroes), brings no items and plays
+// carelessly. In simulation a player beats it about 87% of the time, against about 48% at full strength.
+const EASY = { maxLevel: 25, losses: 2, renown: 36, noise: 1.2 };
+const easyNext = () => myLevel() <= EASY.maxLevel && (G.lossStreak || 0) >= EASY.losses;
+function randomFoe(easy = false) {
   const rng = E.makeRng(Date.now() + Math.floor(Math.random() * 1e6));
-  const hs = []; let budget = RENOWN_CAP;
+  const hs = []; let budget = easy ? EASY.renown : RENOWN_CAP;
   for (const h of rng.shuffle(Object.values(DATA.heroes))) {
     if (hs.length >= 3) break;
     if (h.renown > budget - 3 || PAIR.includes(h.id) || h.id === "baba-yaga") continue;
@@ -941,7 +946,7 @@ function randomFoe() {
   }
   const fl = Object.values(DATA.front).filter((f) => f.id !== "the-needle");
   const front = [0, 1, 2].map((k) => { const ok = fl.filter((f) => f.renown <= budget - (2 - k)); const f = ok.length ? rng.pick(ok) : DATA.front.villager; budget -= f.renown; return f.id; });
-  const items = [0, 1].map(() => { const ok = Object.values(DATA.items).filter((x) => x.renown <= budget); if (!ok.length) return ""; const x = rng.pick(ok); budget -= x.renown; return x.id; }).filter(Boolean);
+  const items = easy ? [] : [0, 1].map(() => { const ok = Object.values(DATA.items).filter((x) => x.renown <= budget); if (!ok.length) return ""; const x = rng.pick(ok); budget -= x.renown; return x.id; }).filter(Boolean);
   return { crown: hs[0], heroes: hs.slice(1), front, items };
 }
 
@@ -1066,10 +1071,10 @@ function startFight(force) {
   if (issues(G.lineup).length) { U.screen = "formation"; U.over = null; return render(); }
   const gap = gaps(G.lineup);
   if (gap.length && !force) { U.over = { type: "gaps", gaps: gap }; return render(); }
-  const lu = G.lineup, foe = randomFoe();
+  const lu = G.lineup, easy = easyNext(), foe = randomFoe(easy);
   const mine = { crown: lu.crown, heroes: lu.heroes.filter(Boolean), front: lu.front.map((f) => f || null), items: lu.items.filter(Boolean) };
   begin("fight", [mine, foe], { foeName: `${short(DATA.heroes[foe.crown].name)}'s company` });
-  S.renown = renownOf(lu);
+  S.renown = renownOf(lu); S.easy = easy;
 }
 
 // ---------- the guide ----------
@@ -1226,7 +1231,7 @@ function lock() {
   const g = step();
   if (S.guided && (!g || !g.lock)) return nudge();
   const st = S.st, before = snap(st), raw = [], from = (st.events || []).length;
-  const foePlan = S.guided ? scriptedFoe() : E.botPlan(st, 1);
+  const foePlan = S.guided ? scriptedFoe() : E.botPlan(st, 1, st.rng, S.easy ? EASY.noise : 0.35);
   st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st), n: st.log.length });
   E.playRound(st, [S.plan, foePlan]);
   st.onLog = null;
@@ -1345,12 +1350,12 @@ function finishFight() {
   }
   const mine = S.lineups[0], lines = [];
   if (w === 0) {
-    lines.push(["Victory", PAY.win]); G.wins++; G.crowns++;
+    lines.push(["Victory", PAY.win]); G.wins++; G.crowns++; G.lossStreak = 0;
     const spare = RENOWN_CAP - (S.renown ?? RENOWN_CAP); // 1 gold for each point of Renown left unspent, only on a win
     if (spare > 0) lines.push([`Won with ${spare} Renown to spare`, spare]);
   }
   else {
-    lines.push([w === 1 ? "Defeat" : "A draw", PAY.loss]); if (w === 1) G.losses++; else G.draws++;
+    lines.push([w === 1 ? "Defeat" : "A draw", PAY.loss]); if (w === 1) { G.losses++; G.lossStreak = (G.lossStreak || 0) + 1; } else G.draws++;
     const foeCrown = E.crownCard(st, 1);
     if (st.sides[1].grave.some((c) => c.kind === "hero")) lines.push(["Brought down an enemy hero", PAY.bonus]);
     if (foeCrown && foeCrown.health <= 3) lines.push(["Enemy Crown left on 3 Health or less", PAY.bonus]);
