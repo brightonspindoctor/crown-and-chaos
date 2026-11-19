@@ -39,7 +39,7 @@
     {
       "name": "Mortar ride",
       "ap": 3,
-      "text": "Move to any adjacent space, on either side of the board, killing whatever is there. Gains 2 health if she kills something. Can't move onto the enemy Crown's space."
+      "text": "Move to any adjacent space, on either side of the board, killing whatever is there. Gains 2 Health if she kills something, even above her starting Health. Can't move onto the enemy Crown's space."
     }
   ],
   "art": "baba-yaga",

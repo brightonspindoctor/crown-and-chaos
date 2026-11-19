@@ -1,0 +1,12 @@
+-- Applied to the crown-and-chaos Supabase project on 19 November 2026 (migration ladder_caps_rate_limits_crown_cosmetic).
+-- Kept here as a record; the live definitions are in the database.
+--
+-- - players.fights counts each player's logged fights (not the tutorial); players.level_at records when they reached
+--   their current level and is the ladder's tie-break, so changing crown never costs a place.
+-- - level_cap(fights): the highest level a player's fights can explain. Every player may start at up to level 10
+--   (2,250 points); each logged fight allows 200 more points (a fight earns well under 100).
+-- - claim_name caps the starting level at level_cap(0) = 10 and allows 5 new names per IP address a day.
+-- - update_player never raises a level past level_cap(fights); 120 updates per IP an hour.
+-- - log_fight stores at most 60 fights per IP an hour (more are quietly dropped) and counts linked fights.
+-- - rate_hits keeps a salted hash of the caller's IP address, never the address, for a day.
+-- - Helper functions (rate_ok, level_cap, name_problem, clean_ids) can't be called through the API.

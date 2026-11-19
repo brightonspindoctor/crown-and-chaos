@@ -892,7 +892,7 @@ async function rpc(fn, body) {
   if (!r.ok) { const err = new Error((data && data.message) || `HTTP ${r.status}`); err.code = data && data.message; throw err; }
   return data;
 }
-const NAME_WORDS = { ok: "Available", length: "Use 3 to 16 characters", characters: "Letters, numbers, spaces, - and _ only, starting and ending with a letter or number", reserved: "That name is reserved", blocked: "Please choose another name", taken: "Already taken" };
+const NAME_WORDS = { ok: "Available", length: "Use 3 to 16 characters", characters: "Letters, numbers, spaces, - and _ only, starting and ending with a letter or number", reserved: "That name is reserved", blocked: "Please choose another name", taken: "Already taken", too_many: "Too many names made from this connection today. Try again tomorrow." };
 const initial = (name) => esc(((name || "?").trim()[0] || "?").toUpperCase());
 const myName = () => (G.player && G.player.name) || "You";
 function newSecret() { const b = new Uint8Array(32); crypto.getRandomValues(b); return Array.from(b, (x) => x.toString(16).padStart(2, "0")).join(""); }
@@ -1236,7 +1236,8 @@ function startFight(force) {
   const lu = G.lineup, easy = easyNext(), foe = randomFoe(easy);
   const mine = { crown: lu.crown, heroes: lu.heroes.filter(Boolean), front: lu.front.map((f) => f || null), items: lu.items.filter(Boolean) };
   begin("fight", [mine, foe], { foeName: `${short(DATA.heroes[foe.crown].name)}'s company` });
-  S.renown = renownOf(lu); S.easy = easy;
+  S.renown = renownOf(lu); S.easy = easy; S.conceded = false;
+  saveLive();
 }
 
 // ---------- the guide ----------
@@ -1397,6 +1398,7 @@ function lock() {
   st.onLog = (msg) => raw.push({ text: msg, acting: st.acting ?? null, snap: snap(st), n: st.log.length });
   E.playRound(st, [S.plan, foePlan]);
   st.onLog = null;
+  saveLive();
   S.frames = buildFrames(raw, before, (st.events || []).slice(from));
   SND.unlock();
   S.plan = emptyPlan(); U.sheet = null; S.phase = "play"; S.fi = -1;
@@ -1502,8 +1504,29 @@ function endPlayback() {
 
 // ---------- after a fight: gold, and what was used up ----------
 function minus(have, gone) { const left = have.slice(); for (const id of gone) { const k = left.indexOf(id); if (k >= 0) left.splice(k, 1); } return left; }
+// What this fight has cost the player so far: front-rank cards that fell (Villagers are free) and items used.
+function lossesSoFar(st, mine) {
+  return {
+    lostFront: minus(mine.front.filter(Boolean), E.cards(st, 0).filter((c) => c.kind === "front").map((c) => c.id)).filter((id) => id !== "villager"),
+    usedItems: minus(mine.items, st.sides[0].items),
+  };
+}
+// A fight in progress is saved after every round, so closing or reloading the page mid-fight counts as conceding:
+// what was already lost stays lost, and it pays nothing.
+function saveLive() {
+  if (S.kind !== "fight" || !S.st || S.st.over) return;
+  G.live = { ...lossesSoFar(S.st, S.lineups[0]), round: S.st.round, foe: S.foeName }; save();
+}
+function abandonedFight() {
+  const l = G.live; if (!l) return;
+  delete G.live;
+  [...(l.lostFront || []), ...(l.usedItems || [])].forEach((id) => take(id));
+  G.losses++; prune(); save();
+  U.over = { type: "abandoned", ...l };
+}
 function finishFight() {
   const st = S.st, w = st.winner;
+  delete G.live;
   SND.play(w < 0 ? "tie" : w === 0 ? "win" : "lose");
   logFight(st, w);
   if (S.kind === "tutorial") {
@@ -1512,7 +1535,11 @@ function finishFight() {
     U.over = { type: "tutorial-end", winner: w, first }; return;
   }
   const mine = S.lineups[0], lines = [];
-  if (w === 0) {
+  if (S.conceded) {
+    // Conceding pays nothing and doesn't count towards the computer going easy.
+    G.losses++;
+  }
+  else if (w === 0) {
     lines.push(["Victory", PAY.win]); G.wins++; G.crowns++; G.lossStreak = 0;
     const spare = RENOWN_CAP - (S.renown ?? RENOWN_CAP); // 1 gold for each point of Renown left unspent, only on a win
     if (spare > 0) lines.push([`Won with ${spare} Renown to spare`, spare]);
@@ -1526,14 +1553,13 @@ function finishFight() {
     const fr = mine.front.filter(Boolean);
     if (fr.length === 3 && minus(fr, E.cards(st, 0).filter((c) => c.kind === "front").map((c) => c.id)).length === 0) lines.push(["Whole front rank still standing", PAY.bonus]);
   }
-  const lostFront = minus(mine.front.filter(Boolean), E.cards(st, 0).filter((c) => c.kind === "front").map((c) => c.id)).filter((id) => id !== "villager");
-  const usedItems = minus(mine.items, st.sides[0].items);
+  const { lostFront, usedItems } = lossesSoFar(st, mine);
   [...lostFront, ...usedItems].forEach((id) => take(id));
   const gold = lines.reduce((s, l) => s + l[1], 0);
   G.gold += gold; prune(); save();
-  U.over = { type: "result", winner: w, lines, gold, lostFront, usedItems, round: st.round };
+  U.over = { type: "result", winner: w, lines, gold, lostFront, usedItems, round: st.round, conceded: !!S.conceded };
 }
-function concede() { const st = S.st; clearTimeout(S.timer); st.over = true; st.winner = 1; Object.assign(S, { view: snap(st), prev: null, phase: "over" }); finishFight(); render(); }
+function concede() { const st = S.st; clearTimeout(S.timer); st.over = true; st.winner = 1; S.conceded = true; Object.assign(S, { view: snap(st), prev: null, phase: "over" }); finishFight(); render(); }
 
 // =====================================================================================
 // Drawing: small cards
@@ -2067,7 +2093,7 @@ function overHtml() {
       <button class="btn quiet" data-act="motion" aria-pressed="${G.motion !== false}">Card animations: ${G.motion === false ? "off" : "on"}</button>
       ${S.kind === "tutorial" ? `<button class="btn quiet" data-act="tutorial">Restart the tutorial</button><button class="btn quiet" data-act="leave">Leave the tutorial</button>`
         : `<button class="btn quiet" data-act="concede">Concede this fight</button>`}</div>
-      ${S.kind === "tutorial" ? "" : `<p class="credit">Conceding counts as a defeat. Cards already lost stay lost.</p>`}</div>`;
+      ${S.kind === "tutorial" ? "" : `<p class="credit">Conceding pays no gold. Cards already lost stay lost.</p>`}</div>`;
   }
   if (o.type === "gaps") {
     return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">Before you fight</p><h1 style="text-align:center">Check your line-up</h1>
@@ -2079,6 +2105,13 @@ function overHtml() {
     return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">Round ${E.NIGHTFALL_ROUND}</p><h1 style="text-align:center">Night falls</h1>${NIGHT_RULES}
       <div class="btns"><button class="btn" data-act="night-ok">Into the dark</button></div><p class="credit" style="text-align:center">Tap the round counter at any time to read this again.</p></div>`;
   }
+  if (o.type === "abandoned") {
+    const names = (ids) => { const c = {}; ids.forEach((id) => (c[id] = (c[id] || 0) + 1)); return Object.entries(c).map(([id, n]) => `${defOf(id).name}${n > 1 ? ` × ${n}` : ""}`).join(", "); };
+    const lost = [...(o.lostFront || []), ...(o.usedItems || [])];
+    return `<div class="panel"><p class="eyebrow">Round ${o.round || 1}${o.foe ? ` · against ${esc(o.foe)}` : ""}</p><h1>Fight abandoned</h1>
+      <p>The game closed in the middle of a fight, so it counts as conceded: no gold${lost.length ? `, and what was already lost stays lost: ${esc(names(lost))}` : ""}.</p>
+      <div class="btns"><button class="btn" data-act="close-over">Continue</button></div></div>`;
+  }
   if (o.type === "tutorial-end") {
     if (o.winner !== 0) return `<div class="panel"><p class="eyebrow">Tutorial</p><h1>${o.winner === 1 ? "Defeat" : "A draw"}</h1><p>The Crown fell. Try the tutorial again.</p><div class="btns"><button class="btn" data-act="tutorial">Try again</button></div></div>`;
     return `<div class="panel">${CROWN_SVG}<p class="eyebrow">Tutorial complete</p><h1>Victory</h1>
@@ -2089,8 +2122,8 @@ function overHtml() {
   }
   const names = (ids) => { const c = {}; ids.forEach((id) => (c[id] = (c[id] || 0) + 1)); return Object.entries(c).map(([id, n]) => `${defOf(id).name}${n > 1 ? ` × ${n}` : ""}`).join(", "); };
   return `<div class="panel">${o.winner === 0 ? CROWN_SVG : ""}<p class="eyebrow">Round ${o.round} · against ${esc(S.foeName)}</p>
-    <h1>${o.winner === 0 ? "Victory" : o.winner === 1 ? "Defeat" : "A draw"}</h1>
-    <div class="ledger">${o.lines.map(([l, n]) => `<div><span>${esc(l)}</span><b>+${n}</b></div>`).join("")}<div class="tot"><span>Your gold</span><b>${G.gold}</b></div>${o.winner === 0 ? `<div class="tot"><span>Crowns won</span><b>${G.crowns}</b></div>` : ""}</div>
+    <h1>${o.conceded ? "Conceded" : o.winner === 0 ? "Victory" : o.winner === 1 ? "Defeat" : "A draw"}</h1>
+    ${o.conceded ? `<p>A conceded fight pays no gold.</p>` : ""}<div class="ledger">${o.lines.map(([l, n]) => `<div><span>${esc(l)}</span><b>+${n}</b></div>`).join("")}<div class="tot"><span>Your gold</span><b>${G.gold}</b></div>${o.winner === 0 ? `<div class="tot"><span>Crowns won</span><b>${G.crowns}</b></div>` : ""}</div>
     <p style="font-size:15.5px">${o.lostFront.length ? `Fell in the front rank, and gone for good: ${esc(names(o.lostFront))}.` : "Your front rank all came home."}${o.usedItems.length ? ` Used up: ${esc(names(o.usedItems))}.` : ""}</p>
     <div class="btns"><button class="btn" data-act="fight">Fight again</button><button class="btn quiet" data-go="formation">Line-up</button><button class="btn quiet" data-go="shop">Shop</button><button class="btn quiet" data-go="home">Home</button></div></div>`;
 }
@@ -2161,6 +2194,7 @@ document.addEventListener("click", (e) => {
     case "menu": if (S.phase === "play") endPlayback(); if (S.phase !== "over") { U.over = { type: "menu" }; render(); } break;
     case "resume": U.over = null; render(); break;
     case "concede": U.over = null; concede(); break;
+    case "close-over": U.over = null; checkLevel(); render(); break;
     case "leave": go("home"); break;
     case "tutorial": startTutorial(); break;
     case "after-tutorial": G.tutorialDone = true; save(); go(G.packOpened ? "home" : "ready"); break;
@@ -2209,7 +2243,8 @@ document.addEventListener("keydown", (e) => { if (e.key === "Escape" && U.sheet 
 if (G.tutorialDone && !G.packOpened) U.screen = "ready";
 try { const q = new URLSearchParams(location.search); if (q.has("admin")) PREFS.write("admin", q.get("admin") !== "0"); } catch (e) {}
 document.addEventListener("pointerdown", () => SND.startMusic(), { once: true });
-checkLevel();
+abandonedFight();
+if (!U.over) checkLevel();
 askName();
 syncPlayer();
 sendFights();
