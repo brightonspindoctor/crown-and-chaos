@@ -2163,8 +2163,8 @@ function botFight(data, lineups, seed) {
 // No Hoplites: with no nightfall, a Phalanx can hold out until the round limit.
 const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, "geat-thane": 4, "mere-beast": 3 };
 // In every quest fight the player holds the Fate token throughout and night never falls.
-// A quest fight still at a stand-off after round 12 is a draw, which loses the quest.
-const QUEST_RULES = { fate: 0, noNight: true, maxRounds: 12 };
+// A quest fight still at a stand-off after round 20 is a draw, which loses the quest.
+const QUEST_RULES = { fate: 0, noNight: true, maxRounds: 20 };
 // The three foes of a quest: a warband of one front-rank card, two cheap heroes alone, and a final company of three
 // heroes from one realm under a strong Crown (or Baba Yaga alone), with no front rank, fought blind.
 function questPlan(data, rng) {
@@ -2586,7 +2586,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-19-4e3bcbb";
+const BUILD = "2026-11-19-35f3033";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -4261,14 +4261,6 @@ function finishQuestFight(st, w) {
   delete G.quest; prune(); save();
   U.over = { type: "quest-end", won: true, stage: 3, tale, lostFront, usedItems };
 }
-// The company as it marches on: who is left, and on how much Health.
-function questCompany(q) {
-  const lu = q.lineup, hp = q.carry || { hero: {}, front: [] };
-  const hero = (id, crown) => { const d = DATA.heroes[id], h = hp.hero[id] ?? d.stats.health; return `<li><b>${esc(d.name)}</b>${crown ? " (Crown)" : ""}: ${h} of ${d.stats.health} Health</li>`; };
-  const front = lu.front.map((id, k) => (id ? `<li>${esc(DATA.front[id].name)}: ${hp.front[k] ?? DATA.front[id].health} of ${DATA.front[id].health} Health</li>` : "")).join("");
-  const items = lu.items.length ? `<li>Tool belt: ${esc(lu.items.map((id) => DATA.items[id].name).join(", "))}</li>` : "";
-  return `<ul class="questco">${hero(lu.crown, true)}${lu.heroes.map((id) => hero(id)).join("")}${front || "<li>No front rank left</li>"}${items}</ul>`;
-}
 
 // ---------- after a fight: gold, and what was used up ----------
 function minus(have, gone) { const left = have.slice(); for (const id of gone) { const k = left.indexOf(id); if (k >= 0) left.splice(k, 1); } return left; }
@@ -4894,12 +4886,7 @@ function overHtml() {
       <div class="btns"><button class="btn" data-act="quest-go">Set out</button><button class="btn quiet" data-act="quest-cancel">Not now</button></div></div>`;
   }
   if (o.type === "quest-between") {
-    const q = G.quest, names = (ids) => ids.map((id) => defOf(id).name).join(", ");
-    const lost = [...(o.lostFront || []), ...(o.usedItems || [])];
-    return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">A quest · fight ${q.stage} of 3 won</p><h1 style="text-align:center">You march on</h1>
-      ${lost.length ? `<p>Lost on the way: ${esc(names(lost))}.</p>` : ""}${questCompany(q)}
-      <p>${q.stage === 2 ? "The final fight lies ahead." : "One more fight before the last."}</p>
-      <div class="btns"><button class="btn" data-act="quest-go">Fight on</button><button class="btn quiet" data-act="quest-abandon">Abandon the quest</button></div></div>`;
+    return `<div class="panel"><div class="btns"><button class="btn" data-act="quest-go">Fight on</button><button class="btn quiet" data-act="quest-abandon">Abandon the quest</button></div></div>`;
   }
   if (o.type === "quest-end") {
     const done = (G.questsDone || []).length;

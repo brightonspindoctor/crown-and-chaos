@@ -1666,8 +1666,8 @@ function botFight(data, lineups, seed) {
 // No Hoplites: with no nightfall, a Phalanx can hold out until the round limit.
 const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, "geat-thane": 4, "mere-beast": 3 };
 // In every quest fight the player holds the Fate token throughout and night never falls.
-// A quest fight still at a stand-off after round 12 is a draw, which loses the quest.
-const QUEST_RULES = { fate: 0, noNight: true, maxRounds: 12 };
+// A quest fight still at a stand-off after round 20 is a draw, which loses the quest.
+const QUEST_RULES = { fate: 0, noNight: true, maxRounds: 20 };
 // The three foes of a quest: a warband of one front-rank card, two cheap heroes alone, and a final company of three
 // heroes from one realm under a strong Crown (or Baba Yaga alone), with no front rank, fought blind.
 function questPlan(data, rng) {
