@@ -366,6 +366,16 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .court-id { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .court-id .waxseal { width: 110px; height: 110px; } .court-id .waxseal b { font-size: 32px; } .court-id .waxseal i { bottom: 22px; }
 .hofbox h2 { font-size: 30px; color: #e6c46c; text-align: center; }
+.namefield { display: flex; flex-direction: column; gap: 6px; text-align: left; width: 100%; font: 600 11px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: #d9b763; }
+.namefield input { font: 400 22px/1.2 var(--serif); color: #efe4cc; background: #0b0605; border: 1px solid #8a6424; border-radius: 6px; padding: 10px 12px; min-height: 48px; letter-spacing: .02em; text-transform: none; }
+.namefield input:focus { outline: 2px solid #e6c46c; outline-offset: 1px; }
+.namemsg { min-height: 20px; font-size: 15px !important; color: #b9a68c !important; }
+.namemsg.good { color: #9fd3a8 !important; } .namemsg.bad { color: #e8907a !important; }
+.ladder li { grid-template-columns: 30px 40px 1fr 34px; min-height: 52px; }
+.ladder .hrank { font: 700 15px/1 var(--display); color: #e6c46c; text-align: center; }
+.ladder .hname { font: 600 15px/1.2 var(--display); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ladder .hname i { font: italic 400 13px var(--serif); color: var(--muted); }
+.ladder li:nth-child(-n+3) .hrank { color: #f0d27a; text-shadow: 0 0 8px rgba(240,200,110,.5); }
 /* card backs */
 .cardback { width: min(310px, 84vw); aspect-ratio: 5 / 7; box-sizing: border-box; border-radius: 14px; padding: 8px; background: repeating-linear-gradient(45deg, #c9a24a 0 4px, #b38c3c 4px 6px); border: 1px solid #8a6424; box-shadow: 0 10px 24px rgba(0,0,0,.6); }
 .cb-in { position: relative; height: 100%; box-sizing: border-box; border-radius: 8px; border: 2px solid #8a6424; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 26px 14px 22px;
@@ -747,6 +757,7 @@ function checkLevel() {
   }
   G.levelSeen = to; G.repSeen = pts; save();
   const startShare = (before - levelStart(from)) / (levelStart(from + 1) - levelStart(from));
+  syncPlayer();
   U.over = { type: "levelup", from, to, steps, i: 0, anim: { L: from, share: startShare, end: repShare(), done: false } };
   SND.play("levelup");
 }
@@ -789,7 +800,7 @@ const SEAL_EDGE = (() => { let d = ""; for (let k = 0; k < 28; k++) { const a = 
 const levelSeal = (L, small) => small
   ? `<span class="lvseal sm" aria-label="Level ${L}">${L}</span>`
   : `<span class="waxseal" role="img" aria-label="Level ${L}"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="${SEAL_EDGE}" fill="#6e1f1a"/><circle cx="50" cy="50" r="38" fill="#8a2a22"/><circle cx="50" cy="50" r="38" fill="none" stroke="#4a120e" stroke-width="2"/><circle cx="50" cy="50" r="33" fill="none" stroke="#c9a24a" stroke-width="1.2" stroke-dasharray="1.5 2.5"/></svg><b>${roman(L)}</b><i>Level ${L}</i></span>`;
-function avatar(cls = "", crown = G.wearing) { return `<span class="avatar ${cls}"><span class="avcrown">${crownSvg(crown)}</span><span class="avface">P</span></span>`; }
+function avatar(cls = "", crown = G.wearing) { return `<span class="avatar ${cls}"><span class="avcrown">${crownSvg(crown)}</span><span class="avface">${initial(G.player ? G.player.name : "?")}</span></span>`; }
 const EMBERS = Array.from({ length: 14 }, (_, k) => `<i style="left:${(k * 37) % 100}%;animation-delay:${((k * 0.53) % 3).toFixed(2)}s;animation-duration:${(3 + (k % 4) * 0.7).toFixed(1)}s"></i>`).join("");
 const ARCH = `<svg class="arch" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true"><path d="M2 70 V40 Q2 8 60 4 Q140 0 200 0 Q260 0 340 4 Q398 8 398 40 V70" fill="none" stroke="#c9a24a" stroke-width="2"/><path d="M200 0 V18 M188 10 H212" stroke="#c9a24a" stroke-width="2"/><path d="M40 70 V46 Q40 22 80 18 M360 70 V46 Q360 22 320 18" fill="none" stroke="#8a6424" stroke-width="1.2"/></svg>`;
 const DIVIDER = `<svg class="divider" viewBox="0 0 200 14" aria-hidden="true"><path d="M0 7 H84 M116 7 H200" stroke="#8a6424" stroke-width="1"/><path d="M100 1 L106 7 L100 13 L94 7 Z" fill="#c9a24a"/><circle cx="88" cy="7" r="1.6" fill="#c9a24a"/><circle cx="112" cy="7" r="1.6" fill="#c9a24a"/></svg>`;
@@ -854,19 +865,133 @@ function backsHtml() {
     <div class="backgrid">${list.map(([name, id]) => `<figure>${cardBack(id)}<figcaption>${esc(name)}</figcaption></figure>`).join("")}</div></div>`;
 }
 
-// ---------- your court (profile) and the Hall of Fame ----------
+// ---------- players, names and the Hall of Fame ----------
+// Each player claims a unique name, kept in the game's Supabase database (project crown-and-chaos) together with
+// their level and the crown they wear. There is no sign-in: the phone keeps a long random secret and the database
+// stores only its hash, so only this phone can update this name. The public ladder shows names, levels and crowns.
+const NET = { url: "https://ozgqbncvttpdjojkmofj.supabase.co", key: "sb_publishable_xWhSyqHJGEllD26JnKIiMw_E1VyNNjf" };
+async function rpc(fn, body) {
+  const r = await fetch(`${NET.url}/rest/v1/rpc/${fn}`, { method: "POST", headers: { apikey: NET.key, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const text = await r.text(); let data = null; try { data = text ? JSON.parse(text) : null; } catch (e) {}
+  if (!r.ok) { const err = new Error((data && data.message) || `HTTP ${r.status}`); err.code = data && data.message; throw err; }
+  return data;
+}
+const NAME_WORDS = { ok: "Available", length: "Use 3 to 16 characters", characters: "Letters, numbers, spaces, - and _ only, starting and ending with a letter or number", reserved: "That name is reserved", blocked: "Please choose another name", taken: "Already taken" };
+const initial = (name) => esc(((name || "?").trim()[0] || "?").toUpperCase());
+const myName = () => (G.player && G.player.name) || "You";
+function newSecret() { const b = new Uint8Array(32); crypto.getRandomValues(b); return Array.from(b, (x) => x.toString(16).padStart(2, "0")).join(""); }
+function askName() {
+  if (G.player || U.nameLater || U.over || !G.packOpened) return;
+  U.over = { type: "name" };
+}
+function nameHtml() {
+  return gothic(`<p class="eyebrow">The Hall of Fame</p><h1 class="blackletter">What are you called?</h1>
+    <p>Choose the name other players will see on the level ladder. It must be yours alone.</p>${DIVIDER}
+    <label class="namefield"><span>Your name</span><input id="namein" data-name maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" value="${esc(U.nameDraft || "")}" aria-describedby="namemsg"></label>
+    <p class="namemsg" id="namemsg" role="status">${esc(U.nameMsg || "3 to 16 letters or numbers")}</p>
+    <div class="btns"><button class="btn gilt" data-act="name-claim" id="nameclaim">Claim this name</button><button class="btn quiet" data-act="name-later">Later</button></div>`, "lv-name");
+}
+let nameTimer = null;
+function onNameInput(v) {
+  U.nameDraft = v; clearTimeout(nameTimer);
+  const msg = document.getElementById("namemsg"); if (!msg) return;
+  msg.className = "namemsg"; msg.textContent = v.trim().length ? "Checking…" : "3 to 16 letters or numbers";
+  if (!v.trim().length) return;
+  nameTimer = setTimeout(async () => {
+    try { const r = await rpc("name_available", { p_name: v }); if (U.nameDraft !== v) return; msg.textContent = NAME_WORDS[r] || r; msg.className = `namemsg ${r === "ok" ? "good" : "bad"}`; }
+    catch (e) { msg.textContent = "Can't reach the Hall of Fame right now"; msg.className = "namemsg bad"; }
+  }, 350);
+}
+async function claimName() {
+  const v = (U.nameDraft || "").trim(), msg = document.getElementById("namemsg"), btn = document.getElementById("nameclaim");
+  if (!v) { if (msg) msg.textContent = "Type a name first"; return; }
+  if (btn) btn.disabled = true;
+  const secret = G.playerSecret || newSecret();
+  try {
+    const id = await rpc("claim_name", { p_name: v, p_secret: secret, p_level: myLevel(), p_crown: G.wearing });
+    G.player = { id, name: v, level: myLevel(), crown: G.wearing }; G.playerSecret = secret; save();
+    U.over = null; U.ladder = null; SND.play("ping"); render();
+  } catch (e) {
+    const code = String(e.code || e.message || "").replace(/^name_/, "");
+    if (msg) { msg.textContent = NAME_WORDS[code] || "Can't reach the Hall of Fame right now. Try again in a moment."; msg.className = "namemsg bad"; }
+    if (btn) btn.disabled = false;
+  }
+}
+// Keep the ladder up to date with the player's level and crown. Quietly retries on the next change if offline.
+let syncing = false;
+async function syncPlayer() {
+  const p = G.player; if (!p || syncing) return;
+  const L = myLevel(), crown = G.wearing;
+  if (p.level === L && p.crown === crown) return;
+  syncing = true;
+  try { await rpc("update_player", { p_id: p.id, p_secret: G.playerSecret, p_level: L, p_crown: crown }); p.level = L; p.crown = crown; save(); U.ladder = null; }
+  catch (e) {} finally { syncing = false; }
+}
+// Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
+// rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
+// (up to 50) and go with the next one.
+const BUILD = /*BUILD*/"dev";
+const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
+function logFight(st, w) {
+  if (!S.lineups) return;
+  const me = lineupIds(S.lineups[0]), foe = lineupIds(S.lineups[1]);
+  const renownOfIds = (x) => [x.crown, ...x.heroes].reduce((t, id) => t + (DATA.heroes[id]?.renown || 0), 0) + x.front.reduce((t, id) => t + (DATA.front[id]?.renown || 0), 0) + x.items.reduce((t, id) => t + (DATA.items[id]?.renown || 0), 0);
+  G.fightQueue = (G.fightQueue || []).concat([{
+    p_level: myLevel(), p_result: w === 0 ? "win" : w === 1 ? "loss" : "draw", p_rounds: st.round, p_easy: !!S.easy, p_kind: S.kind === "tutorial" ? "tutorial" : "computer",
+    p_my_crown: me.crown, p_my_heroes: me.heroes, p_my_front: me.front, p_my_items: me.items, p_my_renown: renownOfIds(me),
+    p_foe_crown: foe.crown, p_foe_heroes: foe.heroes, p_foe_front: foe.front, p_foe_items: foe.items, p_foe_renown: renownOfIds(foe),
+    p_crown_fell: w === 0 ? "theirs" : w === 1 ? "mine" : "both", p_version: BUILD,
+  }]).slice(-50);
+  save(); sendFights();
+}
+let sendingFights = false;
+async function sendFights() {
+  if (sendingFights || !(G.fightQueue || []).length) return;
+  sendingFights = true;
+  try {
+    while (G.fightQueue.length) {
+      const f = G.fightQueue[0];
+      await rpc("log_fight", { p_id: G.player ? G.player.id : null, p_secret: G.player ? G.playerSecret : null, ...f });
+      G.fightQueue.shift(); save();
+    }
+  } catch (e) {} finally { sendingFights = false; }
+}
+async function loadLadder() {
+  if (U.ladderLoading) return; U.ladderLoading = true;
+  try { await syncPlayer(); U.ladder = await rpc("get_ladder", { p_limit: 100, p_id: G.player ? G.player.id : null }); U.ladderError = false; }
+  catch (e) { U.ladderError = true; }
+  U.ladderLoading = false; if (U.screen === "hall" || U.screen === "court") render();
+}
+function ladderRows(rows) {
+  return rows.map((r) => `<li class="${r.is_me ? "me" : ""}"><span class="hrank">${r.rank}</span>
+    <span class="avatar"><span class="avcrown">${crownSvg(r.crown)}</span><span class="avface">${initial(r.username)}</span></span>
+    <span class="hname">${esc(r.username)}${r.is_me ? " <i>(you)</i>" : ""}</span>${levelSeal(r.level, true)}</li>`).join("");
+}
+function hallHtml() {
+  if (!U.ladder && !U.ladderError) loadLadder();
+  const rows = U.ladder || [], top = rows.filter((r) => r.rank <= 100), me = rows.find((r) => r.is_me);
+  const body = U.ladderError ? `<p class="credit">Can't reach the Hall of Fame right now. <button class="link" data-act="ladder-retry">Try again</button></p>`
+    : !U.ladder ? `<p class="credit">Unrolling the scroll…</p>`
+    : !rows.length ? `<p class="credit">No names yet. Be the first.</p>`
+    : `<ol class="hof ladder">${ladderRows(top)}</ol>${me && me.rank > 100 ? `<p class="credit">…</p><ol class="hof ladder">${ladderRows([me])}</ol>` : ""}`;
+  return `<div class="wrap court"><div class="courthead">${ARCH}<p class="eyebrow">The level ladder</p><h1 class="blackletter">Hall of Fame</h1></div>
+    ${G.player ? "" : `<div class="box gbox"><p>Claim a name to join the ladder.</p><button class="btn gilt" data-act="name-open">Choose your name</button></div>`}
+    <div class="box gbox hofbox">${DIVIDER}${body}<p class="credit">Ranked by level. Players show only their name, level and crown.</p></div></div>`;
+}
+
+// ---------- your court (profile) ----------
 function courtHtml() {
   const L = myLevel(), heroes = Object.values(DATA.heroes).filter((h) => owned(h.id) > 0).length;
   const w = crownById[G.wearing] || CROWNS[0];
-  return `<div class="wrap court"><div class="courthead">${ARCH}<p class="eyebrow">Player One</p><h1 class="blackletter">Your Court</h1></div>
+  return `<div class="wrap court"><div class="courthead">${ARCH}<p class="eyebrow">${esc(myName())}</p><h1 class="blackletter">Your Court</h1></div>
     <div class="box gbox court-me"><i class="cb-c tl"></i><i class="cb-c tr"></i><i class="cb-c bl"></i><i class="cb-c br"></i>
       <div class="niche">${avatar("big")}</div><div class="court-id">${levelSeal(L)}<p class="credit">Wearing the ${esc(w.name)}</p></div></div>
     <div class="box gbox">${repBar(L)}<p class="credit">A new crown awaits at Level ${nextCrownLevel(L)}.</p></div>
     <div class="courtstats"><div><i>Crowns won</i><b>${G.crowns}</b></div><div><i>Heroes</i><b>${heroes}</b></div><div><i>Fights</i><b>${G.wins} won · ${G.losses} lost</b></div></div>
     <div class="box gbox"><h2>Your crowns</h2><p>Wear any crown you own. New ones are a surprise until you find them.</p><button class="btn quiet" data-act="court-crowns">Choose a crown</button></div>
     <div class="box gbox hofbox"><h2 class="blackletter">Hall of Fame</h2>${DIVIDER}
-      <ol class="hof"><li class="me"><span>I</span>${avatar()}<span>You</span>${levelSeal(L, true)}<b>${G.crowns}</b></li></ol>
-      <p class="credit">Ranked by Crowns won. Other players join the Hall once you can fight them. Line-ups are never shown.</p></div>
+      <p>${G.player ? `You are on the level ladder as <b>${esc(G.player.name)}</b>.` : "Claim a name to join the level ladder."}</p>
+      ${G.player ? "" : `<button class="btn gilt" data-act="name-open">Choose your name</button>`}<button class="btn quiet" data-go="hall">See the ladder</button></div>
     <button class="btn quiet" data-go="settings">Settings</button></div>`;
 }
 
@@ -1364,6 +1489,7 @@ function minus(have, gone) { const left = have.slice(); for (const id of gone) {
 function finishFight() {
   const st = S.st, w = st.winner;
   SND.play(w < 0 ? "tie" : w === 0 ? "win" : "lose");
+  logFight(st, w);
   if (S.kind === "tutorial") {
     const first = w === 0 && !G.tutorialDone; // the tutorial's Crown counts once, the first time it is won
     if (first) { G.crowns++; G.tutorialDone = true; save(); }
@@ -1625,7 +1751,7 @@ function targetSheet(sh) {
 const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Library"], ["shop", "Shop"]];
 function renderPage() {
   const v = el("view"), keep = U.kept === U.screen ? v.scrollTop : 0;
-  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml, backs: backsHtml }[U.screen];
+  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml, backs: backsHtml, hall: hallHtml }[U.screen];
   v.innerHTML = fn();
   v.scrollTop = keep; U.kept = U.screen;
   const showNav = G.packOpened && U.screen !== "pack" && U.screen !== "ready";
@@ -1646,7 +1772,7 @@ function homeHtml() {
     <button class="me-chip" data-go="court" aria-label="Your court: Level ${myLevel()}">${avatar()}<span><b>Your court</b><i>Level ${myLevel()}</i></span></button>
     <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
     <div class="btns"><button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button></div>
-    <div class="links"><button class="link" data-go="settings">Settings</button><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
+    <div class="links"><button class="link" data-go="hall">Hall of Fame</button><button class="link" data-go="settings">Settings</button><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
     <p class="credit">Fights are against the computer for now. Your progress is saved in this browser only.</p>`);
 }
 function readyHtml() {
@@ -1916,6 +2042,7 @@ function detailSheet(sh) {
 function overHtml() {
   const o = U.over; if (!o) return "";
   if (o.type === "levelup") return levelUpHtml(o);
+  if (o.type === "name") return nameHtml();
   if (o.type === "menu") {
     return `<div class="panel"><p class="eyebrow">Crown &amp; Chaos</p><h1>${esc(S.board.name)}</h1>
       <div class="btns"><button class="btn" data-act="resume">Back to the fight</button>
@@ -1972,7 +2099,8 @@ function go(screen) {
   clearTimeout(S.timer);
   Object.assign(U, { screen, sheet: null, over: null, confirmReset: false });
   if (screen === "formation") prune();
-  if (screen !== "pack" && screen !== "ready") checkLevel();
+  if (screen !== "pack" && screen !== "ready") { checkLevel(); askName(); syncPlayer(); }
+  if (screen === "hall") U.ladder = null;
   render();
 }
 function chooseForSlot(id) {
@@ -2037,12 +2165,16 @@ document.addEventListener("click", (e) => {
     case "set-music": SND.setMusic(!SND.music); render(); break;
     case "set-fast": G.fast = !G.fast; save(); render(); break;
     case "admin-all": PREFS.write("adminAll", !adminAll()); render(); break;
-    case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); SND.play("ping"); } // falls through to the next step
+    case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); SND.play("ping"); syncPlayer(); } // falls through to the next step
     case "lv-next": { const o = U.over; if (o && o.type === "levelup" && o.i < o.steps.length - 1) o.i += 1; else U.over = null; render(); break; }
     case "court-crowns": U.tab = "crown"; go("collection"); break;
     case "buy-crown": { const c = crownById[d.id]; if (c && c.price && G.gold >= c.price && !G.ownCrowns.includes(c.id)) { spend(c.price); G.ownCrowns.push(c.id); save(); checkLevel(); render(); } break; }
     case "lore": U.sheet = { type: "lore", id: d.id }; render(); break;
-    case "wear-crown": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); } U.sheet = null; render(); break;
+    case "wear-crown": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); syncPlayer(); } U.sheet = null; render(); break;
+    case "name-open": U.nameLater = false; U.over = { type: "name" }; render(); setTimeout(() => document.getElementById("namein")?.focus(), 50); break;
+    case "name-later": U.nameLater = true; U.over = null; render(); break;
+    case "name-claim": claimName(); break;
+    case "ladder-retry": U.ladderError = false; U.ladder = null; render(); break;
     case "wear-art": if (!d.key || G.variants.includes(d.key)) { if (d.key) G.art[d.card] = d.key; else delete G.art[d.card]; save(); } render(); break;
     case "lib-tab": U.tab = d.tab2; U.sheet = null; U.kept = null; render(); break;
     case "buy-pack": if (G.gold >= PRICES.pack) { spend(PRICES.pack); openPack(fablePack(), { title: "Fable pack" }); render(); } break;
@@ -2050,16 +2182,21 @@ document.addEventListener("click", (e) => {
   }
 });
 document.addEventListener("input", (e) => {
+  if (e.target.dataset && e.target.dataset.name != null) { onNameInput(e.target.value); return; }
   const k = e.target.dataset && e.target.dataset.vol; if (!k) return;
   const v = +e.target.value / 100;
   if (k === "sfx") { SND.setVolume(v); SND.play("tick"); } else SND.setMusicVolume(v);
 });
 document.addEventListener("change", (e) => { if (e.target.dataset.filter != null) { U.realm = e.target.value; render(); } });
+document.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.id === "namein") { e.preventDefault(); claimName(); } });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && U.sheet && !step()) { U.sheet = U.sheet.back || null; render(); } });
 if (G.tutorialDone && !G.packOpened) U.screen = "ready";
 try { const q = new URLSearchParams(location.search); if (q.has("admin")) PREFS.write("admin", q.get("admin") !== "0"); } catch (e) {}
 document.addEventListener("pointerdown", () => SND.startMusic(), { once: true });
 checkLevel();
+askName();
+syncPlayer();
+sendFights();
 render();
 </script>
 <script>

@@ -34,11 +34,15 @@ for (const e of manifest) {
   for (const t of e.tales) { boards[t] = { id: e.id, name, ...credit(e) }; realmBoard[realmOf(t)] ??= boards[t]; }
 }
 for (const h of Object.values(data.heroes)) boards[h.tale] ??= realmBoard[h.realm] || boards["St George and the Dragon"];
+// A build stamp (date and commit) so logged fights can be tied to a version of the game.
+let build = new Date().toISOString().slice(0, 10);
+try { build += "-" + (await import("node:child_process")).execSync("git rev-parse --short HEAD", { cwd: root }).toString().trim(); } catch (e) {}
 const engine = readFileSync(root + "engine/engine.mjs", "utf8").replace(/^export /gm, "");
 const json = (x) => JSON.stringify(x).replace(/</g, "\\u003c");
 const html = readFileSync(root + "game/template.html", "utf8")
   .replace("/*DATA*/", () => json(data)).replace("/*ART*/", () => json(art)).replace("/*BOARDS*/", () => json(boards))
   .replace("/*VARIANTS*/", () => json(variants)).replace("/*LORE*/", () => json(lore))
+  .replace("/*BUILD*/\"dev\"", () => JSON.stringify(build))
   .replace("/*ENGINE*/", () => engine)
   .replace("/*FXCSS*/", () => readFileSync(root + "play/fx.css", "utf8"))
   .replace("/*FX*/", () => readFileSync(root + "play/fx.js", "utf8"));
