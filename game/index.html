@@ -2199,7 +2199,11 @@ const TUTORIAL = [
 const SAVE_KEY = "crown-and-fable-save-1";
 const CORE_FRONT = ["knight", "crossbowman", "longbowman", "leshy", "monk", "berserker"];
 const STARTER_ITEMS = ["gingerbread", "golden-apple", "dragons-blood", "poisoned-apple"];
-const PRICES = { pack: 50, front: 20, Common: 40, Rare: 100, Legendary: 250 };
+// Prices are set against what a fight earns (about 25 gold) and uses up (2.5 front-rank cards and, with two items
+// on the belt, about 0.8 of an item). A full company with common items costs about 17 gold a fight to keep up,
+// leaving enough to save for a pack every few fights. Front-rank cards cost their Renown in gold.
+const PRICES = { pack: 50, Common: 10, Rare: 25, Legendary: 60 };
+const frontPrice = (id) => DATA.front[id].renown;
 const PAY = { win: 30, loss: 15, bonus: 5 };
 const RENOWN_CAP = 50, BELT = 2, START_GOLD = 50;
 const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", ""] });
@@ -2482,7 +2486,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-19-d4d3a11";
+const BUILD = "2026-11-19-bf15874";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -2672,12 +2676,12 @@ const creditOf = (id, mine = true, key) => { const a = artInfo(id, mine, key); r
 // Cosmetic crowns: worn on the player's icon, no effect on play. The Gold Crown is everyone's first.
 const CROWNS = [
   { id: "gold", name: "Gold Crown", price: 0, svg: `<path fill="#c9a24a" d="M3 18h18l1.5-10-5.5 4-5-7-5 7-5.5-4zM3 19.5h18V21H3z"/>` },
-  { id: "iron", name: "Iron Crown", price: 2000, svg: `<path fill="#9a9a9a" d="M3 21h18v-5H3zM3.5 15h3.5V9H3.5zM10.25 15h3.5V6h-3.5zM17 15h3.5V9H17z"/><path fill="#5d5d5d" d="M3 17.5h18v1H3z"/>` },
-  { id: "flowers", name: "Flower Crown", price: 2000, svg: `<path fill="#5d8a4a" d="M2.5 19.5h19v-3h-19z"/><circle cx="6" cy="13.5" r="3" fill="#e7a4b8"/><circle cx="12" cy="11.5" r="3.4" fill="#f2d16b"/><circle cx="18" cy="13.5" r="3" fill="#e7a4b8"/><circle cx="6" cy="13.5" r="1" fill="#8a4a3a"/><circle cx="12" cy="11.5" r="1.1" fill="#8a4a3a"/><circle cx="18" cy="13.5" r="1" fill="#8a4a3a"/>` },
-  { id: "antlers", name: "Crown of Antlers", price: 3000, svg: `<path fill="#8a6440" d="M4 21h16v-4H4z"/><path fill="none" stroke="#c9a77a" stroke-width="1.8" stroke-linecap="round" d="M8 17V9L4.5 4.5M8 11.5 4 9.5M8 9.5l2.5-4.5M16 17V9l3.5-4.5M16 11.5l4-2M16 9.5 13.5 5"/>` },
-  { id: "ice", name: "Crown of Ice", price: 4000, svg: `<path fill="#bfe3f2" d="M3 20h18l-2-4 1-10-3.5 6.5L14 3.5 12 11 10 3.5 7.5 12.5 4 6l1 10z"/><path fill="#7fb6cf" d="M3 20h18v1.5H3z"/>` },
-  { id: "sun", name: "Sun Crown", price: 4000, svg: `<path fill="#e8b33a" d="M4 21h16v-4H4zM12 3l1.8 13h-3.6zM5.5 6.5l4 9.5H6.8zM18.5 6.5 17.2 16h-2.7zM2.5 11.5 6 16H3.5zM21.5 11.5 20.5 16H18z"/>` },
-  { id: "skull", name: "Skull Crown", price: 5000, svg: `<path fill="#5a4a3a" d="M3 21h18v-4H3z"/><g fill="#e8e0cc"><circle cx="6.5" cy="13" r="3"/><circle cx="12" cy="10.5" r="3.4"/><circle cx="17.5" cy="13" r="3"/><path d="M5 15h3v2H5zM10.3 13h3.4v2.6h-3.4zM16 15h3v2h-3z"/></g><g fill="#2a1d14"><circle cx="5.5" cy="12.8" r=".8"/><circle cx="7.5" cy="12.8" r=".8"/><circle cx="10.9" cy="10.3" r=".9"/><circle cx="13.1" cy="10.3" r=".9"/><circle cx="16.5" cy="12.8" r=".8"/><circle cx="18.5" cy="12.8" r=".8"/></g>` },
+  { id: "iron", name: "Iron Crown", price: 500, svg: `<path fill="#9a9a9a" d="M3 21h18v-5H3zM3.5 15h3.5V9H3.5zM10.25 15h3.5V6h-3.5zM17 15h3.5V9H17z"/><path fill="#5d5d5d" d="M3 17.5h18v1H3z"/>` },
+  { id: "flowers", name: "Flower Crown", price: 500, svg: `<path fill="#5d8a4a" d="M2.5 19.5h19v-3h-19z"/><circle cx="6" cy="13.5" r="3" fill="#e7a4b8"/><circle cx="12" cy="11.5" r="3.4" fill="#f2d16b"/><circle cx="18" cy="13.5" r="3" fill="#e7a4b8"/><circle cx="6" cy="13.5" r="1" fill="#8a4a3a"/><circle cx="12" cy="11.5" r="1.1" fill="#8a4a3a"/><circle cx="18" cy="13.5" r="1" fill="#8a4a3a"/>` },
+  { id: "antlers", name: "Crown of Antlers", price: 750, svg: `<path fill="#8a6440" d="M4 21h16v-4H4z"/><path fill="none" stroke="#c9a77a" stroke-width="1.8" stroke-linecap="round" d="M8 17V9L4.5 4.5M8 11.5 4 9.5M8 9.5l2.5-4.5M16 17V9l3.5-4.5M16 11.5l4-2M16 9.5 13.5 5"/>` },
+  { id: "ice", name: "Crown of Ice", price: 1000, svg: `<path fill="#bfe3f2" d="M3 20h18l-2-4 1-10-3.5 6.5L14 3.5 12 11 10 3.5 7.5 12.5 4 6l1 10z"/><path fill="#7fb6cf" d="M3 20h18v1.5H3z"/>` },
+  { id: "sun", name: "Sun Crown", price: 1000, svg: `<path fill="#e8b33a" d="M4 21h16v-4H4zM12 3l1.8 13h-3.6zM5.5 6.5l4 9.5H6.8zM18.5 6.5 17.2 16h-2.7zM2.5 11.5 6 16H3.5zM21.5 11.5 20.5 16H18z"/>` },
+  { id: "skull", name: "Skull Crown", price: 1250, svg: `<path fill="#5a4a3a" d="M3 21h18v-4H3z"/><g fill="#e8e0cc"><circle cx="6.5" cy="13" r="3"/><circle cx="12" cy="10.5" r="3.4"/><circle cx="17.5" cy="13" r="3"/><path d="M5 15h3v2H5zM10.3 13h3.4v2.6h-3.4zM16 15h3v2h-3z"/></g><g fill="#2a1d14"><circle cx="5.5" cy="12.8" r=".8"/><circle cx="7.5" cy="12.8" r=".8"/><circle cx="10.9" cy="10.3" r=".9"/><circle cx="13.1" cy="10.3" r=".9"/><circle cx="16.5" cy="12.8" r=".8"/><circle cx="18.5" cy="12.8" r=".8"/></g>` },
 ];
 // Level crowns: one every ten levels, earned only, never sold or found in packs.
 CROWNS.push(
@@ -4606,7 +4610,7 @@ function pickerSheet(sh) {
 }
 function shopHtml() {
   const can = (n) => (G.gold >= n ? "" : " disabled");
-  const fr = CORE_FRONT.map((id) => `<button class="opt" data-act="buy" data-id="${id}"${can(PRICES.front)}>${img(id)}<strong>${esc(DATA.front[id].name)}</strong><small>You have ${owned(id)}. ${esc(DATA.front[id].auto)}</small><span class="cost">${PRICES.front} gold</span></button>`).join("");
+  const fr = CORE_FRONT.map((id) => `<button class="opt" data-act="buy" data-id="${id}"${can(frontPrice(id))}>${img(id)}<strong>${esc(DATA.front[id].name)}</strong><small>You have ${owned(id)}. ${esc(DATA.front[id].auto)}</small><span class="cost">${frontPrice(id)} gold</span></button>`).join("");
   const its = Object.values(DATA.items).sort((a, b) => PRICES[a.rarity] - PRICES[b.rarity] || a.name.localeCompare(b.name)).map((d) => `<button class="opt" data-act="buy" data-id="${d.id}"${can(PRICES[d.rarity])}>${img(d.id)}<strong>${esc(d.name)}</strong><small>${esc(d.rarity)}. You have ${owned(d.id)}. ${esc(d.effect)}</small><span class="cost">${PRICES[d.rarity]} gold</span></button>`).join("");
   return `<div class="wrap"><div class="bar"><h1>Shop</h1><span class="gold" aria-label="${G.gold} gold">${G.gold}</span></div>
     <div class="box"><div class="shop-pack">${packArt("6 cards")}<div style="display:flex;flex-direction:column;gap:8px;flex:1">
@@ -4700,7 +4704,7 @@ function chooseForSlot(id) {
   setSlot(lu, s, id); U.sheet = null; save(); render();
 }
 function buy(id) {
-  const price = kindOf(id) === "front" ? PRICES.front : PRICES[DATA.items[id].rarity];
+  const price = kindOf(id) === "front" ? frontPrice(id) : PRICES[DATA.items[id].rarity];
   if (G.gold < price) return;
   spend(price); give(id); save(); checkLevel(); render();
 }
