@@ -69,6 +69,8 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const w = card(st, 1, "the-wolf");
   ok("A crown with only one hero in front can be melee attacked", E.meleeTargets(st, card(st, 0, "merlin")).some((t) => t.id === "the-dragon"));
   ok("A crown behind two heroes can't be", !E.meleeTargets(st, w).some((t) => t.id === "lancelot"));
+  const st4 = game(lu("lancelot", ["merlin"]), lu("the-dragon", ["the-wolf"]));
+  ok("A melee crown with one hero slot empty can attack the enemy", E.meleeTargets(st4, card(st4, 0, "lancelot")).length > 0);
   const st2 = game(lu("dracula"), lu("merlin"));
   const d = card(st2, 0, "dracula");
   ok("Dracula's Claw has targets", E.targetsFor(st2, d, d.actions.find((a) => a.name === "Claw")).length === 1);

@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Slayer",
-  "renown": 14,
+  "renown": 15,
   "crownPassive": {
     "name": "The Labyrinth",
     "text": "Enemy Ranged attacks can't target your heroes in slots 2 and 3."

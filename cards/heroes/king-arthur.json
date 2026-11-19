@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Witch",
-  "renown": 17,
+  "renown": 18,
   "crownPassive": {
     "name": "The Round Table",
     "text": "From round 3 until nightfall, tale and realm no longer matter for your bonds: each of your heroes counts as being from every tale and realm. In rounds 1 and 2 and from nightfall, only normal bonds work. Aspects still count, so a bond needing a Gothic Beast is met by any Beast. This works for penalties as well as bonuses."

@@ -16,7 +16,7 @@
     "speed": 3
   },
   "vulnerableTo": "Slayer",
-  "renown": 15,
+  "renown": 14,
   "crownPassive": {
     "name": "Shelter of flowers",
     "text": "At upkeep, your other heroes lose their Guard and she gains it, until the next upkeep."

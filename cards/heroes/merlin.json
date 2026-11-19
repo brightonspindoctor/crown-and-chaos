@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Trickster",
-  "renown": 16,
+  "renown": 15,
   "crownPassive": {
     "name": "Raiser of stones",
     "text": "Your front-rank cards have +1 Guard."

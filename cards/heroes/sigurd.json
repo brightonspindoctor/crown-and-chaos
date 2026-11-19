@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Sovereign",
-  "renown": 12,
+  "renown": 13,
   "crownPassive": {
     "name": "Gram's edge",
     "text": "Sigurd's attacks ignore Guard."

@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Slayer",
-  "renown": 18,
+  "renown": 17,
   "crownPassive": {
     "name": "Vampire court",
     "text": "All your heroes heal 1 whenever their attacks damage a card, or 2 in rounds when you hold the Fate token."

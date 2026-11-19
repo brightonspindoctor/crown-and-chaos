@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Beast",
-  "renown": 14,
+  "renown": 15,
   "crownPassive": {
     "name": "Bare hands",
     "text": "All your heroes' attacks ignore Guard."

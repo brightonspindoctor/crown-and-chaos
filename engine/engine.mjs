@@ -30,7 +30,7 @@ export const ASSUMPTIONS = [
   "Shape-shifter: if Loki has no other hero, he still survives on 1 Health and stays the Crown.",
   "Unbound: Loki returns at the second upkeep after his death (once per fight); if Van Helsing's Crown is out, he doesn't. He takes the Crown back only if he wore it earlier in the fight.",
   "Crown thief does nothing against a No Crown side (Robin Hood) or when the Crown already has the most Health.",
-  "The slot-1 rules (shielded only by two heroes; can't melee past its own heroes) apply to whoever is in slot 1, including under Robin's No Crown.",
+  "The slot-1 rules (shielded from melee, and unable to melee, only while both its hero slots are filled) apply to whoever is in slot 1, including under Robin's No Crown.",
   "Only the standard Attack can be turned on your own heroes, and only from slot 1.",
   "Front-rank cards in front of the Crown don't stop it attacking; only heroes in slots 2–3 do.",
 ];
@@ -435,9 +435,10 @@ function enemyRows(st, attackerSide) {
   return rows.filter((r) => r.length);
 }
 export function closestRow(st, attackerSide) { return enemyRows(st, attackerSide)[0] || []; }
-// A card in slot 1 can't melee the enemy while one of its own heroes stands in front of it.
+// A card in slot 1 can't melee the enemy while both of its hero slots (2 and 3) hold a hero: the same condition
+// that shields it from enemy melee. Once either slot is empty it fights, and can be fought, in the open.
 export function crownBlocked(st, c) {
-  return c.kind === "hero" && c.slot === 1 && [2, 3].some((s) => at(st, c.side, s)?.kind === "hero");
+  return c.kind === "hero" && c.slot === 1 && [2, 3].every((s) => at(st, c.side, s)?.kind === "hero");
 }
 export function meleeTargets(st, attacker) {
   if (crownBlocked(st, attacker)) return [];
