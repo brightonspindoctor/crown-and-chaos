@@ -2466,6 +2466,35 @@ async function syncPlayer() {
   try { await rpc("update_player", { p_id: p.id, p_secret: G.playerSecret, p_level: L, p_crown: crown }); p.level = L; p.crown = crown; save(); U.ladder = null; }
   catch (e) {} finally { syncing = false; }
 }
+// Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
+// rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
+// (up to 50) and go with the next one.
+const BUILD = "2026-11-19-61481e3";
+const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
+function logFight(st, w) {
+  if (!S.lineups) return;
+  const me = lineupIds(S.lineups[0]), foe = lineupIds(S.lineups[1]);
+  const renownOfIds = (x) => [x.crown, ...x.heroes].reduce((t, id) => t + (DATA.heroes[id]?.renown || 0), 0) + x.front.reduce((t, id) => t + (DATA.front[id]?.renown || 0), 0) + x.items.reduce((t, id) => t + (DATA.items[id]?.renown || 0), 0);
+  G.fightQueue = (G.fightQueue || []).concat([{
+    p_level: myLevel(), p_result: w === 0 ? "win" : w === 1 ? "loss" : "draw", p_rounds: st.round, p_easy: !!S.easy, p_kind: S.kind === "tutorial" ? "tutorial" : "computer",
+    p_my_crown: me.crown, p_my_heroes: me.heroes, p_my_front: me.front, p_my_items: me.items, p_my_renown: renownOfIds(me),
+    p_foe_crown: foe.crown, p_foe_heroes: foe.heroes, p_foe_front: foe.front, p_foe_items: foe.items, p_foe_renown: renownOfIds(foe),
+    p_crown_fell: w === 0 ? "theirs" : w === 1 ? "mine" : "both", p_version: BUILD,
+  }]).slice(-50);
+  save(); sendFights();
+}
+let sendingFights = false;
+async function sendFights() {
+  if (sendingFights || !(G.fightQueue || []).length) return;
+  sendingFights = true;
+  try {
+    while (G.fightQueue.length) {
+      const f = G.fightQueue[0];
+      await rpc("log_fight", { p_id: G.player ? G.player.id : null, p_secret: G.player ? G.playerSecret : null, ...f });
+      G.fightQueue.shift(); save();
+    }
+  } catch (e) {} finally { sendingFights = false; }
+}
 async function loadLadder() {
   if (U.ladderLoading) return; U.ladderLoading = true;
   try { await syncPlayer(); U.ladder = await rpc("get_ladder", { p_limit: 100, p_id: G.player ? G.player.id : null }); U.ladderError = false; }
@@ -4038,6 +4067,7 @@ function minus(have, gone) { const left = have.slice(); for (const id of gone) {
 function finishFight() {
   const st = S.st, w = st.winner;
   SND.play(w < 0 ? "tie" : w === 0 ? "win" : "lose");
+  logFight(st, w);
   if (S.kind === "tutorial") {
     const first = w === 0 && !G.tutorialDone; // the tutorial's Crown counts once, the first time it is won
     if (first) { G.crowns++; G.tutorialDone = true; save(); }
@@ -4744,6 +4774,7 @@ document.addEventListener("pointerdown", () => SND.startMusic(), { once: true })
 checkLevel();
 askName();
 syncPlayer();
+sendFights();
 render();
 </script>
 <script>
