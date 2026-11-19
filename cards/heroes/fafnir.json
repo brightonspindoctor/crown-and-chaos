@@ -34,7 +34,7 @@
     {
       "name": "Deep breath",
       "ap": 3,
-      "text": "Charge: choose any enemy card. Fafnir draws breath this round. Next round, when he acts, he breathes fire on it for 8 (Guard applies) and takes no other action. Stop him or kill him first and the fire is lost. Once per fight.",
+      "text": "Charge: choose any enemy card. Fafnir draws breath this round. Next round, when he acts, he breathes fire on it for 6 (Guard applies) and takes no other action. Stop him or kill him first and the fire is lost. Once per fight.",
       "usesPerFight": 1,
       "charge": true
     }

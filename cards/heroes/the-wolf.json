@@ -7,7 +7,7 @@
   "aspect": "Beast",
   "tags": [],
   "stats": {
-    "health": 10,
+    "health": 8,
     "attack": 4,
     "ranged": false,
     "guard": 0,

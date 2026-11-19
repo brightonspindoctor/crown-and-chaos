@@ -7,14 +7,14 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 7,
+    "health": 6,
     "attack": 3,
     "ranged": true,
     "guard": 0,
     "speed": 4
   },
   "vulnerableTo": "Witch",
-  "renown": 16,
+  "renown": 17,
   "crownPassive": {
     "name": "Unfinished",
     "text": "While you field a Gothic Beast, she has +1 Guard and +1 Attack."

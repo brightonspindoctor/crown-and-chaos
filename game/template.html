@@ -681,24 +681,18 @@ const PAIR = ["grendel", "grendels-mother"];
 
 // The first pack: 23 cards, revealed in this order. Ten front-rank cards grouped by type (one of each of the six, with
 // two random types topped up to three copies), the four common items, six heroes, then three lore cards.
-// The heroes are the St George set (St George, the Dragon, the Princess) and three heroes from one other realm,
-// never Baba Yaga or the Grendel pair, that fit in one line-up together, so a new player has two sets of bonds to
-// find. The lore cards are the first lore card of each of the St George set.
+// The heroes are the St George set (St George, the Dragon, the Princess) and three heroes from three different
+// other realms, never Baba Yaga or the Grendel pair, that fit in one line-up together. The lore cards are the first
+// lore card of each of the St George set.
 const STARTER_LORE = ["st-george-1", "the-dragon-1", "the-princess-1"];
 function starterTrio() {
-  const byRealm = {};
-  for (const h of Object.values(DATA.heroes)) {
-    if (h.realm === "Albion" || h.id === "baba-yaga" || PAIR.includes(h.id)) continue;
-    (byRealm[h.realm] ||= []).push(h);
+  const pool = Object.values(DATA.heroes).filter((h) => h.realm !== "Albion" && h.id !== "baba-yaga" && !PAIR.includes(h.id));
+  for (let k = 0; k < 200; k++) {
+    const trio = [];
+    for (const h of shuffle(pool)) if (trio.length < 3 && !trio.some((x) => x.realm === h.realm)) trio.push(h);
+    if (trio.reduce((s, h) => s + h.renown, 0) <= RENOWN_CAP - 3) return trio.map((h) => h.id);
   }
-  const realms = shuffle(Object.keys(byRealm).filter((r) => byRealm[r].length >= 3));
-  for (const r of realms) {
-    for (let k = 0; k < 40; k++) {
-      const trio = shuffle(byRealm[r]).slice(0, 3);
-      if (trio.reduce((s, h) => s + h.renown, 0) <= RENOWN_CAP - 3) return trio.map((h) => h.id);
-    }
-  }
-  return shuffle(Object.values(DATA.heroes).filter((h) => h.realm !== "Albion" && h.id !== "baba-yaga" && !PAIR.includes(h.id))).slice(0, 3).map((h) => h.id);
+  return shuffle(pool).slice(0, 3).map((h) => h.id);
 }
 function firstPack() {
   const [a, b] = shuffle(CORE_FRONT);

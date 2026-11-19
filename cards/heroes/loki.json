@@ -7,14 +7,14 @@
   "aspect": "Trickster",
   "tags": [],
   "stats": {
-    "health": 6,
+    "health": 5,
     "attack": 2,
     "ranged": true,
     "guard": 0,
     "speed": 4
   },
   "vulnerableTo": "Guardian",
-  "renown": 16,
+  "renown": 18,
   "crownPassive": {
     "name": "Shape-shifter",
     "text": "The first time Loki would die, he survives on 1 Health and swaps places with your highest-Health other hero, who becomes the Crown."

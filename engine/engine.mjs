@@ -25,7 +25,7 @@ export const ASSUMPTIONS = [
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
-  "A charged strike deals 8, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
+  "A charged strike deals 6, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
   "Andvari's curse: if Poison, nightfall or a dead card killed Fafnir, a random enemy hero gets the 3 Poison.",
   "Shape-shifter: if Loki has no other hero, he still survives on 1 Health and stays the Crown.",
   "Unbound: Loki returns at the second upkeep after his death (once per fight); if Van Helsing's Crown is out, he doesn't. He takes the Crown back only if he wore it earlier in the fight.",
@@ -497,9 +497,9 @@ export function damage(st, src, target, amount, opts = {}) {
   }
   amt = Math.max(0, amt);
   if (atk && crownIs(st, t.side, "maid-marian") && st.fate === t.side) amt = Math.ceil(amt / 2);
-  if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && st.sides[t.side].flags.georgeRound !== st.round) {
-    st.sides[t.side].flags.georgeRound = st.round;
-    const blocked = Math.min(2, amt);
+  if (atk && t.kind === "hero" && crownIs(st, t.side, "st-george") && t.flags.georgeRound !== st.round) {
+    t.flags.georgeRound = st.round;
+    const blocked = Math.min(1, amt);
     amt -= blocked; saved = blocked;
     if (blocked) log(st, `St George blocks ${blocked} damage to ${t.name}.`);
   }
@@ -1010,10 +1010,11 @@ function standardAttack(st, a, x) {
   hit(st, a, x, attackOf(st, a), { ranged: a.ranged });
 }
 
-// Charge: the hero spends this round winding up; next round, at its Speed, it strikes for 8 (Guard applies).
+const CHARGE_DMG = 6;
+// Charge: the hero spends this round winding up; next round, at its Speed, it strikes for CHARGE_DMG (Guard applies).
 function charge(st, a, x, name, ranged) {
   a.flags.charge = { round: st.round + 1, tgt: x.uid, name, ranged };
-  log(st, `${a.name} charges ${name} at ${x.name}: 8 damage next round.`);
+  log(st, `${a.name} charges ${name} at ${x.name}: ${CHARGE_DMG} damage next round.`);
   ev(st, { t: "debuff", kind: "charge", src: a.uid, tgt: x.uid, text: `${name}: 8 next round` });
 }
 export const isCharging = (st, c) => !!c.flags.charge && c.flags.charge.round === st.round;
@@ -1237,7 +1238,7 @@ export function playRound(st, plans) {
       log(st, `${sideName(a.side)} ${a.name} uses ${ch.name} on ${x.name} (charged).`);
       ev(st, { t: "act", uid: a.uid, side: a.side, name: ch.name, tgt: x.uid });
       const before = snapStats(st);
-      damage(st, a, x, 8, { attack: true, ranged: ch.ranged, ignoreGuard: a.id === "sigurd" && crownIs(st, a.side, "sigurd") });
+      damage(st, a, x, CHARGE_DMG, { attack: true, ranged: ch.ranged, ignoreGuard: a.id === "sigurd" && crownIs(st, a.side, "sigurd") });
       diffStats(st, before, a); continue;
     }
     if (o.auto) {

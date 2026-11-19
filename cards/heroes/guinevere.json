@@ -7,14 +7,14 @@
   "aspect": "Healer",
   "tags": [],
   "stats": {
-    "health": 10,
+    "health": 8,
     "attack": 3,
     "ranged": false,
     "guard": 1,
     "speed": 3
   },
   "vulnerableTo": "Beast",
-  "renown": 15,
+  "renown": 16,
   "crownPassive": {
     "name": "The Queen's peace",
     "text": "Your heroes start the fight with +1 Health, and enemy attacks that hit several cards hit only their first target."

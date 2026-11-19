@@ -7,7 +7,7 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 10,
+    "health": 8,
     "attack": 3,
     "ranged": false,
     "guard": 0,

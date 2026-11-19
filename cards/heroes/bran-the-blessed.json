@@ -7,14 +7,14 @@
   "aspect": "Guardian",
   "tags": [],
   "stats": {
-    "health": 16,
+    "health": 13,
     "attack": 3,
     "ranged": false,
     "guard": 0,
     "speed": 1
   },
   "vulnerableTo": "Trickster",
-  "renown": 16,
+  "renown": 15,
   "crownPassive": {
     "name": "Let him who is chief be a bridge",
     "text": "Your heroes' melee attacks can also target the row behind the one they would normally hit."

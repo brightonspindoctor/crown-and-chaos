@@ -7,14 +7,14 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 9,
+    "health": 7,
     "attack": 2,
     "ranged": false,
     "guard": 1,
     "speed": 3
   },
   "vulnerableTo": "Witch",
-  "renown": 12,
+  "renown": 13,
   "crownPassive": {
     "name": "Winged sandals",
     "text": "Your heroes have +1 Guard in rounds you hold the Fate token, and +1 Speed in rounds you don't."

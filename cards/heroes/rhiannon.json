@@ -7,14 +7,14 @@
   "aspect": "Trickster",
   "tags": [],
   "stats": {
-    "health": 8,
+    "health": 6,
     "attack": 3,
     "ranged": false,
     "guard": 0,
     "speed": 4
   },
   "vulnerableTo": "Sovereign",
-  "renown": 14,
+  "renown": 13,
   "crownPassive": {
     "name": "Cannot be caught",
     "text": "The first attack on her each round from a slower card misses."

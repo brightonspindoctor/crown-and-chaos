@@ -7,14 +7,14 @@
   "aspect": "Beast",
   "tags": [],
   "stats": {
-    "health": 14,
+    "health": 11,
     "attack": 4,
     "ranged": false,
     "guard": 0,
     "speed": 2
   },
   "vulnerableTo": "Slayer",
-  "renown": 15,
+  "renown": 14,
   "crownPassive": {
     "name": "The Labyrinth",
     "text": "Enemy Ranged attacks can't target your heroes in slots 2 and 3."

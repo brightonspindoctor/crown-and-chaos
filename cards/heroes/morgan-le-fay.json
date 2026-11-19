@@ -7,14 +7,14 @@
   "aspect": "Witch",
   "tags": [],
   "stats": {
-    "health": 7,
+    "health": 6,
     "attack": 2,
     "ranged": false,
     "guard": 0,
     "speed": 2
   },
   "vulnerableTo": "Slayer",
-  "renown": 16,
+  "renown": 17,
   "crownPassive": {
     "name": "Enchantress",
     "text": "You start the fight with the Fate token (unless the enemy Crown is Renfield). In rounds when you hold it, enemy Bonds don't work."

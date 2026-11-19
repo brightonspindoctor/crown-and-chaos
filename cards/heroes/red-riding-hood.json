@@ -7,14 +7,14 @@
   "aspect": "Healer",
   "tags": [],
   "stats": {
-    "health": 9,
+    "health": 6,
     "attack": 3,
     "ranged": false,
     "guard": 1,
     "speed": 3
   },
   "vulnerableTo": "Beast",
-  "renown": 17,
+  "renown": 16,
   "crownPassive": {
     "name": "The basket",
     "text": "At upkeep, heal 2 to your most injured card."

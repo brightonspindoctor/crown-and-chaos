@@ -7,14 +7,14 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 11,
+    "health": 9,
     "attack": 3,
     "ranged": false,
     "guard": 1,
     "speed": 2
   },
   "vulnerableTo": "Beast",
-  "renown": 13,
+  "renown": 14,
   "crownPassive": {
     "name": "Bare hands",
     "text": "All your heroes' attacks ignore Guard."

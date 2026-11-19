@@ -7,14 +7,14 @@
   "aspect": "Trickster",
   "tags": [],
   "stats": {
-    "health": 9,
+    "health": 7,
     "attack": 2,
     "ranged": false,
     "guard": 1,
     "speed": 4
   },
   "vulnerableTo": "Sovereign",
-  "renown": 14,
+  "renown": 15,
   "crownPassive": {
     "name": "The master's servant",
     "text": "You keep the Fate token all fight. If both crowns are Renfield, this cancels out and the token changes hands each round as normal."

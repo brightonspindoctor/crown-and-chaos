@@ -7,14 +7,14 @@
   "aspect": "Slayer",
   "tags": [],
   "stats": {
-    "health": 7,
+    "health": 6,
     "attack": 3,
     "ranged": true,
     "guard": 0,
     "speed": 2
   },
   "vulnerableTo": "Witch",
-  "renown": 14,
+  "renown": 15,
   "crownPassive": {
     "name": "Hunter's mark",
     "text": "Each round, while planning, choose one enemy hero. All your attacks on it deal +1 damage, and if it is a Beast it can't heal that round."

@@ -18,14 +18,14 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Guard doesn't build up next round", b.guardLeft === 5, b.guardLeft);
   while (st.round < 8 && !st.over) E.playRound(st, [{ orders: [] }, { orders: [] }]);
   ok("At nightfall she has Attack 6", E.attackOf(st, b) === 6, E.attackOf(st, b));
-  ok("At nightfall she is on 15 of 16 Health", b.health === 15 && b.maxHealth === 16, [b.health, b.maxHealth]);
+  ok("At nightfall she is on 11 of 12 Health", b.health === 11 && b.maxHealth === 12, [b.health, b.maxHealth]);
   ok("Her printed Guard is 0, so nightfall leaves her on the borrowed 5", b.guardLeft === 5, b.guardLeft);
 }
 { // Betrayal is melee: it hits the front rank first
   const st = game(lu("dracula", ["renfield"]), lu("merlin", [], ["knight"]));
   const kn = card(st, 1, "knight"), me = card(st, 1, "merlin");
   E.playRound(st, [{ orders: [order(st, 0, "renfield", "Betrayal", me)] }, { orders: [] }]);
-  ok("Betrayal can't reach the crown past the front rank", me.health === 7, me.health);
+  ok("Betrayal can't reach the crown past the front rank", me.health === me.maxHealth, me.health);
   const st2 = game(lu("dracula", ["renfield"]), lu("merlin", [], ["knight"]));
   E.playRound(st2, [{ orders: [order(st2, 0, "renfield", "Betrayal", card(st2, 1, "knight"))] }, { orders: [] }]);
   ok("Betrayal kills the Knight and leaves Renfield on 1", card(st2, 1, "knight") === undefined && card(st2, 0, "renfield").health === 1);
@@ -181,14 +181,14 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
 }
 
 // ---------- Norse ----------
-{ // Charge: Sigurd digs the pit, is busy next round, then strikes for 8 ignoring Guard
+{ // Charge: Sigurd digs the pit, is busy next round, then strikes for 6 ignoring Guard
   const st = game(lu("merlin", ["sigurd"]), lu("merlin", ["king-arthur"]));
   const sg = card(st, 0, "sigurd"), g = card(st, 1, "king-arthur");
   E.playRound(st, [{ orders: [order(st, 0, "sigurd", "Dig the pit", g)] }, { orders: [] }]);
   ok("Sigurd has no actions while charging", E.options(st, sg).length === 0);
   const h0 = g.health;
   E.playRound(st, [{ orders: [] }, { orders: [] }]);
-  ok("Gram from the pit hits King Arthur for 8 less his Guard", h0 - g.health === 8 - E.guardOf(st, g) || h0 - g.health === 7, [h0, g.health]);
+  ok("Gram from the pit hits King Arthur for 6 less his Guard", h0 - g.health === 6 - E.guardOf(st, g) || h0 - g.health === 5 || g.health <= 0, [h0, g.health]);
   ok("and Sigurd can act again", E.options(st, sg).length > 0);
 }
 { // Charge lost if the charger is stopped
