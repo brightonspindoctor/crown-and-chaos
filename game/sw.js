@@ -1,7 +1,7 @@
 // Crown & Chaos service worker: lets the game install to the home screen and run offline.
 // Every request is answered from the cache when possible and refreshed from the network in the background,
 // so a new version of the game appears on the next launch after it is published.
-const CACHE = "crown-and-chaos-v2";
+const CACHE = "crown-and-chaos-v3";
 const CORE = ["./", "index.html", "manifest.webmanifest", "img/cover.jpg", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {
