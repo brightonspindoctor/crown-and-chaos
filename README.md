@@ -16,8 +16,8 @@ The game is published to GitHub Pages by the **Publish the game** workflow on ev
 
 It then opens full screen from its own icon and works offline. Progress is saved on that phone only.
 
-The icon is drawn in `game/icons/icon.svg`. To change it, replace that file and run
-`python3 scripts/build-icons.py && node scripts/build-game.mjs`.
+The icon is the wolf-and-crown artwork in `game/icons/icon-source.jpg`. To change it, replace that file and run
+`python3 scripts/build-icons.py`.
 
 ## What's here
 
