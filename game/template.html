@@ -277,6 +277,7 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 /* quests */
 .questtale { font: italic 18px/1.4 var(--serif); color: var(--gold-text); text-wrap: pretty; }
 .queststeps { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 16px; line-height: 1.35; }
+.btn small { display: block; font: 600 11px/1.3 var(--sans, inherit); letter-spacing: .08em; opacity: .75; margin-top: 2px; }
 .questco { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 15.5px; }
 /* levels, your court, Hall of Fame */
 .lvseal { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 112px; height: 112px; border-radius: 50%; background: var(--gold-leaf); box-shadow: inset 0 0 0 4px var(--gold-leaf), inset 0 0 0 6px var(--gold-shade), 0 10px 24px rgba(20,13,8,.45); color: #2a1d14; font: 700 50px/1 var(--display); }
@@ -576,7 +577,7 @@ const BOARDS = /*BOARDS*/;
 const VARIANTS = /*VARIANTS*/;
 const LORE = /*LORE*/;
 const E = (() => { /*ENGINE*/
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, isBlind, apCost, STOPPERS, isCharging, questPlan, carryOver, applyCarry };
+  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, isBlind, apCost, STOPPERS, isCharging, questPlan, carryOver, applyCarry, QUEST_RULES };
 })();
 
 // =====================================================================================
@@ -1195,7 +1196,7 @@ function inSnap(v, uid) { for (const sd of v.sides) for (const c of Object.value
 // =====================================================================================
 function begin(kind, lineups, opts = {}) {
   clearTimeout(S.timer);
-  const st = E.createGame(DATA, lineups, { seed: opts.seed ?? (Date.now() % 1000000) + 1 });
+  const st = E.createGame(DATA, lineups, { seed: opts.seed ?? (Date.now() % 1000000) + 1, ...(kind === "quest" ? E.QUEST_RULES : {}) });
   if (kind === "tutorial") st.fate = 0;
   if (opts.carry) E.applyCarry(st, 0, opts.carry);
   const crown = DATA.heroes[lineups[0].crown];
@@ -1514,7 +1515,7 @@ function endPlayback() {
     if (!st.over && !TUTORIAL[S.r]) S.guided = false; // the script ran out: carry on freely
   }
   if (st.over) finishFight();
-  else if (!S.guided && st.round === E.NIGHTFALL_ROUND && !G.nightSeen) U.over = { type: "night" };
+  else if (!S.guided && !st.noNight && st.round === E.NIGHTFALL_ROUND && !G.nightSeen) U.over = { type: "night" };
   render();
 }
 
@@ -1524,7 +1525,9 @@ function endPlayback() {
 // are gone, and nobody heals between fights. Winning all three pays 100 gold and is recorded as a completed quest;
 // losing any fight ends the quest with nothing. Quest fights don't count towards the Hall of Fame.
 // =====================================================================================
-const QUEST_REWARD = 100;
+const QUEST_REWARD = 100, QUESTS_PER_DAY = 3;
+const today = () => new Date().toLocaleDateString("en-CA");
+const questsToday = () => (G.questDay === today() ? G.questCount || 0 : 0);
 const REALM_FROM = { Albion: "from the green hills of Albion", Hellas: "from across the wine-dark sea", Norse: "out of the frozen north",
   Gothic: "from the castles beyond the forest", "Märchen": "out of the deep woods", Eventyr: "from the cold northern shore",
   Cymru: "from the mountains of Cymru", "Rus'": "out of the endless forest" };
@@ -1548,11 +1551,12 @@ const plural = (n) => (/man$/.test(n) ? n.replace(/man$/, "men") : /s$/.test(n) 
 function questStep(q, k) {
   const f = q.plan.fights[k].lineup;
   if (k === 0) return { name: `a warband of ${plural(DATA.front[f.troops].name)}`, text: `On the road: ${f.troopCount} ${plural(DATA.front[f.troops].name)} bar your way.` };
-  if (k === 1) return { name: `${short(DATA.heroes[f.crown].name)}'s band`, text: `At the crossing: ${DATA.heroes[f.crown].name.replace(/^The /, "the ")} and ${f.front.length} villagers stand in your path.` };
+  if (k === 1) return { name: `${short(DATA.heroes[f.crown].name)} and ${short(DATA.heroes[f.heroes[0]].name)}`, text: `At the crossing: ${[f.crown, ...(f.heroes || [])].map((id, k) => (k ? DATA.heroes[id].name.replace(/^The /, "the ") : DATA.heroes[id].name.replace(/^The /, "the "))).join(" and ")} stand in your path.` };
   const n = 1 + (f.heroes || []).length;
   return { name: "an unseen enemy", text: `The final fight: ${n === 1 ? "an enemy you can't see" : `${n} enemies you can't see`}, and no front rank. You can't target a hidden enemy until it strikes one of your cards.` };
 }
 function newQuest() {
+  if (questsToday() >= QUESTS_PER_DAY) return render();
   if (issues(G.lineup).length) { U.screen = "formation"; U.over = null; return render(); }
   const lu = G.lineup, rng = E.makeRng((Date.now() % 1000000000) + Math.floor(Math.random() * 1e6));
   G.quest = { plan: E.questPlan(DATA, rng), stage: 0, carry: null, began: false,
@@ -1561,6 +1565,7 @@ function newQuest() {
 }
 function questFight() {
   const q = G.quest; if (!q) return;
+  if (!q.began) { if (questsToday() >= QUESTS_PER_DAY) { delete G.quest; save(); return render(); } G.questCount = questsToday() + 1; G.questDay = today(); }
   q.began = true;
   begin("quest", [q.lineup, q.plan.fights[q.stage].lineup], { foeName: questStep(q, q.stage).name, carry: q.carry });
   Object.assign(S, { easy: false, conceded: false, renown: null });
@@ -1760,8 +1765,8 @@ function fullCard(id, o = {}) {
 // Drawing: the battle
 // =====================================================================================
 function renderBattle() {
-  const v = S.view, g = step(), b = S.board, night = v.round >= E.NIGHTFALL_ROUND;
-  el("head").innerHTML = `<button class="round${g && g.focus === "night" ? " focus" : ""}" data-act="night" aria-label="Round ${v.round}. ${night ? "It is night" : `Night falls in round ${E.NIGHTFALL_ROUND}`}. Read about Nightfall">Round ${v.round}<i class="${night ? "now" : ""}">${night ? "Night: no healing ⓘ" : `Night falls in round ${E.NIGHTFALL_ROUND} ⓘ`}</i></button>
+  const v = S.view, g = step(), b = S.board, noNight = !!S.st.noNight, night = !noNight && v.round >= E.NIGHTFALL_ROUND;
+  el("head").innerHTML = `<button class="round${g && g.focus === "night" ? " focus" : ""}" data-act="night" aria-label="Round ${v.round}. ${noNight ? "No nightfall on a quest" : night ? "It is night" : `Night falls in round ${E.NIGHTFALL_ROUND}`}. Read about Nightfall">Round ${v.round}<i class="${night ? "now" : ""}">${noNight ? "A quest: no nightfall" : night ? "Night: no healing ⓘ" : `Night falls in round ${E.NIGHTFALL_ROUND} ⓘ`}</i></button>
     <span class="place"><b>${esc(b.name)}</b><i>${esc(b.artist)}, ${esc(b.title)}, ${esc(b.date)}</i></span>
     <span class="wear" title="Your crown: ${esc(crownById[G.wearing]?.name || "Gold Crown")}">${crownSvg(G.wearing, `You wear the ${crownById[G.wearing]?.name || "Gold Crown"}`)}</span><button class="menu" data-act="menu">Menu</button>`;
   const table = el("table");
@@ -1787,7 +1792,7 @@ function renderBattle() {
     else button = `<button class="btn${g.lock ? " focus" : ""}" data-act="lock"${g.lock ? "" : " disabled"}>Lock in</button>`;
   } else if (S.phase === "plan") {
     who = S.foeName ? `Your plan · against ${esc(S.foeName)}` : "Your plan";
-    const dusk = v.round === E.NIGHTFALL_ROUND - 1 ? " Night falls next round: healing stops and every card starts taking damage." : night ? ` It is night: nothing heals, and every card takes ${v.round - E.NIGHTFALL_ROUND + 2} damage when the next round starts.` : "";
+    const dusk = noNight ? "" : v.round === E.NIGHTFALL_ROUND - 1 ? " Night falls next round: healing stops and every card starts taking damage." : night ? ` It is night: nothing heals, and every card takes ${v.round - E.NIGHTFALL_ROUND + 2} damage when the next round starts.` : "";
     const mkNow = markInfo();
     text = S.pick && S.pick.kind === "mark" ? esc(mkNow ? mkNow.pick : "")
       : S.pick ? `Choose a target for ${esc(S.pick.name2 || S.pick.name)}.`
@@ -1907,7 +1912,7 @@ function homeHtml() {
     <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
     <div class="btns">${G.quest
       ? `<button class="btn big" data-act="quest-resume">Continue your quest</button><button class="link" data-act="quest-abandon">Abandon the quest</button>`
-      : `<button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button>${bad ? "" : `<button class="btn big quiet" data-act="quest-new">Go on a quest</button>`}`}</div>
+      : `<button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button>${bad ? "" : questsToday() >= QUESTS_PER_DAY ? `<button class="btn big quiet" disabled>No more quests today</button>` : `<button class="btn big quiet" data-act="quest-new">Go on a quest <small>${QUESTS_PER_DAY - questsToday()} left today</small></button>`}`}</div>
     <div class="links"><button class="link" data-go="hall">Hall of Fame</button><button class="link" data-go="settings">Settings</button><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
     <p class="credit">Fights are against the computer for now. Your progress is saved in this browser only.</p>`);
 }
@@ -2211,7 +2216,7 @@ function overHtml() {
     return `<div class="panel" style="text-align:left;align-items:stretch"><p class="eyebrow" style="text-align:center">A quest</p><h1 style="text-align:center">${esc(t.title)}</h1>
       <p class="questtale">${esc(t.open)}</p>
       <ol class="queststeps">${[0, 1, 2].map((k) => `<li>${esc(questStep(q, k).text)}</li>`).join("")}</ol>
-      <p style="font-size:15.5px;color:var(--muted)">Your company stays as it is from fight to fight: cards that fall are gone for good, and nobody heals. Win all three for ${QUEST_REWARD} gold. Lose any fight and the quest ends with nothing. Quests don't count towards the Hall of Fame.</p>
+      <p style="font-size:15.5px;color:var(--muted)">Your company stays as it is from fight to fight: cards that fall are gone for good, and nobody heals. You hold the Fate token in every quest fight, and night never falls. Win all three for ${QUEST_REWARD} gold. Lose any fight and the quest ends with nothing. Quests don't count towards the Hall of Fame. You can set out on ${QUESTS_PER_DAY} quests a day; this is quest ${questsToday() + 1} of ${QUESTS_PER_DAY} today.</p>
       <div class="btns"><button class="btn" data-act="quest-go">Set out</button><button class="btn quiet" data-act="quest-cancel">Not now</button></div></div>`;
   }
   if (o.type === "quest-between") {

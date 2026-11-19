@@ -22,7 +22,7 @@ for (let q = 0; q < N; q++) {
   const plan = E.questPlan(data, rng);
   let lu = company(), carry = null, reached = 0;
   for (let f = 0; f < 3; f++) {
-    const st = E.createGame(data, [lu, plan.fights[f].lineup], { rng: E.makeRng(SEED * 7919 + q * 3 + f) });
+    const st = E.createGame(data, [lu, plan.fights[f].lineup], { rng: E.makeRng(SEED * 7919 + q * 3 + f), ...E.QUEST_RULES });
     if (carry) E.applyCarry(st, 0, carry);
     while (!st.over) E.playRound(st, [E.botPlan(st, 0, rng), E.botPlan(st, 1, rng)]);
     rounds[f] += st.round; fought[f]++; if (f === 2) { finals = (finals || 0) + 1; if (st.winner === -1) draws = (draws || 0) + 1; if (E.crownCard(st, 1) && E.isBlind(st, E.crownCard(st, 1))) unseen = (unseen || 0) + 1; }

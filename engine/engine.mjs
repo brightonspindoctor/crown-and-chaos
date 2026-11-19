@@ -112,6 +112,9 @@ export function createGame(data, lineups, opts = {}) {
   const morgan = [0, 1].filter((i) => lineups[i]?.crown === "morgan-le-fay");
   const renfield = [0, 1].filter((i) => lineups[i]?.crown === "renfield");
   if (morgan.length === 1 && !renfield.includes(1 - morgan[0])) st.fate = morgan[0];
+  // Quests: one side may hold the Fate token all fight, and night may never fall.
+  if (opts.fate != null) { st.fixedFate = opts.fate; st.fate = opts.fate; }
+  if (opts.noNight) st.noNight = true;
   // Start-of-fight effects
   for (const side of st.sides) {
     const crown = crownCard(st, side.index);
@@ -229,7 +232,7 @@ export function crownCard(st, i) {
 function crownActive(st, i) { return !st.sides[i].noCrown; }
 function crownIs(st, i, id) { const c = crownCard(st, i); return !!c && c.id === id && crownActive(st, i); }
 function anyCrown(st, id) { return crownIs(st, 0, id) || crownIs(st, 1, id); }
-const isNight = (st) => st.round >= NIGHTFALL;
+const isNight = (st) => !st.noNight && st.round >= NIGHTFALL;
 const injured = (c) => c.health < c.maxHealth;
 
 function neighbours(st, c) {
@@ -758,14 +761,15 @@ export function upkeep(st) {
     for (const c of cards(st, side.index)) if (!c.flags.seen) { c.flags.seen = true; log(st, `${c.name} is revealed.`); ev(st, { t: "reveal", uid: c.uid }); }
   // Fate token
   const ren0 = crownIs(st, 0, "renfield"), ren1 = crownIs(st, 1, "renfield");
-  if (ren0 && !ren1) st.fate = 0; else if (ren1 && !ren0) st.fate = 1; else if (st.round > 1) st.fate = 1 - st.fate;
+  if (st.fixedFate != null) st.fate = st.fixedFate;
+  else if (ren0 && !ren1) st.fate = 0; else if (ren1 && !ren0) st.fate = 1; else if (st.round > 1) st.fate = 1 - st.fate;
   for (const i of [0, 1]) {
     // Galvanism: +1 action point for each of Victor's other living heroes, counted at upkeep.
     st.sides[i].ap = (st.sides[i].baseAp ?? BASE_AP) + (crownIs(st, i, "victor-frankenstein") ? heroes(st, i).filter((h) => h.id !== "victor-frankenstein").length : 0);
     st.sides[i].flags.itemApExtra = 0;
   }
   // Blodeuwedd's change at nightfall comes first
-  if (st.round === NIGHTFALL) {
+  if (st.round === NIGHTFALL && !st.noNight) {
     for (const c of allCards(st)) if (c.id === "blodeuwedd" && !c.flags.night) {
       c.flags.night = true; c.maxHealth = c.baseHealth * 2; c.health = c.maxHealth; c.baseAtk *= 2;
       log(st, `Blodeuwedd becomes the owl: 14 Health, Attack 4.`);
@@ -1477,14 +1481,17 @@ export function botFight(data, lineups, seed) {
 // =====================================================================================
 // How many of each front-rank card make up a warband, set so each warband is won about 9 times in 10 and costs
 // a company roughly a sixth of its Health.
-export const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, hoplite: 3, "geat-thane": 4, "mere-beast": 3 };
-// The three foes of a quest: a warband of one front-rank card, an easy company, and a final company of three
+// No Hoplites: with no nightfall, a Phalanx can hold out until the round limit.
+export const QUEST_TROOPS = { berserker: 3, knight: 3, crossbowman: 4, longbowman: 4, "geat-thane": 4, "mere-beast": 3 };
+// In every quest fight the player holds the Fate token throughout and night never falls.
+export const QUEST_RULES = { fate: 0, noNight: true };
+// The three foes of a quest: a warband of one front-rank card, two cheap heroes alone, and a final company of three
 // heroes from one realm under a strong Crown (or Baba Yaga alone), with no front rank, fought blind.
 export function questPlan(data, rng) {
   const H = Object.values(data.heroes), banned = ["baba-yaga", "grendel", "grendels-mother"];
   const troops = rng.pick(Object.keys(QUEST_TROOPS));
-  const cheap = rng.pick(H.filter((h) => !banned.includes(h.id) && h.renown <= 13));
-  const easy = { crown: cheap.id, heroes: [], front: ["villager", "villager"], items: [] };
+  const cheap = rng.shuffle(H.filter((h) => !banned.includes(h.id) && h.renown <= 13));
+  const easy = { crown: cheap[0].id, heroes: [cheap[1].id], front: [], items: [] };
   let final;
   if (rng.next() < 0.2) final = { crown: "baba-yaga", heroes: [], front: [], items: [], blind: true, revealRound: 3 };
   else {
