@@ -13,3 +13,7 @@
 --
 -- Migration fights_kind_quest (19 November 2026): fights.kind also allows 'quest', and log_fight stores it.
 -- The hero_results view still counts only 'computer' fights, so quests don't skew the balance numbers.
+--
+-- Migration fights_username (20 November 2026): fights.username stores the player's name with each fight they log
+-- (filled in for earlier fights from players.username). It is only set when the fight comes with the player's secret,
+-- so nobody can log fights under someone else's name. The table is still unreadable through the public API.
