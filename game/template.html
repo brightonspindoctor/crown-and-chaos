@@ -214,9 +214,12 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .lede { font-size: 17px; line-height: 1.35; color: var(--muted); text-wrap: pretty; }
 .hero-screen { min-height: 100%; display: grid; place-items: center; padding: 24px 18px; background: linear-gradient(rgba(23,17,12,.7), rgba(23,17,12,.92)), url(img/cover.jpg) center 30% / cover no-repeat; }
 .cover-screen { min-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 0 18px; background: #120d09; }
-.cover { display: block; width: 100%; max-width: 560px; max-height: calc(100dvh - 54px - 200px); object-fit: contain; object-position: 50% 0; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+.cover { display: block; width: 100%; max-width: 560px; max-height: calc(100dvh - 54px - 270px); object-fit: contain; object-position: 50% 0; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
 .cover-side { width: 100%; max-width: 440px; padding: 0 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
 .cover-side .lede { color: var(--ink); }
+.cover-title { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; font: 400 44px/1 "UnifrakturMaguntia", var(--display); color: #e6c46c; text-shadow: 0 2px 0 #2a0d0b, 0 0 18px rgba(217,150,70,.35); }
+.cover-title .ct-crown svg { width: 40px; fill: var(--gold-leaf); display: block; }
+@media (max-width: 899px) { .cover-title { font-size: 34px; flex-direction: row; gap: 8px; } .cover-title .ct-crown svg { width: 26px; } .cover-side { gap: 8px; } }
 .cover-side .meta { display: flex; gap: 18px; align-items: center; justify-content: center; color: var(--muted); font-style: italic; }
 .cover-side .btns { margin-top: 0; }
 .cover-side .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 14px; }
@@ -1963,7 +1966,8 @@ function renderPage() {
   el("nav").innerHTML = NAV.map(([k, label]) => `<button data-go="${k}" class="${U.screen === k ? "on" : ""}"${U.screen === k ? ' aria-current="page"' : ""}>${label}</button>`).join("");
 }
 // The front of the game: the cover art carries the title, with the controls beside it (desktop) or under it (phone).
-const coverHtml = (inner) => `<div class="cover-screen"><img class="cover" src="img/cover.jpg" alt="Crown &amp; Chaos: Red Riding Hood, crowned, with the wolf at her feet and a castle behind"><div class="cover-side">${inner}</div></div>`;
+// The painting has no title on it, so the title stands beside it (desktop) or just under it (phone).
+const coverHtml = (inner) => `<div class="cover-screen"><img class="cover" src="img/cover.jpg" alt="Red Riding Hood in the forest, her boot on the wolf, with Baba Yaga's hut on hen's legs behind"><div class="cover-side"><h1 class="cover-title"><span class="ct-crown" aria-hidden="true">${CROWN_SVG}</span>Crown &amp; Chaos</h1>${inner}</div></div>`;
 function homeHtml() {
   if (!G.packOpened) {
     return coverHtml(`<p class="lede">Heroes of folklore, painted by the old masters. Protect your Crown; take theirs.</p>
