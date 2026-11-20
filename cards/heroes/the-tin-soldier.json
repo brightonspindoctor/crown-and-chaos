@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Trickster",
-  "renown": 16,
+  "renown": 17,
   "crownPassive": {
     "name": "Steadfast",
     "text": "None of your heroes can be moved, frozen or stopped from acting, and Poison has no effect on them."

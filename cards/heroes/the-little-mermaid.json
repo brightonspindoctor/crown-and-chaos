@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Beast",
-  "renown": 14,
+  "renown": 13,
   "crownPassive": {
     "name": "Turning tide",
     "text": "Every enemy bond that gives a number is reversed: +1 Attack becomes -1 Attack, +1 Guard becomes -1 Guard, +1 Speed becomes -1 Speed, +1 to healing becomes -1 to healing, and so on. Bonds without a number work as normal."

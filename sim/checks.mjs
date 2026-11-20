@@ -22,7 +22,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Her printed Guard is 0, so nightfall leaves her on the borrowed 5", b.guardLeft === 5, b.guardLeft);
 }
 { // Betrayal is melee: it hits the front rank first
-  const st = game(lu("dracula", ["renfield"]), lu("merlin", [], ["knight"]));
+  const st = game(lu("dracula", ["renfield"]), lu("merlin", ["the-wolf", "the-huntsman"], ["knight", "monk", "villager"]));
   const kn = card(st, 1, "knight"), me = card(st, 1, "merlin");
   E.playRound(st, [{ orders: [order(st, 0, "renfield", "Betrayal", me)] }, { orders: [] }]);
   ok("Betrayal can't reach the crown past the front rank", me.health === me.maxHealth, me.health);
@@ -266,6 +266,19 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Still not beaten with one Knight left", !E.checkWin(st));
   E.cards(st, 1)[0].dead = true;
   ok("Beaten once the last Knight falls", E.checkWin(st) && st.winner === 0, st.winner);
+}
+{ // Melee through gaps: an empty front-rank slot lets melee reach the heroes behind; an empty hero slot too, the Crown
+  const st = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-wolf", "the-huntsman"], ["knight", "monk", null]));
+  const g = card(st, 0, "st-george"), d = card(st, 0, "the-dragon");
+  const reach = (c) => E.meleeTargets(st, c).map((x) => x.id).sort().join(",");
+  ok("With a gap in the front rank, melee reaches the heroes behind", reach(d).includes("the-wolf") && reach(d).includes("the-huntsman") && reach(d).includes("knight"), reach(d));
+  ok("With both hero slots filled, the enemy Crown is still out of melee reach", !reach(d).includes("merlin"), reach(d));
+  const st2 = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-wolf"], ["knight", "monk", "villager"]));
+  const r2 = E.meleeTargets(st2, card(st2, 0, "the-dragon")).map((x) => x.id);
+  ok("A full front rank still shields everything behind it", r2.every((id) => ["knight", "monk", "villager"].includes(id)), r2);
+  const st3 = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-wolf"], ["knight", null, null]));
+  const r3 = E.meleeTargets(st3, card(st3, 0, "the-dragon")).map((x) => x.id);
+  ok("Gaps in both rows: melee reaches the front rank, the hero and the Crown", ["knight", "the-wolf", "merlin"].every((id) => r3.includes(id)), r3);
 }
 { // Quests: a company with no Crown is beaten only when every card has fallen
   const st = game(lu("st-george", ["the-dragon"]), { crown: "perseus", heroes: ["medusa"], front: [], items: [], noCrown: true });

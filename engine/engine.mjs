@@ -423,18 +423,19 @@ export function heal(st, src, target, amount, opts = {}) {
 
 // ---------- targeting ----------
 // Closest enemy row: front rank, then heroes in 2–3, then the Crown.
-// Enemy rows, closest first. The front rank shields everything. Behind it, the Crown (slot 1) is
-// shielded from melee only while both hero slots (2 and 3) are filled; once one is empty the Crown
-// can be struck alongside the remaining hero.
+// Enemy rows, closest first, as melee reaches them. A full row shields the rows behind it; a gap in a row lets
+// melee through to the row behind as well. So with an empty front-rank slot the heroes in slots 2 and 3 can be
+// struck alongside the front rank, and with an empty hero slot too, so can the Crown in slot 1.
 function enemyRows(st, attackerSide) {
-  const foe = 1 - attackerSide;
-  const front = [4, 5, 6].map((s) => at(st, foe, s)).filter(Boolean);
-  const mid = [2, 3].map((s) => at(st, foe, s)).filter(Boolean);
-  const back = at(st, foe, 1);
-  const rows = [front];
-  if (mid.length >= 2) { rows.push(mid); if (back) rows.push([back]); }
-  else rows.push(back ? [...mid, back] : mid);
-  return rows.filter((r) => r.length);
+  const foe = 1 - attackerSide, back = at(st, foe, 1);
+  const layers = [[4, 5, 6].map((s) => at(st, foe, s)).filter(Boolean), [2, 3].map((s) => at(st, foe, s)).filter(Boolean), back ? [back] : []];
+  const full = [3, 2, 1], rows = [];
+  let cur = [];
+  layers.forEach((layer, i) => {
+    cur = cur.concat(layer);
+    if (layer.length >= full[i] || i === layers.length - 1) { if (cur.length) rows.push(cur); cur = []; }
+  });
+  return rows;
 }
 export function closestRow(st, attackerSide) { return enemyRows(st, attackerSide)[0] || []; }
 // A card in slot 1 can't melee the enemy while both of its hero slots (2 and 3) hold a hero: the same condition

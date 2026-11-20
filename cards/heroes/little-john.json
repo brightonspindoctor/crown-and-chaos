@@ -7,7 +7,7 @@
   "aspect": "Guardian",
   "tags": [],
   "stats": {
-    "health": 11,
+    "health": 10,
     "attack": 3,
     "ranged": false,
     "guard": 1,

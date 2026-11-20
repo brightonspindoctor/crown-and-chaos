@@ -16,7 +16,7 @@
     "speed": 1
   },
   "vulnerableTo": "Slayer",
-  "renown": 12,
+  "renown": 13,
   "crownPassive": {
     "name": "Three heads",
     "text": "His attack becomes three separate attacks of 1 damage each, at three random enemy cards anywhere on the board. If there are fewer than three, a card can be hit more than once."

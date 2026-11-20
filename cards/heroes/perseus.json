@@ -14,7 +14,7 @@
     "speed": 3
   },
   "vulnerableTo": "Witch",
-  "renown": 13,
+  "renown": 14,
   "crownPassive": {
     "name": "Winged sandals",
     "text": "Your heroes have +1 Guard in rounds you hold the Fate token, and +1 Speed in rounds you don't."

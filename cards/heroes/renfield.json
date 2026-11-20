@@ -42,7 +42,7 @@
     }
   ],
   "rules": [
-    "Betrayal is melee, so it can't hit the enemy crown until their front rank and other heroes are gone.",
+    "Betrayal is melee, so it can only hit the enemy crown once there is a gap in both their front rank and their hero row.",
     "If Betrayal kills the enemy crown while Renfield is your crown, and an enemy card kills him that same round, both crowns are down and the fight is a draw. Otherwise you win."
   ],
   "art": "renfield",
