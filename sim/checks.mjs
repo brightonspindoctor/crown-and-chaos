@@ -280,6 +280,21 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const r3 = E.meleeTargets(st3, card(st3, 0, "the-dragon")).map((x) => x.id);
   ok("Gaps in both rows: melee reaches the front rank, the hero and the Crown", ["knight", "the-wolf", "merlin"].every((id) => r3.includes(id)), r3);
 }
+{ // Zmey: three heads at the card he attacks; as Crown, five heads at random enemy cards
+  const st = game(lu("st-george", ["zmey-gorynych"]), lu("merlin", ["the-wolf"], []));
+  const z = card(st, 0, "zmey-gorynych"), w = card(st, 1, "the-wolf");
+  ok("Zmey's Attack is 1", E.attackOf(st, z) === 1, E.attackOf(st, z));
+  const h0 = w.health;
+  E.playRound(st, [{ orders: [order(st, 0, "zmey-gorynych", "Attack", w)] }, { orders: [] }]);
+  const hits = st.events.filter((e) => e.t === "hit" && e.src === z.uid && e.tgt === w.uid).length;
+  ok("Three heads: three hits on the Wolf", hits === 3, hits);
+  ok("Each head deals 1 (the Wolf has no Guard)", h0 - w.health === 3, h0 - w.health);
+  const st2 = game(lu("zmey-gorynych", ["st-george"]), lu("merlin", ["the-wolf"], ["knight"]));
+  const z2 = card(st2, 0, "zmey-gorynych");
+  E.playRound(st2, [{ orders: [order(st2, 0, "zmey-gorynych", "Attack", card(st2, 1, "knight"))] }, { orders: [] }]);
+  const h2 = st2.events.filter((e) => e.t === "hit" && e.src === z2.uid).length;
+  ok("As Crown, five heads strike", h2 === 5, h2);
+}
 { // Quests: a company with no Crown is beaten only when every card has fallen
   const st = game(lu("st-george", ["the-dragon"]), { crown: "perseus", heroes: ["medusa"], front: [], items: [], noCrown: true });
   ok("A no-Crown company has no Crown", E.crownCard(st, 1) === null);

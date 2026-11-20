@@ -10,7 +10,7 @@
   ],
   "stats": {
     "health": 11,
-    "attack": 3,
+    "attack": 1,
     "ranged": false,
     "guard": 1,
     "speed": 1
@@ -18,8 +18,8 @@
   "vulnerableTo": "Slayer",
   "renown": 13,
   "crownPassive": {
-    "name": "Three heads",
-    "text": "His attack becomes three separate attacks of 1 damage each, at three random enemy cards anywhere on the board. If there are fewer than three, a card can be hit more than once."
+    "name": "Five heads",
+    "text": "When he attacks, five heads strike five random enemy cards anywhere on the board, each for his Attack. He still needs an enemy card in reach to attack. If there are fewer than five, a card can be hit more than once."
   },
   "bond": {
     "name": "Rus' kin",
@@ -29,7 +29,7 @@
     {
       "name": "Attack",
       "ap": 1,
-      "text": "Standard attack: damage equal to Attack."
+      "text": "Three heads: strikes the card three times, each for his Attack."
     },
     {
       "name": "Heads grow back",
@@ -41,7 +41,7 @@
   "art": "zmey-gorynych",
   "status": "reviewed",
   "rules": [
-    "Each head is its own attack: Guard and Vulnerable apply to each hit.",
-    "Guinevere's Queen's peace doesn't stop him."
+    "Each head is its own hit: Guard, Vulnerable and every damage bonus apply to each one.",
+    "Guinevere's Queen's peace doesn't stop his heads."
   ]
 }

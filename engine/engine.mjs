@@ -1035,13 +1035,20 @@ function hit(st, a, x, amount, opts = {}) {
 }
 
 function standardAttack(st, a, x) {
-  if (a.id === "zmey-gorynych" && crownIs(st, a.side, "zmey-gorynych")) {
-    const per = 1 + Math.max(0, bondFactor(st, a.side)) * countRealm(st, a, "Rus'");
-    // Three heads: three random enemy cards anywhere, different cards while there are enough.
-    const pool = cards(st, 1 - a.side).slice(), picks = [];
-    while (picks.length < 3 && pool.length) picks.push(pool.splice(st.rng.int(pool.length), 1)[0]);
-    while (picks.length && picks.length < 3) picks.push(st.rng.pick(picks));
-    for (const x of picks) if (!x.dead) hit(st, a, x, per);
+  if (a.id === "zmey-gorynych") {
+    // Each head strikes for his Attack, plus his Bond. Every head is its own hit, so Guard, Vulnerable and
+    // damage bonuses apply to each one.
+    const per = Math.max(0, attackOf(st, a) + bondFactor(st, a.side) * countRealm(st, a, "Rus'"));
+    if (crownIs(st, a.side, "zmey-gorynych")) {
+      // Wearing the Crown: five heads at five random enemy cards anywhere, different cards while there are enough.
+      const pool = cards(st, 1 - a.side).slice(), picks = [];
+      while (picks.length < 5 && pool.length) picks.push(pool.splice(st.rng.int(pool.length), 1)[0]);
+      while (picks.length && picks.length < 5) picks.push(st.rng.pick(picks));
+      for (const y of picks) if (!y.dead) hit(st, a, y, per);
+      return;
+    }
+    // Three heads: three strikes at the card he attacks.
+    for (let k = 0; k < 3 && !x.dead; k++) hit(st, a, x, per, { ranged: a.ranged });
     return;
   }
   hit(st, a, x, attackOf(st, a), { ranged: a.ranged });
@@ -1393,7 +1400,10 @@ function valueOf(st, a, act, x) {
   switch (name) {
     case "Attack": case "Claw":
       if (x && x.side === a.side) return 0;
-      if (a.id === "zmey-gorynych" && crownIs(st, a.side, "zmey-gorynych")) return 3 * (1 + countRealm(st, a, "Rus'"));
+      if (a.id === "zmey-gorynych") {
+        const per = Math.max(0, attackOf(st, a) + bondFactor(st, a.side) * countRealm(st, a, "Rus'"));
+        return crownIs(st, a.side, "zmey-gorynych") ? 5 * per * 1.2 : 3 * dmgValue(per, x);
+      }
       return dmgValue(attackOf(st, a), x);
     case "Pestle": return dmgValue(5, x);
     case "Skull fire": return dmgValue(3, x);

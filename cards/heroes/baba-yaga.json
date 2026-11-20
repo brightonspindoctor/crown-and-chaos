@@ -16,7 +16,7 @@
     "speed": 1
   },
   "vulnerableTo": "Slayer",
-  "renown": 37,
+  "renown": 35,
   "crownPassive": {
     "text": "Must start in slot 1 and always holds the Crown, which travels with her. If the Crown ever passes to another of your heroes, you lose.",
     "name": "Mistress of the hut"
