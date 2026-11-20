@@ -1410,7 +1410,8 @@ function playRound(st, plans) {
       ap -= cost; used.add(a.uid);
       ords.push({ side: i, actor: a, index: o.index, target: o.target, target2: o.target2 });
     }
-    if (crownIs(st, i, "the-huntsman") && plan.hunt) st.marks[`hunt${i}`] = plan.hunt;
+    // The Huntsman can only mark an enemy hero his side can see.
+    if (crownIs(st, i, "the-huntsman") && plan.hunt && visibleTo(st, i, heroes(st, 1 - i)).some((h) => h.uid === plan.hunt)) st.marks[`hunt${i}`] = plan.hunt;
     // Front rank acts automatically
     for (const c of cards(st, i).filter((c) => c.kind === "front")) ords.push({ side: i, actor: c, auto: true });
     // Charged heroes strike automatically
@@ -1438,6 +1439,8 @@ function playRound(st, plans) {
       ? st.sides[o.side].grave.find((c) => c.uid === o.target)
       : (o.target ? findCard(st, o.target) : null);
     if (ITEM_TARGETS[o.item] !== "none" && !tgt) continue; // no valid target: the item isn't spent
+    // ...and the target must be one the item may be used on (never, say, a hidden enemy).
+    if (tgt && o.item !== "draught-of-the-cauldron" && !itemTargets(st, o.side, o.item).some((c) => c && c.uid === tgt.uid)) continue;
     useItem(st, o.side, o.item, tgt);
   }
   // Mirrored shield and Nobody aren't Speed dependent: once chosen, they're up before anyone acts.
@@ -1562,7 +1565,8 @@ function botPlan(st, i, rng = st.rng, noise = 0.35) {
   if (eh.length) {
     const fresh = rumpelChoices(st, i);
     if (fresh.length && rng.next() < 0.5) plan.rumpel = rng.pick(fresh).uid;
-    plan.hunt = (ec && eh.find((h) => h.uid === ec.uid)) ? ec.uid : rng.pick(eh).uid;
+    const seen = visibleTo(st, i, eh);
+    plan.hunt = (ec && seen.find((h) => h.uid === ec.uid)) ? ec.uid : seen.length ? rng.pick(seen).uid : null;
   }
   return plan;
 }

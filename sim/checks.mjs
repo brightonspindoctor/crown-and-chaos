@@ -316,6 +316,14 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st, [{ orders: [] }, { orders: [order(st, 1, "the-huntsman", "Attack", card(st, 0, "the-princess"))] }]);
   ok("The Huntsman shows himself when he shoots", !E.isBlind(st, hu));
   ok("The Wolf, who did nothing to you, stays hidden", E.isBlind(st, w));
+  { const st5 = game(lu("the-huntsman", ["the-princess"]), { crown: "the-wolf", heroes: [], front: [], items: [], blind: true, revealRound: 3 });
+    const wolf = card(st5, 1, "the-wolf");
+    E.playRound(st5, [{ orders: [], hunt: wolf.uid }, { orders: [] }]);
+    ok("The Huntsman can't mark a hidden enemy", !st5.marks["hunt0"] || st5.round > 1 && !E.isBlind(st5, wolf), st5.marks); }
+  { const st6 = game(lu("st-george", ["the-princess"], [], ["poisoned-apple"]), { crown: "the-wolf", heroes: [], front: [], items: [], blind: true, revealRound: 3 });
+    const wolf = card(st6, 1, "the-wolf");
+    E.playRound(st6, [{ orders: [], items: [{ id: "poisoned-apple", target: wolf.uid }] }, { orders: [] }]);
+    ok("An item can't be used on a hidden enemy (and isn't spent)", st6.sides[0].items.includes("poisoned-apple") && !wolf.poison, st6.sides[0].items); }
   ok("Now the Princess can target the Huntsman", E.options(st, card(st, 0, "the-princess")).some((o) => o.targets.some((t) => t && t.uid === hu.uid)));
   ok("Round 2: the Wolf is still hidden", st.round === 2 && E.isBlind(st, w), st.round);
   E.playRound(st, [{ orders: [] }, { orders: [] }]);
