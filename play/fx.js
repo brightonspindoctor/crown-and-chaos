@@ -85,6 +85,12 @@ const SND = (() => {
     miss() { noise("bandpass", 2600, 500, 0.2, 0.22, 0, 2); },
     dud() { tone("triangle", 180, 120, 0.14, 0.25); },
     tick() { tone("sine", 1400, 1400, 0.04, 0.12); },
+    tear() { // paper and foil ripping: a quick run of rising crackles over a hiss
+      for (let k = 0; k < 12; k++) noise("bandpass", 1500 + k * 220, 1200 + k * 150, 0.045, 0.32, k * 0.022 + Math.random() * 0.012, 2.5);
+      noise("highpass", 2500, 6500, 0.32, 0.12);
+    },
+    slide() { noise("bandpass", 500, 2200, 0.4, 0.2, 0, 0.8); noise("highpass", 4000, 7000, 0.25, 0.06, 0.1); },
+    flipcard() { noise("highpass", 2200, 5200, 0.09, 0.22); tone("sine", 700, 420, 0.07, 0.06); },
     fire() { noise("lowpass", 260, 1500, 0.75, 0.55, 0, 0.8); noise("bandpass", 900, 450, 0.65, 0.25, 0.05, 1); tone("sawtooth", 70, 48, 0.7, 0.12, 0, ["lowpass", 260]);
       for (let k = 0; k < 9; k++) noise("highpass", 4200, 3000, 0.02, 0.2, 0.05 + k * 0.07 + Math.random() * 0.03, 2); },
     ignite() { noise("lowpass", 2600, 180, 0.45, 0.5); tone("sine", 95, 38, 0.32, 0.5); for (let k = 0; k < 5; k++) noise("highpass", 5000, 3500, 0.02, 0.18, 0.1 + k * 0.08, 2); },

@@ -349,6 +349,8 @@ export function speedOf(st, c) {
     for (const src of heroes(st, i)) {
       if (src.id === "robin-hood" && src.uid !== c.uid && c.kind === "hero" && isRealm(st, c, "Albion")) s += f;
       if (src.id === "baba-yaga" && src.uid !== c.uid && c.kind === "hero") s -= f;
+      // Zmey's Bond: your other Rus' heroes have +1 Speed.
+      if (src.id === "zmey-gorynych" && src.uid !== c.uid && c.kind === "hero" && isRealm(st, c, "Rus'")) s += f;
     }
     if (c.id === "rhiannon") s += f * countRealm(st, c, "Cymru");
     // Morgan's Bond also costs your King Arthur 1 Speed.
@@ -1036,9 +1038,9 @@ function hit(st, a, x, amount, opts = {}) {
 
 function standardAttack(st, a, x) {
   if (a.id === "zmey-gorynych") {
-    // Each head strikes for his Attack, plus his Bond. Every head is its own hit, so Guard, Vulnerable and
-    // damage bonuses apply to each one.
-    const per = Math.max(0, attackOf(st, a) + bondFactor(st, a.side) * countRealm(st, a, "Rus'"));
+    // Each head strikes for his Attack. Every head is its own hit, so Guard, Vulnerable and damage bonuses
+    // apply to each one.
+    const per = attackOf(st, a);
     if (crownIs(st, a.side, "zmey-gorynych")) {
       // Wearing the Crown: five heads at five random enemy cards anywhere, different cards while there are enough.
       const pool = cards(st, 1 - a.side).slice(), picks = [];
@@ -1401,7 +1403,7 @@ function valueOf(st, a, act, x) {
     case "Attack": case "Claw":
       if (x && x.side === a.side) return 0;
       if (a.id === "zmey-gorynych") {
-        const per = Math.max(0, attackOf(st, a) + bondFactor(st, a.side) * countRealm(st, a, "Rus'"));
+        const per = attackOf(st, a);
         return crownIs(st, a.side, "zmey-gorynych") ? 5 * per * 1.2 : 3 * dmgValue(per, x);
       }
       return dmgValue(attackOf(st, a), x);

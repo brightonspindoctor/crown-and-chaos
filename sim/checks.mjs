@@ -294,6 +294,9 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st2, [{ orders: [order(st2, 0, "zmey-gorynych", "Attack", card(st2, 1, "knight"))] }, { orders: [] }]);
   const h2 = st2.events.filter((e) => e.t === "hit" && e.src === z2.uid).length;
   ok("As Crown, five heads strike", h2 === 5, h2);
+  const st3 = game(lu("koschei", ["zmey-gorynych", "vasilisa-the-wise"]), lu("merlin"));
+  ok("Zmey's Bond: other Rus' heroes +1 Speed", E.speedOf(st3, card(st3, 0, "vasilisa-the-wise")) === data.heroes["vasilisa-the-wise"].stats.speed + 1, E.speedOf(st3, card(st3, 0, "vasilisa-the-wise")));
+  ok("Zmey's Bond doesn't speed up Zmey", E.speedOf(st3, card(st3, 0, "zmey-gorynych")) === data.heroes["zmey-gorynych"].stats.speed);
 }
 { // Quests: a company with no Crown is beaten only when every card has fallen
   const st = game(lu("st-george", ["the-dragon"]), { crown: "perseus", heroes: ["medusa"], front: [], items: [], noCrown: true });

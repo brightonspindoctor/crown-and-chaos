@@ -23,7 +23,7 @@
   },
   "bond": {
     "name": "Rus' kin",
-    "text": "Each head deals +1 damage for each other Rus' hero you field."
+    "text": "Your other Rus' heroes have +1 Speed."
   },
   "actions": [
     {
