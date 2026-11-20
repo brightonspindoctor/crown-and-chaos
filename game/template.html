@@ -1492,12 +1492,17 @@ const isNightLine = (f) => f && /^Nightfall deals/.test(f.text);
 // Each event goes with the frame of the log line it explains (see ev in the engine): the line just
 // before it, or for the events that open an action, the line just after.
 const OPENS = (e) => e.t === "phase" || e.t === "skip" || (e.t === "act" && e.auto);
-// A caption must not give away a hidden enemy: its name becomes "a hidden enemy".
+// A caption must not give away a hidden enemy: its name becomes "a hidden enemy". "The enemy X" always means the
+// enemy's card; a bare "X" is only hidden when none of your own cards shares the name (a mirror match would
+// otherwise garble lines about your own card), and never straight after "your".
 function unname(text, v) {
+  const mine = new Set(Object.values(v.sides[0].slots).filter(Boolean).map((c) => short(c.name)));
+  const cap = (m) => (/^[A-Z]/.test(m) ? "A hidden enemy" : "a hidden enemy");
   for (const c of Object.values(v.sides[1].slots)) {
     if (!c || !c.blind) continue;
-    const n = short(c.name).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    text = text.replace(new RegExp(`(The|the) enemy ${n}`, "g"), (m, t) => (t === "The" ? "A hidden enemy" : "a hidden enemy")).replace(new RegExp(`\\b(the )?${n}\\b`, "g"), "a hidden enemy");
+    const name = short(c.name), n = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    text = text.replace(new RegExp(`\\b(The|the) enemy ${n}\\b`, "g"), cap);
+    if (!mine.has(name)) text = text.replace(new RegExp(`(?<![Yy]our )\\b((?:[Tt]he )?)${n}\\b`, "g"), (m, the, off) => cap(the || (off === 0 || /[.!?]\s*$/.test(text.slice(0, off)) ? "A" : "a")));
   }
   return text;
 }
