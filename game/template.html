@@ -175,6 +175,7 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .rule b { font: 600 11px/1.2 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-text); display: block; margin-bottom: 2px; }
 .rule.off { color: var(--muted); }
 .acts { display: flex; flex-direction: column; gap: 7px; }
+.act.info { cursor: default; } .act.info.off { opacity: .55; }
 .act { display: grid; grid-template-columns: 1fr auto; gap: 1px 10px; text-align: left; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--gold-shade); background: var(--surface); }
 .act strong { font: 600 15px/1.2 var(--display); letter-spacing: .04em; }
 .act .cost { display: flex; gap: 3px; align-items: center; }
@@ -1836,6 +1837,14 @@ function renderBattle() {
   S.nudge = false;
 }
 
+// "Once a fight", unless the action's own text already says so; and how many uses are left once some are spent.
+function usesNote(a, c) {
+  if (!a.usesPerFight) return "";
+  const used = c.uses[a.name] || 0, said = /per fight|a fight/i.test(a.text);
+  if (used >= a.usesPerFight) return "";
+  if (used) return ` ${a.usesPerFight - used} use${a.usesPerFight - used === 1 ? "" : "s"} left.`;
+  return said ? "" : ` ${a.usesPerFight === 1 ? "Once" : a.usesPerFight + " times"} a fight.`;
+}
 function cardSheet(sh) {
   const c = byUid(sh.uid), st = S.st, g = step();
   if (c && c.side === 1 && E.isBlind(st, c)) return `<h2>A hidden enemy</h2><p class="rule">You can't see who this is, and you can't target it. It shows itself the first time it acts against one of your cards${st.sides[1].revealRound ? `, and every hidden enemy shows itself at the start of round ${st.sides[1].revealRound}` : ""}.</p>`;
@@ -1857,9 +1866,22 @@ function cardSheet(sh) {
         const want = g && g.action === a.name, off = why || (g && !want);
         return `<button class="act${want ? " focus" : ""}" data-act="action" data-k="${k}"${off ? " disabled" : ""}>
           <strong>${esc(a.name)}</strong><span class="cost" aria-label="${cost} action point${cost === 1 ? "" : "s"}">${'<i class="pip on"></i>'.repeat(cost)}</span>
-          <small>${cost > a.ap ? "Royal decree: costs 1 more this round. " : ""}${esc(a.text)}${a.usesPerFight ? ` ${a.usesPerFight === 1 ? "Once" : a.usesPerFight + " times"} a fight.` : ""}${why ? ` (${why}.)` : ""}</small></button>`;
+          <small>${cost > a.ap ? "Royal decree: costs 1 more this round. " : ""}${esc(a.text)}${usesNote(a, c)}${why ? ` (${why}.)` : ""}</small></button>`;
       }).join("")}</div>`;
     }
+  }
+  // Every other hero (the enemy's, or yours outside planning): what it can do, read-only, so you can plan around it.
+  else if (hero && !c.dead) {
+    const opts = E.options(st, c), sideAp = st.sides[c.side].ap;
+    acts = `<p class="rowlabel" style="margin:2px 0 0">${mine ? "Its actions" : `What it can do · the enemy has ${sideAp} action point${sideAp === 1 ? "" : "s"} this round`}</p>
+      <div class="acts">${c.actions.map((a, k) => {
+        const spent = a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight;
+        const reach = opts.some((x) => x.index === k), cost = E.apCost(st, c, a);
+        const note = E.isCharging(st, c) ? `Charging: ${esc(c.flags.charge.name)} strikes this round` : spent ? "Used up for this fight" : !reach ? "Nothing in reach right now" : "";
+        return `<div class="act info${note ? " off" : ""}">
+          <strong>${esc(a.name)}</strong><span class="cost" aria-label="${cost} action point${cost === 1 ? "" : "s"}">${'<i class="pip on"></i>'.repeat(cost)}</span>
+          <small>${esc(a.text)}${usesNote(a, c)}${note ? ` (${note}.)` : ""}</small></div>`;
+      }).join("")}</div>`;
   }
   const mk0 = mine && crown && S.phase === "plan" && !g ? markInfo() : null;
   const mineMark = mk0 && mk0.uid === c.uid ? mk0 : null;
