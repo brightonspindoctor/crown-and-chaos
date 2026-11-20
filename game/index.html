@@ -2363,7 +2363,26 @@ const RENOWN_CAP = 50, BELT = 2, START_GOLD = 50;
 const emptyLineup = () => ({ crown: "", heroes: ["", ""], front: ["", "", ""], items: ["", ""] });
 const fresh = () => ({ v: 1, nightSeen: false, tutorialDone: false, packOpened: false, gold: 0, heroes: {}, front: {}, items: {}, lineup: emptyLineup(), crowns: 0, wins: 0, losses: 0, draws: 0, dry: 0, tip: 0,
   lore: [], variants: [], art: {}, ownCrowns: ["gold"], wearing: "gold", spent: 0, levelSeen: 1 });
-function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); if (g.lineup?.items) g.lineup.items = g.lineup.items.slice(0, BELT); const out = Object.assign(fresh(), g); if (g.levelSeen == null) out.levelSeen = levelOf(repPoints(out)); if (g.repSeen == null) out.repSeen = repPoints(out); return out; } } catch (e) {} return fresh(); }
+// A save may name cards the game no longer has (renamed, removed, or edited by hand): drop them, so nothing
+// downstream meets a card it can't look up.
+function cleanSave(g) {
+  for (const [k, dict] of [["heroes", DATA.heroes], ["front", DATA.front], ["items", DATA.items]]) {
+    if (!g[k] || typeof g[k] !== "object") g[k] = {};
+    for (const id of Object.keys(g[k])) if (!dict[id] || !(g[k][id] > 0)) delete g[k][id];
+  }
+  const lu = g.lineup;
+  if (lu) {
+    if (lu.crown && !DATA.heroes[lu.crown]) lu.crown = "";
+    lu.heroes = (lu.heroes || ["", ""]).map((id) => (id && DATA.heroes[id] ? id : ""));
+    lu.front = (lu.front || [null, null, null]).map((id) => (id && DATA.front[id] ? id : null));
+    lu.items = (lu.items || []).filter((id) => DATA.items[id]);
+  }
+  const q = g.quest, known = (id) => !id || DATA.heroes[id] || DATA.front[id] || DATA.items[id];
+  if (q && !(q.lineup && [q.lineup.crown, ...(q.lineup.heroes || []), ...(q.lineup.front || []), ...(q.lineup.items || [])].every(known)
+    && (q.plan?.fights || []).every((f) => [f.lineup.crown, f.lineup.troops, ...(f.lineup.heroes || []), ...(f.lineup.front || [])].every(known)))) delete g.quest;
+  return g;
+}
+function load() { try { const g = JSON.parse(localStorage.getItem(SAVE_KEY)); if (g && g.v === 1) { cleanSave(g); if (g.crowns == null) g.crowns = (g.wins || 0) + (g.tutorialDone ? 1 : 0); if (g.lineup?.items) g.lineup.items = g.lineup.items.slice(0, BELT); const out = Object.assign(fresh(), g); if (g.levelSeen == null) out.levelSeen = levelOf(repPoints(out)); if (g.repSeen == null) out.repSeen = repPoints(out); return out; } } catch (e) {} return fresh(); }
 function save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) {} }
 let G = load();
 
@@ -2452,7 +2471,9 @@ function goldenPack() {
   const strong = Object.values(DATA.front).filter((f) => f.renown >= 3 && f.id !== "the-needle").map((f) => f.id);
   const front = [0, 1, 2].map(() => pick(strong));
   const items = [0, 1].map(() => pick(Object.values(DATA.items).filter((x) => x.rarity === (Math.random() < 0.25 ? "Legendary" : "Rare"))).id);
-  const all = Object.values(DATA.heroes).map((h) => h.id), fresh = all.filter((id) => !owned(id)), can = all.filter((id) => owned(id) < 3);
+  // Grendel and his Mother come together, so they only count while both are under three copies.
+  const room = (id) => (PAIR.includes(id) ? PAIR.every((x) => owned(x) < 3) : owned(id) < 3);
+  const all = Object.values(DATA.heroes).map((h) => h.id), fresh = all.filter((id) => !owned(id) && room(id)), can = all.filter(room);
   const h = (fresh.length ? pick(fresh) : can.length ? pick(can) : null);
   const heroes = !h ? ["gold:100"] : PAIR.includes(h) ? PAIR.slice() : [h];
   return [...front, ...items, ...heroes];
@@ -2662,7 +2683,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-20-78be6eb";
+const BUILD = "2026-11-20-a1f9731";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
