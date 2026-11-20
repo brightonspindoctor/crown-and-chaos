@@ -2658,7 +2658,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-20-229601a";
+const BUILD = "2026-11-20-980043d";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -4664,7 +4664,7 @@ function renderPage() {
 }
 // The front of the game: the cover art carries the title, with the controls beside it (desktop) or under it (phone).
 // The painting has no title on it, so the title stands beside it (desktop) or just under it (phone).
-const coverHtml = (inner) => `<div class="cover-screen"><img class="cover" src="img/cover.jpg" alt="Red Riding Hood in the forest, her boot on the wolf, with Baba Yaga's hut on hen's legs behind"><div class="cover-side"><h1 class="cover-title"><span class="ct-crown" aria-hidden="true">${CROWN_SVG}</span>Crown &amp; Chaos</h1>${inner}</div></div>`;
+const coverHtml = (inner) => `<div class="cover-screen"><img class="cover" src="img/cover.jpg" alt="Red Riding Hood in the forest, her boot on the wolf and a fallen crown at her feet, with Baba Yaga's hut on hen's legs behind"><div class="cover-side"><h1 class="cover-title"><span class="ct-crown" aria-hidden="true">${CROWN_SVG}</span>Crown &amp; Chaos</h1>${inner}</div></div>`;
 function homeHtml() {
   if (!G.packOpened) {
     return coverHtml(`<p class="lede">Heroes of folklore, painted by the old masters. Protect your Crown; take theirs.</p>

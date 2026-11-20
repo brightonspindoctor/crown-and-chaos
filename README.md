@@ -107,4 +107,4 @@ Progress (gold, cards, line-up) is saved in the player's browser only. The page 
 
 ## Cover art
 
-`design/cover-art.jpg` is the front of the game (shown on the home screen as `game/img/cover.jpg`, and behind the level-up screens): Red Riding Hood in the forest, her boot on the wolf, with Baba Yaga's hut on hen's legs behind. It carries no title, so the game sets "Crown & Chaos" beside or under it. Supplied by Jonny in November 2026. It is new artwork, not a public-domain painting, so the art manifest's checks don't cover it. **To do:** record who made it and the licence it is used under before it ships.
+`design/cover-art.jpg` is the front of the game (shown on the home screen as `game/img/cover.jpg`, and behind the level-up screens): Red Riding Hood in the forest, her boot on the wolf and a fallen crown at her feet, with Baba Yaga's hut on hen's legs behind. It carries no title, so the game sets "Crown & Chaos" beside or under it. Supplied by Jonny in November 2026. It is new artwork, not a public-domain painting, so the art manifest's checks don't cover it. **To do:** record who made it and the licence it is used under before it ships.

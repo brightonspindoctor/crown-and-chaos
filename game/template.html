@@ -1967,7 +1967,7 @@ function renderPage() {
 }
 // The front of the game: the cover art carries the title, with the controls beside it (desktop) or under it (phone).
 // The painting has no title on it, so the title stands beside it (desktop) or just under it (phone).
-const coverHtml = (inner) => `<div class="cover-screen"><img class="cover" src="img/cover.jpg" alt="Red Riding Hood in the forest, her boot on the wolf, with Baba Yaga's hut on hen's legs behind"><div class="cover-side"><h1 class="cover-title"><span class="ct-crown" aria-hidden="true">${CROWN_SVG}</span>Crown &amp; Chaos</h1>${inner}</div></div>`;
+const coverHtml = (inner) => `<div class="cover-screen"><img class="cover" src="img/cover.jpg" alt="Red Riding Hood in the forest, her boot on the wolf and a fallen crown at her feet, with Baba Yaga's hut on hen's legs behind"><div class="cover-side"><h1 class="cover-title"><span class="ct-crown" aria-hidden="true">${CROWN_SVG}</span>Crown &amp; Chaos</h1>${inner}</div></div>`;
 function homeHtml() {
   if (!G.packOpened) {
     return coverHtml(`<p class="lede">Heroes of folklore, painted by the old masters. Protect your Crown; take theirs.</p>
