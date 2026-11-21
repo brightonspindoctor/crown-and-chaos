@@ -360,9 +360,11 @@ export function speedOf(st, c) {
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
-  // Morgan's Bond: enemy Sovereigns have -1 Speed (one Morgan or two, it's still -1).
-  const fm = bondFactor(st, 1 - i);
-  if (fm && c.kind === "hero" && c.aspect === "Sovereign" && heroes(st, 1 - i).some((h) => h.id === "morgan-le-fay")) s -= fm;
+  // Morgan's Bond: every Sovereign on the board, hers and the enemy's, has -1 Speed (two Morgans still make -1).
+  if (c.kind === "hero" && c.aspect === "Sovereign") {
+    const fm = [0, 1].filter((j) => heroes(st, j).some((h) => h.id === "morgan-le-fay")).map((j) => bondFactor(st, j)).find((x) => x);
+    if (fm) s -= fm;
+  }
   // Winged sandals: your heroes have +1 Speed in rounds you don't hold the Fate token.
   if (c.kind === "hero" && st.fate !== i && crownIs(st, i, "perseus")) s += 1;
   // Growl: -1 Speed to every enemy card in the round after the Minotaur growls.
