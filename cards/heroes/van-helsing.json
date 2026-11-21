@@ -37,7 +37,8 @@
   ],
   "rules": [
     "Blocked by his crown passive: Victor returning a tale-mate, Friar Tuck returning front-rank cards, the Draught of the Cauldron, Vasilisa's crown passive, Red Riding Hood's bond, and a card swallowed by the Wolf coming back out.",
-    "From the crown his own Blood transfusion heals 2, not 3."
+    "From the crown his own Blood transfusion heals 2, not 3.",
+    "Bond Attack only counts for melee attacks, so his Bond doesn't add to his ranged attacks."
   ],
   "art": "van-helsing",
   "status": "reviewed",

@@ -24,6 +24,7 @@ export const ASSUMPTIONS = [
   "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
+  "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. Crown passives and damage bonuses are unaffected.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
   "A charged strike deals 6, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
   "Andvari's curse: if Poison, nightfall or a dead card killed Fafnir, a random enemy hero gets the 3 Poison.",
@@ -76,7 +77,7 @@ function makeHero(def, side, slot) {
     realm: def.realm, tale: def.tale, aspect: def.aspect, ranged: !!s.ranged, tags: def.tags || [],
     baseHealth: s.health, maxHealth: s.health, health: s.health,
     baseAtk: s.attack, baseGuard: s.guard, baseSpeed: s.speed,
-    atkPerm: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
+    atkPerm: 0, atkBond: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
     actions: def.actions.map((a) => ({ ...a })), uses: {},
     guardLeft: 0, roundGuard: 0, poison: 0, dead: false, removed: false,
     noGuard: false, noHeal: false, stoppedRound: -9, stopNow: false,
@@ -90,7 +91,7 @@ function makeFront(def, side, slot) {
     realm: def.realm || null, tale: def.tale || null, aspect: null, ranged: false,
     baseHealth: def.health, maxHealth: def.health, health: def.health,
     baseAtk: def.attack, baseGuard: def.guard, baseSpeed: def.speed ?? FRONT_SPEED,
-    atkPerm: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
+    atkPerm: 0, atkBond: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
     auto: def.auto, actions: [], uses: {},
     guardLeft: 0, roundGuard: 0, poison: 0, dead: false, removed: false,
     noGuard: false, noHeal: false, stoppedRound: -9, stopNow: false,
@@ -263,10 +264,13 @@ function bondFactor(st, i) {
 function hasBond(st, c) { return bondFactor(st, c.side) !== 0; }
 
 // ---------- derived stats ----------
-export function attackOf(st, c) {
-  let a = c.baseAtk + c.atkPerm + c.guardIntoAtk;
+// Attack from Bonds counts only for melee attacks (a ranged hero's Bond Attack never applies, nor does a melee
+// hero's on a ranged action such as Beowulf's Axe throw). opts.melee overrides the default, which is the card's own kind.
+export function attackOf(st, c, opts = {}) {
+  const melee = opts.melee ?? !c.ranged;
+  let a = c.baseAtk + c.atkPerm + (melee ? (c.atkBond || 0) + c.guardIntoAtk : 0);
   if (c.flags.harmless) return 0;
-  const f = bondFactor(st, c.side);
+  const f = melee ? bondFactor(st, c.side) : 0;
   if (c.kind === "hero" && f) {
     if (["renfield", "van-helsing"].includes(c.id)) a += f * countRealm(st, c, "Gothic");
     if (c.id === "rumpelstiltskin") a += f * countRealm(st, c, "Märchen");
@@ -289,7 +293,7 @@ export function attackOf(st, c) {
       else if (countRealm(st, c, "Hellas") > 0) a += f;
     }
   }
-  a = a * c.atkMult;
+  if (melee) a = a * c.atkMult;
   // Transfigure: Attack becomes 1. Aiaia: front-rank swine have 0 Attack.
   if (c.flags.transfigUntil >= st.round) a = Math.min(a, 1);
   if (c.flags.swineRound === st.round) a = 0;
@@ -711,22 +715,22 @@ function onDeath(st, t, src) {
     if (!f) continue;
     for (const h of heroes(st, side)) {
       const mine = side === i;
-      if (h.id === "beowulf" && t.aspect === "Beast") h.atkPerm += f;
+      if (h.id === "beowulf" && t.aspect === "Beast") h.atkBond += f;
       // The dragon's heart: any Beast's death gives Sigurd +1 Attack and +1 Speed.
-      if (h.id === "sigurd" && t.aspect === "Beast") { h.atkPerm += f; h.speedPerm += f; log(st, `Sigurd tastes the dragon's heart: +1 Attack, +1 Speed.`); }
+      if (h.id === "sigurd" && t.aspect === "Beast") { h.atkBond += f; h.speedPerm += f; log(st, `Sigurd tastes the dragon's heart: +1 Attack, +1 Speed.`); }
       if (!mine) continue;
       if (h.id === "maid-marian" && isRealm(st, t, "Albion") && !h.flags.marianDone) {
-        h.flags.marianDone = true; h.atkPerm += 2 * f; h.speedPerm += f;
+        h.flags.marianDone = true; h.atkBond += 2 * f; h.speedPerm += f;
       }
       if (h.id === "st-george") {
         if (t.aspect === "Beast" && !h.flags.georgeBeast) { h.flags.georgeBeast = true; h.guardIntoAtk += f * guardOf(st, h); if (f > 0) { h.noGuard = true; h.guardLeft = 0; log(st, `St George gives up his Guard: his Attack is now ${attackOf(st, h)}.`); } }
         if (t.aspect === "Healer" && !h.flags.georgeHealer) { h.flags.georgeHealer = true; h.atkMult = f > 0 ? 2 : 1; }
       }
-      if (h.id === "grendels-mother" && t.id === "grendel") { h.atkPerm += 3 * f; h.speedFixed = 3; }
+      if (h.id === "grendels-mother" && t.id === "grendel") { h.atkBond += 3 * f; h.speedFixed = 3; }
       if (h.id === "the-creature" && isRealm(st, t, "Gothic")) {
         h.flags.gothicDeaths = (h.flags.gothicDeaths || 0) + 1;
-        if (h.flags.gothicDeaths === 1) h.atkPerm += 2 * f;
-        if (h.flags.gothicDeaths === 2) { h.atkPerm += 2 * f; h.speedPerm += f; }
+        if (h.flags.gothicDeaths === 1) h.atkBond += 2 * f;
+        if (h.flags.gothicDeaths === 2) { h.atkBond += 2 * f; h.speedPerm += f; }
       }
       if (h.id === "dracula" && isRealm(st, t, "Gothic")) heal(st, h, h, 4 * f > 0 ? 4 : 0, { flat: true });
     }
@@ -908,7 +912,7 @@ export const ACTIONS = {
     "Skull fire": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, 3, { ranged: true }) },
     "Mortar ride": { t: "enemyNotCrown", go: (st, a, x) => { log(st, `Baba Yaga rides her mortar onto ${x.name}.`); kill(st, x, a); a.health += 2; } } },
   "beowulf": { "Arm-wrench": { t: "enemyMelee", go: (st, a, x) => { hit(st, a, x, attackOf(st, a)); x.atkPerm -= 2; } },
-    "Axe throw": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, attackOf(st, a), { ranged: true }) } },
+    "Axe throw": { t: "enemyAny", go: (st, a, x) => hit(st, a, x, attackOf(st, a, { melee: false }), { ranged: true }) } },
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
   "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
@@ -989,8 +993,8 @@ export const ACTIONS = {
     "The Pyre": { t: "none", go: (st, a) => { cards(st, 1 - a.side).forEach((c) => damage(st, a, c, 6, { attack: true })); damage(st, null, a, 8, { trueDamage: true }); } } },
   "the-dragon": { "Fire Breath": { t: "none", go: (st, a) => { for (const x of fireTargets(st, a)) hit(st, a, x, 2, { ranged: true }); } },
     "Tail Sweep": { t: "enemyMelee", go: (st, a, x) => { const n = neighbours(st, x)[0]; hit(st, a, x, 2); if (n) hit(st, a, n, 2); } } },
-  "the-huntsman": { "Stones in the belly": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, attackOf(st, a), { ranged: true }); if (!x.dead) x.speedFixed = 1; } } },
-  "the-little-mermaid": { "Sea magic": { t: "enemySpell", go: (st, a, x) => { damage(st, a, x, attackOf(st, a), { spell: true, attack: true, ranged: true }); applyHealthLoss(st, { name: "The knives", side: -1 }, a, 1, {}); } },
+  "the-huntsman": { "Stones in the belly": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, attackOf(st, a, { melee: false }), { ranged: true }); if (!x.dead) x.speedFixed = 1; } } },
+  "the-little-mermaid": { "Sea magic": { t: "enemySpell", go: (st, a, x) => { damage(st, a, x, attackOf(st, a, { melee: false }), { spell: true, attack: true, ranged: true }); applyHealthLoss(st, { name: "The knives", side: -1 }, a, 1, {}); } },
     "Saved from the wreck": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
   "the-princess": { "Mend": { t: "none", go: (st, a) => neighbours(st, a).forEach((n) => heal(st, a, n, 1)) },
     "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => { (a.flags.leashed ||= []).push(x.uid); stop(st, x, "Girdle Leash"); } } },

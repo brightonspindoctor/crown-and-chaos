@@ -37,5 +37,8 @@
     }
   ],
   "art": "the-huntsman",
-  "status": "reviewed"
+  "status": "reviewed",
+  "rules": [
+    "Bond Attack only counts for melee attacks, so his Bond doesn't add to his ranged attacks."
+  ]
 }

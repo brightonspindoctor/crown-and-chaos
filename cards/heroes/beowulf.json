@@ -43,5 +43,8 @@
     }
   ],
   "art": "beowulf",
-  "status": "reviewed"
+  "status": "reviewed",
+  "rules": [
+    "Bond Attack only counts for melee attacks, so it doesn't add to his Axe throw."
+  ]
 }

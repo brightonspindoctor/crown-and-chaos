@@ -39,6 +39,7 @@
   "art": "maid-marian",
   "status": "reviewed",
   "rules": [
-    "Halving applies after every bonus. Removal effects are not damage, so it doesn't stop them."
+    "Halving applies after every bonus. Removal effects are not damage, so it doesn't stop them.",
+    "Bond Attack only counts for melee attacks, so her Bond's +2 Attack doesn't add to her ranged attacks."
   ]
 }
