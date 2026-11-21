@@ -44,5 +44,8 @@
   ],
   "art": "the-dragon",
   "status": "reviewed",
-  "notes": "Actions come from the design-system card mock-up."
+  "notes": "Actions come from the design-system card mock-up.",
+  "rules": [
+    "Bonds help melee attacks only, so the +1 against Slayers doesn't add to ranged attacks or Fire Breath."
+  ]
 }

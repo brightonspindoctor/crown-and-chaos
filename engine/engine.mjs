@@ -24,7 +24,7 @@ export const ASSUMPTIONS = [
   "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
-  "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. Crown passives and damage bonuses are unaffected.",
+  "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. The same goes for the Dragon's Bond damage against Slayers. Crown passives are unaffected; Merlin's and Morgan's Bonds add to Spells and still do.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
   "A charged strike deals 6, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
   "Andvari's curse: if Poison, nightfall or a dead card killed Fafnir, a random enemy hero gets the 3 Poison.",
@@ -521,7 +521,8 @@ export function damage(st, src, target, amount, opts = {}) {
     if (crownIs(st, s, "the-wolf") && injured(t)) amt += 1;
     if (crownIs(st, s, "the-huntsman") && st.marks[`hunt${s}`] === t.uid) amt += 1;
     if (st.marks[`wanted${s}`] === t.uid) amt += 1;
-    if (f && heroes(st, s).some((h) => h.id === "the-dragon") && t.aspect === "Slayer") amt += f;
+    // Bonds help melee only: the Dragon's +1 against Slayers doesn't add to ranged attacks or spells (Fire Breath).
+    if (f && !opts.ranged && !opts.spell && heroes(st, s).some((h) => h.id === "the-dragon") && t.aspect === "Slayer") amt += f;
     if (src.flags.giantSword === st.round) { amt += 3; opts = { ...opts, ignoreGuard: true }; src.flags.giantSword = -1; }
     if (opts.ranged && crownIs(st, t.side, "grendels-mother") && t.kind === "hero") amt -= 2;
   }
