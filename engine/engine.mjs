@@ -517,7 +517,7 @@ export function damage(st, src, target, amount, opts = {}) {
   let amt = amount, saved = 0, guarded = 0;
   if (atk && src) {
     const s = src.side, f = bondFactor(st, s);
-    if (crownIs(st, s, "gretel") && ["Witch", "Beast", "Slayer"].includes(t.aspect)) amt += 2;
+    if (crownIs(st, s, "gretel") && ["Witch", "Beast", "Slayer"].includes(t.aspect)) amt += 1;
     if (crownIs(st, s, "the-wolf") && injured(t)) amt += 1;
     if (crownIs(st, s, "the-huntsman") && st.marks[`hunt${s}`] === t.uid) amt += 1;
     if (st.marks[`wanted${s}`] === t.uid) amt += 1;
@@ -975,7 +975,7 @@ export const ACTIONS = {
       swapCrown(st, foe, heir); log(st, `Loki slips the Crown from ${old.name} to ${heir.name}.`);
     } } },
   "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
-  "merlin": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+  "merlin": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Enchanted sleep": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Enchanted sleep") } },
   "morgan-le-fay": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Stolen scabbard": { t: "enemyHero", go: (st, a, x) => { x.noGuard = true; x.guardLeft = 0; x.noHeal = true; log(st, `${x.name} loses its Guard and healing.`); } } },
@@ -1428,7 +1428,7 @@ function valueOf(st, a, act, x) {
     case "Fair fight": return dmgValue(4, x) + (x && !x.flags.acted ? attackOf(st, x) : 0);
     case "Arm-wrench": return dmgValue(attackOf(st, a), x) + 4;
     case "Bite": return dmgValue(attackOf(st, a), x) * 1.4;
-    case "Hex": return dmgValue(3 + 1, x);
+    case "Hex": return dmgValue((a.id === "merlin" || a.id === "circe" ? 2 : 3) + 1, x);
     case "Sea magic": return a.health > 3 ? dmgValue(attackOf(st, a), x) - 0.5 : 0;
     case "Stones in the belly": return dmgValue(attackOf(st, a), x) + 2;
     case "Quarterstaff": return dmgValue(4, x) + 1;
