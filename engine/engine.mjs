@@ -24,7 +24,7 @@ export const ASSUMPTIONS = [
   "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
-  "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. The same goes for the Dragon's Bond damage against Slayers. Crown passives are unaffected; Merlin's and Morgan's Bonds add to Spells and still do.",
+  "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. The same goes for the Dragon's Bond damage against Slayers. Crown passives are unaffected; Merlin's and Morgan's Bonds add to their Spells against certain Aspects.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
   "A charged strike deals 6, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
   "Andvari's curse: if Poison, nightfall or a dead card killed Fafnir, a random enemy hero gets the 3 Poison.",
@@ -276,8 +276,6 @@ export function attackOf(st, c, opts = {}) {
     if (c.id === "rumpelstiltskin") a += f * countRealm(st, c, "Märchen");
     if (c.id === "the-huntsman") a += f * Math.min(2, countRealm(st, c, "Märchen"));
     if (c.id === "the-tin-soldier") a += f * countRealm(st, c, "Eventyr");
-    // Morgan's Bond also costs your King Arthur 1 Attack.
-    if (c.id === "king-arthur" && heroes(st, c.side).some((h) => h.id === "morgan-le-fay")) a -= f;
     if (c.id === "lancelot") {
       const mine = heroes(st, c.side);
       if (mine.some((h) => h.aspect === "Sovereign") && !mine.some((h) => h.aspect === "Healer")) a += f * 2;
@@ -357,8 +355,6 @@ export function speedOf(st, c) {
       if (src.id === "zmey-gorynych" && src.uid !== c.uid && c.kind === "hero" && isRealm(st, c, "Rus'")) s += f;
     }
     if (c.id === "rhiannon") s += f * countRealm(st, c, "Cymru");
-    // Morgan's Bond also costs your King Arthur 1 Speed.
-    if (c.id === "king-arthur" && heroes(st, i).some((h) => h.id === "morgan-le-fay")) s -= f;
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
@@ -529,9 +525,10 @@ export function damage(st, src, target, amount, opts = {}) {
   if (opts.spell && src) {
     const f = bondFactor(st, src.side);
     if (f) {
-      if (src.id === "merlin" && otherHeroes(st, src, (h) => isRealm(st, h, "Albion")).length) amt += f;
-      // Morgan's Bond: +1 to her Spells while you field King Arthur.
-      if (src.id === "morgan-le-fay" && heroes(st, src.side).some((h) => h.id === "king-arthur")) amt += f;
+      // Merlin's Bond: his Spells deal +1 to Beasts, Witches and Tricksters.
+      if (src.id === "merlin" && ["Beast", "Witch", "Trickster"].includes(t.aspect)) amt += f;
+      // Morgan's Bond: her Spells deal +1 to Sovereigns, Guardians and Slayers.
+      if (src.id === "morgan-le-fay" && ["Sovereign", "Guardian", "Slayer"].includes(t.aspect)) amt += f;
     }
   }
   amt = Math.max(0, amt);
@@ -977,7 +974,7 @@ export const ACTIONS = {
   "maid-marian": { "Fair fight": { t: "enemyHeroMelee", go: (st, a, x) => { hit(st, a, x, 4); if (!x.dead && !x.flags.acted) stop(st, x, "Fair fight"); } } },
   "merlin": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Enchanted sleep": { t: "enemyHero", go: (st, a, x) => stop(st, x, "Enchanted sleep") } },
-  "morgan-le-fay": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 3, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+  "morgan-le-fay": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Stolen scabbard": { t: "enemyHero", go: (st, a, x) => { x.noGuard = true; x.guardLeft = 0; x.noHeal = true; log(st, `${x.name} loses its Guard and healing.`); } } },
   "red-riding-hood": { "Cake and wine": { t: "ally", go: (st, a, x) => heal(st, a, x, 4) } },
   "renfield": { "The master is at hand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.guardCrownRound = st.round; } },
@@ -1428,7 +1425,7 @@ function valueOf(st, a, act, x) {
     case "Fair fight": return dmgValue(4, x) + (x && !x.flags.acted ? attackOf(st, x) : 0);
     case "Arm-wrench": return dmgValue(attackOf(st, a), x) + 4;
     case "Bite": return dmgValue(attackOf(st, a), x) * 1.4;
-    case "Hex": return dmgValue((a.id === "merlin" || a.id === "circe" ? 2 : 3) + 1, x);
+    case "Hex": return dmgValue(2 + ((a.id === "merlin" && x && ["Beast", "Witch", "Trickster"].includes(x.aspect)) || (a.id === "morgan-le-fay" && x && ["Sovereign", "Guardian", "Slayer"].includes(x.aspect)) ? 1 : 0), x);
     case "Sea magic": return a.health > 3 ? dmgValue(attackOf(st, a), x) - 0.5 : 0;
     case "Stones in the belly": return dmgValue(attackOf(st, a), x) + 2;
     case "Quarterstaff": return dmgValue(4, x) + 1;

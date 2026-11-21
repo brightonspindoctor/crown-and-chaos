@@ -479,7 +479,6 @@ img.crownicon { object-fit: contain; }
 .opt:disabled { opacity: .4; cursor: default; }
 .opt.realmed { border-left: 5px solid var(--realm); }
 .opt .rlm { color: var(--realm); font-weight: 600; }
-.opt .kin { display: inline-block; margin-left: 4px; font: 600 11px/1.4 var(--display); letter-spacing: .06em; text-transform: uppercase; color: #1a120c; background: var(--realm); border-radius: 99px; padding: 0 7px; vertical-align: 1px; }
 .card.realmed::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: -7px; height: 4px; border-radius: 2px; background: var(--realm); }
 .tag.realmed { border-color: var(--realm); color: var(--realm); }
 
@@ -2303,14 +2302,14 @@ function pickerSheet(sh) {
   const s = sh.slot, kind = slotKind(s), lu = G.lineup, cur = getSlot(lu, s);
   const src = { hero: G.heroes, front: { villager: Infinity, ...G.front }, item: G.items }[kind];
   const room = RENOWN_CAP - renownOf(lu) + (cur ? defOf(cur).renown : 0);
-  // Realms of the other heroes already in the line-up (not the one in this slot).
-  const others = ["crown", "h0", "h1"].filter((x) => x !== s).map((x) => getSlot(lu, x)).filter(Boolean).map((x) => defOf(x).realm);
-  const rows = Object.keys(src).sort((a, b) => defOf(a).renown - defOf(b).renown || defOf(a).name.localeCompare(defOf(b).name)).map((id) => {
+  // Heroes are grouped by realm (in the realm colour order), then by Renown; other cards by Renown.
+  const realmRank = (id) => { const k = Object.keys(REALM_TINT).indexOf(defOf(id).realm); return k < 0 ? 99 : k; };
+  const rows = Object.keys(src).sort((a, b) => (kind === "hero" ? realmRank(a) - realmRank(b) : 0) || defOf(a).renown - defOf(b).renown || defOf(a).name.localeCompare(defOf(b).name)).map((id) => {
     const d = defOf(id), left = owned(id) - usedIn(lu, id, s);
     const why = left <= 0 ? "Already in your line-up" : d.renown > room ? `Needs ${d.renown - room} more Renown` : id === "baba-yaga" && s !== "crown" ? "She will only wear the Crown" : "";
-    const hero = kind === "hero", kin = hero && !why && others.includes(d.realm);
+    const hero = kind === "hero";
     const sub = hero ? `${esc(d.aspect)} · <span class="rlm">${esc(d.realm)}</span> · Attack ${d.stats.attack}, Health ${d.stats.health}, Speed ${d.stats.speed}` : esc(kind === "front" ? `Speed ${d.speed}. ${d.auto}` : d.effect);
-    return `<button class="opt${hero ? " realmed" : ""}"${hero ? ` style="--realm:${realmTint(d.realm)}"` : ""} data-act="choose" data-id="${id}"${why ? " disabled" : ""}>${img(id)}<strong>${esc(d.name)}${left > 1 && left !== Infinity ? ` × ${left}` : ""}${kin ? `<span class="kin">Same realm</span>` : ""}</strong>
+    return `<button class="opt${hero ? " realmed" : ""}"${hero ? ` style="--realm:${realmTint(d.realm)}"` : ""} data-act="choose" data-id="${id}"${why ? " disabled" : ""}>${img(id)}<strong>${esc(d.name)}${left > 1 && left !== Infinity ? ` × ${left}` : ""}</strong>
       <small>${why ? esc(why) + ". " : ""}${sub}</small><span class="cost">${d.renown} Renown</span></button>`;
   });
   const title = s === "crown" ? "Who wears the Crown?" : kind === "hero" ? "Choose a hero" : kind === "front" ? "Choose a front-rank card" : "Choose an item";
