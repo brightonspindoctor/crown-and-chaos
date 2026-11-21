@@ -32,7 +32,7 @@
     {
       "name": "Bite",
       "ap": 3,
-      "text": "Attack an enemy hero in slot 2 or 3, ignoring cover, then heal equal to the damage dealt."
+      "text": "Attack an enemy hero in slot 2 or 3, ignoring cover, then heal equal to the damage dealt. Each hero can only be bitten once a fight."
     },
     {
       "name": "Turn",

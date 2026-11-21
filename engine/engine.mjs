@@ -927,7 +927,7 @@ export const ACTIONS = {
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
   "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
-    "Bite": { t: "enemyHero23", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
+    "Bite": { t: "enemyHero23", go: (st, a, x) => { x.flags.bitten = true; const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
       kill(st, x, a);
       const slot = [4, 5, 6].find((s) => !at(st, a.side, s));
@@ -1102,7 +1102,8 @@ function targetsForAll(st, a, act) {
     case "enemyHero": return STOPPERS.includes(act.name) ? eh.filter((c) => canBeStopped(st, c)) : eh;
     case "enemyHeroMelee": { const m = meleeTargets(st, a).filter((c) => c.kind === "hero"); return m.length ? m : []; }
     case "enemyHeroNotCrown": return eh.filter((c) => c.uid !== st.sides[foe].crownUid);
-    case "enemyHero23": return eh.filter((c) => c.slot === 2 || c.slot === 3);
+    // Bite can only bite each hero once a fight.
+    case "enemyHero23": return eh.filter((c) => (c.slot === 2 || c.slot === 3) && !(act.name === "Bite" && c.flags.bitten));
     case "enemyFront": return cards(st, foe).filter((c) => c.kind === "front");
     case "enemyFrontWeak2": return cards(st, foe).filter((c) => c.kind === "front" && c.health <= 2);
     case "enemyWeakNotCrown": return cards(st, foe).filter((c) => (c.kind === "front" || c.uid !== st.sides[foe].crownUid) && c.health <= 3 && !(c.kind === "hero" && c.uid === st.sides[foe].crownUid));
