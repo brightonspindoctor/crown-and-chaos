@@ -360,7 +360,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const st2 = game(lu("gretel"), lu("the-dragon"));
   const gr = card(st2, 0, "gretel"), g2 = gr.guardLeft;
   E.playRound(st2, [{ orders: [order(st2, 0, "gretel", "Hold court")] }, { orders: [] }]);
-  ok("Hold court: a ranged Crown gets no Guard", st2.log.some((l) => /holds court/.test(l)) && !st2.log.some((l) => /\+1 Guard this round/.test(l)), st2.log.slice(0, 6));
+  ok("Hold court: a ranged Crown gets the Guard too", st2.log.some((l) => l === "R1: Gretel has +1 Guard this round."), st2.log.slice(0, 6));
   ok("Hold court: a ranged Crown still gets the action point", st2.sides[0].ap === 5, st2.sides[0].ap);
   ok("Hold court: Baba Yaga doesn't have it", !has(game(lu("baba-yaga"), lu("the-dragon")), 0, "baba-yaga"));
   ok("Hold court: Robin's No Crown means no Hold court", !can(game(lu("robin-hood", ["little-john"]), lu("the-dragon")), 0, "robin-hood"));

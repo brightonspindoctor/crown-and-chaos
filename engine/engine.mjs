@@ -24,7 +24,7 @@ export const ASSUMPTIONS = [
   "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
-  "Hold court (every Crown but Baba Yaga; none under Robin's No Crown): 1 AP and the Crown's action. Resolves before Speed order, like Mirrored shield. +1 Guard that round unless the Crown's basic attack is ranged or it has a Spell (Growl and Dread can cancel it; St George's Bond never converts it; Blodeuwedd can't take it). +1 AP next round, never more than one; Galvanism adds on top. Stopped or cancelled, it's lost; Royal decree makes it cost 2.",
+  "Hold court (every Crown but Baba Yaga; none under Robin's No Crown): 1 AP and the Crown's action. Resolves before Speed order, like Mirrored shield. +1 Guard that round, ranged and magic Crowns included (Growl and Dread can cancel it; St George's Bond never converts it; Blodeuwedd can't take it). +1 AP next round, never more than one; Galvanism adds on top. Stopped or cancelled, it's lost; Royal decree makes it cost 2.",
   "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. The same goes for the Dragon's Bond damage against Slayers. Crown passives are unaffected; Merlin's and Morgan's Bonds add to their Spells against certain Aspects.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
   "A charged strike deals 6, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
@@ -72,9 +72,7 @@ export function makeRng(seed = Date.now()) {
 let UID = 0;
 // Hold court: every Crown's own action (Baba Yaga excepted; with Robin's No Crown there is no Crown to use it).
 export const HOLD_COURT = { name: "Hold court", ap: 1, court: true,
-  text: "Crown only. Acts first, before Speed order. +1 Guard this round (not for a Crown with a ranged or magic attack) and +1 action point next round." };
-// A Crown with a ranged basic attack or a Spell gets no Guard from Hold court.
-function courtGuards(c) { return !c.ranged && !c.actions.some((x) => ACTIONS[c.id]?.[x.name]?.t === "enemySpell"); }
+  text: "Crown only. Acts first, before Speed order. +1 Guard this round and +1 action point next round." };
 const isCourt = (st, c, act) => act && act.court && c.kind === "hero" && !st.sides[c.side].noCrown && st.sides[c.side].crownUid === c.uid && c.id !== "baba-yaga";
 
 function makeHero(def, side, slot) {
@@ -1302,11 +1300,9 @@ export function playRound(st, plans) {
     log(st, `${sideName(a.side)} ${a.name} holds court.`);
     ev(st, { t: "act", uid: a.uid, side: a.side, name: act.name, tgt: null });
     const before = snapStats(st);
-    if (courtGuards(a)) {
-      const g0 = guardOf(st, a); a.flags.courtGuardRound = st.round;
-      const gain = Math.max(0, guardOf(st, a) - g0); a.guardLeft += gain;
-      if (gain) log(st, `${a.name} has +1 Guard this round.`);
-    }
+    const g0 = guardOf(st, a); a.flags.courtGuardRound = st.round;
+    const gain = Math.max(0, guardOf(st, a) - g0); a.guardLeft += gain;
+    if (gain) log(st, `${a.name} has +1 Guard this round.`);
     st.sides[a.side].flags.courtApRound = st.round + 1;
     log(st, `${a.name} banks an action point for next round.`);
     diffStats(st, before, a);
@@ -1438,7 +1434,7 @@ function valueOf(st, a, act, x) {
   if (act.court) {
     // Worth it when the Crown has nothing better to do: a little Guard if it can be reached, and an action point banked.
     const reach = heroes(st, 1 - a.side).some((h) => h.ranged) || cards(st, 1 - a.side).some((c) => c.id === "longbowman");
-    return 0.9 + (courtGuards(a) && reach ? 0.6 : 0);
+    return 0.9 + (reach ? 0.6 : 0);
   }
   const foe = 1 - a.side;
   const ec = crownCard(st, foe);
