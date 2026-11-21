@@ -1923,6 +1923,7 @@ function cardSheet(sh) {
     else {
       const ap = apLeft(), opts = E.options(st, c);
       acts = `<div class="acts">${c.actions.map((a, k) => {
+        if (a.court && !crown) return ""; // Hold court is only for the hero wearing the Crown
         const o = opts.find((x) => x.index === k);
         const spent = a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight;
         const stopBlocked = !o && (a.name === "Girdle Leash" || E.STOPPERS.includes(a.name)) && E.heroes(st, 1).some((h) => !E.canBeStopped(st, h));
@@ -1940,6 +1941,7 @@ function cardSheet(sh) {
     const opts = E.options(st, c), sideAp = st.sides[c.side].ap;
     acts = `<p class="rowlabel" style="margin:2px 0 0">${mine ? "Its actions" : `What it can do · the enemy has ${sideAp} action point${sideAp === 1 ? "" : "s"} this round`}</p>
       <div class="acts">${c.actions.map((a, k) => {
+        if (a.court && !crown) return "";
         const spent = a.usesPerFight && (c.uses[a.name] || 0) >= a.usesPerFight;
         const reach = opts.some((x) => x.index === k), cost = E.apCost(st, c, a);
         const note = E.isCharging(st, c) ? `Charging: ${esc(c.flags.charge.name)} strikes this round` : spent ? "Used up for this fight" : !reach ? "Nothing in reach right now" : "";

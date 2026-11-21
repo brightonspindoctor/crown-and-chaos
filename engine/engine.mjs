@@ -24,6 +24,7 @@ export const ASSUMPTIONS = [
   "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
+  "Hold court (every Crown but Baba Yaga; none under Robin's No Crown): 1 AP and the Crown's action. Resolves before Speed order, like Mirrored shield. +1 Guard that round unless the Crown's basic attack is ranged or it has a Spell (Growl and Dread can cancel it; St George's Bond never converts it; Blodeuwedd can't take it). +1 AP next round, never more than one; Galvanism adds on top. Stopped or cancelled, it's lost; Royal decree makes it cost 2.",
   "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. The same goes for the Dragon's Bond damage against Slayers. Crown passives are unaffected; Merlin's and Morgan's Bonds add to their Spells against certain Aspects.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
   "A charged strike deals 6, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
@@ -69,6 +70,12 @@ export function makeRng(seed = Date.now()) {
 
 // ---------- setting up a fight ----------
 let UID = 0;
+// Hold court: every Crown's own action (Baba Yaga excepted; with Robin's No Crown there is no Crown to use it).
+export const HOLD_COURT = { name: "Hold court", ap: 1, court: true,
+  text: "Crown only. Acts first, before Speed order. +1 Guard this round (not for a Crown with a ranged or magic attack) and +1 action point next round." };
+// A Crown with a ranged basic attack or a Spell gets no Guard from Hold court.
+function courtGuards(c) { return !c.ranged && !c.actions.some((x) => ACTIONS[c.id]?.[x.name]?.t === "enemySpell"); }
+const isCourt = (st, c, act) => act && act.court && c.kind === "hero" && !st.sides[c.side].noCrown && st.sides[c.side].crownUid === c.uid && c.id !== "baba-yaga";
 
 function makeHero(def, side, slot) {
   const s = def.stats;
@@ -78,7 +85,7 @@ function makeHero(def, side, slot) {
     baseHealth: s.health, maxHealth: s.health, health: s.health,
     baseAtk: s.attack, baseGuard: s.guard, baseSpeed: s.speed,
     atkPerm: 0, atkBond: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
-    actions: def.actions.map((a) => ({ ...a })), uses: {},
+    actions: def.actions.map((a) => ({ ...a })).concat(def.id === "baba-yaga" ? [] : [{ ...HOLD_COURT }]), uses: {},
     guardLeft: 0, roundGuard: 0, poison: 0, dead: false, removed: false,
     noGuard: false, noHeal: false, stoppedRound: -9, stopNow: false,
     flags: {},
@@ -333,6 +340,8 @@ export function guardOf(st, c) {
   if (c.kind === "front" && crownIs(st, i, "polyphemus")) g += 1;
   // Winged sandals: your heroes have +1 Guard in rounds you hold the Fate token.
   if (c.kind === "hero" && st.fate === i && crownIs(st, i, "perseus")) g += 1;
+  // Hold court: +1 Guard for the round (added before the Guard-lowering effects below, which can cancel it).
+  if (c.flags.courtGuardRound === st.round) g += 1;
   // Growl: -1 Guard to every enemy card in the round after the Minotaur growls.
   if (st.sides[i].flags.growlRound === st.round) g -= 1;
   // Phalanx: a Hoplite has +1 Guard for each Hoplite next to it.
@@ -728,7 +737,7 @@ function onDeath(st, t, src) {
         h.flags.marianDone = true; h.atkBond += 2 * f; h.speedPerm += f;
       }
       if (h.id === "st-george") {
-        if (t.aspect === "Beast" && !h.flags.georgeBeast) { h.flags.georgeBeast = true; h.guardIntoAtk += f * guardOf(st, h); if (f > 0) { h.noGuard = true; h.guardLeft = 0; log(st, `St George gives up his Guard: his Attack is now ${attackOf(st, h)}.`); } }
+        if (t.aspect === "Beast" && !h.flags.georgeBeast) { h.flags.georgeBeast = true; h.guardIntoAtk += f * Math.max(0, guardOf(st, h) - (h.flags.courtGuardRound === st.round ? 1 : 0)); if (f > 0) { h.noGuard = true; h.guardLeft = 0; log(st, `St George gives up his Guard: his Attack is now ${attackOf(st, h)}.`); } }
         if (t.aspect === "Healer" && !h.flags.georgeHealer) { h.flags.georgeHealer = true; h.atkMult = f > 0 ? 2 : 1; }
       }
       if (h.id === "grendels-mother" && t.id === "grendel") { h.atkBond += 3 * f; h.speedFixed = 3; }
@@ -782,6 +791,8 @@ export function upkeep(st) {
   for (const i of [0, 1]) {
     // Galvanism: +1 action point for each of Victor's other living heroes, counted at upkeep.
     st.sides[i].ap = (st.sides[i].baseAp ?? BASE_AP) + (crownIs(st, i, "victor-frankenstein") ? heroes(st, i).filter((h) => h.id !== "victor-frankenstein").length : 0);
+    // Hold court last round: +1 action point (never more than one).
+    if (st.sides[i].flags.courtApRound === st.round) st.sides[i].ap += 1;
     st.sides[i].flags.itemApExtra = 0;
   }
   // Blodeuwedd's change at nightfall comes first
@@ -1078,6 +1089,7 @@ export const STOPPERS = ["Enchanted sleep", "Petrify", "Medusa's head"];
 // Targets for an action, for the planner and the UI.
 export function targetsFor(st, a, act) { return visibleTo(st, a.side, targetsForAll(st, a, act)); }
 function targetsForAll(st, a, act) {
+  if (act.court) return isCourt(st, a, act) ? [null] : [];
   const foe = 1 - a.side;
   const spec = ACTIONS[a.id]?.[act.name];
   const type = spec?.t ?? (a.ranged || act.text.includes("Ranged") ? "enemyAny" : "enemyMelee");
@@ -1233,6 +1245,7 @@ export function playRound(st, plans) {
       const a = cards(st, i).find((c) => c.uid === o.uid);
       if (!a || used.has(a.uid) || isCharging(st, a)) continue;
       const act = a.actions[o.index]; if (!act) continue;
+      if (act.court && !isCourt(st, a, act)) continue;
       const cost = apCost(st, a, act);
       if (cost > ap) continue;
       ap -= cost; used.add(a.uid);
@@ -1278,9 +1291,31 @@ export function playRound(st, plans) {
     if (o.actor.id === "perseus" && nm === "Mirrored shield") o.actor.flags.reflectRound = st.round;
     if (o.actor.id === "odysseus" && nm === "Nobody") o.actor.flags.nobodyRound = st.round;
   }
+  // Hold court isn't Speed dependent either: the Crown's Guard and next round's action point come before anyone acts.
+  for (const o of ords) {
+    if (o.item || o.auto || o.charge || o.cancelled || !o.actor || o.actor.stopNow || o.actor.dead || o.actor.removed) continue;
+    const a = o.actor, act = a.actions[o.index];
+    if (!act || !act.court) continue;
+    o.done = true;
+    if (!isCourt(st, a, act)) continue;
+    st.acting = a.uid;
+    log(st, `${sideName(a.side)} ${a.name} holds court.`);
+    ev(st, { t: "act", uid: a.uid, side: a.side, name: act.name, tgt: null });
+    const before = snapStats(st);
+    if (courtGuards(a)) {
+      const g0 = guardOf(st, a); a.flags.courtGuardRound = st.round;
+      const gain = Math.max(0, guardOf(st, a) - g0); a.guardLeft += gain;
+      if (gain) log(st, `${a.name} has +1 Guard this round.`);
+    }
+    st.sides[a.side].flags.courtApRound = st.round + 1;
+    log(st, `${a.name} banks an action point for next round.`);
+    diffStats(st, before, a);
+    a.flags.acted = true;
+  }
+  st.acting = null;
   let pending = ords.filter((o) => !o.item);
   while (pending.length && !st.over) {
-    pending = pending.filter((o) => o.actor && !o.actor.dead && !o.actor.removed);
+    pending = pending.filter((o) => !o.done && o.actor && !o.actor.dead && !o.actor.removed);
     if (!pending.length) break;
     pending.sort((p, q) => speedOf(st, q.actor) - speedOf(st, p.actor) ||
       (p.side === st.fate ? -1 : 0) - (q.side === st.fate ? -1 : 0) || p.actor.slot - q.actor.slot);
@@ -1400,6 +1435,11 @@ export function botPlan(st, i, rng = st.rng, noise = 0.35) {
 }
 
 function valueOf(st, a, act, x) {
+  if (act.court) {
+    // Worth it when the Crown has nothing better to do: a little Guard if it can be reached, and an action point banked.
+    const reach = heroes(st, 1 - a.side).some((h) => h.ranged) || cards(st, 1 - a.side).some((c) => c.id === "longbowman");
+    return 0.9 + (courtGuards(a) && reach ? 0.6 : 0);
+  }
   const foe = 1 - a.side;
   const ec = crownCard(st, foe);
   const name = act.name;

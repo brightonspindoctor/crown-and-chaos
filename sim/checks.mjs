@@ -343,5 +343,30 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.applyCarry(st2, 0, next.health);
   ok("Carry: the next fight starts with St George on 2 Health", card(st2, 0, "st-george").health === 2, card(st2, 0, "st-george").health);
 }
+{ // Hold court: Crown only, acts first, +1 Guard for a melee Crown, +1 AP next round, never stacking
+  const has = (st, i, id) => card(st, i, id).actions.some((a) => a.name === "Hold court");
+  const can = (st, i, id) => E.options(st, card(st, i, id)).some((o) => o.action.name === "Hold court");
+  const st = game(lu("dracula", ["renfield", "van-helsing"]), lu("the-dragon"));
+  const d = card(st, 0, "dracula"), g0 = d.guardLeft;
+  ok("Hold court: the Crown can hold court", can(st, 0, "dracula"));
+  ok("Hold court: a hero not wearing the Crown can't", !can(st, 0, "renfield"));
+  E.playRound(st, [{ orders: [order(st, 0, "dracula", "Hold court")] }, { orders: [] }]);
+  ok("Hold court: a melee Crown has +1 Guard that round", st.log.some((l) => l === "R1: Dracula has +1 Guard this round."), st.log.slice(0, 6));
+  ok("Hold court: +1 action point next round", st.sides[0].ap === 5, st.sides[0].ap);
+  E.playRound(st, [{ orders: [order(st, 0, "dracula", "Hold court")] }, { orders: [] }]);
+  ok("Hold court: holding court again still gives 5, not 6", st.sides[0].ap === 5, st.sides[0].ap);
+  E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  ok("Hold court: back to 4 after a round without it", st.sides[0].ap === 4, st.sides[0].ap);
+  const st2 = game(lu("gretel"), lu("the-dragon"));
+  const gr = card(st2, 0, "gretel"), g2 = gr.guardLeft;
+  E.playRound(st2, [{ orders: [order(st2, 0, "gretel", "Hold court")] }, { orders: [] }]);
+  ok("Hold court: a ranged Crown gets no Guard", st2.log.some((l) => /holds court/.test(l)) && !st2.log.some((l) => /\+1 Guard this round/.test(l)), st2.log.slice(0, 6));
+  ok("Hold court: a ranged Crown still gets the action point", st2.sides[0].ap === 5, st2.sides[0].ap);
+  ok("Hold court: Baba Yaga doesn't have it", !has(game(lu("baba-yaga"), lu("the-dragon")), 0, "baba-yaga"));
+  ok("Hold court: Robin's No Crown means no Hold court", !can(game(lu("robin-hood", ["little-john"]), lu("the-dragon")), 0, "robin-hood"));
+  const st3 = game(lu("victor-frankenstein", ["the-creature", "the-bride"]), lu("the-dragon"));
+  E.playRound(st3, [{ orders: [order(st3, 0, "victor-frankenstein", "Hold court")] }, { orders: [] }]);
+  ok("Hold court: Victor's Galvanism adds on top (4 + 2 + 1)", st3.sides[0].ap === 7, st3.sides[0].ap);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);
