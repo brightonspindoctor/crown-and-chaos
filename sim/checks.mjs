@@ -134,13 +134,12 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st2, [{ orders: [order(st2, 0, "odysseus", "Nobody")] }, { orders: [order(st2, 1, "robin-hood", "Attack", o)] }]);
   ok("Nobody: Robin's arrow misses even though Robin is faster, and Robin takes 1", o.health === o0 && st2.log.some((l) => l.includes("Odysseus deals 1 to Red Robin Hood")), [o.health, r.health]);
 }
-{ // Polyphemus: Crown buffs the front rank; Bond turns against Tricksters; the boulder slows
+{ // Polyphemus: Crown buffs the front rank; Bond speeds other Hellas heroes; the boulder slows
   const st = game(lu("polyphemus", ["circe"], ["knight"]), lu("merlin"));
   const k = card(st, 0, "knight");
   ok("Shepherd of the cave: Knight on 4 Health and 2 Guard", k.health === 4 && k.guardLeft === 2, [k.health, k.guardLeft]);
-  ok("Son of Poseidon: Attack 5 with Circe", E.attackOf(st, card(st, 0, "polyphemus")) === 5);
-  const st2 = game(lu("polyphemus", ["circe"]), lu("robin-hood"));
-  ok("Attack 3 against an enemy Trickster", E.attackOf(st2, card(st2, 0, "polyphemus")) === 3);
+  ok("Son of Poseidon: Circe has +1 Speed (3 + 1)", E.speedOf(st, card(st, 0, "circe")) === 4, E.speedOf(st, card(st, 0, "circe")));
+  ok("Son of Poseidon: Polyphemus's own Attack and Speed are unchanged", E.attackOf(st, card(st, 0, "polyphemus")) === 4 && E.speedOf(st, card(st, 0, "polyphemus")) === 1);
   const st3 = game(lu("polyphemus"), lu("merlin"));
   const m = card(st3, 1, "merlin");
   E.playRound(st3, [{ orders: [order(st3, 0, "polyphemus", "Hurl the boulder", m)] }, { orders: [] }]);

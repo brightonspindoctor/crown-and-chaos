@@ -7,7 +7,7 @@
   "aspect": "Beast",
   "tags": [],
   "stats": {
-    "health": 10,
+    "health": 9,
     "attack": 4,
     "ranged": false,
     "guard": 0,
@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Son of Poseidon",
-    "text": "+1 Attack while another Hellas hero of yours lives. While an enemy Trickster is on the board, -1 Attack instead."
+    "text": "Your other Hellas heroes have +1 Speed."
   },
   "actions": [
     {

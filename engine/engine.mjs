@@ -290,11 +290,6 @@ export function attackOf(st, c, opts = {}) {
   if (c.kind === "hero" && f) {
     // Gorgon's bane: +1 Attack for each Beast on the board, either side.
     if (c.id === "perseus") a += f * allCards(st).filter((x) => x.kind === "hero" && x.aspect === "Beast").length;
-    // Son of Poseidon: +1 with another Hellas hero alive; -1 instead while an enemy Trickster lives.
-    if (c.id === "polyphemus") {
-      if (heroes(st, 1 - c.side).some((h) => h.aspect === "Trickster")) a -= f;
-      else if (countRealm(st, c, "Hellas") > 0) a += f;
-    }
   }
   if (melee) a = a * c.atkMult;
   // Transfigure: Attack becomes 1. Aiaia: front-rank swine have 0 Attack.
@@ -360,6 +355,8 @@ export function speedOf(st, c) {
       if (src.id === "baba-yaga" && src.uid !== c.uid && c.kind === "hero") s -= f;
       // Zmey's Bond: your other Rus' heroes have +1 Speed.
       if (src.id === "zmey-gorynych" && src.uid !== c.uid && c.kind === "hero" && isRealm(st, c, "Rus'")) s += f;
+      // Polyphemus's Bond: your other Hellas heroes have +1 Speed.
+      if (src.id === "polyphemus" && src.uid !== c.uid && c.kind === "hero" && isRealm(st, c, "Hellas")) s += f;
       // Merlin's Bond: your Sovereigns have +1 Speed.
       if (src.id === "merlin" && src.uid !== c.uid && c.kind === "hero" && c.aspect === "Sovereign") s += f;
     }
@@ -650,7 +647,7 @@ function applyHealthLoss(st, src, t, amt, opts = {}) {
   ev(st, { t: "hit", src: uidOf(src), item: src?.item, tgt: t.uid, dmg: amt, hp: Math.max(0, t.health),
     style: opts._style || (opts.nightfall ? "night" : src?.name === "Poison" ? "poison" : "effect"),
     guarded: opts._guarded || 0, saved: opts._saved || 0 });
-  if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, st.fate === src.side ? 2 : 1, { flat: true });
+  if (src && opts.attack && src.kind === "hero" && crownIs(st, src.side, "dracula")) heal(st, null, src, 1, { flat: true });
   if (t.health <= 0) kill(st, t, src);
   return amt;
 }
@@ -930,7 +927,7 @@ export const ACTIONS = {
   "blodeuwedd": { "Oak, broom and meadowsweet": { t: "none", go: (st, a) => { for (const h of heroes(st, a.side)) if (h.uid !== a.uid) h.guardLeft += 2; } } },
   "bran-the-blessed": { "Cauldron of rebirth": { t: "deadFront", go: (st, a, x) => { if (noCheating(st)) return; revive(st, x, x.maxHealth); log(st, `${x.name} rises from the Cauldron.`); revived(st, x); } } },
   "dracula": { "Claw": STD,
-    "Bite": { t: "enemyHero23", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d + (d > 0 && st.fate === a.side ? 1 : 0)); } },
+    "Bite": { t: "enemyHero23", go: (st, a, x) => { const d = hit(st, a, x, attackOf(st, a)); heal(st, a, a, d); } },
     "Turn": { t: "enemyWeakNotCrown", go: (st, a, x) => {
       kill(st, x, a);
       const slot = [4, 5, 6].find((s) => !at(st, a.side, s));

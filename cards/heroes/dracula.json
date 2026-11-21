@@ -17,7 +17,7 @@
   "renown": 17,
   "crownPassive": {
     "name": "Vampire court",
-    "text": "All your heroes heal 1 whenever their attacks damage a card, or 2 in rounds when you hold the Fate token."
+    "text": "All your heroes heal 1 whenever their attacks damage a card."
   },
   "bond": {
     "name": "Master",
@@ -32,7 +32,7 @@
     {
       "name": "Bite",
       "ap": 3,
-      "text": "Attack an enemy hero in slot 2 or 3, ignoring cover, then heal equal to the damage dealt, +1 in rounds when you hold the Fate token."
+      "text": "Attack an enemy hero in slot 2 or 3, ignoring cover, then heal equal to the damage dealt."
     },
     {
       "name": "Turn",
