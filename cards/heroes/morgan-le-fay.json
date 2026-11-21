@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Bane of Camelot",
-    "text": "Her Spells deal +1 to Sovereigns, Guardians and Slayers."
+    "text": "Her Spells deal +1 to Sovereigns, Guardians and Slayers, and enemy Sovereigns have -1 Speed."
   },
   "actions": [
     {

@@ -353,11 +353,16 @@ export function speedOf(st, c) {
       if (src.id === "baba-yaga" && src.uid !== c.uid && c.kind === "hero") s -= f;
       // Zmey's Bond: your other Rus' heroes have +1 Speed.
       if (src.id === "zmey-gorynych" && src.uid !== c.uid && c.kind === "hero" && isRealm(st, c, "Rus'")) s += f;
+      // Merlin's Bond: your Sovereigns have +1 Speed.
+      if (src.id === "merlin" && src.uid !== c.uid && c.kind === "hero" && c.aspect === "Sovereign") s += f;
     }
     if (c.id === "rhiannon") s += f * countRealm(st, c, "Cymru");
     if (c.id === "the-bride" && gothicBeast(st, c)) s += f;
   }
   if (crownIs(st, 1 - i, "the-creature") && c.kind === "hero") s -= 1;
+  // Morgan's Bond: enemy Sovereigns have -1 Speed (one Morgan or two, it's still -1).
+  const fm = bondFactor(st, 1 - i);
+  if (fm && c.kind === "hero" && c.aspect === "Sovereign" && heroes(st, 1 - i).some((h) => h.id === "morgan-le-fay")) s -= fm;
   // Winged sandals: your heroes have +1 Speed in rounds you don't hold the Fate token.
   if (c.kind === "hero" && st.fate !== i && crownIs(st, i, "perseus")) s += 1;
   // Growl: -1 Speed to every enemy card in the round after the Minotaur growls.
