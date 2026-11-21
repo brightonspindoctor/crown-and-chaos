@@ -643,6 +643,7 @@ img.crownicon { object-fit: contain; }
 .fc-body { background: var(--paper); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; line-height: 1.22; }
 .fc-body .ty { font-style: italic; color: var(--card-muted); }
 .fc-body .cr { background: #dde2ea; border: 1px solid var(--ultramarine); border-radius: 4px; padding: 4px 6px; }
+.fc-body .ru { border-left: 3px solid var(--gold-shade); padding-left: 6px; }
 .fc-body b { font: 600 10px/1.3 var(--display); letter-spacing: .08em; text-transform: uppercase; }
 .fc-body .a b { font-size: 11.5px; letter-spacing: .03em; text-transform: none; }
 .fc-body .pip { width: 9px; height: 9px; vertical-align: -1px; margin-left: 1px; }
@@ -2683,7 +2684,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-20-bab4956";
+const BUILD = "2026-11-21-e96ca11";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -4509,6 +4510,11 @@ function slotHtml(v, side, slot) {
   return `<div class="card slot" aria-hidden="true" data-side="${side}" data-slot="${slot}"></div>`;
 }
 
+// A hero's extra rules (for example Blodeuwedd's Owl at dusk). "Name: text" shows the name as the label.
+function ruleParts(r) {
+  const m = /^([A-Z][^:.]{1,28}):\s+(.*)$/.exec(r);
+  return m ? { name: m[1], text: m[2][0].toUpperCase() + m[2].slice(1) } : { name: "Rule", text: r };
+}
 // The full card, as it is printed: used when a pack is opened and in the collection.
 function fullCard(id, o = {}) {
   const d = defOf(id), kind = kindOf(id), a = artInfo(id, true, o.key), v = o.key && variantOf(o.key);
@@ -4518,6 +4524,7 @@ function fullCard(id, o = {}) {
     body = `<span class="ty">${esc(d.aspect)}${d.stats.ranged ? " · Ranged" : ""}</span>
       <span class="cr"><b>Crown passive</b><br>${esc(d.crownPassive.text)}</span>
       <span><b>Bond</b><br>${esc(d.bond.text)}</span>
+      ${(d.rules || []).map((r) => { const x = ruleParts(r); return `<span class="ru"><b>${esc(x.name)}</b><br>${esc(x.text)}</span>`; }).join("")}
       ${d.actions.map((x) => `<span class="a"><b>${esc(x.name)}</b> ${pips(x.ap)}${x.usesPerFight ? ` <i>${x.usesPerFight === 1 ? "once" : x.usesPerFight + " times"} a fight</i>` : ""}<br>${esc(x.text)}</span>`).join("")}`;
     foot = `<span>Attack ${d.stats.attack}</span><span>Guard ${d.stats.guard}</span><span>Health ${d.stats.health}</span>`;
   } else if (kind === "front") {
@@ -4642,7 +4649,8 @@ function cardSheet(sh) {
   const mineMark = mk0 && mk0.uid === c.uid ? mk0 : null;
   const rules = hero
     ? `${mineMark ? "" : `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>`}
-       <p class="rule"><b>Bond · works in any slot</b>${esc(def.bond?.text || "None")}</p>`
+       <p class="rule"><b>Bond · works in any slot</b>${esc(def.bond?.text || "None")}</p>
+       ${(def.rules || []).map((r) => { const x = ruleParts(r); return `<p class="rule"><b>${esc(x.name)}</b>${esc(x.text)}</p>`; }).join("")}`
     : `<p class="rule"><b>Front rank · acts on its own every round, at Speed ${E.speedOf(st, c)}</b>${esc(c.auto || "")}</p>`;
   return `<div class="sheet" role="dialog" aria-label="${esc(c.name)}">
     ${g && g.action ? `<p class="hint">${g.say}</p>` : ""}
