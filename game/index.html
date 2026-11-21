@@ -577,6 +577,11 @@ img.crownicon { object-fit: contain; }
 .opt small { grid-column: 2; font-size: 14px; color: var(--muted); line-height: 1.2; }
 .opt .cost { grid-row: 1 / 3; grid-column: 3; font: 700 14px/1 var(--display); color: var(--gold-text); white-space: nowrap; text-align: right; }
 .opt:disabled { opacity: .4; cursor: default; }
+.opt.realmed { border-left: 5px solid var(--realm); }
+.opt .rlm { color: var(--realm); font-weight: 600; }
+.opt .kin { display: inline-block; margin-left: 4px; font: 600 11px/1.4 var(--display); letter-spacing: .06em; text-transform: uppercase; color: #1a120c; background: var(--realm); border-radius: 99px; padding: 0 7px; vertical-align: 1px; }
+.card.realmed::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: -7px; height: 4px; border-radius: 2px; background: var(--realm); }
+.tag.realmed { border-color: var(--realm); color: var(--realm); }
 
 /* shop */
 .shop-pack { display: flex; gap: 16px; align-items: center; }
@@ -643,6 +648,7 @@ img.crownicon { object-fit: contain; }
 .fc-body { background: var(--paper); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; line-height: 1.22; }
 .fc-body .ty { font-style: italic; color: var(--card-muted); }
 .fc-body .cr { background: #dde2ea; border: 1px solid var(--ultramarine); border-radius: 4px; padding: 4px 6px; }
+.fc-body .ru { border-left: 3px solid var(--gold-shade); padding-left: 6px; }
 .fc-body b { font: 600 10px/1.3 var(--display); letter-spacing: .08em; text-transform: uppercase; }
 .fc-body .a b { font-size: 11.5px; letter-spacing: .03em; text-transform: none; }
 .fc-body .pip { width: 9px; height: 9px; vertical-align: -1px; margin-left: 1px; }
@@ -2683,7 +2689,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-20-bab4956";
+const BUILD = "2026-11-21-e96ca11";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -4509,6 +4515,11 @@ function slotHtml(v, side, slot) {
   return `<div class="card slot" aria-hidden="true" data-side="${side}" data-slot="${slot}"></div>`;
 }
 
+// A hero's extra rules (for example Blodeuwedd's Owl at dusk). "Name: text" shows the name as the label.
+function ruleParts(r) {
+  const m = /^([A-Z][^:.]{1,28}):\s+(.*)$/.exec(r);
+  return m ? { name: m[1], text: m[2][0].toUpperCase() + m[2].slice(1) } : { name: "Rule", text: r };
+}
 // The full card, as it is printed: used when a pack is opened and in the collection.
 function fullCard(id, o = {}) {
   const d = defOf(id), kind = kindOf(id), a = artInfo(id, true, o.key), v = o.key && variantOf(o.key);
@@ -4518,6 +4529,7 @@ function fullCard(id, o = {}) {
     body = `<span class="ty">${esc(d.aspect)}${d.stats.ranged ? " · Ranged" : ""}</span>
       <span class="cr"><b>Crown passive</b><br>${esc(d.crownPassive.text)}</span>
       <span><b>Bond</b><br>${esc(d.bond.text)}</span>
+      ${(d.rules || []).map((r) => { const x = ruleParts(r); return `<span class="ru"><b>${esc(x.name)}</b><br>${esc(x.text)}</span>`; }).join("")}
       ${d.actions.map((x) => `<span class="a"><b>${esc(x.name)}</b> ${pips(x.ap)}${x.usesPerFight ? ` <i>${x.usesPerFight === 1 ? "once" : x.usesPerFight + " times"} a fight</i>` : ""}<br>${esc(x.text)}</span>`).join("")}`;
     foot = `<span>Attack ${d.stats.attack}</span><span>Guard ${d.stats.guard}</span><span>Health ${d.stats.health}</span>`;
   } else if (kind === "front") {
@@ -4642,7 +4654,8 @@ function cardSheet(sh) {
   const mineMark = mk0 && mk0.uid === c.uid ? mk0 : null;
   const rules = hero
     ? `${mineMark ? "" : `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>`}
-       <p class="rule"><b>Bond · works in any slot</b>${esc(def.bond?.text || "None")}</p>`
+       <p class="rule"><b>Bond · works in any slot</b>${esc(def.bond?.text || "None")}</p>
+       ${(def.rules || []).map((r) => { const x = ruleParts(r); return `<p class="rule"><b>${esc(x.name)}</b>${esc(x.text)}</p>`; }).join("")}`
     : `<p class="rule"><b>Front rank · acts on its own every round, at Speed ${E.speedOf(st, c)}</b>${esc(c.auto || "")}</p>`;
   return `<div class="sheet" role="dialog" aria-label="${esc(c.name)}">
     ${g && g.action ? `<p class="hint">${g.say}</p>` : ""}
@@ -4957,11 +4970,12 @@ function formationHtml() {
   const slot = (s, label) => {
     const id = s === "f2" && kos ? "the-needle" : getSlot(lu, s), glow = (f === "crown" && s === "crown") || (f === "front" && s[0] === "f") || (f === "belt" && s[0] === "i");
     if (s === "f2" && kos) return staticCard("the-needle", { cls: ["off"], attrs: `data-act="detail" data-id="the-needle"` });
-    if (id) return staticCard(id, { cls: glow ? ["focus"] : [], attrs: `data-act="slot" data-slot="${s}"`, crown: s === "crown" });
+    const tint = id && kindOf(id) === "hero" ? realmTint(defOf(id).realm) : null;
+    if (id) return staticCard(id, { cls: [...(glow ? ["focus"] : []), ...(tint ? ["realmed"] : [])], attrs: `data-act="slot" data-slot="${s}"${tint ? ` style="--realm:${tint}"` : ""}`, crown: s === "crown" });
     return `<button class="card slot pick${glow ? " focus" : ""}" data-act="slot" data-slot="${s}" aria-label="Empty ${label} slot. Choose a card"><b>+</b>${label}</button>`;
   };
   const hs = [lu.crown, ...lu.heroes].filter(Boolean).map((id) => DATA.heroes[id]);
-  const tally = (key) => Object.entries(hs.reduce((m, h) => ((m[h[key]] = (m[h[key]] || 0) + 1), m), {})).filter(([, n]) => n > 1).map(([k, n]) => `<span class="tag">${esc(k)} × ${n}</span>`).join("");
+  const tally = (key) => Object.entries(hs.reduce((m, h) => ((m[h[key]] = (m[h[key]] || 0) + 1), m), {})).filter(([, n]) => n > 1).map(([k, n]) => key === "realm" ? `<span class="tag realmed" style="--realm:${realmTint(k)}">${esc(k)} × ${n}</span>` : `<span class="tag">${esc(k)} × ${n}</span>`).join("");
   const bonds = hs.length ? `${lu.crown ? `<p class="rule"><b>Crown passive · ${esc(DATA.heroes[lu.crown].name)}</b>${esc(DATA.heroes[lu.crown].crownPassive.text)}</p>` : ""}
     ${hs.map((h) => `<p class="rule"><b>Bond · ${esc(h.name)}</b>${esc(h.bond.text)}</p>`).join("")}
     <div class="tags">${tally("tale")}${tally("realm")}</div>` : `<p class="rule off">Choose your heroes to see their Crown passive and Bonds here.</p>`;
@@ -4982,16 +4996,23 @@ function formationHtml() {
       <div class="row"><button class="btn quiet" data-act="autofill">Fill it for me</button><button class="btn quiet" data-act="clear">Clear</button></div>
       <button class="btn big${f === "fight" && !bad.length ? " focus" : ""}" data-act="fight"${bad.length ? " disabled" : ""}>Fight</button></div></div></div>`;
 }
+// A bright touch of colour per realm, so heroes from the same realm stand out when building a line-up.
+const REALM_TINT = { Albion: "#5b8ee6", Cymru: "#45b36b", Gothic: "#a66ad6", "Rus'": "#e0573f", Hellas: "#e3913f",
+  Geatland: "#c4a06a", Norse: "#dfe6ee", "Märchen": "#b5bd45", Eventyr: "#3dbcc4" };
+const realmTint = (realm) => REALM_TINT[realm] || "#d9b763";
 function pickerSheet(sh) {
   const s = sh.slot, kind = slotKind(s), lu = G.lineup, cur = getSlot(lu, s);
   const src = { hero: G.heroes, front: { villager: Infinity, ...G.front }, item: G.items }[kind];
   const room = RENOWN_CAP - renownOf(lu) + (cur ? defOf(cur).renown : 0);
+  // Realms of the other heroes already in the line-up (not the one in this slot).
+  const others = ["crown", "h0", "h1"].filter((x) => x !== s).map((x) => getSlot(lu, x)).filter(Boolean).map((x) => defOf(x).realm);
   const rows = Object.keys(src).sort((a, b) => defOf(a).renown - defOf(b).renown || defOf(a).name.localeCompare(defOf(b).name)).map((id) => {
     const d = defOf(id), left = owned(id) - usedIn(lu, id, s);
     const why = left <= 0 ? "Already in your line-up" : d.renown > room ? `Needs ${d.renown - room} more Renown` : id === "baba-yaga" && s !== "crown" ? "She will only wear the Crown" : "";
-    const sub = kind === "hero" ? `${d.aspect} · ${d.realm} · Attack ${d.stats.attack}, Health ${d.stats.health}, Speed ${d.stats.speed}` : kind === "front" ? `Speed ${d.speed}. ${d.auto}` : d.effect;
-    return `<button class="opt" data-act="choose" data-id="${id}"${why ? " disabled" : ""}>${img(id)}<strong>${esc(d.name)}${left > 1 && left !== Infinity ? ` × ${left}` : ""}</strong>
-      <small>${why ? esc(why) + ". " : ""}${esc(sub)}</small><span class="cost">${d.renown} Renown</span></button>`;
+    const hero = kind === "hero", kin = hero && !why && others.includes(d.realm);
+    const sub = hero ? `${esc(d.aspect)} · <span class="rlm">${esc(d.realm)}</span> · Attack ${d.stats.attack}, Health ${d.stats.health}, Speed ${d.stats.speed}` : esc(kind === "front" ? `Speed ${d.speed}. ${d.auto}` : d.effect);
+    return `<button class="opt${hero ? " realmed" : ""}"${hero ? ` style="--realm:${realmTint(d.realm)}"` : ""} data-act="choose" data-id="${id}"${why ? " disabled" : ""}>${img(id)}<strong>${esc(d.name)}${left > 1 && left !== Infinity ? ` × ${left}` : ""}${kin ? `<span class="kin">Same realm</span>` : ""}</strong>
+      <small>${why ? esc(why) + ". " : ""}${sub}</small><span class="cost">${d.renown} Renown</span></button>`;
   });
   const title = s === "crown" ? "Who wears the Crown?" : kind === "hero" ? "Choose a hero" : kind === "front" ? "Choose a front-rank card" : "Choose an item";
   return `<div class="sheet" role="dialog" aria-label="${title}"><div class="top"><div><h2>${title}</h2><p class="kind">${room} Renown to spend on this slot</p></div><button class="x" data-act="close" aria-label="Close">×</button></div>
