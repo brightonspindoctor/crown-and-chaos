@@ -3,10 +3,10 @@
   "id": "berserker",
   "name": "Berserker",
   "health": 3,
-  "attack": 2,
+  "attack": 1,
   "guard": 0,
   "speed": 2,
-  "renown": 4,
+  "renown": 3,
   "auto": "Attacks the card opposite and one enemy card next to it.",
   "art": "berserker"
 }
