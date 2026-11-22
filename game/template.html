@@ -478,6 +478,11 @@ img.crownicon { object-fit: contain; }
 .opt .cost { grid-row: 1 / 3; grid-column: 3; font: 700 14px/1 var(--display); color: var(--gold-text); white-space: nowrap; text-align: right; }
 .opt:disabled { opacity: .4; cursor: default; }
 .opt.realmed { border-left: 5px solid var(--realm); }
+.ak { white-space: nowrap; font-weight: 600; }
+.ak svg { width: 1em; height: 1em; vertical-align: -.12em; margin-right: 2px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.ak.magic svg, .atk.magic svg { fill: currentColor; stroke: none; }
+.ak.melee { color: #cfc5b4; } .ak.ranged { color: #7fae6a; } .ak.magic { color: #a98be0; }
+.fc .ak.melee { color: #8a4f25; } .fc .ak.ranged { color: #3f6b2c; } .fc .ak.magic { color: #5e3d9a; }
 .opt .rlm { color: var(--realm); font-weight: 600; }
 .card.realmed::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: -7px; height: 4px; border-radius: 2px; background: var(--realm); }
 .tag.realmed { border-color: var(--realm); color: var(--realm); }
@@ -1211,6 +1216,17 @@ const emptyPlan = () => ({ orders: [], items: [], hunt: null, rumpel: null });
 const CROWN_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18l1.5-10-5.5 4-5-7-5 7-5.5-4zM3 19.5h18V21H3z"/></svg>`;
 const SWORD_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 2.5 6 10M4.5 8.5l3 3M5 11l-2.5 2.5"/></svg>`;
 const BOW_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2c6 0 11 5 11 11M3 2l11 11M2 14 9 7M9 7H6.5M9 7v2.5"/></svg>`;
+const MAGIC_SVG = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 9.4 6.6 14.5 8 9.4 9.4 8 14.5 6.6 9.4 1.5 8 6.6 6.6Z"/></svg>`;
+// How a card attacks: "melee", "ranged" or "magic" (heroes whose damage comes from Spells), or "none" (front-rank cards that don't attack).
+const RANGED_FRONT = new Set(["longbowman", "crossbowman"]), NO_ATTACK_FRONT = new Set(["leshy", "grandmother", "monk", "the-needle"]);
+function attackKind(id) {
+  const k = kindOf(id), d = defOf(id);
+  if (k === "hero") return d.actions.some((a) => /\bSpell\b/.test(a.text)) ? "magic" : d.stats.ranged ? "ranged" : "melee";
+  if (k === "front") return RANGED_FRONT.has(id) ? "ranged" : NO_ATTACK_FRONT.has(id) ? "none" : "melee";
+  return "none";
+}
+const KIND_LABEL = { melee: "Melee", ranged: "Ranged", magic: "Magic", none: "No attack" };
+const KIND_SVG = { melee: SWORD_SVG, ranged: BOW_SVG, magic: MAGIC_SVG, none: "" };
 // Artwork. A card shows its own painting unless the player has chosen a variant they own; enemy cards always show their own.
 const variantOf = (key) => (VARIANTS[key.split("--")[1]] || []).find((v) => v.key === key);
 const artKey = (id, mine = true) => { const k = mine && G.art[id]; return k && G.variants.includes(k) && variantOf(k) ? k : ""; };
@@ -1744,7 +1760,7 @@ function cardShell(o) {
     ${o.crown ? `<span class="crownmark" title="Wears the Crown">${CROWN_SVG}</span>` : o.count ? `<span class="count">${o.count}</span>` : ""}
     <span class="nm">${esc(short(o.name))}</span>
     <span class="art">${img(o.id, !o.theirs)}${o.overlay || ""}</span>
-    <span class="stats">${o.kind === "item" ? `<em>${esc(o.rarity)} item</em>` : `<span class="atk">${o.ranged ? BOW_SVG : SWORD_SVG}${o.atk}</span>
+    <span class="stats">${o.kind === "item" ? `<em>${esc(o.rarity)} item</em>` : `<span class="atk ${o.ak || "melee"}" title="${KIND_LABEL[o.ak || "melee"]} attack">${KIND_SVG[o.ak || "melee"]}${o.atk}</span>
       ${o.guard > 0 ? `<span class="grd" title="Guard"><b>${o.guard}</b></span>` : ""}
       <span class="hp${o.hurt ? " hurt" : ""}" title="Health">${o.hp}</span>`}</span>
     ${o.floats || ""}</button>`;
@@ -1753,8 +1769,8 @@ function cardShell(o) {
 function staticCard(id, o = {}) {
   const d = defOf(id), kind = kindOf(id), s = kind === "hero" ? d.stats : d;
   return cardShell({ cls: ["card", kind, ...(o.cls || [])], attrs: o.attrs || "", kind, id, name: d.name, spd: s.speed, crown: o.crown, count: o.count,
-    atk: s.attack, ranged: s.ranged, guard: s.guard, hp: s.health, rarity: d.rarity,
-    label: `${d.name}${o.crown ? ", wearing the Crown" : ""}${d.renown != null ? `, ${d.renown} Renown` : ""}${o.count ? `, ${o.count}` : ""}` });
+    atk: s.attack, ak: attackKind(id), guard: s.guard, hp: s.health, rarity: d.rarity,
+    label: `${d.name}${kind !== "item" ? `, ${KIND_LABEL[attackKind(id)]}` : ""}${o.crown ? ", wearing the Crown" : ""}${d.renown != null ? `, ${d.renown} Renown` : ""}${o.count ? `, ${o.count}` : ""}` });
 }
 function battleCard(c, v, opts = {}) {
   const side = c.side, mine = side === 0, g = step();
@@ -1794,7 +1810,7 @@ function battleCard(c, v, opts = {}) {
     : S.phase === "plan" && c.kind === "hero" && byUid(c.uid) && E.isCharging(S.st, byUid(c.uid)) ? `<span class="badge">Charging</span>`
     : c.poison ? `<span class="badge">Poison ${c.poison}</span>` : "";
   return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}" data-side="${side}" data-slot="${c.slot}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown, theirs: !mine,
-    atk: c.atk, ranged: c.ranged, guard: c.guard, hp: opts.fallen ? 0 : c.health, hurt: c.health < c.maxHealth, overlay, floats,
+    atk: c.atk, ak: c.ranged && attackKind(c.id) === "melee" ? "ranged" : attackKind(c.id), guard: c.guard, hp: opts.fallen ? 0 : c.health, hurt: c.health < c.maxHealth, overlay, floats,
     label: `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}, Speed ${c.spd}${c.kind === "hero" ? "" : ", acts on its own"}` });
 }
 // The wooden horse: an enemy Odysseus Crown hides his side's other cards in round 1.
@@ -1824,14 +1840,14 @@ function fullCard(id, o = {}) {
   const pips = (n) => '<i class="pip on"></i>'.repeat(n);
   let body = "", foot = "";
   if (kind === "hero") {
-    body = `<span class="ty">${esc(d.aspect)}${d.stats.ranged ? " · Ranged" : ""}</span>
+    body = `<span class="ty">${esc(d.aspect)} · <span class="ak ${attackKind(id)}">${KIND_SVG[attackKind(id)]}${KIND_LABEL[attackKind(id)]}</span></span>
       <span class="cr"><b>Crown passive</b><br>${esc(d.crownPassive.text)}</span>
       <span><b>Bond</b><br>${esc(d.bond.text)}</span>
       ${(d.rules || []).map((r) => { const x = ruleParts(r); return `<span class="ru"><b>${esc(x.name)}</b><br>${esc(x.text)}</span>`; }).join("")}
       ${d.actions.map((x) => `<span class="a"><b>${esc(x.name)}</b> ${pips(x.ap)}${x.usesPerFight ? ` <i>${x.usesPerFight === 1 ? "once" : x.usesPerFight + " times"} a fight</i>` : ""}<br>${esc(x.text)}</span>`).join("")}`;
     foot = `<span>Attack ${d.stats.attack}</span><span>Guard ${d.stats.guard}</span><span>Health ${d.stats.health}</span>`;
   } else if (kind === "front") {
-    body = `<span class="ty">Front rank · acts on its own every round, at Speed ${d.speed}</span><span>${esc(d.auto)}</span><span class="ty">Used up if it dies in a fight.</span>`;
+    body = `<span class="ty">Front rank · <span class="ak ${attackKind(id)}">${attackKind(id) === "none" ? "" : KIND_SVG[attackKind(id)]}${KIND_LABEL[attackKind(id)]}</span> · acts on its own every round, at Speed ${d.speed}</span><span>${esc(d.auto)}</span><span class="ty">Used up if it dies in a fight.</span>`;
     foot = `<span>Attack ${d.attack}</span><span>Guard ${d.guard}</span><span>Health ${d.health}</span>`;
   } else {
     body = `<span class="ty">${esc(d.rarity)} item · single use</span><span>${esc(d.effect)}</span><span class="ty">Costs 1 action point and acts before any card.</span>`;
@@ -1961,7 +1977,7 @@ function cardSheet(sh) {
     ${g && g.action ? `<p class="hint">${g.say}</p>` : ""}
     <div class="top">${ART[c.id] ? `<img class="pic" src="${artSrc(c.id, mine)}" alt="">` : ""}
       <div><h2>${esc(c.name)}</h2>
-        <p class="kind">${mine ? "Yours" : "Enemy"} · ${hero ? `${esc(def.aspect)} of ${esc(def.realm)}${c.ranged ? " · ranged" : ""}` : "front rank"}</p>
+        <p class="kind">${mine ? "Yours" : "Enemy"} · ${hero ? `${esc(def.aspect)} of ${esc(def.realm)}` : "front rank"} · <span class="ak ${attackKind(c.id)}">${attackKind(c.id) === "none" ? "" : KIND_SVG[attackKind(c.id)]}${KIND_LABEL[attackKind(c.id)]}</span></p>
         <p class="nums"><span>Health <b>${c.health}/${c.maxHealth}</b></span><span>Attack <b>${E.attackOf(st, c)}</b></span><span>Guard <b>${E.guardOf(st, c)}</b></span>${hero ? `<span>Speed <b>${E.speedOf(st, c)}</b></span>` : ""}</p>
         <p class="credit">${creditOf(c.id, mine)}</p></div>
       ${g ? "" : `<button class="x" data-act="close" aria-label="Close">×</button>`}</div>
@@ -2310,7 +2326,7 @@ function pickerSheet(sh) {
     const d = defOf(id), left = owned(id) - usedIn(lu, id, s);
     const why = left <= 0 ? "Already in your line-up" : d.renown > room ? `Needs ${d.renown - room} more Renown` : id === "baba-yaga" && s !== "crown" ? "She will only wear the Crown" : "";
     const hero = kind === "hero";
-    const sub = hero ? `${esc(d.aspect)} · <span class="rlm">${esc(d.realm)}</span> · Attack ${d.stats.attack}, Health ${d.stats.health}, Speed ${d.stats.speed}` : esc(kind === "front" ? `Speed ${d.speed}. ${d.auto}` : d.effect);
+    const sub = hero ? `${esc(d.aspect)} · <span class="rlm">${esc(d.realm)}</span> · <span class="ak ${attackKind(id)}">${KIND_SVG[attackKind(id)]}${KIND_LABEL[attackKind(id)]}</span> · Attack ${d.stats.attack}, Health ${d.stats.health}, Speed ${d.stats.speed}` : (kind === "front" ? `<span class="ak ${attackKind(id)}">${attackKind(id) === "none" ? "" : KIND_SVG[attackKind(id)]}${KIND_LABEL[attackKind(id)]}</span> · ${esc(`Speed ${d.speed}. ${d.auto}`)}` : esc(d.effect));
     return `<button class="opt${hero ? " realmed" : ""}"${hero ? ` style="--realm:${realmTint(d.realm)}"` : ""} data-act="choose" data-id="${id}"${why ? " disabled" : ""}>${img(id)}<strong>${esc(d.name)}${left > 1 && left !== Infinity ? ` × ${left}` : ""}</strong>
       <small>${why ? esc(why) + ". " : ""}${sub}</small><span class="cost">${d.renown} Renown</span></button>`;
   });
