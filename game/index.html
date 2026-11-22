@@ -2011,7 +2011,7 @@ function playRound(st, plans) {
     o.done = true;
     if (!isCourt(st, a, act)) continue;
     st.acting = a.uid;
-    log(st, `${sideName(a.side)} ${a.name} holds court.`);
+    log(st, `${sideName(a.side)} ${a.name} uses Hold court.`);
     ev(st, { t: "act", uid: a.uid, side: a.side, name: act.name, tgt: null });
     const before = snapStats(st);
     const g0 = guardOf(st, a); a.flags.courtGuardRound = st.round;
@@ -2731,7 +2731,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-21-3ad7d4a";
+const BUILD = "2026-11-22-2e8bba4";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;

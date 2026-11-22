@@ -1476,7 +1476,7 @@ function playRound(st, plans) {
     o.done = true;
     if (!isCourt(st, a, act)) continue;
     st.acting = a.uid;
-    log(st, `${sideName(a.side)} ${a.name} holds court.`);
+    log(st, `${sideName(a.side)} ${a.name} uses Hold court.`);
     ev(st, { t: "act", uid: a.uid, side: a.side, name: act.name, tgt: null });
     const before = snapStats(st);
     const g0 = guardOf(st, a); a.flags.courtGuardRound = st.round;
