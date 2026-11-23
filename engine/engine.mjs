@@ -680,9 +680,12 @@ function onDeath(st, t, src) {
     // Athenian tribute: each enemy front-rank death heals your heroes 1.
     const minos = crownIs(st, s, "king-minos") ? crownCard(st, s) : null;
     if (minos) for (const h of heroes(st, s)) heal(st, minos, h, 1);
-    // Lord of the Labyrinth: each enemy front-rank death heals your Beast heroes 1.
+    // Lord of the Labyrinth: each enemy front-rank death heals your Beast heroes 1, and Minos himself 3.
     const lord = heroes(st, s).find((h) => h.id === "king-minos");
-    if (lord && bondFactor(st, s) > 0) for (const h of heroes(st, s)) if (h.aspect === "Beast") heal(st, lord, h, 1);
+    if (lord && bondFactor(st, s) > 0) {
+      for (const h of heroes(st, s)) if (h.aspect === "Beast") heal(st, lord, h, 1);
+      heal(st, lord, lord, 3);
+    }
     return;
   }
   if (t.kind !== "hero") return;
@@ -1018,7 +1021,8 @@ export const ACTIONS = {
     "Saved from the wreck": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
   "the-princess": { "Mend": { t: "none", go: (st, a) => neighbours(st, a).forEach((n) => heal(st, a, n, 1)) },
     "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => { (a.flags.leashed ||= []).push(x.uid); stop(st, x, "Girdle Leash"); } } },
-  "the-snow-queen": { "Shard of the mirror": { t: "enemyHero", go: (st, a, x) => { x.flags.shardRound = st.round; x.flags.sharded = true; } } },
+  "the-snow-queen": { "Frozen kiss": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
+    "Shard of the mirror": { t: "enemyHero", go: (st, a, x) => { x.flags.shardRound = st.round; x.flags.sharded = true; } } },
   "the-tin-soldier": { "Steadfast stand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.steadfastRound = st.round; } } },
   "the-wolf": { "Shortcut": { t: "none", go: (st, a) => { st.sides[a.side].flags.shortcutUntil = st.round + 2; log(st, "The Wolf knows a shortcut: your heroes have +1 Speed for 3 rounds."); } },
     "Swallow whole": { t: "enemyWolf", go: (st, a, x) => {
@@ -1061,6 +1065,12 @@ function hit(st, a, x, amount, opts = {}) {
 }
 
 function standardAttack(st, a, x) {
+  if (a.id === "the-snow-queen") {
+    // Two strikes at the card she attacks, each for her Attack (Guard applies to each).
+    const per = attackOf(st, a);
+    for (let k = 0; k < 2 && !x.dead; k++) hit(st, a, x, per, { ranged: a.ranged });
+    return;
+  }
   if (a.id === "zmey-gorynych") {
     // Each head strikes for his Attack. Every head is its own hit, so Guard, Vulnerable and damage bonuses
     // apply to each one.
@@ -1463,6 +1473,7 @@ function valueOf(st, a, act, x) {
         const per = attackOf(st, a);
         return crownIs(st, a.side, "zmey-gorynych") ? 5 * per * 1.2 : 3 * dmgValue(per, x);
       }
+      if (a.id === "the-snow-queen") return 2 * dmgValue(attackOf(st, a), x);
       return dmgValue(attackOf(st, a), x);
     case "Pestle": return dmgValue(5, x);
     case "Skull fire": return dmgValue(3, x);
@@ -1476,6 +1487,7 @@ function valueOf(st, a, act, x) {
     case "Fair fight": return dmgValue(4, x) + (x && !x.flags.acted ? attackOf(st, x) : 0);
     case "Arm-wrench": return dmgValue(attackOf(st, a), x) + 4;
     case "Bite": return dmgValue(attackOf(st, a), x) * 1.4;
+    case "Frozen kiss": return dmgValue(2, x);
     case "Hex": return dmgValue(2 + ((a.id === "merlin" && x && ["Beast", "Witch", "Trickster"].includes(x.aspect)) || (a.id === "morgan-le-fay" && x && ["Sovereign", "Guardian", "Slayer"].includes(x.aspect)) ? 1 : 0), x);
     case "Sea magic": return a.health > 3 ? dmgValue(attackOf(st, a), x) - 0.5 : 0;
     case "Stones in the belly": return dmgValue(attackOf(st, a), x) + 2;

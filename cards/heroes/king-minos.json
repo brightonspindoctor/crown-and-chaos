@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Lord of the Labyrinth",
-    "text": "Each time an enemy front-rank card dies, each of your Beast heroes heals 1."
+    "text": "Each time an enemy front-rank card dies, each of your Beast heroes heals 1 and King Minos heals 3."
   },
   "actions": [
     {

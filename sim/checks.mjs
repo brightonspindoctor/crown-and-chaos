@@ -159,7 +159,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const mn = card(st, 0, "king-minos"), mt = card(st, 0, "the-minotaur");
   mn.health -= 4; mt.health -= 5;
   E.kill(st, card(st, 1, "villager"), mt);
-  ok("Minos heals 1 and the Minotaur heals 1 + 1", mn.maxHealth - mn.health === 3 && mt.maxHealth - mt.health === 3, [mn.health, mt.health]);
+  ok("Minos heals 1 + 3 and the Minotaur heals 1 + 1", mn.maxHealth - mn.health === 0 && mt.maxHealth - mt.health === 3, [mn.health, mt.health]);
   const st2 = game(lu("king-minos"), lu("merlin"));
   E.playRound(st2, [{ orders: [order(st2, 0, "king-minos", "Royal decree")] }, { orders: [] }]);
   const me = card(st2, 1, "merlin"), hex = me.actions.find((a) => a.name === "Hex");
@@ -394,6 +394,16 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Labyrinth: two enemy cards are stopped this round", lost.length === 2 && lost.every((c) => c.stopNow), lost.map((c) => c.name));
   const mn = card(st, 0, "king-minos"), lab = mn.actions.find((a) => a.name === "Labyrinth");
   ok("Labyrinth: once a fight", !E.options(st, mn).some((o) => o.action === lab));
+}
+{ // The Snow Queen strikes twice; Frozen kiss is a 2 Spell ignoring Guard
+  const st = game(lu("the-dragon", ["the-snow-queen", "merlin"], ["villager", "villager", "villager"]), lu("renfield", [], ["knight", "knight", "knight"]));
+  const g = card(st, 1, "renfield"), h0 = g.health;
+  E.playRound(st, [{ orders: [order(st, 0, "the-snow-queen", "Frozen kiss", g)] }, { orders: [] }]);
+  ok("Frozen kiss: 2 to Renfield through his Guard", h0 - g.health === 2, [h0, g.health]);
+  const st2 = game(lu("the-dragon", ["the-snow-queen", "merlin"]), lu("the-wolf"));
+  const q2 = card(st2, 0, "the-snow-queen"), w = card(st2, 1, "the-wolf"), w0 = w.health;
+  E.playRound(st2, [{ orders: [order(st2, 0, "the-snow-queen", "Attack", w)] }, { orders: [] }]);
+  ok("The Snow Queen's Attack strikes twice for 1", w0 - w.health === 2, [w0, w.health, st2.log.filter((l) => /Snow Queen/.test(l))]);
 }
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

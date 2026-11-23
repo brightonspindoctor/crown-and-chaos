@@ -651,7 +651,7 @@ function makeFX(A) {
   // Which effect an attack gets: by the action being taken, then by who is acting. Anything else uses the hit's style.
   const ACTION_FX = {
     "Fire Breath": "fire", "Skull fire": "fire", "The Pyre": "pyre", "Into the oven": "oven",
-    "Hex": "hex", "Sea magic": "wave", "Drag under": "drown", "Excalibur": "holy", "Strike": "lightning",
+    "Hex": "hex", "Frozen kiss": "ice", "Sea magic": "wave", "Drag under": "drown", "Excalibur": "holy", "Strike": "lightning",
     "Lance Charge": "charge", "Champion's charge": "charge", "Betrayal": "charge",
     "Pestle": "smash", "Arm-wrench": "smash", "Break their spirit": "smash",
     "Bite": "bite", "Claw": "claws", "Tail Sweep": "sweep", "Rampage": "sweep", "Quarterstaff": "sweep",

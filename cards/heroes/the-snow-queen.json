@@ -8,7 +8,7 @@
   "tags": [],
   "stats": {
     "health": 9,
-    "attack": 3,
+    "attack": 1,
     "ranged": false,
     "guard": 1,
     "speed": 4
@@ -27,7 +27,12 @@
     {
       "name": "Attack",
       "ap": 1,
-      "text": "Standard attack: damage equal to Attack."
+      "text": "Two strikes at the card, each for her Attack."
+    },
+    {
+      "name": "Frozen kiss",
+      "ap": 2,
+      "text": "A Spell for 2 on any enemy card, ignoring Guard."
     },
     {
       "name": "Shard of the mirror",
