@@ -365,7 +365,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Hold court: Robin's No Crown means no Hold court", !can(game(lu("robin-hood", ["little-john"]), lu("the-dragon")), 0, "robin-hood"));
   const st3 = game(lu("victor-frankenstein", ["the-creature", "the-bride"]), lu("the-dragon"));
   E.playRound(st3, [{ orders: [order(st3, 0, "victor-frankenstein", "Hold court")] }, { orders: [] }]);
-  ok("Hold court: Victor's Galvanism adds on top (4 + 2 + 1)", st3.sides[0].ap === 7, st3.sides[0].ap);
+  ok("Hold court: Victor's Galvanism adds on top (4 + 1 + 1)", st3.sides[0].ap === 6, st3.sides[0].ap);
 }
 { // Bite: each hero can only be bitten once a fight
   const st = game(lu("dracula", ["renfield", "van-helsing"], ["villager", "villager", "villager"]), lu("the-dragon", ["the-wolf", "the-huntsman"]));
@@ -375,6 +375,17 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st, [{ orders: [order(st, 0, "dracula", "Bite", wolf)] }, { orders: [] }]);
   ok("Bite: the Wolf can't be bitten a second time", !wolf.dead && !E.targetsFor(st, dr, bite).some((c) => c.uid === wolf.uid) || wolf.dead, E.targetsFor(st, dr, bite).map((c) => c.name));
   ok("Bite: the Huntsman still can be", E.targetsFor(st, dr, bite).some((c) => c.id === "the-huntsman"));
+}
+{ // Galvanism is a flat +1; the Shard of the mirror can target each hero once
+  const st = game(lu("victor-frankenstein"), lu("the-dragon"));
+  E.playRound(st, [{ orders: [] }, { orders: [] }]);
+  ok("Galvanism: a lone Victor still gets 5 AP", st.sides[0].ap === 5, st.sides[0].ap);
+  const st2 = game(lu("the-snow-queen"), lu("the-dragon", ["the-wolf", "the-huntsman"]));
+  const q = card(st2, 0, "the-snow-queen"), shard = q.actions.find((a) => a.name === "Shard of the mirror"), wolf = card(st2, 1, "the-wolf");
+  E.playRound(st2, [{ orders: [order(st2, 0, "the-snow-queen", "Shard of the mirror", wolf)] }, { orders: [] }]);
+  const t = E.targetsFor(st2, q, shard);
+  ok("Shard: the Wolf can't be targeted again", !t.some((c) => c.uid === wolf.uid), t.map((c) => c.name));
+  ok("Shard: other heroes still can", t.some((c) => c.id === "the-huntsman"));
 }
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

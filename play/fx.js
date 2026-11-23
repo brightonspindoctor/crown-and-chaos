@@ -658,7 +658,7 @@ function makeFX(A) {
     "Whirlwind": "whirl", "Split the Arrow": "goldarrow", "Stones in the belly": "stone",
     "Hurl the boulder": "boulder", "Gore": "gore", "Gram from the pit": "gram", "Dragon fire": "dragonfire", "Mistletoe": "mistletoe",
   };
-  const CARD_FX = { "berserker": "sweep", "the-snow-queen": "ice", "gwydion": "hex", "the-bride": "lightning", "baba-yaga": "fire" };
+  const CARD_FX = { "berserker": "sweep", "the-snow-queen": "ice", "gwydion": "hex", "the-bride": "lightning", "victor-frankenstein": "lightning", "baba-yaga": "fire" };
   let actNow = null, pyreLit = false, lastBite = null, reflected = null;
   function themeOf(e) {
     if (e.item === "skull-lantern") return "lantern";

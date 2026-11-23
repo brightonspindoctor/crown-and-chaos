@@ -24,7 +24,7 @@ export const ASSUMPTIONS = [
   "The Labyrinth stops Ranged attacks and random ranged effects (Fire Breath, Split the Arrow, Crossbows) reaching heroes in slots 2–3; Spells still reach them.",
   "Hurl the boulder slows the hero it hits in the next round, since Polyphemus (Speed 1) usually acts last.",
   "Royal decree: a second decree before the first runs out doesn't stack.",
-  "Hold court (every Crown but Baba Yaga; none under Robin's No Crown): 1 AP and the Crown's action. Resolves before Speed order, like Mirrored shield. +1 Guard that round, ranged and magic Crowns included (Growl and Dread can cancel it; St George's Bond never converts it; Blodeuwedd can't take it). +1 AP next round, never more than one; Galvanism adds on top. Stopped or cancelled, it's lost; Royal decree makes it cost 2.",
+  "Hold court (every Crown but Baba Yaga; none under Robin's No Crown): 1 AP and the Crown's action. Resolves before Speed order, like Mirrored shield. +1 Guard that round, ranged and magic Crowns included (Growl and Dread can cancel it; St George's Bond never converts it; Blodeuwedd can't take it). +1 AP next round, never more than one; Galvanism's +1 adds on top. Stopped or cancelled, it's lost; Royal decree makes it cost 2.",
   "Attack from Bonds (flat bonuses and Attack gained when a card dies) counts only for melee attacks: never for ranged attacks or spells, including a melee hero's ranged action such as Axe throw. The same goes for the Dragon's Bond damage against Slayers. Crown passives are unaffected; Merlin's and Morgan's Bonds add to their Spells against certain Aspects.",
   "Charge moves (Dig the pit, Deep breath): the hero is busy this round and next; the strike goes off at its Speed next round. Stopped, cancelled or killed first, the charge is lost.",
   "A charged strike deals 6, less the target's Guard (a Sigurd Crown's Gram's edge still ignores Guard); it ignores reach, since the target was chosen when the charge began.",
@@ -784,8 +784,8 @@ export function upkeep(st) {
   if (st.fixedFate != null) st.fate = st.fixedFate;
   else if (ren0 && !ren1) st.fate = 0; else if (ren1 && !ren0) st.fate = 1; else if (st.round > 1) st.fate = 1 - st.fate;
   for (const i of [0, 1]) {
-    // Galvanism: +1 action point for each of Victor's other living heroes, counted at upkeep.
-    st.sides[i].ap = (st.sides[i].baseAp ?? BASE_AP) + (crownIs(st, i, "victor-frankenstein") ? heroes(st, i).filter((h) => h.id !== "victor-frankenstein").length : 0);
+    // Galvanism: a flat +1 action point while Victor wears the Crown.
+    st.sides[i].ap = (st.sides[i].baseAp ?? BASE_AP) + (crownIs(st, i, "victor-frankenstein") ? 1 : 0);
     // Hold court last round: +1 action point (never more than one).
     if (st.sides[i].flags.courtApRound === st.round) st.sides[i].ap += 1;
     st.sides[i].flags.itemApExtra = 0;
@@ -1009,7 +1009,7 @@ export const ACTIONS = {
     "Saved from the wreck": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
   "the-princess": { "Mend": { t: "none", go: (st, a) => neighbours(st, a).forEach((n) => heal(st, a, n, 1)) },
     "Girdle Leash": { t: "enemyBeast", go: (st, a, x) => { (a.flags.leashed ||= []).push(x.uid); stop(st, x, "Girdle Leash"); } } },
-  "the-snow-queen": { "Shard of the mirror": { t: "enemyHero", go: (st, a, x) => { x.flags.shardRound = st.round; } } },
+  "the-snow-queen": { "Shard of the mirror": { t: "enemyHero", go: (st, a, x) => { x.flags.shardRound = st.round; x.flags.sharded = true; } } },
   "the-tin-soldier": { "Steadfast stand": { t: "none", go: (st, a) => { a.guardLeft += 2; a.flags.steadfastRound = st.round; } } },
   "the-wolf": { "Shortcut": { t: "none", go: (st, a) => { st.sides[a.side].flags.shortcutUntil = st.round + 2; log(st, "The Wolf knows a shortcut: your heroes have +1 Speed for 3 rounds."); } },
     "Swallow whole": { t: "enemyWolf", go: (st, a, x) => {
@@ -1099,7 +1099,8 @@ function targetsForAll(st, a, act) {
     case "enemyMelee": return meleeTargets(st, a);
     case "enemyAny": case "enemyAny2": return rangedTargets(st, a);
     case "enemySpell": return rangedTargets(st, a, { spell: true });
-    case "enemyHero": return STOPPERS.includes(act.name) ? eh.filter((c) => canBeStopped(st, c)) : eh;
+    case "enemyHero": return STOPPERS.includes(act.name) ? eh.filter((c) => canBeStopped(st, c))
+      : act.name === "Shard of the mirror" ? eh.filter((c) => !c.flags.sharded) : eh; // the Shard: once per hero
     case "enemyHeroMelee": { const m = meleeTargets(st, a).filter((c) => c.kind === "hero"); return m.length ? m : []; }
     case "enemyHeroNotCrown": return eh.filter((c) => c.uid !== st.sides[foe].crownUid);
     // Bite can only bite each hero once a fight.

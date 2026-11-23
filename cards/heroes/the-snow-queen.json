@@ -10,7 +10,7 @@
     "health": 9,
     "attack": 3,
     "ranged": false,
-    "guard": 1,
+    "guard": 0,
     "speed": 3
   },
   "vulnerableTo": "Healer",
@@ -32,8 +32,7 @@
     {
       "name": "Shard of the mirror",
       "ap": 2,
-      "text": "This round, an enemy hero's attack hits one of its own adjacent cards instead.",
-      "usesPerFight": 2
+      "text": "This round, an enemy hero's attack hits one of its own adjacent cards instead. Each hero can only be targeted once a fight."
     }
   ],
   "art": "the-snow-queen",

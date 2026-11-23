@@ -17,7 +17,7 @@
   "renown": 13,
   "crownPassive": {
     "name": "Galvanism",
-    "text": "At the start of each round, you gain 1 extra action point for each of your other heroes still alive."
+    "text": "You have 1 extra action point every round."
   },
   "bond": {
     "name": "Spark of life",
