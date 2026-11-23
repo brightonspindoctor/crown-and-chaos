@@ -1,0 +1,49 @@
+{
+  "hero": "maid-marian",
+  "personality": "Noble, fearless and every bit Robin's match. She went into the forest alone to find him.",
+  "voice": "Here's for thy sake, and for the sake of my love.",
+  "cards": [
+    {
+      "id": "maid-marian-1",
+      "n": 1,
+      "title": "A Maid of the North",
+      "text": "There was a maid of noble birth who lived in the North, called Maid Marian, and she was a gallant dame. The Earl of Huntington, who was nobly born, loved her, and she loved him. Then fortune parted them, and he went into the greenwood as an outlaw under the name of Robin Hood.",
+      "source": {
+        "work": "The English and Scottish Popular Ballads",
+        "author": "edited by Francis James Child, 1882–98",
+        "edition": "Houghton, Mifflin, volume 3, 1888",
+        "url": "https://sacred-texts.com/neu/eng/child/ch150.htm",
+        "licence": "Public domain",
+        "chapter": "150. Robin Hood and Maid Marian"
+      }
+    },
+    {
+      "id": "maid-marian-2",
+      "n": 2,
+      "title": "Dressed as a Page",
+      "text": "She would not wait at home and grieve. She dressed herself as a page, took up quiver and bow, sword and buckler, and ranged the woods alone to find him. Robin, too, was disguised, and when they met neither knew the other, and they fell to fighting.",
+      "source": {
+        "work": "The English and Scottish Popular Ballads",
+        "author": "edited by Francis James Child, 1882–98",
+        "edition": "Houghton, Mifflin, volume 3, 1888",
+        "url": "https://sacred-texts.com/neu/eng/child/ch150.htm",
+        "licence": "Public domain",
+        "chapter": "150. Robin Hood and Maid Marian"
+      }
+    },
+    {
+      "id": "maid-marian-3",
+      "n": 3,
+      "title": "A Health to Marian",
+      "text": "They fought for an hour or more until both were bleeding, and Robin so admired the stranger's courage that he called a halt and asked the page to join his band. She knew his voice at once. Then there was feasting in the greenwood, and Robin drank a health to Marian, his only dear.",
+      "source": {
+        "work": "The English and Scottish Popular Ballads",
+        "author": "edited by Francis James Child, 1882–98",
+        "edition": "Houghton, Mifflin, volume 3, 1888",
+        "url": "https://sacred-texts.com/neu/eng/child/ch150.htm",
+        "licence": "Public domain",
+        "chapter": "150. Robin Hood and Maid Marian"
+      }
+    }
+  ]
+}

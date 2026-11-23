@@ -1,0 +1,49 @@
+{
+  "hero": "sheriff-of-nottingham",
+  "personality": "Greedy, vain and endlessly outwitted. He means to hang Robin Hood, and somehow always pays for his dinner instead.",
+  "voice": "I will have that knave hanged, if it costs me every penny I own.",
+  "cards": [
+    {
+      "id": "sheriff-of-nottingham-1",
+      "n": 1,
+      "title": "A Warrant for an Outlaw",
+      "text": "The Sheriff of Nottingham swore that he would bring Robin Hood to justice, for the king's sake and for his own. He sent a tinker into Sherwood with a warrant and a promise of reward. The tinker drank with a merry stranger at an inn, and woke to find his warrant and his purse both gone.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Robin Hood and the Tinker"
+      }
+    },
+    {
+      "id": "sheriff-of-nottingham-2",
+      "n": 2,
+      "title": "The Trap of the Golden Arrow",
+      "text": "Next he set a trap with a shooting match, sure that Robin could not keep away. He watched every archer closely and saw nothing of the outlaw. The prize went to a ragged fellow with one eye, and that night an arrow carried him a mocking letter telling him he had handed the golden arrow to Robin Hood himself.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "The Shooting Match at Nottingham Town"
+      }
+    },
+    {
+      "id": "sheriff-of-nottingham-3",
+      "n": 3,
+      "title": "Dinner in the Greenwood",
+      "text": "A young butcher at Nottingham market sold meat so cheaply that the Sheriff thought him a fool with land to sell. He rode with him into Sherwood to buy his herds, and found himself among Robin's men, feasting on the king's deer. He paid three hundred pounds for the meal and rode home a wiser man.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Robin Turns Butcher"
+      }
+    }
+  ]
+}

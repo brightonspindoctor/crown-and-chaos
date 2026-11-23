@@ -1,0 +1,49 @@
+{
+  "hero": "morgan-le-fay",
+  "personality": "Clever, bitter and patient. She learned her magic in a nunnery and never forgave the world.",
+  "voice": "Whatsoever come of me, the scabbard shall he lose.",
+  "cards": [
+    {
+      "id": "morgan-le-fay-1",
+      "n": 1,
+      "title": "The Lady of the Nunnery",
+      "text": "She was a daughter of Igraine, half-sister to King Arthur, and as a girl she was put to school in a nunnery, where she learned so much that she became a great clerk of necromancy. She was wedded to King Uriens of Gore, but she gave her heart to her own schemes, and to the knights she could use in them.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book I"
+      }
+    },
+    {
+      "id": "morgan-le-fay-2",
+      "n": 2,
+      "title": "The Stolen Sword",
+      "text": "She stole Excalibur and sent it to her lover Sir Accolon, and arranged that he should fight the king, who had only a false copy. Arthur bled almost to death before the Lady of the Lake turned the fight. Afterwards Morgan crept in while he slept, took the scabbard, and threw it into a lake.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book IV"
+      }
+    },
+    {
+      "id": "morgan-le-fay-3",
+      "n": 3,
+      "title": "A Queen in the Barge",
+      "text": "For all her treasons, when her brother lay dying by the water after the last battle, a barge came to fetch him, and in it sat three queens. One of them was Morgan le Fay, and she took his head in her lap and wept, and they bore him away to Avilion to be healed.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 2",
+        "url": "https://www.gutenberg.org/ebooks/1252",
+        "licence": "Public domain",
+        "chapter": "Book XXI"
+      }
+    }
+  ]
+}

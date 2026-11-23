@@ -1,0 +1,49 @@
+{
+  "hero": "robin-hood",
+  "personality": "Merry, bold and generous. The finest archer in England, and the most wanted man in Nottinghamshire.",
+  "voice": "Mark you, if this arrow falls, there lay me.",
+  "cards": [
+    {
+      "id": "robin-hood-1",
+      "n": 1,
+      "title": "The Outlaw of Sherwood",
+      "text": "At eighteen he set out for the shooting match at Nottingham Town. A band of foresters mocked him, and he wagered he could hit a deer at a great distance, and won. One forester shot at him in anger and missed. Robin's answering arrow killed the man, and he fled into Sherwood Forest, an outlaw with a price on his head.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Prologue"
+      }
+    },
+    {
+      "id": "robin-hood-2",
+      "n": 2,
+      "title": "The Golden Arrow",
+      "text": "The Sheriff proclaimed a shooting match with a golden arrow for a prize, sure that Robin's pride would bring him to it. Robin came in tattered scarlet with a patch over one eye, and outshot every archer in the land. Then he sent the Sheriff a letter on the shaft of an arrow, telling him who had won it.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "The Shooting Match at Nottingham Town"
+      }
+    },
+    {
+      "id": "robin-hood-3",
+      "n": 3,
+      "title": "The Last Arrow",
+      "text": "Grown old and sick, he went to his cousin, the prioress of Kirklees, to be bled. She let his blood run too long. With his last strength he blew three blasts on his horn, and Little John broke in to find him dying. Robin drew his bow once more and asked to be buried where the arrow fell.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Epilogue"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "friar-tuck",
+  "personality": "Stout, cheerful and a dangerous swordsman. He prays well, eats better and fights best of all.",
+  "voice": "Thou art a lusty fellow, and I like thee well.",
+  "cards": [
+    {
+      "id": "friar-tuck-1",
+      "n": 1,
+      "title": "The Curtal Friar",
+      "text": "Robin heard of a friar of Fountains Abbey who could draw a long bow and swing a sword as well as any man. He found him sitting by a stream and made him carry him across on his back. Then the friar made Robin carry him back again, and when Robin demanded a third ride, the friar tipped him off midstream into the water.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Robin Hood Seeketh the Curtal Friar"
+      }
+    },
+    {
+      "id": "friar-tuck-2",
+      "n": 2,
+      "title": "Dogs and Bowmen",
+      "text": "They fought with swords from morning until the sun was high, and neither could best the other. Robin blew his horn and his yeomen came running. The friar whistled, and a pack of great dogs came bounding out of the trees. Only Little John's quick arrows saved Robin's men from being torn.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Robin Hood Seeketh the Curtal Friar"
+      }
+    },
+    {
+      "id": "friar-tuck-3",
+      "n": 3,
+      "title": "The Chaplain of Sherwood",
+      "text": "Robin offered him a place in the band, with a full belly and good company, and the friar was glad to come. He became the merry chaplain of Sherwood, and when Allan a Dale's true love was about to be married against her will, it was the friar who married her to Allan instead.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Robin Hood and Allan a Dale"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "lancelot",
+  "personality": "Courteous, peerless and torn. The best knight in the world, and the one who broke its fellowship.",
+  "voice": "I will never fail you while my life lasteth.",
+  "cards": [
+    {
+      "id": "lancelot-1",
+      "n": 1,
+      "title": "The Best Knight of the World",
+      "text": "He was Sir Lancelot du Lake, son of King Ban of Benwick, and in all tournaments and jousts and deeds of arms he passed every other knight. He overcame giants and false knights and freed prisoners by the score. Above all ladies he loved Queen Guenever, and for her sake he did many deeds of arms.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book VI"
+      }
+    },
+    {
+      "id": "lancelot-2",
+      "n": 2,
+      "title": "The Rescue and the War",
+      "text": "When the queen was led out to be burned, Lancelot rode to save her. In the press he struck down Sir Gareth and Sir Gaheris, unarmed and unknowing, though he loved Gareth like a brother. For that, Sir Gawaine would never forgive him, and the war that followed split the Round Table in two.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 2",
+        "url": "https://www.gutenberg.org/ebooks/1252",
+        "licence": "Public domain",
+        "chapter": "Book XX"
+      }
+    },
+    {
+      "id": "lancelot-3",
+      "n": 3,
+      "title": "The Hermit's Death",
+      "text": "When the king and queen were both gone, he put on the habit of a priest and served at a hermitage, eating little and praying much. He died there in his sleep, smiling. His brother Sir Ector looked on him and said he had been the truest lover and the kindest man that ever struck with a sword.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 2",
+        "url": "https://www.gutenberg.org/ebooks/1252",
+        "licence": "Public domain",
+        "chapter": "Book XXI"
+      }
+    }
+  ]
+}
