@@ -1,0 +1,49 @@
+{
+  "hero": "rhiannon",
+  "personality": "Calm, clever and impossible to hurry. Kings chase her and never come closer.",
+  "voice": "It were better for the horse hadst thou asked it long since.",
+  "cards": [
+    {
+      "id": "rhiannon-1",
+      "n": 1,
+      "title": "The Lady on the White Horse",
+      "text": "Pwyll, Prince of Dyved, sat on the mound of Arberth and saw a lady in gold riding slowly by on a pure white horse. His swiftest horsemen rode after her and could not gain an inch, though she never seemed to hurry. Only when Pwyll himself called out to her did she stop. She was Rhiannon, and she had come to marry him.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Pwyll Prince of Dyved"
+      }
+    },
+    {
+      "id": "rhiannon-2",
+      "n": 2,
+      "title": "The Lost Child",
+      "text": "Their son vanished on the night he was born, while the women who watched him slept. Afraid for their lives, they smeared a puppy's blood on Rhiannon's face and swore she had killed the child. For her penance she sat by the horse-block at the gate, telling the tale to every stranger and offering to carry them on her back.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Pwyll Prince of Dyved"
+      }
+    },
+    {
+      "id": "rhiannon-3",
+      "n": 3,
+      "title": "Pryderi",
+      "text": "In another kingdom, a lord named Teirnyon found a baby boy in swaddling of satin outside his stable, and raised him. As the child grew, Teirnyon saw his likeness to Pwyll and brought him to court. Rhiannon was freed from her penance, and she named her son Pryderi, which means care, for her care was over.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Pwyll Prince of Dyved"
+      }
+    }
+  ]
+}

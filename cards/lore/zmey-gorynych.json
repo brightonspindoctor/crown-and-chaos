@@ -1,0 +1,49 @@
+{
+  "hero": "zmey-gorynych",
+  "personality": "Many-headed, sly and greedy. Each head is hungry, and none of them keeps a promise.",
+  "voice": "Do not slay me, Dobrynya, and I will never fly into Holy Russia again.",
+  "cards": [
+    {
+      "id": "zmey-gorynych-1",
+      "n": 1,
+      "title": "The Dragon of the Mountain",
+      "text": "In the mountains beyond the Puchai River lived the Dragon, child of the mountain, who carried off people from Holy Russia to her lair. Dobrynya's mother warned him never to bathe in the Puchai, but he did, and the Dragon came swooping down on him while he was unarmed in the water.",
+      "source": {
+        "work": "The Epic Songs of Russia",
+        "author": "Russian byliny; English by Isabel Florence Hapgood, 1886",
+        "edition": "Charles Scribner's Sons, 1886",
+        "url": "https://catalog.hathitrust.org/Record/008578884",
+        "licence": "Public domain",
+        "chapter": "Dobrynya Nikititch"
+      }
+    },
+    {
+      "id": "zmey-gorynych-2",
+      "n": 2,
+      "title": "A Broken Promise",
+      "text": "Dobrynya found a heavy cap of the Greek land lying on the shore, and with it he struck her down. She begged for her life and swore never again to fly over Holy Russia or carry off its people. He let her go. She flew straight to Kiev and carried off Prince Vladimir's niece.",
+      "source": {
+        "work": "The Epic Songs of Russia",
+        "author": "Russian byliny; English by Isabel Florence Hapgood, 1886",
+        "edition": "Charles Scribner's Sons, 1886",
+        "url": "https://catalog.hathitrust.org/Record/008578884",
+        "licence": "Public domain",
+        "chapter": "Dobrynya Nikititch"
+      }
+    },
+    {
+      "id": "zmey-gorynych-3",
+      "n": 3,
+      "title": "Three Days of Battle",
+      "text": "Dobrynya rode to her mountain and trampled her young ones under his horse's hooves. They fought for three days, until at last he struck her down. Her blood lay on the ground so deep that it would not sink in, until Mother Earth opened and swallowed it. Then he led the captives home.",
+      "source": {
+        "work": "The Epic Songs of Russia",
+        "author": "Russian byliny; English by Isabel Florence Hapgood, 1886",
+        "edition": "Charles Scribner's Sons, 1886",
+        "url": "https://catalog.hathitrust.org/Record/008578884",
+        "licence": "Public domain",
+        "chapter": "Dobrynya Nikititch"
+      }
+    }
+  ]
+}

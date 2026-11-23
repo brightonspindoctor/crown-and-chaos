@@ -1,0 +1,49 @@
+{
+  "hero": "the-tin-soldier",
+  "personality": "Steadfast, silent and true. He never once leaves his post, not for water, fire or fear.",
+  "voice": "I will stand firm, and shoulder my gun.",
+  "cards": [
+    {
+      "id": "the-tin-soldier-1",
+      "n": 1,
+      "title": "The One-Legged Soldier",
+      "text": "There were once five-and-twenty tin soldiers, all brothers, made from the same old tin spoon. The last one cast had only one leg, because there was not quite enough tin, but he stood as firmly on one as the others did on two. He fell in love with a paper dancer who stood on one leg too.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1838; English by Mrs. H. B. Paull",
+        "edition": "Frederick Warne and Co., 1888",
+        "url": "https://en.wikisource.org/wiki/Hans_Andersen%27s_Fairy_Tales/The_Brave_Tin_Soldier",
+        "licence": "Public domain",
+        "chapter": "The Brave Tin Soldier"
+      }
+    },
+    {
+      "id": "the-tin-soldier-2",
+      "n": 2,
+      "title": "The Paper Boat",
+      "text": "A spiteful goblin made him fall from the window into the street. Two boys put him in a paper boat and sent him down the gutter, into a dark drain where a rat demanded his passport. The boat sank, and a fish swallowed him whole. Through it all he never moved and never cried out.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1838; English by Mrs. H. B. Paull",
+        "edition": "Frederick Warne and Co., 1888",
+        "url": "https://en.wikisource.org/wiki/Hans_Andersen%27s_Fairy_Tales/The_Brave_Tin_Soldier",
+        "licence": "Public domain",
+        "chapter": "The Brave Tin Soldier"
+      }
+    },
+    {
+      "id": "the-tin-soldier-3",
+      "n": 3,
+      "title": "A Little Tin Heart",
+      "text": "The fish was caught and cut open in the very same house, and he was set back on the table near his dancer. Then a little boy threw him into the stove. The draught carried the dancer in after him, and she flared up and was gone. In the morning he had melted into a little tin heart.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1838; English by Mrs. H. B. Paull",
+        "edition": "Frederick Warne and Co., 1888",
+        "url": "https://en.wikisource.org/wiki/Hans_Andersen%27s_Fairy_Tales/The_Brave_Tin_Soldier",
+        "licence": "Public domain",
+        "chapter": "The Brave Tin Soldier"
+      }
+    }
+  ]
+}

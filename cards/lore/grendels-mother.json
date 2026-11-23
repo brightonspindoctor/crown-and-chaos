@@ -1,0 +1,49 @@
+{
+  "hero": "grendels-mother",
+  "personality": "Grief-stricken, terrible and avenging. She only wanted her son back.",
+  "voice": "She would avenge her son, the only child she had.",
+  "cards": [
+    {
+      "id": "grendels-mother-1",
+      "n": 1,
+      "title": "The Mother in the Mere",
+      "text": "She lived at the bottom of a dreadful mere, where even a hunted stag would rather die on the bank than swim. When her son crawled home without his arm to die, she brooded in her grief, and then she rose up to avenge him.",
+      "source": {
+        "work": "Beowulf",
+        "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
+        "edition": "Harvard Classics, 1910",
+        "url": "https://www.gutenberg.org/ebooks/981",
+        "licence": "Public domain",
+        "chapter": "Beowulf"
+      }
+    },
+    {
+      "id": "grendels-mother-2",
+      "n": 2,
+      "title": "The Night Raid",
+      "text": "She came to Heorot by night, when the warriors slept in their armour. She seized Aeschere, the king's dearest counsellor, and took back her son's arm from under the roof, and was gone into the dark before the hall could rise against her.",
+      "source": {
+        "work": "Beowulf",
+        "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
+        "edition": "Harvard Classics, 1910",
+        "url": "https://www.gutenberg.org/ebooks/981",
+        "licence": "Public domain",
+        "chapter": "Beowulf"
+      }
+    },
+    {
+      "id": "grendels-mother-3",
+      "n": 3,
+      "title": "The Giants' Sword",
+      "text": "Beowulf dived down to her and she dragged him into her hall beneath the water. His famous sword Hrunting would not bite her. Then he saw an old sword, made by giants, hanging on the wall, and with it he struck her down. The blade melted away in the blood of her son.",
+      "source": {
+        "work": "Beowulf",
+        "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
+        "edition": "Harvard Classics, 1910",
+        "url": "https://www.gutenberg.org/ebooks/981",
+        "licence": "Public domain",
+        "chapter": "Beowulf"
+      }
+    }
+  ]
+}

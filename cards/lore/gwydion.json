@@ -1,0 +1,49 @@
+{
+  "hero": "gwydion",
+  "personality": "Silver-tongued, ingenious and ruthless. The finest teller of tales in Gwynedd, and a great liar.",
+  "voice": "Lord, I know where they are.",
+  "cards": [
+    {
+      "id": "gwydion-1",
+      "n": 1,
+      "title": "The Swine of Dyved",
+      "text": "Gwydion, nephew of Math, was the best storyteller in the world. To win wondrous pigs from the court of Dyved, he went there disguised as a bard, charmed the king with tales, and traded for the swine with horses and hounds of his own making that faded away the next day. It started a war.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Math the Son of Mathonwy"
+      }
+    },
+    {
+      "id": "gwydion-2",
+      "n": 2,
+      "title": "Three Years as Beasts",
+      "text": "For that and for a worse crime, Math struck Gwydion and his brother with his magic wand. For a year they ran as deer, the next as wild swine, the next as wolves, and each year they came back with a young one born to them. Only after three years did Math give them back their own shapes.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Math the Son of Mathonwy"
+      }
+    },
+    {
+      "id": "gwydion-3",
+      "n": 3,
+      "title": "The Eagle on the Oak",
+      "text": "When Llew was struck down and flew away as an eagle, Gwydion searched all Gwynedd for him. He followed a sow to an oak, and high in its branches sat a wasted eagle. Gwydion sang to it until it came down to his knee, then struck it with his wand, and Llew stood there again, nothing but skin and bone.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Math the Son of Mathonwy"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "renfield",
+  "personality": "Cunning, mad and painfully polite. He knows his master is coming, and he is not sure he wants him.",
+  "voice": "The Master is at hand!",
+  "cards": [
+    {
+      "id": "renfield-1",
+      "n": 1,
+      "title": "The Life-Eater",
+      "text": "In Dr. Seward's asylum lived a patient named R. M. Renfield, who caught flies and fed them to spiders, then fed the spiders to sparrows, then ate the sparrows himself. Seward called him a zoophagous maniac. Renfield believed that every life he swallowed added to his own.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter VI"
+      }
+    },
+    {
+      "id": "renfield-2",
+      "n": 2,
+      "title": "Waiting for the Master",
+      "text": "He grew calm and secretive, then wild. He escaped and was found clinging to the door of the old chapel at Carfax, talking to someone who was not there. He was waiting for his Master, who had promised him lives, many lives, if only he would fall down and worship.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter VIII"
+      }
+    },
+    {
+      "id": "renfield-3",
+      "n": 3,
+      "title": "The Broken Servant",
+      "text": "In the end he had let the Count into the asylum, and then saw Mrs. Harker grow pale. He tried to stop his Master, grappling with him, and was flung down and broken. Dying, he told the doctors everything, and it was his warning that set them on the Count's trail.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter XXI"
+      }
+    }
+  ]
+}

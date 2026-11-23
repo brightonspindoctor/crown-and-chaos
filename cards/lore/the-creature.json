@@ -1,0 +1,49 @@
+{
+  "hero": "the-creature",
+  "personality": "Gentle once, then furious. He learned to love by watching others, and learned to hate the same way.",
+  "voice": "I was benevolent and good; misery made me a fiend.",
+  "cards": [
+    {
+      "id": "the-creature-1",
+      "n": 1,
+      "title": "Learning to be Human",
+      "text": "Abandoned the moment he woke, he wandered into the woods alone. Hiding beside a poor cottage, he watched the De Lacey family for months, and from them he learned speech, letters, kindness and love. When at last he dared to show himself, they screamed and drove him away.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 12"
+      }
+    },
+    {
+      "id": "the-creature-2",
+      "n": 2,
+      "title": "I Shall Be With You",
+      "text": "He found his maker and demanded a companion, a creature as hideous as himself, promising to leave mankind forever. Victor began her, then tore her to pieces before his eyes. The creature swore: I shall be with you on your wedding-night. And he kept his word.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 20"
+      }
+    },
+    {
+      "id": "the-creature-3",
+      "n": 3,
+      "title": "The Funeral Pile",
+      "text": "He came to the ship in the Arctic and found his maker dead. He mourned over the body and asked forgiveness of no one. Then he sprang from the cabin window onto a raft of ice, saying he would build his own funeral pile at the northern end of the world, and was soon lost in darkness and distance.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Walton, in continuation"
+      }
+    }
+  ]
+}

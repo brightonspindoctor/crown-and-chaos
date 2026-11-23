@@ -1,0 +1,49 @@
+{
+  "hero": "koschei",
+  "personality": "Ancient, greedy and patient. He has been chained before, and he only needs one drink of water.",
+  "voice": "Thanks, Prince Ivan! Now you will never see Marya Morevna again.",
+  "cards": [
+    {
+      "id": "koschei-1",
+      "n": 1,
+      "title": "Twelve Buckets of Water",
+      "text": "Prince Ivan's wife, the warrior-queen Marya Morevna, told him never to open one closet in the castle. He opened it, and found Koshchei the Deathless hanging there, chained by twelve chains. Koshchei begged for water, and drank twelve whole buckets. Then he burst every chain, and swept Marya Morevna away.",
+      "source": {
+        "work": "The Red Fairy Book",
+        "author": "edited by Andrew Lang, 1890",
+        "edition": "Longmans, Green, and Co., 1890",
+        "url": "https://sacred-texts.com/neu/lfb/re/refb06.htm",
+        "licence": "Public domain",
+        "chapter": "The Death of Koschei the Deathless"
+      }
+    },
+    {
+      "id": "koschei-2",
+      "n": 2,
+      "title": "The Barrel in the Sea",
+      "text": "Ivan came after her three times, and three times Koshchei's wonderful horse caught them. The third time Koshchei cut Ivan into little pieces, put them in a tarred barrel and threw it into the sea. But Ivan's brothers-in-law, a falcon, an eagle and a raven, found him and brought him back to life with the water of death and the water of life.",
+      "source": {
+        "work": "The Red Fairy Book",
+        "author": "edited by Andrew Lang, 1890",
+        "edition": "Longmans, Green, and Co., 1890",
+        "url": "https://sacred-texts.com/neu/lfb/re/refb06.htm",
+        "licence": "Public domain",
+        "chapter": "The Death of Koschei the Deathless"
+      }
+    },
+    {
+      "id": "koschei-3",
+      "n": 3,
+      "title": "The Last Chase",
+      "text": "Ivan won a horse from Baba Yaga even swifter than Koshchei's own. When Koshchei rode after them again, Ivan's horse kicked him to the ground, and Ivan struck him down with a club. Then they burned his body on a great fire and scattered the ashes to the wind.",
+      "source": {
+        "work": "The Red Fairy Book",
+        "author": "edited by Andrew Lang, 1890",
+        "edition": "Longmans, Green, and Co., 1890",
+        "url": "https://sacred-texts.com/neu/lfb/re/refb06.htm",
+        "licence": "Public domain",
+        "chapter": "The Death of Koschei the Deathless"
+      }
+    }
+  ]
+}

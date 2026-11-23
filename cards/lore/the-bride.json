@@ -1,0 +1,49 @@
+{
+  "hero": "the-bride",
+  "personality": "Unknown, and unknowable. She is the life that was promised and never given.",
+  "voice": "She might become ten thousand times more malignant than her mate.",
+  "cards": [
+    {
+      "id": "the-bride-1",
+      "n": 1,
+      "title": "A Companion as Hideous",
+      "text": "The creature asked his maker for one thing: a female, as deformed and horrible as himself, who would not turn away from him. Together they would go into the wilds of South America and live on acorns and berries, and never trouble mankind again. Moved against his will, Victor agreed.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 17"
+      }
+    },
+    {
+      "id": "the-bride-2",
+      "n": 2,
+      "title": "The Hut on Orkney",
+      "text": "Victor chose one of the most remote of the Orkney islands, a rock beaten by the waves, and rented a hut there. In that bare place he laboured day after day on her, sickened by the work, while far off the creature waited for its bride.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 19"
+      }
+    },
+    {
+      "id": "the-bride-3",
+      "n": 3,
+      "title": "Torn Apart",
+      "text": "One night he sat looking at his almost-finished work and wondered: what if she hated her mate, or they had children, a race of devils? He saw the creature's face grinning at the window. Trembling with passion, he tore her to pieces, and before she ever woke, she was sunk in the sea.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 20"
+      }
+    }
+  ]
+}

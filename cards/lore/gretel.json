@@ -1,0 +1,49 @@
+{
+  "hero": "gretel",
+  "personality": "Frightened, quick and stubborn. Everyone underestimates the little sister.",
+  "voice": "I do not know how I am to do it; how do I get in?",
+  "cards": [
+    {
+      "id": "gretel-1",
+      "n": 1,
+      "title": "Left in the Forest",
+      "text": "A woodcutter and his wife were starving, and the wife made him lead his two children deep into the forest and leave them there. The first time, Hansel found the way home by the white pebbles he had dropped. The second time he dropped breadcrumbs, and the birds ate every one.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Hansel_and_Grethel",
+        "licence": "Public domain",
+        "chapter": "Hansel and Grethel"
+      }
+    },
+    {
+      "id": "gretel-2",
+      "n": 2,
+      "title": "The House of Bread",
+      "text": "Lost and hungry, they found a little house made of bread and roofed with cake, with windows of clear sugar. A very old woman invited them in and fed them, but she was a wicked witch. She shut Hansel in a stable to fatten him, and made Gretel cook and carry water for him.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Hansel_and_Grethel",
+        "licence": "Public domain",
+        "chapter": "Hansel and Grethel"
+      }
+    },
+    {
+      "id": "gretel-3",
+      "n": 3,
+      "title": "Into the Oven",
+      "text": "When the witch told Gretel to creep into the oven to see if it was hot enough, Gretel said she did not know how. The witch put her own head in to show her, and Gretel pushed her all the way in and bolted the iron door. Then she freed Hansel, filled her apron with the witch's pearls, and they went home.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Hansel_and_Grethel",
+        "licence": "Public domain",
+        "chapter": "Hansel and Grethel"
+      }
+    }
+  ]
+}

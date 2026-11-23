@@ -1,0 +1,49 @@
+{
+  "hero": "the-snow-queen",
+  "personality": "Beautiful, cold and perfect. She does not hate anyone. She simply does not feel.",
+  "voice": "Now you shall have no more kisses, or I should kiss you to death.",
+  "cards": [
+    {
+      "id": "the-snow-queen-1",
+      "n": 1,
+      "title": "The Splinter of the Mirror",
+      "text": "A wicked troll once made a mirror that showed everything good as ugly, and it shattered into millions of pieces. One tiny splinter flew into the eye of a boy named Kay, and another into his heart, which began to turn to ice. He grew cold to everyone, even his dearest friend, Gerda.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1835–45",
+        "edition": "illustrated by W. Heath Robinson, Henry Holt and Co., 1913",
+        "url": "https://www.gutenberg.org/ebooks/66688",
+        "licence": "Public domain",
+        "chapter": "The Snow Queen"
+      }
+    },
+    {
+      "id": "the-snow-queen-2",
+      "n": 2,
+      "title": "The White Sledge",
+      "text": "One winter day Kay tied his little sledge to a great white sledge in the square. It carried him out of the town and into the snow, and the driver turned: it was the Snow Queen. She kissed him on the forehead, so he no longer felt the cold, and took him away to her palace in the north.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1835–45",
+        "edition": "illustrated by W. Heath Robinson, Henry Holt and Co., 1913",
+        "url": "https://www.gutenberg.org/ebooks/66688",
+        "licence": "Public domain",
+        "chapter": "The Snow Queen"
+      }
+    },
+    {
+      "id": "the-snow-queen-3",
+      "n": 3,
+      "title": "The Hall of Ice",
+      "text": "In her empty palace of snow Kay sat blue with cold, trying to spell out the word Eternity with pieces of ice. Gerda walked all the way to find him, and her warm tears melted the ice in his heart. Kay wept, the splinter washed out of his eye, and together they went home while the Snow Queen was away.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1835–45",
+        "edition": "illustrated by W. Heath Robinson, Henry Holt and Co., 1913",
+        "url": "https://www.gutenberg.org/ebooks/66688",
+        "licence": "Public domain",
+        "chapter": "The Snow Queen"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "the-little-mermaid",
+  "personality": "Quiet, longing and brave. She gave up her voice for a soul, and never once complained.",
+  "voice": "I will do it.",
+  "cards": [
+    {
+      "id": "the-little-mermaid-1",
+      "n": 1,
+      "title": "The Youngest Sister",
+      "text": "The sea king's youngest daughter longed more than any of her sisters to see the world above. On her fifteenth birthday she rose to the surface and saw a young prince on a ship. A storm broke the ship apart, and she carried the drowning prince to the shore and left him there, alive.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1835–45",
+        "edition": "illustrated by W. Heath Robinson, Henry Holt and Co., 1913",
+        "url": "https://www.gutenberg.org/ebooks/66688",
+        "licence": "Public domain",
+        "chapter": "The Little Mermaid"
+      }
+    },
+    {
+      "id": "the-little-mermaid-2",
+      "n": 2,
+      "title": "Knives at Every Step",
+      "text": "She went to the sea witch, who gave her a drink to turn her tail into legs, and took her voice in payment by cutting out her tongue. Every step she took felt like treading on sharp knives. She danced for the prince anyway, and he loved her, but only as a dear child.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1835–45",
+        "edition": "illustrated by W. Heath Robinson, Henry Holt and Co., 1913",
+        "url": "https://www.gutenberg.org/ebooks/66688",
+        "licence": "Public domain",
+        "chapter": "The Little Mermaid"
+      }
+    },
+    {
+      "id": "the-little-mermaid-3",
+      "n": 3,
+      "title": "Foam on the Sea",
+      "text": "He married another princess. Her sisters brought her a knife from the witch: kill the prince before sunrise, and she could be a mermaid again. She looked at him, threw the knife into the waves, and leapt into the sea. But she did not die as foam; she rose up among the daughters of the air.",
+      "source": {
+        "work": "Hans Andersen's Fairy Tales",
+        "author": "Hans Christian Andersen, 1835–45",
+        "edition": "illustrated by W. Heath Robinson, Henry Holt and Co., 1913",
+        "url": "https://www.gutenberg.org/ebooks/66688",
+        "licence": "Public domain",
+        "chapter": "The Little Mermaid"
+      }
+    }
+  ]
+}
