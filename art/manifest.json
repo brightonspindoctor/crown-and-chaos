@@ -536,8 +536,35 @@
       }
     },
     {
-      "id": "the-huntsman",
+      "id": "the-huntsman-knaus",
       "use": "card",
+      "cards": [
+        "the-huntsman"
+      ],
+      "artist": "Ludwig Knaus",
+      "artistDied": 1910,
+      "title": "Der Jäger (The Huntsman)",
+      "date": "1845",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Ludwig_Knaus_-_Der_J%C3%A4ger_(1845).jpg",
+        "original": "Alte Nationalgalerie, Berlin"
+      },
+      "licence": "Public domain (painted 1845; artist died 1910)",
+      "status": "cleared",
+      "commonsFile": "Ludwig_Knaus_-_Der_Jäger_(1845).jpg",
+      "notes": "Stand-in portrait of a huntsman, not the fairy-tale scene. The Schmidhammer book cover is now his second artwork.",
+      "size": [960, 1394],
+      "crops": {
+        "the-huntsman": {
+          "window": [0.022, 0.1, 0.8, 0.324],
+          "full": [0.03, 0.06, 0.9, 0.868]
+        }
+      }
+    },
+    {
+      "id": "the-huntsman",
+      "use": "variant",
       "cards": [
         "the-huntsman"
       ],
@@ -560,7 +587,8 @@
           "window": [0.286, 0.325, 0.36, 0.2916],
           "full": [0.29, 0.3408, 0.3, 0.5783]
         }
-      }
+      },
+      "variant": 2
     },
     {
       "id": "rumpelstiltskin",
