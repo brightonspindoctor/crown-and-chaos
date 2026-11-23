@@ -1013,7 +1013,7 @@ export const ACTIONS = {
     "Shield Brother": { t: "adjacentAllyHero", go: (st, a, x) => { x.flags.shieldRound = st.round; } } },
   "the-bride": { "Completion": { t: "none", go: (st, a) => heroes(st, a.side).forEach((h) => heal(st, a, h, 4)) } },
   "the-creature": { "Rampage": { t: "enemyMelee", go: (st, a, x) => { const ns = neighbours(st, x); hit(st, a, x, 3); ns.forEach((n) => hit(st, a, n, 3)); } },
-    "The Pyre": { t: "none", go: (st, a) => { cards(st, 1 - a.side).forEach((c) => damage(st, a, c, 6, { attack: true })); damage(st, null, a, 8, { trueDamage: true }); } } },
+    "The Pyre": { t: "none", go: (st, a) => { cards(st, 1 - a.side).forEach((c) => damage(st, a, c, 5, { attack: true })); damage(st, null, a, 8, { trueDamage: true }); } } },
   "the-dragon": { "Fire Breath": { t: "none", go: (st, a) => { for (const x of fireTargets(st, a)) hit(st, a, x, 2, { ranged: true }); } },
     "Tail Sweep": { t: "enemyMelee", go: (st, a, x) => { const n = neighbours(st, x)[0]; hit(st, a, x, 2); if (n) hit(st, a, n, 2); } } },
   "the-huntsman": { "Stones in the belly": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, attackOf(st, a, { melee: false }), { ranged: true }); if (!x.dead) x.speedFixed = 1; } } },
@@ -1501,7 +1501,7 @@ function valueOf(st, a, act, x) {
     case "Whirlwind": return dmgValue(3, x) + 1;
     case "The Pyre": {
       if (a.health <= 9) return 0;
-      return cards(st, foe).reduce((s, c) => s + dmgValue(6, c), 0) - 6;
+      return cards(st, foe).reduce((s, c) => s + dmgValue(5, c), 0) - 6;
     }
     case "Turn": return x ? (x.kind === "hero" ? 14 : 6) : 0;
     case "Swallow whole": return x ? (x.kind === "hero" ? 12 : 4 + x.health / 2) : 0;

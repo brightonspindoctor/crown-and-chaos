@@ -1,9 +1,17 @@
 {
- "peekSearches": [
-  "Winge Loke och Sigyn",
-  "Loki painting 19th century",
-  "Loki bound Sigyn painting",
-  "Loki Doepler",
-  "Loki Arthur Rackham"
- ]
+  "peek": [
+    "Ludwig Knaus - Der Jäger (1845).jpg",
+    "Offterdinger Rotkappchen (1).jpg",
+    "Offterdinger Rotkappchen (2).jpg",
+    "Ludwig Richter - Das Rotkäppchen 2.jpg"
+  ],
+  "peekSearches": [
+    "Rotkäppchen Jäger Illustration",
+    "Little Red Riding Hood huntsman",
+    "Red Riding Hood hunter wolf Grimm illustration",
+    "Jäger Wolf Rotkäppchen Holzstich"
+  ],
+  "categories": [
+    "Little Red Riding Hood in art"
+  ]
 }

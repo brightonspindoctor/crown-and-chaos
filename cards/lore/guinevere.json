@@ -1,0 +1,49 @@
+{
+  "hero": "guinevere",
+  "personality": "Proud, generous and quick to anger. She is loved by two men, and the kingdom breaks between them.",
+  "voice": "Through this man and me hath all this war been wrought.",
+  "cards": [
+    {
+      "id": "guinevere-1",
+      "n": 1,
+      "title": "The Daughter of Leodegrance",
+      "text": "Arthur chose her above all the ladies of the world: Guenever, daughter of King Leodegrance of Cameliard. Merlin warned him that she would bring sorrow, but the king's heart was set. Her father sent with her a gift greater than lands, the Round Table itself, with a hundred knights to sit at it, and they were wedded at Camelot with great royalty.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book III"
+      }
+    },
+    {
+      "id": "guinevere-2",
+      "n": 2,
+      "title": "The Fire at Carlisle",
+      "text": "Her love for Sir Lancelot was the open secret of the court, and at last her enemies trapped them together. By the law of the land the queen was judged to be burned. She was led out to the fire in her smock, and Lancelot rode in among the guards and carried her off, though good knights died in the rescue.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 2",
+        "url": "https://www.gutenberg.org/ebooks/1252",
+        "licence": "Public domain",
+        "chapter": "Book XX"
+      }
+    },
+    {
+      "id": "guinevere-3",
+      "n": 3,
+      "title": "The Nun at Almesbury",
+      "text": "When she heard that Arthur was slain and the Round Table broken, she went to Almesbury and took the habit of a nun, and lived in fasting and prayer. Lancelot found her there, but she would not go with him, nor even give him a last kiss. She bade him go home and take a wife, and pray for her soul.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 2",
+        "url": "https://www.gutenberg.org/ebooks/1252",
+        "licence": "Public domain",
+        "chapter": "Book XXI"
+      }
+    }
+  ]
+}

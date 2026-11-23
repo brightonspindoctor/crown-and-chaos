@@ -1,0 +1,49 @@
+{
+  "hero": "sigurd",
+  "personality": "Bright, brave and doomed. The greatest of the Volsungs, and the gold's next victim.",
+  "voice": "Little dread have I of the worm, nor of his gold.",
+  "cards": [
+    {
+      "id": "sigurd-1",
+      "n": 1,
+      "title": "The Sword Gram",
+      "text": "Sigurd was the son of Sigmund, a hero who fell in battle. His foster-father Regin, a smith, forged him two swords, and Sigurd broke both on the anvil. Then his mother gave him the broken shards of his father's sword, and from them Regin made Gram, which cleft the anvil to its foot.",
+      "source": {
+        "work": "The Story of the Volsungs (Volsunga Saga)",
+        "author": "Old Norse saga; English by Eiríkr Magnússon and William Morris, 1888",
+        "edition": "Walter Scott Press, 1888",
+        "url": "https://www.gutenberg.org/ebooks/1152",
+        "licence": "Public domain",
+        "chapter": "Chapter XV"
+      }
+    },
+    {
+      "id": "sigurd-2",
+      "n": 2,
+      "title": "The Dragon's Heart",
+      "text": "On Regin's advice he dug a pit in Fafnir's path and struck up into the dragon's heart as it passed over. When he roasted the heart and licked his burnt finger, he understood the speech of birds. They warned him that Regin meant to kill him, so he struck off Regin's head and took the treasure.",
+      "source": {
+        "work": "The Story of the Volsungs (Volsunga Saga)",
+        "author": "Old Norse saga; English by Eiríkr Magnússon and William Morris, 1888",
+        "edition": "Walter Scott Press, 1888",
+        "url": "https://www.gutenberg.org/ebooks/1152",
+        "licence": "Public domain",
+        "chapter": "Chapter XIX"
+      }
+    },
+    {
+      "id": "sigurd-3",
+      "n": 3,
+      "title": "The Curse of the Gold",
+      "text": "He woke the shield-maiden Brynhild from her enchanted sleep inside a ring of fire, and they swore to marry. But a magic drink made him forget her, and he married Gudrun instead. In the end the gold's curse found him: he was murdered in his bed by his wife's own kin.",
+      "source": {
+        "work": "The Story of the Volsungs (Volsunga Saga)",
+        "author": "Old Norse saga; English by Eiríkr Magnússon and William Morris, 1888",
+        "edition": "Walter Scott Press, 1888",
+        "url": "https://www.gutenberg.org/ebooks/1152",
+        "licence": "Public domain",
+        "chapter": "Chapter XXX"
+      }
+    }
+  ]
+}

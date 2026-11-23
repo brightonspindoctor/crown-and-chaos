@@ -1,0 +1,49 @@
+{
+  "hero": "blodeuwedd",
+  "personality": "Beautiful, restless and made, not born. She never chose to be anyone's wife.",
+  "voice": "I was made of flowers. No one asked me what I wanted.",
+  "cards": [
+    {
+      "id": "blodeuwedd-1",
+      "n": 1,
+      "title": "Made of Flowers",
+      "text": "Llew Llaw Gyffes had been cursed never to have a wife of any race on earth. So Math and Gwydion took the flowers of the oak, the broom and the meadowsweet, and from them called forth the fairest maiden anyone had ever seen. They named her Blodeuwedd and gave her to Llew.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Math the Son of Mathonwy"
+      }
+    },
+    {
+      "id": "blodeuwedd-2",
+      "n": 2,
+      "title": "The Hunter at the Gate",
+      "text": "While Llew was away, a lord named Gronw Pebyr rode by after a stag, and she asked him in. They loved each other at first sight, and together they plotted Llew's death. She coaxed from Llew the secret of how he might be killed, and when Gronw struck, Llew gave a terrible cry and flew away in the form of an eagle.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Math the Son of Mathonwy"
+      }
+    },
+    {
+      "id": "blodeuwedd-3",
+      "n": 3,
+      "title": "The Owl",
+      "text": "Gwydion found Llew and made him a man again, and then went after her. He did not kill her. He said he would do worse: he turned her into a bird that would never show her face to the light, that every other bird would mob and hate. She is still called Blodeuwedd, and she is the owl.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Math the Son of Mathonwy"
+      }
+    }
+  ]
+}

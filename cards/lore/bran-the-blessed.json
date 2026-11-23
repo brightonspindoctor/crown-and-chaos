@@ -1,0 +1,49 @@
+{
+  "hero": "bran-the-blessed",
+  "personality": "Vast, kind and immovable. A king so huge no house could hold him.",
+  "voice": "He who will be chief, let him be a bridge.",
+  "cards": [
+    {
+      "id": "bran-the-blessed-1",
+      "n": 1,
+      "title": "The Cauldron of Rebirth",
+      "text": "Bendigeid Vran, Bran the Blessed, was king of the Island of the Mighty, so huge that no house had ever held him. He gave his sister Branwen in marriage to the king of Ireland, and when his half-brother Evnissyen maimed the Irish horses, Bran made amends with a cauldron that could bring the slain back to life.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Branwen the Daughter of Llyr"
+      }
+    },
+    {
+      "id": "bran-the-blessed-2",
+      "n": 2,
+      "title": "A Bridge Across the River",
+      "text": "In Ireland Branwen was beaten and made to cook in the kitchens. She taught a starling to carry a letter across the sea, and Bran came for her, wading through the water beside his ships. When the Irish broke the only bridge across the river, Bran lay down over it, and his army crossed on his back.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Branwen the Daughter of Llyr"
+      }
+    },
+    {
+      "id": "bran-the-blessed-3",
+      "n": 3,
+      "title": "The Wonderful Head",
+      "text": "In the battle Bran was wounded in the foot with a poisoned spear. He commanded his men to cut off his head and carry it to the White Mount in London, with its face towards France. On the way the head talked and feasted with them for many years, as pleasant company as it had ever been when it was on his body.",
+      "source": {
+        "work": "The Mabinogion",
+        "author": "medieval Welsh tales; English by Lady Charlotte Guest, 1838–49",
+        "edition": "Project Gutenberg text of Guest's translation",
+        "url": "https://www.gutenberg.org/ebooks/5160",
+        "licence": "Public domain",
+        "chapter": "Branwen the Daughter of Llyr"
+      }
+    }
+  ]
+}

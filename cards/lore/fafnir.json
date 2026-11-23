@@ -1,0 +1,49 @@
+{
+  "hero": "fafnir",
+  "personality": "Huge, greedy and afraid. He killed his own father for gold, and lay on it until he became a serpent.",
+  "voice": "The gold that I have owned shall be thy bane.",
+  "cards": [
+    {
+      "id": "fafnir-1",
+      "n": 1,
+      "title": "Otter's Ransom",
+      "text": "Fafnir was a son of Hreidmar. When the god Loki killed Fafnir's brother Otter, Hreidmar demanded that the gods cover the otter-skin with gold. Loki forced the dwarf Andvari to give up his whole hoard, even his last ring, and Andvari laid a curse on it: that gold would be the death of everyone who owned it.",
+      "source": {
+        "work": "The Story of the Volsungs (Volsunga Saga)",
+        "author": "Old Norse saga; English by Eiríkr Magnússon and William Morris, 1888",
+        "edition": "Walter Scott Press, 1888",
+        "url": "https://www.gutenberg.org/ebooks/1152",
+        "licence": "Public domain",
+        "chapter": "Chapter XIV"
+      }
+    },
+    {
+      "id": "fafnir-2",
+      "n": 2,
+      "title": "The Worm on the Heath",
+      "text": "Fafnir killed his father to have the gold for himself, and would share none of it with his brother Regin. He carried it to the Glittering Heath, and as he lay on it, year after year, he grew into the most evil of worms, breathing venom over all who came near.",
+      "source": {
+        "work": "The Story of the Volsungs (Volsunga Saga)",
+        "author": "Old Norse saga; English by Eiríkr Magnússon and William Morris, 1888",
+        "edition": "Walter Scott Press, 1888",
+        "url": "https://www.gutenberg.org/ebooks/1152",
+        "licence": "Public domain",
+        "chapter": "Chapter XIV"
+      }
+    },
+    {
+      "id": "fafnir-3",
+      "n": 3,
+      "title": "The Pit on the Road",
+      "text": "One day as he crawled down to the water, a young man struck upward from a pit beneath him and drove a sword into his heart. Dying, Fafnir asked who had done it, and warned him that the gold would be his death too. The young man's name was Sigurd.",
+      "source": {
+        "work": "The Story of the Volsungs (Volsunga Saga)",
+        "author": "Old Norse saga; English by Eiríkr Magnússon and William Morris, 1888",
+        "edition": "Walter Scott Press, 1888",
+        "url": "https://www.gutenberg.org/ebooks/1152",
+        "licence": "Public domain",
+        "chapter": "Chapter XVIII"
+      }
+    }
+  ]
+}

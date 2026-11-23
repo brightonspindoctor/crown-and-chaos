@@ -1,0 +1,49 @@
+{
+  "hero": "grendel",
+  "personality": "Lonely, savage and full of rage. He cannot bear the sound of men being happy.",
+  "voice": "No mercy he showed, nor treaty with Danes.",
+  "cards": [
+    {
+      "id": "grendel-1",
+      "n": 1,
+      "title": "The Hall of Song",
+      "text": "In the fens beyond Heorot lived Grendel, of the kin of Cain, outcast from God. Every night he heard the harp and the laughter of the mead-hall, and hated it. So he came by night and carried off thirty sleeping thanes, and for twelve winters no one dared sleep in Heorot.",
+      "source": {
+        "work": "Beowulf",
+        "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
+        "edition": "Harvard Classics, 1910",
+        "url": "https://www.gutenberg.org/ebooks/981",
+        "licence": "Public domain",
+        "chapter": "Beowulf"
+      }
+    },
+    {
+      "id": "grendel-2",
+      "n": 2,
+      "title": "The Grip",
+      "text": "One night he burst the door and seized a sleeping warrior, and then reached for another. But that one gripped his arm with a strength he had never known. It was Beowulf, who had sworn to fight him without weapons. Grendel tried to flee, and could not break free.",
+      "source": {
+        "work": "Beowulf",
+        "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
+        "edition": "Harvard Classics, 1910",
+        "url": "https://www.gutenberg.org/ebooks/981",
+        "licence": "Public domain",
+        "chapter": "Beowulf"
+      }
+    },
+    {
+      "id": "grendel-3",
+      "n": 3,
+      "title": "The Arm Under the Roof",
+      "text": "In the struggle his shoulder burst and the sinews tore. He fled back across the fens without his arm, to die in his lair beneath the mere. The Danes hung that hand, arm and shoulder high under the roof of Heorot for everyone to see.",
+      "source": {
+        "work": "Beowulf",
+        "author": "Anglo-Saxon poem, c. 700–1000; English by Francis B. Gummere, 1910",
+        "edition": "Harvard Classics, 1910",
+        "url": "https://www.gutenberg.org/ebooks/981",
+        "licence": "Public domain",
+        "chapter": "Beowulf"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "king-arthur",
+  "personality": "Young, then wise, then weary. He carries the weight of a kingdom he was born to hold together.",
+  "voice": "Whoso pulleth out this sword is rightwise king.",
+  "cards": [
+    {
+      "id": "king-arthur-1",
+      "n": 1,
+      "title": "The Sword in the Stone",
+      "text": "At Christmas, in the greatest church of London, a sword stood fixed in a stone, and letters of gold said that whoever drew it out was rightful king of all England. Lords and knights tugged and failed. A boy named Arthur, sent to fetch a sword for his foster-brother, drew it out as if from a scabbard, and so he was crowned.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book I"
+      }
+    },
+    {
+      "id": "king-arthur-2",
+      "n": 2,
+      "title": "Excalibur",
+      "text": "His first sword broke in a fight he should never have taken. Merlin led him to a lake where an arm clothed in white samite held up a sword. The Lady of the Lake gave him Excalibur, and Merlin asked which he liked better, the sword or the scabbard. Keep the scabbard, Merlin told him: while you wear it, you will lose no blood.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book I"
+      }
+    },
+    {
+      "id": "king-arthur-3",
+      "n": 3,
+      "title": "The Barge to Avilion",
+      "text": "At the last battle he met his son Mordred and ran him through, but took his own death-wound. He bade Sir Bedivere throw Excalibur into the water, and an arm rose and caught it. Then a barge full of fair ladies in black hoods came for him, and he was carried away to the vale of Avilion to be healed of his grievous wound.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 2",
+        "url": "https://www.gutenberg.org/ebooks/1252",
+        "licence": "Public domain",
+        "chapter": "Book XXI"
+      }
+    }
+  ]
+}

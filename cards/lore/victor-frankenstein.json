@@ -1,0 +1,49 @@
+{
+  "hero": "victor-frankenstein",
+  "personality": "Brilliant, proud and haunted. He wanted to banish death, and made something he could not bear to look at.",
+  "voice": "I had desired it with an ardour that far exceeded moderation.",
+  "cards": [
+    {
+      "id": "victor-frankenstein-1",
+      "n": 1,
+      "title": "The Secret of Life",
+      "text": "A young man of Geneva, he went to study at the university of Ingolstadt and became obsessed with the cause of life. After days and nights of incredible labour he discovered it, and set to work in a lonely room at the top of his house, building a man from what he gathered in charnel-houses.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 4"
+      }
+    },
+    {
+      "id": "victor-frankenstein-2",
+      "n": 2,
+      "title": "A Dreary Night of November",
+      "text": "By the glimmer of a half-extinguished candle he saw the dull yellow eye of the creature open. The beauty of his dream vanished, and breathless horror filled his heart. He fled from his own creation, and when he returned it was gone, out into the world with no one to guide it.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 5"
+      }
+    },
+    {
+      "id": "victor-frankenstein-3",
+      "n": 3,
+      "title": "The Pursuit to the Ice",
+      "text": "He destroyed the companion he had begun to build, and the creature took revenge on everyone he loved. Victor swore to hunt it to the death and followed it across Europe and into the frozen north, until a ship trapped in the ice took him aboard, dying.",
+      "source": {
+        "work": "Frankenstein; or, The Modern Prometheus",
+        "author": "Mary Shelley, 1818",
+        "edition": "Lackington, Hughes, Harding, Mavor & Jones, 1818",
+        "url": "https://www.gutenberg.org/ebooks/84",
+        "licence": "Public domain",
+        "chapter": "Chapter 24"
+      }
+    }
+  ]
+}

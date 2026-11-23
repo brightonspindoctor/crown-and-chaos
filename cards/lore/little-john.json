@@ -1,0 +1,49 @@
+{
+  "hero": "little-john",
+  "personality": "Huge, loyal and quick to laugh. He met his master by knocking him into a stream.",
+  "voice": "I care not a whit for thy bow, so long as I have this staff.",
+  "cards": [
+    {
+      "id": "little-john-1",
+      "n": 1,
+      "title": "The Fight on the Bridge",
+      "text": "Robin met a tall stranger on a narrow log bridge over a brook, and neither would give way. They cut quarterstaves and fought, crack upon crack, until the stranger knocked Robin clean into the water. Robin laughed, blew his horn, and asked him to join the band. His name was John Little, so of course they called him Little John.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Prologue"
+      }
+    },
+    {
+      "id": "little-john-2",
+      "n": 2,
+      "title": "In the Sheriff's Service",
+      "text": "Calling himself Reynold Greenleaf, he won a place in the Sheriff's household by his skill at the shooting butts. He ate well, slept late, fought the cook to a standstill and then made friends with him, and in the end led the cook back to Sherwood with the Sheriff's silver plate.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Little John Goes to Nottingham Fair"
+      }
+    },
+    {
+      "id": "little-john-3",
+      "n": 3,
+      "title": "At Kirklees",
+      "text": "When Robin's horn sounded faint from the priory, Little John broke down the door and found his master dying. He begged to burn the place in revenge, but Robin forbade it. John held him up to shoot his last arrow, and buried him where it fell, as Robin asked.",
+      "source": {
+        "work": "The Merry Adventures of Robin Hood",
+        "author": "Howard Pyle, 1883",
+        "edition": "Charles Scribner's Sons, 1883",
+        "url": "https://www.gutenberg.org/ebooks/964",
+        "licence": "Public domain",
+        "chapter": "Epilogue"
+      }
+    }
+  ]
+}

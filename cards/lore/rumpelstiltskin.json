@@ -1,0 +1,49 @@
+{
+  "hero": "rumpelstiltskin",
+  "personality": "Clever, greedy and furious when crossed. He can spin gold from straw, but he wants something worth more.",
+  "voice": "Now give me what you promised.",
+  "cards": [
+    {
+      "id": "rumpelstiltskin-1",
+      "n": 1,
+      "title": "Straw Into Gold",
+      "text": "A boastful miller told the king that his daughter could spin straw into gold. The king locked her in a room full of straw and told her to spin it by morning or die. She wept, until a little man came in and asked what she would give him to do it for her. She gave him her necklace, and he spun.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Rumpelstiltskin",
+        "licence": "Public domain",
+        "chapter": "Rumpelstiltskin"
+      }
+    },
+    {
+      "id": "rumpelstiltskin-2",
+      "n": 2,
+      "title": "The First Child",
+      "text": "The next night she gave him her ring. The third night she had nothing left, so he asked for her first child when she became queen. She promised. The king married her, and when her baby was born, the little man came back to claim it. She offered him all the riches of the kingdom, but he wanted something living.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Rumpelstiltskin",
+        "licence": "Public domain",
+        "chapter": "Rumpelstiltskin"
+      }
+    },
+    {
+      "id": "rumpelstiltskin-3",
+      "n": 3,
+      "title": "Guess My Name",
+      "text": "Moved by her tears, he gave her three days to guess his name. Her messenger saw him at last, far in the forest, hopping around a fire and singing that the queen would never know his name was Rumpelstiltskin. When she said it, he stamped so hard in his rage that he tore himself in two.",
+      "source": {
+        "work": "Grimm's Household Tales",
+        "author": "Jacob and Wilhelm Grimm, 1812–57; English by Margaret Hunt, 1884",
+        "edition": "George Bell and Sons, 1884",
+        "url": "https://en.wikisource.org/wiki/Grimm%27s_Household_Tales,_Volume_1/Rumpelstiltskin",
+        "licence": "Public domain",
+        "chapter": "Rumpelstiltskin"
+      }
+    }
+  ]
+}

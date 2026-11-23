@@ -1,0 +1,49 @@
+{
+  "hero": "dracula",
+  "personality": "Old, courtly and hungry. He was a warlord once, and he has never stopped being one.",
+  "voice": "Listen to them, the children of the night. What music they make!",
+  "cards": [
+    {
+      "id": "dracula-1",
+      "n": 1,
+      "title": "The Castle in the Carpathians",
+      "text": "Jonathan Harker, a young solicitor, came to Transylvania to settle the Count's purchase of a house in England. His host was courteous, wise, and never seen to eat. Then Harker saw him crawl head first down the castle wall, face down, his cloak spread out like great wings, and understood that he was a prisoner.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter III"
+      }
+    },
+    {
+      "id": "dracula-2",
+      "n": 2,
+      "title": "The Ship to Whitby",
+      "text": "The schooner Demeter drove into Whitby harbour in a storm with a dead man lashed to her wheel, and an immense dog leapt from her deck and vanished. Soon afterwards Lucy Westenra began to grow pale, with two small wounds at her throat, and nothing the doctors did could keep her.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter VII"
+      }
+    },
+    {
+      "id": "dracula-3",
+      "n": 3,
+      "title": "Dust at Sunset",
+      "text": "Hunted through London, his boxes of earth made useless, he fled home. His pursuers caught his cart at the castle as the sun went down. Harker's great knife slashed his throat while Quincey Morris's bowie knife pierced his heart, and in that moment the whole body crumbled into dust and passed from sight.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter XXVII"
+      }
+    }
+  ]
+}

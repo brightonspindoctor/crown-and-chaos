@@ -1,0 +1,49 @@
+{
+  "hero": "van-helsing",
+  "personality": "Learned, stubborn and kind. He will believe the impossible if the evidence demands it.",
+  "voice": "We have on our side power of combination, a power denied to the vampire kind.",
+  "cards": [
+    {
+      "id": "van-helsing-1",
+      "n": 1,
+      "title": "The Professor from Amsterdam",
+      "text": "When Lucy Westenra grew pale and no doctor could tell why, Dr. Seward sent for his old teacher, Professor Abraham Van Helsing of Amsterdam. He gave her the blood of four brave men, filled her room with garlic flowers, and told no one what he feared until he was certain.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter IX"
+      }
+    },
+    {
+      "id": "van-helsing-2",
+      "n": 2,
+      "title": "The Stake in the Tomb",
+      "text": "After Lucy died, children began to vanish from Hampstead Heath. Van Helsing took her friends to her tomb at night and showed them she had become one of the Un-Dead. It was her betrothed, Arthur, who drove the stake, and her face became sweet and still again.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter XVI"
+      }
+    },
+    {
+      "id": "van-helsing-3",
+      "n": 3,
+      "title": "The Hunt",
+      "text": "He led the little band against the Count, sanctifying his boxes of earth with the Host so he could not rest in them. He followed him back to Transylvania, and while the others chased the cart, he went into the castle alone and destroyed the three women who had waited there for centuries.",
+      "source": {
+        "work": "Dracula",
+        "author": "Bram Stoker, 1897",
+        "edition": "Archibald Constable and Company, 1897",
+        "url": "https://www.gutenberg.org/ebooks/345",
+        "licence": "Public domain",
+        "chapter": "Chapter XXVII"
+      }
+    }
+  ]
+}

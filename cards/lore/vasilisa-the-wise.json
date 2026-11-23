@@ -1,0 +1,49 @@
+{
+  "hero": "vasilisa-the-wise",
+  "personality": "Gentle, clever and always three steps ahead. She solves every impossible task before morning.",
+  "voice": "Go to bed. The morning is wiser than the evening.",
+  "cards": [
+    {
+      "id": "vasilisa-the-wise-1",
+      "n": 1,
+      "title": "The Daughter of the Sea Tsar",
+      "text": "A Tsar was tricked into promising the Sea Tsar something he did not know he had at home: his own son, Ivan. When the prince came of age, he went to pay the debt. By the sea he found maidens bathing who had flown down as doves, and he hid the shift of the youngest, Vasilisa the Wise, until she promised to help him.",
+      "source": {
+        "work": "Russian Folk-Tales",
+        "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
+        "edition": "Russian Folk-Tales, Kegan Paul, 1915",
+        "url": "https://www.gutenberg.org/ebooks/62509",
+        "licence": "Public domain",
+        "chapter": "The Sea Tsar and Vasilísa the Wise"
+      }
+    },
+    {
+      "id": "vasilisa-the-wise-2",
+      "n": 2,
+      "title": "Tasks Done by Morning",
+      "text": "The Sea Tsar set Ivan task after impossible task, each to be finished overnight or he would lose his head. Each night Vasilisa told him to go to sleep, for the morning is wiser than the evening. Each morning the task was already done.",
+      "source": {
+        "work": "Russian Folk-Tales",
+        "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
+        "edition": "Russian Folk-Tales, Kegan Paul, 1915",
+        "url": "https://www.gutenberg.org/ebooks/62509",
+        "licence": "Public domain",
+        "chapter": "The Sea Tsar and Vasilísa the Wise"
+      }
+    },
+    {
+      "id": "vasilisa-the-wise-3",
+      "n": 3,
+      "title": "The Flight",
+      "text": "At last they fled together, and the Sea Tsar sent riders after them. Vasilisa turned them into one disguise after another, so that the riders passed them by without knowing them, until the pursuit gave up. When Ivan forgot her for a while at home, she waited, and won him back.",
+      "source": {
+        "work": "Russian Folk-Tales",
+        "author": "collected by A. N. Afanasyev, 1855–67; English by Leonard A. Magnus, 1915",
+        "edition": "Russian Folk-Tales, Kegan Paul, 1915",
+        "url": "https://www.gutenberg.org/ebooks/62509",
+        "licence": "Public domain",
+        "chapter": "The Sea Tsar and Vasilísa the Wise"
+      }
+    }
+  ]
+}

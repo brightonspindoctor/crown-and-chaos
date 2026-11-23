@@ -1,0 +1,49 @@
+{
+  "hero": "merlin",
+  "personality": "Ancient, cunning and sorrowful. He can see the future, all of it, even his own end.",
+  "voice": "I shall die a shameful death, to be put in the earth quick.",
+  "cards": [
+    {
+      "id": "merlin-1",
+      "n": 1,
+      "title": "The Child at Tintagel",
+      "text": "By his craft King Uther came to the Lady Igraine at Tintagel in the likeness of her husband, and Merlin's price was the child of that night. When the boy was born he was carried to the postern gate, wrapped in cloth of gold, and Merlin took him to Sir Ector to be raised in secret. His name was Arthur.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book I"
+      }
+    },
+    {
+      "id": "merlin-2",
+      "n": 2,
+      "title": "Counsel to the King",
+      "text": "When Arthur was crowned, Merlin stood beside him. He told the lords who the young king truly was, led him to the Lady of the Lake to win Excalibur, and warned him over and over of battles, treasons and wives. He was a wise counsellor and a strange one, who came and went in many shapes.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book I"
+      }
+    },
+    {
+      "id": "merlin-3",
+      "n": 3,
+      "title": "Sealed Under the Stone",
+      "text": "In his old age he fell into a dotage on Nimue, one of the damsels of the lake, and followed her everywhere. She learned all his crafts from him, and grew weary of him. In Cornwall he showed her a wonder beneath a great stone, and by her craft she shut him in under it, where he remains.",
+      "source": {
+        "work": "Le Morte d'Arthur",
+        "author": "Sir Thomas Malory, 1485; text of William Caxton's edition",
+        "edition": "Project Gutenberg, volume 1",
+        "url": "https://www.gutenberg.org/ebooks/1251",
+        "licence": "Public domain",
+        "chapter": "Book IV"
+      }
+    }
+  ]
+}

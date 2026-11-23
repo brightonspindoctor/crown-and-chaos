@@ -1,0 +1,49 @@
+{
+  "hero": "loki",
+  "personality": "Handsome, witty and treacherous. The gods' best friend in a crisis, and the cause of most of them.",
+  "voice": "I am the one who mixes the mead with malice.",
+  "cards": [
+    {
+      "id": "loki-1",
+      "n": 1,
+      "title": "Father of Monsters",
+      "text": "Loki was fair to look on, but evil in mind and very fickle. He was counted among the gods, and by a giantess he fathered three monsters: the wolf Fenrir, the Midgard serpent, and Hel, who rules over the dead. The gods were often helped by his cunning, and as often brought to grief by it.",
+      "source": {
+        "work": "The Younger Edda",
+        "author": "Snorri Sturluson, c. 1220; English by Rasmus B. Anderson, 1880",
+        "edition": "S. C. Griggs and Company, 1880",
+        "url": "https://www.gutenberg.org/ebooks/18947",
+        "licence": "Public domain",
+        "chapter": "The Fooling of Gylfe"
+      }
+    },
+    {
+      "id": "loki-2",
+      "n": 2,
+      "title": "The Mistletoe",
+      "text": "Everything in the world swore never to harm the god Balder, except one young shoot of mistletoe, too small to ask. Loki learned of it, cut it, and put it in the hand of blind Hoder, who threw it at Balder in sport. Balder fell dead, the greatest sorrow ever to come to gods and men.",
+      "source": {
+        "work": "The Younger Edda",
+        "author": "Snorri Sturluson, c. 1220; English by Rasmus B. Anderson, 1880",
+        "edition": "S. C. Griggs and Company, 1880",
+        "url": "https://www.gutenberg.org/ebooks/18947",
+        "licence": "Public domain",
+        "chapter": "The Fooling of Gylfe"
+      }
+    },
+    {
+      "id": "loki-3",
+      "n": 3,
+      "title": "Bound Until Ragnarok",
+      "text": "He hid as a salmon in a waterfall, but the gods netted him and Thor caught him by the tail. They bound him across three stones with his own son's entrails, and a serpent drips poison on his face. His wife Sigyn holds a bowl beneath it, and when she empties it, he writhes, and the earth shakes.",
+      "source": {
+        "work": "The Younger Edda",
+        "author": "Snorri Sturluson, c. 1220; English by Rasmus B. Anderson, 1880",
+        "edition": "S. C. Griggs and Company, 1880",
+        "url": "https://www.gutenberg.org/ebooks/18947",
+        "licence": "Public domain",
+        "chapter": "The Fooling of Gylfe"
+      }
+    }
+  ]
+}
