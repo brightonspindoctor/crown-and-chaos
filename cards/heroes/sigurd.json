@@ -32,7 +32,7 @@
     {
       "name": "Dig the pit",
       "ap": 3,
-      "text": "Charge: choose an enemy hero. Sigurd spends this round hiding in a pit. Next round, when he acts, he strikes it for 6 (Guard applies) and takes no other action. Stop him or kill him first and the strike is lost. Once per fight.",
+      "text": "Charge: choose an enemy hero. Sigurd spends this round hiding in a pit. Next round, when he acts, he strikes it for 6 (Guard applies) and takes no other action. Stop him or kill him first and the strike is lost.",
       "usesPerFight": 1,
       "charge": true
     }

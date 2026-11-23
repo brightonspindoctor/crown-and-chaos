@@ -38,7 +38,7 @@
     {
       "name": "Axe throw",
       "ap": 2,
-      "text": "A Ranged attack on any enemy card, for damage equal to his Attack. Once per fight.",
+      "text": "A Ranged attack on any enemy card, for damage equal to his Attack.",
       "usesPerFight": 1
     }
   ],

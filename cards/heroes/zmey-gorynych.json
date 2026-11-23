@@ -41,7 +41,7 @@
   "art": "zmey-gorynych",
   "status": "reviewed",
   "rules": [
-    "Each head is its own hit: Guard, Vulnerable and every damage bonus apply to each one.",
+    "Each head is its own hit: Guard and every damage bonus apply to each one.",
     "Guinevere's Queen's peace doesn't stop his heads."
   ]
 }

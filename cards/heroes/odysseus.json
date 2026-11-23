@@ -32,7 +32,7 @@
     {
       "name": "Nobody",
       "ap": 2,
-      "text": "The first attack aimed at Odysseus this round misses, and the attacker takes 1 damage. Not Speed dependent: if chosen, it is up before anyone acts. Once per fight.",
+      "text": "The first attack aimed at Odysseus this round misses, and the attacker takes 1 damage. Not Speed dependent: if chosen, it is up before anyone acts.",
       "usesPerFight": 1
     }
   ],

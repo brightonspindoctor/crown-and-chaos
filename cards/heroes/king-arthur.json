@@ -32,7 +32,7 @@
     {
       "name": "Excalibur",
       "ap": 2,
-      "text": "Attack for 5, ignoring Guard. Once per fight.",
+      "text": "Attack for 5, ignoring Guard.",
       "usesPerFight": 1
     }
   ],

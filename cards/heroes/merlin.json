@@ -37,7 +37,7 @@
     {
       "name": "Enchanted sleep",
       "ap": 2,
-      "text": "An enemy hero takes no actions this round or next.",
+      "text": "An enemy hero takes no actions this round.",
       "usesPerFight": 1
     }
   ],

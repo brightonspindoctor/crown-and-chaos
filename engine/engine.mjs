@@ -797,7 +797,7 @@ export function upkeep(st) {
   if (st.round === NIGHTFALL && !st.noNight) {
     for (const c of allCards(st)) if (c.id === "blodeuwedd" && !c.flags.night) {
       c.flags.night = true; c.maxHealth = c.baseHealth * 2; c.health = c.maxHealth; c.baseAtk *= 2;
-      log(st, `Blodeuwedd becomes the owl: 14 Health, Attack 4.`);
+      log(st, `Blodeuwedd becomes the owl: ${c.maxHealth} Health, Attack ${c.baseAtk}.`);
     }
   }
   // Guard refreshes

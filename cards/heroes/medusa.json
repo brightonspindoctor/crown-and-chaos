@@ -37,7 +37,7 @@
     {
       "name": "Petrify",
       "ap": 2,
-      "text": "An enemy hero takes no actions this round. Once per fight.",
+      "text": "An enemy hero takes no actions this round.",
       "usesPerFight": 1
     }
   ],

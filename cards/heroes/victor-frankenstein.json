@@ -27,7 +27,7 @@
     {
       "name": "Attack",
       "ap": 1,
-      "text": "Standard attack: damage equal to Attack."
+      "text": "Standard Ranged attack: damage equal to Attack, on any enemy card."
     },
     {
       "name": "Reanimate",

@@ -37,7 +37,7 @@
     {
       "name": "Transfigure",
       "ap": 2,
-      "text": "An enemy hero's Attack becomes 1 for this round and next. Once per fight.",
+      "text": "An enemy hero's Attack becomes 1 for this round and next.",
       "usesPerFight": 1
     }
   ],

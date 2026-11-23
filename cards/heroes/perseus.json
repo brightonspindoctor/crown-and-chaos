@@ -32,13 +32,13 @@
     {
       "name": "Mirrored shield",
       "ap": 2,
-      "text": "The first attack aimed at Perseus this round is reflected: the attacker takes the damage instead. Not Speed dependent: if chosen, it is up before anyone acts. Once per fight.",
+      "text": "The first attack aimed at Perseus this round is reflected: the attacker takes the damage instead. Not Speed dependent: if chosen, it is up before anyone acts.",
       "usesPerFight": 1
     },
     {
       "name": "Medusa's head",
       "ap": 3,
-      "text": "An enemy hero is turned to stone: it takes no actions this round and has +2 Guard. Once per fight.",
+      "text": "An enemy hero is turned to stone: it takes no actions this round and has +2 Guard.",
       "usesPerFight": 1
     }
   ],

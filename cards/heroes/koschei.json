@@ -40,6 +40,6 @@
   "rules": [
     "Always on, in any slot: while your Needle lives, Koschei can't drop below 1 health.",
     "Whenever you field Koschei, the Needle is placed in slot 6 automatically and costs no Renown.",
-    "Nightfall damage ignores the hidden death."
+    "Nightfall damage can still kill him, even while the Needle lives."
   ]
 }

@@ -27,12 +27,12 @@
     {
       "name": "Attack",
       "ap": 1,
-      "text": "Standard attack: damage equal to Attack."
+      "text": "Standard Ranged attack: damage equal to Attack, on any enemy card."
     },
     {
       "name": "Stones in the belly",
       "ap": 2,
-      "text": "A Ranged attack that also drops the target's Speed to 1 for the rest of the fight.",
+      "text": "A Ranged attack for his Attack that also drops the target's Speed to 1 for the rest of the fight.",
       "usesPerFight": 1
     }
   ],
