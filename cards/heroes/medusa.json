@@ -37,7 +37,7 @@
     {
       "name": "Petrify",
       "ap": 2,
-      "text": "An enemy hero takes no actions this round. Like every stopping effect, it can't stop the same hero two rounds running. Once per fight.",
+      "text": "An enemy hero takes no actions this round. Once per fight.",
       "usesPerFight": 1
     }
   ],

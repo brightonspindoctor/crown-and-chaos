@@ -38,7 +38,7 @@
     {
       "name": "Medusa's head",
       "ap": 3,
-      "text": "An enemy hero is turned to stone: it takes no actions this round and has +2 Guard. Like every stopping effect, it can't stop the same hero two rounds running. Once per fight.",
+      "text": "An enemy hero is turned to stone: it takes no actions this round and has +2 Guard. Once per fight.",
       "usesPerFight": 1
     }
   ],
