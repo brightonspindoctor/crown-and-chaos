@@ -1841,8 +1841,8 @@ function fullCard(id, o = {}) {
   let body = "", foot = "";
   if (kind === "hero") {
     body = `<span class="ty">${esc(d.aspect)} · <span class="ak ${attackKind(id)}">${KIND_SVG[attackKind(id)]}${KIND_LABEL[attackKind(id)]}</span></span>
-      <span class="cr"><b>Crown passive</b><br>${esc(d.crownPassive.text)}</span>
-      <span><b>Bond</b><br>${esc(d.bond.text)}</span>
+      <span class="cr"><b>Crown passive · ${esc(d.crownPassive.name || "")}</b><br>${esc(d.crownPassive.text)}</span>
+      <span><b>Bond · ${esc(d.bond.name || "")}</b><br>${esc(d.bond.text)}</span>
       ${(d.rules || []).map((r) => { const x = ruleParts(r); return `<span class="ru"><b>${esc(x.name)}</b><br>${esc(x.text)}</span>`; }).join("")}
       ${d.actions.map((x) => `<span class="a"><b>${esc(x.name)}</b> ${pips(x.ap)}${x.usesPerFight ? ` <i>${x.usesPerFight === 1 ? "once" : x.usesPerFight + " times"} a fight</i>` : ""}<br>${esc(x.text)}</span>`).join("")}`;
     foot = `<span>Attack ${d.stats.attack}</span><span>Guard ${d.stats.guard}</span><span>Health ${d.stats.health}</span>`;
@@ -1969,8 +1969,8 @@ function cardSheet(sh) {
   const mk0 = mine && crown && S.phase === "plan" && !g ? markInfo() : null;
   const mineMark = mk0 && mk0.uid === c.uid ? mk0 : null;
   const rules = hero
-    ? `${mineMark ? "" : `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>`}
-       <p class="rule"><b>Bond · works in any slot</b>${esc(def.bond?.text || "None")}</p>
+    ? `${mineMark ? "" : `<p class="rule${crown ? "" : " off"}"><b>Crown passive · ${esc(def.crownPassive?.name || "")} · ${crown ? "active" : "only while wearing the Crown"}</b>${esc(def.crownPassive?.text)}</p>`}
+       <p class="rule"><b>Bond · ${esc(def.bond?.name || "")} · works in any slot</b>${esc(def.bond?.text || "None")}</p>
        ${(def.rules || []).map((r) => { const x = ruleParts(r); return `<p class="rule"><b>${esc(x.name)}</b>${esc(x.text)}</p>`; }).join("")}`
     : `<p class="rule"><b>Front rank · acts on its own every round, at Speed ${E.speedOf(st, c)}</b>${esc(c.auto || "")}</p>`;
   return `<div class="sheet" role="dialog" aria-label="${esc(c.name)}">
@@ -2292,8 +2292,8 @@ function formationHtml() {
   };
   const hs = [lu.crown, ...lu.heroes].filter(Boolean).map((id) => DATA.heroes[id]);
   const tally = (key) => Object.entries(hs.reduce((m, h) => ((m[h[key]] = (m[h[key]] || 0) + 1), m), {})).filter(([, n]) => n > 1).map(([k, n]) => key === "realm" ? `<span class="tag realmed" style="--realm:${realmTint(k)}">${esc(k)} × ${n}</span>` : `<span class="tag">${esc(k)} × ${n}</span>`).join("");
-  const bonds = hs.length ? `${lu.crown ? `<p class="rule"><b>Crown passive · ${esc(DATA.heroes[lu.crown].name)}</b>${esc(DATA.heroes[lu.crown].crownPassive.text)}</p>` : ""}
-    ${hs.map((h) => `<p class="rule"><b>Bond · ${esc(h.name)}</b>${esc(h.bond.text)}</p>`).join("")}
+  const bonds = hs.length ? `${lu.crown ? `<p class="rule"><b>Crown passive · ${esc(DATA.heroes[lu.crown].crownPassive.name || "")} (${esc(short(DATA.heroes[lu.crown].name))})</b>${esc(DATA.heroes[lu.crown].crownPassive.text)}</p>` : ""}
+    ${hs.map((h) => `<p class="rule"><b>Bond · ${esc(h.bond.name || "")} (${esc(short(h.name))})</b>${esc(h.bond.text)}</p>`).join("")}
     <div class="tags">${tally("tale")}${tally("realm")}</div>` : `<p class="rule off">Choose your heroes to see their Crown passive and Bonds here.</p>`;
   return `<div class="wrap"><div class="bar"><h1>Line-up</h1>
       <div class="meter${r > RENOWN_CAP ? " over" : ""}${f === "meter" ? " focus" : ""}" role="img" aria-label="${r} of ${RENOWN_CAP} Renown used">Renown <b>${r}</b> / ${RENOWN_CAP}<div class="track"><i style="width:${Math.min(100, (r / RENOWN_CAP) * 100)}%"></i></div>${r < RENOWN_CAP ? `<span class="spare">+${RENOWN_CAP - r} gold if you win</span>` : ""}</div></div>

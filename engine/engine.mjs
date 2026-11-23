@@ -837,7 +837,7 @@ export function upkeep(st) {
       }
       case "grendel": {
         const fr = cards(st, foe).filter((c) => c.kind === "front").sort((a, b) => a.health - b.health)[0];
-        if (fr) damage(st, crown, fr, 2, {});
+        if (fr) damage(st, crown, fr, 1, {});
         break;
       }
       case "circe": {

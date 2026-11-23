@@ -11,7 +11,7 @@
     "attack": 1,
     "ranged": false,
     "guard": 0,
-    "speed": 1
+    "speed": 2
   },
   "vulnerableTo": "Slayer",
   "renown": 16,

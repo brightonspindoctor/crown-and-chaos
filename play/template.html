@@ -276,7 +276,7 @@ function sheetHtml() {
     }).join("")}</div>`;
   } else if (mine) acts = `<p class="muted">This hero already has an action this round. Remove it from the plan to choose another.</p>`;
   const texts = c.kind === "hero"
-    ? `<p><strong>Crown passive:</strong> ${esc(def.crownPassive?.text)}</p><p><strong>Bond:</strong> ${esc(def.bond?.text || "None")}</p>${(def.rules || []).map((r) => `<p class="muted">${esc(r)}</p>`).join("")}`
+    ? `<p><strong>Crown passive · ${esc(def.crownPassive?.name || "")}:</strong> ${esc(def.crownPassive?.text)}</p><p><strong>Bond · ${esc(def.bond?.name || "")}:</strong> ${esc(def.bond?.text || "None")}</p>${(def.rules || []).map((r) => `<p class="muted">${esc(r)}</p>`).join("")}`
     : `<p>${esc(c.auto || "")}</p>`;
   const num = (key, label, val) => `<label>${label}<input type="number" id="ed-${key}" data-edit="${key}" value="${val}"></label>`;
   return `<div class="sheet" role="dialog" aria-label="${esc(c.name)}"><div class="row"><h2>${esc(c.name)}</h2>
