@@ -10,7 +10,7 @@
     "health": 10,
     "attack": 3,
     "ranged": false,
-    "guard": 1,
+    "guard": 0,
     "speed": 1
   },
   "vulnerableTo": "Trickster",
