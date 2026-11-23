@@ -38,7 +38,7 @@
       "name": "Labyrinth",
       "ap": 3,
       "usesPerFight": 1,
-      "text": "Two random enemy cards can't act next round. Like every stopping effect, it can't stop the same card two rounds running."
+      "text": "Two random enemy cards can't act next round."
     }
   ],
   "art": "king-minos",
