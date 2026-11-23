@@ -21,7 +21,7 @@
   },
   "bond": {
     "name": "Lord of the Labyrinth",
-    "text": "Each time an enemy front-rank card dies, each of your Beast heroes heals 3."
+    "text": "Each time an enemy front-rank card dies, each of your Beast heroes heals 1."
   },
   "actions": [
     {
@@ -33,6 +33,12 @@
       "name": "Royal decree",
       "ap": 2,
       "text": "Next round, every enemy action costs 1 more action point."
+    },
+    {
+      "name": "Labyrinth",
+      "ap": 3,
+      "usesPerFight": 1,
+      "text": "Two random enemy cards can't act next round. Like every stopping effect, it can't stop the same card two rounds running."
     }
   ],
   "art": "king-minos",

@@ -154,12 +154,12 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   }
   ok("Guests of Aiaia: Perseus has 2 Guard", E.guardOf(st, card(st, 0, "perseus")) === 2);
 }
-{ // King Minos: tribute heals, Lord of the Labyrinth heals Beasts 3, Royal decree raises costs
+{ // King Minos: tribute heals, Lord of the Labyrinth heals Beasts 1, Royal decree raises costs
   const st = game(lu("king-minos", ["the-minotaur"]), lu("merlin", [], ["villager"]));
   const mn = card(st, 0, "king-minos"), mt = card(st, 0, "the-minotaur");
   mn.health -= 4; mt.health -= 5;
   E.kill(st, card(st, 1, "villager"), mt);
-  ok("Minos heals 1 and the Minotaur heals 1 + 3", mn.maxHealth - mn.health === 3 && mt.maxHealth - mt.health === 1, [mn.health, mt.health]);
+  ok("Minos heals 1 and the Minotaur heals 1 + 1", mn.maxHealth - mn.health === 3 && mt.maxHealth - mt.health === 3, [mn.health, mt.health]);
   const st2 = game(lu("king-minos"), lu("merlin"));
   E.playRound(st2, [{ orders: [order(st2, 0, "king-minos", "Royal decree")] }, { orders: [] }]);
   const me = card(st2, 1, "merlin"), hex = me.actions.find((a) => a.name === "Hex");
@@ -386,6 +386,14 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const t = E.targetsFor(st2, q, shard);
   ok("Shard: the Wolf can't be targeted again", !t.some((c) => c.uid === wolf.uid), t.map((c) => c.name));
   ok("Shard: other heroes still can", t.some((c) => c.id === "the-huntsman"));
+}
+{ // Labyrinth: once a fight, two random enemy cards can't act next round
+  const st = game(lu("king-minos"), lu("the-dragon", ["the-wolf", "the-huntsman"]));
+  E.playRound(st, [{ orders: [order(st, 0, "king-minos", "Labyrinth")] }, { orders: [] }]);
+  const lost = E.cards(st, 1).filter((c) => c.flags.labyrinthRound === st.round);
+  ok("Labyrinth: two enemy cards are stopped this round", lost.length === 2 && lost.every((c) => c.stopNow), lost.map((c) => c.name));
+  const mn = card(st, 0, "king-minos"), lab = mn.actions.find((a) => a.name === "Labyrinth");
+  ok("Labyrinth: once a fight", !E.options(st, mn).some((o) => o.action === lab));
 }
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

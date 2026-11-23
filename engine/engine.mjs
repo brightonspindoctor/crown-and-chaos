@@ -680,9 +680,9 @@ function onDeath(st, t, src) {
     // Athenian tribute: each enemy front-rank death heals your heroes 1.
     const minos = crownIs(st, s, "king-minos") ? crownCard(st, s) : null;
     if (minos) for (const h of heroes(st, s)) heal(st, minos, h, 1);
-    // Lord of the Labyrinth: each enemy front-rank death heals your Beast heroes 3.
+    // Lord of the Labyrinth: each enemy front-rank death heals your Beast heroes 1.
     const lord = heroes(st, s).find((h) => h.id === "king-minos");
-    if (lord && bondFactor(st, s) > 0) for (const h of heroes(st, s)) if (h.aspect === "Beast") heal(st, lord, h, 3);
+    if (lord && bondFactor(st, s) > 0) for (const h of heroes(st, s)) if (h.aspect === "Beast") heal(st, lord, h, 1);
     return;
   }
   if (t.kind !== "hero") return;
@@ -799,6 +799,8 @@ export function upkeep(st) {
   }
   // Guard refreshes
   for (const c of allCards(st)) { c.guardLeft = guardOf(st, c); c.stopNow = false; }
+  // Labyrinth: cards lost in it last round can't act this round.
+  for (const c of allCards(st)) if (!c.dead && c.flags.labyrinthRound === st.round) stop(st, c, "Labyrinth");
   // Nightfall damage and Poison (ignore Guard)
   if (isNight(st)) {
     const n = st.round - NIGHTFALL + 1;
@@ -971,7 +973,14 @@ export const ACTIONS = {
   "polyphemus": { "Hurl the boulder": { t: "enemyAny", go: (st, a, x) => { hit(st, a, x, 4, { ranged: true }); if (!x.dead && x.kind === "hero") { x.flags.slowRound = st.round + 1; log(st, `${x.name} is slowed next round.`); ev(st, { t: "debuff", kind: "slow", src: a.uid, tgt: x.uid, text: "−1 Speed next round" }); } } } },
   "circe": { "Hex": { t: "enemySpell", go: (st, a, x) => damage(st, a, x, 2, { spell: true, attack: true, ranged: true, ignoreGuard: true }) },
     "Transfigure": { t: "enemyHero", go: (st, a, x) => { x.flags.transfigUntil = st.round + 1; log(st, `Circe transfigures ${x.name}: Attack 1 this round and next.`); ev(st, { t: "debuff", kind: "transfig", src: a.uid, tgt: x.uid, text: "Attack 1" }); } } },
-  "king-minos": { "Royal decree": { t: "none", go: (st, a) => { const fs = st.sides[1 - a.side].flags; if (fs.decreeRound === st.round + 1) return; fs.decreeRound = st.round + 1; log(st, `King Minos decrees: next round, every ${sideName(1 - a.side)} action costs 1 more action point.`); ev(st, { t: "debuff", kind: "decree", src: a.uid, side: 1 - a.side, text: "Next round: +1 AP per action" }); } } },
+  "king-minos": { "Labyrinth": { t: "none", go: (st, a) => {
+      // Two random enemy cards (heroes or front rank) lose their action next round. Cards stopped this round can't be picked.
+      const pool = cards(st, 1 - a.side).filter((c) => c.stoppedRound !== st.round && c.id !== "the-needle");
+      const picks = st.rng.shuffle(pool.slice()).slice(0, 2);
+      for (const c of picks) c.flags.labyrinthRound = st.round + 1;
+      log(st, picks.length ? `${picks.map((c) => c.name).join(" and ")} ${picks.length > 1 ? "are" : "is"} lost in the Labyrinth next round.` : "No one is lost in the Labyrinth.");
+    } },
+    "Royal decree": { t: "none", go: (st, a) => { const fs = st.sides[1 - a.side].flags; if (fs.decreeRound === st.round + 1) return; fs.decreeRound = st.round + 1; log(st, `King Minos decrees: next round, every ${sideName(1 - a.side)} action costs 1 more action point.`); ev(st, { t: "debuff", kind: "decree", src: a.uid, side: 1 - a.side, text: "Next round: +1 AP per action" }); } } },
   "the-minotaur": { "Growl": { t: "none", go: (st, a) => { st.sides[1 - a.side].flags.growlRound = st.round + 1; log(st, `The Minotaur growls: next round, every ${sideName(1 - a.side)} card has -1 Guard and -1 Speed.`); ev(st, { t: "debuff", kind: "growl", src: a.uid, tgts: cards(st, 1 - a.side).map((c) => c.uid), text: "−1 Guard, −1 Speed" }); } },
     "Gore": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
   "sigurd": { "Dig the pit": { t: "enemyHero", go: (st, a, x) => charge(st, a, x, "Gram from the pit", false) } },
@@ -1518,6 +1527,7 @@ function valueOf(st, a, act, x) {
     case "Serpent hair": return Math.min(2, cards(st, foe).length) * 2.6;
     case "Hurl the boulder": return dmgValue(4, x) + (x?.kind === "hero" ? 1 : 0);
     case "Transfigure": return x ? Math.max(0, attackOf(st, x) - 1) * 2 : 0;
+    case "Labyrinth": return cards(st, foe).length >= 2 ? 7 : 3;
     case "Royal decree": return st.sides[foe].flags.decreeRound === st.round + 1 ? 0 : 3 + heroes(st, foe).length;
     case "Dig the pit": case "Deep breath": return x ? dmgValue(8 + (x.guardLeft || 0), x) * 0.7 + (x.uid === crownCard(st, foe)?.uid ? 3 : 0) : 0;
     case "Mistletoe": return dmgValue(3 + (x?.guardLeft || 0), x);
