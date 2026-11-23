@@ -8,13 +8,13 @@
   "tags": [],
   "stats": {
     "health": 8,
-    "attack": 3,
+    "attack": 4,
     "ranged": false,
     "guard": 1,
     "speed": 3
   },
   "vulnerableTo": "Slayer",
-  "renown": 16,
+  "renown": 15,
   "crownPassive": {
     "name": "Night raid",
     "text": "At upkeep, deal 1 damage to the enemy front-rank card with the lowest health."

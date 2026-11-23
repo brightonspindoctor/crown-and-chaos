@@ -14,7 +14,7 @@
     "speed": 2
   },
   "vulnerableTo": "Slayer",
-  "renown": 16,
+  "renown": 15,
   "crownPassive": {
     "name": "The mere",
     "text": "Your heroes take 2 less damage from Ranged attacks."
