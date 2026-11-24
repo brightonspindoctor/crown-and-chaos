@@ -2435,62 +2435,50 @@ const TUTORIAL = [
       { say: "The Dragon wears the enemy Crown. Bring it down and you win.", focus: [1, 1], next: true },
       { say: "Heroes stand in front of the Crown, and the front rank in front of them. You have 4 action points a round to spend on your heroes. Tap St George.", tap: 2 },
       { say: "Each action shows what it costs. Choose Attack, for 1 action point.", action: "Attack" },
-      { say: "St George fights hand to hand, so he can only reach the closest enemy row. Tap the Berserker.", target: [1, 5] },
-      { say: "A hero acts once a round. The Princess is ranged, so she can hit any enemy. Tap her.", tap: 1 },
+      { say: "The sword on St George's card means melee: he can only strike cards with nothing standing in front of them. Tap the Berserker.", target: [1, 5] },
+      { say: "A hero acts once a round. The bow on the Princess's card means ranged: she can hit any enemy card. (A star means magic, which reaches anywhere too.) Tap her.", tap: 1 },
       { say: "Choose Attack.", action: "Attack" },
       { say: "Aim past their front rank: tap the Dragon.", target: [1, 1] },
       { say: "Your front rank never needs orders or action points. Every round each of these cards acts by itself: Villagers attack the card opposite, and the Longbowman shoots the enemy Crown.", focus: "front", next: true },
-      { say: "Both sides plan in secret, then every card acts in Speed order, fastest first. The red seal on each card is its Speed. Every front-rank card is Speed 2.", next: true },
-      { say: "Speed 2 ties a lot: St George and both front ranks are all Speed 2. When Speeds tie, the holder of the Fate token goes first. It is on your side this round, and crosses the board every round. Lock in your plan.", focus: "fate", lock: true },
+      { say: "Both sides plan in secret, then every card acts in Speed order, fastest first. The red seal on each card is its Speed.", next: true },
+      { say: "When Speeds tie, the holder of the Fate token goes first. It is on your side this round, and crosses the board every round. Lock in your plan.", focus: "fate", lock: true },
     ],
     foe: { slot: 1, act: "Tail Sweep", t: [0, 5] },
     after: [
       { say: "Your front rank attacked without being told to. The Villagers couldn't get past the Knights' Guard, the blue diamond: it soaks up that much damage each round.", next: true },
+      { say: "Every card stands in a lane, covered by the cards in front of it. The middle front-rank slot covers both lanes; the outer slots cover one each. One gap in a lane opens the card behind it.", next: true },
+      { say: "The Berserker stood in the middle. With it gone, and no heroes guarding the Dragon, the enemy Crown is open to St George's sword.", focus: [1, 1], next: true },
+      { say: "It cut both ways: the Dragon's tail broke your middle slot, and with only one hero in front of her, the Princess is open to melee too.", focus: [0, 1], next: true },
       { say: "Front-rank cards that die are used up for good. Survivors come back for your next fight.", next: true },
     ] },
   { steps: [
-      { say: "With your front rank gone and only one hero in front of her, the Princess can be attacked hand to hand. Two heroes in front would shield her.", focus: [0, 1], next: true },
-      { say: "Stronger actions cost more. Tap St George.", tap: 2 },
-      { say: "Choose Lance Charge: 3 damage that ignores Guard, for 2 action points.", action: "Lance Charge" },
-      { say: "Tap the glowing Knight.", target: [1, 4] },
-      { say: "Two action points left. Tap the Princess.", tap: 1 },
-      { say: "Choose Attack.", action: "Attack" },
-      { say: "Keep wearing the Dragon down.", target: [1, 1] },
+      { say: "The way is open. Tap St George.", tap: 2 },
+      { say: "Stronger actions cost more. Choose Lance Charge: 3 damage that ignores Guard, for 2 action points.", action: "Lance Charge" },
+      { say: "Charge the Dragon.", target: [1, 1] },
+      { say: "Whoever wears the Crown can also Hold court. Tap the Princess.", tap: 1 },
+      { say: "Choose Hold court: she gains 1 Guard this round, and you get an extra action point next round. It happens first, before anyone moves.", action: "Hold court" },
       { say: "The Fate token has crossed to the enemy, so their Knights act before St George does. Lock in.", focus: "fate", lock: true },
     ],
     foe: { slot: 1, act: "Fire Breath", t: [0, 1], t2: [0, 2] },
     after: [
-      { say: "St George's Guard stopped a Knight, but it was spent by the time the fire came. Guard refills every round.", focus: [0, 2], next: true },
-      { say: "The Princess is hurt. While she wears the Crown, one of your cards heals a little at the start of each round.", focus: [0, 1], next: true },
+      { say: "Holding court softened the blows on the Princess. Guard is spent as it blocks and refills every round.", focus: [0, 1], next: true },
+      { say: "While the Princess wears the Crown, one of your cards heals at the start of each round. Every hero has a Crown passive like this, switched on only in slot 1.", focus: [0, 1], next: true },
+      { say: "Any hero can also Move: swap places with another of your heroes. Whoever ends up in slot 1 wears the Crown, so a wounded Crown can step back behind a fresh hero.", focus: [0, 2], next: true },
+      { say: "One last rule: fights can't drag on. The round counter at the top left shows when night falls, in round 8. From then on nothing heals, and every card takes rising damage that Guard can't block.", focus: "night", next: true },
     ] },
   { steps: [
-      { say: "Your tool belt holds single-use items. Tap the Gingerbread to read it.", item: "gingerbread" },
-      { say: "Items cost no action points and act before any card, but you can use only one a round. Use it.", useItem: true },
+      { say: "Holding court gave you 5 action points this round. Your tool belt holds single-use items. Tap the Gingerbread to read it.", item: "gingerbread" },
+      { say: "Items act before any card, but you can use only one a round. Use it.", useItem: true },
       { say: "Give it to the Princess.", target: [0, 1] },
       { say: "Now hold the Dragon back. Tap the Princess.", tap: 1 },
       { say: "Choose Girdle Leash: an enemy Beast can't act this round. She can leash each Beast only once a fight, so choose the moment.", action: "Girdle Leash" },
       { say: "Tap the Dragon.", target: [1, 1] },
-      { say: "Now tap St George.", tap: 2 },
-      { say: "Choose Attack.", action: "Attack" },
-      { say: "Clear the last Knight.", target: [1, 6] },
-      { say: "The Fate token is back on your side, so St George strikes before the Knight can. Lock in.", focus: "fate", lock: true },
-    ],
-    foe: { slot: 1, act: "Tail Sweep", t: [0, 2] },
-    after: [
-      { say: "The Dragon lost its turn and its front rank is gone. Nothing stands between St George and the enemy Crown.", focus: [1, 1], next: true },
-      { say: "One last rule: fights can't drag on. The round counter at the top left shows when night falls, in round 8.", focus: "night", next: true },
-      { say: "From then on nothing heals, and at the start of each round every card on both sides takes damage that Guard can't block: 1, then 2, then 3. Win before the dark, or bring enough Health to outlast it.", focus: "night", next: true },
-    ] },
-  { steps: [
       { say: "Finish it. Tap St George.", tap: 2 },
       { say: "Choose Lance Charge.", action: "Lance Charge" },
       { say: "Tap the Dragon.", target: [1, 1] },
-      { say: "Tap the Princess.", tap: 1 },
-      { say: "Choose Attack.", action: "Attack" },
-      { say: "Tap the Dragon.", target: [1, 1] },
-      { say: "The Dragon is the slowest card on the table, Speed 1, so both your heroes act before it. Lock in.", lock: true },
+      { say: "The leashed Dragon can't strike back this round. Lock in.", lock: true },
     ],
-    foe: { slot: 1, act: "Attack", t: [0, 2] } },
+    foe: { slot: 1, act: "Tail Sweep", t: [0, 2] } },
 ];
 
 // =====================================================================================
@@ -2829,7 +2817,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-24-0803a45";
+const BUILD = "2026-11-24-a389c7d";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -3118,7 +3106,7 @@ function gaps(lu) {
   const n = (arr) => arr.filter((x) => !x).length;
   const out = [], h = n(lu.heroes), f = n(hasKoschei(lu) ? lu.front.slice(0, 2) : lu.front), i = n(lu.items);
   const spareItems = Object.entries(G.items).reduce((sum, [id, k]) => sum + Math.max(0, k - usedIn(lu, id)), 0);
-  if (h) out.push(`${h} empty hero slot${h > 1 ? "s" : ""}: ${h === 2 ? "only your Crown will fight, and an enemy can reach it straight away" : "your Crown can be attacked hand to hand once the other hero falls"}.`);
+  if (h) out.push(`${h} empty hero slot${h > 1 ? "s" : ""}: ${h === 2 ? "only your Crown will fight, and melee can reach it as soon as any front-rank card falls" : "melee can reach your Crown as soon as a front-rank card in front of the empty slot falls"}.`);
   if (f) out.push(`${f} empty front-rank slot${f > 1 ? "s" : ""}. Villagers are free, cost 1 Renown and never run out.`);
   if (i) out.push(`${i} empty item slot${i > 1 ? "s" : ""}${spareItems ? "" : ", but you have no spare items"}.`);
   return out;
@@ -3154,6 +3142,7 @@ function musterTap(s) {
 }
 function musterGo() {
   const m = U.muster; if (!m) return;
+  if (!G.musterSeen) { G.musterSeen = true; save(); }
   const mine = { ...m.mine, crown: m.crown ?? m.mine.crown, heroes: (m.heroes ?? m.mine.heroes).filter(Boolean), front: m.front ?? m.mine.front };
   begin("fight", [mine, m.foe], { foeName: `${short(DATA.heroes[m.foe.crown].name)}'s company` });
   S.renown = m.renown; S.easy = m.easy; S.conceded = false; U.muster = null;
@@ -3181,6 +3170,7 @@ function musterHtml() {
     <p class="rowlabel">Their company · they are choosing their Crown too</p>
     <div class="pyr muster-foe"><div class="rank">${foeHeroes.map(foeCard).join("")}</div><div class="rank">${foeFront.map(foeCard).join("")}</div></div>
     ${items ? `<p class="credit" style="text-align:center">Their tool belt: ${items}</p>` : ""}
+    ${G.musterSeen ? "" : `<div class="tip"><p>Before every fight you see which cards the enemy brought, but not where they will stand. They are planning too. Choose the Crown that suits this fight, and the order of your heroes and front rank.</p></div>`}
     <p style="font-size:15.5px;text-align:center;margin:4px 0">${m.sel ? "Now tap where it should go." : "Tap two heroes to swap them, or two front-rank cards. Whoever stands in the Crown slot wears the Crown."}</p>
     <div class="form"><div class="wrap" style="padding:0;gap:10px">
       <p class="rowlabel">Your front rank</p>
@@ -5173,6 +5163,7 @@ const TIPS = [
   { say: "Front-rank cards act on their own. One that dies in a fight is gone for good; survivors come back. Villagers are free and never run out.", focus: "front" },
   { say: "Your tool belt carries up to 2 items. An item is single use: once used in a fight, it leaves your collection.", focus: "belt" },
   { say: "Fights last until a Crown falls. If one reaches round 8, night falls: healing stops and every card takes rising damage each round, so plan to win or to outlast it.", focus: "" },
+  { say: "Where cards stand matters. Your middle front-rank slot covers both heroes, and each outer slot covers the hero behind it. One gap opens that hero to melee, so put your toughest front-rank card in the middle.", focus: "front" },
   { say: "Fill your slots and press Fight. Every fight pays gold, win or lose, and gold buys Fable packs in the shop.", focus: "fight" },
 ];
 function formationHtml() {
