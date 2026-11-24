@@ -90,7 +90,7 @@ Generated from `art/manifest.json` by `scripts/build-credits.mjs`. Do not edit b
 - **geat-thane** (card): John Charles Dollman, *A Viking Foray* (1909). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_Viking_Foray.jpg). Public domain in the US and UK.
 - **mere-beast** (card): Henry Justice Ford, *Plate facing page 38, The Red Book of Animal Stories* (1899). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:The_red_animal_story_book_-_plate_facing_page_038.png). Public domain in the US and UK.
 - **grandmother** (card): Gerrit Dou, *Old Woman Reading* (c. 1631-32). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gerard_Dou_005.jpg). Public domain.
-- **leshy** (card): Léon Bakst, *Lesovik (the forest spirit)* (1906). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lesovik_(Bakst).jpg). Public domain.
+- **leshy** (variant): Léon Bakst, *Lesovik (the forest spirit)* (1906). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lesovik_(Bakst).jpg). Public domain.
 - **monk** (card): Hugo van der Goes, *A Benedictine Monk* (c. 1478). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_Benedictine_Monk_(by_Hugo_van_der_Goes)_-_Metropolitan_Museum_of_Art,_New_York_City.jpg). CC0.
 - **villager** (card): Antoine Le Nain, *A Peasant Family* (c. 1640-45). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Antoine_Le_Nain_-_A_Peasant_Family_-_2023.605_-_Metropolitan_Museum_of_Art.jpg). CC0.
 - **the-needle** (card): Ivan Bilibin, *Ivan Tsarevich on the shore (the pike brings Koschei's egg)* (1899). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Царевна_лягушка_6.jpg). Public domain.
