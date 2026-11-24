@@ -430,5 +430,15 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Planning: same heroes", same([d.crown, ...d.heroes], ["koschei", "the-wolf", "merlin"]), d);
   ok("Planning: same front rank, Koschei's third slot left alone", same(d.front, mine.front) && d.front[2] === "villager", d.front);
 }
+{ // The Huntsman's Bond: +1 to Beasts per other Märchen hero, ranged included; nothing extra against non-Beasts
+  const shot = (mine, target) => {
+    const st = game(lu("merlin", mine), lu("st-george", ["the-wolf"]));
+    const t = card(st, 1, target), before = t.health;
+    E.playRound(st, [{ orders: [order(st, 0, "the-huntsman", "Attack", t)] }, { orders: [] }]);
+    return before - t.health;
+  };
+  ok("Huntsman Bond: +1 against a Beast per other Märchen hero", shot(["the-huntsman", "red-riding-hood"], "the-wolf") === shot(["the-huntsman", "lancelot"], "the-wolf") + 1);
+  ok("Huntsman Bond: no bonus against a non-Beast", shot(["the-huntsman", "red-riding-hood"], "st-george") === shot(["the-huntsman", "lancelot"], "st-george"));
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

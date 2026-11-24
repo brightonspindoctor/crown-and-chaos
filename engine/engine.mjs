@@ -291,7 +291,6 @@ export function attackOf(st, c, opts = {}) {
   if (c.kind === "hero" && f) {
     if (["renfield", "van-helsing"].includes(c.id)) a += f * countRealm(st, c, "Gothic");
     if (c.id === "rumpelstiltskin") a += f * countRealm(st, c, "Märchen");
-    if (c.id === "the-huntsman") a += f * Math.min(2, countRealm(st, c, "Märchen"));
     if (c.id === "the-tin-soldier") a += f * countRealm(st, c, "Eventyr");
     if (c.id === "lancelot") {
       const mine = heroes(st, c.side);
@@ -557,6 +556,8 @@ export function damage(st, src, target, amount, opts = {}) {
     if (crownIs(st, s, "the-wolf") && injured(t)) amt += 1;
     if (crownIs(st, s, "the-huntsman") && st.marks[`hunt${s}`] === t.uid) amt += 1;
     if (st.marks[`wanted${s}`] === t.uid) amt += 1;
+    // The Huntsman's Bond (Told by the hearth): his attacks, ranged included, deal +1 to Beasts per other Märchen hero.
+    if (f && src.kind === "hero" && src.id === "the-huntsman" && t.aspect === "Beast") amt += f * countRealm(st, src, "Märchen");
     // Bonds help melee only: the Dragon's +1 against Slayers doesn't add to ranged attacks or spells (Fire Breath).
     if (f && !opts.ranged && !opts.spell && heroes(st, s).some((h) => h.id === "the-dragon") && t.aspect === "Slayer") amt += f;
     if (src.flags.giantSword === st.round) { amt += 3; opts = { ...opts, ignoreGuard: true }; src.flags.giantSword = -1; }
