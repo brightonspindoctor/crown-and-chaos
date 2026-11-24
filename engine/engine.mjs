@@ -123,7 +123,7 @@ export function createGame(data, lineups, opts = {}) {
     data, rng, round: 0, fate: rng.int(2), log: [], over: false, winner: null,
     sides: [0, 1].map((i) => ({ index: i, slots: {}, items: [], usedItems: [], grave: [], swallowed: [],
       noCrown: false, crownUid: null, ap: BASE_AP, flags: {} })),
-    marks: {},
+    marks: {}, lanes: opts.lanes ?? LANES_DEFAULT,
   };
   lineups.forEach((lu, i) => setupSide(st, i, lu));
   // Morgan le Fay as Crown starts with the Fate token (an enemy Renfield keeps it instead; two Morgans leave it to chance).
@@ -462,7 +462,23 @@ function enemyRows(st, attackerSide) {
   });
   return rows;
 }
-export function closestRow(st, attackerSide) { return enemyRows(st, attackerSide)[0] || []; }
+export function closestRow(st, attackerSide) { return st.lanes ? laneReach(st, attackerSide) : enemyRows(st, attackerSide)[0] || []; }
+// Lanes: the hero in slot 2 stands behind front slots 4 and 5, the hero in slot 3 behind 5 and 6, and the Crown
+// behind both heroes. A card is covered only while every card in front of it stands: one gap in its lane opens it
+// to melee. The Crown opens through an empty hero slot whose own lane is open. deeper (Bran) ignores one layer.
+const LANE = { 2: [4, 5], 3: [5, 6] };
+export let LANES_DEFAULT = true;
+export function setLanes(v) { LANES_DEFAULT = !!v; }
+function laneReach(st, attackerSide, deeper = false) {
+  const foe = 1 - attackerSide, gap = (s) => !at(st, foe, s);
+  const open = (h) => deeper || LANE[h].some(gap);
+  const out = [4, 5, 6].map((s) => at(st, foe, s)).filter(Boolean);
+  for (const h of [2, 3]) { const c = at(st, foe, h); if (c && open(h)) out.push(c); }
+  const crown = at(st, foe, 1);
+  if (crown && [2, 3].some((h) => gap(h) && (open(h) || deeper && LANE[h].some(gap)))) out.push(crown);
+  else if (crown && deeper && [2, 3].some(gap)) out.push(crown);
+  return out;
+}
 // A card in slot 1 can't melee the enemy while both of its hero slots (2 and 3) hold a hero: the same condition
 // that shields it from enemy melee. Once either slot is empty it fights, and can be fought, in the open.
 export function crownBlocked(st, c) {
@@ -470,6 +486,7 @@ export function crownBlocked(st, c) {
 }
 export function meleeTargets(st, attacker) {
   if (crownBlocked(st, attacker)) return [];
+  if (st.lanes) return laneReach(st, attacker.side, crownIs(st, attacker.side, "bran-the-blessed"));
   const rows = enemyRows(st, attacker.side);
   if (!rows.length) return [];
   let out = rows[0];

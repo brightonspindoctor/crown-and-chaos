@@ -270,7 +270,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const st = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-wolf", "the-huntsman"], ["knight", "monk", null]));
   const g = card(st, 0, "st-george"), d = card(st, 0, "the-dragon");
   const reach = (c) => E.meleeTargets(st, c).map((x) => x.id).sort().join(",");
-  ok("With a gap in the front rank, melee reaches the heroes behind", reach(d).includes("the-wolf") && reach(d).includes("the-huntsman") && reach(d).includes("knight"), reach(d));
+  ok("Lanes: a gap in slot 6 opens only the slot-3 hero", reach(d).includes("the-huntsman") && !reach(d).includes("the-wolf") && reach(d).includes("knight"), reach(d));
   ok("With both hero slots filled, the enemy Crown is still out of melee reach", !reach(d).includes("merlin"), reach(d));
   const st2 = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-wolf"], ["knight", "monk", "villager"]));
   const r2 = E.meleeTargets(st2, card(st2, 0, "the-dragon")).map((x) => x.id);
@@ -278,6 +278,18 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const st3 = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-wolf"], ["knight", null, null]));
   const r3 = E.meleeTargets(st3, card(st3, 0, "the-dragon")).map((x) => x.id);
   ok("Gaps in both rows: melee reaches the front rank, the hero and the Crown", ["knight", "the-wolf", "merlin"].every((id) => r3.includes(id)), r3);
+}
+{ // Lanes: slot 5 covers both heroes; a hero gap opens the Crown only if that lane is open
+  const st = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-wolf", "the-huntsman"], ["knight", null, "monk"]));
+  const r = E.meleeTargets(st, card(st, 0, "the-dragon")).map((x) => x.id);
+  ok("Lanes: a gap in slot 5 opens both heroes", r.includes("the-wolf") && r.includes("the-huntsman") && !r.includes("merlin"), r);
+  const st2 = game(lu("st-george", ["the-dragon"]), lu("merlin", [null, "the-huntsman"].filter(Boolean), ["knight", "monk", null]));
+  // Huntsman sits in slot 2 here (only one hero), slot 3 is empty, its lane (5, 6) has a gap at 6: the Crown opens.
+  const r2 = E.meleeTargets(st2, card(st2, 0, "the-dragon")).map((x) => x.id);
+  ok("Lanes: an empty hero slot with an open lane opens the Crown", r2.includes("merlin"), r2);
+  const st3 = game(lu("st-george", ["the-dragon"]), lu("merlin", ["the-huntsman"], [null, "monk", "knight"]));
+  const r3 = E.meleeTargets(st3, card(st3, 0, "the-dragon")).map((x) => x.id);
+  ok("Lanes: an empty hero slot behind a full lane keeps the Crown covered", !r3.includes("merlin") && r3.includes("the-huntsman"), r3);
 }
 { // Zmey: three heads at the card he attacks; as Crown, five heads at random enemy cards
   const st = game(lu("st-george", ["zmey-gorynych"]), lu("merlin", ["the-wolf"], []));
