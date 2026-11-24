@@ -370,7 +370,7 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .rep-bar i { transition: width .8s cubic-bezier(.45,.05,.3,1); }
 .waxseal.restamp { animation: stamp .45s cubic-bezier(.2,1.4,.4,1) both; }
 .panel.gothic .rep-bar i { background: linear-gradient(90deg, #8a6424, #e6c46c, #c9a24a); box-shadow: 0 0 10px rgba(230,196,108,.5); }
-.giftcards .flipper .cardback, .giftcards .fc { width: min(280px, 72vw); }
+.giftcards .fc { width: min(280px, 72vw); } .giftcards .flipper .cardback { --face: min(280px, 72vw); }
 .court .courthead { position: relative; text-align: center; padding: 34px 0 6px; }
 .court .courthead h1 { font-size: 46px; color: #e6c46c; text-shadow: 0 2px 0 #2a0d0b; margin: 0; }
 .gbox { position: relative; background: linear-gradient(#1c120d, #120b08); border: 1px solid var(--gold-shade); box-shadow: inset 0 0 0 4px #120b08, inset 0 0 0 5px rgba(201,162,74,.35); }
@@ -390,15 +390,10 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .ladder .hname i { font: italic 400 13px var(--serif); color: var(--muted); }
 .ladder li:nth-child(-n+3) .hrank { color: #f0d27a; text-shadow: 0 0 8px rgba(240,200,110,.5); }
 /* card backs */
-/* Card backs, in the game's gothic style: an all-over gold quatrefoil pattern on the realm's colour, a double gilt
-   rule, the realm emblem in a gilt roundel, a blackletter title and the realm in small cartouches. Text sizes follow
-   the card's width (cqw), so one design serves the big flip, the pack and the small grid. */
-.cardback { container-type: inline-size; position: relative; width: min(310px, 84vw); aspect-ratio: 5 / 7; box-sizing: border-box; border-radius: 4.5% / 3.2%; overflow: hidden; background: var(--b2); border: 1px solid #6e5020; box-shadow: 0 10px 24px rgba(0,0,0,.6); }
-.cb-art { position: absolute; inset: 0; width: 100%; height: 100%; }
-.cb-emb { position: absolute; left: 31%; top: 51.4%; width: 38%; height: auto; transform: translateY(-50%); filter: drop-shadow(0 .8cqw 1.4cqw rgba(0,0,0,.6)); }
-.cb-name, .cb-realm { position: absolute; left: 0; right: 0; text-align: center; transform: translateY(-50%); white-space: nowrap; }
-.cb-name { top: 15.8%; font: 400 8.4cqw/1 "UnifrakturMaguntia", var(--display); color: #e6c46c; text-shadow: 0 .5cqw 0 #1a0d08; }
-.cb-realm { top: 84.6%; font: 600 3.6cqw/1 var(--display); letter-spacing: .26em; text-transform: uppercase; color: #d9b763; }
+/* Card backs: painted backs, one per realm plus a house back. They are a little narrower than the card faces
+   (about 3:5 against 5:7) and match the face's height, so a back sits exactly over its face when it flips. */
+.cardback { --face: min(310px, 84vw); position: relative; display: block; width: calc(var(--face) * .847); aspect-ratio: 552 / 932; border-radius: 4.5% / 2.7%; overflow: hidden; background: #140d09; box-shadow: 0 10px 24px rgba(0,0,0,.6); }
+.cardback img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .flipper { position: relative; display: grid; place-items: center; }
 .flipper > .cardback { position: absolute; top: 0; left: 50%; z-index: 2; transform: translateX(-50%); animation: cb-out .38s ease-in .5s forwards; }
 @keyframes cb-out { to { transform: translateX(-50%) perspective(900px) rotateY(90deg) scale(.92); opacity: 0; visibility: hidden; } }
@@ -965,23 +960,11 @@ const BACKS = {
   "Hellas": { b1: "#9a4a22", b2: "#2e1408", emblem: `<path d="M50.00 13.00 L50.00 5.00 L63.06 6.94 L61.32 12.68 L56.10 11.48 L56.41 9.50 L58.79 9.95 M64.16 15.82 L67.22 8.43 L78.55 15.21 L74.74 19.85 L70.38 16.75 L71.42 15.04 L73.44 16.36 M76.16 23.84 L81.82 18.18 L89.69 28.79 L84.39 31.62 L81.55 27.08 L83.17 25.90 L84.53 27.90 M84.18 35.84 L91.57 32.78 L94.78 45.59 L88.81 46.18 L87.92 40.90 L89.87 40.43 L90.36 42.79 M87.00 50.00 L95.00 50.00 L93.06 63.06 L87.32 61.32 L88.52 56.10 L90.50 56.41 L90.05 58.79 M84.18 64.16 L91.57 67.22 L84.79 78.55 L80.15 74.74 L83.25 70.38 L84.96 71.42 L83.64 73.44 M76.16 76.16 L81.82 81.82 L71.21 89.69 L68.38 84.39 L72.92 81.55 L74.10 83.17 L72.10 84.53 M64.16 84.18 L67.22 91.57 L54.41 94.78 L53.82 88.81 L59.10 87.92 L59.57 89.87 L57.21 90.36 M50.00 87.00 L50.00 95.00 L36.94 93.06 L38.68 87.32 L43.90 88.52 L43.59 90.50 L41.21 90.05 M35.84 84.18 L32.78 91.57 L21.45 84.79 L25.26 80.15 L29.62 83.25 L28.58 84.96 L26.56 83.64 M23.84 76.16 L18.18 81.82 L10.31 71.21 L15.61 68.38 L18.45 72.92 L16.83 74.10 L15.47 72.10 M15.82 64.16 L8.43 67.22 L5.22 54.41 L11.19 53.82 L12.08 59.10 L10.13 59.57 L9.64 57.21 M13.00 50.00 L5.00 50.00 L6.94 36.94 L12.68 38.68 L11.48 43.90 L9.50 43.59 L9.95 41.21 M15.82 35.84 L8.43 32.78 L15.21 21.45 L19.85 25.26 L16.75 29.62 L15.04 28.58 L16.36 26.56 M23.84 23.84 L18.18 18.18 L28.79 10.31 L31.62 15.61 L27.08 18.45 L25.90 16.83 L27.90 15.47 M35.84 15.82 L32.78 8.43 L45.59 5.22 L46.18 11.19 L40.90 12.08 L40.43 10.13 L42.79 9.64" fill="none" stroke="#d9b763" stroke-width="1.8" stroke-linejoin="miter"/><circle cx="50" cy="50" r="46.6" fill="none" stroke="#d9b763" stroke-width="1.6"/><circle cx="50" cy="50" r="35.4" fill="none" stroke="#d9b763" stroke-width="1.6"/><path d="M33 37 Q33 14 50 13 Q67 14 67 37 Q60 29 50 29 Q40 29 33 37 Z" fill="#120c0a" stroke="#d9b763" stroke-width="1.8" stroke-linejoin="round"/><path d="M38 33 Q42 22 50 20 M62 33 Q58 22 50 20 M44 31 Q46 23 50 20 M56 31 Q54 23 50 20" fill="none" stroke="#d9b763" stroke-width="0.9" opacity=".8"/><path d="M34 40 Q34 31 50 31 Q66 31 66 40 L67 66 Q67 76 59 80 L57 66 Q50 63 43 66 L41 80 Q33 76 33 66 Z" fill="#120c0a" stroke="#d9b763" stroke-width="2.2" stroke-linejoin="round"/><path d="M38 49 Q43 45 48 49 Q43 52.5 38 49 Z M52 49 Q57 45 62 49 Q57 52.5 52 49 Z" fill="#c4632e" stroke="#d9b763" stroke-width="1.2"/><path d="M48.3 44 H51.7 L51.2 62 H48.8 Z" fill="#d9b763"/><path d="M36 40 Q50 35 64 40" fill="none" stroke="#d9b763" stroke-width="1.2"/>` },
   "_": { b1: "#4a3222", b2: "#1c120b", emblem: `<circle cx="50" cy="50" r="40" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="50" r="34" fill="none" stroke="#d9b763" stroke-width="1.2" stroke-dasharray="2 3"/><path d="M24 64 L28 36 L40 50 L50 28 L60 50 L72 36 L76 64 Z" fill="#d9b763" stroke="#8a6424" stroke-width="2" stroke-linejoin="round"/><rect x="24" y="64" width="52" height="8" rx="2" fill="#d9b763" stroke="#8a6424" stroke-width="2"/><circle cx="50" cy="68" r="2.6" fill="#b5381f"/>` },
 };
-// The back's drawing: quatrefoil diaper pattern, vignette, double rule, roundel and two cartouches. Each back gets
-// its own pattern ids, so a hidden back never breaks the pattern of a visible one.
-let BACK_N = 0;
-function backArt() {
-  const n = ++BACK_N, dot = (x, y) => `<circle cx="${x}" cy="${y}" r=".9" fill="#c9a24a" opacity=".6"/>`;
-  return `<svg class="cb-art" viewBox="0 0 100 140" preserveAspectRatio="none"><defs>
-    <pattern id="cbq${n}" width="14" height="14" patternUnits="userSpaceOnUse"><g fill="none" stroke="#c9a24a" stroke-width=".45" opacity=".55"><circle cx="7" cy="4" r="3"/><circle cx="7" cy="10" r="3"/><circle cx="4" cy="7" r="3"/><circle cx="10" cy="7" r="3"/></g>${dot(0, 0)}${dot(14, 0)}${dot(0, 14)}${dot(14, 14)}</pattern>
-    <radialGradient id="cbv${n}"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".55"/></radialGradient></defs>
-    <rect width="100" height="140" fill="var(--b1)" opacity=".35"/><rect width="100" height="140" fill="url(#cbq${n})"/><rect width="100" height="140" fill="url(#cbv${n})"/>
-    <g fill="none" stroke="#c9a24a"><rect x="4" y="4" width="92" height="132" rx="3" stroke-width="1.1"/><rect x="6.5" y="6.5" width="87" height="127" rx="2" stroke-width=".4"/></g>
-    <g fill="var(--b2)" stroke="#c9a24a"><circle cx="50" cy="72" r="27" stroke-width="1.1"/><rect x="16" y="14" width="68" height="16" rx="2" stroke-width=".7"/><rect x="26" y="113" width="48" height="11" rx="2" stroke-width=".6"/></g>
-    <circle cx="50" cy="72" r="24" fill="none" stroke="#c9a24a" stroke-width=".4"/></svg>`;
-}
+// Which painted back each realm uses (file names in img/backs). Everything else uses the house back.
+const BACK_IMG = { "Albion": "albion", "Cymru": "cymru", "Gothic": "gothic", "Rus'": "rus", "Geatland": "geatland", "Norse": "norse", "Märchen": "marchen", "Eventyr": "eventyr", "Hellas": "hellas" };
 function cardBack(id, cls = "") {
-  const realm = id && kindOf(id) === "hero" ? defOf(id).realm : null, b = BACKS[realm] || BACKS._;
-  return `<div class="cardback ${cls}" style="--b1:${b.b1};--b2:${b.b2}" aria-hidden="true">${backArt()}<svg class="cb-emb" viewBox="0 0 100 100">${b.emblem}</svg>
-    <span class="cb-name">Crown &amp; Chaos</span><span class="cb-realm">${esc(realm || "Fable")}</span></div>`;
+  const realm = id && kindOf(id) === "hero" ? defOf(id).realm : null;
+  return `<div class="cardback ${cls}" aria-hidden="true"><img src="img/backs/${BACK_IMG[realm] || "house"}.jpg" alt="" decoding="async"></div>`;
 }
 // The card's back first, then it turns over to show the face.
 const turnOver = (backId, face) => `<div class="flipper">${cardBack(backId)}${face}</div>`;
