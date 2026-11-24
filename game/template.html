@@ -108,6 +108,10 @@ h1, h2, h3, p { margin: 0; }
 .seal, .crownmark, .count { position: absolute; top: -.5em; width: 1.6em; height: 1.6em; border-radius: 50%; display: grid; place-items: center; z-index: 2; box-shadow: 0 1px 3px rgba(0,0,0,.6); }
 .seal { left: -.5em; background: var(--vermilion); border: 1px solid #e9b9a6; font: 700 .9em/1 var(--display); }
 .crownmark { right: -.5em; background: #1c130c; border: 1px solid var(--gold-leaf); }
+/* Lanes: a hero or Crown with a gap in front of it can be struck hand to hand. A light touch: a thin red edge and a sword chip. */
+.card.open { box-shadow: 0 0 0 2px rgba(224, 87, 63, .7); }
+.openmark { position: absolute; left: -.5em; top: 1.35em; width: 1.45em; height: 1.45em; border-radius: 50%; display: grid; place-items: center; z-index: 2; background: #1c130c; border: 1px solid #e0573f; box-shadow: 0 1px 3px rgba(0,0,0,.6); }
+.openmark svg { width: .85em; height: .85em; fill: none; stroke: #f0a08c; stroke-width: 2; stroke-linecap: round; }
 .crownmark svg { width: 1.05em; height: 1.05em; fill: var(--gold-leaf); }
 .count { right: -.5em; width: auto; min-width: 1.6em; padding: 0 .3em; border-radius: 1em; background: var(--surface); border: 1px solid var(--muted); font: 700 .85em/1 var(--display); }
 .coin { position: absolute; right: .25em; bottom: .25em; min-width: 1.7em; height: 1.7em; padding: 0 .2em; border-radius: 50%; display: grid; place-items: center; font: 700 .85em/1 var(--display); color: #2a1d14;
@@ -621,7 +625,7 @@ const BOARDS = /*BOARDS*/;
 const VARIANTS = /*VARIANTS*/;
 const LORE = /*LORE*/;
 const E = (() => { /*ENGINE*/
-  return { createGame, botDeploy, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, isBlind, apCost, STOPPERS, isCharging, questPlan, carryOver, applyCarry, QUEST_RULES };
+  return { createGame, botDeploy, closestRow, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, isBlind, apCost, STOPPERS, isCharging, questPlan, carryOver, applyCarry, QUEST_RULES };
 })();
 
 // =====================================================================================
@@ -656,7 +660,7 @@ const TUTORIAL = [
     after: [
       { say: "Your front rank attacked without being told to. The Villagers couldn't get past the Knights' Guard, the blue diamond: it soaks up that much damage each round.", next: true },
       { say: "Every card stands in a lane, covered by the cards in front of it. The middle front-rank slot covers both lanes; the outer slots cover one each. One gap in a lane opens the card behind it.", next: true },
-      { say: "The Berserker stood in the middle. With it gone, and no heroes guarding the Dragon, the enemy Crown is open to St George's sword.", focus: [1, 1], next: true },
+      { say: "The Berserker stood in the middle. With it gone, and no heroes guarding the Dragon, the enemy Crown is open to St George's sword. A red sword on a card's edge marks it as open.", focus: [1, 1], next: true },
       { say: "It cut both ways: the Dragon's tail broke your middle slot, and with only one hero in front of her, the Princess is open to melee too.", focus: [0, 1], next: true },
       { say: "Front-rank cards that die are used up for good. Survivors come back for your next fight.", next: true },
     ] },
@@ -1805,6 +1809,7 @@ function concede() { const st = S.st; clearTimeout(S.timer); st.over = true; st.
 function cardShell(o) {
   return `<button class="${o.cls.join(" ")}" ${o.attrs} aria-label="${esc(o.label)}">
     ${o.kind === "hero" ? `<span class="seal" title="Speed">${o.spd}</span>` : o.kind === "front" ? `<span class="seal" title="Speed ${o.spd}. Acts on its own">${o.spd}</span>` : ""}
+    ${o.open ? `<span class="openmark" title="Open to melee: a gap in its lane">${SWORD_SVG}</span>` : ""}
     ${o.crown ? `<span class="crownmark" title="Wears the Crown">${CROWN_SVG}</span>` : o.count ? `<span class="count">${o.count}</span>` : ""}
     <span class="nm">${esc(short(o.name))}</span>
     <span class="art">${img(o.id, !o.theirs)}${o.overlay || ""}</span>
@@ -1852,6 +1857,9 @@ function battleCard(c, v, opts = {}) {
   // A charged attack waiting to go off: the card glows until it strikes.
   if (c.kind === "hero" && byUid(c.uid)?.flags.charge && !opts.fallen) cls.push("charging");
   const crown = v.sides[side].crown === c.uid;
+  // Lanes: while planning, mark heroes (and the Crown) that enemy melee can reach. Front-rank cards always can.
+  const open = S.phase === "plan" && !opts.fallen && c.kind === "hero" && S.st.lanes && E.closestRow(S.st, 1 - side).some((x) => x.uid === c.uid);
+  if (open) cls.push("open");
   const mark = S.plan && (S.plan.hunt === c.uid ? "Marked" : S.plan.rumpel === c.uid ? "Named" : "");
   const overlay = order ? `<span class="order">${esc(order.name)}</span>` : c.stopped ? `<span class="badge">Stopped</span>` : mark ? `<span class="badge">${mark}</span>`
     : S.phase === "play" && S.acting === c.uid && c.kind !== "hero" ? `<span class="order">On its own</span>`
@@ -1859,7 +1867,7 @@ function battleCard(c, v, opts = {}) {
     : c.poison ? `<span class="badge">Poison ${c.poison}</span>` : "";
   return cardShell({ cls, attrs: `data-act="card" data-uid="${c.uid}" data-side="${side}" data-slot="${c.slot}"`, kind: c.kind === "hero" ? "hero" : "front", id: c.id, name: c.name, spd: c.spd, crown, theirs: !mine,
     atk: c.atk, ak: c.ranged && attackKind(c.id) === "melee" ? "ranged" : attackKind(c.id), guard: c.guard, hp: opts.fallen ? 0 : c.health, hurt: c.health < c.maxHealth, overlay, floats,
-    label: `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}, Speed ${c.spd}${c.kind === "hero" ? "" : ", acts on its own"}` });
+    open, label: `${mine ? "Your" : "Enemy"} ${c.name}${crown ? ", wearing the Crown" : ""}${open ? ", open to melee" : ""}: ${c.health} of ${c.maxHealth} Health, Attack ${c.atk}, Guard ${c.guard}, Speed ${c.spd}${c.kind === "hero" ? "" : ", acts on its own"}` });
 }
 // The wooden horse: an enemy Odysseus Crown hides his side's other cards in round 1.
 function hiddenCard(c) {
