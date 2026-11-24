@@ -390,15 +390,19 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .ladder .hname i { font: italic 400 13px var(--serif); color: var(--muted); }
 .ladder li:nth-child(-n+3) .hrank { color: #f0d27a; text-shadow: 0 0 8px rgba(240,200,110,.5); }
 /* card backs */
-.cardback { width: min(310px, 84vw); aspect-ratio: 5 / 7; box-sizing: border-box; border-radius: 14px; padding: 8px; background: repeating-linear-gradient(45deg, #c9a24a 0 4px, #b38c3c 4px 6px); border: 1px solid #8a6424; box-shadow: 0 10px 24px rgba(0,0,0,.6); }
-.cb-in { position: relative; height: 100%; box-sizing: border-box; border-radius: 8px; border: 2px solid #8a6424; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 26px 14px 22px;
-  background: repeating-linear-gradient(45deg, rgba(217,183,99,.07) 0 1px, transparent 1px 14px), repeating-linear-gradient(-45deg, rgba(217,183,99,.07) 0 1px, transparent 1px 14px), radial-gradient(circle at 50% 45%, var(--b1), var(--b2) 78%);
-  box-shadow: inset 0 0 0 7px var(--b2), inset 0 0 0 8px rgba(201,162,74,.6); }
-.cb-in .cb-c { position: absolute; width: 20px; height: 20px; border: 0 solid #c9a24a; }
-.cb-in .cb-c.tl { top: 12px; left: 12px; } .cb-in .cb-c.tr { top: 12px; right: 12px; } .cb-in .cb-c.bl { bottom: 12px; left: 12px; } .cb-in .cb-c.br { bottom: 12px; right: 12px; }
-.cb-name { font: 600 11px/1 var(--display); letter-spacing: .22em; white-space: nowrap; text-transform: uppercase; color: #d9b763; }
-.cb-emb { width: 64%; height: auto; filter: drop-shadow(0 3px 6px rgba(0,0,0,.6)); }
-.cb-realm { font: 600 12px/1 var(--display); letter-spacing: .18em; text-transform: uppercase; color: #2a1d14; background: linear-gradient(#e0c06a, #c9a24a); border: 1px solid #8a6424; border-radius: 3px; padding: 5px 14px; }
+/* Card backs, in the game's gothic style: near-black ground, a double gold-leaf rule, a lancet window glazed in the
+   realm's colour with its emblem inside, blackletter title. Sizes follow the card's width (cqw), so one design
+   serves the big flip, the pack and the small grid. */
+.cardback { container-type: inline-size; width: min(310px, 84vw); aspect-ratio: 5 / 7; box-sizing: border-box; border-radius: 4.5cqw; padding: 2.2cqw; background: #0b0705; border: 1px solid #6e5020; box-shadow: 0 10px 24px rgba(0,0,0,.6); }
+.cb-in { position: relative; height: 100%; box-sizing: border-box; border-radius: 2.6cqw; border: 1px solid #c9a24a; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 7cqw 6cqw 6.5cqw;
+  background: radial-gradient(ellipse at 50% 46%, var(--b2), #0b0705 82%); box-shadow: inset 0 0 0 1.1cqw #0b0705, inset 0 0 0 calc(1.1cqw + 1px) rgba(201,162,74,.5); }
+.cb-in .cb-c { position: absolute; width: 6cqw; height: 6cqw; border: 0 solid #c9a24a; }
+.cb-in .cb-c.tl { top: 3.6cqw; left: 3.6cqw; border-top-width: 1px; border-left-width: 1px; } .cb-in .cb-c.tr { top: 3.6cqw; right: 3.6cqw; border-top-width: 1px; border-right-width: 1px; }
+.cb-in .cb-c.bl { bottom: 3.6cqw; left: 3.6cqw; border-bottom-width: 1px; border-left-width: 1px; } .cb-in .cb-c.br { bottom: 3.6cqw; right: 3.6cqw; border-bottom-width: 1px; border-right-width: 1px; }
+.cb-name { font: 400 8.2cqw/1 "UnifrakturMaguntia", var(--display); white-space: nowrap; color: #e6c46c; text-shadow: 0 .5cqw 0 #1a0d08; }
+.cb-arch { width: 80%; height: auto; flex: none; }
+.cb-realm { display: flex; align-items: center; gap: 2.4cqw; font: 600 3.7cqw/1 var(--display); letter-spacing: .28em; text-transform: uppercase; color: #c9a24a; white-space: nowrap; }
+.cb-realm::before, .cb-realm::after { content: ""; width: 9cqw; height: 1px; background: #8a6424; }
 .flipper { position: relative; display: grid; place-items: center; }
 .flipper > .cardback { position: absolute; top: 0; left: 50%; z-index: 2; transform: translateX(-50%); animation: cb-out .38s ease-in .5s forwards; }
 @keyframes cb-out { to { transform: translateX(-50%) perspective(900px) rotateY(90deg) scale(.92); opacity: 0; visibility: hidden; } }
@@ -407,12 +411,6 @@ button.chip { padding: 2px 10px; border-color: var(--gold-shade); color: var(--g
 .backgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
 .backgrid figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .backgrid .cardback { width: 100%; }
-.backgrid .cb-in { padding: 18px 8px 14px; box-shadow: inset 0 0 0 5px var(--b2), inset 0 0 0 6px rgba(201,162,74,.6); }
-.backgrid .cb-in .cb-c { width: 12px; height: 12px; }
-.backgrid .cb-in .cb-c.tl, .backgrid .cb-in .cb-c.tr { top: 8px; } .backgrid .cb-in .cb-c.bl, .backgrid .cb-in .cb-c.br { bottom: 8px; }
-.backgrid .cb-in .cb-c.tl, .backgrid .cb-in .cb-c.bl { left: 8px; } .backgrid .cb-in .cb-c.tr, .backgrid .cb-in .cb-c.br { right: 8px; }
-.backgrid .cb-name { font-size: 7.5px; letter-spacing: .14em; white-space: nowrap; }
-.backgrid .cb-realm { font-size: 9.5px; letter-spacing: .12em; padding: 4px 9px; }
 .backgrid figcaption { font: 600 13px/1.2 var(--display); letter-spacing: .06em; text-align: center; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { .flipper > .cardback { display: none; } .flipper > .fc { animation: none; } .embers, .sealstage::before { display: none; } .waxseal { animation: none; } }
 /* crowns */
@@ -966,10 +964,21 @@ const BACKS = {
   "Hellas": { b1: "#9a4a22", b2: "#2e1408", emblem: `<path d="M50.00 13.00 L50.00 5.00 L63.06 6.94 L61.32 12.68 L56.10 11.48 L56.41 9.50 L58.79 9.95 M64.16 15.82 L67.22 8.43 L78.55 15.21 L74.74 19.85 L70.38 16.75 L71.42 15.04 L73.44 16.36 M76.16 23.84 L81.82 18.18 L89.69 28.79 L84.39 31.62 L81.55 27.08 L83.17 25.90 L84.53 27.90 M84.18 35.84 L91.57 32.78 L94.78 45.59 L88.81 46.18 L87.92 40.90 L89.87 40.43 L90.36 42.79 M87.00 50.00 L95.00 50.00 L93.06 63.06 L87.32 61.32 L88.52 56.10 L90.50 56.41 L90.05 58.79 M84.18 64.16 L91.57 67.22 L84.79 78.55 L80.15 74.74 L83.25 70.38 L84.96 71.42 L83.64 73.44 M76.16 76.16 L81.82 81.82 L71.21 89.69 L68.38 84.39 L72.92 81.55 L74.10 83.17 L72.10 84.53 M64.16 84.18 L67.22 91.57 L54.41 94.78 L53.82 88.81 L59.10 87.92 L59.57 89.87 L57.21 90.36 M50.00 87.00 L50.00 95.00 L36.94 93.06 L38.68 87.32 L43.90 88.52 L43.59 90.50 L41.21 90.05 M35.84 84.18 L32.78 91.57 L21.45 84.79 L25.26 80.15 L29.62 83.25 L28.58 84.96 L26.56 83.64 M23.84 76.16 L18.18 81.82 L10.31 71.21 L15.61 68.38 L18.45 72.92 L16.83 74.10 L15.47 72.10 M15.82 64.16 L8.43 67.22 L5.22 54.41 L11.19 53.82 L12.08 59.10 L10.13 59.57 L9.64 57.21 M13.00 50.00 L5.00 50.00 L6.94 36.94 L12.68 38.68 L11.48 43.90 L9.50 43.59 L9.95 41.21 M15.82 35.84 L8.43 32.78 L15.21 21.45 L19.85 25.26 L16.75 29.62 L15.04 28.58 L16.36 26.56 M23.84 23.84 L18.18 18.18 L28.79 10.31 L31.62 15.61 L27.08 18.45 L25.90 16.83 L27.90 15.47 M35.84 15.82 L32.78 8.43 L45.59 5.22 L46.18 11.19 L40.90 12.08 L40.43 10.13 L42.79 9.64" fill="none" stroke="#d9b763" stroke-width="1.8" stroke-linejoin="miter"/><circle cx="50" cy="50" r="46.6" fill="none" stroke="#d9b763" stroke-width="1.6"/><circle cx="50" cy="50" r="35.4" fill="none" stroke="#d9b763" stroke-width="1.6"/><path d="M33 37 Q33 14 50 13 Q67 14 67 37 Q60 29 50 29 Q40 29 33 37 Z" fill="#120c0a" stroke="#d9b763" stroke-width="1.8" stroke-linejoin="round"/><path d="M38 33 Q42 22 50 20 M62 33 Q58 22 50 20 M44 31 Q46 23 50 20 M56 31 Q54 23 50 20" fill="none" stroke="#d9b763" stroke-width="0.9" opacity=".8"/><path d="M34 40 Q34 31 50 31 Q66 31 66 40 L67 66 Q67 76 59 80 L57 66 Q50 63 43 66 L41 80 Q33 76 33 66 Z" fill="#120c0a" stroke="#d9b763" stroke-width="2.2" stroke-linejoin="round"/><path d="M38 49 Q43 45 48 49 Q43 52.5 38 49 Z M52 49 Q57 45 62 49 Q57 52.5 52 49 Z" fill="#c4632e" stroke="#d9b763" stroke-width="1.2"/><path d="M48.3 44 H51.7 L51.2 62 H48.8 Z" fill="#d9b763"/><path d="M36 40 Q50 35 64 40" fill="none" stroke="#d9b763" stroke-width="1.2"/>` },
   "_": { b1: "#4a3222", b2: "#1c120b", emblem: `<circle cx="50" cy="50" r="40" fill="none" stroke="#d9b763" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="50" r="34" fill="none" stroke="#d9b763" stroke-width="1.2" stroke-dasharray="2 3"/><path d="M24 64 L28 36 L40 50 L50 28 L60 50 L72 36 L76 64 Z" fill="#d9b763" stroke="#8a6424" stroke-width="2" stroke-linejoin="round"/><rect x="24" y="64" width="52" height="8" rx="2" fill="#d9b763" stroke="#8a6424" stroke-width="2"/><circle cx="50" cy="68" r="2.6" fill="#b5381f"/>` },
 };
+// A lancet window: a pointed arch with tracery at its head, glazed in the realm's colour, the emblem set inside.
+const backWindow = (emblem) => `<svg class="cb-arch" viewBox="0 -12 100 146"><defs><pattern id="cb-lead" width="9" height="13" patternUnits="userSpaceOnUse"><path d="M0 6.5 L4.5 0 L9 6.5 L4.5 13 Z" fill="none" stroke="#0b0705" stroke-width=".7" opacity=".55"/></pattern></defs>
+  <g fill="none" stroke="#c9a24a" stroke-linecap="round">
+  <path d="M12 130 V62 A62 62 0 0 1 50 4 A62 62 0 0 1 88 62 V130" fill="var(--b1)" fill-opacity=".55" stroke-width="1.4"/>
+  <path d="M12 130 V62 A62 62 0 0 1 50 4 A62 62 0 0 1 88 62 V130 Z" fill="url(#cb-lead)" stroke="none"/>
+  <path d="M6 132 V60 A68 68 0 0 1 50 -4 A68 68 0 0 1 94 60 V132" stroke-width="1"/>
+  <path d="M2 60 H16 M84 60 H98 M0 132 H100" stroke-width="1.4"/><path d="M4 56 H14 M86 56 H96" stroke-width=".8"/>
+  <circle cx="50" cy="-8" r="2.4" fill="#c9a24a" stroke="none"/><path d="M50 -5 V-1" stroke-width="1"/>
+  <g stroke-width="1" opacity=".9"><circle cx="50" cy="22" r="9"/><circle cx="50" cy="16.5" r="4"/><circle cx="44.5" cy="24.5" r="4"/><circle cx="55.5" cy="24.5" r="4"/></g>
+  <path d="M30 38 H70" stroke-width=".8" opacity=".7"/></g>
+  <g transform="translate(19 52) scale(.62)">${emblem}</g></svg>`;
 function cardBack(id, cls = "") {
   const realm = id && kindOf(id) === "hero" ? defOf(id).realm : null, b = BACKS[realm] || BACKS._;
   return `<div class="cardback ${cls}" style="--b1:${b.b1};--b2:${b.b2}" aria-hidden="true"><div class="cb-in"><i class="cb-c tl"></i><i class="cb-c tr"></i><i class="cb-c bl"></i><i class="cb-c br"></i>
-    <span class="cb-name">Crown &amp; Chaos</span><svg class="cb-emb" viewBox="0 0 100 100">${b.emblem}</svg><span class="cb-realm">${esc(realm || "Crown & Chaos")}</span></div></div>`;
+    <span class="cb-name">Crown &amp; Chaos</span>${backWindow(b.emblem)}<span class="cb-realm">${esc(realm || "Fable")}</span></div></div>`;
 }
 // The card's back first, then it turns over to show the face.
 const turnOver = (backId, face) => `<div class="flipper">${cardBack(backId)}${face}</div>`;
