@@ -562,6 +562,7 @@ img.crownicon { object-fit: contain; }
 .tip p { flex: 1; font-size: 16px; line-height: 1.3; }
 .pyr { --cw: min(29vw, 128px); --ch: calc(var(--cw) * 1.08); display: flex; flex-direction: column; gap: 8px; align-items: center; }
 .pyr .card { cursor: pointer; }
+.muster-foe { --cw: min(22vw, 100px); }
 .rowlabel { font: 600 10px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-align: center; }
 .beltrow { --cw: min(22vw, 92px); --ch: calc(var(--cw) * 1.08); display: flex; gap: 8px; justify-content: center; }
 .beltrow .card { cursor: pointer; }
@@ -2301,6 +2302,33 @@ function valueOf(st, a, act, x) {
 }
 
 // Plays a whole fight between two bots. Returns 0, 1 or -1 (draw).
+// Planning: before a fight each side sees the other's company (which cards, not where they stand) and arranges
+// its own. The computer tries each of its heroes as Crown in a handful of quick fights against the company it
+// can see, and keeps the best. Positions within a row barely change results, so the rest of its order is shuffled.
+function botDeploy(data, mine, foe, opts = {}) {
+  const rng = opts.rng || makeRng(opts.seed);
+  const tries = opts.tries ?? 10;
+  const hs = [mine.crown, ...(mine.heroes || [])].filter(Boolean);
+  const pair = ["grendel", "grendels-mother"];
+  const choices = hs.filter((h) => h !== "baba-yaga" || hs.length === 1);
+  const arrange = (crown) => ({ ...mine, crown, heroes: rng.shuffle(hs.filter((h) => h !== crown)),
+    front: hs.some((h) => h.startsWith("koschei")) ? rng.shuffle((mine.front || []).slice(0, 2)).concat((mine.front || []).slice(2)) : rng.shuffle((mine.front || []).slice()) });
+  if (choices.length < 2) return arrange(hs[0]);
+  let best = null, bestW = -1;
+  for (const crown of choices) {
+    if (pair.includes(crown) && !hs.includes(pair[0] === crown ? pair[1] : pair[0])) continue;
+    const lu = { ...mine, crown, heroes: hs.filter((h) => h !== crown) };
+    let w = 0;
+    for (let i = 0; i < tries; i++) {
+      const st = createGame(data, [lu, foe], { rng: makeRng(rng.int(1e9) + 1) });
+      while (!st.over) playRound(st, [botPlan(st, 0, st.rng), botPlan(st, 1, st.rng)]);
+      w += st.winner === 0 ? 1 : st.winner === 1 ? 0 : 0.5;
+    }
+    if (w > bestW) { bestW = w; best = crown; }
+  }
+  return arrange(best);
+}
+
 function botFight(data, lineups, seed) {
   const rng = makeRng(seed);
   const st = createGame(data, lineups, { rng });
@@ -2367,7 +2395,7 @@ function applyCarry(st, i, health) {
   }
 }
 
-  return { createGame, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, isBlind, apCost, STOPPERS, isCharging, questPlan, carryOver, applyCarry, QUEST_RULES };
+  return { createGame, botDeploy, playRound, botPlan, options, cards, heroes, attackOf, guardOf, speedOf, crownCard, itemTargets, itemCost, canBeStopped, makeRng, NIGHTFALL_ROUND, rumpelChoices, RUMPEL_GUESSES, isHidden, isBlind, apCost, STOPPERS, isCharging, questPlan, carryOver, applyCarry, QUEST_RULES };
 })();
 
 // =====================================================================================
@@ -2784,7 +2812,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-24-1fd5ae7";
+const BUILD = "2026-11-24-ae0ddbd";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -3087,9 +3115,66 @@ function startFight(force) {
   if (gap.length && !force) { U.over = { type: "gaps", gaps: gap }; return render(); }
   const lu = G.lineup, easy = easyNext(), foe = randomFoe(easy);
   const mine = { crown: lu.crown, heroes: lu.heroes.filter(Boolean), front: lu.front.map((f) => f || null), items: lu.items.filter(Boolean) };
-  begin("fight", [mine, foe], { foeName: `${short(DATA.heroes[foe.crown].name)}'s company` });
-  S.renown = renownOf(lu); S.easy = easy; S.conceded = false;
+  // Planning: both sides see the other's company, then arrange their own. The computer plans now, against the
+  // cards it can see (not your arrangement). A helping-hand company doesn't plan: it keeps its awkward Crown.
+  const planned = easy ? foe : E.botDeploy(DATA, foe, mine, { seed: (Date.now() % 1000000) + 7 });
+  U.muster = { mine, foe: planned, easy, renown: renownOf(lu), sel: null };
+  go("muster");
+}
+// Planning screen: tap two heroes to swap them (whoever stands in the Crown slot wears the Crown), or two
+// front-rank cards to swap them.
+const MUSTER_HERO = ["crown", "h0", "h1"], MUSTER_FRONT = ["f0", "f1", "f2"];
+const musterGet = (m, s) => s === "crown" ? m.crown : s[0] === "h" ? m.heroes[+s[1]] : m.front[+s[1]];
+function musterSet(m, s, id) { if (s === "crown") m.crown = id; else if (s[0] === "h") m.heroes[+s[1]] = id; else m.front[+s[1]] = id; }
+function musterTap(s) {
+  const m = U.muster;
+  if (!m.sel) { if (musterGet(m, s)) m.sel = s; return render(); }
+  const a = m.sel; m.sel = null;
+  const same = MUSTER_HERO.includes(a) === MUSTER_HERO.includes(s);
+  if (a !== s && same) { const x = musterGet(m, a), y = musterGet(m, s); musterSet(m, a, y); musterSet(m, s, x); m.heroes = m.heroes.filter(Boolean); }
+  else if (a !== s && musterGet(m, s)) m.sel = s;
+  render();
+}
+function musterGo() {
+  const m = U.muster; if (!m) return;
+  const mine = { ...m.mine, crown: m.crown ?? m.mine.crown, heroes: (m.heroes ?? m.mine.heroes).filter(Boolean), front: m.front ?? m.mine.front };
+  begin("fight", [mine, m.foe], { foeName: `${short(DATA.heroes[m.foe.crown].name)}'s company` });
+  S.renown = m.renown; S.easy = m.easy; S.conceded = false; U.muster = null;
   saveLive();
+}
+function musterHtml() {
+  const m = U.muster; if (!m) return homeHtml();
+  if (m.crown === undefined) Object.assign(m, { crown: m.mine.crown, heroes: m.mine.heroes.slice(), front: m.mine.front.slice() });
+  const kos = [m.crown, ...m.heroes].includes("koschei");
+  const slot = (s) => {
+    if (s === "f2" && kos) return staticCard("the-needle", { cls: ["off"], attrs: `data-act="detail" data-id="the-needle"` });
+    const id = musterGet(m, s), on = m.sel === s;
+    const tint = id && kindOf(id) === "hero" ? realmTint(defOf(id).realm) : null;
+    if (id) return staticCard(id, { cls: [...(on ? ["focus"] : []), ...(tint ? ["realmed"] : [])], attrs: `data-act="mslot" data-slot="${s}" aria-pressed="${on}"${tint ? ` style="--realm:${tint}"` : ""}`, crown: s === "crown" });
+    return `<button class="card slot pick" data-act="mslot" data-slot="${s}" aria-label="Empty slot"><b>·</b>Empty</button>`;
+  };
+  // Their cards in a fixed order, so the order gives nothing away about where they will stand.
+  const byName = (a, b) => defOf(a).name.localeCompare(defOf(b).name);
+  const f = m.foe, foeHeroes = [f.crown, ...(f.heroes || [])].filter(Boolean).sort(byName), foeFront = (f.front || []).filter(Boolean).sort(byName);
+  if (foeHeroes.includes("koschei")) foeFront.push("the-needle");
+  const foeCard = (id) => { const tint = kindOf(id) === "hero" ? realmTint(defOf(id).realm) : null; return staticCard(id, { cls: tint ? ["realmed"] : [], attrs: `data-act="detail" data-id="${id}"${tint ? ` style="--realm:${tint}"` : ""}` }); };
+  const items = (f.items || []).map((id) => esc(DATA.items[id].name)).join(", ");
+  const crownDef = DATA.heroes[m.crown];
+  return `<div class="wrap"><div class="bar"><h1>Plan your fight</h1></div>
+    <p class="rowlabel">Their company · they are choosing their Crown too</p>
+    <div class="pyr muster-foe"><div class="rank">${foeHeroes.map(foeCard).join("")}</div><div class="rank">${foeFront.map(foeCard).join("")}</div></div>
+    ${items ? `<p class="credit" style="text-align:center">Their tool belt: ${items}</p>` : ""}
+    <p style="font-size:15.5px;text-align:center;margin:4px 0">${m.sel ? "Now tap where it should go." : "Tap two heroes to swap them, or two front-rank cards. Whoever stands in the Crown slot wears the Crown."}</p>
+    <div class="form"><div class="wrap" style="padding:0;gap:10px">
+      <p class="rowlabel">Your front rank</p>
+      <div class="pyr"><div class="rank">${MUSTER_FRONT.map(slot).join("")}</div>
+        <div class="rank">${slot("h0")}${slot("h1")}</div>
+        <div class="rank">${slot("crown")}</div></div>
+      <p class="rowlabel">Your Crown · lose this hero and you lose</p></div>
+    <div class="wrap" style="padding:0;gap:12px">
+      ${crownDef ? `<div class="box"><h2>Crown passive</h2><p class="rule"><b>${esc(crownDef.crownPassive.name || "")} (${esc(short(crownDef.name))})</b>${esc(crownDef.crownPassive.text)}</p></div>` : ""}
+      <button class="btn big" data-act="muster-go">To battle</button>
+      <button class="btn quiet" data-go="formation">Back to my line-up</button></div></div></div>`;
 }
 
 // ---------- the guide ----------
@@ -4806,7 +4891,7 @@ function targetSheet(sh) {
 const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Library"], ["shop", "Shop"]];
 function renderPage() {
   const v = el("view"), keep = U.kept === U.screen ? v.scrollTop : 0;
-  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml, backs: backsHtml, hall: hallHtml }[U.screen];
+  const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, muster: musterHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml, backs: backsHtml, hall: hallHtml }[U.screen];
   v.innerHTML = fn();
   v.scrollTop = keep; U.kept = U.screen;
   const showNav = G.packOpened && U.screen !== "pack" && U.screen !== "ready";
@@ -5299,6 +5384,8 @@ document.addEventListener("click", (e) => {
     case "pack-rip": if (!TEAR.noClick) ripPack(); break;
     case "pack-flip": if (U.pack && !U.pack.up) { U.pack.up = true; SND.play("flipcard"); render(); } break;
     case "pack-all": U.pack.i = (U.pack.show || U.pack.cards).length; render(); break;
+    case "mslot": musterTap(d.slot); break;
+    case "muster-go": musterGo(); break;
     case "detail": U.sheet = { type: "detail", id: d.id, back: U.sheet && U.sheet.type === "picker" ? U.sheet : null }; render(); break;
     case "slot": U.sheet = { type: "picker", slot: d.slot }; render(); break;
     case "choose": chooseForSlot(d.id); break;

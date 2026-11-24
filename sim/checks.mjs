@@ -405,5 +405,18 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   E.playRound(st2, [{ orders: [order(st2, 0, "the-snow-queen", "Attack", w)] }, { orders: [] }]);
   ok("The Snow Queen's Attack strikes twice for 1", w0 - w.health === 2, [w0, w.health, st2.log.filter((l) => /Snow Queen/.test(l))]);
 }
+{ // Move: swapping into slot 1 hands over the Crown
+  const st = game(lu("st-george", ["robin-hood", "merlin"]), lu("the-wolf"));
+  const g = card(st, 0, "st-george"), m = card(st, 0, "merlin");
+  E.playRound(st, [{ orders: [order(st, 0, "merlin", "Move", g)] }, { orders: [] }]);
+  ok("Move: Merlin swaps into slot 1 and wears the Crown", m.slot === 1 && g.slot !== 1 && E.crownCard(st, 0).uid === m.uid, [m.slot, g.slot]);
+}
+{ // Planning: the computer keeps the same cards, picks one of its heroes as Crown, and keeps Koschei's needle slot
+  const mine = lu("koschei", ["the-wolf", "merlin"], ["knight", "monk", "villager"]), foe = lu("st-george", ["robin-hood", "gretel"], ["knight", "knight", "knight"]);
+  const d = E.botDeploy(data, mine, foe, { seed: 3, tries: 3 });
+  const same = (a, b) => a.slice().sort().join() === b.slice().sort().join();
+  ok("Planning: same heroes", same([d.crown, ...d.heroes], ["koschei", "the-wolf", "merlin"]), d);
+  ok("Planning: same front rank, Koschei's third slot left alone", same(d.front, mine.front) && d.front[2] === "villager", d.front);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

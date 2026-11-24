@@ -1761,6 +1761,33 @@ function valueOf(st, a, act, x) {
 }
 
 // Plays a whole fight between two bots. Returns 0, 1 or -1 (draw).
+// Planning: before a fight each side sees the other's company (which cards, not where they stand) and arranges
+// its own. The computer tries each of its heroes as Crown in a handful of quick fights against the company it
+// can see, and keeps the best. Positions within a row barely change results, so the rest of its order is shuffled.
+function botDeploy(data, mine, foe, opts = {}) {
+  const rng = opts.rng || makeRng(opts.seed);
+  const tries = opts.tries ?? 10;
+  const hs = [mine.crown, ...(mine.heroes || [])].filter(Boolean);
+  const pair = ["grendel", "grendels-mother"];
+  const choices = hs.filter((h) => h !== "baba-yaga" || hs.length === 1);
+  const arrange = (crown) => ({ ...mine, crown, heroes: rng.shuffle(hs.filter((h) => h !== crown)),
+    front: hs.some((h) => h.startsWith("koschei")) ? rng.shuffle((mine.front || []).slice(0, 2)).concat((mine.front || []).slice(2)) : rng.shuffle((mine.front || []).slice()) });
+  if (choices.length < 2) return arrange(hs[0]);
+  let best = null, bestW = -1;
+  for (const crown of choices) {
+    if (pair.includes(crown) && !hs.includes(pair[0] === crown ? pair[1] : pair[0])) continue;
+    const lu = { ...mine, crown, heroes: hs.filter((h) => h !== crown) };
+    let w = 0;
+    for (let i = 0; i < tries; i++) {
+      const st = createGame(data, [lu, foe], { rng: makeRng(rng.int(1e9) + 1) });
+      while (!st.over) playRound(st, [botPlan(st, 0, st.rng), botPlan(st, 1, st.rng)]);
+      w += st.winner === 0 ? 1 : st.winner === 1 ? 0 : 0.5;
+    }
+    if (w > bestW) { bestW = w; best = crown; }
+  }
+  return arrange(best);
+}
+
 function botFight(data, lineups, seed) {
   const rng = makeRng(seed);
   const st = createGame(data, lineups, { rng });
