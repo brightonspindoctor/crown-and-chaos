@@ -73,6 +73,18 @@ let UID = 0;
 // Hold court: every Crown's own action (Baba Yaga excepted; with Robin's No Crown there is no Crown to use it).
 export const HOLD_COURT = { name: "Hold court", ap: 1, court: true,
   text: "Crown only. Acts first, before Speed order. +1 Guard this round and +1 action point next round." };
+// Move: every hero can swap places with one of its own heroes (slots 1-3 all touch). Swapping into slot 1
+// hands the Crown to the hero who ends up there. Resolves at the mover's Speed, so a quick hero can step out
+// of reach of a slower enemy's planned attack.
+export const MOVE = { name: "Move", ap: 1, move: true,
+  text: "Swap places with one of your heroes. Whoever ends up in slot 1 wears the Crown." };
+const MOVE_SPEC = { t: "allyHeroSwap", go: (st, a, x) => {
+  const side = st.sides[a.side];
+  if (!side.noCrown && (a.slot === 1 || x.slot === 1)) { swapCrown(st, a.side, a.slot === 1 ? x : a); return; }
+  const s1 = a.slot, s2 = x.slot; side.slots[s1] = x; side.slots[s2] = a; a.slot = s2; x.slot = s1;
+  ev(st, { t: "swap", a: a.uid, b: x.uid, side: a.side });
+} };
+const specOf = (c, act) => (act && act.move ? MOVE_SPEC : ACTIONS[c.id]?.[act?.name]);
 const isCourt = (st, c, act) => act && act.court && c.kind === "hero" && !st.sides[c.side].noCrown && st.sides[c.side].crownUid === c.uid && c.id !== "baba-yaga";
 
 function makeHero(def, side, slot) {
@@ -83,7 +95,7 @@ function makeHero(def, side, slot) {
     baseHealth: s.health, maxHealth: s.health, health: s.health,
     baseAtk: s.attack, baseGuard: s.guard, baseSpeed: s.speed,
     atkPerm: 0, atkBond: 0, speedPerm: 0, guardIntoAtk: 0, atkMult: 1, speedFixed: null,
-    actions: def.actions.map((a) => ({ ...a })).concat(def.id === "baba-yaga" ? [] : [{ ...HOLD_COURT }]), uses: {},
+    actions: def.actions.map((a) => ({ ...a })).concat(def.id === "baba-yaga" ? [] : [{ ...HOLD_COURT }, { ...MOVE }]), uses: {},
     guardLeft: 0, roundGuard: 0, poison: 0, dead: false, removed: false,
     noGuard: false, noHeal: false, stoppedRound: -9, stopNow: false,
     flags: {},
@@ -1105,7 +1117,7 @@ export function targetsFor(st, a, act) { return visibleTo(st, a.side, targetsFor
 function targetsForAll(st, a, act) {
   if (act.court) return isCourt(st, a, act) ? [null] : [];
   const foe = 1 - a.side;
-  const spec = ACTIONS[a.id]?.[act.name];
+  const spec = specOf(a, act);
   const type = spec?.t ?? (a.ranged || act.text.includes("Ranged") ? "enemyAny" : "enemyMelee");
   // A standard melee attack from slot 1 may also be turned on your own heroes in slots 2–3.
   if (!spec?.t && type === "enemyMelee" && a.slot === 1) {
@@ -1114,6 +1126,7 @@ function targetsForAll(st, a, act) {
   const eh = heroes(st, foe);
   switch (type) {
     case "none": return [null];
+    case "allyHeroSwap": return [1, 2, 3].map((x) => at(st, a.side, x)).filter((c) => c && c.kind === "hero" && c.uid !== a.uid);
     case "emptyFront": return [4, 5, 6].some((x) => !at(st, a.side, x)) ? [null] : [];
     case "enemyMelee": return meleeTargets(st, a);
     case "enemyAny": case "enemyAny2": return rangedTargets(st, a);
@@ -1359,14 +1372,14 @@ export function playRound(st, plans) {
     const act = a.actions[o.index];
     a.uses[act.name] = (a.uses[act.name] || 0) + (act.usesPerFight ? 1 : 0);
     let x = o.target ? findCard(st, o.target) : null;
-    const spec = ACTIONS[a.id]?.[act.name];
+    const spec = specOf(a, act);
     const needsTarget = spec ? !["none", "emptyFront"].includes(spec.t) : true;
     if (spec && ["deadFront", "deadTalemate"].includes(spec.t)) x = st.sides[a.side].grave.find((c) => c.uid === o.target);
     if (needsTarget && !x) {
       // Target gone: wasted (the doc's rule), unless it's a standard melee attack with another target in reach.
       log(st, `${a.name}'s ${act.name} is wasted: its target is gone.`); ev(st, { t: "wasted", uid: a.uid, name: act.name }); continue;
     }
-    if (needsTarget && x && !spec?.t?.startsWith("dead") && !["ally", "allyHero", "adjacentAllyHero"].includes(spec?.t)) {
+    if (needsTarget && x && !spec?.t?.startsWith("dead") && !["ally", "allyHero", "adjacentAllyHero", "allyHeroSwap"].includes(spec?.t)) {
       const legal = targetsFor(st, a, act).some((c) => c && c.uid === x.uid);
       if (!legal) { log(st, `${a.name}'s ${act.name} is wasted: ${x.name} is out of reach.`); ev(st, { t: "wasted", uid: a.uid, name: act.name }); continue; }
     }
@@ -1449,6 +1462,18 @@ export function botPlan(st, i, rng = st.rng, noise = 0.35) {
 }
 
 function valueOf(st, a, act, x) {
+  if (act.move) {
+    // Move when it saves the game or frees a hero to fight: a badly hurt Crown hands the Crown to a healthy hero,
+    // or a melee Crown that can't reach anyone swaps with a ranged hero who can shoot from anywhere.
+    if (!x || st.sides[a.side].noCrown || st.noMoveSide === a.side) return 0;
+    const crown = a.slot === 1 ? a : x.slot === 1 ? x : null;
+    if (!crown) return 0.1;
+    const other = crown === a ? x : a;
+    const hurt = crown.health <= Math.max(3, crown.maxHealth * 0.35) && other.health >= crown.health + 3;
+    if (hurt) return 6;
+    if (!crown.ranged && crownBlocked(st, crown) && other.ranged && !other.flags.acted) return 1.6;
+    return 0;
+  }
   if (act.court) {
     // Worth it when the Crown has nothing better to do: a little Guard if it can be reached, and an action point banked.
     const reach = heroes(st, 1 - a.side).some((h) => h.ranged) || cards(st, 1 - a.side).some((c) => c.id === "longbowman");
