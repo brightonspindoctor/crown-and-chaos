@@ -1,6 +1,19 @@
 {
-  "ranAt": "2026-11-24T10:23:57.913Z",
-  "fetched": [],
+  "ranAt": "2026-11-24T21:20:17.050Z",
+  "fetched": [
+    {
+      "id": "tree-warrior",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Theodor_Kittelsen_-_Forest_Troll_-_NG.K%26H.B.03222_-_National_Museum_of_Art%2C_Architecture_and_Design.jpg?width=1400",
+      "bytes": 2780978
+    },
+    {
+      "id": "leshy-vrubel",
+      "via": "commonsFile",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/1899_Vrubel_Pan_anagoria.JPG?width=1400",
+      "bytes": 1173593
+    }
+  ],
   "alreadyHad": [
     "st-george",
     "the-dragon",
