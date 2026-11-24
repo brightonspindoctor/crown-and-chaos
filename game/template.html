@@ -825,6 +825,21 @@ function goldenPack() {
   const heroes = !h ? ["gold:100"] : PAIR.includes(h) ? PAIR.slice() : [h];
   return [...front, ...items, ...heroes];
 }
+// The daily pack: free once a day, to give players a reason to come back. One item (rarity drawn as in a Fable
+// pack), one front-rank card, and one lore card for a hero they own (gold when there is no lore left to find).
+const dailyReady = () => G.packOpened && G.dailyDay !== today();
+function dailyPack() {
+  const r = Math.random() * 63, rar = r < 45 ? "Common" : r < 60 ? "Rare" : "Legendary";
+  const item = pick(Object.values(DATA.items).filter((x) => x.rarity === rar)).id;
+  const front = pick([...CORE_FRONT, ...CORE_FRONT, "grandmother", "geat-thane", "mere-beast"]);
+  const l = loreFree([]);
+  return [front, item, l.length ? `lore:${pick(l).id}` : goldCard()];
+}
+function openDaily() {
+  if (!dailyReady()) return;
+  G.dailyDay = today();
+  openPack(dailyPack(), { title: "Daily pack" });
+}
 function openGolden() {
   if (!(G.goldenPacks > 0)) return;
   G.goldenPacks -= 1;
@@ -2069,7 +2084,7 @@ function targetSheet(sh) {
 // =====================================================================================
 // Drawing: the pages outside the battle
 // =====================================================================================
-const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Library"], ["shop", "Shop"]];
+const NAV = [["home", "Home"], ["formation", "Line-up"], ["collection", "Library"], ["shop", "Shop"], ["hall", "Hall of Fame"]];
 function renderPage() {
   const v = el("view"), keep = U.kept === U.screen ? v.scrollTop : 0;
   const fn = { home: homeHtml, ready: readyHtml, pack: packHtml, collection: collectionHtml, formation: formationHtml, muster: musterHtml, shop: shopHtml, court: courtHtml, settings: settingsHtml, backs: backsHtml, hall: hallHtml }[U.screen];
@@ -2093,11 +2108,12 @@ function homeHtml() {
   return coverHtml(`
     <button class="me-chip" data-go="court" aria-label="Your court: Level ${myLevel()}">${avatar()}<span><b>Your court</b><i>Level ${myLevel()}</i></span></button>
     <div class="meta">${`<span class="crowns" aria-label="${G.crowns} Crown${G.crowns === 1 ? "" : "s"} won" title="Crowns won">${CROWN_SVG}${G.crowns}</span>`}<span class="gold" aria-label="${G.gold} gold">${G.gold}</span><span>${G.wins} won · ${G.losses} lost${G.draws ? ` · ${G.draws} drawn` : ""}</span></div>
+    ${dailyReady() ? `<div class="btns"><button class="btn big gilt" data-act="open-daily">Open your free daily pack</button></div>` : ""}
     ${G.goldenPacks > 0 ? `<div class="btns"><button class="btn big gilt" data-act="open-golden">Open your Golden Fable pack${G.goldenPacks > 1 ? `s (${G.goldenPacks})` : ""}</button></div>` : ""}
     <div class="btns">${G.quest
       ? `<button class="btn big" data-act="quest-resume">Continue your quest</button><button class="link" data-act="quest-abandon">Abandon the quest</button>`
       : `<button class="btn big" data-act="fight">${bad ? "Build your line-up" : "Fight"}</button>${bad ? "" : questsToday() >= QUESTS_PER_DAY ? `<button class="btn big quiet" disabled>No more quests today</button>` : `<button class="btn big quiet" data-act="quest-new">Go on a quest <small>${QUESTS_PER_DAY - questsToday()} left today</small></button>`}`}</div>
-    <div class="links"><button class="link" data-go="hall">Hall of Fame</button><button class="link" data-go="settings">Settings</button><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
+    <div class="links"><button class="link" data-go="settings">Settings</button><button class="link" data-act="tutorial">Replay the tutorial</button><button class="link" data-act="reset">${U.confirmReset ? "Tap again to wipe your cards and gold" : "Start again from nothing"}</button></div>
     <p class="credit">Fights are against the computer for now. Your progress is saved in this browser only.</p>`);
 }
 function readyHtml() {
@@ -2590,6 +2606,7 @@ document.addEventListener("click", (e) => {
     case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); SND.play("ping"); syncPlayer(); } // falls through to the next step
     case "lv-next": { const o = U.over; if (o && o.type === "levelup" && o.i < o.steps.length - 1) o.i += 1; else { U.over = null; if (G.goldenPacks > 0) openGolden(); } render(); break; }
     case "open-golden": U.over = null; openGolden(); render(); break;
+    case "open-daily": U.over = null; openDaily(); render(); break;
     case "court-crowns": U.tab = "crown"; go("collection"); break;
     case "buy-crown": { const c = crownById[d.id]; if (c && c.price && G.gold >= c.price && !G.ownCrowns.includes(c.id)) { spend(c.price); G.ownCrowns.push(c.id); save(); checkLevel(); render(); } break; }
     case "lore": U.sheet = { type: "lore", id: d.id }; render(); break;
