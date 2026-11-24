@@ -1109,7 +1109,7 @@ function courtHtml() {
 // Admin mode is for the game's makers: open the game once with ?admin=1 on the address (?admin=0 turns it off).
 // It adds an Admin section to Settings, whose switch shows every card in the Library, owned or not.
 // It never gives you cards: line-ups still use only what you own.
-const isAdmin = () => PREFS.read("admin", false);
+const isAdmin = () => PREFS.read("adminKey", false);
 const adminAll = () => isAdmin() && PREFS.read("adminAll", false);
 function toggleRow(act, label, on, note) {
   return `<div class="setrow"><div><b>${label}</b>${note ? `<i>${note}</i>` : ""}</div><button class="switch${on ? " on" : ""}" data-act="${act}" role="switch" aria-checked="${on}" aria-label="${label}"><span></span></button></div>`;
@@ -1128,7 +1128,7 @@ function settingsHtml() {
       <button class="btn quiet" data-go="backs">See the card backs</button>
       <button class="btn quiet" data-act="admin-heroes">Give me every hero</button>
       ${U.adminNote ? `<p class="rule">${esc(U.adminNote)}</p>` : ""}
-      <p class="credit">Only you see this section on this device. Open the game with ?admin=0 to hide it.</p></div>` : ""}
+      <p class="credit">Only you see this section on this device. Open the game with ?admin=0 to turn it off.</p></div>` : ""}
     <p class="credit">Settings are saved on this device.</p></div>`;
 }
 
@@ -1150,6 +1150,7 @@ function issues(lu) {
   if (!lu.crown) out.push("Choose a hero to wear the Crown.");
   if (r > RENOWN_CAP) out.push(`You are ${r - RENOWN_CAP} Renown over the limit of ${RENOWN_CAP}.`);
   if (hs.includes(PAIR[0]) !== hs.includes(PAIR[1])) out.push("Grendel and Grendel's Mother must be fielded together.");
+  if (lu.heroes.includes("baba-yaga")) out.push("Baba Yaga will only wear the Crown.");
   return out;
 }
 function autoFill() {
@@ -1343,7 +1344,9 @@ function startFight(force) {
   if (issues(G.lineup).length) { U.screen = "formation"; U.over = null; return render(); }
   const gap = gaps(G.lineup);
   if (gap.length && !force) { U.over = { type: "gaps", gaps: gap }; return render(); }
-  const lu = G.lineup, easy = easyNext(), foe = randomFoe(easy);
+  // The enemy you are shown is kept (and saved) until you fight it, so backing out or reloading can't reroll it.
+  if (!G.nextFoe) { const e = easyNext(); G.nextFoe = { easy: e, foe: randomFoe(e) }; save(); }
+  const lu = G.lineup, easy = G.nextFoe.easy, foe = G.nextFoe.foe;
   const mine = { crown: lu.crown, heroes: lu.heroes.filter(Boolean), front: lu.front.map((f) => f || null), items: lu.items.filter(Boolean) };
   // Planning: both sides see the other's company, then arrange their own. The computer plans now, against the
   // cards it can see (not your arrangement). A helping-hand company doesn't plan: it keeps its awkward Crown.
@@ -1360,7 +1363,7 @@ function musterTap(s) {
   const m = U.muster;
   if (!m.sel) { if (musterGet(m, s)) m.sel = s; return render(); }
   const a = m.sel; m.sel = null;
-  const same = MUSTER_HERO.includes(a) === MUSTER_HERO.includes(s);
+  const same = MUSTER_HERO.includes(a) === MUSTER_HERO.includes(s) && !babaMoves((k) => musterGet(m, k), a, s);
   if (a !== s && same) { const x = musterGet(m, a), y = musterGet(m, s); musterSet(m, a, y); musterSet(m, s, x); m.heroes = m.heroes.filter(Boolean); }
   else if (a !== s && musterGet(m, s)) m.sel = s;
   render();
@@ -1370,7 +1373,7 @@ function musterGo() {
   if (!G.musterSeen) { G.musterSeen = true; save(); }
   const mine = { ...m.mine, crown: m.crown ?? m.mine.crown, heroes: (m.heroes ?? m.mine.heroes).filter(Boolean), front: m.front ?? m.mine.front };
   begin("fight", [mine, m.foe], { foeName: `${short(DATA.heroes[m.foe.crown].name)}'s company` });
-  S.renown = m.renown; S.easy = m.easy; S.conceded = false; U.muster = null;
+  S.renown = m.renown; S.easy = m.easy; S.conceded = false; U.muster = null; delete G.nextFoe;
   saveLive();
 }
 function musterHtml() {
@@ -2534,7 +2537,9 @@ function buy(id) {
 // swap them: heroes and the Crown together, front rank together, items together. A short tap still opens the slot.
 const DRAG = { on: false };
 const slotGroup = (s) => (s === "crown" || s[0] === "h" ? "hero" : s[0]);
+const babaMoves = (get, a, b) => (get(a) === "baba-yaga" && b !== "crown") || (get(b) === "baba-yaga" && a !== "crown");
 function dropSwap(act, a, b) {
+  if (babaMoves(act === "slot" ? (s) => getSlot(G.lineup, s) : (s) => musterGet(U.muster, s), a, b)) { SND.play("thunk"); return render(); }
   if (act === "slot") {
     const lu = G.lineup, x = getSlot(lu, a), y = getSlot(lu, b);
     setSlot(lu, a, y ?? null); setSlot(lu, b, x ?? null);
@@ -2677,7 +2682,16 @@ document.addEventListener("change", (e) => { if (e.target.dataset.filter != null
 document.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.id === "namein") { e.preventDefault(); claimName(); } });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && U.sheet && !step()) { U.sheet = U.sheet.back || null; render(); } });
 if (G.tutorialDone && !G.packOpened) U.screen = "ready";
-try { const q = new URLSearchParams(location.search); if (q.has("admin")) PREFS.write("admin", q.get("admin") !== "0"); } catch (e) {}
+// Admin mode needs Jonny's passphrase (?admin=<passphrase>); only its SHA-256 hash is in the page. ?admin=0 turns it off.
+const ADMIN_HASH = "17fe07639ab4d9ba2d96ac587244573051df9219d39d20af2d48ae4fe43e1beb";
+try {
+  const q = new URLSearchParams(location.search), v = q.get("admin");
+  if (v === "0") PREFS.write("adminKey", false);
+  else if (v && crypto && crypto.subtle) crypto.subtle.digest("SHA-256", new TextEncoder().encode(v)).then((b) => {
+    const hex = [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, "0")).join("");
+    if (hex === ADMIN_HASH) { PREFS.write("adminKey", true); render(); }
+  }).catch(() => {});
+} catch (e) {}
 document.addEventListener("pointerdown", () => SND.startMusic(), { once: true });
 abandonedFight();
 if (!U.over) checkLevel();
