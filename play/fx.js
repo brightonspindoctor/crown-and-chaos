@@ -891,14 +891,18 @@ function makeFX(A) {
   async function onSwap(e) {
     const a = cardEl(e.a), b = cardEl(e.b); if (!a || !b) return;
     const loki = actNow?.name === "Crown thief" || card(e.b)?.id === "loki";
+    // Move and Whirlwind are ordinary changes of place; only the Dragon's rescue gets the Dragon's caption.
+    const moving = actNow?.name === "Move" || actNow?.name === "Whirlwind";
+    const crowned = moving && [e.a, e.b].map(card).find((c) => c && c.slot === 1 && !c.dead);
     if (loki) { say(actNow?.name === "Crown thief" ? "Loki steals the Crown away" : "Loki shifts his shape and leaves the Crown behind"); SND.play("trick"); runes(centre(b), "#7be08a"); }
+    else if (moving) { say(crowned ? `${crowned.name} steps up to wear the Crown` : `${card(e.a)?.name || "A hero"} and ${card(e.b)?.name || "a hero"} change places`); SND.play("whoosh"); }
     else { say("The Dragon swaps places to save its Crown"); SND.play("whoosh"); }
     const pa = centre(a), pb = centre(b);
     await Promise.all([
       anim(a, [{ transform: "translate(0,0)" }, { transform: `translate(${pb.x - pa.x}px,${pb.y - pa.y}px)` }], 520, { easing: "ease-in-out" }),
       anim(b, [{ transform: "translate(0,0)" }, { transform: `translate(${pa.x - pb.x}px,${pa.y - pb.y}px)` }], 520, { easing: "ease-in-out" }),
     ]);
-    await floatText(loki ? a : b, loki ? "The Crown moves!" : "Swaps in!", "fx-gold");
+    await floatText(loki ? a : b, loki ? "The Crown moves!" : moving ? (crowned ? "Takes the Crown!" : "Moves") : "Swaps in!", "fx-gold");
   }
   async function onRedirect(e) {
     const to = cardEl(e.to), from = cardEl(e.from); if (!to || !from) return;

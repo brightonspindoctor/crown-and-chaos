@@ -3416,6 +3416,31 @@
           "full": [0.22, 0.08, 0.55, 0.762]
         }
       }
+    },
+    {
+      "id": "tree-warrior",
+      "use": "card",
+      "cards": ["tree-warrior"],
+      "artist": "Theodor Kittelsen",
+      "artistDied": 1914,
+      "title": "Skogtroll (Forest Troll)",
+      "date": "1906",
+      "source": {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Theodor_Kittelsen_-_Forest_Troll_-_NG.K%26H.B.03222_-_National_Museum_of_Art,_Architecture_and_Design.jpg",
+        "original": "National Museum of Art, Architecture and Design, Oslo"
+      },
+      "licence": "Public domain (1906; artist died 1914). The museum's photo is also CC BY 4.0",
+      "status": "cleared",
+      "commonsFile": "Theodor_Kittelsen_-_Forest_Troll_-_NG.K&H.B.03222_-_National_Museum_of_Art,_Architecture_and_Design.jpg",
+      "maxWidth": 1400,
+      "notes": "Art for Gwydion's summoned Tree Warrior (a summon, not a card file). Crops are provisional until the image is fetched.",
+      "crops": {
+        "tree-warrior": {
+          "window": [0.0, 0.08, 1.0, 0.5],
+          "full": [0.1, 0.0, 0.8, 1.0]
+        }
+      }
     }
   ]
 }

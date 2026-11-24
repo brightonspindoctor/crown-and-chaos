@@ -925,6 +925,9 @@ function revive(st, c, health) {
   const side = st.sides[c.side];
   c.dead = false; c.removed = false; c.health = health;
   side.grave = side.grave.filter((x) => x.uid !== c.uid);
+  // A revived card may come back somewhere else (Reanimate picks an empty hero slot), so lift its body out of
+  // wherever it fell first; otherwise it would stand in two slots at once.
+  for (const k of Object.keys(side.slots)) if (side.slots[k] === c) side.slots[k] = null;
   side.slots[c.slot] = c;
   if (crownIs(st, c.side, "gwydion")) { c.maxHealth += 2; c.health += 2; c.atkPerm += 1; }
 }
@@ -989,7 +992,8 @@ export const ACTIONS = {
   "king-arthur": { "Excalibur": { t: "enemyMelee", go: (st, a, x) => hit(st, a, x, 5, { ignoreGuard: true }) } },
   "koschei": { "Whirlwind": { t: "enemyHeroNotCrown", go: (st, a, x) => {
     damage(st, a, x, 3, { attack: true });
-    if (!x.dead && !crownIs(st, x.side, "the-tin-soldier")) {
+    // Only a hero still in slot 2 or 3 is thrown: the hit can make it the Crown (the Dragon swaps in to save it).
+    if (!x.dead && !crownIs(st, x.side, "the-tin-soldier") && (x.slot === 2 || x.slot === 3) && crownCard(st, x.side)?.uid !== x.uid) {
       const other = x.slot === 2 ? 3 : 2; const side = st.sides[x.side]; const y = side.slots[other];
       side.slots[other] = x; side.slots[x.slot] = y && !y.dead ? y : null; if (y && !y.dead) y.slot = x.slot; x.slot = other;
     }
@@ -1144,7 +1148,8 @@ function targetsForAll(st, a, act) {
   const eh = heroes(st, foe);
   switch (type) {
     case "none": return [null];
-    case "allyHeroSwap": return [1, 2, 3].map((x) => at(st, a.side, x)).filter((c) => c && c.kind === "hero" && c.uid !== a.uid);
+    // Baba Yaga always wears her Crown, so nobody can swap places with her.
+    case "allyHeroSwap": return [1, 2, 3].map((x) => at(st, a.side, x)).filter((c) => c && c.kind === "hero" && c.uid !== a.uid && c.id !== "baba-yaga");
     case "emptyFront": return [4, 5, 6].some((x) => !at(st, a.side, x)) ? [null] : [];
     case "enemyMelee": return meleeTargets(st, a);
     case "enemyAny": case "enemyAny2": return rangedTargets(st, a);

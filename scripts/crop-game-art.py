@@ -18,6 +18,15 @@ for f in sorted(g for d in ("heroes", "front-rank", "items") for g in glob.glob(
     e = man[c["art"]]; crop = e["crops"].get(c["id"]) or e["crops"][c["art"]]
     im = cut(source(c["art"]), crop["window"]); im.thumbnail((520, 520))
     im.save(f"{root}/game/img/{c['id']}.jpg", quality=78, optimize=True); n += 1
+# Summoned cards have no card file: crop their art straight from the manifest entry, once the image is fetched.
+filed = {json.load(open(f))["id"] for d in ("heroes", "front-rank", "items") for f in glob.glob(f"{root}/cards/{d}/*.json")}
+for e in man.values():
+    if e["use"] != "card" or e["status"] != "cleared": continue
+    for card in e.get("cards", []):
+        if card in filed or card not in e.get("crops", {}): continue
+        if not glob.glob(f"{root}/art/images/{e['id']}.*"): print("no image yet for", e["id"]); continue
+        im = cut(source(e["id"]), e["crops"][card]["window"]); im.thumbnail((520, 520))
+        im.save(f"{root}/game/img/{card}.jpg", quality=78, optimize=True); n += 1
 for e in man.values():
     if e["use"] != "board" or e["status"] != "cleared" or "fallback" in e["id"]: continue
     if not glob.glob(f"{root}/art/images/{e['id']}.*"): print("no image yet for", e["id"]); continue

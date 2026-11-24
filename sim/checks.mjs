@@ -440,5 +440,26 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   ok("Huntsman Bond: +1 against a Beast per other Märchen hero", shot(["the-huntsman", "red-riding-hood"], "the-wolf") === shot(["the-huntsman", "lancelot"], "the-wolf") + 1);
   ok("Huntsman Bond: no bonus against a non-Beast", shot(["the-huntsman", "red-riding-hood"], "st-george") === shot(["the-huntsman", "lancelot"], "st-george"));
 }
+{ // Move: nobody can swap places with Baba Yaga, who always wears her Crown
+  const st = game(lu("baba-yaga", ["the-wolf"]), lu("st-george"));
+  const w = card(st, 0, "the-wolf"), mv = E.options(st, w).find((o) => o.action.name === "Move");
+  ok("Move: Baba Yaga can't be swapped out of the Crown", !mv || !(mv.targets || []).some((t) => t && t.id === "baba-yaga"), mv && mv.targets.map((t) => t?.id));
+}
+{ // Reanimate: a hero that died in slot 1 of a No Crown side comes back in one slot only
+  const st = game(lu("robin-hood", ["victor-frankenstein", "the-bride"]), lu("st-george"));
+  const side = st.sides[0], r = card(st, 0, "robin-hood"), b = card(st, 0, "the-bride");
+  const s1 = r.slot, s2 = b.slot; side.slots[s1] = b; side.slots[s2] = r; b.slot = s1; r.slot = s2;
+  E.kill(st, b); E.kill(st, r); // two bodies: the Bride in slot 1, Robin in her old slot, which Reanimate reuses
+  E.playRound(st, [{ orders: [order(st, 0, "victor-frankenstein", "Reanimate", b)] }, { orders: [] }]);
+  const where = Object.entries(side.slots).filter(([, c]) => c === b).map(([k]) => +k);
+  ok("Reanimate: the revived hero stands in exactly one slot", where.length === 1 && where[0] === b.slot, where);
+}
+{ // Whirlwind never throws the Crown: if the Dragon swaps in to save the target, the target stays in slot 1
+  const st = game(lu("koschei"), lu("the-dragon", ["merlin"]));
+  const m = card(st, 1, "merlin"); m.health = 2;
+  E.playRound(st, [{ orders: [order(st, 0, "koschei", "Whirlwind", m)] }, { orders: [] }]);
+  const cr = E.crownCard(st, 1);
+  ok("Whirlwind: the Crown stays in slot 1", !cr || cr.slot === 1, cr && [cr.name, cr.slot]);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

@@ -13,6 +13,11 @@ const art = {};
 for (const c of [...Object.values(data.heroes), ...Object.values(data.front), ...Object.values(data.items)]) {
   if (c.art && byId[c.art]) art[c.id] = credit(byId[c.art]);
 }
+// Summoned cards (such as Gwydion's Tree Warrior) have no card file, only an art entry and a cropped image.
+for (const e of manifest) {
+  if (e.use !== "card" || e.status !== "cleared") continue;
+  for (const card of e.cards || []) if (!art[card] && existsSync(`${root}game/img/${card}.jpg`)) art[card] = credit(e);
+}
 // Variant artworks, by card: every cleared painting with a crop for that card (images from scripts/crop-game-art.py).
 // Numbered from 2, since the card's own painting is number 1.
 const variants = {};
