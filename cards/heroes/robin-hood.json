@@ -17,7 +17,7 @@
   "renown": 17,
   "crownPassive": {
     "name": "No Crown",
-    "text": "You have no Crown this fight, and the enemy wins only by killing all your heroes."
+    "text": "While he stands in slot 1 you have no Crown, and the enemy wins only by killing all your heroes."
   },
   "bond": {
     "name": "Outlaw's Call",
@@ -38,7 +38,7 @@
   "art": "robin-hood",
   "status": "reviewed",
   "rules": [
-    "No Crown lasts the whole fight if Robin starts in slot 1, even if he dies or is moved.",
+    "If he moves out of slot 1, whoever stands there wears the Crown. If he dies in slot 1, No Crown lasts.",
     "With No Crown, no other hero's Crown passive is active.",
     "Longbowmen hit the hero in slot 1 instead, or the closest hero if slot 1 is empty.",
     "An enemy Baba Yaga can't move onto your slot 1, as if it held a Crown."

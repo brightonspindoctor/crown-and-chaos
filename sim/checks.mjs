@@ -461,5 +461,14 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
   const cr = E.crownCard(st, 1);
   ok("Whirlwind: the Crown stays in slot 1", !cr || cr.slot === 1, cr && [cr.name, cr.slot]);
 }
+{ // Robin Hood's No Crown lasts only while he stands in slot 1
+  const st = game(lu("robin-hood", ["merlin"]), lu("st-george"));
+  const r = card(st, 0, "robin-hood"), m = card(st, 0, "merlin");
+  E.playRound(st, [{ orders: [order(st, 0, "merlin", "Move", r)] }, { orders: [] }]);
+  const c1 = E.crownCard(st, 0);
+  ok("Robin moves out of slot 1: No Crown ends and Merlin wears the Crown", !st.sides[0].noCrown && c1 && c1.uid === m.uid && m.slot === 1, [st.sides[0].noCrown, c1?.name]);
+  E.playRound(st, [{ orders: [order(st, 0, "robin-hood", "Move", m)] }, { orders: [] }]);
+  ok("Robin moves back into slot 1: No Crown returns", st.sides[0].noCrown && r.slot === 1, [st.sides[0].noCrown, r.slot]);
+}
 console.log(fails ? `${fails} check(s) failed` : "All checks passed");
 process.exit(fails ? 1 : 0);

@@ -80,10 +80,22 @@ export const MOVE = { name: "Move", ap: 1, move: true,
   text: "Swap places with one of your heroes. Whoever ends up in slot 1 wears the Crown." };
 const MOVE_SPEC = { t: "allyHeroSwap", go: (st, a, x) => {
   const side = st.sides[a.side];
-  if (!side.noCrown && (a.slot === 1 || x.slot === 1)) { swapCrown(st, a.side, a.slot === 1 ? x : a); return; }
+  if (!side.noCrown && (a.slot === 1 || x.slot === 1)) { swapCrown(st, a.side, a.slot === 1 ? x : a); sherwood(st, a.side); return; }
   const s1 = a.slot, s2 = x.slot; side.slots[s1] = x; side.slots[s2] = a; a.slot = s2; x.slot = s1;
   ev(st, { t: "swap", a: a.uid, b: x.uid, side: a.side });
+  sherwood(st, a.side);
 } };
+// Robin Hood's No Crown works only while he stands in slot 1. If he moves out, whoever stands there now wears
+// the Crown (and losing it loses the fight); if he moves back, No Crown returns.
+function sherwood(st, i) {
+  const side = st.sides[i]; if (!side.sherwood) return;
+  const top = side.slots[1] && !side.slots[1].dead ? side.slots[1] : null;
+  const was = side.noCrown, robinTop = !!top && top.id === "robin-hood";
+  side.noCrown = robinTop;
+  if (!robinTop && top) side.crownUid = top.uid;
+  if (was && !robinTop && top) log(st, `Robin Hood leaves the Crown's place: ${top.name} now wears the Crown.`);
+  if (!was && robinTop) log(st, `Robin Hood is back in the Crown's place: no Crown again.`);
+}
 const specOf = (c, act) => (act && act.move ? MOVE_SPEC : ACTIONS[c.id]?.[act?.name]);
 const isCourt = (st, c, act) => act && act.court && c.kind === "hero" && !st.sides[c.side].noCrown && st.sides[c.side].crownUid === c.uid && c.id !== "baba-yaga";
 
@@ -137,7 +149,7 @@ export function createGame(data, lineups, opts = {}) {
   // Start-of-fight effects
   for (const side of st.sides) {
     const crown = crownCard(st, side.index);
-    if (crown?.id === "robin-hood") side.noCrown = true;
+    if (crown?.id === "robin-hood") { side.noCrown = true; side.sherwood = true; }
   }
   applyStartingHealth(st);
   // Men of Ithaca: one Villager per Hellas hero fielded, if Odysseus is fielded.
