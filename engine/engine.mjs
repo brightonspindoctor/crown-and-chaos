@@ -420,7 +420,7 @@ function applyStartingHealth(st) {
         if (c.id === "gretel") bonus += f * countRealm(st, c, "Märchen");
       }
       if (c.kind === "hero" && crownIs(st, i, "guinevere")) bonus += 1;
-      if (c.kind === "front" && crownIs(st, i, "polyphemus")) bonus += 2;
+      if (c.kind === "front" && crownIs(st, i, "polyphemus")) bonus += 1;
       if (bonus) {
         c.maxHealth = Math.max(1, c.maxHealth + bonus);
         c.health = Math.max(1, Math.min(c.maxHealth, c.health + bonus));
@@ -923,7 +923,7 @@ export function upkeep(st) {
     for (const slot of [4, 5, 6]) {
       if (side.flags.ithacaLeft <= 0 || at(st, i, slot)) continue;
       const v = makeFront(st.data.front.villager, i, slot);
-      if (crownIs(st, i, "polyphemus")) { v.maxHealth += 2; v.health += 2; }
+      if (crownIs(st, i, "polyphemus")) { v.maxHealth += 1; v.health += 1; }
       v.guardLeft = guardOf(st, v);
       side.slots[slot] = v; side.flags.ithacaLeft--;
       log(st, `A man of Ithaca steps into ${sideName(i)}'s front rank.`);

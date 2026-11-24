@@ -137,7 +137,7 @@ const order = (st, i, id, name, tgt) => { const c = card(st, i, id); return { ui
 { // Polyphemus: Crown buffs the front rank; Bond speeds other Hellas heroes; the boulder slows
   const st = game(lu("polyphemus", ["circe"], ["knight"]), lu("merlin"));
   const k = card(st, 0, "knight");
-  ok("Shepherd of the cave: Knight on 4 Health and 2 Guard", k.health === 4 && k.guardLeft === 2, [k.health, k.guardLeft]);
+  ok("Shepherd of the cave: Knight on 3 Health and 2 Guard", k.health === 3 && k.guardLeft === 2, [k.health, k.guardLeft]);
   ok("Son of Poseidon: Circe has +1 Speed (3 + 1)", E.speedOf(st, card(st, 0, "circe")) === 4, E.speedOf(st, card(st, 0, "circe")));
   ok("Son of Poseidon: Polyphemus's own Attack and Speed are unchanged", E.attackOf(st, card(st, 0, "polyphemus")) === 4 && E.speedOf(st, card(st, 0, "polyphemus")) === 1);
   const st3 = game(lu("polyphemus"), lu("merlin"));
