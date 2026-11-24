@@ -2821,7 +2821,7 @@ async function syncPlayer() {
 // Every finished fight is sent to the fights table for playtesting and balancing: the result, both line-ups,
 // rounds, the player's level, and whether the computer was going easy. Fights that can't be sent wait on the phone
 // (up to 50) and go with the next one.
-const BUILD = "2026-11-24-bc5a118";
+const BUILD = "2026-11-24-384e05a";
 const lineupIds = (lu) => ({ crown: lu.crown || null, heroes: (lu.heroes || []).filter(Boolean), front: (lu.front || []).filter(Boolean), items: (lu.items || []).filter(Boolean) });
 function logFight(st, w) {
   if (!S.lineups) return;
@@ -2907,6 +2907,8 @@ function settingsHtml() {
     ${isAdmin() ? `<div class="box admin"><h2>Admin</h2>
       ${toggleRow("admin-all", "See every card", adminAll(), "Shows every hero, front-rank card, item and crown in the Library, owned or not")}
       <button class="btn quiet" data-go="backs">See the card backs</button>
+      <button class="btn quiet" data-act="admin-heroes">Give me every hero</button>
+      ${U.adminNote ? `<p class="rule">${esc(U.adminNote)}</p>` : ""}
       <p class="credit">Only you see this section on this device. Open the game with ?admin=0 to hide it.</p></div>` : ""}
     <p class="credit">Settings are saved on this device.</p></div>`;
 }
@@ -5415,6 +5417,12 @@ document.addEventListener("click", (e) => {
     case "set-music": SND.setMusic(!SND.music); render(); break;
     case "set-fast": G.fast = !G.fast; save(); render(); break;
     case "admin-all": PREFS.write("adminAll", !adminAll()); render(); break;
+    case "admin-heroes": { // Testing: one copy of every hero this collection lacks. Saved like any other card.
+      const missing = Object.keys(DATA.heroes).filter((id) => !(G.heroes[id] > 0));
+      missing.forEach((id) => { G.heroes[id] = 1; });
+      save(); U.adminNote = missing.length ? `Added ${missing.length} hero${missing.length === 1 ? "" : "es"}. Every hero is now in your collection.` : "You already have every hero.";
+      render(); break;
+    }
     case "lv-wear": if (G.ownCrowns.includes(d.id)) { G.wearing = d.id; save(); SND.play("ping"); syncPlayer(); } // falls through to the next step
     case "lv-next": { const o = U.over; if (o && o.type === "levelup" && o.i < o.steps.length - 1) o.i += 1; else { U.over = null; if (G.goldenPacks > 0) openGolden(); } render(); break; }
     case "open-golden": U.over = null; openGolden(); render(); break;
